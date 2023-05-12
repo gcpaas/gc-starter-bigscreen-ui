@@ -7,7 +7,7 @@ echo '删除当前目录下的 package-lock.json'
 rm  package-lock.json ./
 
 echo '开始安装依赖'
-npm install --registry=https://registry.npm.taobao.org
+npm install --registry=http://registry.npmmirror.com
 
 echo '安装依赖完毕'
 
