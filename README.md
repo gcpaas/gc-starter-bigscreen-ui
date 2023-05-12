@@ -43,8 +43,8 @@ registerConfig({
 
 ```
 
-Q: 如何使用系统内已经存在的配置，比如baseURL 在window.baseURL上已经绑定，根据环境不同这个baseURL不同而不一样，怎么写。
-A:  可这样写
+- Q: 如何使用系统内已经存在的配置，比如baseURL 在window.baseURL上已经绑定，根据环境不同这个baseURL不同而不一样，怎么写。
+- A:  可这样写
 
 ````js
 registerConfig({
@@ -54,8 +54,8 @@ registerConfig({
 }, router)
 ````
 
-Q: 如何使用在 .env.prod   、 .env.dev中的变量？
-A: 比如，在 .env.prod   、 .env.dev中定义了 VUE_APP_BASE_URL （必须以VUE_APP_开头），在js中这么取即可
+- Q: 如何使用在 .env.prod   、 .env.dev中的变量？
+- A: 比如，在 .env.prod   、 .env.dev中定义了 VUE_APP_BASE_URL （必须以VUE_APP_开头），在js中这么取即可
 
 ```js
 registerConfig({
@@ -251,6 +251,20 @@ npm install
 
 ### 3. 在前端注册服务
 #### 3.1 注册服务
+
+根据环境不同修改public/config/index-development.js 或public/config/index-production.js中的配置，
+将baseUrl改为2中的服务端地址
+
+`public/config/index-development.js` :
+```js
+window.ENV = 'development'
+var developmentConfig = {
+  baseUrl: 'http://127.0.0.1:8066/bigScreen'
+}
+// 必须的
+window.CONFIG = configDeepMerge(window.CONFIG, developmentConfig)
+```
+
 在main.js中注册服务，如下, baseUrl即为2中的服务端地址
 ```js
 import { registerConfig } from 'gc-starter-bigscreen-ui'
@@ -264,7 +278,6 @@ registerConfig({
 ```shell
 npm run serve
 ```
-
 
 ### 4. 开发和发布
 可根据需求开发，
