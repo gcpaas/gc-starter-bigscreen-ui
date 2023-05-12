@@ -127,45 +127,41 @@ export default {
 ```vue
 <template>
   <!-- code为大屏设计时的编码，你可以携带到本页面路由中获取 -->
-  <BigScreenDesign 
-    ref="BigScreenDesign"
-		:header-show="headerShow"
-    :code="code"
-  />
+  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :code="code" />
 </template>
 <script>
-import { BigScreenDesign } from 'gc-starter-bigscreen-ui'
+import { BigScreenDesign } from "gc-starter-bigscreen-ui";
 export default {
   components: {
-    BigScreenDesign
+    BigScreenDesign,
   },
-  data () {
+  data() {
     return {
-			// 是否展示头部，可隐藏后自己写头部
-      headerShow: true
-    }
+      // 是否展示头部，可隐藏后自己写头部
+      headerShow: true,
+    };
   },
-	computed: {
+  computed: {
     code() {
-      return this.$route.query.code
-    }
+      return this.$route.query.code;
+    },
   },
   methods: {
-		// 下面是其方法
+    // 下面是其方法
     // 保存并预览
-    saveAndPreview () {
-      this.$refs.BigScreenDesign.saveAndPreview()
+    saveAndPreview() {
+      this.$refs.BigScreenDesign.saveAndPreview();
     },
     // 保存
-    save () {
-      this.$refs.saveAndPreview.save()
+    save() {
+      this.$refs.saveAndPreview.save();
     },
     // 清空
-		empty () {
-      this.$refs.saveAndPreview.empty()
+    empty() {
+      this.$refs.saveAndPreview.empty();
     },
-	}
-}
+  },
+};
 </script>
 ```
 
