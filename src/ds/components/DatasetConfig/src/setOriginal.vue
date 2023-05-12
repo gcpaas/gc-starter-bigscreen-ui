@@ -134,12 +134,6 @@
                   :disabled="!isEdit"
                   @change="setTable"
                 >
-                  <!-- <el-option
-                    v-for="table in tableList"
-                    :key="table.name"
-                    :label="table.name"
-                    :value="table.name"
-                  ></el-option> -->
                   <el-option-group label="表">
                     <el-option
                       v-for="table in tableList"
@@ -310,7 +304,6 @@
             </template>
           </el-table-column>
         </el-table>
-        <!-- <div style="padding: 12px 0 0;"><span v-show="totalCount">共{{ totalCount }}条数据，当前展示前{{ currentCount }}条</span></div> -->
       </div>
       <div class="page-container">
         <el-pagination
@@ -338,7 +331,6 @@
           name="data"
         >
           <div class="table-box">
-            <!-- <div style="padding: 0 0 12px;"><span v-show="totalCount">共{{ totalCount }}条数据，当前展示前{{ currentCount }}条</span></div> -->
             <el-table
               align="center"
               :data="dataPreviewList"

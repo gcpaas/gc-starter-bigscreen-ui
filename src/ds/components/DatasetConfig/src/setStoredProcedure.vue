@@ -161,7 +161,7 @@
                   placement="top-start"
                 ><i class="el-icon-question" />
                 </el-tooltip>
-                select * from table where 1=1  <span style="color: blue;"><参数名称></span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;"></参数名称></span>
+                select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
               </strong>
             </div>
           </div>
@@ -369,17 +369,6 @@
                   <span v-else>{{ scope.row.orderNum }}</span>
                 </template>
               </el-table-column>
-              <!-- <el-table-column
-                align="center"
-                prop="sourceTable"
-                label="字段来源">
-                <template slot-scope="scope">
-                  <el-select v-model="scope.row.sourceTable" clearable filterable v-if="isEdit">
-                    <el-option v-for="table in tableNameList" :key="table" :label="table" :value="table"></el-option>
-                  </el-select>
-                  <span v-else>{{ scope.row.sourceTable }}</span>
-                </template>
-              </el-table-column> -->
             </el-table>
           </div>
         </el-tab-pane>
@@ -473,17 +462,6 @@
               <span v-else>{{ scope.row.orderNum }}</span>
             </template>
           </el-table-column>
-          <!-- <el-table-column
-            align="center"
-            prop="sourceTable"
-            label="字段来源">
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.sourceTable" clearable filterable v-if="isEdit">
-                <el-option v-for="table in tableNameList" :key="table" :label="table" :value="table"></el-option>
-              </el-select>
-              <span v-else>{{ scope.row.sourceTable }}</span>
-            </template>
-          </el-table-column> -->
         </el-table>
       </div>
       <span
@@ -519,11 +497,7 @@
             prop="name"
             label="参数名称"
             align="center"
-          >
-            <!-- <template slot-scope="scope">
-              <el-input v-model="scope.row.name" readonly placeholder="请输入名称" clearable @change="checkParamsName(scope.row)"></el-input>
-            </template> -->
-          </el-table-column>
+          />
           <el-table-column
             prop="type"
             label="参数类型"

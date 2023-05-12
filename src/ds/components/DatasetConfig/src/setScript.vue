@@ -174,9 +174,6 @@
                 </el-button>
               </div>
             </div>
-            <!-- <div class="addParams" style="margin-top: 16px;">
-              <el-button type="primary" @click="openParamsConfig">脚本参数配置</el-button>
-            </div> -->
           </div>
           <div class="structure">
             <div class="title-style">
