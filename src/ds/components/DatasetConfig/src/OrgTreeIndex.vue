@@ -167,9 +167,11 @@ import 'gc-starter-ui-plus/packages/assets/styles/zTree/zTree.scss'
 import { $gc } from 'gc-starter-ui-plus'
 import { getDatasetTypeList } from '../../../service/DatasetConfigService'
 import { categoryRemove } from '../../../service/CommonService'
+import OrgEditForm from '../../../common/components/CategroyEditForm/index.vue'
 export default {
   name: 'OrgTreeIndex',
   components: {
+    OrgEditForm
   },
   props: {
     dsType: {
