@@ -51,8 +51,6 @@
             </div>
           </el-card>
         </el-col>
-        <!-- </el-row>
-      <el-row :gutter="20" style="margin-top: 10px;"> -->
         <el-col
           v-if="dsType.includes('json')"
           :span="spanNum"
@@ -83,10 +81,6 @@
         </el-col>
       </el-row>
     </div>
-    <!-- <span slot="footer" class="dialog-footer">
-      <el-button @click="setTypeVisible = false">取 消</el-button>
-      <el-button type="primary" @click="setTypeVisible = false">确 定</el-button>
-    </span> -->
   </el-dialog>
 </template>
 

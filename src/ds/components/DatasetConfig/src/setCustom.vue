@@ -161,7 +161,7 @@
                   placement="top-start"
                 ><i class="el-icon-question" />
                 </el-tooltip>
-                select * from table where 1=1  <span style="color: blue;"><参数名称></span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;"></参数名称></span>
+                select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
               </strong>
             </div>
           </div>
@@ -413,7 +413,6 @@
                       :value="table"
                     />
                   </el-select>
-                  <!-- <el-input v-model="scope.row.sourceTable" size="small" class="labeldsc" v-if="isEdit"></el-input> -->
                   <span v-else>{{ scope.row.sourceTable }}</span>
                 </template>
               </el-table-column>
@@ -529,7 +528,6 @@
                   :value="table"
                 />
               </el-select>
-              <!-- <el-input v-model="scope.row.sourceTable" size="small" class="labeldsc" v-if="isEdit"></el-input> -->
               <span v-else>{{ scope.row.sourceTable }}</span>
             </template>
           </el-table-column>

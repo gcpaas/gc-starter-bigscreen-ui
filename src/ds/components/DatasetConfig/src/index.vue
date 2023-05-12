@@ -86,15 +86,6 @@
             >
               新增
             </el-button>
-            <!-- <el-dropdown placement="bottom-start" @command="addDataset">
-              <el-button type="primary">
-                新增<i class="el-icon-arrow-down el-icon--right"></i>
-              </el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="original">原始数据集</el-dropdown-item>
-                <el-dropdown-item command="custom">自助数据集</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown> -->
           </el-form-item>
         </el-form>
         <div class="table-box">
@@ -161,7 +152,6 @@
               align="center"
             >
               <template slot-scope="scope">
-                <!-- <el-button @click="toPreview(scope.row.id, scope.row.datasetType, scope.row.name, scope.row.typeId)">详情</el-button> -->
                 <el-button
                   :disabled="scope.row.editable === 1 && !appCode"
                   @click="toEdit(scope.row.id, scope.row.datasetType, scope.row.name, scope.row.typeId)"
@@ -174,29 +164,6 @@
                 >
                   删除
                 </el-button>
-                <!-- <el-tooltip class="item" effect="dark" content="详情" placement="top">
-                  <el-button
-                    icon="el-icon-view"
-                    @click="toPreview(scope.row.id, scope.row.datasetType, scope.row.name)"
-                  >
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="dark" content="编辑" placement="top">
-                  <el-button
-                    :disabled="scope.row.editable === 1 && !$route.query.appCode"
-                    icon="el-icon-edit"
-                    @click="toEdit(scope.row.id, scope.row.datasetType, scope.row.name)"
-                  >
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="dark" content="删除" placement="top">
-                  <el-button
-                    :disabled="scope.row.editable === 1 && !$route.query.appCode"
-                    icon="el-icon-delete"
-                    @click="delDataset(scope.row.id)"
-                  >
-                  </el-button>
-                </el-tooltip> -->
               </template>
             </el-table-column>
           </el-table>
