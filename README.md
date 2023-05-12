@@ -250,15 +250,24 @@ npm install
 服务后端地址请记住，后面会用到
 
 ### 3. 在前端注册服务
+#### 3.1 注册服务
 在main.js中注册服务，如下, baseUrl即为2中的服务端地址
 ```js
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+// 因为此工程的配置放到window的CONFIG对象中，所以从这里取出来。自己的项目有可能从其他地方获取
 registerConfig({
-  baseUrl: 'http://127.0.0.1:8066/bigScreen'
+  baseUrl: window.CONFIG?.baseUrl
 })
 ```
 
+#### 3.2 运行访问
+```shell
+npm run serve
+```
+
+
 ### 4. 开发和发布
+可根据需求开发，
 自定义开发组件后，执行下面命令可打包组件，然后发布到npm上
 ```shell
 npm run package

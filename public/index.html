@@ -110,6 +110,12 @@
       z-index: 9999 !important
     }
   </style>
+  <script
+    src='<%= process.env.VUE_APP_HISTORY === "y" ? process.env.VUE_APP_BASE +"/config/starter.js" : "config/starter.js"  %>'>
+  </script>
+  <script
+    src='<%= process.env.VUE_APP_HISTORY === "y" ? process.env.VUE_APP_BASE +"/config/index-" + process.env.NODE_ENV + ".js" : "config/index-" + process.env.NODE_ENV + ".js"  %>'>
+  </script>
 </head>
 
 <body>
