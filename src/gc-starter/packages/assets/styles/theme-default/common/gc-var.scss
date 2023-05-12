@@ -1,0 +1,155 @@
+/// 通用
+$white: #FFFFFF;
+$black: #000000;
+$whiteBgHover: #f5f5f5;
+$darkBgHover: rgba(255, 255, 255, .1);
+$modalShadow: rgba(0, 0, 0, .5);
+
+// common文件中的样式
+// $-common-bg:var(--bg,#f5f5f5);
+
+//图片路径
+$--images-path: '../../images' !default;
+$--images-path-new: '../../assets/images' !default;
+
+
+// 深色主题色
+$-dark: #232832 !default;
+// 背景色
+$-dark-bg: #151A26 !default;
+// router-tab bg
+$-dark-router-tab-bg: #1D222D !default;
+// 左侧菜单背景
+$-dark-bg-menu: #1d222d !default;
+// hover
+$-dark-hover: #35393F !default;
+// left menu is-opened title
+$-dark-menu-opened-title-bg: $-dark-hover  !default;
+// 深色背景
+$-dark-bg-dark: #191e2a !default;
+// 左侧菜单激活
+$-dark-menu-active: #37393f !default;
+// 输入框placeholder
+$-dark-text-placeholder: #87888E !default;
+// element 组件背景
+$-dark-element-bg: $-dark-hover  !default;
+// tabs border bg
+$-dark-border-bottom-color: #10141E !default;
+// element heaer bg
+$-dark-header-bg: #2E323A !default;
+// element table heaer bg
+$-dark-table-header-bg: #303640 !default;
+// element 禁用组件文字
+$-dark-element-disable-text: #87888E !default;
+$-dark-no-border: none !default;
+
+/// color|1|BrandColor|0
+$--color-primary: #007aff !default;
+/// color|1|SecondaryColor|1
+$--color-success: #1aa97b !default;
+/// color|1|SecondaryColor|1
+$--color-warning: #ffa054 !default;
+/// color|1|SecondaryColor|1
+$--color-danger: #ff4d53 !default;
+/// color|1|SecondaryColor|1
+$--color-info: #77838f !default;
+
+/// color|1|FontColor|2
+$--color-text-primary: #36474f !default;
+/// color|1|FontColor|2
+$--color-text-regular: #36474f !default;
+/// color|1|FontColor|2
+$--color-text-secondary: #76838f !default;
+/// color|1|FontColor|2
+$--color-text-placeholder: #999 !default;
+/// color|1|BorderColor|3
+$--border-color-base: #e8e8e8 !default;
+/// color|1|BorderColor|3
+$--border-color-light: #f5f5f5 !default;
+/// color|1|BorderColor|3
+$--border-color-lighter: #e6ebf5 !default;
+/// color|1|BorderColor|3
+$--border-color-extra-light: #e8e8e8 !default;
+
+// Background
+/// color|1|BackgroundColor|4
+$--background-color-base: #f6f7fb !default;
+$--font-color-disabled-base: #bfbfbf !default;
+
+/// padding||Spacing|3
+$--button-mini-padding-vertical: 8px !default;
+/// padding||Spacing|3
+$--button-mini-padding-horizontal: 10px !default;
+/// height||Other|4
+$--pagination-button-width: 40px !default;
+/// height||Other|4
+$--pagination-button-height: 30px !default;
+
+/* Tooltip
+-------------------------- */
+/// color|1|Color|0
+$--tooltip-fill: #171717 !default;
+/* Card
+--------------------------*/
+/// color||Color|0
+$--card-border-color: $--border-color-base  !default;
+$--card-border-radius: 0px !default;
+/// padding||Spacing|3
+$--card-padding: 24px !default;
+
+/*布局通用变量*/
+
+/*头部高度--登录注册忘记密码页面 */
+$--header-height: 56px;
+$--color-white: #fff !default;
+/*头部高度*/
+$gc-header-height: 56px;
+$gc-color-white: #fff !default;
+/*底部高度*/
+$gc-footer-height: 32px;
+/*菜单的字体颜色*/
+$gc-menu-text: #76838f;
+/*菜单选中后的字体颜色*/
+$gc-menu-active-text: #007aff;
+/*黑色布局hover颜色*/
+$gc-dark-bg-hover: rgba(255, 255, 255, .1);
+/*菜单选中后border颜色*/
+$gc-menu-active-border-bg: #007aff;
+
+
+/*经典布局变量*/
+
+/*侧边导航宽度以及收缩后宽度*/
+$gc-sideBar-width: 200px;
+$gc-sideBar-fold-width: 54px;
+/*经典布局竖直导航颜色配置*/
+/*菜单头部标题以及svg颜色*/
+$gc-menu-top-title: #ffff;
+/*菜单总体背景色*/
+$gc-menu-bg: #171717;
+/*目录菜单背景色*/
+$gc-menu-directory: #171717;
+/*子菜单背景色*/
+$gc-menu-item: rgb(35, 35, 35);
+/*菜单hover字体颜色*/
+$gc-menu-font-hover: #007aff;
+/*菜单hover背景色*/
+$gc-menu-hover: #2F2F2F;
+/*菜单被选中后的背景色*/
+$gc-menu-active-bg: #2F2F2F;
+/*菜单被选中后其父级目录的字体颜色*/
+$gc-subMenu-active-text: #f4f4f5;
+
+
+// 图表色
+$chartsColors: #6a71e6 #3e8ef7 #2dbae7 #61D2FE #2AC59E #49DE94 #FF666B #FFCD17 #9363F7;
+
+// 如果上面需要用到elementUI 的变量，可以在下面导入
+//@import "~element-ui/packages/theme-chalk/src/common/var.scss";
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  primaryColor: #007aff;
+  chartsColors: $chartsColors;
+}

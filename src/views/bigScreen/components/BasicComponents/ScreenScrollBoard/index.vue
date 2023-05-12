@@ -1,0 +1,173 @@
+<template>
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
+    <dv-scroll-board
+      :key="updateKey"
+      :class="{'light-theme':customTheme === 'light','auto-theme':customTheme =='auto','dark-theme':customTheme =='dark'}"
+      :config="option"
+    />
+  </div>
+</template>
+<script>
+import  DvScrollBoard  from '@jiaminghi/data-view/lib/components/scrollBoard/src/main.vue'
+import '@jiaminghi/data-view/lib/components/scrollBoard/src/main.css'
+import { refreshComponentMixin } from 'gc-starter-bigscreen/mixins/refreshComponent'
+import commonMixins from 'gc-starter-bigscreen/mixins/commonMixins'
+import paramsMixins from 'gc-starter-bigscreen/mixins/paramsMixins'
+import linkageMixins from 'gc-starter-bigscreen/mixins/linkageMixins'
+export default {
+  name: 'ScrollBoard',
+  mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
+  components: {
+    DvScrollBoard
+  },
+  props: {
+    // 卡片的属性
+    config: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    option () {
+      return {...this.config.customize,data:this.config.option.data,header:this.config.option.header,columnWidth:this.config.option.columnWidth,align:this.config.option.align}
+    }
+  },
+  watch: {
+  },
+  mounted () { },
+  methods: {
+    buildOption (config, data) {
+      const header = []
+      const dataList = []
+      const alignList = []
+      const widthList = []
+      if (config.customize.columnConfig.length === 0) {
+        const key = []
+        for (let i in data.columnData) {
+          header.push(data.columnData[i].remark)
+          key.push(i)
+        }
+        data.data.forEach((item) => {
+          const arr = []
+          header.forEach((x, index) => {
+            arr.push(item[key[index]])
+          })
+          dataList.push(arr)
+        })
+      } else {
+        const key = []
+        config.customize.columnConfig.forEach(item => {
+          header.push(item.name)
+          key.push(item.code)
+          alignList.push(item.align)
+          widthList.push(item.width)
+        })
+        data.data.forEach((item) => {
+          const arr = []
+          header.forEach((x, index) => {
+            arr.push(item[key[index]])
+          })
+          dataList.push(arr)
+        })
+        if (config.customize.index) {
+          if (alignList.length === header.length) {
+            alignList.unshift('center')
+          }
+          if (widthList.length === header.length) {
+            widthList.unshift('100')
+          }
+        } else {
+          if (alignList.length !== header.length) {
+            alignList.shift()
+          }
+          if (widthList.length !== header.length) {
+            widthList.shift()
+          }
+        }
+      }
+      config.option= {
+        ...config.option,
+        data: dataList,
+        header: header,
+        columnWidth: [...widthList],
+        align: [...alignList]
+      }
+
+      return config
+
+    },
+
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.light-theme{
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.auto-theme{
+  background-color: rgba(0,0,0,0);
+}
+.dark-theme{
+  background-color:rgb(31, 31, 31) ;
+}
+  .bs-design-wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  .title-box{
+    height: 40px;
+    padding: 10px 10px 0 0;
+    box-sizing: border-box;
+    .title {
+      font-size: 14px;
+      color: #333;
+      font-weight: bold;
+      border-left: 3px solid #007aff;
+      padding-left: 16px;
+    }
+    .target-value{
+      overflow-y: auto;
+      height: 60px;
+      font-weight: bold;
+      width: 100%;
+      font-size: 20px;
+      color: #333;
+      padding: 16px 0 0 22px;
+      box-sizing: border-box;
+    }
+  }
+  .el-icon-warning{
+    color: #FFD600;
+  }
+  .title-hover{
+    &:hover{
+      cursor: move;
+    }
+  }
+  /*滚动条样式*/
+  /deep/::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+    height: 4px;
+  }
+  /deep/::-webkit-scrollbar-thumb {
+    background: var(--gc-scroll) !important;
+    border-radius: 10px;
+  }
+
+</style>
