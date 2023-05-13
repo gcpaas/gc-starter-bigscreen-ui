@@ -18,6 +18,7 @@ export const baseRoutes = [
       {
         name: 'dataSourceManagement',
         path: '/dataSourceManagement',
+        redirect: '/dataSourceSet',
         component: () => import(/* webpackChunkName: "pageManageIndex" */ '@/views/dataSourceManagement/index'),
         children: [
           {
