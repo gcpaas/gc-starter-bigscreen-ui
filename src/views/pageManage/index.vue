@@ -565,9 +565,9 @@ export default {
         document.body.removeChild(fileLink)
         window.URL.revokeObjectURL(fileUrl)
         this.step++
-      }).catch((e) => {
+      }).catch((error) => {
         this.submitLoading = false
-        console.log(e)
+        console.error(error)
       })
     },
     // 复制页面

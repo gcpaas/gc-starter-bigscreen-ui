@@ -50,7 +50,7 @@ export default {
           this.changeChartKey(config.code)
         })
         .catch(error => {
-          console.log(error)
+          console.error(error)
         })
         .finally(() => {
           this.dataLoading = false

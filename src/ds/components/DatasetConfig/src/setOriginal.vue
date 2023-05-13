@@ -630,7 +630,7 @@ export default {
           this.setCheck()
           this.getPreViewData()
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       },
       deep: true,
@@ -769,7 +769,7 @@ export default {
           try {
             this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
           } catch (error) {
-            console.log(error)
+            console.error(error)
           }
         })
       }
@@ -789,7 +789,7 @@ export default {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
               } catch (error) {
-                console.log(error)
+                console.error(error)
               }
             })
           }

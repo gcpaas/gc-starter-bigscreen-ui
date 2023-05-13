@@ -191,7 +191,6 @@ export default {
         const { x, y, w, h } = chart
         return startX <= x && x + w <= endX && startY <= y && y + h <= endY
       })?.map(chart => chart.code)
-      console.log('activeCodes', activeCodes)
       this.changeActiveCodes(activeCodes)
     },
     changeStart ({ x, y }) {

@@ -1145,7 +1145,7 @@ export default {
           try {
             this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
           } catch (error) {
-            console.log(error)
+            console.error(error)
           }
         })
       }
@@ -1167,7 +1167,7 @@ export default {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
               } catch (error) {
-                console.log(error)
+                console.error(error)
               }
             })
           }
