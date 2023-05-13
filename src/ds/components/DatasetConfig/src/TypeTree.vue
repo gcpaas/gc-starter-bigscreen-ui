@@ -164,6 +164,7 @@ import 'ztree/js/jquery.ztree.exedit'
 import 'ztree/js/jquery.ztree.exhide'
 import 'gc-starter-ui-plus/packages/assets/styles/zTree/metroStyle.css'
 import 'gc-starter-ui-plus/packages/assets/styles/zTree/zTree.scss'
+import '@/gc-starter/packages/assets/styles/zTree/zTreeSelect.scss'
 import { $gc } from 'gc-starter-ui-plus'
 import { getDatasetTypeList } from '../../../service/DatasetConfigService'
 import { categoryRemove } from '../../../service/CommonService'
@@ -541,8 +542,9 @@ export default {
     padding-top: 0;
   }
   .ztree-box {
-    max-height: -webkit-calc(100vh - 270px);
-    max-height: calc(100vh - 270px);
+    // max-height: -webkit-calc(100vh - 170px);
+    // max-height: calc(100vh - 170px);
+    height: 100%;
     overflow: hidden;
   }
 </style>

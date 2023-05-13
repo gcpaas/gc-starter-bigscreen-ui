@@ -82,7 +82,6 @@ export default {
     }
   },
   mounted () {
-    console.log('初始化')
     this.cronType = 'sec'
     this.cronTypeChange('sec')
   },

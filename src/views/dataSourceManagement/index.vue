@@ -62,15 +62,8 @@ export default {
     }
   },
   watch: {
-    // $route: {
-    //   deep: true,
-    //   handler: function (route) {
-    //     this.setActiveTab(route)
-    //   }
-    // }
   },
   mounted () {
-    this.getPermission()
     this.openTab(this.tabList[0])
   },
   methods: {
@@ -81,16 +74,8 @@ export default {
       })
     },
     openTab (tab) {
-      // let form = {}
-      // form.appCode = this.$route?.query?.appCode
-      // form.appPath = path
-      // appService.checkAppUrl(form).then((checkFlag) => {
-      // if (checkFlag) {
       this.$router.push({
         path: tab.path
-        // query: {
-        //   appCode: this.$route?.query?.appCode ||''
-        // }
       })
       this.tabList.forEach((item) => {
         if (item.path !== tab.path) {
@@ -99,25 +84,11 @@ export default {
           item.active = true
         }
       })
-      // } else {
-      // this.$router.push({
-      //   path: '/404'
-      // })
-      // }
-      // })
     },
     setActiveTab (route) {
-      // const accessibleTab = this.tabList.filter((tab) => tab.permissionRequire <= this.currentPermission)
-      // 如果当前路由不在可访问的tab中，则重定向到第一个tab
-      // if (!accessibleTab.some((tab) => tab.path === route.path)) {
       this.$router.push({
         path: route.path
-        // query: {
-        //   appCode: this.$route?.query?.appCode ||''
-        // }
       })
-      // return
-      // }
       this.tabList.forEach((tab) => {
         if (tab.path === route.path) {
           tab.active = true
@@ -125,8 +96,6 @@ export default {
           tab.active = false
         }
       })
-    },
-    getPermission () {
     }
   }
 }
@@ -203,7 +172,7 @@ export default {
     .inner-router-view-wrap{
       height: 100%;
       .table-box{
-        height: calc(100vh - 275px);
+        height: calc(100vh - 205px);
         .el-table{
           height: 100%;
         }

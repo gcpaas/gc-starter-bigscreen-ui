@@ -4,11 +4,12 @@
 }
 
 .ztree-filter-container {
-  white-space: pre;
+  white-space: nowrap;
+  overflow: hidden;
   padding: 16px 16px 0px;
 
   .el-input {
-    width: 60% !important;
+    min-width: 100px !important;
     margin-right: 10px;
   }
   .el-button{

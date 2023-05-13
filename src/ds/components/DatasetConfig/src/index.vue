@@ -8,6 +8,7 @@
     <el-row
       v-show="setType === null"
       type="flex"
+      class="layout"
     >
       <div
         id="left-box"
@@ -15,11 +16,11 @@
         :style="{'transition':transition+'s'}"
       >
         <div class="inner-container">
-          <org-tree-index
-            ref="orgTree"
+          <TypeTree
+            ref="datasetsTypeTree"
             :ds-type="dsType"
             :app-code="appCode"
-            @orgNodeClick="orgNodeClick"
+            @nodeClick="nodeClick"
             @refreshData="refreshData"
             @expandedNodes="expandedNodes"
             @reCategory="getTreeList"
@@ -76,14 +77,13 @@
               :loading="dataListLoading"
               type="primary"
               icon="el-icon-search"
-              style="margin-right: 10px;"
               @click="handleSearch()"
             >
               查询
             </el-button>
-            <el-button
-              @click="addDataset"
-            >
+          </el-form-item>
+          <el-form-item class="filter-item">
+            <el-button @click="addDataset">
               新增
             </el-button>
           </el-form-item>
@@ -251,7 +251,7 @@
 <script>
 import { $gc } from 'gc-starter-ui-plus'
 import 'gc-starter-ui-plus/packages/assets/styles/zTree/treePackUp.scss'
-import OrgTreeIndex from './OrgTreeIndex.vue'
+import TypeTree from './TypeTree.vue'
 import setDatasetType from './setDatasetType'
 import setOriginal from './setOriginal'
 import setCustom from './setCustom'
@@ -263,7 +263,7 @@ import { datasetPage, datasetRemove } from '../../../service/DatasetConfigServic
 export default {
   name: 'DatasetConfig',
   components: {
-    OrgTreeIndex,
+    TypeTree,
     setDatasetType,
     setOriginal,
     setCustom,
@@ -393,15 +393,6 @@ export default {
         return this.curRow ? this.curRow : null
       }
     },
-    // 获取当前选择数据集id
-    // getDsId() {
-    //   if (!this.isDialog) return
-    //   if (this.curRow) {
-    //     return this.curRow.id
-    //   } else {
-    //     return null
-    //   }
-    // },
     // 单选数据集
     handleCurrentChange (currentRow) {
       this.curRow = currentRow
@@ -508,7 +499,7 @@ export default {
         this.transition = 0.1
       }
     },
-    orgNodeClick (row, type) {
+    nodeClick (row, type) {
       this.current = 1
       if (type === 'group') {
         this.queryForm.typeId = row.id
@@ -519,8 +510,8 @@ export default {
       }
       this.getDataList()
     },
-    refreshData (org) {
-      if (org && org.id === this.queryForm.typeId) {
+    refreshData (node) {
+      if (node && node.id === this.queryForm.typeId) {
         this.queryForm.typeId = ''
       }
       this.getDataList()
@@ -529,7 +520,7 @@ export default {
       this.current = 1
       this.queryForm.typeId = ''
       // 清除左侧机构树的选中状态
-      this.$refs.orgTree.ztreeObj.cancelSelectedNode()
+      this.$refs.datasetsTypeTree.ztreeObj.cancelSelectedNode()
       this.getDataList()
     },
     // 拖拽修改div宽度
@@ -561,7 +552,7 @@ export default {
       }
     },
     packUpTree () {
-      this.$refs.orgTree.expandedNodes()
+      this.$refs.datasetsTypeTree.expandedNodes()
       this.isPackUpTree = !this.isPackUpTree
       if (!this.isPackUpTree) {
         this.leftBox.style.width = '25%'
@@ -619,10 +610,14 @@ export default {
       }
     }
   }
+  .layout{
+    width: 100%;
+    height: 100%;
+  }
   .table-box {
-    .el-table {
-      max-height: calc(100vh - 275px) !important;
-      max-height: -webkit-calc(100vh - 275px) !important;
-    }
+    // .el-table {
+    //   max-height: calc(100vh - 275px) !important;
+    //   max-height: -webkit-calc(100vh - 275px) !important;
+    // }
   }
 </style>

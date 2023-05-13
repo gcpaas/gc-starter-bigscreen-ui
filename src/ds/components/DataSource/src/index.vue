@@ -9,7 +9,7 @@
         :inline="true"
         class="filter-container"
       >
-        <el-form-item class="filter-input">
+        <el-form-item class="filter-input filter-item">
           <el-input
             v-model="searchForm.sourceName"
             placeholder="请输入数据源名称"
@@ -17,7 +17,7 @@
             maxlength="200"
           />
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="filter-item">
           <el-button
             type="primary"
             :loading="searchLoading"
@@ -26,6 +26,8 @@
           >
             查询
           </el-button>
+        </el-form-item>
+        <el-form-item class="filter-item">
           <el-button @click="addSource">
             新增
           </el-button>

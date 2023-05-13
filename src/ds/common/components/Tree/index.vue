@@ -88,7 +88,6 @@ export default {
   },
   watch: {
     'treeData': function (val) {
-      // console.log('valx', val)
     },
     filterText (val) {
       this.$refs[this.treeRef].filter(val)
@@ -104,8 +103,6 @@ export default {
     },
     // 节点点击
     handleNodeClick (row, value) {
-      console.log('row', row)
-      console.log('value', value)
       this.$emit('handleNodeClick', row, value)
     },
     // 节点右键

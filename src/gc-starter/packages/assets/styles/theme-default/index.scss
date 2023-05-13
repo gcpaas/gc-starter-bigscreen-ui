@@ -9,7 +9,8 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 // 布局样式
 .app-container {
   height: 100% !important;
-  position: relative;
+  width: 100%;
+  position: absolute;
   box-sizing: border-box;
 
   .inner-container {
@@ -326,7 +327,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 .packUpStyle {
   margin: 0 -16px;
   height: 100% !important;
-  position: absolute;
+  position: fixed;
   background-color: #f6f7fb;
   display: flex;
 }
