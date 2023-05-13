@@ -28,41 +28,41 @@ function configDeepMerge (target, source) {
 export default function (config, router) {
   window.SITE_CONFIG = {
     // 大屏设计路由
-    designUrl: '/bigScreen/design',
+    designUrl: '/big-screen/design',
     // 预览路由
-    previewUrl: '/preview/bigScreen',
+    previewUrl: '/big-screen/preview',
     // 页面管理路由
-    pageManagementUrl: '/pageManagement',
+    pageManagementUrl: '/pages',
     // 数据管理
-    dataSourceUrl: '/dataSourceManagement',
+    dataSourceUrl: '/data-sources',
     // 数据源管理
-    dataSourceSetUrl: '/dataSourceSet',
+    dataSourceSetUrl: '/data-sources/data-source-sets',
     // 数据集管理
-    dataSetConfigUrl: '/dataSetConfig'
+    dataSetConfigUrl: '/data-sources/data-set-configuration'
   }
   const routers = [
     {
-      path: config?.pageManagementUrl || '/pageManagement',
+      path: config?.pageManagementUrl || '/pages',
       name: 'Management',
       component: () => require.ensure([], () => require('../../pageManage'))
     },
     {
-      path: config?.designUrl || '/bigScreen/design',
+      path: config?.designUrl || '/big-screen/design',
       name: 'Design',
       component: () => require.ensure([], () => require('../pages/design'))
     },
     {
-      path: config?.previewUrl || '/preview/bigScreen',
+      path: config?.previewUrl || '/big-screen/preview',
       name: 'Preview',
       component: () => require.ensure([], () => require('../components/Run'))
     },
     {
-      path: config?.dataSourceUrl || '/dataSourceManagement',
+      path: config?.dataSourceUrl || '/data-sources',
       name: 'DataSourceManagement',
       component: () => require.ensure([], () => require('../../dataSourceManagement/dataSourceSet'))
     },
     {
-      path: config?.dataSourceSetUrl || '/dataSourceSet',
+      path: config?.dataSourceSetUrl || '/data-sources/data-source-sets',
       name: 'DataSetManagement',
       component: () => require.ensure([], () => require('../../dataSourceManagement/dataSetConfig'))
     }

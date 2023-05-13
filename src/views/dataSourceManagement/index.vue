@@ -42,14 +42,14 @@ export default {
         {
           active: false,
           name: '数据源管理',
-          path: '/dataSourceSet',
+          path: '/data-sources/data-source-sets',
           // permissionRequire: 0
           img: Icon.getNameList()[0]
         },
         {
           active: false,
           name: '数据集管理',
-          path: '/dataSetConfig',
+          path: '/data-sources/data-set-configuration',
           // permissionRequire: 9
           img: Icon.getNameList()[1]
         }

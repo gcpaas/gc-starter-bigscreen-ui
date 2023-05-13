@@ -439,7 +439,7 @@ export default {
     gopagePreview (nodeData) {
       if (nodeData.code && nodeData.type === 'bigScreen') {
         const { href } = this.$router.resolve({
-          path: window.SITE_CONFIG?.previewUrl || '/preview/bigScreen', // 这里写的是要跳转的路由地址
+          path: window.SITE_CONFIG?.previewUrl || '/big-screen/preview', // 这里写的是要跳转的路由地址
           query: {
             code: nodeData.code
           }
@@ -591,7 +591,7 @@ export default {
         type,
         className
       }).then((code) => {
-        const path = window.SITE_CONFIG?.designUrl || '/bigScreen/design'
+        const path = window.SITE_CONFIG?.designUrl || '/big-screen/design'
         const { href } = this.$router.resolve({
           path,
           query: {
@@ -710,7 +710,7 @@ export default {
     },
     // 点击进入页面设计
     gopageDesign (nodeData) {
-      let path = window.SITE_CONFIG?.designUrl || '/bigScreen/design'
+      let path = window.SITE_CONFIG?.designUrl || '/big-screen/design'
       const openType = nodeData.type === 'report' ? '_blank' : '_self'
       const { href } = this.$router.resolve({
         path,

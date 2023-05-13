@@ -5,33 +5,38 @@ Vue.use(Router)
 export const baseRoutes = [
   // 页面管理
   {
-    name: 'page',
     path: '/',
-    redirect: '/pageManagement',
-    component: () => import(/* webpackChunkName: "pageIndex" */ '@/layout/ApplicationCreateTop/index'),
+    redirect: '/pages',
+    component: () => import('@/layout/ApplicationCreateTop/index'),
     children: [
       {
-        name: 'pageManagement',
-        path: '/pageManagement',
-        component: () => import(/* webpackChunkName: "pageManageIndex" */ '@/views/pageManage/index')
+        path: '/pages',
+        component: () => import('@/views/pageManage/index'),
+        meta: {
+          title: '页面管理'
+        }
       },
       {
-        name: 'dataSourceManagement',
-        path: '/dataSourceManagement',
-        redirect: '/dataSourceSet',
-        component: () => import(/* webpackChunkName: "pageManageIndex" */ '@/views/dataSourceManagement/index'),
+        path: '/data-sources',
+        redirect: '/data-sources/data-source-sets',
+        component: () => import('@/views/dataSourceManagement/index'),
+        meta: {
+          title: '数据源管理页面'
+        },
         children: [
           {
-            // 数据源
-            name: 'dataSourceSet',
-            path: '/dataSourceSet',
-            component: () => import(/* webpackChunkName: "dataSourceSet" */ '@/views/dataSourceManagement/dataSourceSet/index')
+            path: 'data-source-sets',
+            component: () => import('@/views/dataSourceManagement/dataSourceSet/index'),
+            meta: {
+              title: '数据源管理'
+            }
           },
           {
-            // 数据集
-            name: 'dataSetConfig',
-            path: '/dataSetConfig',
-            component: () => import(/* webpackChunkName: "dataSetConfig" */ '@/views/dataSourceManagement/dataSetConfig/index')
+            path: 'data-set-configuration',
+            component: () => import('@/views/dataSourceManagement/dataSetConfig/index'),
+            meta: {
+              title: '数据集管理'
+            }
           }
         ]
       }
@@ -39,15 +44,20 @@ export const baseRoutes = [
   },
   // 大屏页面设计
   {
-    path: '/bigScreen/design',
+    path: '/big-screen/design',
     name: 'BigScreenDesign',
-    component: () => import(/* webpackChunkName: "bigScreenDesign" */ '@/views/bigScreen/pages/design/index')
+    component: () => import('@/views/bigScreen/pages/design/index'),
+    meta: {
+      title: '大屏页面设计'
+    }
   },
-  // 大屏页面预览
   {
     name: 'bigScreenPreview',
-    path: '/preview/bigScreen',
-    component: () => import(/* webpackChunkName: "bigScreenPreview" */ '@/views/bigScreen/components/Run/index')
+    path: '/big-screen/preview',
+    component: () => import('@/views/bigScreen/components/Run/index'),
+    meta: {
+      title: '大屏页面预览'
+    }
   }
 ]
 

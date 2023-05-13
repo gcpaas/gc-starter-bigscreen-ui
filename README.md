@@ -34,9 +34,9 @@ registerConfig({
   // 页面管理路由
   pageManagementUrl: '/management',
   // 数据管理
-  dataSourceUrl: '/dataSourceManagement',
+  dataSourceUrl: '/data-sources',
   // 数据源管理
-  dataSourceSetUrl: '/dataSourceManagement',
+  dataSourceSetUrl: '/data-sources',
   // 数据集管理
   dataSetConfigUrl: '/dataSetManagement'
 }, router)

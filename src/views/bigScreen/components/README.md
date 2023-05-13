@@ -28,17 +28,17 @@ registerConfig({
   // 后端的大屏服务基础路径
   baseUrl: 'http://127.0.0.1:8066/bigScreen',
   // 大屏设计路由
-  designUrl: '/design',
+  designUrl: '/big-screen/design',
   // 预览路由
-  previewUrl: '/preview',
+  previewUrl: '/big-screen/preview',
   // 页面管理路由
-  pageManagementUrl: '/management',
+  pageManagementUrl: '/pages',
   // 数据管理
-  dataSourceUrl: '/dataSourceManagement',
+  dataSourceUrl: '/data-sources',
   // 数据源管理
-  dataSourceSetUrl: '/dataSourceManagement',
+  dataSourceSetUrl: '/data-sources/data-source-sets',
   // 数据集管理
-  dataSetConfigUrl: '/dataSetManagement'
+  dataSetConfigUrl: '/data-sources/data-set-configuration'
 }, router)
 
 ```
