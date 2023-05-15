@@ -77,6 +77,7 @@
           >
             <template slot-scope="scope">
               <el-button
+                :loading="testBtnLoading.includes(scope.row.id)"
                 @click="sourceLinkTest(scope.row)"
               >
                 测试
@@ -150,6 +151,7 @@ export default {
   },
   data () {
     return {
+      testBtnLoading: [],
       loadingText: '',
       searchLoading: false,
       dataSourceList: [],
@@ -249,12 +251,15 @@ export default {
       })
     },
     sourceLinkTest (row) {
+      this.testBtnLoading.push(row.id)
       this.linkLoading = true
       sourceLinkTest(row).then((r) => {
         this.$message.success(r)
         this.linkLoading = false
+        this.testBtnLoading.splice(this.testBtnLoading.indexOf(row.id), 1)
       }).catch(() => {
         this.linkLoading = false
+        this.testBtnLoading.splice(this.testBtnLoading.indexOf(row.id), 1)
       })
     }
   }
