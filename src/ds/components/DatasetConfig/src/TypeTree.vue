@@ -233,7 +233,7 @@ export default {
         },
         callback: {
           onClick: this.getNodeData,
-          onExpand: this.expandOrgNode
+          onExpand: this.expandNode
         }
       },
       isBoth: false // 是否为全部
@@ -329,7 +329,7 @@ export default {
       })
     },
     // 节点展开
-    expandOrgNode (event, tree, nodeData) {
+    expandNode (event, tree, nodeData) {
       if (nodeData.children) {
         nodeData.children.forEach((item) => {
           this.ztreeObj.showNode(item)
@@ -401,13 +401,14 @@ export default {
     // 节点点击事件
     getNodeData (treeId, treeNode, nodeData, clickFlag) {
       this.curType = '-1'
-      this.$emit('orgNodeClick', nodeData, this.activeName)
+      console.log('点击了')
+      this.$emit('nodeClick', nodeData, this.activeName)
     },
     // 类型点击事件
     getTypeData (datasetType) {
       this.curType = datasetType
       this.ztreeObj.cancelSelectedNode()
-      this.$emit('orgNodeClick', datasetType, this.activeName)
+      this.$emit('nodeClick', datasetType, this.activeName)
     },
     // 更多事件
     menuClick (editType) {
