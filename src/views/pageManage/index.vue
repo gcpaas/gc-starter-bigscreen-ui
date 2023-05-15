@@ -823,6 +823,7 @@ export default {
             /*pointer-events: none;*/
             width: 100%;
             height: 100%;
+            position: absolute;
             .admin-page-wrap {
               height: 100%;
               background: #F5F7FA;
