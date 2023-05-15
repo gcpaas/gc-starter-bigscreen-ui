@@ -91,11 +91,11 @@ export default store
 下面的路由地址和在main.js 中 registerConfig 注入的配置一致
 
 ```js
-localhost:8080/management
-localhost:8080/design?code=xxx
-localhost:8080/preview?code=xxx
-localhost:8080/dataSourceManagement
-localhost:8080/dataSetManagement
+localhost:8080/pages
+localhost:8080/big-screen/design?code=xxx
+localhost:8080/big-screen/preview?code=xxx
+localhost:8080/data-sources/data-source-sets
+localhost:8080/data-sources/data-set-configuration
 ```
 
 

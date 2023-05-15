@@ -28,17 +28,17 @@ registerConfig({
   // 后端的大屏服务基础路径
   baseUrl: 'http://127.0.0.1:8066/bigScreen',
   // 大屏设计路由
-  designUrl: '/design',
+  designUrl: '/big-screen/design',
   // 预览路由
-  previewUrl: '/preview',
+  previewUrl: '/big-screen/preview',
   // 页面管理路由
-  pageManagementUrl: '/management',
+  pageManagementUrl: '/pages',
   // 数据管理
   dataSourceUrl: '/data-sources',
   // 数据源管理
-  dataSourceSetUrl: '/data-sources',
+  dataSourceSetUrl: '/data-sources/data-source-sets',
   // 数据集管理
-  dataSetConfigUrl: '/dataSetManagement'
+  dataSetConfigUrl: '/data-sources/data-set-configuration'
 }, router)
 
 ```
@@ -91,11 +91,11 @@ export default store
 下面的路由地址和在main.js 中 registerConfig 注入的配置一致
 
 ```js
-localhost:8080/management
-localhost:8080/design?code=xxx
-localhost:8080/preview?code=xxx
-localhost:8080/dataSourceManagement
-localhost:8080/dataSetManagement
+localhost:8080/pages
+localhost:8080/big-screen/design?code=xxx
+localhost:8080/big-screen/preview?code=xxx
+localhost:8080/data-sources/data-source-sets
+localhost:8080/data-sources/data-set-configuration
 ```
 
 
