@@ -3,9 +3,7 @@
     <div class="bs-right-panel-wrap">
       <div
         class="bs-folder-wrap"
-        :style="{
-          height: headerShow ? 'calc(100vh - 55px)': height
-        }"
+        :style="{ height }"
       >
         <i
           :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"

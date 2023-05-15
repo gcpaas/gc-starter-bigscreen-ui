@@ -8,9 +8,7 @@
     <div class="bs-left-panel">
       <div
         :class="fold ? 'page-left page-left-fold' : 'page-left'"
-        :style="{
-          height: headerShow ? 'calc(100vh - 55px)': height
-        }"
+        :style="{ height }"
       >
         <el-tabs
           v-model="activeName"
@@ -126,9 +124,7 @@
       </div>
       <div
         class="bs-folder-wrap"
-        :style="{
-          height: headerShow ? 'calc(100vh - 55px)': height
-        }"
+        :style="{ height }"
       >
         <i
           :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
