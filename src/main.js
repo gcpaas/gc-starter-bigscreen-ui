@@ -47,7 +47,7 @@ Vue.prototype.$wrapUrl = $gc.wrapUrl
 // 兼容ie下双向绑定事件
 Vue.prototype.inputChange = function (e) {
   return e.target.value
-};
+}
 
 // Vue 国际化
 Vue.use(VueI18n)
