@@ -556,7 +556,6 @@
       <div class="table-box">
         <el-table
           ref="singleTable"
-          max-height="350"
           :data="paramsListCopy"
           :border="true"
           align="center"
@@ -645,9 +644,7 @@
             width="85"
             align="center"
           >
-            <template
-              slot="header"
-            >
+            <template slot="header">
               <el-button
                 icon="el-icon-plus"
                 type="text"
@@ -1252,7 +1249,7 @@ export default {
           this.dataForm.name = this.datasetName
           this.dataForm.paramsList = this.dataForm.paramConfig.length ? JSON.parse(this.dataForm.paramConfig) : []
           this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-          if (this.dataForm.typeId !== '') {
+          if (this.dataForm.typeId !== null && this.dataForm.typeId !== '') {
             this.$nextTick(() => {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
