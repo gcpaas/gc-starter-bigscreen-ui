@@ -3,9 +3,7 @@
     <div class="bs-right-panel-wrap">
       <div
         class="bs-folder-wrap"
-        :style="{
-          height: headerShow ? 'calc(100vh - 55px)': '100vh'
-        }"
+        :style="{ height }"
       >
         <i
           :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
@@ -56,6 +54,10 @@ export default {
     headerShow: {
       type: Boolean,
       default: true
+    },
+    height: {
+      type: String,
+      default: '100vh'
     }
   },
   data () {

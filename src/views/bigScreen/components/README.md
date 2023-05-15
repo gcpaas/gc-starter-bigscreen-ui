@@ -129,7 +129,7 @@ export default {
 ```vue
 <template>
   <!-- code为大屏设计时的编码，你可以携带到本页面路由中获取 -->
-  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :code="code" />
+  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :height="height" :code="code" />
 </template>
 <script>
 import { BigScreenDesign } from "gc-starter-bigscreen-ui";
@@ -141,6 +141,8 @@ export default {
     return {
       // 是否展示头部，可隐藏后自己写头部
       headerShow: true,
+      // 当头部隐藏后，用户自己设置的头部高度不定，我们可自定义此时下方的设计器高度
+      height: '100vh'
     };
   },
   computed: {
@@ -156,11 +158,11 @@ export default {
     },
     // 保存
     save() {
-      this.$refs.saveAndPreview.save();
+      this.$refs.BigScreenDesign.save();
     },
     // 清空
     empty() {
-      this.$refs.saveAndPreview.empty();
+      this.$refs.BigScreenDesign.empty();
     },
   },
 };

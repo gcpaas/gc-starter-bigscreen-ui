@@ -13,15 +13,14 @@
       <!-- 左侧面板 -->
       <LeftPanel
         :header-show="headerShow"
+        :height="height"
         @openRightPanel="openRightPanel"
       />
       <!-- 中间组件展示面板 -->
       <div
         v-loading="pageLoading"
         class="grid-wrap-box"
-        :style="{
-          height: headerShow ? 'calc(100vh - 55px)': '100vh'
-        }"
+        :style="{ height }"
       >
         <SketchDesignRuler
           :width="pageConfig.w"
@@ -46,6 +45,7 @@
       <!-- 右侧折叠设置面板   -->
       <SettingPanel
         :header-show="headerShow"
+        :height="height"
         :right-visiable.sync="rightVisiable"
         @updateSetting="updateSetting"
         @updateDataSetting="updateDataSetting"
@@ -84,6 +84,10 @@ export default {
     headerShow: {
       type: Boolean,
       default: true
+    },
+    height: {
+      type: String,
+      default: 'calc(100vh - 55px)'
     }
   },
   data () {
@@ -211,7 +215,6 @@ export default {
 <style lang="scss" scoped>
 .bs-page-design-wrap {
   overflow: hidden;
-  height: 100vh;
   background: #1d1d1d;
 
   .drag-wrap {
