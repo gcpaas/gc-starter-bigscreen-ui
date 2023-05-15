@@ -1,0 +1,29 @@
+name: fix-eslint
+
+# 当push时触发
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+
+    # 使用 nodejs v10.15.3 的版本
+    - name: Use Node.js v10.15.3
+      uses: actions/setup-node@v3
+      with:
+        node-version: v10.15.3
+
+    # 安装依赖
+    - name: Install
+      run: npm i --registry=http://registry.npmmirror.com
+
+    # fix
+    - name: fix
+      run: npm run lint:fix
