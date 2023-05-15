@@ -1162,7 +1162,7 @@ export default {
           this.dataForm.name = this.datasetName
           this.dataForm.paramsList = this.dataForm.paramConfig.length ? JSON.parse(this.dataForm.paramConfig) : []
           this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-          if (this.dataForm.typeId !== '') {
+          if (this.dataForm.typeId) {
             this.$nextTick(() => {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name

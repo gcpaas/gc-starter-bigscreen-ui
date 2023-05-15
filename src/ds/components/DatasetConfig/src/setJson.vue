@@ -674,7 +674,7 @@ export default {
           this.dataForm.remark = res.remark
           this.dataForm.json = data.json
           this.fieldDesc = data.fieldDesc
-          if (this.dataForm.typeId !== '') {
+          if (this.dataForm.typeId) {
             this.$nextTick(() => {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name

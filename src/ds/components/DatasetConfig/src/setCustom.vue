@@ -641,7 +641,7 @@
           </el-table-column>
           <el-table-column
             label="操作"
-            width="85"
+            width="105"
             align="center"
           >
             <template slot="header">
@@ -1249,7 +1249,7 @@ export default {
           this.dataForm.name = this.datasetName
           this.dataForm.paramsList = this.dataForm.paramConfig.length ? JSON.parse(this.dataForm.paramConfig) : []
           this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-          if (this.dataForm.typeId !== null && this.dataForm.typeId !== '') {
+          if (this.dataForm.typeId) {
             this.$nextTick(() => {
               try {
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
