@@ -20,7 +20,7 @@
         v-loading="pageLoading"
         class="grid-wrap-box"
         :style="{
-          height: headerShow ? 'calc(100vh - 55px)': '100vh'
+          height: headerShow ? 'calc(100vh - 55px)': height
         }"
       >
         <SketchDesignRuler
@@ -83,7 +83,11 @@ export default {
     },
     headerShow: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    height: {
+      type: String,
+      default: '100vh'
     }
   },
   data () {

@@ -4,7 +4,7 @@
       <div
         class="bs-folder-wrap"
         :style="{
-          height: headerShow ? 'calc(100vh - 55px)': '100vh'
+          height: headerShow ? 'calc(100vh - 55px)': height
         }"
       >
         <i
@@ -56,6 +56,10 @@ export default {
     headerShow: {
       type: Boolean,
       default: true
+    },
+    height: {
+      type: String,
+      default: '100vh'
     }
   },
   data () {
