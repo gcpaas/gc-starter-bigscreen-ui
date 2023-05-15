@@ -12,6 +12,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      # 此处是为了获取 github token，用于修复eslint后 push 代码
+      # with:
+      #   token: ${{ secrets.ACCESS_TOKEN }}
+
 
 
     # 使用 nodejs v10.15.3 的版本
@@ -28,7 +32,7 @@ jobs:
     - name: fix
       run: npm run lint:fix
 
-    # 修复代码后 push 到远程仓库
+    # TODO: 修复代码后 push 到远程仓库，需要配置上面的 github token
     - name: Push
       run: |
         git config --global user.name 'github-actions[bot]'
