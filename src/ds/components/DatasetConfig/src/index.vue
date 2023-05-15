@@ -333,6 +333,11 @@ export default {
   },
   mounted () {
     this.init()
+    document.addEventListener('mousemove', function (event) {
+      if (event.buttons === 1) {
+        event.preventDefault()
+      }
+    })
   },
   methods: {
     toggleRowSelection () {
