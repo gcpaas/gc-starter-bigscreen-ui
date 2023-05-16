@@ -83,5 +83,29 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end();
+
+      const imagesRule = config.module.rule('images')
+      imagesRule.uses.clear()
+      
+      config.module
+        .rule('images')
+          .set('parser', {
+            dataUrlCondition: {
+              maxSize: 1024 * 1024
+            }
+          })
+        .end()
+      
+      // 处理font
+      config.module
+        .rule('font')
+        .test(/\.(ttf|woff|woff2)$/)
+        .set('parser', {
+          dataUrlCondition: {
+            maxSize: 1024 * 1024
+          }
+        })
+      .end()
+      
   }
 };

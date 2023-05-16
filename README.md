@@ -26,7 +26,7 @@ import { registerConfig } from 'gc-starter-bigscreen-ui'
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
 registerConfig({
   // 路由
- 	routers: {
+  routers: {
     // 大屏设计路由
     designUrl: '/design',
     // 预览路由
