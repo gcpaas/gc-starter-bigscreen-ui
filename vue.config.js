@@ -44,7 +44,10 @@ module.exports = {
   runtimeCompiler: true,
   devServer: {
     hot: true,
-    port: port
+    port: port,
+    client: {
+      overlay: false,
+    },
   },
   css: {
     // 向所有 Sass 样式传入全局变量
@@ -73,17 +76,17 @@ module.exports = {
         'gc-starter-bigscreen-ui': resolve('src/views/bigScreen/components/index.js')
       },
       fallback: {
-        "path": false,
-        "fs": false
+        path: false,
+        fs: false
       }
     })
     // 如果是开发模式，忽略一些组件打包，采用cdn
     config.externals =
       process.env.NODE_ENV === 'production'
         ? {
-          'vue-router': 'VueRouter',
-          vuex: 'Vuex'
-        }
+            'vue-router': 'VueRouter',
+            vuex: 'Vuex'
+          }
         : {}
     if (process.env.NODE_ENV === 'production') {
       return {
@@ -106,6 +109,8 @@ module.exports = {
   },
 
   chainWebpack: config => {
+    // 禁用热重载
+    config.plugins.delete('hmr')
     if (process.env.NODE_ENV === 'production') {
       config.plugin('html-index').tap(args => {
         // html中添加cdn
