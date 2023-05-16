@@ -44,26 +44,7 @@ module.exports = {
   runtimeCompiler: true,
   devServer: {
     hot: true,
-    port: port,
-    // open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    // 编译忽视指定文件
-    watchOptions: {
-      ignored: [
-        '/node_modules/',
-        '/public/',
-        '*.md',
-        '/src/**/package.json',
-        '/src/**/babel.config.js',
-        '/src/**/README.md',
-        '/src/**/.npmrc',
-        '/src/**/node_modules/',
-        '/src/**/dist/'
-      ]
-    }
+    port: port
   },
   css: {
     // 向所有 Sass 样式传入全局变量
@@ -90,6 +71,10 @@ module.exports = {
         'gc-starter-bigscreen': resolve('src/views/bigScreen'),
         'gc-starter-ui-plus': resolve('src/gc-starter'),
         'gc-starter-bigscreen-ui': resolve('src/views/bigScreen/components/index.js')
+      },
+      fallback: {
+        "path": false,
+        "fs": false
       }
     })
     // 如果是开发模式，忽略一些组件打包，采用cdn
@@ -152,44 +137,6 @@ module.exports = {
       .loader('svg-sprite-loader')
       .options({
         symbolId: 'icon-[name]'
-      })
-      .end()
-
-    // 下面三个规则的url-loader各有不同
-    // 此处的url-loader是处理图片
-    config.module
-      .rule('images')
-      .test(/\.(jpg|png|jpeg|gif)$/i)
-      .use('url-loader')
-      .loader('url-loader')
-      .options({
-        limit: 8192,
-        esModule: false
-      })
-      .end()
-    // 此处的url-loader是处理iconfont字体
-    config.module
-      .rule('fonts')
-      .test(/\.(ttf|woff|woff2|eot)$/i)
-      .use('url-loader')
-      .loader('url-loader')
-      .options({
-        limit: 8192,
-        esModule: false,
-        name: 'static/fonts/[name].[hash:8].[ext]'
-      })
-      .end()
-    // 此处的url-loader是处理子工程中的vue.config.js文件，在主工程运行时忽略其编译
-    config.module
-      .rule('config')
-      .test(/vue.config.js$/i)
-      .use('url-loader')
-      .loader('url-loader')
-      .options({
-        limit: 8192,
-        generator: () => {
-          return ''
-        }
       })
       .end()
   },

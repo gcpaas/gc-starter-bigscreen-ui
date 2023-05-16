@@ -1,8 +1,8 @@
 /*
  * @Author: wujian
  * @Date: 2022-05-31 09:27:01
- * @LastEditors: wujian
- * @LastEditTime: 2022-09-01 16:17:50
+ * @LastEditors: xing.heng
+ * @LastEditTime: 2023-05-15 16:10:11
  */
 module.exports = {
   root: true,
@@ -21,9 +21,7 @@ module.exports = {
     // 忽略console警告
     'no-console': 'off',
     // 忽略v-html警告
-    "vue/no-v-html":"off",
-    // 忽略$符号
-    jquery: true
+    "vue/no-v-html":"off"
   },
   extends: [
     'plugin:vue/recommended',

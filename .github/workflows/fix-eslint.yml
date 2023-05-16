@@ -18,11 +18,11 @@ jobs:
 
 
 
-    # 使用 nodejs v10.15.3 的版本
-    - name: Use Node.js v10.15.3
+    # 使用 nodejs v14.17.0 的版本
+    - name: Use Node.js v14.17.0
       uses: actions/setup-node@v3
       with:
-        node-version: v10.15.3
+        node-version: v14.17.0
 
     # 安装依赖
     - name: Install

@@ -6,11 +6,12 @@ module.exports = {
     '@babel/plugin-proposal-optional-chaining'
   ],
   presets: [
-    '@vue/app',
+    '@vue/cli-plugin-babel/preset',
     [
       '@babel/preset-env',
       {
-        useBuiltIns: 'usage'
+        useBuiltIns: 'usage',
+        corejs: 3
       }
     ]
   ]
