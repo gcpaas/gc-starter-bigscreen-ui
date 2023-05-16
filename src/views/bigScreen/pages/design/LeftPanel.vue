@@ -6,130 +6,72 @@
 <template>
   <transition name="slide-fade">
     <div class="bs-left-panel">
-      <div
-        :class="fold ? 'page-left page-left-fold' : 'page-left'"
-        :style="{ height }"
-      >
-        <el-tabs
-          v-model="activeName"
-          tab-position="left"
-          style="height: 200px;"
-          @tab-click="tabClick"
-        >
-          <el-tab-pane
-            name="default"
-            @click.native="changeActiveCode('')"
-          >
-            <span
-              slot="label"
-              class="menu-imgs"
-              name="default"
-              @click="toggleSidebar"
-            >
-              <i
-                :class="[
-                  'iconfont-bigscreen',
-                  'icon-menu'
-                ]"
-              />
+      <div :class="fold ? 'page-left page-left-fold' : 'page-left'" :style="{ height }">
+        <el-tabs v-model="activeName" tab-position="left" style="height: 200px;" @tab-click="tabClick">
+          <el-tab-pane name="default" @click.native="changeActiveCode('')">
+            <span slot="label" class="menu-imgs" name="default" @click="toggleSidebar">
+              <i :class="[
+                'iconfont-bigscreen',
+                'icon-menu'
+              ]" />
             </span>
           </el-tab-pane>
-          <el-tab-pane
-            name="layer"
-            @click.native="changeActiveCode('')"
-          >
-            <span
-              slot="label"
-              class="menu-imgs"
-              name="layer"
-            >
-              <i
-                :class="[
-                  'iconfont-bigscreen',
-                  'icon-layer'
-                ]"
-              />
+          <el-tab-pane name="layer" @click.native="changeActiveCode('')">
+            <span slot="label" class="menu-imgs" name="layer">
+              <i :class="[
+                'iconfont-bigscreen',
+                'icon-layer'
+              ]" />
             </span>
             <div class="page-left-content">
               <div class="page-left-content-title">
                 图层
               </div>
               <div class="page-left-content-components">
-                <LayerList @openRightPanel="openRightPanel" />
+                <el-scrollbar>
+                  <LayerList @openRightPanel="openRightPanel" />
+                </el-scrollbar>
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane
-            v-for="menu in menuList"
-            :key="menu.id"
-            :name="menu.name"
-            @click.stop.native="
-              fold = false;
-              activeName = 'chart';
-              changeActiveCode('')
-            "
-          >
-            <span
-              slot="label"
-              class="menu-imgs"
-            >
-              <i
-                :class="[
-                  'iconfont-bigscreen',
-                  menu.icon
-                ]"
-              />
+          <el-tab-pane v-for="menu in menuList" :key="menu.id" :name="menu.name" @click.stop.native="
+            fold = false;
+          activeName = 'chart';
+          changeActiveCode('')
+            ">
+            <span slot="label" class="menu-imgs">
+              <i :class="[
+                'iconfont-bigscreen',
+                menu.icon
+              ]" />
             </span>
             <div class="page-left-content">
               <div class="page-left-content-title">
                 {{ menu.title }}
               </div>
+              <el-scrollbar>
               <div class="page-left-content-components">
                 <div class="draggable chat-list">
-                  <div
-                    v-for="element in menu.components"
-                    :key="element.type + element.name"
-                    :class="element.component ? 'menu-component' : 'item'"
-                  >
-                    <div
-                      class="img_dispaly chooseDragNode"
-                      draggable="true"
-                      :data-type="element.type"
-                      :data-name="element.name"
-                      @click.stop="addComponent(element)"
-                    >
-                      <icon-svg
-                        v-if="element.icon"
-                        :name="element.icon"
-                        class="page-opt-list-icon"
-                      />
-                      <img
-                        v-else-if="element.img"
-                        :src="element.img"
-                        class="page-opt-list-img"
-                      >
-                      <component
-                        :is="element.component"
-                        :key="new Date().getTime() + 1"
-                        class="page-opt-list-component"
-                      />
+                  <div v-for="element in menu.components" :key="element.type + element.name"
+                    :class="element.component ? 'menu-component' : 'item'">
+                    <div class="img_dispaly chooseDragNode" draggable="true" :data-type="element.type"
+                      :data-name="element.name" @click.stop="addComponent(element)">
+                      <icon-svg v-if="element.icon" :name="element.icon" class="page-opt-list-icon" />
+                      <img v-else-if="element.img" :src="element.img" class="page-opt-list-img" alt="">
+                      <component :is="element.component" :key="new Date().getTime() + 1"
+                        class="page-opt-list-component" />
                     </div>
                     <span class="component-name">{{ element.title }}</span>
                   </div>
                 </div>
               </div>
+              </el-scrollbar>
             </div>
           </el-tab-pane>
         </el-tabs>
       </div>
-      <div
-        class="bs-folder-wrap"
-        :style="{ height }"
-      >
-        <i
-          :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
-          @click="toggleSidebar"
-        />
+      <div class="bs-folder-wrap" :style="{ height }">
+        <i :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'" @click="toggleSidebar" />
       </div>
     </div>
   </transition>
@@ -161,7 +103,7 @@ export default {
       default: '100vh'
     }
   },
-  data () {
+  data() {
     return {
       activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
       fold: false, // 控制左侧菜单栏伸缩
@@ -178,26 +120,26 @@ export default {
   },
   computed: {
     // 获取当前类型的组件
-    currentComponentList () {
+    currentComponentList() {
       return this.componentList.filter(item => item.type === this.currentTab)
     }
   },
   watch: {
-    fold (isExpand) {
+    fold(isExpand) {
       if (isExpand && this.activeName === 'default') {
         this.activeName = 'chart'
       }
     }
   },
-  created () {
+  created() {
     this.initList()
   },
-  mounted () {
+  mounted() {
     this.nodeDrag()
   },
   methods: {
     ...mapMutations('bigScreen', ['changeActiveCode']),
-    nodeDrag () {
+    nodeDrag() {
       this.$nextTick(() => {
         const nodes = document.querySelectorAll('.chooseDragNode')
         nodes.forEach(node => {
@@ -222,38 +164,38 @@ export default {
         }, false)
       })
     },
-    onClone (e) {
+    onClone(e) {
       return _.cloneDeep(e)
     },
-    onStart (e) {
+    onStart(e) {
       // this.$emit('onStart', e)
     },
     // 拖拽组件时触发
-    onEnd (e) {
+    onEnd(e) {
     },
     // 点击左侧组件时触发
-    addComponent (element) {
+    addComponent(element) {
       this.$store.commit('bigScreen/changeActiveItem', element)
       this.$emit('addComponent', element)
     },
     // 初始化
-    initList () {
+    initList() {
     },
     // 点击tab标签
-    tabClick (tab) {
+    tabClick(tab) {
       this.nodeDrag()
       if (tab.index !== '0') {
         this.fold = false
         this.currentActive = this.activeName
       }
     },
-    toggleSidebar () {
+    toggleSidebar() {
       this.fold = !this.fold
       setTimeout(() => {
         this.activeName = this.currentActive
       })
     },
-    openRightPanel (config) {
+    openRightPanel(config) {
       this.$emit('openRightPanel', config)
     }
   }
@@ -262,6 +204,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../css/font/iconfont.css';
+
 .bs-left-panel {
   display: flex;
 
@@ -282,13 +225,13 @@ export default {
     }
 
     &:hover {
-      background: rgba(143,225,255,.1)
+      background: rgba(143, 225, 255, .1)
     }
   }
 
   .page-left {
     box-sizing: border-box;
-    background: #1d1d1d;
+    background: $dark-bg;
 
     >* {
       color: #fff;
@@ -303,46 +246,54 @@ export default {
       border-right: 1px solid #ccc;
       text-align: center;
     }
+
     .el-tabs {
       width: 300px;
       position: relative;
       height: 100% !important;
       overflow: visible;
+
       .is-active {
         .iconfont-bigscreen {
           color: #007aff;
         }
       }
+
       .el-tab-pane {
         height: 100%;
       }
+
       .page-left-content {
         height: 100%;
       }
+
       /deep/.el-tabs__content {
         height: 100%;
         width: 254px;
         border-right: 1px solid #ccc;
         border-left: 1px solid #1D1D1D;
+
         .page-left-content-title {
+          color: $dark-title-color;
           height: 30px;
           line-height: 30px;
-          /*border-bottom: 1px solid #ccc;*/
           padding-left: 20px;
           font-size: 14px;
         }
-
+        .el-scrollbar__view{
+          height: calc(100vh - 55px);
+        }
         .page-left-content-components {
           width: 100%;
           text-align: center;
-          height: calc(100% - 10px);
           padding-bottom: 20px;
-          overflow-y: auto;
+          margin-bottom: 20px;
           .draggable {
             display: flex;
             flex-wrap: wrap;
             cursor: pointer;
             box-sizing: border-box;
+
             .chooseDragNode {
               cursor: move;
               background: #232323;
@@ -351,18 +302,21 @@ export default {
             .item {
               width: 42%;
               margin: 8px;
+
               .sampleImg {
                 margin: 0 auto;
                 width: 102px;
                 height: 73px;
                 display: block;
               }
+
               .img_dispaly {
                 margin: 0 auto;
                 text-align: center;
                 width: 100px;
                 height: 70px;
                 line-height: 70px;
+
                 .icon-svg {
                   width: 50px !important;
                   height: 50px !important;
@@ -372,12 +326,15 @@ export default {
 
             .menu-component {
               margin: 7px;
+
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
               }
             }
+
             .component-name {
+              color: $dark-title-color;
               font-size: 12px;
               padding: 5px;
               display: inline-block;

@@ -1,125 +1,52 @@
 <template>
-  <div
-    class="bs-overall-wrap"
-  >
-    <el-form
-      ref="form"
-      v-model="form"
-      label-width="100px"
-      label-position="left"
-      class="setting-body"
-    >
+  <div class="bs-overall-wrap">
+    <el-form ref="form" v-model="form" label-width="100px" label-position="left" class="setting-body">
       <el-form-item label="推荐分辨率">
-        <el-select
-          v-model="resolutionRatioValue"
-          class="select"
-          placeholder="请选择分辨率"
-          clearable
-        >
-          <el-option
-            v-for="resolutionRatio in resolutionRatioOptions"
-            :key="resolutionRatio.value"
-            :label="resolutionRatio.label"
-            :value="resolutionRatio.value"
-          />
+        <el-select v-model="resolutionRatioValue" class="select" placeholder="请选择分辨率" clearable>
+          <el-option v-for="resolutionRatio in resolutionRatioOptions" :key="resolutionRatio.value"
+            :label="resolutionRatio.label" :value="resolutionRatio.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="大屏宽度">
-        <el-input-number
-          v-model="form.w"
-          :min="100"
-          :max="8000"
-        />
+        <el-input-number v-model="form.w" :min="100" :max="8000" />
       </el-form-item>
       <el-form-item label="大屏高度">
-        <el-input-number
-          v-model="form.h"
-          :min="100"
-          :max="8000"
-        />
+        <el-input-number v-model="form.h" :min="100" :max="8000" />
       </el-form-item>
       <el-form-item label="自适应模式">
-        <el-select
-          v-model="form.fitMode"
-          placeholder="自适应模式"
-          clearable
-        >
-          <el-option
-            v-for="mode in autoModeOptions"
-            :key="mode.value"
-            :label="mode.label"
-            :value="mode.value"
-          />
+        <el-select v-model="form.fitMode" placeholder="自适应模式" clearable>
+          <el-option v-for="mode in autoModeOptions" :key="mode.value" :label="mode.label" :value="mode.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="主题">
-        <el-select
-          v-model="form.customTheme"
-          placeholder="请选择主题"
-          clearable
-        >
-          <el-option
-            v-for="themeItem in themeOptions"
-            :key="themeItem.value"
-            :label="themeItem.label"
-            :value="themeItem.value"
-          />
+        <el-select v-model="form.customTheme" placeholder="请选择主题" clearable>
+          <el-option v-for="themeItem in themeOptions" :key="themeItem.value" :label="themeItem.label"
+            :value="themeItem.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="背景图">
-        <el-button
-          v-if="!form.bg"
-          type="primary"
-          @click="$refs.bgImg.init()"
-        >
+        <el-button v-if="!form.bg" type="primary" @click="$refs.bgImg.init()">
           选择背景图
         </el-button>
-        <el-image
-          v-show="form.bg"
-          class="bg-img"
-          :src="form.bg"
-          fit="cover"
-          @click="$refs.bgImg.init()"
-        />
-        <div
-          v-show="form.bg"
-          @click="form.bg = ''"
-        >
+        <el-image v-show="form.bg" class="bg-img" :src="form.bg" fit="cover" @click="$refs.bgImg.init()" />
+        <div v-show="form.bg" @click="form.bg = ''">
           <i class="el-icon-circle-close close-icon" />
         </div>
-        <span
-          v-if="form.bg"
-          class="description"
-        >（背景图优先级高于背景色，设置后将覆盖背景色）</span>
-        <BgImg
-          ref="bgImg"
-          :form="form"
-          @imgUrl="form.bg = $event"
-        />
+        <span v-if="form.bg" class="description">（背景图优先级高于背景色，设置后将覆盖背景色）</span>
+        <BgImg ref="bgImg" :form="form" @imgUrl="form.bg = $event" />
       </el-form-item>
       <el-form-item label="背景色">
-        <ColorPicker
-          v-model="form.bgColor"
-          :placeholder="form.bg ? '' : '请选择背景色'"
-          :predefine-colors="predefineColors"
-        />
+        <ColorPicker v-model="form.bgColor" :placeholder="form.bg ? '' : '请选择背景色'" :predefine-colors="predefineColors" />
       </el-form-item>
       <el-form-item label="缓存数据集">
-        <data-set-select
-          :ds-value="dsValue"
-          :multiple="true"
-          @getSelectDs="getSelectDs"
-        />
+        <data-set-select :ds-value="dsValue" :multiple="true" @getSelectDs="getSelectDs" />
       </el-form-item>
     </el-form>
     <div class="toolbar">
       <el-button @click="close">
         取消
       </el-button>
-      <el-button
-        type="primary"
-        @click="saveOverallSetting"
-      >
+      <el-button type="primary" @click="saveOverallSetting">
         更新
       </el-button>
     </div>
@@ -143,12 +70,12 @@ export default {
   },
   directives: {
     block: {
-      bind (el, binding) {
+      bind(el, binding) {
         el.style.width = binding.value || '100%'
       }
     }
   },
-  data () {
+  data() {
     return {
       // 自适应模式  无(none) 、自动(auto)、宽度铺满(fitWidth)、高度铺满(fitHeight)和 双向铺满（cover） 5 种自适应模式
       autoModeOptions: [
@@ -253,7 +180,7 @@ export default {
       pageInfo: state => state.bigScreen.pageInfo,
       config: state => state.bigScreen.activeItemConfig
     }),
-    dsValue () {
+    dsValue() {
       return this.form.cacheDataSets?.map(dSet => ({
         id: dSet.dataSetId,
         name: dSet.name
@@ -261,7 +188,7 @@ export default {
     }
   },
   watch: {
-    resolutionRatioValue (val) {
+    resolutionRatioValue(val) {
       if (val) {
         this.form.w = val.split('*')[0]
         this.form.h = val.split('*')[1]
@@ -272,8 +199,8 @@ export default {
     }
   },
 
-  created () {},
-  mounted () {},
+  created() { },
+  mounted() { },
   methods: {
     ...mapMutations('bigScreen', [
       'changePageLoading',
@@ -281,7 +208,7 @@ export default {
       'changeLayout',
       'changeChartKey'
     ]),
-    getThemeConfig (themeName) {
+    getThemeConfig(themeName) {
       // this.changePageLoading(true)
       if (!['dark', 'light', 'auto'].includes(themeName)) {
         getThemeConfig().then(res => {
@@ -305,7 +232,7 @@ export default {
       })
     },
     // 改变
-    changeChart (themeName) {
+    changeChart(themeName) {
       // 统一改变组件的主题
       const chartList = this.pageInfo.chartList.map(chart => {
         chart.option.theme = themeName
@@ -316,11 +243,11 @@ export default {
       // 可能需要强制性更新chartList
       this.changeLayout(chartList)
     },
-    init () {
+    init() {
       this.form = { ...this.pageInfo.pageConfig }
       this.drawerVisible = true
     },
-    saveOverallSetting () {
+    saveOverallSetting() {
       this.form.bgColor =
         this.form.bgColor === null
           ? (this.form.bgColor = '#1d1d1d')
@@ -342,7 +269,7 @@ export default {
       // this.drawerVisible = false
     },
     // 新增数据集
-    addCacheDataSet () {
+    addCacheDataSet() {
       this.form.cacheDataSets.push({
         // 数据集名称
         name: '',
@@ -351,17 +278,17 @@ export default {
       })
     },
     // 删除数据集
-    deleteCacheDataSet (index) {
+    deleteCacheDataSet(index) {
       this.form.cacheDataSets.splice(index, 1)
     },
     // 选择数据集
-    getSelectDs (selectDs) {
+    getSelectDs(selectDs) {
       this.form.cacheDataSets = selectDs?.map(ds => ({
         name: ds.name,
         dataSetId: ds.id
       }))
     },
-    close () {
+    close() {
       this.drawerVisible = false
       this.$emit('close')
     }
@@ -370,7 +297,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../css/themeVar.scss";
 .bs-overall-wrap {
   position: relative;
   padding: 8px;
@@ -382,15 +308,24 @@ export default {
   /deep/ .el-input-number--mini,
   /deep/ .el-textarea__inner,
   /deep/ .el-input-group__append,
-  /deep/ .el-radio__label
-  {
-    background: $-bs-inner-background-color;
-    color: $-bs-inner-text-color;
+  /deep/ .el-radio__label {
+    background: $dark-bg-component;
+    color: $dark-value-color;
     border: 0 !important;
   }
 
+  /deep/ .el-input-number__decrease {
+    background: $dark-bg-component;
+    border-right: 1px solid $dark-bg;
+  }
+
+  /deep/ .el-input-number__increase {
+    background: $dark-bg-component;
+    border-left: 1px solid $dark-bg;
+  }
+
   /deep/ .el-form-item__label {
-    color: $-bs-text-color;
+    color: $dark-title-color;
   }
 
   /deep/ .el-radio {
@@ -398,16 +333,21 @@ export default {
   }
 
   /deep/ .el-table {
-    background: $-bs-inner-background-color;
-    border-bottom: 1px solid $-bs-text-color;
+    background: $dark-bg-component;
+    border-bottom: 1px solid $dark-title-color;
   }
 
   /deep/ .el-table__cell {
-    background: $-bs-inner-background-color !important;
-    color: $-bs-text-color !important;
-    border-color: $-bs-inner-text-color !important;
+    background: $dark-bg-component !important;
+    color: $dark-title-color !important;
+    border-color: $dark-value-color !important;
+  }
+
+  /deep/ .el-input__inner::placeholder {
+    color: $dark-value-color;
   }
 }
+
 .bg-img {
   width: 200px;
   height: 150px;
@@ -442,6 +382,7 @@ export default {
   position: absolute;
   text-align: center;
   padding: 10px;
+
   .el-button {
     margin-right: 10px;
   }
@@ -470,6 +411,7 @@ export default {
   bottom: 0;
   width: 100%;
 }
+
 .select-item {
   display: flex;
   margin-bottom: 8px;
@@ -493,10 +435,12 @@ export default {
       width: 90px !important;
     }
   }
+
   .input-wrap-right {
     width: 30px;
     flex: unset;
   }
+
   .input-wrap_left {
     flex: 1;
     display: flex;
@@ -515,4 +459,17 @@ export default {
     color: #f56c6c;
   }
 }
-</style>
+
+/deep/ .el-color-picker--mini .el-color-picker__trigger {
+  height: 32px;
+  width: 32px;
+  border: 1px solid $dark-bg-component;
+  background: $dark-bg-component;
+
+  .el-color-picker__color {
+    background: $dark-bg-component;
+    border: 0 !important;
+  }
+}
+
+// 颜色选择器</style>

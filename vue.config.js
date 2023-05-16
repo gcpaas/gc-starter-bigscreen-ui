@@ -53,6 +53,7 @@ module.exports = {
         // @ 是 src 的别名
         data: `
         @import "~gc-starter-ui-plus/packages/assets/styles/theme-default/common/gc-var.scss";
+        @import "./src/assets/style/variables.scss";
         `
       }
     },

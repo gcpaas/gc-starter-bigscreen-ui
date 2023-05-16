@@ -1,6 +1,4 @@
-@import "./themeVar.scss";
 .select-item-wrap {
-  //background-color: #f2f3f5;
   padding: 8px;
 
   .filter-select-item {
@@ -70,7 +68,7 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: $-bs-background-color;
+  background: $dark-bg;
   height: 32px;
   padding: 0 12px;
 }
@@ -80,17 +78,17 @@
 }
 
 /deep/ .lc-field-title {
-  color: $-bs-text-color;
+  color: $dark-title-color;
 }
 
 .lc-field-body {
   padding: 12px;
-  background: $-bs-background-color;
+  background: $dark-bg;
 
   input, textarea {
-    background-color: $-bs-inner-background-color !important;
-    color: $-bs-inner-text-color !important;
-    border-color: $-bs-inner-text-color !important;
+    background-color: $dark-bg-component !important;
+    color: $dark-value-color !important;
+    border-color: $dark-value-color !important;
   }
 
 }
@@ -100,7 +98,7 @@
 
 /deep/ .select-item {
   border: none;
-  color: $-bs-text-color;
+  color: $dark-title-color;
 }
 
 /deep/ .el-tabs__nav-scroll {
@@ -191,11 +189,11 @@
 /deep/ .el-tabs__item,
 /deep/ .el-collapse-item__arrow
 {
-  color: $-bs-text-color !important
+  color: $dark-title-color !important
 }
 /deep/ .el-collapse-item__wrap {
-  background: $-bs-background-color;
-  color: $-bs-text-color;
+  background: $dark-bg;
+  color: $dark-title-color;
 }
 
 
@@ -207,22 +205,25 @@
 /deep/ .el-input-group__append,
 /deep/ .el-radio__label
 {
-  background: $-bs-inner-background-color;
-  color: $-bs-inner-text-color;
+  background: $dark-bg-component;
+  color: $dark-value-color;
   border: 0 !important;
 }
+
+
 
 /deep/ .el-radio {
   margin-right: 10px
 }
 
 /deep/ .el-table {
-  background: $-bs-inner-background-color;
-  border-bottom: 1px solid $-bs-text-color;
+  background: $dark-bg-component;
+  border-bottom: 1px solid $dark-title-color;
 }
 
 /deep/ .el-table__cell {
-  background: $-bs-inner-background-color !important;
-  color: $-bs-text-color !important;
-  border-color: $-bs-inner-text-color !important;
+  background: $dark-bg-component !important;
+  color: $dark-title-color !important;
+  border-color: $dark-value-color !important;
 }
+
