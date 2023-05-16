@@ -11,11 +11,11 @@
           @change="cronTypeChange"
         >
           <el-radio
-            v-for="cronType in cronTypeList"
-            :key="cronType.type"
-            :label="cronType.type"
+            v-for="cronTypeItem in cronTypeList"
+            :key="cronTypeItem.type"
+            :label="cronTypeItem.type"
           >
-            {{ cronType.desc }}
+            {{ cronTypeItem.desc }}
           </el-radio>
         </el-radio-group>
       </el-form-item>

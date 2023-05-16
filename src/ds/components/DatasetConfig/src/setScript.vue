@@ -405,7 +405,6 @@
       <div class="table-box">
         <el-table
           ref="singleTable"
-          max-height="350"
           :data="paramsListCopy"
           :border="true"
           align="center"
@@ -507,7 +506,7 @@
           <el-table-column
             v-if="isSet"
             label="操作"
-            width="85"
+            width="105"
             align="center"
           >
             <template slot="header">
@@ -919,7 +918,6 @@ export default {
         })
       }
     },
-    // 表头添加提示
     renderHeader (h, { column, index }) {
       let labelLong = column.label.length // 表头label长度
       let size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义

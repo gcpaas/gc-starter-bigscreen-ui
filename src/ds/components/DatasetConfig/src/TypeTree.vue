@@ -401,7 +401,6 @@ export default {
     // 节点点击事件
     getNodeData (treeId, treeNode, nodeData, clickFlag) {
       this.curType = '-1'
-      console.log('点击了')
       this.$emit('nodeClick', nodeData, this.activeName)
     },
     // 类型点击事件

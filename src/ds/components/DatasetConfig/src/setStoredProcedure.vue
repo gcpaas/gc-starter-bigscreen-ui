@@ -487,7 +487,6 @@
       <div class="table-box">
         <el-table
           ref="singleTable"
-          max-height="350"
           :data="paramsListCopy"
           :border="true"
           align="center"
@@ -573,7 +572,7 @@
           </el-table-column>
           <el-table-column
             label="操作"
-            width="85"
+            width="105"
             align="center"
           >
             <template
