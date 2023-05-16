@@ -5,6 +5,7 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
+    top="10vh"
   >
     <DatasetConfig
       ref="dataSetSetting"
@@ -73,8 +74,8 @@ export default {
   methods: {
     sure () {
       this.dataSetVisible = false
-      const getSelectDs = this.$refs['dataSetSetting'].getSelectDs()
-      if (getSelectDs.hasOwnProperty('id')) {
+      const getSelectDs = this.$refs.dataSetSetting.getSelectDs()
+      if (Object.prototype.hasOwnProperty.call(getSelectDs, 'id')) {
         this.dataSetId = getSelectDs.id
       }
       this.$emit('getDsId', this.dataSetId)
@@ -84,6 +85,18 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+/deep/ .el-dialog__body{
+  position: relative;
+  padding: 0 !important;
+  min-height: 600px;
+  overflow: hidden;
+}
+/deep/ .packUpStyle{
+  pointer-events: none;
+  height: 76%;
+}
+/deep/ .showPackUp{
+  display: none;
+}
 </style>
