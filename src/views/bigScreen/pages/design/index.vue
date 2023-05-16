@@ -87,7 +87,7 @@ export default {
     },
     height: {
       type: String,
-      default: 'calc(100vh - 55px)'
+      default: 'calc(100vh - 53px)'
     }
   },
   data () {

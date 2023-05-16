@@ -46,8 +46,8 @@ module.exports = {
     hot: true,
     port: port,
     client: {
-      overlay: false,
-    },
+      overlay: false
+    }
   },
   css: {
     // 向所有 Sass 样式传入全局变量
