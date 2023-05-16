@@ -188,12 +188,12 @@ export default {
           },
         }
       }
-      const mapUrl = `${window.SITE_CONFIG?.baseUrl}/static/chinaMap/${this.config.customize.level}/${this.config.customize.dataMap}`
+      const mapUrl = `${window.BS_CONFIG?.httpConfigs?.baseURL}/static/chinaMap/${this.config.customize.level}/${this.config.customize.dataMap}`
       let map = await $gc.get(decodeURI(mapUrl),{},true)
       echarts.registerMap(this.config.customize.scope,map)
       this.charts.setOption(option);
       this.charts.on('click',(params)=>{
-        $gc.get(`${window.SITE_CONFIG?.baseUrl}/static/chinaMap/province/${params.name}.json`,{},true).then((res)=>{
+        $gc.get(`${window.BS_CONFIG?.httpConfigs?.baseURL}/static/chinaMap/province/${params.name}.json`,{},true).then((res)=>{
           option.geo.map = params.name
           echarts.registerMap(params.name, res)
           this.charts.setOption(option, true)

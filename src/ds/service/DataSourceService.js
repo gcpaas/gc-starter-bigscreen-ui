@@ -1,7 +1,7 @@
 /*!
  * 数据源管理
  */
-import { get, post } from './axios'
+import { get, post } from '../../gc-starter/packages/utils/http'
 
 /**
  * 新增/修改数据源

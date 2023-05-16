@@ -25,20 +25,29 @@ import { registerConfig } from 'gc-starter-bigscreen-ui'
 
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
 registerConfig({
-  // 后端的大屏服务基础路径
-  baseUrl: 'http://127.0.0.1:8066/bigScreen',
-  // 大屏设计路由
-  designUrl: '/big-screen/design',
-  // 预览路由
-  previewUrl: '/big-screen/preview',
-  // 页面管理路由
-  pageManagementUrl: '/pages',
-  // 数据管理
-  dataSourceUrl: '/data-sources',
-  // 数据源管理
-  dataSourceSetUrl: '/data-sources/data-source-sets',
-  // 数据集管理
-  dataSetConfigUrl: '/data-sources/data-set-configuration'
+  // 路由
+ 	routers: {
+    // 大屏设计路由
+    designUrl: '/design',
+    // 预览路由
+    previewUrl: '/preview',
+    // 页面管理路由
+    pageManagementUrl: '/management',
+    // 数据管理
+    dataSourceUrl: '/data-sources',
+    // 数据源管理
+    dataSourceSetUrl: '/data-sources',
+    // 数据集管理
+    dataSetConfigUrl: '/dataSetManagement',
+	},
+	// 自定义http配置
+  httpConfigs: {
+		baseURL: '' // 必填 
+    // ...其他，比如请求头
+    // headers: {
+    //   'Content-Type': 'application/json; charset=utf-8',
+    // }
+	}
 }, router)
 
 ```

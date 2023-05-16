@@ -1,27 +1,23 @@
 import axios from 'axios'
 import qs from 'qs'
-
+import _ from 'lodash'
 /**
  * 统一进行异常输出
  * 如果异常只是弹框显示即可，可使用该实例
  */
-
-const httpCustom = axios.create({
+const httpConfig = {
   timeout: 1000 * 30,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json; charset=utf-8'
   }
-})
+}
+
+const httpCustom = axios.create(httpConfig)
 /**
  *对于出现异常时还需要做其他操作，可使用该实例
  */
-const http = axios.create({
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8'
-  }
-})
+const http = axios.create(httpConfig)
 
 /**
  * 封装的异常对象
@@ -39,7 +35,10 @@ function EipException (message, code) {
  * 请求拦截
  */
 http.interceptors.request.use(config => {
-  return config
+  return {
+    ...config,
+    ..._.merge(httpConfig, window.BS_CONFIG?.httpConfigs),
+  }
 }, error => {
   return Promise.reject(error)
 })
@@ -99,7 +98,7 @@ httpCustom.interceptors.response.use(response => {
  */
 export function get (url, params = {}, customHandlerException = false) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   // 如果是ie浏览器要添加个时间戳，解决浏览器缓存问题
   if (!!window.ActiveXObject || 'ActiveXObject' in window) {
@@ -132,7 +131,7 @@ export function get (url, params = {}, customHandlerException = false) {
  */
 export function post (url, data = {}, customHandlerException = false) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   let axiosInstance = customHandlerException ? httpCustom : http
   data = JSON.stringify(data)
@@ -157,7 +156,7 @@ export function post (url, data = {}, customHandlerException = false) {
  */
 export function del (url, data = {}, customHandlerException = false) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   let axiosInstance = customHandlerException ? httpCustom : http
   data = JSON.stringify(data)
@@ -182,7 +181,7 @@ export function del (url, data = {}, customHandlerException = false) {
  */
 export function put (url, data = {}, customHandlerException = false) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   let axiosInstance = customHandlerException ? httpCustom : http
   data = JSON.stringify(data)
@@ -206,7 +205,7 @@ export function put (url, data = {}, customHandlerException = false) {
 
 export function download (url, headers = {}, params = {}, body = {}) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   // 如果是ie浏览器要添加个时间戳，解决浏览器缓存问题
   if (!!window.ActiveXObject || 'ActiveXObject' in window) {
@@ -259,7 +258,7 @@ export function download (url, headers = {}, params = {}, body = {}) {
  */
 export function wrapUrl (url) {
   if (!url.startsWith('http')) {
-    url = window.SITE_CONFIG?.baseUrl + url
+    url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
   return url
 }

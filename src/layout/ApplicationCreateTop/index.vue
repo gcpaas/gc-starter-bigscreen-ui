@@ -40,11 +40,11 @@ export default {
       tabList: [
         {
           name: '大屏管理',
-          path: window.SITE_CONFIG?.pageManagementUrl || '/pages'
+          path: window.BS_CONFIG?.routers?.pageManagementUrl || '/pages'
         },
         {
           name: '数据集管理',
-          path: window.SITE_CONFIG?.dataSourceUrl || '/data-sources'
+          path: window.BS_CONFIG?.routers?.dataSourceUrl || '/data-sources'
         }
       ]
     }

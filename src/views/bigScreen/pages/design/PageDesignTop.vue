@@ -94,7 +94,7 @@ export default {
       changePageInfo: 'bigScreen/changePageInfo'
     }),
     backManagement () {
-      this.$router.push({ path: window.SITE_CONFIG?.pageManagementUrl || '/pages' })
+      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/pages' })
     },
     // 清空
     empty () {
@@ -110,7 +110,7 @@ export default {
     // 预览
     preview () {
       const { href } = this.$router.resolve({
-        path: window.SITE_CONFIG?.previewUrl || '/big-screen/preview',
+        path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview',
         query: {
           code: this.pageCode
         }

@@ -219,7 +219,7 @@ export default {
   },
   methods: {
     getMapList(){
-      $gc.get(`${window.SITE_CONFIG?.baseUrl}/bigScreen/design/map/list/${this.config.customize.level}`).then((res)=>{
+      $gc.get(`${window.BS_CONFIG?.httpConfigs?.baseURL}/bigScreen/design/map/list/${this.config.customize.level}`).then((res)=>{
         this.mapList = res
       })
     },

@@ -108,7 +108,7 @@ export default {
   },
   data () {
     return {
-      upLoadUrl: window.SITE_CONFIG?.baseUrl + '/sys/file/upload',
+      upLoadUrl: window.BS_CONFIG?.httpConfigs?.baseURL + '/sys/file/upload',
       fileUploadParam: {
         token: $gc.getToken(),
         module: 'form'

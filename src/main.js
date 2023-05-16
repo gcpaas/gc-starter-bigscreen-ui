@@ -19,7 +19,12 @@ import table from 'gc-starter-ui-plus/packages/directive/table' // 自适应tabl
 import '@/ds/assets/styles/dataSource/index.scss'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 registerConfig({
-  baseUrl: window.CONFIG?.baseUrl
+  httpConfigs: {
+    baseURL: window.CONFIG?.baseUrl,
+    // headers: {
+    //   token: 123
+    // }
+  }
 })
 promise.polyfill()
 // 自定义指令

@@ -1,7 +1,7 @@
 /*!
  * 公共模块
  */
-import { get, post } from './axios'
+import { get, post } from '../../gc-starter/packages/utils/http'
 
 /**
  * 删除菜单树节点

@@ -74,7 +74,7 @@ export default {
       fileUploadParam: {
         module: 'attachment'
       },
-      actionUrl: window.SITE_CONFIG['baseUrl'] + '/sys/file/upload'
+      actionUrl: window.BS_CONFIG['baseUrl'] + '/sys/file/upload'
     }
   },
   computed: {

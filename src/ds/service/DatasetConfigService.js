@@ -1,7 +1,7 @@
 /*!
  * 数据集管理
  */
-import { get, post } from './axios'
+import { get, post } from '../../gc-starter/packages/utils/http'
 
 /**
  * 数据集分页查询
