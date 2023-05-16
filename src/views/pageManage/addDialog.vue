@@ -345,7 +345,7 @@ export default {
           ? (form) => $gc.post('/bigScreen/design/add', form)
           : (form) => $gc.post('/bigScreen/design/update', form)
         const form = {
-          'className': 'com.gccloud.starter.lowcode.page.bigscreen.dto.BigScreenPageDTO',
+          'className': 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO',
           'chartList': this.dataForm.chartList,
           'code': this.dataForm.code,
           'icon': this.dataForm.icon,

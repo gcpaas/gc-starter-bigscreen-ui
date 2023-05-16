@@ -30,7 +30,7 @@ function getPlotList (files) {
       title: config.title,
       icon: null,
       img: require(`../../assets/componentLogo/${config.title}.png`),
-      className: 'com.gccloud.starter.lowcode.page.chart.components.bigscreen.CustomComponentChart',
+      className: 'com.gccloud.bigscreen.core.module.chart.components.CustomComponentChart',
       w: 450,
       h: 320,
       x: 0,

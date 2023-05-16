@@ -123,7 +123,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          const className = this.type === 'com.gccloud.starter.lowcode.page.bigscreen.dto.BigScreenPageDTO'
+          const className = this.type === 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO'
           this.innerLoading = true
           $gc.post(`/${this.type}/design/get/template`, {
             pageTemplateId: id,

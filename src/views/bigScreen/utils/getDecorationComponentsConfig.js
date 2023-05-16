@@ -2,7 +2,7 @@
  * @description: 得到装饰组件配置
  */
 export default function getComponentConfig (type, classNameType) {
-  const className = `com.gccloud.starter.lowcode.page.chart.components.bigscreen.ScreenDecorationChart`
+  const className = `com.gccloud.bigscreen.core.module.chart.components.ScreenDecorationChart`
   switch (type) {
     case 'decoration1':
       return {

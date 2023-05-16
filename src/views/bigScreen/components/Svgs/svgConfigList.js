@@ -17,7 +17,7 @@ function getSvgList (iconList) {
       name: svg,
       title: '',
       icon: svg,
-      className: 'com.gccloud.starter.lowcode.page.chart.components.bigscreen.ScreenSvgsChart',
+      className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenSvgsChart',
       w: 100,
       h: 100,
       x: 0,
