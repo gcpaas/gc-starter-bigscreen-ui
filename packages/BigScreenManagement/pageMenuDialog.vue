@@ -36,13 +36,13 @@ export default {
       pageList: [
         {
           name: '目录',
-          icon: require('./static/icons/目录.png'),
+          icon: require('./images/目录.png'),
           type: 'catalog',
           categories: 'catalog'
         },
         {
           name: '大屏',
-          icon: require('./static/icons/大屏.png'),
+          icon: require('./images/大屏.png'),
           type: 'bigScreen',
           categories: 'bigScreen'
         }
