@@ -268,9 +268,7 @@ export default {
   height: 0;
 }
 
-/deep/ .el-tabs__content {
-  /*overflow-y: auto;*/
-}
+
 .design-tab-warp {
   padding: 10px;
 }
@@ -278,7 +276,7 @@ export default {
   height: 100%;
 }
 /deep/ .el-tabs__content {
-  height: calc(100% - 85px);
+  height: calc(100% - 95px);
   overflow-y: auto;
 }
 .setting-body {
