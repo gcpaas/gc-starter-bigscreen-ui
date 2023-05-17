@@ -286,7 +286,7 @@ export default {
           font-size: 14px;
         }
         .el-scrollbar__view{
-          height: calc(100vh - 53px);
+          height: calc(100vh - 55px);
         }
         .page-left-content-components {
           width: 100%;

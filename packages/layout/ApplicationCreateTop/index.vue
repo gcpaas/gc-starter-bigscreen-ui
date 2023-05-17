@@ -44,7 +44,7 @@ export default {
         },
         {
           name: '数据集管理',
-          path: window.BS_CONFIG?.routers?.dataSourceUrl || '/data-sources'
+          path: window.BS_CONFIG?.routers?.dsManageUrl || '/data-sources'
         }
       ]
     }

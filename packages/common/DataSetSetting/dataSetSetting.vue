@@ -5,12 +5,12 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
+    top="10vh"
   >
     <DatasetConfig
       ref="dataSetSetting"
       :is-dialog="true"
       :ds-id="dataSetId"
-      :app-code="appCode"
       :multiple="multiple"
       :ds-value="DataDsValue"
     />
@@ -27,7 +27,8 @@
   </el-dialog>
 </template>
 <script>
-import { DatasetConfig } from 'packages/DataSet'
+import { DatasetConfig } from 'packages/DataSet/index.js'
+import 'packages/DataSet/assets/styles/dataSource/index.scss'
 export default {
   name: 'DataSetSetting',
   components: { DatasetConfig },
@@ -57,9 +58,6 @@ export default {
     }
   },
   computed: {
-    appCode () {
-      return this.$route.query.appCode
-    },
     DataDsValue () {
       if (this.multiple) {
         return this.dsValue
@@ -76,8 +74,8 @@ export default {
   methods: {
     sure () {
       this.dataSetVisible = false
-      const getSelectDs = this.$refs['dataSetSetting'].getSelectDs()
-      if (getSelectDs.hasOwnProperty('id')) {
+      const getSelectDs = this.$refs.dataSetSetting.getSelectDs()
+      if (Object.prototype.hasOwnProperty.call(getSelectDs, 'id')) {
         this.dataSetId = getSelectDs.id
       }
       this.$emit('getDsId', this.dataSetId)
@@ -87,6 +85,18 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+/deep/ .el-dialog__body{
+  position: relative;
+  padding: 0 !important;
+  min-height: 600px;
+  overflow: hidden;
+}
+/deep/ .packUpStyle{
+  pointer-events: none;
+  height: 600px;
+}
+/deep/ .showPackUp{
+  display: none;
+}
 </style>

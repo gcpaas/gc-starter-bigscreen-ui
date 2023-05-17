@@ -1,3 +1,4 @@
+@import '~packages/assets/style/theme-default/index.scss';
 .packUpStyle {
   margin: 0 -16px;
   height: 100%;
@@ -51,11 +52,13 @@
   line-height: 40px !important;
   position: absolute !important;
   cursor: col-resize !important;
+  background-color: var(--gc-content-bg) !important;
   opacity: 0.8;
 
   span {
     opacity: 0.7;
     font-size: 16px;
+    color: var(--gc-text);
     align-self: center;
 
     display: block;
@@ -96,7 +99,8 @@
   z-index: 1;
   width: 14px;
   height: auto;
-  background-color: #f6f7fb;
+  // background-color: #f6f7fb;
+  background-color: var(--gc-bg);
 
   a {
     position: relative;
