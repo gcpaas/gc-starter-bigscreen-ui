@@ -2,7 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-export const baseRoutes = []
+export const baseRoutes = [
+  {
+    path: '/',
+    name: 'home',
+    redirect: '/pages'
+  }
+]
 
 export const constantRoutes = []
 

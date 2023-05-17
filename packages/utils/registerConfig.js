@@ -50,14 +50,14 @@ function registerRouters (config, router) {
           },
           children: [
             {
-              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+              path: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
               component: () => import('packages/DataSourceManagement/dataSourceSet/index'),
               meta: {
                 title: '数据源管理'
               }
             },
             {
-              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-set-configuration',
               component: () => import('packages/DataSourceManagement/dataSetConfig/index'),
               meta: {
                 title: '数据集管理'
