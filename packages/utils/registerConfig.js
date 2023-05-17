@@ -5,8 +5,8 @@
  * @returns {{}}
  */
 function configDeepMerge (target, source) {
-  var merged = {}
-  for (var each in source) {
+  const merged = {}
+  for (const each in source) {
     if (target.hasOwnProperty(each) && source.hasOwnProperty(each)) {
       if (typeof target[each] === 'object' && typeof source[each] === 'object') {
         merged[each] = configDeepMerge(target[each], source[each])
@@ -17,17 +17,56 @@ function configDeepMerge (target, source) {
       merged[each] = source[each]
     }
   }
-  for (var eachTarget in target) {
+  for (const eachTarget in target) {
     if (!(eachTarget in source) && target.hasOwnProperty(eachTarget)) {
       merged[eachTarget] = target[eachTarget]
     }
   }
   return merged
 }
-
-export default function (config, router) {
-  window.BS_CONFIG = {}
+// 自动注册路由
+function registerRouters (config, router) {
   const routers = [
+    // 页面管理
+    {
+      path: config?.routers?.pageManagementUrl || '/pages',
+      redirect: config?.routers?.pageListUrl || '/pages',
+      component: () => import('packages/layout/ApplicationCreateTop/index'),
+      children: [
+        {
+          path: config?.routers?.pageListUrl || '/pages',
+          name: 'Management',
+          component: () => require.ensure([], () => require('packages/BigScreenManagement')),
+          meta: {
+            title: '页面管理'
+          }
+        },
+        {
+          path: config?.routers?.dataUrl || '/data-sources',
+          redirect: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+          component: () => import('packages/DataSourceManagement/index'),
+          meta: {
+            title: '数据源管理页面'
+          },
+          children: [
+            {
+              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+              component: () => import('packages/DataSourceManagement/dataSourceSet/index'),
+              meta: {
+                title: '数据源管理'
+              }
+            },
+            {
+              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+              component: () => import('packages/DataSourceManagement/dataSetConfig/index'),
+              meta: {
+                title: '数据集管理'
+              }
+            }
+          ]
+        }
+      ]
+    },
     {
       path: config?.routers?.pageManagementUrl || '/pages',
       name: 'Management',
@@ -54,11 +93,23 @@ export default function (config, router) {
       component: () => require.ensure([], () => require('packages/DataSourceManagement/dataSetConfig'))
     }
   ]
-  // eslint-disable-next-line no-unused-expressions
-  routers?.forEach(route => {
+  // 如果router有addRoutes方法
+  if (router?.addRoutes) {
+    router?.addRoutes(routers)
+  } else {
     // eslint-disable-next-line no-unused-expressions
-    router?.addRoute(route)
-  })
+    routers?.forEach(route => {
+      // eslint-disable-next-line no-unused-expressions
+      router?.addRoute(route)
+    })
+  }
+}
 
+// 注册配置
+export default function (config, router) {
+  window.BS_CONFIG = {}
   window.BS_CONFIG = configDeepMerge(window.BS_CONFIG, config)
+
+  // 注册路由
+  registerRouters(config, router)
 }

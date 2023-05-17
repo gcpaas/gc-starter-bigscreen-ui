@@ -14,7 +14,7 @@ registerConfig({
     baseURL: window.CONFIG?.baseUrl
   },
   customPlots: []
-})
+}, router)
 promise.polyfill()
 // 自定义指令
 Vue.use(ElementUI, { size: 'mini' })
