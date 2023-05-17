@@ -2,7 +2,7 @@
   <div
     v-loading="pageLoading"
     loading-text="加载中..."
-    class="app-container page-manage-wrap"
+    class="page-manage-wrap"
   >
     <div class="page-manage-menu">
       <!-- 搜索部分 -->
