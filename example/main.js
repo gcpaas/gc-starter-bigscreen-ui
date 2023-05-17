@@ -11,22 +11,22 @@ import router from './router'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 
 registerConfig({
-  // routers: {
-  //   // 大屏设计路由
-  //   designUrl: '/design',
-  //   // 预览路由
-  //   previewUrl: '/preview',
-  //   // 页面管理路由（带头部跳转路由）
-  //   pageManagementUrl: '/management',
-  //   // 页面列表路由
-  //   pageListUrl: '/pages',
-  //   // 数据管理（带头部）
-  //   dsManageUrl: '/data-source-manage',
-  //   // 数据源管理
-  //   dataSourceUrl: '/data-source',
-  //   // 数据集管理
-  //   dataSetUrl: '/data-set'
-  // },
+  routers: {
+    // 大屏设计路由
+    designUrl: '/bigscreen/design',
+    // 预览路由
+    previewUrl: '/bigscreen/preview',
+    // 页面管理路由（带头部跳转路由）
+    pageManagementUrl: '/',
+    // 页面列表路由
+    pageListUrl: '/pages',
+    // 数据管理（带头部）
+    dsManageUrl: '/data-source-manage',
+    // 数据源管理
+    dataSourceUrl: '/data-source-manage/data-source',
+    // 数据集管理
+    dataSetUrl: '/data-source-manage/data-set'
+  },
   httpConfigs: {
     baseURL: window.CONFIG?.baseUrl
   },
