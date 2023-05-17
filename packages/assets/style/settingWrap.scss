@@ -64,7 +64,7 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: $dark-bg;
+  background: $bs-bg;
   height: 32px;
   padding: 0 12px;
 }
@@ -74,17 +74,17 @@
 }
 
 /deep/ .lc-field-title {
-  color: $dark-title-color;
+  color: $bs-title;
 }
 
 .lc-field-body {
   padding: 12px;
-  background: $dark-bg;
+  background: $bs-bg;
 
   input, textarea {
-    background-color: $dark-bg-component !important;
-    color: $dark-value-color !important;
-    border-color: $dark-value-color !important;
+    background-color: $bs-component !important;
+    color: $bs-value !important;
+    border-color: $bs-value !important;
   }
 
 }
@@ -94,7 +94,7 @@
 
 /deep/ .select-item {
   border: none;
-  color: $dark-title-color;
+  color: $bs-title;
 }
 
 /deep/ .el-tabs__nav-scroll {
@@ -185,11 +185,11 @@
 /deep/ .el-tabs__item,
 /deep/ .el-collapse-item__arrow
 {
-  color: $dark-title-color !important
+  color: $bs-title !important
 }
 /deep/ .el-collapse-item__wrap {
-  background: $dark-bg;
-  color: $dark-title-color;
+  background: $bs-bg;
+  color: $bs-title;
 }
 
 
@@ -201,8 +201,8 @@
 /deep/ .el-input-group__append,
 /deep/ .el-radio__label
 {
-  background: $dark-bg-component;
-  color: $dark-value-color;
+  background: $bs-component;
+  color: $bs-value;
   border: 0 !important;
 }
 
@@ -213,13 +213,13 @@
 }
 
 /deep/ .el-table {
-  background: $dark-bg-component;
-  border-bottom: 1px solid $dark-title-color;
+  background: $bs-component;
+  border-bottom: 1px solid $bs-title;
 }
 
 /deep/ .el-table__cell {
-  background: $dark-bg-component !important;
-  color: $dark-title-color !important;
-  border-color: $dark-value-color !important;
+  background: $bs-component !important;
+  color: $bs-title !important;
+  border-color: $bs-value !important;
 }
 
