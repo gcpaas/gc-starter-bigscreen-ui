@@ -1,3 +1,7 @@
+/*
+ * @description: 打包的配置
+ * @Author: xing.heng
+ */
 const path = require('path')
 const { ProvidePlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -8,6 +12,18 @@ function resolve (dir) {
 
 module.exports = {
   lintOnSave: false,
+  css: {
+    // 向所有 Sass 样式传入全局变量
+    loaderOptions: {
+      sass: {
+        data: `
+        @import "~packages/assets/style/variables.scss";
+        @import "~packages/assets/style/mixin.scss";
+        `
+      }
+    },
+    extract: false
+  },
   configureWebpack: {
     externals: {
       vuex: 'vuex',
@@ -37,8 +53,8 @@ module.exports = {
     },
     resolve: {
       alias: {
-        '@': resolve('../example'),
-        'gc-starter-bigscreen': resolve('../example/views/bigScreen'),
+        '@': resolve('example'),
+        packages: resolve('packages')
       },
       fallback: {
         path: false,
@@ -71,10 +87,10 @@ module.exports = {
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('../../../assets/images/bigScreenIcon/svg'))
-      .add(resolve('../components/Svgs/svg'))
-      .add(resolve('../../../assets/images/appPrependIcon/svg'))
-      .add(resolve('../../../assets/images/pageIcon/svg'))
+      .include.add(resolve('packages/assets/images/bigScreenIcon/svg'))
+      .add(resolve('packages/Svgs/svg'))
+      .add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .add(resolve('packages/assets/images/pageIcon/svg'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')

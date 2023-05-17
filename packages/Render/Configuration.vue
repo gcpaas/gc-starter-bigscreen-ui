@@ -10,17 +10,20 @@
     @click.stop="changeActive(config)"
     @contextmenu="onContextmenu($event, config)"
   >
-<!--    <span class="point-text" v-show="hoverCode === config.code"> {{ getPoint(config) }}</span>-->
-    <span class="locked-status el-icon-lock" v-show="config.locked"></span>
-    <slot></slot>
+    <!--    <span class="point-text" v-show="hoverCode === config.code"> {{ getPoint(config) }}</span>-->
+    <span
+      v-show="config.locked"
+      class="locked-status el-icon-lock"
+    />
+    <slot />
   </div>
 </template>
 <script>
-import { mapState,mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 import chartContextMenu from '../mixins/chartContextMenu'
 export default {
-  name: 'configuration',
+  name: 'Configuration',
   mixins: [chartContextMenu],
   props: {
     config: {
@@ -38,33 +41,33 @@ export default {
       presetLine: state => state.bigScreen.presetLine
     })
   },
-  data() {
+  data () {
     return {
 
     }
   },
-  mounted() {},
+  mounted () {},
   methods: {
-    ...mapMutations("bigScreen", [
-      "changeHoverCode",
-      "changeActiveCode",
-      "changeChartConfig",
-      "addItem",
-      "delItem",
-      "resetPresetLine",
-      "changeLayout",
-      "changeZIndex",
-      "changeLocked"
+    ...mapMutations('bigScreen', [
+      'changeHoverCode',
+      'changeActiveCode',
+      'changeChartConfig',
+      'addItem',
+      'delItem',
+      'resetPresetLine',
+      'changeLayout',
+      'changeZIndex',
+      'changeLocked'
     ]),
     // 改变hover的组件
-    changeHover(code) {
+    changeHover (code) {
       this.changeHoverCode(code)
     },
     // 改变激活的组件
-    changeActive(config) {
+    changeActive (config) {
       this.changeActiveCode(config.code)
       this.$emit('openRightPanel')
-    },
+    }
   }
 }
 </script>

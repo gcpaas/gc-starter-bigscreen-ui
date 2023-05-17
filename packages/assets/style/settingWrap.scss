@@ -1,3 +1,5 @@
+@import '~packages/assets/style/variables.scss';
+@import '~packages/assets/style/themeVar.scss';
 .select-item-wrap {
   padding: 8px;
 
@@ -9,7 +11,7 @@
     }
 
     .filter-item-input-wrap {
-      width: 146px;;
+      width: 146px;
       margin-right: 4px;
     }
 

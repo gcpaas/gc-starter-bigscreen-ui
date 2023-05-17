@@ -59,7 +59,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '~packages/assets/style/themeVar.scss';
 .bs-color-picker {
   background-color: $bs-bg !important;
 
@@ -68,9 +69,6 @@ export default {
     color: $bs-value;
   }
 }
-</style>
-
-<style lang="scss" scoped>
 .border-color {
   display: flex;
 

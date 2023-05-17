@@ -272,7 +272,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/fonts/bigScreenFont/iconfont.css';
-
+@import '~packages/assets/style/variables.scss';
+@import '~packages/assets/style/themeVar.scss';
 .bs-left-panel {
   display: flex;
 

@@ -213,6 +213,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~packages/assets/style/variables.scss';
+@import '~packages/assets/style/themeVar.scss';
 .bs-page-design-wrap {
   overflow: hidden;
   background: $bs-bg;

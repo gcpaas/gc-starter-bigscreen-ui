@@ -370,16 +370,15 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '~packages/assets/style/variables.scss';
+@import '~packages/assets/style/themeVar.scss';
 .bs-select{
   background-color: $bs-bg !important;
   .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
     background-color: $bs-component;
   }
 }
-</style>
-
-<style lang="scss" scoped>
 .bs-overall-wrap {
   position: relative;
   padding: 8px;

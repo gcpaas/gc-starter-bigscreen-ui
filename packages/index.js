@@ -1,5 +1,3 @@
-// 大屏应用页面
-
 // 大屏管理页面
 import BigScreenManagement from 'packages/BigScreenManagement'
 // 渲染整个bigScreen的渲染引擎
@@ -9,7 +7,7 @@ import BigScreenDesign from 'packages/BigScreenDesign'
 // 数据源管理
 import DataSourceManagement from 'packages/DataSourceManagement'
 // 数据集管理
-import DataSetManagement from 'packages/DataSourceManagement'
+import DataSetManagement from 'packages/DataSetManagement'
 
 // 大屏 vuex store数据
 import bigScreenStore from 'packages/store'
