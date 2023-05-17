@@ -43,14 +43,14 @@ export default {
         {
           active: false,
           name: '数据源管理',
-          path: '/data-sources/data-source-sets',
+          path: window?.routers?.dataSourceUrl,
           // permissionRequire: 0
           img: Icon.getNameList()[0]
         },
         {
           active: false,
           name: '数据集管理',
-          path: '/data-sources/data-set-configuration',
+          path: window?.routers?.dataSetUrl,
           // permissionRequire: 9
           img: Icon.getNameList()[1]
         }
@@ -63,6 +63,10 @@ export default {
     }
   },
   watch: {
+  },
+  created () {
+    this.tabList[0].path = window?.BS_CONFIG?.routers?.dataSourceUrl || '/data-sources/data-source-sets'
+    this.tabList[1].path = window?.BS_CONFIG?.routers?.dataSetUrl || '/data-sources/data-set-configuration'
   },
   mounted () {
     this.openTab(this.tabList[0])

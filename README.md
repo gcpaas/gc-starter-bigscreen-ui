@@ -51,15 +51,17 @@ registerConfig({
     designUrl: '/design',
     // 预览路由
     previewUrl: '/preview',
-    // 页面管理路由
+    // 页面管理路由（带头部跳转路由）
     pageManagementUrl: '/management',
-    // 数据管理
-    dataSourceUrl: '/data-sources',
+    // 页面列表路由
+    pageListUrl: '/pages',
+    // 数据管理（带头部）
+    dsManageUrl: '/data-source-manage',
     // 数据源管理
-    dataSourceSetUrl: '/data-sources',
+    dataSourceUrl: '/data-source',
     // 数据集管理
-    dataSetConfigUrl: '/dataSetManagement',
-	},
+    dataSetUrl: '/data-set'
+  },
 	// 自定义http配置
   httpConfigs: {
 		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 

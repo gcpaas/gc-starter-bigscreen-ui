@@ -42,8 +42,8 @@ function registerRouters (config, router) {
           }
         },
         {
-          path: config?.routers?.dataUrl || '/data-sources',
-          redirect: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
+          path: config?.routers?.dsManageUrl || '/data-sources',
+          redirect: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
           component: () => import('packages/DataSourceManagement/index'),
           meta: {
             title: '数据源管理页面'
@@ -57,7 +57,7 @@ function registerRouters (config, router) {
               }
             },
             {
-              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-set-configuration',
+              path: config?.routers?.dataSetUrl || '/data-sources/data-set-configuration',
               component: () => import('packages/DataSourceManagement/dataSetConfig/index'),
               meta: {
                 title: '数据集管理'
@@ -68,11 +68,6 @@ function registerRouters (config, router) {
       ]
     },
     {
-      path: config?.routers?.pageManagementUrl || '/pages',
-      name: 'Management',
-      component: () => require.ensure([], () => require('packages/BigScreenManagement'))
-    },
-    {
       path: config?.routers?.designUrl || '/big-screen/design',
       name: 'Design',
       component: () => require.ensure([], () => require('packages/BigScreenDesign'))
@@ -81,18 +76,9 @@ function registerRouters (config, router) {
       path: config?.routers?.previewUrl || '/big-screen/preview',
       name: 'Preview',
       component: () => require.ensure([], () => require('packages/BigScreenRun'))
-    },
-    {
-      path: config?.routers?.dataSourceUrl || '/data-sources',
-      name: 'DataSourceManagement',
-      component: () => require.ensure([], () => require('packages/DataSourceManagement/dataSourceSet'))
-    },
-    {
-      path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
-      name: 'DataSetManagement',
-      component: () => require.ensure([], () => require('packages/DataSourceManagement/dataSetConfig'))
     }
   ]
+  console.log('routers', routers)
   // 如果router有addRoutes方法
   if (router?.addRoutes) {
     router?.addRoutes(routers)
