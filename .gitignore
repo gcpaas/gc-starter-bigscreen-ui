@@ -365,6 +365,6 @@ bh_unicode_properties.cache
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
 
-src/views/form/**/lib
-src/views/pageBoard/**/lib
-src/views/bigScreen/components/lib
+example/views/form/**/lib
+example/views/pageBoard/**/lib
+packages/components/lib

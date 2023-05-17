@@ -29,7 +29,7 @@ const plugins = [
 module.exports = {
   pages: {
     index: {
-      entry: ['node_modules/babel-polyfill', 'src/main.js'],
+      entry: ['node_modules/babel-polyfill', 'example/main.js'],
       template: 'public/index.html',
       filename: 'index.html',
       chunks: 'all'
@@ -39,7 +39,7 @@ module.exports = {
     process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : './',
   outputDir: 'bigScreen',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
   runtimeCompiler: true,
   devServer: {
@@ -53,10 +53,9 @@ module.exports = {
     // 向所有 Sass 样式传入全局变量
     loaderOptions: {
       sass: {
-        // @ 是 src 的别名
+        // @ 是 example 的别名
         data: `
-        @import "~gc-starter-ui-plus/packages/assets/styles/theme-default/common/gc-var.scss";
-        @import "./src/assets/style/variables.scss";
+        @import "~packages/assets/style/variables.scss";
         `
       }
     },
@@ -69,12 +68,11 @@ module.exports = {
     // name: name,
     Object.assign(config.resolve, {
       alias: {
-        '@': resolve('src'),
+        '@': resolve('example'),
         vue$: 'vue/dist/vue.common',
         // 大屏工程路径别名
-        'gc-starter-bigscreen': resolve('src/views/bigScreen'),
-        'gc-starter-ui-plus': resolve('src/gc-starter'),
-        'gc-starter-bigscreen-ui': resolve('src/views/bigScreen/components/index.js')
+        packages: resolve('packages'),
+        'gc-starter-bigscreen-ui': resolve('packages/index.js')
       },
       fallback: {
         path: false,
@@ -125,19 +123,19 @@ module.exports = {
     config.plugins.delete('prefetch-index') //  关闭prefetch
     config.module
       .rule('svg')
-      .exclude.add(resolve('src/assets/images/appPrependIcon/svg'))
-      .add(resolve('src/assets/images/pageIcon/svg'))
-      .add(resolve('src/assets/images/bigScreenIcon/svg'))
-      .add(resolve('src/views/bigScreen/components/Svgs/svg'))
+      .exclude.add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .add(resolve('packages/assets/images/pageIcon/svg'))
+      .add(resolve('packages/assets/images/bigScreenIcon/svg'))
+      .add(resolve('packages/Svgs/svg'))
       .end()
 
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('src/assets/images/appPrependIcon/svg'))
-      .add(resolve('src/assets/images/pageIcon/svg'))
-      .add(resolve('src/assets/images/bigScreenIcon/svg'))
-      .add(resolve('src/views/bigScreen/components/Svgs/svg'))
+      .include.add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .add(resolve('packages/assets/images/pageIcon/svg'))
+      .add(resolve('packages/assets/images/bigScreenIcon/svg'))
+      .add(resolve('packages/Svgs/svg'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
