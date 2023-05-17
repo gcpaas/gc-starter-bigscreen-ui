@@ -79,13 +79,14 @@
 <script>
 import _ from 'lodash'
 import basicComponents from '../../config/basicComponentsConfig'
-import g2PlotComponents from '../../components/G2Plots/plotList'
+import g2PlotComponents, { getCustomPlots } from '../../components/G2Plots/plotList'
 import borderComponents from '../../config/borderComponentsConfig'
 import decorationComponents from '../../config/decorationComponentsConfig'
 import svgComponents from '../../components/Svgs/svgConfigList'
 import LayerList from './components/LayerList'
 import { mapMutations } from 'vuex'
 import Vue from 'vue'
+import { EventBus } from '../../utils/eventBus'
 import SvgIcon from '@/components/icons/export'
 Vue.use(SvgIcon)
 export default {
@@ -105,12 +106,13 @@ export default {
   },
   data() {
     return {
+      g2PlotComponents,
       activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
       fold: false, // 控制左侧菜单栏伸缩
       currentTab: 'basic',
       menuList: [
         { id: 1, name: 'chart', title: '基础组件', icon: 'icon-zujian', components: basicComponents },
-        { id: 2, name: 'g2PlotComponents', title: '图表组件', icon: 'icon-jichushuju', components: g2PlotComponents },
+        { id: 2, name: 'g2PlotComponents', title: '图表组件', icon: 'icon-jichushuju', components: this.g2PlotComponents },
         { id: 3, name: 'dataV', title: '边框组件', icon: 'icon-border-outer', components: borderComponents },
         { id: 4, name: 'decoration', title: '装饰组件', icon: 'icon-a-1', components: decorationComponents },
         { id: 5, name: 'svg', title: '图标组件', icon: 'icon-svg', components: svgComponents }
@@ -133,6 +135,11 @@ export default {
   },
   created() {
     this.initList()
+    this.g2PlotComponents = [
+      ...this.g2PlotComponents,
+      ...getCustomPlots()
+    ]
+    this.menuList[1].components = this.g2PlotComponents
   },
   mounted() {
     this.nodeDrag()

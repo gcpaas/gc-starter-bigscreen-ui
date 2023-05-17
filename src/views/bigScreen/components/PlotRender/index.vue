@@ -17,7 +17,7 @@ import linkageMixins from 'gc-starter-bigscreen/mixins/linkageMixins'
 import commonMixins from 'gc-starter-bigscreen/mixins/commonMixins'
 import { mapState, mapMutations } from 'vuex'
 import * as g2Plot from '@antv/g2plot'
-import plotList from '../G2Plots/plotList'
+import plotList, { getCustomPlots } from '../G2Plots/plotList'
 export default {
   name: 'PlotCustomComponent',
   mixins: [commonMixins, linkageMixins],
@@ -30,7 +30,8 @@ export default {
   data () {
     return {
       chart: null,
-      hasData: false
+      hasData: false,
+      plotList
     }
   },
   computed: {
@@ -47,6 +48,9 @@ export default {
       }
       return 'chart' + this.config.code
     }
+  },
+  created () {
+    this.plotList = [...this.plotList, ...getCustomPlots()]
   },
   beforeDestroy () {
     if (this.chart) {
@@ -69,7 +73,7 @@ export default {
         // 否则说明是更新或者复制
         // 如果是复制，给默认值
         if (this.config.isCopy) {
-          this.config.option.data = plotList.find(plot => plot.name === this.config.name)?.option?.data
+          this.config.option.data = this.plotList.find(plot => plot.name === this.config.name)?.option?.data
         }
         this.newChart(this.config.option)
       }
@@ -165,7 +169,7 @@ export default {
         config.option.data = data
       } else {
         // 数据获取失败，使用前端配置中的默认数据
-        config.option.data = plotList?.find(plot => plot.name === this.config.name)?.option?.data
+        config.option.data = this.plotList?.find(plot => plot.name === this.config.name)?.option?.data
       }
       return config
     }

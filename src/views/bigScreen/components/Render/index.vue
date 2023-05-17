@@ -72,7 +72,7 @@ import vdr from 'vue-draggable-resizable-gorkys'
 import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
 import { randomString } from '../../utils'
 import { compile } from 'tiny-sass-compiler/dist/tiny-sass-compiler.esm-browser.prod.js'
-import plotList from '../../components/G2Plots/plotList'
+import plotList, { getCustomPlots } from '../../components/G2Plots/plotList'
 export default {
   name: 'BigScreenRender',
   components: {
@@ -92,7 +92,8 @@ export default {
       hLine: [],
       themeCss: '',
       // 临时冻结拖拽
-      freeze: false
+      freeze: false,
+      plotList
     }
   },
   computed: {
@@ -128,6 +129,7 @@ export default {
   },
   mounted () {
     this.styleSet()
+    this.plotList = [...this.plotList, ...getCustomPlots()]
   },
   methods: {
     ...mapMutations('bigScreen',
@@ -262,7 +264,7 @@ export default {
       const _chart = JSON.parse(chart)
       let option = _chart.option
       if (_chart.type === 'customComponent') {
-        option = { ...plotList?.find(plot => plot.name === _chart.name)?.option, theme: this.pageConfig.customTheme }
+        option = { ...this.plotList?.find(plot => plot.name === _chart.name)?.option, theme: this.pageConfig.customTheme }
       }
       const config = {
         ..._chart,

@@ -5,7 +5,6 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import VueI18n from 'vue-i18n'
 import 'gc-starter-ui-plus/packages/assets/styles/theme-default/index.scss'
-
 // import SvgIcon from '@/components/icons/export'
 
 import App from './App'
@@ -18,13 +17,12 @@ import table from 'gc-starter-ui-plus/packages/directive/table' // 自适应tabl
 // 样式
 import '@/ds/assets/styles/dataSource/index.scss'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+import customPlots from '@/customPlots/exports'
 registerConfig({
   httpConfigs: {
-    baseURL: window.CONFIG?.baseUrl,
-    // headers: {
-    //   token: 123
-    // }
-  }
+    baseURL: window.CONFIG?.baseUrl
+  },
+  customPlots
 })
 promise.polyfill()
 // 自定义指令
