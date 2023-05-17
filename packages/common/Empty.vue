@@ -1,38 +1,43 @@
 <template>
-  <div class="el-empty" :style="{ height: height}">
-      <div class="img-box">
-        <icon-svg
-          name="empty"
-          class="empty-svg"
-        />
-      </div>
-    <div class="empty-text">{{ text }}</div>
+  <div
+    class="el-empty"
+    :style="{ height: height}"
+  >
+    <div class="img-box">
+      <icon-svg
+        name="empty"
+        class="empty-svg"
+      />
+    </div>
+    <div class="empty-text">
+      {{ text }}
+    </div>
   </div>
 </template>
 
 <script>
 
-  export default {
-    name: 'Empty',
-    components: {
+export default {
+  name: 'Empty',
+  components: {
+  },
+  props: {
+    text: {
+      type: String,
+      default: '暂无数据'
     },
-    props: {
-      text: {
-        type: String,
-        default: '暂无数据'
-      },
-      height: {
-        type: String,
-        default: 'calc(100% - 60px)'
-      }
-    },
-    computed: {
-    },
-    data(){
-      return {
-      }
+    height: {
+      type: String,
+      default: 'calc(100% - 60px)'
     }
-  };
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+  }
+}
 </script>
 <style lang="scss" scoped>
   .el-empty{

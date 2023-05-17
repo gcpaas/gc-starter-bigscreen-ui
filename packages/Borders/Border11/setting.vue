@@ -1,12 +1,25 @@
 <template>
   <div>
-    <BorderSetting ref="form" :config="config" :predefineThemeColors="predefineThemeColors">
+    <BorderSetting
+      ref="form"
+      :config="config"
+      :predefine-theme-colors="predefineThemeColors"
+    >
       <template slot="top">
         <el-form-item label="边框标题">
-          <el-input maxlength="100" v-model="config.customize.title" clearable />
+          <el-input
+            v-model="config.customize.title"
+            maxlength="100"
+            clearable
+          />
         </el-form-item>
         <el-form-item label="标题宽度">
-          <el-input-number v-model="config.customize.titleWidth" :max="8000" :min="50" :step="10" />
+          <el-input-number
+            v-model="config.customize.titleWidth"
+            :max="8000"
+            :min="50"
+            :step="10"
+          />
         </el-form-item>
       </template>
     </BorderSetting>
@@ -19,7 +32,7 @@ export default {
   components: {
     BorderSetting
   },
-  data() {
+  data () {
     return {
       // 预设主题色
       predefineThemeColors: [
@@ -37,16 +50,16 @@ export default {
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
-    },
+    }
   },
   watch: {},
-  mounted() { },
+  mounted () { },
   methods: {}
 }
 </script>

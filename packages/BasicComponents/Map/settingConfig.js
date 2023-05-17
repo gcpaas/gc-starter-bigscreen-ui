@@ -22,23 +22,23 @@ const customConfig = {
   },
   customize: {
     // 是否显示文字
-    mapName:false,
+    mapName: false,
     // 地图背景色
-    backgroundColor: "#404a59",
+    backgroundColor: '#404a59',
     // 是否打点
     scatter: true,
     // 悬浮框背景色
-    tooltipBackgroundColor: "#0C121C",
+    tooltipBackgroundColor: '#0C121C',
     // 悬浮框边框色
-    borderColor: "rgba(0, 0, 0, 0.16)",
+    borderColor: 'rgba(0, 0, 0, 0.16)',
     // 打点图背景颜色
-    scatterBackgroundColor:'rgba(255,0,0,.7)',
+    scatterBackgroundColor: 'rgba(255,0,0,.7)',
     // 打点图文字颜色
-    scatterColor:'#fff',
+    scatterColor: '#fff',
     // 分割线颜色
-    mapLineColor: "rgba(147, 235, 248, 1)",
+    mapLineColor: 'rgba(147, 235, 248, 1)',
     // 地图级别
-    level:'country',
+    level: 'country',
     // 范围
     scope: '中国',
     // 地图区域颜色
@@ -50,7 +50,7 @@ const customConfig = {
     // 从上到下的颜色
     rangeColor: ['#007aff', '#A5CC82'],
     // 地图数据
-    dataMap:`中华人民共和国.json`
+    dataMap: '中华人民共和国.json'
   }
 }
 export const dataConfig = {

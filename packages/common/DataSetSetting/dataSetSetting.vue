@@ -27,7 +27,7 @@
   </el-dialog>
 </template>
 <script>
-import DataSetManagement  from 'packages/DataSetManagement/index.js'
+import DataSetManagement from 'packages/DataSetManagement/index.js'
 import 'packages/assets/style/dataSource.scss'
 export default {
   name: 'DataSetSetting',

@@ -144,7 +144,7 @@ export default {
      */
     allComponentsExpectSelf (code) {
       let layouts = _.cloneDeep(this.chartList)
-      let tabComponents = []
+      const tabComponents = []
       layouts?.map((ly) => {
         if (ly.type === 'Tabs') {
           ly?.tabList?.map(com => {
@@ -194,7 +194,7 @@ export default {
       this.settingVisible = true
       // 如果是tab页内部组件，先平铺
       let layouts = _.cloneDeep(this.chartList)
-      let tabComponents = []
+      const tabComponents = []
       layouts?.map((ly) => {
         if (ly.type === 'Tabs') {
           ly?.tabList?.map(com => {
@@ -267,7 +267,6 @@ export default {
 /deep/ .el-tabs__nav-wrap::after {
   height: 0;
 }
-
 
 .design-tab-warp {
   padding: 10px;

@@ -16,32 +16,32 @@ const name = 'JiChuTiaoXingTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
     value: '',
     // tab页。 data: 数据， custom: 自定义
-    tabName:'data'
+    tabName: 'data'
   },
   {
 
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
-    tabName:'data'
+    tabName: 'data'
   },
   {
     label: 'y轴标签',
@@ -75,7 +75,7 @@ const data = [
   { year: '1952 年', value: 52 },
   { year: '1956 年', value: 61 },
   { year: '1957 年', value: 145 },
-  { year: '1958 年', value: 48 },
+  { year: '1958 年', value: 48 }
 ]
 
 // 数据处理脚本
@@ -89,7 +89,7 @@ const option = {
   color: '',
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   legend: {
-    position: 'top-left',
+    position: 'top-left'
   },
   yAxis: {
     label: {
@@ -97,7 +97,7 @@ const option = {
         opacity: 1
       }
     }
-  },
+  }
 }
 
 export default {
@@ -109,5 +109,3 @@ export default {
   setting,
   dataHandler
 }
-
-

@@ -18,28 +18,28 @@
         }"
         frameborder="0"
         :src="config.url"
-      />  
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "IframeChart",
+  name: 'IframeChart',
   props: {
     config: {
       type: Object,
       default: () => {}
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {},
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

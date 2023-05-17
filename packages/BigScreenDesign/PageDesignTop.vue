@@ -82,7 +82,7 @@ export default {
       initLayout: 'bigScreen/initLayout'
     }),
     ...mapMutations({
-      'changeActiveCode': 'bigScreen/changeActiveCode',
+      changeActiveCode: 'bigScreen/changeActiveCode',
       changeActiveItem: 'bigScreen/changeActiveItem',
       changePageInfo: 'bigScreen/changePageInfo'
     }),
@@ -112,7 +112,7 @@ export default {
     },
     // 保存
     save (loadingType = 'saveLoading', hasPageTemplateId = false) {
-      let pageInfo = _.cloneDeep(this.handleSaveData())
+      const pageInfo = _.cloneDeep(this.handleSaveData())
       // 保存页面
       this[loadingType] = true
       return new Promise((resolve, reject) => {
@@ -150,8 +150,8 @@ export default {
     },
     // 处理保存数据
     handleSaveData () {
-      let pageInfo = _.cloneDeep(this.pageInfo)
-      let chartList = _.cloneDeep(this.pageInfo.chartList)
+      const pageInfo = _.cloneDeep(this.pageInfo)
+      const chartList = _.cloneDeep(this.pageInfo.chartList)
 
       pageInfo.pageConfig.cacheDataSets = pageInfo.pageConfig.cacheDataSets?.map(cache => ({
         name: cache.name,

@@ -16,12 +16,12 @@ const name = 'FenZuTiaoXingTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
@@ -31,30 +31,30 @@ const setting = [
   },
   {
 
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
     tabName: 'data'
   },
   {
-    label: "分组",
+    label: '分组',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "seriesField",
+    field: 'seriesField',
     // 对应options中的字段
-    optionField: "seriesField",
+    optionField: 'seriesField',
     // 是否多选
     multiple: false,
     value: '',
-    tabName:'data'
+    tabName: 'data'
   },
   {
     label: 'y轴标签',
@@ -79,53 +79,53 @@ const data = [
   {
     label: 'Mon.',
     type: 'series1',
-    value: 2800,
+    value: 2800
   },
   {
     label: 'Mon.',
     type: 'series2',
-    value: 2260,
+    value: 2260
   },
   {
     label: 'Tues.',
     type: 'series1',
-    value: 1800,
+    value: 1800
   },
   {
     label: 'Tues.',
     type: 'series2',
-    value: 1300,
+    value: 1300
   },
   {
     label: 'Wed.',
     type: 'series1',
-    value: 950,
+    value: 950
   },
   {
     label: 'Wed.',
     type: 'series2',
-    value: 900,
+    value: 900
   },
   {
     label: 'Thur.',
     type: 'series1',
-    value: 500,
+    value: 500
   },
   {
     label: 'Thur.',
     type: 'series2',
-    value: 390,
+    value: 390
   },
   {
     label: 'Fri.',
     type: 'series1',
-    value: 170,
+    value: 170
   },
   {
     label: 'Fri.',
     type: 'series2',
-    value: 100,
-  },
+    value: 100
+  }
 ]
 
 // 数据处理脚本
@@ -147,7 +147,7 @@ const option = {
         opacity: 1
       }
     }
-  },
+  }
 }
 
 export default {
@@ -159,4 +159,3 @@ export default {
   setting,
   dataHandler
 }
-

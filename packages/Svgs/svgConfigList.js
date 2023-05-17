@@ -11,7 +11,7 @@ const svgList = getSvgList(iconList)
 
 // 获取svg配置
 function getSvgList (iconList) {
-  let svgList = []
+  const svgList = []
   iconList.forEach((svg, index) => {
     svgList[index] = {
       name: svg,

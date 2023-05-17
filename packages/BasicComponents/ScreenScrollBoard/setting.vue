@@ -1,6 +1,12 @@
 <template>
   <div class="bs-setting-wrap">
-    <el-form ref="form" :model="config" label-width="90px" label-position="left" class="setting-body">
+    <el-form
+      ref="form"
+      :model="config"
+      label-width="90px"
+      label-position="left"
+      class="setting-body"
+    >
       <el-collapse :value="['1']">
         <el-collapse-item name="1">
           <template slot="title">
@@ -12,18 +18,35 @@
           </template>
 
           <div class="lc-field-body">
-            <el-form :model="config.customize" label-position="left" class="setting-body" label-width="90px">
+            <el-form
+              :model="config.customize"
+              label-position="left"
+              class="setting-body"
+              label-width="90px"
+            >
               <el-form-item label="轮播表名称">
-                <el-input v-model="config.title" clearable />
+                <el-input
+                  v-model="config.title"
+                  clearable
+                />
               </el-form-item>
               <el-form-item label="表头背景色">
-                <ColorPicker v-model="config.customize.headerBGC" :predefine="predefineThemeColors" />
+                <ColorPicker
+                  v-model="config.customize.headerBGC"
+                  :predefine="predefineThemeColors"
+                />
               </el-form-item>
               <el-form-item label="偶数行背景色">
-                <ColorPicker v-model="config.customize.oddRowBGC" :predefine="predefineThemeColors" />
+                <ColorPicker
+                  v-model="config.customize.oddRowBGC"
+                  :predefine="predefineThemeColors"
+                />
               </el-form-item>
               <el-form-item label="奇数行背景色">
-                <ColorPicker v-model="config.customize.evenRowBGC" :predefine="predefineThemeColors" />
+                <ColorPicker
+                  v-model="config.customize.evenRowBGC"
+                  :predefine="predefineThemeColors"
+                />
               </el-form-item>
               <el-form-item
                 label="轮播时间间隔"
@@ -40,7 +63,11 @@
                 </el-input>
               </el-form-item>
               <el-form-item label="显示行数">
-                <el-input-number v-model="config.customize.rowNum" :precision="0" label="请输入行数"></el-input-number>
+                <el-input-number
+                  v-model="config.customize.rowNum"
+                  :precision="0"
+                  label="请输入行数"
+                />
               </el-form-item>
               <el-form-item
                 label="表头高度"
@@ -50,8 +77,7 @@
                   v-model="config.customize.headerHeight"
                   placeholder="请输入表头高度"
                   clearable
-                >
-                </el-input>
+                />
               </el-form-item>
               <el-form-item
                 label="行号表头"
@@ -61,20 +87,21 @@
                   v-model="config.customize.indexHeader"
                   placeholder="请输入行号表头"
                   clearable
-                >
-                </el-input>
+                />
               </el-form-item>
-               <el-form-item label="是否显示行号">
+              <el-form-item label="是否显示行号">
                 <el-switch
                   v-model="config.customize.index"
                   :active-value="true"
-                  :inactive-value="false"/>
+                  :inactive-value="false"
+                />
               </el-form-item>
               <el-form-item label="悬浮暂停轮播">
                 <el-switch
                   v-model="config.customize.hoverPause"
                   :active-value="true"
-                  :inactive-value="false"/>
+                  :inactive-value="false"
+                />
               </el-form-item>
             </el-form>
           </div>
@@ -86,11 +113,11 @@
 <script>
 import ColorPicker from 'packages/common/ColorPicker/index.vue'
 export default {
-  name: "BarSetting",
+  name: 'BarSetting',
   components: {
-     ColorPicker
+    ColorPicker
   },
-  data() {
+  data () {
     return {
       // 预设主题色
       predefineThemeColors: [
@@ -104,24 +131,24 @@ export default {
         '#00BC9D',
         '#ED7D32'
       ]
-    };
+    }
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
-    },
+    }
   },
   watch: {},
-  mounted() {
+  mounted () {
   },
   methods: {
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

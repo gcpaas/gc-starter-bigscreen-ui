@@ -1,27 +1,30 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-border-box-3
       :id="'dataV' + code"
-      :color="color"
-      :backgroundColor="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :key="updateKey"
-       />
+      :color="color"
+      :background-color="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
+    />
   </div>
 </template>
 <script>
 import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
-import { dataVMixins } from "packages/mixins/dataVMixins";
-import  DvBorderBox3  from "@jiaminghi/data-view/lib/components/borderBox3/src/main.vue";
+import { dataVMixins } from 'packages/mixins/dataVMixins'
+import DvBorderBox3 from '@jiaminghi/data-view/lib/components/borderBox3/src/main.vue'
 import '@jiaminghi/data-view/lib/components/borderBox3/src/main.css'
 export default {
   name: 'Border3',
-  mixins: [refreshComponentMixin,dataVMixins],
   components: {
     DvBorderBox3
   },
+  mixins: [refreshComponentMixin, dataVMixins],
   computed: {},
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

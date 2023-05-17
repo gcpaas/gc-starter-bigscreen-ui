@@ -3,7 +3,7 @@
  * @Date: 2023-03-16 10:49:11
  */
 export default function getComponentConfig (type, classNameType) {
-  const className = `com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart`
+  const className = 'com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart'
   switch (type) {
     case 'border1':
       return {

@@ -202,7 +202,7 @@ export default {
       this.getDataList()
     },
     getDataList () {
-      let params = {
+      const params = {
         current: this.current,
         size: this.size,
         sourceName: this.searchForm.sourceName,
@@ -213,7 +213,7 @@ export default {
         this.totalCount = data.totalCount
         this.dataSourceList = data.list
         this.dataSourceList.forEach(r => {
-          r['status'] = 0
+          r.status = 0
           if (r.id === this.sourceId) {
             this.curRow = r
           }
@@ -238,7 +238,7 @@ export default {
     handleDelete (row) {
       // eslint-disable-next-line eqeqeq
       if (row.editable == 1 && !this.appCode) return
-      this.$confirm(`确定删除当前数据源吗?`, '提示', {
+      this.$confirm('确定删除当前数据源吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

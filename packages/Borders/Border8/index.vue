@@ -1,36 +1,39 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-border-box-8
       :id="'dataV' + code"
-      :color="color"
-      :backgroundColor="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :key="updateKey"
+      :color="color"
+      :background-color="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :dur="dur"
       :reverse="reverse"
     />
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
-import { dataVMixins } from "packages/mixins/dataVMixins";
-import { borderBox8 } from "@jiaminghi/data-view";
-Vue.use(borderBox8);
+import Vue from 'vue'
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { dataVMixins } from 'packages/mixins/dataVMixins'
+import { borderBox8 } from '@jiaminghi/data-view'
+Vue.use(borderBox8)
 export default {
-  name: "Border8",
-  mixins: [refreshComponentMixin,dataVMixins],
+  name: 'Border8',
+  mixins: [refreshComponentMixin, dataVMixins],
   computed: {
-    dur() {
-      return this.config.customize.dur;
+    dur () {
+      return this.config.customize.dur
     },
-    reverse() {
-      return this.config.customize.reverse;
+    reverse () {
+      return this.config.customize.reverse
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

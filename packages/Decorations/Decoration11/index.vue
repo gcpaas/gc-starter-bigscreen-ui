@@ -1,6 +1,12 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
-    <dv-decoration-11 :color="color" :key="updateKey">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
+    <dv-decoration-11
+      :key="updateKey"
+      :color="color"
+    >
       <!-- <span :style="
         'font-size:' +
           config.customize.fontSize +
@@ -13,14 +19,14 @@
   </div>
 </template>
 <script>
-import DvDecoration11 from "@jiaminghi/data-view/lib/components/decoration11/src/main.vue";
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
+import DvDecoration11 from '@jiaminghi/data-view/lib/components/decoration11/src/main.vue'
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
 export default {
-  name: "Decoration11",
-  mixins: [refreshComponentMixin],
+  name: 'Decoration11',
   components: {
     DvDecoration11
   },
+  mixins: [refreshComponentMixin],
   props: {
     // 卡片的属性
     config: {
@@ -28,24 +34,24 @@ export default {
       default: () => ({})
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    color() {
+    color () {
       return this.config.customize.decorationColor1 ||
         this.config.customize.decorationColor2
         ? [
             this.config.customize.decorationColor1,
             this.config.customize.decorationColor2
           ]
-        : null;
+        : null
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

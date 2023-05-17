@@ -1,44 +1,47 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-border-box-12
       :id="'dataV' + code"
-      :color="color"
-      :backgroundColor="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :key="updateKey"
+      :color="color"
+      :background-color="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
     />
   </div>
 </template>
 <script>
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
-import { dataVMixins } from "packages/mixins/dataVMixins";
-import DvBorderBox12 from "@jiaminghi/data-view/lib/components/borderBox12/src/main.vue";
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { dataVMixins } from 'packages/mixins/dataVMixins'
+import DvBorderBox12 from '@jiaminghi/data-view/lib/components/borderBox12/src/main.vue'
 import '@jiaminghi/data-view/lib/components/borderBox12/src/main.css'
 export default {
-  name: "Border12",
-  mixins: [refreshComponentMixin,dataVMixins],
+  name: 'Border12',
   components: {
     DvBorderBox12
   },
+  mixins: [refreshComponentMixin, dataVMixins],
   computed: {
-    color() {
+    color () {
       return this.config.customize.borderMainColor ||
         this.config.customize.borderSecondaryColor
         ? [
             this.config.customize.borderMainColor,
             this.config.customize.borderSecondaryColor
           ]
-        : null;
+        : null
     },
-    backgroundColor() {
+    backgroundColor () {
       return this.config.customize.backgroundColor
         ? this.config.customize.backgroundColor
-        : "transparent";
+        : 'transparent'
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

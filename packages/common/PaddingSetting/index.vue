@@ -38,7 +38,7 @@ export default {
     event: 'input'
   },
   props: {
-    'padding': {
+    padding: {
       type: Array,
       default: () => []
     }

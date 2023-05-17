@@ -71,11 +71,11 @@ export default {
       fileList: [],
       imgUrl: '',
       fileUploadParam: {
-        module: 'attachment',
+        module: 'attachment'
       },
-      actionUrl: window.BS_CONFIG['baseUrl'] + '/sys/file/upload'
+      actionUrl: window.BS_CONFIG.baseUrl + '/sys/file/upload'
     }
-  }, 
+  },
   computed: {
   },
   mounted () {
@@ -84,10 +84,12 @@ export default {
     init () {
       this.dialogVisible = true
       this.imgUrl = this.form.bg
-      this.fileList = this.imgUrl ? [{
-        name: '背景图',
-        url: this.imgUrl
-      }] : []
+      this.fileList = this.imgUrl
+        ? [{
+            name: '背景图',
+            url: this.imgUrl
+          }]
+        : []
       this.hideUploadImgBtn = this.fileList.length !== 0
       this.$get('/bigScreen/design/bg/list').then(list => {
         this.bgImgList = list
@@ -96,10 +98,10 @@ export default {
     uploadImg (response, file) {
       if (response.code !== 200) {
         this.$message.error(response.msg)
-        let idx = this.$refs.uploadDeviceRealImg['uploadFiles'].findIndex(
+        const idx = this.$refs.uploadDeviceRealImg.uploadFiles.findIndex(
           item => item.uid === file.uid
         )
-        this.$refs.uploadDeviceRealImg['uploadFiles'].splice(idx, 1)
+        this.$refs.uploadDeviceRealImg.uploadFiles.splice(idx, 1)
       } else {
         this.dialogVisible = false
         this.hideUploadImgBtn = true

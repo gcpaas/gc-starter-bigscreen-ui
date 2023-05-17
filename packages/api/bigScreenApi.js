@@ -13,8 +13,8 @@ export function saveScreen (data) {
 
 // 根据数据集获取数据集详情
 export function getDataSetDetails (id) {
-  return get(`/ds/getDataSetDetails`, {
-    id 
+  return get('/ds/getDataSetDetails', {
+    id
   })
 }
 // 模拟后端返回自定义主题配置
@@ -24,7 +24,7 @@ export function getThemeConfig () {
 
 // 根据数据集id获取数据
 export function getDataByDataSetId (dataSetId) {
-  return post(`/ds/getDataByDataSetId`, {
+  return post('/ds/getDataByDataSetId', {
     dataSetId,
     params: []
   })

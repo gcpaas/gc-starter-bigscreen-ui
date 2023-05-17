@@ -26,84 +26,84 @@
 </template>
 
 <script>
-  import Icon from 'packages/assets/images/appPrependIcon/export'
-  import IconSvg from 'packages/SvgIcon'
-  export default {
-    name: 'DataSourceManagement',
-    components: {
-      IconSvg
+import Icon from 'packages/assets/images/appPrependIcon/export'
+import IconSvg from 'packages/SvgIcon'
+export default {
+  name: 'DataSourceManagement',
+  components: {
+    IconSvg
+  },
+  provide () {
+    return {
+      refresh: this.refresh
+    }
+  },
+  data () {
+    return {
+      // appIcon: Icon.getNameList(),
+      isRresh: true,
+      activeTabName: '',
+      currentPermission: 1,
+      tabList: [
+        {
+          active: false,
+          name: '数据源管理',
+          path: window?.routers?.dataSourceUrl,
+          // permissionRequire: 0
+          img: Icon.getNameList()[0]
+        },
+        {
+          active: false,
+          name: '数据集管理',
+          path: window?.routers?.dataSetUrl,
+          // permissionRequire: 9
+          img: Icon.getNameList()[1]
+        }
+      ]
+    }
+  },
+  watch: {
+  },
+  created () {
+    this.tabList[0].path = window?.BS_CONFIG?.routers?.dataSourceUrl || '/data-sources/data-source-sets'
+    this.tabList[1].path = window?.BS_CONFIG?.routers?.dataSetUrl || '/data-sources/data-set-configuration'
+  },
+  mounted () {
+    this.openTab(this.tabList[0])
+  },
+  methods: {
+    refresh () {
+      this.isRresh = false
+      this.$nextTick(() => {
+        this.isRresh = true
+      })
     },
-    data () {
-      return {
-        // appIcon: Icon.getNameList(),
-        isRresh: true,
-        activeTabName: '',
-        currentPermission: 1,
-        tabList: [
-          {
-            active: false,
-            name: '数据源管理',
-            path: window?.routers?.dataSourceUrl,
-            // permissionRequire: 0
-            img: Icon.getNameList()[0]
-          },
-          {
-            active: false,
-            name: '数据集管理',
-            path: window?.routers?.dataSetUrl,
-            // permissionRequire: 9
-            img: Icon.getNameList()[1]
-          }
-        ]
-      }
+    openTab (tab) {
+      this.$router.push({
+        path: tab.path
+      })
+      this.tabList.forEach((item) => {
+        if (item.path !== tab.path) {
+          item.active = false
+        } else {
+          item.active = true
+        }
+      })
     },
-    provide () {
-      return {
-        refresh: this.refresh
-      }
-    },
-    watch: {
-    },
-    created () {
-      this.tabList[0].path = window?.BS_CONFIG?.routers?.dataSourceUrl || '/data-sources/data-source-sets'
-      this.tabList[1].path = window?.BS_CONFIG?.routers?.dataSetUrl || '/data-sources/data-set-configuration'
-    },
-    mounted () {
-      this.openTab(this.tabList[0])
-    },
-    methods: {
-      refresh () {
-        this.isRresh = false
-        this.$nextTick(() => {
-          this.isRresh = true
-        })
-      },
-      openTab (tab) {
-        this.$router.push({
-          path: tab.path
-        })
-        this.tabList.forEach((item) => {
-          if (item.path !== tab.path) {
-            item.active = false
-          } else {
-            item.active = true
-          }
-        })
-      },
-      setActiveTab (route) {
-        this.$router.push({
-          path: route.path
-        })
-        this.tabList.forEach((tab) => {
-          if (tab.path === route.path) {
-            tab.active = true
-          } else {
-            tab.active = false
-          }
-        })
-      }
+    setActiveTab (route) {
+      this.$router.push({
+        path: route.path
+      })
+      this.tabList.forEach((tab) => {
+        if (tab.path === route.path) {
+          tab.active = true
+        } else {
+          tab.active = false
+        }
+      })
     }
   }
+}
 </script>
 <style lang="scss" scoped>
   .application-setting-wrap {

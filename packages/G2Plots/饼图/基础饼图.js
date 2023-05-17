@@ -130,7 +130,7 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ``
+const dataHandler = ''
 
 // 图表配置 new Pie('domName', option)
 const option = {

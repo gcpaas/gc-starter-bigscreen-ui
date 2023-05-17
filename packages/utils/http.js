@@ -37,7 +37,7 @@ function EipException (message, code) {
 http.interceptors.request.use(config => {
   return {
     ...config,
-    ..._.merge(httpConfig, window.BS_CONFIG?.httpConfigs),
+    ..._.merge(httpConfig, window.BS_CONFIG?.httpConfigs)
   }
 }, error => {
   return Promise.reject(error)
@@ -102,9 +102,9 @@ export function get (url, params = {}, customHandlerException = false) {
   }
   // 如果是ie浏览器要添加个时间戳，解决浏览器缓存问题
   if (!!window.ActiveXObject || 'ActiveXObject' in window) {
-    params['_t'] = new Date().getTime()
+    params._t = new Date().getTime()
   }
-  let axiosInstance = customHandlerException ? httpCustom : http
+  const axiosInstance = customHandlerException ? httpCustom : http
   return new Promise((resolve, reject) => {
     axiosInstance.get(url, {
       params: params,
@@ -133,7 +133,7 @@ export function post (url, data = {}, customHandlerException = false) {
   if (!url.startsWith('http')) {
     url = window.BS_CONFIG?.httpConfigs?.baseURL + url
   }
-  let axiosInstance = customHandlerException ? httpCustom : http
+  const axiosInstance = customHandlerException ? httpCustom : http
   data = JSON.stringify(data)
   return new Promise((resolve, reject) => {
     axiosInstance.post(url, data).then(response => {
@@ -158,7 +158,7 @@ export function download (url, headers = {}, params = {}, body = {}) {
   }
   // 如果是ie浏览器要添加个时间戳，解决浏览器缓存问题
   if (!!window.ActiveXObject || 'ActiveXObject' in window) {
-    params['_t'] = new Date().getTime()
+    params._t = new Date().getTime()
   }
   return new Promise((resolve, reject) => {
     axios({
@@ -172,15 +172,15 @@ export function download (url, headers = {}, params = {}, body = {}) {
     }).then(res => {
       // IE10,11采用自带下载文件流方法
       if ((!!window.ActiveXObject || 'ActiveXObject' in window) && window.navigator && window.navigator.msSaveOrOpenBlob) {
-        window.navigator.msSaveOrOpenBlob(new Blob([res.data]), res.headers['filename'])
+        window.navigator.msSaveOrOpenBlob(new Blob([res.data]), res.headers.filename)
         return
       }
-      let fileUrl = window.URL.createObjectURL(new Blob([res.data]))
+      const fileUrl = window.URL.createObjectURL(new Blob([res.data]))
       // 创建超链接
-      let fileLink = document.createElement('a')
+      const fileLink = document.createElement('a')
       fileLink.href = fileUrl
       // 设置下载文件名
-      let responseFileName = res.headers['filename']
+      let responseFileName = res.headers.filename
       // 解决中文乱码
       responseFileName = window.decodeURI(responseFileName)
       fileLink.setAttribute('download', responseFileName)
@@ -191,7 +191,7 @@ export function download (url, headers = {}, params = {}, body = {}) {
       document.body.removeChild(fileLink)
       window.URL.revokeObjectURL(fileUrl)
     }).catch(e => {
-      let status = e?.response?.status
+      const status = e?.response?.status
       if (status === 404) {
         return
       }
@@ -199,4 +199,3 @@ export function download (url, headers = {}, params = {}, body = {}) {
     })
   })
 }
-

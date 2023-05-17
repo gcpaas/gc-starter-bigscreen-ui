@@ -1,38 +1,41 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-border-box-11
       :id="'dataV' + code"
-      :color="color"
-      :backgroundColor="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :key="updateKey"
+      :color="color"
+      :background-color="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :title="title"
-      :titleWidth="titleWidth"
-      />
+      :title-width="titleWidth"
+    />
   </div>
 </template>
 <script>
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
-import { dataVMixins } from "packages/mixins/dataVMixins";
-import DvBorderBox11 from "@jiaminghi/data-view/lib/components/borderBox11/src/main.vue";
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { dataVMixins } from 'packages/mixins/dataVMixins'
+import DvBorderBox11 from '@jiaminghi/data-view/lib/components/borderBox11/src/main.vue'
 import '@jiaminghi/data-view/lib/components/borderBox11/src/main.css'
 export default {
-  name: "Border11",
-  mixins: [refreshComponentMixin,dataVMixins],
+  name: 'Border11',
   components: {
     DvBorderBox11
   },
+  mixins: [refreshComponentMixin, dataVMixins],
   computed: {
-    title() {
-      return this.config.customize.title;
+    title () {
+      return this.config.customize.title
     },
-    titleWidth() {
-      return this.config.customize.titleWidth;
+    titleWidth () {
+      return this.config.customize.titleWidth
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -28,8 +28,7 @@
         <el-input
           v-model="config.url"
           type="text"
-        >
-        </el-input>
+        />
       </el-form-item>
     </el-form>
   </div>

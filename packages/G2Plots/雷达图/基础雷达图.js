@@ -11,32 +11,32 @@ const name = 'JiChuLeiDaTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
     value: '',
     // tab页。 data: 数据， custom: 自定义
-    tabName:'data'
+    tabName: 'data'
   },
   {
 
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
-    tabName:'data'
+    tabName: 'data'
   },
   {
     label: '图表边距',
@@ -56,11 +56,11 @@ const data = [
   { name: 'L7', star: 2140 },
   { name: 'X6', star: 660 },
   { name: 'AVA', star: 885 },
-  { name: 'G2Plot', star: 1626 },
+  { name: 'G2Plot', star: 1626 }
 ]
 
 // 数据处理脚本
-const dataHandler = ``
+const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -73,23 +73,23 @@ const option = {
       alias: 'star 数量',
       min: 0,
       nice: true,
-      formatter: (v) => Number(v).toFixed(2),
-    },
+      formatter: (v) => Number(v).toFixed(2)
+    }
   },
   xAxis: {
-    tickLine: null,
+    tickLine: null
   },
   yAxis: {
     label: false,
     grid: {
-      alternateColor: 'rgba(0, 0, 0, 0.04)',
-    },
+      alternateColor: 'rgba(0, 0, 0, 0.04)'
+    }
   },
   // 开启辅助点
   point: {
-    size: 2,
+    size: 2
   },
-  area: {},
+  area: {}
 }
 
 export default {
@@ -101,5 +101,3 @@ export default {
   setting,
   dataHandler
 }
-
-

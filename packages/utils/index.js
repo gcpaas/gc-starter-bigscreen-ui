@@ -29,7 +29,7 @@ export function deepCompare (obj1, obj2) {
   }
 
   // 递归地比较对象的属性
-  for (let prop in obj1) {
+  for (const prop in obj1) {
     if (obj1.hasOwnProperty(prop)) {
       if (!obj2.hasOwnProperty(prop)) {
         return true
@@ -41,7 +41,7 @@ export function deepCompare (obj1, obj2) {
   }
 
   // 检查 obj2 中是否有 obj1 没有的属性
-  for (let prop in obj2) {
+  for (const prop in obj2) {
     if (obj2.hasOwnProperty(prop) && !obj1.hasOwnProperty(prop)) {
       return true
     }

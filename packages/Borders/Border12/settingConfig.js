@@ -20,7 +20,7 @@ export const settingConfig = {
 const customConfig = {
   type: 'border12',
   root: {
-    contribution: false,
+    contribution: false
   },
   customize: {
     // 边框主要颜色
@@ -37,7 +37,7 @@ const customConfig = {
     // 渐变色色值改变方向
     gradientDirection: 'to right',
     // 透明度
-    opacity: 100,
+    opacity: 100
   }
 }
 export const dataConfig = {

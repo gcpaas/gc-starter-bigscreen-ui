@@ -61,33 +61,37 @@ export default {
     pageLoading () {
       return this.$store.state.bigScreen.pageLoading
     },
-    fitPageConfig() {
+    fitPageConfig () {
       return this.resolvePageConfig(this.pageConfig)
     },
-    previewWrapStyle() {
-      const bg = this.fitMode !== 'none' ? {
-        backgroundColor: this.fitPageConfig.bgColor,
-        backgroundImage: `url(${this.fitPageConfig.bg})`
-      } : {}
+    previewWrapStyle () {
+      const bg = this.fitMode !== 'none'
+        ? {
+            backgroundColor: this.fitPageConfig.bgColor,
+            backgroundImage: `url(${this.fitPageConfig.bg})`
+          }
+        : {}
 
-     return {
+      return {
         overflowX: `${this.fitPageConfig.overflowX}`,
         overflowY: `${this.fitPageConfig.overflowY}`,
         ...bg
       }
     },
 
-    renderStyle() {
+    renderStyle () {
       const style = {
         width: this.fitPageConfig.w,
         height: this.fitPageConfig.h,
-        transform: `scaleX(${this.fitPageConfig.scaleX}) scaleY(${this.fitPageConfig.scaleY}) translate(${this.fitPageConfig.translate})`,
+        transform: `scaleX(${this.fitPageConfig.scaleX}) scaleY(${this.fitPageConfig.scaleY}) translate(${this.fitPageConfig.translate})`
       }
 
-      const bg = this.fitMode === 'none' ? {
-        backgroundColor: this.fitPageConfig.bgColor,
-        backgroundImage: `url(${this.fitPageConfig.bg})`
-      } : {}
+      const bg = this.fitMode === 'none'
+        ? {
+            backgroundColor: this.fitPageConfig.bgColor,
+            backgroundImage: `url(${this.fitPageConfig.bg})`
+          }
+        : {}
 
       return {
         ...style,
@@ -148,9 +152,9 @@ export default {
       }
     },
     getParentWH () {
-      let parent = document.querySelector('.inner-preview-wrap')
+      const parent = document.querySelector('.inner-preview-wrap')
       // 如果有嵌套
-      if(parent) {
+      if (parent) {
         this.innerHeight = parent.offsetHeight
         this.innerWidth = parent.offsetWidth
       } else {
@@ -160,7 +164,7 @@ export default {
     },
     // 获取到后端传来的主题样式并进行修改
     styleSet () {
-      let style = document.createElement('style')
+      const style = document.createElement('style')
       if (this.pageConfig.themeJson && this.pageConfig.themeJson.themeCss) {
         const styleStr = this.pageConfig.themeJson.themeCss
         const themeCss = compile(styleStr).code
@@ -172,7 +176,7 @@ export default {
       }
     },
     // 处理自适应下的页面配置
-    resolvePageConfig(pageConfig) {
+    resolvePageConfig (pageConfig) {
       const { w, h } = pageConfig
       let scaleX = 1
       let scaleY = 1

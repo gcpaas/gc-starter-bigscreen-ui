@@ -19,7 +19,7 @@ const customConfig = {
   customize: {
     url: '',
     radius: 0,
-    opacity: 100,
+    opacity: 100
   }
 }
 export const dataConfig = {

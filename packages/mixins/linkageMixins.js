@@ -84,7 +84,7 @@ export default {
         }
       })
       // 处理内部参数 filterList
-      let innerFilterList = this.config?.fields
+      const innerFilterList = this.config?.fields
         ?.map(field => {
           return {
             column: field.name,

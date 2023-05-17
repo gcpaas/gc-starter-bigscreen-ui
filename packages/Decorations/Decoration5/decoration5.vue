@@ -1,20 +1,20 @@
 <template>
-<div class="content">
-  <dv-decoration-5 style="width:90px;height:40px;" />
-</div>
+  <div class="content">
+    <dv-decoration-5 style="width:90px;height:40px;" />
+  </div>
 </template>
 
 <script>
 import DvDecoration5 from '@jiaminghi/data-view/lib/components/decoration5/src/main.vue'
 export default {
-  name: 'decoration5',
+  name: 'Decoration5',
   components: {
     DvDecoration5
   },
-  data() {
+  data () {
     return {
     }
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -32,8 +32,8 @@ const pageMixins = {
   watch: {
     'sortForm.sortFieldMap': {
       handler (sortFieldMap, oldV) {
-        for (let columnName in sortFieldMap) {
-          let order = sortFieldMap[columnName]
+        for (const columnName in sortFieldMap) {
+          const order = sortFieldMap[columnName]
           if (!order) {
             this.$set(this.sortFieldHeaderTipMap, columnName, '点击升序')
           } else if (order === 'ascending') {
@@ -56,14 +56,14 @@ const pageMixins = {
      */
     initSortField (sortFieldOrderList = [], defaultSortFieldMap = {}) {
       if (defaultSortFieldMap) {
-        for (let field in defaultSortFieldMap) {
-          let order = defaultSortFieldMap[field]
+        for (const field in defaultSortFieldMap) {
+          const order = defaultSortFieldMap[field]
           this.$set(this.sortForm.sortFieldMap, field, order)
         }
       }
       for (let i = 0; i < sortFieldOrderList.length; i++) {
-        let field = sortFieldOrderList[i]
-        let order = this.sortForm.sortFieldMap[field]
+        const field = sortFieldOrderList[i]
+        const order = this.sortForm.sortFieldMap[field]
         if (!order) {
           // 解决未设置默认排序值字段提示为空
           this.$set(this.sortForm.sortFieldMap, field, '')
@@ -73,7 +73,7 @@ const pageMixins = {
     },
     // 排序状态记录并激活，否则和页面上的排序对不上
     sortStyle ({ row, column, rowIndex, columnIndex }) {
-      let sortColumnOrder = this.sortForm.sortFieldMap[column.property]
+      const sortColumnOrder = this.sortForm.sortFieldMap[column.property]
       if (sortColumnOrder) {
         column.order = sortColumnOrder
       }
@@ -83,11 +83,11 @@ const pageMixins = {
     reSort (column) {
       if (!this.enableMultiFieldOrder) {
         // 不允许多个字段同时排序，清空之前的排序信息
-        for (let field in this.sortForm.columnCacheMap) {
-          let column = this.sortForm.columnCacheMap[field]
+        for (const field in this.sortForm.columnCacheMap) {
+          const column = this.sortForm.columnCacheMap[field]
           column.order = ''
         }
-        for (let field in this.sortForm.sortFieldMap) {
+        for (const field in this.sortForm.sortFieldMap) {
           this.sortForm.sortFieldMap[field] = ''
         }
       }

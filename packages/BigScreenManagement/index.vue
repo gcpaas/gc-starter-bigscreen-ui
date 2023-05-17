@@ -174,7 +174,7 @@
               @node-click="handleNodeClick"
             >
               <span
-                slot-scope="{ node, data }"
+                slot-scope="{ data }"
                 class="menu-span"
               >
                 <span
@@ -236,7 +236,7 @@ import Icon from 'packages/assets/images/pageIcon/export'
 import { getPageType } from './utils'
 import _ from 'lodash'
 import axios from 'axios'
-import { get, post } from 'packages/utils/http'
+import { post } from 'packages/utils/http'
 import IconSvg from 'packages/SvgIcon'
 let dashBoardPageCode = null
 export default {
@@ -359,7 +359,7 @@ export default {
     // 获取所有的目录
     openCascader (node) {
       const excludeCategory = node.type === 'catalog' && !this.isAdd ? node.code : undefined
-      post(`/category/tree`, { searchKey: '', typeList: ['catalog'], excludeCategory, sort: false }).then(data => {
+      post('/category/tree', { searchKey: '', typeList: ['catalog'], excludeCategory, sort: false }).then(data => {
         const list = [{ name: '根目录', code: '', children: data }]
         this.catalogList = list
       }).catch(() => {
@@ -398,7 +398,7 @@ export default {
     },
     // 设置默认节点
     getDefaultNode (nodeList) {
-      for (let node of nodeList) {
+      for (const node of nodeList) {
         if (this.flag) {
           if (node.children && node.children.length > 0 && node.type === 'catalog') {
             return this.getDefaultNode(node.children)
@@ -472,7 +472,7 @@ export default {
     // 获取页面的列表(获取，搜索，排序)
     getDataList () {
       this.pageLoading = true
-      post(`/category/tree`, { searchKey: this.searchKey, sort: this.sort }).then(data => {
+      post('/category/tree', { searchKey: this.searchKey, sort: this.sort }).then(data => {
         this.pageDesignList = data
         // 如果有addModel这个参数，说明是从页面直接新增过来的，直接进入页面或者表单的填写状态
         if (this.$route.query.add) {
@@ -483,8 +483,8 @@ export default {
             const currentNode = this.findItemBycode(dashBoardPageCode, data)
             if (currentNode && currentNode.code) {
               this.activePage = currentNode
-              if (this.$refs['tree']) {
-                this.$refs['tree'].setCurrentKey(currentNode)
+              if (this.$refs.tree) {
+                this.$refs.tree.setCurrentKey(currentNode)
                 this.defaultExpand.push(currentNode.code)
               }
             } else {
@@ -536,9 +536,8 @@ export default {
     code (nodeData, node) {
       axios({
         method: 'get',
-        url: `${window.BS_CONFIG['baseUrl']}/code/generation/adminPage/${nodeData.code}`,
+        url: `${window.BS_CONFIG.baseUrl}/code/generation/adminPage/${nodeData.code}`,
         headers: {
-          token: $gc.getToken()
         },
         // 通过URL传参，后端通过  @RequestParam 注解获取参数
         params: {},
@@ -552,7 +551,7 @@ export default {
         const fileLink = document.createElement('a')
         fileLink.href = fileUrl
         // 设置下载文件名
-        let responseFileName = res.headers['filename']
+        let responseFileName = res.headers.filename
         // 解决中文乱码
         responseFileName = window.decodeURI(responseFileName)
         fileLink.setAttribute('download', responseFileName)
@@ -651,7 +650,7 @@ export default {
     },
     // 点击新增/编辑目录
     addCatalog () {
-      this.$refs['form'].validate(async (valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (!valid) {
           return
         }
@@ -709,7 +708,7 @@ export default {
     },
     // 点击进入页面设计
     gopageDesign (nodeData) {
-      let path = window.BS_CONFIG?.routers?.designUrl || '/big-screen/design'
+      const path = window.BS_CONFIG?.routers?.designUrl || '/big-screen/design'
       const openType = nodeData.type === 'report' ? '_blank' : '_self'
       const { href } = this.$router.resolve({
         path,

@@ -14,13 +14,13 @@
           borderRadius: config.customize.radius + 'px'
         }"
         draggable="false"
-      />
+      >
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'Picture',
+  name: 'PictureChart',
   components: {},
   props: {
     config: {

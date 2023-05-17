@@ -20,7 +20,7 @@ const dragDesignPanelMixin = {
   methods: {
     moveCanvas () {
       this.$nextTick(() => {
-        let father = document.querySelector('#screens')
+        const father = document.querySelector('#screens')
         father.addEventListener('contextmenu', e => {
           e.preventDefault()
           e.stopPropagation()
@@ -54,24 +54,24 @@ const dragDesignPanelMixin = {
       })
     },
     handleMove (e) {
-      let father = document.querySelector('#screens')
+      const father = document.querySelector('#screens')
       e.preventDefault()
       e.stopPropagation()
       // 判断鼠标移动时是否处于按下状态
       if (this.isMouseDown && e.buttons === 2) {
         // console.log(this.isMouseDown, e)
         // 获取鼠标按下后移动的距离
-        let offsetX = e.offsetX - this._startX
-        let offsetY = e.offsetY - this._startY
+        const offsetX = e.offsetX - this._startX
+        const offsetY = e.offsetY - this._startY
 
         // 需要注意的是当鼠标向上移动时, 滚动条应该向下移动, 所以这里都是减去的移动距离
         this.scrollTop = this.scrollTop - offsetY
         this.scrollLeft = this.scrollLeft - offsetX
 
         // 横向可移动的最大距离
-        let limitX = father.scrollWidth - father.offsetWidth
+        const limitX = father.scrollWidth - father.offsetWidth
         // 纵向可移动的最大距离
-        let limitY = father.scrollHeight - father.offsetHeight
+        const limitY = father.scrollHeight - father.offsetHeight
 
         if (this.scrollTop >= limitY) {
           // 当滑块移动到底端时

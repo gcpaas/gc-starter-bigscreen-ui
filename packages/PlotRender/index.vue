@@ -39,10 +39,10 @@ export default {
       pageInfo: state => state.pageInfo,
       customTheme: state => state.pageInfo.pageConfig.customTheme
     }),
-    isPreview() {
+    isPreview () {
       return this.$route.name !== 'BigScreenDesign'
     },
-    chatId() {
+    chatId () {
       if (this.isPreview) {
         return 'preview_chart' + this.config.code
       }
@@ -63,7 +63,7 @@ export default {
       // key和code相等，说明是一进来刷新，调用/chart/data/list
       if (this.config.code === this.config.key) {
         // 先给默认数据, 渲染出图表
-        let config = _.cloneDeep(this.config)
+        const config = _.cloneDeep(this.config)
         // config.option = plotList.find(plot => plot.name === config.name)?.option
         this.newChart(config.option)
 
@@ -92,10 +92,10 @@ export default {
     /**
      * 更新组件
      */
-    updateChart() {
+    updateChart () {
       // 看是否是缓存数据集，缓存数据集不从list接口获取数据
       if (this.config.dataSource.dataSetType === '2') {
-        let config = this.buildOption(this.config, { success: false })
+        const config = this.buildOption(this.config, { success: false })
         this.chart.update(config.option)
       } else {
         // 非缓存数据集，从list接口初始化的组件
@@ -137,7 +137,7 @@ export default {
       // 遍历config.setting，将config.setting中的值赋值给config.option中对应的optionField
       config.setting.forEach(set => {
         if (set.optionField) {
-          let optionField = set.optionField.split('.')
+          const optionField = set.optionField.split('.')
           let option = config.option
           optionField.forEach((field, index) => {
             if (index === optionField.length - 1) {
@@ -153,9 +153,9 @@ export default {
       })
       if (data.success) {
         data = data.data
-        let option = config.option
+        const option = config.option
         // eslint-disable-next-line no-unused-vars
-        let setting = config.setting
+        const setting = config.setting
         if (this.config.dataHandler) {
           try {
             // 此处函数处理data

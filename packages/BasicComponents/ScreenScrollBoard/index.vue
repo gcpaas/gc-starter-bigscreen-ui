@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import  DvScrollBoard  from '@jiaminghi/data-view/lib/components/scrollBoard/src/main.vue'
+import DvScrollBoard from '@jiaminghi/data-view/lib/components/scrollBoard/src/main.vue'
 import '@jiaminghi/data-view/lib/components/scrollBoard/src/main.css'
 import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
 import commonMixins from 'packages/mixins/commonMixins'
@@ -19,10 +19,10 @@ import paramsMixins from 'packages/mixins/paramsMixins'
 import linkageMixins from 'packages/mixins/linkageMixins'
 export default {
   name: 'ScrollBoard',
-  mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
   components: {
     DvScrollBoard
   },
+  mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
   props: {
     // 卡片的属性
     config: {
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     option () {
-      return {...this.config.customize,data:this.config.option.data,header:this.config.option.header,columnWidth:this.config.option.columnWidth,align:this.config.option.align}
+      return { ...this.config.customize, data: this.config.option.data, header: this.config.option.header, columnWidth: this.config.option.columnWidth, align: this.config.option.align }
     }
   },
   watch: {
@@ -50,7 +50,7 @@ export default {
       const widthList = []
       if (config.customize.columnConfig.length === 0) {
         const key = []
-        for (let i in data.columnData) {
+        for (const i in data.columnData) {
           header.push(data.columnData[i].remark)
           key.push(i)
         }
@@ -92,7 +92,7 @@ export default {
           }
         }
       }
-      config.option= {
+      config.option = {
         ...config.option,
         data: dataList,
         header: header,
@@ -101,9 +101,7 @@ export default {
       }
 
       return config
-
-    },
-
+    }
 
   }
 }

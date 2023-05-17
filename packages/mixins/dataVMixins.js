@@ -19,9 +19,9 @@ const dataVMixins = {
       return this.config.customize.borderMainColor ||
         this.config.customize.borderSecondaryColor
         ? [
-          this.config.customize.borderMainColor,
-          this.config.customize.borderSecondaryColor
-        ]
+            this.config.customize.borderMainColor,
+            this.config.customize.borderSecondaryColor
+          ]
         : null
     },
     backgroundColor () {

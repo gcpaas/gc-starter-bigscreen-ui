@@ -52,7 +52,7 @@
                 :ds-id="config.dataSource.businessKey"
                 @getDsId="
                   dsId => {
-                    this.getDataSetDetailsById(dsId, 'treeTable');
+                    getDataSetDetailsById(dsId, 'treeTable');
                   }
                 "
               />
@@ -563,12 +563,12 @@ export default {
     // 映射字段
     sourceFieldList () {
       return (
-          this.fieldsList?.map(field => {
-            return {
-              label: field.comment,
-              value: field.name
-            }
-          }) || []
+        this.fieldsList?.map(field => {
+          return {
+            label: field.comment,
+            value: field.name
+          }
+        }) || []
       )
     }
   },

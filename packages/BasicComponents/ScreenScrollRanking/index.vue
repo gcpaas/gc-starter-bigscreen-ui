@@ -4,10 +4,11 @@
     class="bs-design-wrap"
   >
     <dv-scroll-ranking-board
+      :key="updateKey"
       class="ranking-box"
-    :class="{'light-theme':customTheme === 'light','auto-theme':customTheme =='auto','dark-theme':customTheme =='dark'}"
-    :config="option"
-    :key="updateKey" />
+      :class="{'light-theme':customTheme === 'light','auto-theme':customTheme =='auto','dark-theme':customTheme =='dark'}"
+      :config="option"
+    />
   </div>
 </template>
 <script>
@@ -18,42 +19,42 @@ import commonMixins from 'packages/mixins/commonMixins'
 import paramsMixins from 'packages/mixins/paramsMixins'
 import linkageMixins from 'packages/mixins/linkageMixins'
 export default {
-  name: 'scrollRankingBoard',
-    mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
+  name: 'ScrollRankingBoard',
   components: {
     DvScrollRankingBoard
   },
+  mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
   props: {
     // 卡片的属性
     config: {
       type: Object,
       default: () => ({})
-    },
+    }
   },
-  data() {
+  data () {
     return {
     }
   },
   computed: {
     option () {
-      return {...this.config.customize,data:this.config.option.data}
+      return { ...this.config.customize, data: this.config.option.data }
     }
   },
   watch: {
   },
-  mounted(){},
+  mounted () {},
   methods: {
-     buildOption (config, data) {
+    buildOption (config, data) {
       const dataSourseList = []
       data.data.forEach(item => {
         dataSourseList.push({ name: item[config.dataSource.dimensionField || 'name'], value: item[config.dataSource.metricField || 'sum(num)'] })
       })
-      config.option= {
+      config.option = {
         ...config.option,
         data: dataSourseList
       }
       return config
-    },
+    }
 
   }
 }

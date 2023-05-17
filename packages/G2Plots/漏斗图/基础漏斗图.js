@@ -11,32 +11,32 @@ const name = 'JiChuLouDouTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
     value: '',
     // tab页。 data: 数据， custom: 自定义
-    tabName:'data'
+    tabName: 'data'
   },
   {
 
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
-    tabName:'data'
+    tabName: 'data'
   },
   {
     label: '图表边距',
@@ -54,11 +54,11 @@ const data = [
   { stage: '初试人数', number: 151 },
   { stage: '复试人数', number: 113 },
   { stage: '录取人数', number: 87 },
-  { stage: '入职人数', number: 59 },
+  { stage: '入职人数', number: 59 }
 ]
 
 // 数据处理脚本
-const dataHandler = ``
+const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -66,7 +66,7 @@ const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   xField: 'stage',
   yField: 'number',
-  legend: false,
+  legend: false
 }
 
 export default {
@@ -78,5 +78,3 @@ export default {
   setting,
   dataHandler
 }
-
-

@@ -36,7 +36,7 @@
               @node-click="handleNodeClick"
             >
               <span
-                slot-scope="{ node, data }"
+                slot-scope="{ data }"
                 class="menu-span"
               >
                 <span
@@ -263,7 +263,7 @@ export default {
     },
     // 获取所有的目录
     openCascader () {
-      post(`/category/tree`, { searchKey: '', typeList: ['catalog'], sort: false }).then(data => {
+      post('/category/tree', { searchKey: '', typeList: ['catalog'], sort: false }).then(data => {
         const list = [{ name: '根目录', code: '', children: data }]
         this.catalogList = list
       }).catch(() => {
@@ -337,34 +337,34 @@ export default {
     },
     // 大屏 新增/编辑
     async addOrUpdateBigScreen (isToDesign) {
-      this.$refs['dataForm'].validate(async (valid) => {
+      this.$refs.dataForm.validate(async (valid) => {
         if (!valid) {
           return
         }
-        let addOrUpdateHandel = !this.dataForm.code
+        const addOrUpdateHandel = !this.dataForm.code
           ? (form) => post('/bigScreen/design/add', form)
           : (form) => post('/bigScreen/design/update', form)
         const form = {
-          'className': 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO',
-          'chartList': this.dataForm.chartList,
-          'code': this.dataForm.code,
-          'icon': this.dataForm.icon,
-          'iconColor': this.dataForm.iconColor,
-          'id': this.dataForm.id,
-          'name': this.dataForm.name,
-          'parentCode': this.dataForm.parentCode,
-          'remark': this.dataForm.remark,
-          'style': this.dataForm.style,
-          'type': 'bigScreen',
-          'orderNum': this.dataForm.orderNum,
-          'pageConfig': {
-            'w': this.resolutionRatio.w || '1920',
-            'h': this.resolutionRatio.h || '1080',
-            'bgColor': '#1d1d1d',
-            'opacity': 100,
-            'customTheme': 'auto'
+          className: 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO',
+          chartList: this.dataForm.chartList,
+          code: this.dataForm.code,
+          icon: this.dataForm.icon,
+          iconColor: this.dataForm.iconColor,
+          id: this.dataForm.id,
+          name: this.dataForm.name,
+          parentCode: this.dataForm.parentCode,
+          remark: this.dataForm.remark,
+          style: this.dataForm.style,
+          type: 'bigScreen',
+          orderNum: this.dataForm.orderNum,
+          pageConfig: {
+            w: this.resolutionRatio.w || '1920',
+            h: this.resolutionRatio.h || '1080',
+            bgColor: '#1d1d1d',
+            opacity: 100,
+            customTheme: 'auto'
           },
-          'pageTemplateId': this.dataForm.pageTemplateId
+          pageTemplateId: this.dataForm.pageTemplateId
         }
         if (isToDesign) {
           this.toDesignLoading = true
@@ -376,7 +376,7 @@ export default {
         addOrUpdateHandel(form)
           .then((code) => {
             this.formVisible = false
-            let message = this.dataForm.code ? '更新成功' : '新建成功'
+            const message = this.dataForm.code ? '更新成功' : '新建成功'
             this.$message.success(message)
             this.$emit('refreshData', form, this.dataForm.id)
             if (isToDesign) {

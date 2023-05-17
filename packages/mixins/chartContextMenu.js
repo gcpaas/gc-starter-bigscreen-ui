@@ -56,7 +56,7 @@ export default {
       newConfig.x = config.x + 20
       newConfig.y = config.y + 20
       if (config.group) {
-        newConfig.group = `copy_` + config.group
+        newConfig.group = 'copy_' + config.group
       }
       this.addItem(newConfig)
     },

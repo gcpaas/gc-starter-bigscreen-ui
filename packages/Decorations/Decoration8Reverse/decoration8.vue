@@ -1,20 +1,23 @@
 <template>
   <div class="content">
-    <dv-decoration-8 :reverse="true" style="width:90px;height:50px;" />
+    <dv-decoration-8
+      :reverse="true"
+      style="width:90px;height:50px;"
+    />
   </div>
 </template>
 
 <script>
-import DvDecoration8 from "@jiaminghi/data-view/lib/components/decoration8/src/main.vue";
+import DvDecoration8 from '@jiaminghi/data-view/lib/components/decoration8/src/main.vue'
 export default {
-  name: "decoration8",
+  name: 'Decoration8',
   components: {
     DvDecoration8
   },
-  data() {
-    return {};
+  data () {
+    return {}
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .content {

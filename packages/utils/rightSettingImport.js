@@ -5,7 +5,7 @@
  * @LastEditors: xing.heng
  * @LastEditTime: 2023-05-17 13:18:36
  */
-let modules = {}
+const modules = {}
 const replaceName = {}
 // 排除的组件
 const excludeCommponents = [] // 有的话就添加进去
@@ -14,7 +14,7 @@ function importComponentSetting (files) {
     return key.match(/setting/)
   }).forEach(key => {
     // 正则，取到./和/之间的字符串
-    let reg = new RegExp('(.\\/)(.*)(\\/)')
+    const reg = new RegExp('(.\\/)(.*)(\\/)')
     let moduleName = key.match(reg)[0].replace(/(\.\/)|(\/)/g, '')
     // 替换组件名称
     if (replaceName[moduleName]) {

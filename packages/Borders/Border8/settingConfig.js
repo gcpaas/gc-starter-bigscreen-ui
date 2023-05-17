@@ -20,7 +20,7 @@ export const settingConfig = {
 const customConfig = {
   type: 'border8',
   root: {
-    contribution: false,
+    contribution: false
   },
   customize: {
     // 边框主要颜色

@@ -1,18 +1,18 @@
-import {commonConfig, displayOption } from 'packages/config'
+import { commonConfig, displayOption } from 'packages/config'
 
 export const settingConfig = {
   padding: [30, 30, 30, 60],
   legend: false,
   isGroup: true,
   header: [],
-  columnWidth:[],
-  align:[],
+  columnWidth: [],
+  align: [],
   data: [],
   // 设置面板属性的显隐
   displayOption: {
     ...displayOption,
     headerField: {
-      enable:true
+      enable: true
     },
     metricField: {
       // 指标
@@ -27,26 +27,26 @@ export const settingConfig = {
       multiple: true // 是否多选
     }
   }
-};
+}
 const customConfig = {
-  type: "screenScrollBoard",
+  type: 'screenScrollBoard',
   root: {
     contribution: false
   },
   customize: {
     rowNum: 5,
-    headerBGC:'#007aff',
-    oddRowBGC:'',
-    evenRowBGC:'',
-    waitTime:2000,
-    headerHeight:35,
-    index:false,
-    indexHeader:'#',
-    carousel:'single',
-    hoverPause:true,
-    columnConfig:[]
+    headerBGC: '#007aff',
+    oddRowBGC: '',
+    evenRowBGC: '',
+    waitTime: 2000,
+    headerHeight: 35,
+    index: false,
+    indexHeader: '#',
+    carousel: 'single',
+    hoverPause: true,
+    columnConfig: []
   }
-};
+}
 export const dataConfig = {
   ...commonConfig(customConfig)
-};
+}

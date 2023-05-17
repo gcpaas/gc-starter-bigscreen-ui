@@ -308,9 +308,9 @@ export default {
     // 名称校验
     validateSourceName (rule, value, callback) {
       checkRepeat({
-        'id': this.dataForm.id,
-        'sourceName': this.dataForm.sourceName,
-        'moduleCode': this.appCode
+        id: this.dataForm.id,
+        sourceName: this.dataForm.sourceName,
+        moduleCode: this.appCode
       }).then(r => {
         if (r) {
           callback(new Error(r))
@@ -332,7 +332,7 @@ export default {
         }
         this.sourceTypeList.forEach(r => {
           if (type === r.name) {
-            let code = r.code + 'Driver'
+            const code = r.code + 'Driver'
             this.driverCLassList.forEach(r => {
               if (code === r.code) {
                 this.dataForm.driverClassName = r.name
@@ -348,7 +348,7 @@ export default {
     },
     // 阻止文本域回车换行
     textareaKeydown () {
-      let e = window.event || arguments[0]
+      const e = window.event || arguments[0]
       if (e.key === 'Enter' || e.code === 'Enter' || e.keyCode === 13) {
         e.returnValue = false
         return false
@@ -357,7 +357,7 @@ export default {
     // 连接测试
     sourceLinkCheck () {
       let flag = 0
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (!valid) {
           flag = 1
           return false
@@ -379,7 +379,7 @@ export default {
     },
     // 取消重制
     handleClose () {
-      this.$refs['dataForm'].resetFields()
+      this.$refs.dataForm.resetFields()
       this.dataForm = {
         id: '',
         sourceName: '',
@@ -421,7 +421,7 @@ export default {
       //     }
       //   }
       // }
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           addOrUpdateDataSource({
             ...this.dataForm,

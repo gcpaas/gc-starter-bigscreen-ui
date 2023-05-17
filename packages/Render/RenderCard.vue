@@ -21,7 +21,7 @@ import pcComponent from 'packages/utils/componentImport'
 import { dataInit, destroyedEvent } from 'packages/utils/eventBus'
 import CustomComponent from '../PlotRender/index.vue'
 import Svgs from '../Svgs/index.vue'
-let components = {}
+const components = {}
 for (const key in pcComponent) {
   if (Object.hasOwnProperty.call(pcComponent, key)) {
     components[key] = pcComponent[key]

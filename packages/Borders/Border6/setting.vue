@@ -1,6 +1,10 @@
 <template>
   <div>
-    <BorderSetting ref="form" :config="config" :predefineThemeColors="predefineThemeColors" />
+    <BorderSetting
+      ref="form"
+      :config="config"
+      :predefine-theme-colors="predefineThemeColors"
+    />
   </div>
 </template>
 <script>
@@ -10,10 +14,10 @@ export default {
   components: {
     BorderSetting
   },
-  data() {
+  data () {
     return {
-        // 预设主题色
-        predefineThemeColors: [
+      // 预设主题色
+      predefineThemeColors: [
         '#007aff',
         '#1aa97b',
         '#ff4d53',
@@ -28,16 +32,16 @@ export default {
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
-    },
+    }
   },
   watch: {},
-  mounted() { },
+  mounted () { },
   methods: {}
 }
 </script>

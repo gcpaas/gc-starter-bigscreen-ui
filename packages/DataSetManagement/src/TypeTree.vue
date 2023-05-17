@@ -165,8 +165,7 @@ import 'ztree/js/jquery.ztree.exhide'
 import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
-import { get, post } from 'packages/utils/http'
-import { getDatasetTypeList ,categoryRemove} from 'packages/utils/datasetConfigService'
+import { getDatasetTypeList, categoryRemove } from 'packages/utils/datasetConfigService'
 import OrgEditForm from './CategroyEditForm.vue'
 export default {
   name: 'OrgTreeIndex',
@@ -221,11 +220,11 @@ export default {
           dblClickExpand: false,
           showTitle: false,
           addHoverDom: (treeId, treeNode) => {
-            let nodeObj = $('#' + treeNode.tId + '_a')
+            const nodeObj = $('#' + treeNode.tId + '_a')
             nodeObj.css({ 'background-color': '#f6f7fb', cursor: 'pointer' })
           },
           removeHoverDom: (treeId, treeNode) => {
-            let nodeObj = $('#' + treeNode.tId + '_a')
+            const nodeObj = $('#' + treeNode.tId + '_a')
             nodeObj.css({ 'background-color': 'rgba(0,0,0,0)' })
           },
           addDiyDom: this.addDiyDom
@@ -255,22 +254,22 @@ export default {
     addRootNode () {
       this.editFormVisible = true
       this.$nextTick(() => {
-        this.$refs['editForm'].tableName = 'r_dataset'
-        this.$refs['editForm'].dialogFormVisible = true
-        this.$refs['editForm'].init({ parentId: 0 }, true)
-        this.$refs['editForm'].radio = 0
-        this.$refs['editForm'].title = '节点新增'
+        this.$refs.editForm.tableName = 'r_dataset'
+        this.$refs.editForm.dialogFormVisible = true
+        this.$refs.editForm.init({ parentId: 0 }, true)
+        this.$refs.editForm.radio = 0
+        this.$refs.editForm.title = '节点新增'
       })
     },
     addDiyDom (treeId, treeNode) {
       if (this.activeName === 'type') return
       if (treeNode.parentNode && treeNode.parentNode.id !== 2) return
-      let aObj = $('#' + treeNode.tId + '_a')
-      var editStr = "<span  id='diyBtn_" + treeNode.id + "' class='treeAddNode'>⋮</span>"
+      const aObj = $('#' + treeNode.tId + '_a')
+      const editStr = "<span  id='diyBtn_" + treeNode.id + "' class='treeAddNode'>⋮</span>"
       aObj.after(editStr)
-      let btn = $('#diyBtn_' + treeNode.id)
+      const btn = $('#diyBtn_' + treeNode.id)
       if (btn) {
-        let _this = this
+        const _this = this
         btn.bind('mouseenter', function () {
           if (treeNode.name === '全部' && treeNode.id === '') {
             _this.isBoth = true
@@ -281,9 +280,9 @@ export default {
           _this.rightClickForm.org = treeNode
           _this.rightClickForm.visible = true
           let hieght = 0
-          let nodeElObj = document.getElementById(treeNode.tId + '_a').getBoundingClientRect()
-          let clientHeight = document.documentElement.clientHeight
-          let clientY = nodeElObj.top + 34
+          const nodeElObj = document.getElementById(treeNode.tId + '_a').getBoundingClientRect()
+          const clientHeight = document.documentElement.clientHeight
+          const clientY = nodeElObj.top + 34
           if (clientHeight - clientY < 200) {
             hieght = clientY - 200
             document.querySelector('#orgTreeNodeMenuBottom').style.display = 'none'
@@ -363,8 +362,8 @@ export default {
     },
     // filter方法
     filterNode (node) {
-      let selfMatch = node.name.includes(this.queryForm.searchKey)
-      let childMatch = false
+      const selfMatch = node.name.includes(this.queryForm.searchKey)
+      const childMatch = false
       // 过滤非匹配的值
       return !(this.recursion(node, childMatch) || selfMatch)
     },
@@ -386,7 +385,7 @@ export default {
     reSearch () {
       this.activeName = 'group'
       if (this.queryForm.searchKey) {
-        let treeObj = $.fn.zTree.getZTreeObj('orgTree')
+        const treeObj = $.fn.zTree.getZTreeObj('orgTree')
         const nodes = treeObj.getNodesByParam('isHidden', true)
         treeObj.showNodes(nodes)
         const hiddenNodes = treeObj.getNodesByFilter(this.filterNode)
@@ -418,32 +417,32 @@ export default {
       this.editFormVisible = true
       if (editType === this.editTypeConstant.editOrg) {
         this.$nextTick(() => {
-          this.$refs['editForm'].tableName = 'r_dataset'
-          this.$refs['editForm'].dialogFormVisible = true
-          this.$refs['editForm'].init(this.rightClickForm.org, false)
-          this.$refs['editForm'].title = '节点编辑'
+          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.dialogFormVisible = true
+          this.$refs.editForm.init(this.rightClickForm.org, false)
+          this.$refs.editForm.title = '节点编辑'
         })
         return
       }
       // 新增同级节点
       if (editType === this.editTypeConstant.addSiblingOrg) {
         this.$nextTick(() => {
-          this.$refs['editForm'].tableName = 'r_dataset'
-          this.$refs['editForm'].dialogFormVisible = true
-          this.$refs['editForm'].init(this.rightClickForm.org, true)
-          this.$refs['editForm'].radio = 0
-          this.$refs['editForm'].title = '节点新增'
+          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.dialogFormVisible = true
+          this.$refs.editForm.init(this.rightClickForm.org, true)
+          this.$refs.editForm.radio = 0
+          this.$refs.editForm.title = '节点新增'
         })
         return
       }
       // 新增子节点
       if (editType === this.editTypeConstant.addChildOrg) {
         this.$nextTick(() => {
-          this.$refs['editForm'].tableName = 'r_dataset'
-          this.$refs['editForm'].dialogFormVisible = true
-          this.$refs['editForm'].init(this.rightClickForm.org, true)
-          this.$refs['editForm'].radio = 1
-          this.$refs['editForm'].title = '节点新增'
+          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.dialogFormVisible = true
+          this.$refs.editForm.init(this.rightClickForm.org, true)
+          this.$refs.editForm.radio = 1
+          this.$refs.editForm.title = '节点新增'
         })
       }
     },
@@ -459,7 +458,7 @@ export default {
     // 删除分类
     deleteOrg (org) {
       this.$confirm(
-        `删除数据集分类，确定进行删除操作?`,
+        '删除数据集分类，确定进行删除操作?',
         '提示',
         {
           confirmButtonText: '确定',

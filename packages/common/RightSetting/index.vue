@@ -54,7 +54,7 @@ import CustomComponent from './G2CustomSetting.vue'
 import Svgs from 'packages/Svgs/setting'
 import { mapState } from 'vuex'
 // 整体动态导入右侧设置组件，不用手动注册
-let components = {}
+const components = {}
 for (const key in rightSetting) {
   if (Object.hasOwnProperty.call(rightSetting, key)) {
     const component = rightSetting[key]

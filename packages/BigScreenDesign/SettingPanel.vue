@@ -1,15 +1,36 @@
 <template>
   <transition name="slide-fade">
     <div class="bs-right-panel-wrap">
-      <div class="bs-folder-wrap" :style="{ height }">
-        <i :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'" @click="toggleShow" />
-        <el-slider :value="zoom" vertical height="200px" class="slider-zoom" :min="10" @input="changeScreenZoom" />
+      <div
+        class="bs-folder-wrap"
+        :style="{ height }"
+      >
+        <i
+          :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
+          @click="toggleShow"
+        />
+        <el-slider
+          :value="zoom"
+          vertical
+          height="200px"
+          class="slider-zoom"
+          :min="10"
+          @input="changeScreenZoom"
+        />
       </div>
       <el-scrollbar>
         <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
-          <RightSetting v-if="chartSettingShow" @closeRightPanel="close" @updateSetting="updateSetting"
-            @updateDataSetting="updateDataSetting" />
-          <OverallSetting v-if="!chartSettingShow" ref="OverallSetting" @close="close" />
+          <RightSetting
+            v-if="chartSettingShow"
+            @closeRightPanel="close"
+            @updateSetting="updateSetting"
+            @updateDataSetting="updateDataSetting"
+          />
+          <OverallSetting
+            v-if="!chartSettingShow"
+            ref="OverallSetting"
+            @close="close"
+          />
         </div>
       </el-scrollbar>
     </div>
@@ -40,7 +61,7 @@ export default {
       default: '100vh'
     }
   },
-  data() {
+  data () {
     return {
     }
   },
@@ -50,13 +71,13 @@ export default {
       activeCode: state => state.activeCode,
       zoom: state => state.zoom
     }),
-    chartSettingShow() {
+    chartSettingShow () {
       return Boolean(!_.isEmpty(this.activeItem) && this.rightVisiable && this.activeCode)
     }
   },
   watch: {
     activeCode: {
-      handler(val) {
+      handler (val) {
         if (!val) {
           this.$nextTick(() => {
             // eslint-disable-next-line no-unused-expressions
@@ -68,24 +89,24 @@ export default {
       immediate: true
     }
   },
-  mounted() { },
+  mounted () { },
   methods: {
     ...mapMutations('bigScreen', [
       'changeZoom'
     ]),
-    toggleShow() {
+    toggleShow () {
       this.$emit('update:rightVisiable', !this.rightVisiable)
     },
-    close() {
+    close () {
       this.$emit('update:rightVisiable', false)
     },
-    updateSetting(config) {
+    updateSetting (config) {
       this.$emit('updateSetting', config)
     },
-    updateDataSetting(config) {
+    updateDataSetting (config) {
       this.$emit('updateDataSetting', config)
     },
-    changeScreenZoom(zoom) {
+    changeScreenZoom (zoom) {
       this.changeZoom(zoom)
     }
   }

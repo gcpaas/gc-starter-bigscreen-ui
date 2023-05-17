@@ -1,34 +1,37 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-border-box-5
       :id="'dataV' + code"
-      :color="color"
-      :backgroundColor="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :key="updateKey"
+      :color="color"
+      :background-color="colorType === 'single' ? backgroundColor : `url(#${borderBgId})`"
       :reverse="reverse"
     />
   </div>
 </template>
 <script>
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
-import { dataVMixins } from "packages/mixins/dataVMixins";
-import DvBorderBox5 from "@jiaminghi/data-view/lib/components/borderBox5/src/main.vue";
-import "@jiaminghi/data-view/lib/components/borderBox5/src/main.css";
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { dataVMixins } from 'packages/mixins/dataVMixins'
+import DvBorderBox5 from '@jiaminghi/data-view/lib/components/borderBox5/src/main.vue'
+import '@jiaminghi/data-view/lib/components/borderBox5/src/main.css'
 export default {
-  name: "Border5",
-  mixins: [refreshComponentMixin,dataVMixins],
+  name: 'Border5',
   components: {
     DvBorderBox5
   },
+  mixins: [refreshComponentMixin, dataVMixins],
   computed: {
-    reverse() {
-      return this.config.customize.reverse;
+    reverse () {
+      return this.config.customize.reverse
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

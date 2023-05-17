@@ -1,9 +1,16 @@
 <template>
   <div>
-    <BorderSetting ref="form" :config="config" :predefineThemeColors="predefineThemeColors">
+    <BorderSetting
+      ref="form"
+      :config="config"
+      :predefine-theme-colors="predefineThemeColors"
+    >
       <template slot="bottom">
         <el-form-item label="翻转形态">
-          <el-switch v-model="config.customize.reverse" active-color="#13ce66" />
+          <el-switch
+            v-model="config.customize.reverse"
+            active-color="#13ce66"
+          />
         </el-form-item>
       </template>
     </BorderSetting>
@@ -16,7 +23,7 @@ export default {
   components: {
     BorderSetting
   },
-  data() {
+  data () {
     return {
       // 预设主题色
       predefineThemeColors: [
@@ -34,16 +41,16 @@ export default {
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
-    },
+    }
   },
   watch: {},
-  mounted() { },
+  mounted () { },
   methods: {}
 }
 </script>

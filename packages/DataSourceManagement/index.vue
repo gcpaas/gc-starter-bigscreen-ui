@@ -33,6 +33,11 @@ export default {
   components: {
     IconSvg
   },
+  provide () {
+    return {
+      refresh: this.refresh
+    }
+  },
   data () {
     return {
       // appIcon: Icon.getNameList(),
@@ -55,11 +60,6 @@ export default {
           img: Icon.getNameList()[1]
         }
       ]
-    }
-  },
-  provide () {
-    return {
-      refresh: this.refresh
     }
   },
   watch: {

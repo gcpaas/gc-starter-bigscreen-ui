@@ -1,7 +1,7 @@
-import { commonConfig } from "../../config";
+import { commonConfig } from '../../config'
 
 export const settingConfig = {
-  time: "",
+  time: '',
   theme: 'dark',
   // 设置面板属性的显隐
   displayOption: {
@@ -10,19 +10,19 @@ export const settingConfig = {
       enable: false
     }
   }
-};
+}
 const customConfig = {
-  type: "timeCountDown",
+  type: 'timeCountDown',
   root: {
-    endTime: ""
+    endTime: ''
   },
   customize: {
     fontSize: 20,
     fontWeight: 700,
-    color: "#36474f"
-  },
+    color: '#36474f'
+  }
 
-};
+}
 export const dataConfig = {
   ...commonConfig(customConfig)
-};
+}

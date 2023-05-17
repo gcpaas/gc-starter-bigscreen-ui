@@ -143,7 +143,7 @@ export default {
     },
     // 缓存组件数据监听
     watchCacheData () {
-      EventBus.$on(`cacheDataInit`, (data, dataSetId) => {
+      EventBus.$on('cacheDataInit', (data, dataSetId) => {
         // 如果是缓存数据集
         // 且当前组件的businessKey和缓存的dataSetId相等时，更新组件
         if (

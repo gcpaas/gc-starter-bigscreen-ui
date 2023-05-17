@@ -11,10 +11,19 @@
       label-position="left"
       :model="config"
     >
-      <el-form-item label="标题" label-width="100px">
-        <el-input v-model="config.title" placeholder="请输入标题" />
+      <el-form-item
+        label="标题"
+        label-width="100px"
+      >
+        <el-input
+          v-model="config.title"
+          placeholder="请输入标题"
+        />
       </el-form-item>
-      <el-form-item label="时间字体大小" label-width="100px">
+      <el-form-item
+        label="时间字体大小"
+        label-width="100px"
+      >
         <el-input
           v-model="config.customize.fontSize"
           placeholder="请输入时间字体大小"
@@ -24,13 +33,19 @@
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item label="时间字体权重" label-width="100px">
+      <el-form-item
+        label="时间字体权重"
+        label-width="100px"
+      >
         <el-input-number
           v-model="config.customize.fontWeight"
           placeholder="请输入时间字体权重"
         />
       </el-form-item>
-      <el-form-item label="结束日期" label-width="100px">
+      <el-form-item
+        label="结束日期"
+        label-width="100px"
+      >
         <el-date-picker
           v-model="config.endTime"
           type="datetime"
@@ -39,7 +54,10 @@
           value-format="timestamp"
         />
       </el-form-item>
-      <el-form-item label="字体颜色" label-width="100px">
+      <el-form-item
+        label="字体颜色"
+        label-width="100px"
+      >
         <el-color-picker v-model="config.customize.color" />
       </el-form-item>
     </el-form>
@@ -47,47 +65,47 @@
 </template>
 <script>
 export default {
-  name: "TimeCountDownSetting",
-  data() {
+  name: 'TimeCountDownSetting',
+  data () {
     return {
       pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() < Date.now() - 8.64e7;
+        disabledDate (time) {
+          return time.getTime() < Date.now() - 8.64e7
         }
       },
       HeaderFontSizeList: [
-        { label: "正常", value: 16 },
-        { label: "较小", value: 14 },
-        { label: "较大", value: 30 }
+        { label: '正常', value: 16 },
+        { label: '较小', value: 14 },
+        { label: '较大', value: 30 }
       ],
       numberFormatList: [
-        { label: "原始数据", value: "value" },
-        { label: "千位分隔", value: "kilobit" }
+        { label: '原始数据', value: 'value' },
+        { label: '千位分隔', value: 'kilobit' }
       ]
-    };
+    }
   },
   computed: {
     config: {
-      get() {
-        return this.$store.state.bigScreen.activeItemConfig;
+      get () {
+        return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
-        this.$store.state.bigScreen.activeItemConfig = val;
+      set (val) {
+        this.$store.state.bigScreen.activeItemConfig = val
       }
     }
   },
   watch: {},
-  mounted() {
-    this.initEndTime();
+  mounted () {
+    this.initEndTime()
   },
   methods: {
-    initEndTime() {
+    initEndTime () {
       if (this.config.endTime) {
-        this.config.endTime = new Date(this.config.endTime).getTime();
+        this.config.endTime = new Date(this.config.endTime).getTime()
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

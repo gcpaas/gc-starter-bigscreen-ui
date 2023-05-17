@@ -188,7 +188,7 @@ function changeGroup (code, state) {
       // eslint-disable-next-line no-unused-expressions
       state.pageInfo.chartList?.forEach(chart => {
         if (state.activeCodes.includes(chart.code)) {
-          chart.group = `tempGroup`
+          chart.group = 'tempGroup'
         }
       })
     } else {

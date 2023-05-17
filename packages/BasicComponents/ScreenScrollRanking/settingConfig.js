@@ -1,4 +1,4 @@
-import { commonConfig, displayOption } from "packages/config"
+import { commonConfig, displayOption } from 'packages/config'
 
 export const settingConfig = {
   padding: [30, 30, 30, 60],
@@ -23,19 +23,19 @@ export const settingConfig = {
   }
 }
 const customConfig = {
-  type: "screenScrollRanking",
+  type: 'screenScrollRanking',
   root: {
     contribution: false
   },
   customize: {
     rowNum: 5,
-    waitTime:2000,
-    carousel:'single',
-    unit:'',
-    sort:true,
-    valueFormatter:undefined
+    waitTime: 2000,
+    carousel: 'single',
+    unit: '',
+    sort: true,
+    valueFormatter: undefined
   }
-};
+}
 export const dataConfig = {
   ...commonConfig(customConfig)
-};
+}

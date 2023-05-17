@@ -203,7 +203,7 @@ export default {
     },
     cancel () {
       this.formVisible = false
-      this.$refs['dataForm'].clearValidate()
+      this.$refs.dataForm.clearValidate()
     },
     showChooseIcon () {
       this.$emit('showChooseIcon')

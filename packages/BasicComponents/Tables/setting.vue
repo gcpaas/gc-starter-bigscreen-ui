@@ -29,10 +29,10 @@
               </el-form-item> -->
               <el-form-item label="表格头部字体颜色">
                 <ColorPicker
-                  style="width:250px"
                   v-model="config.customize.headerFontColor"
+                  style="width:250px"
                   placeholder="请选择表格头部字体颜色"
-                  :predefineColors="predefineThemeColors"
+                  :predefine-colors="predefineThemeColors"
                 />
               </el-form-item>
               <el-form-item label="表格头部字体大小">
@@ -53,10 +53,10 @@
               </el-form-item> -->
               <el-form-item label="表格主体字体颜色">
                 <ColorPicker
-                  style="width:250px"
                   v-model="config.customize.bodyFontColor"
+                  style="width:250px"
                   placeholder="请选择表格主体字体颜色"
-                  :predefineColors="predefineThemeColors"
+                  :predefine-colors="predefineThemeColors"
                 />
               </el-form-item>
               <el-form-item label="表格主体字体大小">
@@ -82,27 +82,26 @@
 </template>
 <script>
 import ColorPicker from 'packages/common/ColorPicker/index.vue'
-import { chartSettingMixins } from "packages/mixins/chartSettingMixins";
+import { chartSettingMixins } from 'packages/mixins/chartSettingMixins'
 export default {
-  name: "",
   components: {
     ColorPicker
   },
   mixins: [chartSettingMixins],
-  data() {
+  data () {
     return {
       predefineThemeColors: [
-        "#007aff",
-        "#1aa97b",
-        "#ff4d53",
-        "#1890FF",
-        "#DF0E1B",
-        "#0086CC",
-        "#2B74CF",
-        "#00BC9D",
-        "#ED7D32"
+        '#007aff',
+        '#1aa97b',
+        '#ff4d53',
+        '#1890FF',
+        '#DF0E1B',
+        '#0086CC',
+        '#2B74CF',
+        '#00BC9D',
+        '#ED7D32'
       ]
-    };
+    }
   },
   computed: {
     config: {
@@ -118,9 +117,9 @@ export default {
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

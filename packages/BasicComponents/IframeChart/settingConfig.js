@@ -4,7 +4,7 @@
  * @Author: xingheng
  */
 
-import { commonConfig } from "../../config";
+import { commonConfig } from '../../config'
 
 export const settingConfig = {
   theme: 'dark',
@@ -14,19 +14,19 @@ export const settingConfig = {
       enable: false
     }
   }
-};
+}
 const customConfig = {
-  type: "iframeChart",
+  type: 'iframeChart',
   root: {
-    url: "https://www.runoob.com/"
+    url: 'https://www.runoob.com/'
   },
   customize: {
     fontSize: 20,
     fontWeight: 700,
-    color: "#36474f"
-  },
+    color: '#36474f'
+  }
 
-};
+}
 export const dataConfig = {
   ...commonConfig(customConfig)
-};
+}

@@ -1,4 +1,4 @@
-import { commonConfig } from "../../config";
+import { commonConfig } from '../../config'
 
 export const settingConfig = {
   padding: [30, 30, 30, 60],
@@ -12,9 +12,9 @@ export const settingConfig = {
       enable: false
     }
   }
-};
+}
 const customConfig = {
-  type: "decoration10",
+  type: 'decoration10',
   root: {
     contribution: false
   },
@@ -22,11 +22,11 @@ const customConfig = {
     decorationColor1: null,
     decorationColor2: null,
     reverse: false,
-    dur:3,
-    scanDur:3,
-    haloDur:2,
+    dur: 3,
+    scanDur: 3,
+    haloDur: 2
   }
-};
+}
 export const dataConfig = {
   ...commonConfig(customConfig)
-};
+}

@@ -121,12 +121,12 @@ export default {
             parentId = this.nodeData.parentId
           }
 
-          let params = {
-            'id': id,
-            'name': this.dataForm.name,
-            'parentId': parentId,
-            'tableName': this.tableName,
-            'moduleCode': this.appCode
+          const params = {
+            id: id,
+            name: this.dataForm.name,
+            parentId: parentId,
+            tableName: this.tableName,
+            moduleCode: this.appCode
           }
           addOrUpdateTree(params).then((r) => {
             this.$message.success('保存成功')

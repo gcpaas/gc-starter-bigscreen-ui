@@ -5,16 +5,16 @@
 </template>
 
 <script>
-import DvDecoration1 from "@jiaminghi/data-view/lib/components/decoration1/src/main.vue";
+import DvDecoration1 from '@jiaminghi/data-view/lib/components/decoration1/src/main.vue'
 export default {
-  name: "decoration1",
+  name: 'Decoration1',
   components: {
     DvDecoration1
   },
-  data() {
-    return {};
+  data () {
+    return {}
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .content {

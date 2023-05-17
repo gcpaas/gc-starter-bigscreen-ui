@@ -85,7 +85,7 @@
                         @node-click="selectParentCategory"
                       >
                         <span
-                          slot-scope="{ node,data }"
+                          slot-scope="{ data }"
                           class="custom-tree-node"
                         >
                           <span>
@@ -557,7 +557,7 @@ export default {
     }
   },
   data () {
-    var validateName = (rule, value, callback) => {
+    const validateName = (rule, value, callback) => {
       nameCheckRepeat({
         id: this.datasetId,
         name: value,
@@ -643,7 +643,7 @@ export default {
   methods: {
     // 获取预览数据
     getData () {
-      let params = {
+      const params = {
         id: this.dataForm.id ? this.dataForm.id : '',
         sourceId: this.dataForm.sourceId,
         tableName: this.dataForm.tableName,
@@ -699,7 +699,7 @@ export default {
       this.activeName = 'structure'
       // 滑动到底部
       this.$nextTick(() => {
-        let dataAdd = document.getElementsByClassName('router-tab__container')[0]
+        const dataAdd = document.getElementsByClassName('router-tab__container')[0]
         dataAdd.scrollTop = dataAdd.scrollHeight
       })
       this.fieldDescVisible = false
@@ -716,7 +716,7 @@ export default {
         return
       }
       if (!nochecktosave) {
-        let temp = this.structurePreviewList.some(item => {
+        const temp = this.structurePreviewList.some(item => {
           return item.fieldDesc === ''
         }) // true-存在为空
         if (temp) {
@@ -726,7 +726,7 @@ export default {
       }
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          let columnMap = {}
+          const columnMap = {}
           this.structurePreviewList.forEach(item => {
             columnMap[item.columnName] = item.fieldDesc
           })
@@ -808,7 +808,7 @@ export default {
     // 分类展开高亮
     setCurrentNode ($event) {
       if ($event) {
-        let key = this.dataForm.typeId || null
+        const key = this.dataForm.typeId || null
         this.$refs.categorySelectTree.setCurrentKey(key)
       }
     },
@@ -881,8 +881,8 @@ export default {
     // 获取原始表字段
     queryAllField () {
       getOriginalTableFieldInfo({
-        'sourceId': this.dataForm.sourceId,
-        'tableName': this.dataForm.tableName
+        sourceId: this.dataForm.sourceId,
+        tableName: this.dataForm.tableName
       }).then((data) => {
         this.fieldList = data.map(field => {
           field.isCheck = false
@@ -926,7 +926,7 @@ export default {
       this.structurePreviewList = []
       this.structurePreviewListCopy = []
       if (!this.dataForm.sourceId || !this.dataForm.tableName) return
-      let params = {
+      const params = {
         id: this.dataForm.id ? this.dataForm.id : '',
         sourceId: this.dataForm.sourceId,
         tableName: this.dataForm.tableName,
@@ -965,8 +965,8 @@ export default {
     },
     // 表头添加提示
     renderHeader (h, { column, index }) {
-      let labelLong = column.label.length // 表头label长度
-      let size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
+      const labelLong = column.label.length // 表头label长度
+      const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
       column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
       return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
     },

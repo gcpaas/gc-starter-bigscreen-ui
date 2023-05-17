@@ -38,8 +38,8 @@
       @mouseleave.native="resetPresetLineDelay"
     >
       <Configuration
-        :config="chart"
         v-if="isInit"
+        :config="chart"
         @openRightPanel="openRightPanel"
       >
         <RenderCard
@@ -49,17 +49,17 @@
       </Configuration>
     </vdr>
     <span
-      class="ref-line v-line"
       v-for="(vl, index) in vLine"
-      :key="index + 'vLine'"
       v-show="vl.display"
+      :key="index + 'vLine'"
+      class="ref-line v-line"
       :style="{ left: vl.position, top: vl.origin, height: vl.lineLength }"
     />
     <span
-      class="ref-line h-line"
       v-for="(hl, index) in hLine"
-      :key="index + 'hLine'"
       v-show="hl.display"
+      :key="index + 'hLine'"
+      class="ref-line h-line"
       :style="{ top: hl.position, left: hl.origin, width: hl.lineLength }"
     />
   </div>
@@ -111,7 +111,7 @@ export default {
     pageConfig: {
       handler (pageConfig) {
         this.$nextTick(() => {
-          let style = document.createElement('style')
+          const style = document.createElement('style')
           if (pageConfig && pageConfig.themeJson && pageConfig.themeJson.themeCss) {
             const themeCss = pageConfig.themeJson.themeCss
             if (themeCss) {
@@ -146,7 +146,7 @@ export default {
     ),
     // 获取到后端传来的主题样式并进行修改
     styleSet () {
-      let style = document.createElement('style')
+      const style = document.createElement('style')
       if (this.themeJson && this.themeJson.themeCss) {
         const styleStr = this.themeJson.themeCss
         const themeCss = compile(styleStr).code
@@ -212,7 +212,7 @@ export default {
     onDrag (x, y, chart) {
       // 防止事件冒泡
       event.stopPropagation()
-      if(chart.group) {
+      if (chart.group) {
         // 查找和自己是一个组合的组件
         this.dragGroupChart(x, y, chart)
       } else {
@@ -235,7 +235,7 @@ export default {
       this.changeGridShow(false)
     },
     dragstop (left, top, chart) {
-      if(!this.freeze) {
+      if (!this.freeze) {
         this.changeChartConfig({
           ...chart,
           x: left,
@@ -322,7 +322,7 @@ export default {
           })
         })
       }
-    },
+    }
   }
 }
 </script>

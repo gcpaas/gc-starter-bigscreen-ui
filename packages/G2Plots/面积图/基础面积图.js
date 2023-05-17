@@ -16,12 +16,12 @@ const name = 'JiChuMianJiTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
@@ -30,55 +30,55 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
     tabName: 'data'
   },
   {
-    label: "曲线平滑",
-    type: "switch",            // 设置组件类型
-    field: "smooth", // 字段
-    optionField: "smooth",    // 对应options中的字段
+    label: '曲线平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
     value: false,
     tabName: 'custom'
   },
   {
-    label: "从0基准线填充",
-    type: "switch",            // 设置组件类型
-    field: "startOnZero", // 字段
-    optionField: "startOnZero",    // 对应options中的字段
+    label: '从0基准线填充',
+    type: 'switch', // 设置组件类型
+    field: 'startOnZero', // 字段
+    optionField: 'startOnZero', // 对应options中的字段
     value: true,
     tabName: 'custom'
   },
   {
-    label: "图形的填充色",
-    type: "colorPicker",            // 设置组件类型
-    field: "areaStyle_fill", // 字段
-    optionField: "areaStyle.fill",    // 对应options中的字段
+    label: '图形的填充色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'areaStyle_fill', // 字段
+    optionField: 'areaStyle.fill', // 对应options中的字段
     value: '#94c6ff',
     tabName: 'custom'
   },
   {
-    label: "折线的颜色",
-    type: "colorPicker",            // 设置组件类型
-    field: "line_color", // 字段
-    optionField: "line.color",    // 对应options中的字段
+    label: '折线的颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'line_color', // 字段
+    optionField: 'line.color', // 对应options中的字段
     value: '',
     tabName: 'custom'
   },
   {
-    label: "数据点颜色",
-    type: "colorPicker",            // 设置组件类型
-    field: "point_color", // 字段
-    optionField: "point.color",    // 对应options中的字段
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_color', // 字段
+    optionField: 'point.color', // 对应options中的字段
     value: '',
     tabName: 'custom'
   },
@@ -103,44 +103,44 @@ const setting = [
 // 模拟数据
 const data = [
   {
-    "Date": "2010-01",
-    "scales": 1998
+    Date: '2010-01',
+    scales: 1998
   },
   {
-    "Date": "2010-02",
-    "scales": 1850
+    Date: '2010-02',
+    scales: 1850
   },
   {
-    "Date": "2010-03",
-    "scales": 1720
+    Date: '2010-03',
+    scales: 1720
   },
   {
-    "Date": "2010-04",
-    "scales": 1818
+    Date: '2010-04',
+    scales: 1818
   },
   {
-    "Date": "2010-05",
-    "scales": 1920
+    Date: '2010-05',
+    scales: 1920
   },
   {
-    "Date": "2010-06",
-    "scales": 1802
+    Date: '2010-06',
+    scales: 1802
   },
   {
-    "Date": "2010-07",
-    "scales": 1945
+    Date: '2010-07',
+    scales: 1945
   },
   {
-    "Date": "2010-08",
-    "scales": 1856
+    Date: '2010-08',
+    scales: 1856
   },
   {
-    "Date": "2010-09",
-    "scales": 2107
+    Date: '2010-09',
+    scales: 2107
   },
   {
-    "Date": "2010-10",
-    "scales": 2140
+    Date: '2010-10',
+    scales: 2140
   }
 ]
 
@@ -156,7 +156,7 @@ const option = {
   smooth: false,
   startOnZero: true,
   areaStyle: {
-    fill: "#94c6ff"
+    fill: '#94c6ff'
   },
   line: {
     color: ''
@@ -181,5 +181,3 @@ export default {
   setting,
   dataHandler
 }
-
-

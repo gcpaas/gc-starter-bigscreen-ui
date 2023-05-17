@@ -1,6 +1,12 @@
 <template>
   <div class="bs-setting-wrap">
-    <el-form ref="form" :model="config" label-width="90px" label-position="left" class="setting-body">
+    <el-form
+      ref="form"
+      :model="config"
+      label-width="90px"
+      label-position="left"
+      class="setting-body"
+    >
       <el-collapse :value="['1']">
         <el-collapse-item name="1">
           <template slot="title">
@@ -12,15 +18,29 @@
           </template>
 
           <div class="lc-field-body">
-            <el-form :model="config.customize" label-position="left" class="setting-body" label-width="90px">
+            <el-form
+              :model="config.customize"
+              label-position="left"
+              class="setting-body"
+              label-width="90px"
+            >
               <el-form-item label="装饰名称">
-                <el-input v-model="config.title" clearable />
+                <el-input
+                  v-model="config.title"
+                  clearable
+                />
               </el-form-item>
               <el-form-item label="装饰主颜色">
-                <ColorPicker v-model="config.customize.decorationColor1" :predefine="predefineThemeColors" />
+                <ColorPicker
+                  v-model="config.customize.decorationColor1"
+                  :predefine="predefineThemeColors"
+                />
               </el-form-item>
               <el-form-item label="装饰副颜色二">
-                <ColorPicker v-model="config.customize.decorationColor2" :predefine="predefineThemeColors" />
+                <ColorPicker
+                  v-model="config.customize.decorationColor2"
+                  :predefine="predefineThemeColors"
+                />
               </el-form-item>
             </el-form>
           </div>
@@ -32,11 +52,11 @@
 <script>
 import ColorPicker from 'packages/common/ColorPicker/index.vue'
 export default {
-  name: "BarSetting",
+  name: 'BarSetting',
   components: {
-     ColorPicker
+    ColorPicker
   },
-  data() {
+  data () {
     return {
       // 预设主题色
       predefineThemeColors: [
@@ -50,24 +70,24 @@ export default {
         '#00BC9D',
         '#ED7D32'
       ]
-    };
+    }
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
-    },
+    }
   },
   watch: {},
-  mounted() {
+  mounted () {
   },
   methods: {
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

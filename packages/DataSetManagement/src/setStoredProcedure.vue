@@ -86,7 +86,7 @@
                         @node-click="selectParentCategory"
                       >
                         <span
-                          slot-scope="{ node,data }"
+                          slot-scope="{ data }"
                           class="custom-tree-node"
                         >
                           <span>
@@ -647,7 +647,7 @@ export default {
     }
   },
   data () {
-    var validateName = (rule, value, callback) => {
+    const validateName = (rule, value, callback) => {
       nameCheckRepeat({
         id: this.datasetId,
         name: value,
@@ -697,7 +697,7 @@ export default {
         mode: 'text/x-mysql',
         lineNumbers: true,
         lineWrapping: true,
-        extraKey: { 'Ctrl': 'autocomplete' },
+        extraKey: { Ctrl: 'autocomplete' },
         hintOptions: {
           completeSingle: true
         }
@@ -862,7 +862,7 @@ export default {
         return
       }
       if (!nochecktosave) {
-        let temp = this.structurePreviewList.some(item => {
+        const temp = this.structurePreviewList.some(item => {
           return item.fieldDesc === '' || !item.hasOwnProperty('fieldDesc')
         }) // true-存在为空
         if (temp) {
@@ -881,7 +881,7 @@ export default {
             }
           }
           this.dataForm.paramConfig = this.dataForm.paramsList.length !== 0 ? JSON.stringify(this.dataForm.paramsList) : ''
-          let columnMap = {}
+          const columnMap = {}
           if (this.structurePreviewList.length > 0) {
             this.structurePreviewList.forEach(r => {
               columnMap[r.columnName] = r.fieldDesc
@@ -952,13 +952,13 @@ export default {
     // 获取参数配置
     buildParams () {
       this.isTest = true
-      let reg = /\${(.*?)}/g
-      let paramNames = [...new Set([...this.dataForm.sqlProcess.matchAll(reg)].map(item => item[1]))]
-      let names = this.dataForm.paramsList.map(item => item.name)
-      let params = []
+      const reg = /\${(.*?)}/g
+      const paramNames = [...new Set([...this.dataForm.sqlProcess.matchAll(reg)].map(item => item[1]))]
+      const names = this.dataForm.paramsList.map(item => item.name)
+      const params = []
       paramNames.forEach(name => {
         if (names.includes(name)) {
-          let param = this.dataForm.paramsList.find(item => item.name === name)
+          const param = this.dataForm.paramsList.find(item => item.name === name)
           params.push(param)
         } else {
           params.push({
@@ -1081,7 +1081,7 @@ export default {
     // 分类展开高亮
     setCurrentNode ($event) {
       if ($event) {
-        let key = this.dataForm.typeId || null
+        const key = this.dataForm.typeId || null
         this.$refs.categorySelectTree.setCurrentKey(key)
       }
     },
@@ -1176,8 +1176,8 @@ export default {
     },
     // 表头添加提示
     renderHeader (h, { column, index }) {
-      let labelLong = column.label.length // 表头label长度
-      let size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
+      const labelLong = column.label.length // 表头label长度
+      const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
       column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
       return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
     }

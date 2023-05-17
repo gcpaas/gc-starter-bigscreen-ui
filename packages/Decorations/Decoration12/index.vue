@@ -1,22 +1,25 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-decoration-12
-      :scanDur="config.customize.scanDur"
-      :haloDur="config.customize.scanDur"
-      :color="color"
       :key="updateKey"
+      :scan-dur="config.customize.scanDur"
+      :halo-dur="config.customize.scanDur"
+      :color="color"
     />
   </div>
 </template>
 <script>
-import DvDecoration12 from "@jiaminghi/data-view/lib/components/decoration12/src/main.vue";
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
+import DvDecoration12 from '@jiaminghi/data-view/lib/components/decoration12/src/main.vue'
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
 export default {
-  name: "Decoration12",
-  mixins: [refreshComponentMixin],
+  name: 'Decoration12',
   components: {
     DvDecoration12
   },
+  mixins: [refreshComponentMixin],
   props: {
     // 卡片的属性
     config: {
@@ -24,24 +27,24 @@ export default {
       default: () => ({})
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    color() {
+    color () {
       return this.config.customize.decorationColor1 ||
         this.config.customize.decorationColor2
         ? [
             this.config.customize.decorationColor1,
             this.config.customize.decorationColor2
           ]
-        : null;
+        : null
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

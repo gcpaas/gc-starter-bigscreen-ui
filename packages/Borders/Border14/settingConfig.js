@@ -26,7 +26,7 @@ const customConfig = {
     // 渐变色色值改变方向
     gradientDirection: 'to right',
     // 透明度
-    opacity: 100,
+    opacity: 100
   }
 }
 export const dataConfig = {

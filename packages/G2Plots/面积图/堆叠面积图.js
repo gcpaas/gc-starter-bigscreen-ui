@@ -16,12 +16,12 @@ const name = 'DuiChengMianJiTu'
 // 右侧配置项
 const setting = [
   {
-    label: "维度",
+    label: '维度',
     // 设置组件类型， select / input / colorPicker
-    type: "select",
+    type: 'select',
     // 字段
-    field: "xField",
-    optionField: "xField", // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
@@ -31,52 +31,52 @@ const setting = [
   },
   {
 
-    label: "指标",
+    label: '指标',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "yField",
+    field: 'yField',
     // 对应options中的字段
-    optionField: "yField",
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
     tabName: 'data'
   },
   {
-    label: "分组",
+    label: '分组',
     // 设置组件类型
-    type: "select",
+    type: 'select',
     // 字段
-    field: "seriesField",
+    field: 'seriesField',
     // 对应options中的字段
-    optionField: "seriesField",
+    optionField: 'seriesField',
     // 是否多选
     multiple: false,
     value: '',
-    tabName:'data'
+    tabName: 'data'
   },
   {
-    label: "曲线平滑",
-    type: "switch",            // 设置组件类型
-    field: "smooth", // 字段
-    optionField: "smooth",    // 对应options中的字段
+    label: '曲线平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
     value: false,
     tabName: 'custom'
   },
   {
-    label: "曲线平滑",
-    type: "switch",            // 设置组件类型
-    field: "smooth", // 字段
-    optionField: "smooth",    // 对应options中的字段
+    label: '曲线平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
     value: false,
     tabName: 'custom'
   },
   {
-    label: "从0基准线填充",
-    type: "switch",            // 设置组件类型
-    field: "startOnZero", // 字段
-    optionField: "startOnZero",    // 对应options中的字段
+    label: '从0基准线填充',
+    type: 'switch', // 设置组件类型
+    field: 'startOnZero', // 字段
+    optionField: 'startOnZero', // 对应options中的字段
     value: true,
     tabName: 'custom'
   },
@@ -117,150 +117,150 @@ const setting = [
 // 模拟数据
 const data = [
   {
-    "country": "北美",
-    "date": 1965,
-    "value": 1390.5
+    country: '北美',
+    date: 1965,
+    value: 1390.5
   },
   {
-    "country": "北美",
-    "date": 1966,
-    "value": 1469.5
+    country: '北美',
+    date: 1966,
+    value: 1469.5
   },
   {
-    "country": "北美",
-    "date": 1967,
-    "value": 1521.7
+    country: '北美',
+    date: 1967,
+    value: 1521.7
   },
   {
-    "country": "北美",
-    "date": 1968,
-    "value": 1615.9
+    country: '北美',
+    date: 1968,
+    value: 1615.9
   },
   {
-    "country": "北美",
-    "date": 1969,
-    "value": 1703.7
+    country: '北美',
+    date: 1969,
+    value: 1703.7
   }, {
-    "country": "中南美",
-    "date": 1965,
-    "value": 109.2
+    country: '中南美',
+    date: 1965,
+    value: 109.2
   },
   {
-    "country": "中南美",
-    "date": 1966,
-    "value": 115.7
+    country: '中南美',
+    date: 1966,
+    value: 115.7
   },
   {
-    "country": "中南美",
-    "date": 1967,
-    "value": 120.5
+    country: '中南美',
+    date: 1967,
+    value: 120.5
   },
   {
-    "country": "中南美",
-    "date": 1968,
-    "value": 128
+    country: '中南美',
+    date: 1968,
+    value: 128
   },
   {
-    "country": "中南美",
-    "date": 1969,
-    "value": 134.4
+    country: '中南美',
+    date: 1969,
+    value: 134.4
   }, {
-    "country": "欧洲",
-    "date": 1965,
-    "value": 1058.1
+    country: '欧洲',
+    date: 1965,
+    value: 1058.1
   },
   {
-    "country": "欧洲",
-    "date": 1966,
-    "value": 1089.7
+    country: '欧洲',
+    date: 1966,
+    value: 1089.7
   },
   {
-    "country": "欧洲",
-    "date": 1967,
-    "value": 1121.7
+    country: '欧洲',
+    date: 1967,
+    value: 1121.7
   },
   {
-    "country": "欧洲",
-    "date": 1968,
-    "value": 1196.6
+    country: '欧洲',
+    date: 1968,
+    value: 1196.6
   },
   {
-    "country": "欧洲",
-    "date": 1969,
-    "value": 1285.5
+    country: '欧洲',
+    date: 1969,
+    value: 1285.5
   }, {
-    "country": "CIS 地区",
-    "date": 1965,
-    "value": 593.3
+    country: 'CIS 地区',
+    date: 1965,
+    value: 593.3
   },
   {
-    "country": "CIS 地区",
-    "date": 1966,
-    "value": 630.9
+    country: 'CIS 地区',
+    date: 1966,
+    value: 630.9
   },
   {
-    "country": "CIS 地区",
-    "date": 1967,
-    "value": 663.2
+    country: 'CIS 地区',
+    date: 1967,
+    value: 663.2
   },
   {
-    "country": "CIS 地区",
-    "date": 1968,
-    "value": 687.8
+    country: 'CIS 地区',
+    date: 1968,
+    value: 687.8
   },
   {
-    "country": "CIS 地区",
-    "date": 1969,
-    "value": 719
+    country: 'CIS 地区',
+    date: 1969,
+    value: 719
   }, {
-    "country": "中东",
-    "date": 1965,
-    "value": 48.3
+    country: '中东',
+    date: 1965,
+    value: 48.3
   },
   {
-    "country": "中东",
-    "date": 1966,
-    "value": 50.4
+    country: '中东',
+    date: 1966,
+    value: 50.4
   },
   {
-    "country": "中东",
-    "date": 1967,
-    "value": 52.7
+    country: '中东',
+    date: 1967,
+    value: 52.7
   },
   {
-    "country": "中东",
-    "date": 1968,
-    "value": 55.6
+    country: '中东',
+    date: 1968,
+    value: 55.6
   },
   {
-    "country": "中东",
-    "date": 1969,
-    "value": 58.5
+    country: '中东',
+    date: 1969,
+    value: 58.5
   }, {
-    "country": "非洲",
-    "date": 1965,
-    "value": 60.6
+    country: '非洲',
+    date: 1965,
+    value: 60.6
   },
   {
-    "country": "非洲",
-    "date": 1966,
-    "value": 63.3
+    country: '非洲',
+    date: 1966,
+    value: 63.3
   },
   {
-    "country": "非洲",
-    "date": 1967,
-    "value": 64
+    country: '非洲',
+    date: 1967,
+    value: 64
   },
   {
-    "country": "非洲",
-    "date": 1968,
-    "value": 67.4
+    country: '非洲',
+    date: 1968,
+    value: 67.4
   },
   {
-    "country": "非洲",
-    "date": 1969,
-    "value": 68.9
-  },
+    country: '非洲',
+    date: 1969,
+    value: 68.9
+  }
 ]
 
 // 数据处理脚本
@@ -281,7 +281,7 @@ const option = {
         opacity: 1
       }
     }
-  },
+  }
   // areaStyle: {
   //   fill: "#94c6ff"
   // },
@@ -299,5 +299,3 @@ export default {
   setting,
   dataHandler
 }
-
-

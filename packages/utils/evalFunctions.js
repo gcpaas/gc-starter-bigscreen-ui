@@ -1,6 +1,6 @@
 function stringifyObjectFunctions (obj) {
   // 遍历对象属性
-  for (let key in obj) {
+  for (const key in obj) {
     const value = obj[key]
     // 如果属性值是函数类型，将函数转换为字符串
     if (typeof value === 'function') {

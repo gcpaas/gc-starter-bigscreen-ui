@@ -1,22 +1,25 @@
 <template>
-  <div style="width: 100%;height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%;height: 100%"
+    class="bs-design-wrap"
+  >
     <dv-decoration-2
+      :key="updateKey"
       :reverse="true"
       :color="color"
       :dur="config.customize.dur"
-      :key="updateKey"
     />
   </div>
 </template>
 <script>
-import DvDecoration2 from "@jiaminghi/data-view/lib/components/decoration2/src/main.vue";
-import { refreshComponentMixin } from "packages/mixins/refreshComponent";
+import DvDecoration2 from '@jiaminghi/data-view/lib/components/decoration2/src/main.vue'
+import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
 export default {
-  name: "Decoration2",
-  mixins: [refreshComponentMixin],
+  name: 'Decoration2',
   components: {
     DvDecoration2
   },
+  mixins: [refreshComponentMixin],
   props: {
     // 卡片的属性
     config: {
@@ -24,24 +27,24 @@ export default {
       default: () => ({})
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    color() {
+    color () {
       return this.config.customize.decorationColor1 ||
         this.config.customize.decorationColor2
         ? [
             this.config.customize.decorationColor1,
             this.config.customize.decorationColor2
           ]
-        : null;
+        : null
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
-};
+}
 </script>
 
 <style lang="scss" scoped>

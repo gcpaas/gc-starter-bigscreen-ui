@@ -85,7 +85,7 @@
                         @node-click="selectParentCategory"
                       >
                         <span
-                          slot-scope="{ node,data }"
+                          slot-scope="{ data }"
                           class="custom-tree-node"
                         >
                           <span>
@@ -394,7 +394,7 @@ export default {
     }
   },
   data () {
-    var validateName = (rule, value, callback) => {
+    const validateName = (rule, value, callback) => {
       nameCheckRepeat({
         id: this.datasetId,
         name: value,
@@ -457,7 +457,7 @@ export default {
         return
       }
       if (!nochecktosave) {
-        let temp = this.structurePreviewList.some(item => {
+        const temp = this.structurePreviewList.some(item => {
           return item.fieldDesc === '' || !item.hasOwnProperty('fieldDesc')
         }) // true-存在为空
         if (temp) {
@@ -468,7 +468,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 通过校验
-          let data = {
+          const data = {
             json: this.dataForm.json,
             fieldDesc: this.fieldDesc
           }
@@ -546,7 +546,7 @@ export default {
     },
     // 字段描述构建及同步
     buildFieldDesc () {
-      let fieldDesc = {}
+      const fieldDesc = {}
       this.structurePreviewList.forEach(field => {
         if (this.fieldDesc.hasOwnProperty(field.columnName)) {
           field.fieldDesc = this.fieldDesc[field.columnName]
@@ -598,7 +598,7 @@ export default {
         }
       } else {
         try {
-          let json = JSON.parse(this.dataForm.json)
+          const json = JSON.parse(this.dataForm.json)
           if (Object.prototype.toString.call(json) === '[object Object]') {
             // json为对象
             this.structurePreviewList = Object.keys(json).map(key => {
@@ -692,8 +692,8 @@ export default {
     },
     // 表头添加提示
     renderHeader (h, { column, index }) {
-      let labelLong = column.label.length // 表头label长度
-      let size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
+      const labelLong = column.label.length // 表头label长度
+      const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
       column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
       return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
     },
@@ -705,7 +705,7 @@ export default {
     // 分类展开高亮
     setCurrentNode ($event) {
       if ($event) {
-        let key = this.dataForm.typeId || null
+        const key = this.dataForm.typeId || null
         this.$refs.categorySelectTree.setCurrentKey(key)
       }
     },

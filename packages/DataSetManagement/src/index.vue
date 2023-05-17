@@ -363,7 +363,7 @@ export default {
         } else {
           this.tableData.forEach(row => {
             const dsIds = this.multipleSelection.map(ds => ds.id)
-            let i = dsIds.indexOf(row.id)
+            const i = dsIds.indexOf(row.id)
             if (i > -1) this.multipleSelection.splice(i, 1)
           })
         }
@@ -403,7 +403,7 @@ export default {
     },
     // 删除数据集
     delDataset (id) {
-      this.$confirm(`确定删除当前数据集吗?`, '提示', {
+      this.$confirm('确定删除当前数据集吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -486,7 +486,7 @@ export default {
           if (this.multiple && this.multipleSelection.length) {
             this.toggleRowSelection()
           } else if (this.curRow.id) {
-            let ds = this.tableData.find(item => item.id === this.curRow.id)
+            const ds = this.tableData.find(item => item.id === this.curRow.id)
             if (ds) this.curRow = ds
           }
         }
@@ -538,10 +538,10 @@ export default {
     mousemove (e) {
       this.event = e
       if (this.resize) {
-        let boxWidth = document.getElementById('box').getBoundingClientRect().width
+        const boxWidth = document.getElementById('box').getBoundingClientRect().width
         this.endX = e.clientX
-        let offset = document.getElementById('box').getBoundingClientRect().left > 300 ? 0 : 25
-        let moveLen = this.resize.left + (this.endX - this.startX) + offset
+        const offset = document.getElementById('box').getBoundingClientRect().left > 300 ? 0 : 25
+        const moveLen = this.resize.left + (this.endX - this.startX) + offset
         this.leftBox.style.width = moveLen / boxWidth * 100 + '%'
         this.rightBox.style.width = ((1 - moveLen / boxWidth) * 100) + '%'
         this.isPackUpTree = false
