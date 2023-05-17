@@ -8,6 +8,7 @@
       <el-color-picker
         slot="append"
         v-model="localValue"
+        popper-class="bs-color-picker"
         show-alpha
         :predefine="predefineColors"
       />
@@ -57,6 +58,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.bs-color-picker {
+  background-color: $bs-bg !important;
+
+  .el-input__inner {
+    background-color: $bs-bg;
+    color: $bs-value;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .border-color {

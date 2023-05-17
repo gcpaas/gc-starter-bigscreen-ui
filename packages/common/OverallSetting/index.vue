@@ -10,6 +10,7 @@
       <el-form-item label="推荐分辨率">
         <el-select
           v-model="resolutionRatioValue"
+          popper-class="bs-select"
           class="select"
           placeholder="请选择分辨率"
           clearable
@@ -39,6 +40,7 @@
       <el-form-item label="自适应模式">
         <el-select
           v-model="form.fitMode"
+          popper-class="bs-select"
           placeholder="自适应模式"
           clearable
         >
@@ -53,6 +55,7 @@
       <el-form-item label="主题">
         <el-select
           v-model="form.customTheme"
+          popper-class="bs-select"
           placeholder="请选择主题"
           clearable
         >
@@ -366,6 +369,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.bs-select{
+  background-color: $bs-bg !important;
+  .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: $bs-component;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .bs-overall-wrap {
