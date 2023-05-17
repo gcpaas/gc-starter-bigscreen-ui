@@ -73,7 +73,7 @@ export default {
     }
 
     .el-input-group__append {
-      background-color: $dark-bg;
+      background-color: $bs-bg;
 
       .el-color-picker--mini {
         position: absolute;
