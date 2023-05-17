@@ -375,17 +375,15 @@ export default {
 }
 
 .toolbar {
-  width: 100%;
-  bottom: 0;
-  z-index: 10;
-  height: 60px;
-  position: absolute;
-  text-align: center;
-  padding: 10px;
-
-  .el-button {
-    margin-right: 10px;
-  }
+  width: 320px;
+    bottom:0;
+    z-index: 10;
+    position: fixed;
+    text-align: center;
+    bottom: 16px;
+    .el-button{
+      margin-right: 10px;
+    }
 }
 
 /deep/ .el-drawer__wrapper {

@@ -12,13 +12,6 @@
 
     <div class="action-bar action-bar-top">
       <div class="choose-layout-item item-wrap" />
-      <!-- <el-button
-        class="top-button"
-        type="primary"
-        @click.native="getTemplateList('bigScreen')"
-      >
-        模板
-      </el-button> -->
       <el-button
         class="top-button"
         :loading="saveAndPreviewLoading"
