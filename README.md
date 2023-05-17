@@ -62,7 +62,7 @@ registerConfig({
 	},
 	// 自定义http配置
   httpConfigs: {
-		baseURL: '' // 必填 
+		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
     // ...其他，比如请求头
     // headers: {
     //   'Content-Type': 'application/json; charset=utf-8',
@@ -77,8 +77,10 @@ registerConfig({
 
 ````js
 registerConfig({
-  // 后端大屏对应接口baseUrl地址
-  baseUrl: window.baseURL
+  // 自定义http配置
+  httpConfigs: {
+		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+	}
 	// ...	
 }, router)
 ````
@@ -88,8 +90,9 @@ registerConfig({
 
 ```js
 registerConfig({
-  // 后端大屏对应接口baseUrl地址
-  baseUrl: process.env.VUE_APP_BASE_URL
+  httpConfigs: {
+		baseURL: process.env.VUE_APP_BASE_URL
+	}
 	// ...	
 }, router)
 ```
@@ -290,7 +293,9 @@ npm install
 ```js
 window.ENV = 'development'
 var developmentConfig = {
-  baseUrl: 'http://127.0.0.1:8066/bigScreen'
+  httpConfigs: {
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer'
+  }
 }
 // 必须的
 window.CONFIG = configDeepMerge(window.CONFIG, developmentConfig)
@@ -301,7 +306,9 @@ window.CONFIG = configDeepMerge(window.CONFIG, developmentConfig)
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 // 因为此工程的配置放到window的CONFIG对象中，所以从这里取出来。自己的项目有可能从其他地方获取
 registerConfig({
-  baseUrl: window.CONFIG?.baseUrl
+  httpConfigs: {
+		baseURL: window.CONFIG?.baseUrl
+	}
 })
 ```
 

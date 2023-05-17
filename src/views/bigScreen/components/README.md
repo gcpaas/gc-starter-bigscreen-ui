@@ -1,6 +1,26 @@
-# <div data-nosnippet="true">gc-starter-bigscreen-ui</div>
-[![visitors](https://visitor-badge.laobi.icu/badge?page_id=gcpaas.gc-starter-bigscreen-ui)](https://github.com/gcpaas/gc-starter-bigscreen-ui)
-[![npm](https://img.shields.io/npm/dt/gc-starter-bigscreen-ui?label=gc-starter-bigscreen-ui&logo=npm)](https://www.npmjs.com/package/gc-starter-bigscreen-ui)
+## 📚简介
+<p align="center">
+	<img alt="logo" width="50" src="./doc/logo.png">
+</p>
+
+🔥基于SpringBoot、MyBatisPlus、ElementUI、G2Plot、Echarts等技术栈的大屏设计器，具备大屏目录管理、大屏设计、大屏预览能力，支持MySQL、Oracle、PostgreSQL、JSON等数据集接入，对于复杂数据处理还可以使用Groovy脚本数据集，使用简单，完全免费，代码开源。
+
+<p align="center">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gcpaas/gc-starter-bigscreen-ui?style=social">
+	<img alt="GitHub forks" src="https://img.shields.io/github/forks/gcpaas/gc-starter-bigscreen-ui?style=social">
+	<img alt="GitHub license" src="https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg">
+  	<img alt="npm" src="https://img.shields.io/npm/v/gc-starter-bigscreen-ui">
+	<img alt="Company" src="https://img.shields.io/badge/Author-科大国创云网科技有限公司-blue.svg">
+  	<img alt="QQ" src="https://img.shields.io/badge/QQ-322302395-blue.svg">
+</p>
+
+-------------------------------------------------------------------------------
+
+## 📝 文档
+
+[📘中文文档](https://www.yuque.com/chuinixiongkou/bigscreen/index)
+
+
 # 大屏组件使用
 ## 一、安装
 
@@ -26,7 +46,7 @@ import { registerConfig } from 'gc-starter-bigscreen-ui'
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
 registerConfig({
   // 路由
- 	routers: {
+  routers: {
     // 大屏设计路由
     designUrl: '/design',
     // 预览路由
@@ -42,7 +62,7 @@ registerConfig({
 	},
 	// 自定义http配置
   httpConfigs: {
-		baseURL: '' // 必填 
+		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
     // ...其他，比如请求头
     // headers: {
     //   'Content-Type': 'application/json; charset=utf-8',
@@ -52,24 +72,27 @@ registerConfig({
 
 ```
 
-Q: 如何使用系统内已经存在的配置，比如baseURL 在window.baseURL上已经绑定，根据环境不同这个baseURL不同而不一样，怎么写。
-A:  可这样写
+- Q: 如何使用系统内已经存在的配置，比如baseURL 在window.baseURL上已经绑定，根据环境不同这个baseURL不同而不一样，怎么写。
+- A:  可这样写
 
 ````js
 registerConfig({
-  // 后端大屏对应接口baseUrl地址
-  baseUrl: window.baseURL
+  // 自定义http配置
+  httpConfigs: {
+		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+	}
 	// ...	
 }, router)
 ````
 
-Q: 如何使用在 .env.prod   、 .env.dev中的变量？
-A: 比如，在 .env.prod   、 .env.dev中定义了 VUE_APP_BASE_URL （必须以VUE_APP_开头），在js中这么取即可
+- Q: 如何使用在 .env.prod   、 .env.dev中的变量？
+- A: 比如，在 .env.prod   、 .env.dev中定义了 VUE_APP_BASE_URL （必须以VUE_APP_开头），在js中这么取即可
 
 ```js
 registerConfig({
-  // 后端大屏对应接口baseUrl地址
-  baseUrl: process.env.VUE_APP_BASE_URL
+  httpConfigs: {
+		baseURL: process.env.VUE_APP_BASE_URL
+	}
 	// ...	
 }, router)
 ```
@@ -128,8 +151,6 @@ export default {
 </script>
 ```
 
-
-
 #### 3.2 设计态页面
 
 > 在组件中引入设计器组件
@@ -138,7 +159,7 @@ export default {
 ```vue
 <template>
   <!-- code为大屏设计时的编码，你可以携带到本页面路由中获取 -->
-  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :height="height" :code="code" />
+  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :code="code" />
 </template>
 <script>
 import { BigScreenDesign } from "gc-starter-bigscreen-ui";
@@ -176,10 +197,7 @@ export default {
   },
 };
 </script>
-
 ```
-
-
 
 #### 3.3 运行态页面
 
@@ -243,7 +261,7 @@ export default {
   }
 </script>
 ```
+
 #### 3.6 创建路由
 
 为 步骤3 中的页面创建路由，即可使用，路由和registerConfig注册的路径保持一致
-
