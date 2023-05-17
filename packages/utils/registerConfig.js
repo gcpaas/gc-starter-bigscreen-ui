@@ -42,23 +42,23 @@ function registerRouters (config, router) {
           }
         },
         {
-          path: config?.routers?.dataUrl || '/data-sources',
-          redirect: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
-          component: () => import('packages/DataSourceManagement/index'),
+          path: config?.routers?.dsManageUrl || '/data-sources',
+          redirect: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
+          component: () => import('packages/DataManagement'),
           meta: {
             title: '数据源管理页面'
           },
           children: [
             {
               path: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
-              component: () => import('packages/DataSourceManagement/dataSourceSet/index'),
+              component: () => import('packages/DataSourceManagement'),
               meta: {
                 title: '数据源管理'
               }
             },
             {
-              path: config?.routers?.dataSourceSetUrl || '/data-sources/data-set-configuration',
-              component: () => import('packages/DataSourceManagement/dataSetConfig/index'),
+              path: config?.routers?.dataSetUrl || '/data-sources/data-set-configuration',
+              component: () => import('packages/DataSetManagement'),
               meta: {
                 title: '数据集管理'
               }
@@ -66,11 +66,6 @@ function registerRouters (config, router) {
           ]
         }
       ]
-    },
-    {
-      path: config?.routers?.pageManagementUrl || '/pages',
-      name: 'Management',
-      component: () => require.ensure([], () => require('packages/BigScreenManagement'))
     },
     {
       path: config?.routers?.designUrl || '/big-screen/design',
@@ -81,16 +76,6 @@ function registerRouters (config, router) {
       path: config?.routers?.previewUrl || '/big-screen/preview',
       name: 'Preview',
       component: () => require.ensure([], () => require('packages/BigScreenRun'))
-    },
-    {
-      path: config?.routers?.dataSourceUrl || '/data-sources',
-      name: 'DataSourceManagement',
-      component: () => require.ensure([], () => require('packages/DataSourceManagement/dataSourceSet'))
-    },
-    {
-      path: config?.routers?.dataSourceSetUrl || '/data-sources/data-source-sets',
-      name: 'DataSetManagement',
-      component: () => require.ensure([], () => require('packages/DataSourceManagement/dataSetConfig'))
     }
   ]
   // 如果router有addRoutes方法

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { addOrUpdateTree } from '../../../service/CommonService'
+import { addOrUpdateTree } from 'packages/utils/datasetConfigService'
 export default {
   name: 'OriginalTableCategory',
   props: {

@@ -530,8 +530,8 @@
 </template>
 
 <script>
-import { getDatasetTypeList, nameCheckRepeat, getOriginalTableDetail, addOrUpdateOriginal, getOriginalTableFieldInfo, getOriginalTableDetailsById } from '../../../service/DatasetConfigService'
-import { datasourcePage, getSourceTable, getSourceView } from '../../../service/DataSourceService'
+import { getDatasetTypeList, nameCheckRepeat, getOriginalTableDetail, addOrUpdateOriginal, getOriginalTableFieldInfo, getOriginalTableDetailsById } from 'packages/utils/datasetConfigService'
+import { datasourcePage, getSourceTable, getSourceView } from 'packages/utils/dataSourceService'
 import _ from 'lodash'
 export default {
   props: {

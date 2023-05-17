@@ -616,7 +616,7 @@ export default {
     // 根据数据集来获取数据集详情
     getDataSetDetailsById (id, type) {
       this.config.dataSource.businessKey = id
-      getDataSetDetails(this.appCode, id).then(res => {
+      getDataSetDetails(id).then(res => {
         this.fieldsList = res.fields
         // 初始化时以组件本来的参数设置为主
         if (type === 'initial') {

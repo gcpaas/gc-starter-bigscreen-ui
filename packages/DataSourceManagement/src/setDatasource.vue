@@ -182,7 +182,7 @@
 </template>
 
 <script>
-import { checkRepeat, sourceLinkTest, addOrUpdateDataSource } from '../../../service/DataSourceService'
+import { checkRepeat, sourceLinkTest, addOrUpdateDataSource } from 'packages/utils/dataSourceService'
 export default {
   props: {
     appCode: {

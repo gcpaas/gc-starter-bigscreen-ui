@@ -123,8 +123,8 @@
 </template>
 
 <script>
-import '../../../assets/styles/dataSource/index.scss'
-import { sourceLinkTest, datasourcePage, sourceRemove } from '../../../service/DataSourceService'
+import 'packages/assets/style/dataSource.scss'
+import { sourceLinkTest, datasourcePage, sourceRemove } from 'packages/utils/dataSourceService'
 import setDatasource from './setDatasource.vue'
 import _ from 'lodash'
 import { pageMixins } from 'packages/mixins/page'

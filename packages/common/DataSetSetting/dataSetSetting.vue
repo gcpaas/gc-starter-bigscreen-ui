@@ -7,7 +7,7 @@
     width="80%"
     top="10vh"
   >
-    <DatasetConfig
+    <DataSetManagement
       ref="dataSetSetting"
       :is-dialog="true"
       :ds-id="dataSetId"
@@ -27,11 +27,11 @@
   </el-dialog>
 </template>
 <script>
-import { DatasetConfig } from 'packages/DataSet/index.js'
-import 'packages/DataSet/assets/styles/dataSource/index.scss'
+import DataSetManagement  from 'packages/DataSetManagement/index.js'
+import 'packages/assets/style/dataSource.scss'
 export default {
   name: 'DataSetSetting',
-  components: { DatasetConfig },
+  components: { DataSetManagement },
   props: {
     config: {
       type: Object,

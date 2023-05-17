@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-parsing-error -->
 <template>
   <div
     v-loading="saveloading"
@@ -7,7 +6,7 @@
   >
     <div class="header">
       <el-page-header
-        :content="!isEdit ? '存储过程数据集详情' : dataForm.id ? '存储过程数据集编辑' : '存储过程数据集新增'"
+        :content="!isEdit ? '脚本数据集详情' : dataForm.id ? '脚本数据集编辑' : '脚本数据集新增'"
         style="padding: 16px 16px 0"
       />
       <el-button
@@ -113,27 +112,6 @@
                 />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item
-                label="数据源"
-                prop="sourceId"
-              >
-                <el-select
-                  v-model="dataForm.sourceId"
-                  clearable
-                  filterable
-                  placeholder="请选择数据源"
-                  :disabled="!isEdit"
-                >
-                  <el-option
-                    v-for="source in sourceList"
-                    :key="source.id"
-                    :label="source.sourceName"
-                    :value="source.id"
-                  />
-                </el-select>
-              </el-form-item>
-            </el-col>
           </el-row>
         </el-form>
         <div
@@ -143,34 +121,18 @@
           <div>
             <codemirror
               ref="targetInSql"
-              v-model="dataForm.sqlProcess"
+              v-model="dataForm.script"
               :options="cOptions"
               class="codeStyle"
               style="margin-top: 2px"
             />
-            <div style="background: #f6f7fb;line-height: 32px; padding-left: 10px;">
-              示例：
-              <strong v-if="dataForm.curingType === '3'">call 存储过程名称(<span style="color: red;">${参数名称}</span>,?)</strong>
-              <strong v-else><br>
-                1、常规使用 select * from table where table_field = <span style="color: red;">${参数名称}</span><br>
-                2、标签使用
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  content="<参数名称></参数名称>为非空标签, 当该参数值为空时, 标签部分不进行处理"
-                  placement="top-start"
-                ><i class="el-icon-question" />
-                </el-tooltip>
-                select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
-              </strong>
-            </div>
           </div>
           <div style="text-align: center; padding: 16px 0;">
             <el-button
               type="primary"
-              @click="buildParams"
+              @click="toExecute"
             >
-              运行
+              执行
             </el-button>
           </div>
         </div>
@@ -182,7 +144,7 @@
         <div class="right-setting">
           <div class="paramConfig">
             <div class="title-style">
-              存储过程参数
+              脚本参数
               <el-button
                 type="text"
                 style="float: right;border: none;margin-top: -4px;"
@@ -257,7 +219,10 @@
       <div class="result-view">
         数据预览
       </div>
-      <div class="table-box is-Edit">
+      <div
+        v-loading="tableLoading"
+        class="table-box is-Edit"
+      >
         <el-table
           align="center"
           :data="dataPreviewList"
@@ -277,9 +242,6 @@
             </template>
           </el-table-column>
         </el-table>
-        <div style="padding: 12px 0 0;">
-          <span v-show="dataPreviewList.length">数据预览中，存储过程仅展示20条数据</span>
-        </div>
       </div>
     </div>
     <div
@@ -334,12 +296,6 @@
               />
               <el-table-column
                 align="center"
-                show-overflow-tooltip
-                prop="columnType"
-                label="字段类型"
-              />
-              <el-table-column
-                align="center"
                 prop="fieldDesc"
                 label="字段描述"
               >
@@ -351,22 +307,6 @@
                     class="labeldsc"
                   />
                   <span v-else>{{ scope.row.fieldDesc }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="orderNum"
-                label="字段排序"
-                sortable
-              >
-                <template slot-scope="scope">
-                  <el-input
-                    v-if="isEdit"
-                    v-model="scope.row.orderNum"
-                    size="small"
-                    class="labeldsc"
-                  />
-                  <span v-else>{{ scope.row.orderNum }}</span>
                 </template>
               </el-table-column>
             </el-table>
@@ -427,12 +367,6 @@
           />
           <el-table-column
             align="center"
-            show-overflow-tooltip
-            prop="columnType"
-            label="字段类型"
-          />
-          <el-table-column
-            align="center"
             prop="fieldDesc"
             label="字段描述"
           >
@@ -444,22 +378,6 @@
                 class="labeldsc"
               />
               <span v-else>{{ scope.row.fieldDesc }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            prop="orderNum"
-            label="字段排序"
-            sortable
-          >
-            <template slot-scope="scope">
-              <el-input
-                v-if="isEdit"
-                v-model="scope.row.orderNum"
-                size="small"
-                class="labeldsc"
-              />
-              <span v-else>{{ scope.row.orderNum }}</span>
             </template>
           </el-table-column>
         </el-table>
@@ -477,7 +395,7 @@
     </el-dialog>
     <!-- 参数配置 -->
     <el-dialog
-      title="存储过程参数配置"
+      title="脚本参数配置"
       :visible.sync="paramsVisible"
       width="1000px"
       append-to-body
@@ -496,7 +414,17 @@
             prop="name"
             label="参数名称"
             align="center"
-          />
+          >
+            <template slot-scope="scope">
+              <el-input
+                v-model="scope.row.name"
+                :disabled="!isSet"
+                placeholder="请输入名称"
+                clearable
+                @change="checkParamsName(scope.row)"
+              />
+            </template>
+          </el-table-column>
           <el-table-column
             prop="type"
             label="参数类型"
@@ -508,6 +436,7 @@
               <el-select
                 v-model="scope.row.type"
                 placeholder="请选择"
+                :disabled="!isSet"
               >
                 <el-option
                   v-for="item in typeSelect"
@@ -526,7 +455,10 @@
             filterable
           >
             <template slot-scope="scope">
-              <el-radio-group v-model="scope.row.require">
+              <el-radio-group
+                v-model="scope.row.require"
+                :disabled="!isSet"
+              >
                 <el-radio :label="1">
                   是
                 </el-radio>
@@ -565,19 +497,19 @@
             <template slot-scope="scope">
               <el-input
                 v-model="scope.row.remark"
+                :disabled="!isSet"
                 clearable
                 placeholder="请输入备注"
               />
             </template>
           </el-table-column>
           <el-table-column
+            v-if="isSet"
             label="操作"
             width="105"
             align="center"
           >
-            <template
-              slot="header"
-            >
+            <template slot="header">
               <el-button
                 icon="el-icon-plus"
                 type="text"
@@ -615,10 +547,10 @@
 </template>
 
 <script>
-import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from '../../../service/DatasetConfigService'
-import { datasourcePage } from '../../../service/DataSourceService'
+import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset, datasetExecute } from 'packages/utils/datasetConfigService'
 import { codemirror } from 'vue-codemirror'
-import 'codemirror/mode/sql/sql.js'
+// import 'codemirror/mode/sql/sql.js'
+import 'codemirror/mode/groovy/groovy'
 import _ from 'lodash'
 export default {
   components: {
@@ -665,36 +597,21 @@ export default {
         id: '',
         name: '',
         typeId: '',
-        code: '',
-        curingType: '3',
         remark: '',
-        sourceId: '',
-        sqlProcess: 'call ',
         script: '',
-        paramsList: [],
-        paramConfig: '',
-        cacheCoherence: null,
-        fieldDesc: '',
-        fieldJson: '',
-        processType: '2'
+        paramsList: []
       },
       rules: {
         name: [
           { required: true, message: '请输入数据集名称', trigger: 'blur' },
           { validator: validateName, trigger: 'blur' }
-        ],
+        ]
         // typeId: [
         //   {required: true, message: '请选择分组', trigger: 'blur'}
-        // ],
-        curingType: [
-          { required: true, message: '请选择固化形式', trigger: 'blur' }
-        ],
-        sourceId: [
-          { required: true, message: '请选择数据源', trigger: 'blur' }
-        ]
+        // ]
       },
       cOptions: {
-        mode: 'text/x-mysql',
+        mode: 'text/x-groovy',
         lineNumbers: true,
         lineWrapping: true,
         extraKey: { 'Ctrl': 'autocomplete' },
@@ -702,13 +619,10 @@ export default {
           completeSingle: true
         }
       },
-      sourceList: [],
       activeName: 'data',
       dataPreviewList: [],
       structurePreviewList: [],
       structurePreviewListCopy: [],
-      msg: '',
-      exception: '',
       typeSelect: [{
         value: 'String'
       }, {
@@ -722,143 +636,35 @@ export default {
       }],
       typeName: '',
       categoryData: [],
-      passTest: false, // 通过测试
-      current: 1,
-      size: 10,
-      totalCount: 0,
       fieldDescVisible: false,
       fieldsetVisible: false,
       paramsVisible: false,
       tableLoading: false,
       saveloading: false,
       saveText: '',
-      tableNameList: [],
       paramsListCopy: [],
-      isTest: false // 是否执行测试
-    }
-  },
-  computed: {
-    checkPass () {
-      return {
-        sqlProcess: this.dataForm.sqlProcess,
-        script: this.dataForm.script,
-        paramsList: this.dataForm.paramsList
-      }
+      isSet: false, // 参数是否配置状态
+      passTest: false,
+      fieldDesc: null // 字段描述
     }
   },
   watch: {
-    checkPass: {
-      handler (value) {
-        this.passTest = false
-      },
-      deep: true
+    'dataForm.script' () {
+      this.passTest = false
     }
   },
   mounted () {
     this.init()
   },
   methods: {
-    // 打开参数配置
-    openParamsConfig () {
-      this.isTest = false
-      this.paramsVisible = true
-    },
-    // 取消操作
-    cancelParam () {
-      this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-      this.paramsVisible = false
-    },
-    // 设置SQL参数
-    setParam () {
-      this.dataForm.paramsList = _.cloneDeep(this.paramsListCopy)
-      if (this.isTest) {
-        this.datasetTest()
-      }
-      this.paramsVisible = false
-    },
-    // 取消操作
-    cancelField () {
-      this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
-      this.fieldsetVisible = false
-    },
-    // 设置输出字段
-    setField () {
-      this.structurePreviewList = _.cloneDeep(this.structurePreviewListCopy)
-      this.fieldsetVisible = false
-    },
-    // 每页大小改变触发
-    sizeChangeHandle (value) {
-      this.size = value
-      this.current = 1
-      if (this.dataForm.processType === '2') {
-        this.datasetTest(false)
-      }
-    },
-    // 当前页数改变
-    currentChangeHandle (value) {
-      this.current = value
-      if (this.dataForm.processType === '2') {
-        this.datasetTest(false)
-      }
-    },
-    // 表视图切换，sql加工相关信息置空
-    curingTypeChoose (value) {
-      if (value === '3') {
-        if (this.dataForm.sqlProcess === 'select ') {
-          this.dataForm.sqlProcess = 'call '
-        }
-      } else {
-        if (this.dataForm.sqlProcess === 'call ') {
-          this.dataForm.sqlProcess = 'select '
-        }
-      }
-      if ((!['select ', 'call '].includes(this.dataForm.sqlProcess) && this.dataForm.sqlProcess !== '') || this.dataForm.sourceId !== '' || this.dataForm.paramsList.length > 0) {
-        this.$confirm('结果固化形式切换，表和视图处理情况不同，建议清空sql加工配置数据，是否清空数据？', '提示', {
-          confirmButtonText: '是',
-          cancelButtonText: '否',
-          type: 'warning'
-        }).then(() => {
-          this.curingTypeChooseClear(value)
-        }).catch(() => {
-        })
-      } else {
-        this.curingTypeChooseClear(value)
-      }
-    },
-    curingTypeChooseClear (value) {
-      // 数据源id置空
-      this.dataForm.sourceId = ''
-      // sql脚本置空
-      this.dataForm.sqlProcess = value === '3' ? 'call ' : 'select '
-      this.passTest = false
-      // 参数配置信息置空
-      this.dataForm.paramsList = []
-      this.paramsListCopy = []
-      if (this.dataForm.id !== '') {
-        getDatasetInfo(this.datasetId).then(data => {
-          if (data.curingType === this.dataForm.curingType) {
-            this.dataForm.sourceId = data.sourceId
-            this.dataForm.sqlProcess = data.sqlProcess
-            this.dataForm.paramsList = data.paramConfig !== '' ? JSON.parse(data.paramConfig) : []
-            this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-            this.passTest = true
-          }
-        })
-      }
-    },
-    // 保存
+    // 保存数据集
     save (formName, nochecktosave = false) {
       if (this.passTest === false) {
-        this.$message.error('请确保数据集SQL加工脚本不为空且测试通过')
+        this.$message.error('请确保脚本不为空且执行通过')
         return
       }
-      // if (this.structurePreviewList.some(item => item.sourceTable == '')) {
-      //   this.$message.warning('字段来源不能为空')
-      //   this.fieldDescEdit()
-      //   return
-      // }
       if (!this.structurePreviewList.length) {
-        this.$message.warning('该存储过程未生成输出字段，请重新检查')
+        this.$message.warning('该执行脚本未生成输出字段，请重新检查')
         return
       }
       if (!nochecktosave) {
@@ -880,60 +686,64 @@ export default {
               return
             }
           }
-          this.dataForm.paramConfig = this.dataForm.paramsList.length !== 0 ? JSON.stringify(this.dataForm.paramsList) : ''
-          let columnMap = {}
-          if (this.structurePreviewList.length > 0) {
-            this.structurePreviewList.forEach(r => {
-              columnMap[r.columnName] = r.fieldDesc
-            })
-            this.dataForm.fieldDesc = JSON.stringify(columnMap)
-          }
-          this.dataForm.fieldJson = this.structurePreviewList.length ? JSON.stringify(this.structurePreviewList) : ''
           this.saveloading = true
           this.saveText = '正在保存...'
-          if (this.dataForm.id === '') {
-            datasetAdd({
-              ...this.dataForm,
-              moduleCode: this.appCode,
-              editable: this.appCode ? 1 : 0
-            }).then(res => {
-              this.$message.success('保存成功')
-              this.$parent.init(false)
-              this.$parent.setType = null
-              this.saveloading = false
-              this.saveText = ''
-            }).catch(() => {
-              this.saveloading = false
-              this.saveText = ''
-            })
-          } else {
-            datasetUpdate({
-              ...this.dataForm,
-              moduleCode: this.appCode,
-              editable: this.appCode ? 1 : 0
-            }).then(res => {
-              this.$message.success('保存成功')
-              this.$parent.init(false)
-              this.$parent.setType = null
-              this.saveloading = false
-              this.saveText = ''
-            }).catch(() => {
-              this.saveloading = false
-              this.saveText = ''
-            })
+          let data = {
+            script: this.dataForm.script,
+            fieldDesc: this.fieldDesc,
+            paramsList: this.dataForm.paramsList
           }
-          this.saveloading = false
-          this.saveText = ''
+          datasetAddorUpdate({
+            id: this.datasetId,
+            name: this.dataForm.name,
+            typeId: this.dataForm.typeId,
+            remark: this.dataForm.remark,
+            datasetType: 'script',
+            moduleCode: this.appCode,
+            editable: this.appCode ? 1 : 0,
+            data: JSON.stringify(data)
+          }).then(() => {
+            this.$message.success('保存成功')
+            this.$parent.init(false)
+            this.$parent.setType = null
+            this.saveloading = false
+            this.saveText = ''
+          }).catch(() => {
+            this.saveloading = false
+            this.saveText = ''
+          })
         } else {
           return false
         }
       })
     },
+    // 取消操作
+    cancelField () {
+      this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
+      this.fieldsetVisible = false
+    },
+    // 设置输出字段
+    setField () {
+      this.structurePreviewList = _.cloneDeep(this.structurePreviewListCopy)
+      if (this.structurePreviewList.length) {
+        this.fieldDesc = {}
+        this.structurePreviewList.forEach(key => {
+          this.fieldDesc[key.columnName] = key.fieldDesc
+        })
+      } else {
+        this.fieldDesc = null
+      }
+      this.fieldsetVisible = false
+    },
     // 字段值填充
     fieldDescFill () {
+      this.fieldDesc = {}
       this.structurePreviewList.forEach(field => {
         if (field.fieldDesc === '' || !field.hasOwnProperty('fieldDesc')) {
           field.fieldDesc = field.columnName
+          this.fieldDesc[field.columnName] = field.columnName
+        } else {
+          this.fieldDesc[field.columnName] = field.fieldDesc
         }
       })
       this.save('form')
@@ -946,132 +756,90 @@ export default {
     },
     // 继续保存
     toSave () {
+      this.fieldDesc = {}
+      this.structurePreviewList.forEach(field => {
+        this.fieldDesc[field.columnName] = field.fieldDesc
+      })
       this.save('form', true)
       this.fieldDescVisible = false
     },
-    // 获取参数配置
-    buildParams () {
-      this.isTest = true
-      let reg = /\${(.*?)}/g
-      let paramNames = [...new Set([...this.dataForm.sqlProcess.matchAll(reg)].map(item => item[1]))]
-      let names = this.dataForm.paramsList.map(item => item.name)
-      let params = []
-      paramNames.forEach(name => {
-        if (names.includes(name)) {
-          let param = this.dataForm.paramsList.find(item => item.name === name)
-          params.push(param)
-        } else {
-          params.push({
-            name: name,
-            type: 'String',
-            value: '',
-            status: 1,
-            require: 0,
-            remark: ''
-          })
+    // 字段描述构建及同步
+    buildFieldDesc () {
+      let fieldDesc = {}
+      this.structurePreviewList.forEach(field => {
+        if (this.fieldDesc.hasOwnProperty(field.columnName)) {
+          field.fieldDesc = this.fieldDesc[field.columnName]
         }
+        fieldDesc[field.columnName] = field.fieldDesc
       })
-      this.dataForm.paramsList = _.cloneDeep(params)
-      this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-      if (this.dataForm.paramsList.length) {
-        this.paramsVisible = true
-      } else {
-        this.datasetTest()
-      }
+      this.fieldDesc = fieldDesc
     },
-    // 数据集测试
-    datasetTest (val = true) {
-      if (this.dataForm.sourceId === '') {
-        this.$message.error('请选择数据源')
-        return
-      }
-      if (this.dataForm.sqlProcess === '') {
-        this.$message.error('请输入数据集SQL加工脚本')
-        return
-      }
-      if (this.dataForm.paramsList.length > 0) {
-        const names = this.dataForm.paramsList.map(value => value.name)
-        const namesSet = new Set(names)
-        if (namesSet.size !== names.length) {
-          this.$message.error('参数名称不能重复，请重新输入')
-          return
-        }
-      }
-      // 点击测试初始化分页当前页为1
-      if (val === true) {
-        this.current = 1
+    // 脚本执行
+    scriptExecute (isInit = false) {
+      let data = {
+        script: this.dataForm.script,
+        fieldDesc: this.fieldDesc,
+        paramsList: this.paramsListCopy
       }
       this.saveloading = true
-      sqlTest({
-        datasetId: this.dataForm.id,
-        sqlProcess: this.dataForm.sqlProcess,
-        script: this.dataForm.script,
-        paramConfig: this.dataForm.paramsList.length !== 0 ? JSON.stringify(this.dataForm.paramsList) : '',
-        sourceId: this.dataForm.sourceId,
-        current: this.current,
-        size: this.size,
-        curingType: this.dataForm.curingType,
-        dataSetCode: this.dataForm.code,
-        processType: '2'
+      datasetExecute({
+        params: this.paramsListCopy,
+        dataSetType: 'script',
+        data: JSON.stringify(data)
       }).then(res => {
-        if (res.code === 500) {
-          this.$message.error('数据查询失败：' + res.msg)
-          this.exception = res.exception
-          this.msg = res.msg
-          this.passTest = false
-        } else {
-          this.dataPreviewList = res.dataMap.dataPreview
-          this.structurePreviewList = res.dataMap.structurePreview
-          // 输出字段描述合并
-          this.structurePreviewList.forEach(item => {
-            const field = this.structurePreviewListCopy.find(_item => _item.columnName === item.columnName)
-            if (field) {
-              item.fieldDesc = field.fieldDesc
-            }
-          })
-          this.structurePreviewList.forEach(item => {
-            if (!item.hasOwnProperty('orderNum')) {
-              this.$set(item, 'orderNum', 0)
-            }
-            if (!item.hasOwnProperty('sourceTable')) {
-              this.$set(item, 'sourceTable', '')
-            }
-            if (!item.hasOwnProperty('fieldDesc')) {
-              this.$set(item, 'fieldDesc', '')
-            }
-          })
-          this.totalCount = res.totalCount
-          this.tableNameList = res.tableNameList
-          if (this.tableNameList && this.tableNameList.length === 1) {
-            this.structurePreviewList.forEach(item => {
-              item.sourceTable = this.tableNameList[0]
-            })
-          }
-          this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
-          this.dataForm.cacheCoherence = res.cacheCoherence
-          let paramsNameCheck = false
-          this.dataForm.paramsList.forEach(param => {
-            const checkList = this.structurePreviewList.filter(item => item.columnName === param.name)
-            if (checkList.length) {
-              paramsNameCheck = true
-              param.name = ''
-            }
-          })
-          if (paramsNameCheck) {
-            this.$message.warning('参数名称不可以与字段名相同！')
-            this.passTest = false
-          } else {
-            if (val) this.$message.success('测试成功')
-            this.exception = ''
-            this.msg = ''
-            this.passTest = true
-          }
+        if (!isInit) {
+          this.$message.success('脚本执行通过')
         }
+        this.dataPreviewList = res.length ? res : []
+        this.structurePreviewList = []
+        if (res.length) {
+          this.structurePreviewList = Object.keys(res[0]).map(item => {
+            return {
+              columnName: item,
+              fieldDesc: ''
+            }
+          })
+        }
+        if (this.structurePreviewList.length && this.fieldDesc) {
+          this.buildFieldDesc()
+        }
+        this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
         this.saveloading = false
+        this.passTest = true
       }).catch(() => {
         this.passTest = false
         this.saveloading = false
       })
+    },
+    // 执行事件
+    toExecute () {
+      if (this.dataForm.paramsList.length) {
+        this.isSet = false
+        this.paramsVisible = true
+      } else {
+        // 无参数，直接执行脚本
+        this.scriptExecute()
+      }
+    },
+    // 脚本参数配置
+    openParamsConfig () {
+      this.isSet = true
+      this.paramsVisible = true
+    },
+    // 取消操作
+    cancelParam () {
+      this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
+      this.paramsVisible = false
+    },
+    // 设置脚本参数
+    setParam () {
+      if (!this.isSet) {
+        this.scriptExecute()
+        this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
+      } else {
+        this.dataForm.paramsList = _.cloneDeep(this.paramsListCopy)
+      }
+      this.paramsVisible = false
     },
     // 清空分类
     clearType () {
@@ -1120,19 +888,6 @@ export default {
         remark: ''
       })
     },
-    // 获取数据源
-    getDataSource () {
-      const params = {
-        current: 1,
-        size: 1000,
-        sourceName: '',
-        sourceType: '',
-        moduleCode: this.appCode
-      }
-      datasourcePage(params).then(data => {
-        this.sourceList = data.list
-      })
-    },
     goBack () {
       this.$emit('back')
     },
@@ -1148,33 +903,21 @@ export default {
           }
         })
       }
-      // this.getTreeList()
-      this.getDataSource()
       if (this.datasetId) {
-        // 获取详情
-        getDatasetInfo(this.datasetId).then(res => {
-          for (const key in res) {
-            if (this.dataForm.hasOwnProperty(key)) {
-              this.dataForm[key] = res[key]
-            }
-          }
-          this.dataForm.name = this.datasetName
-          this.dataForm.paramsList = this.dataForm.paramConfig.length ? JSON.parse(this.dataForm.paramConfig) : []
+        getDataset(this.datasetId).then(res => {
+          this.dataForm.id = res.id
+          const data = JSON.parse(res.data)
+          this.dataForm.name = res.name
+          this.dataForm.typeId = res.typeId
+          this.dataForm.remark = res.remark
+          this.dataForm.script = data.script
+          this.dataForm.paramsList = data.paramsList
           this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
-          if (this.dataForm.typeId) {
-            this.$nextTick(() => {
-              try {
-                this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
-              } catch (error) {
-                console.error(error)
-              }
-            })
-          }
-          this.datasetTest(false)
+          this.fieldDesc = data.fieldDesc
+          this.scriptExecute(true)
         })
       }
     },
-    // 表头添加提示
     renderHeader (h, { column, index }) {
       let labelLong = column.label.length // 表头label长度
       let size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
@@ -1231,7 +974,7 @@ export default {
   .CodeMirror-scroll {
     background: #fff;
     .CodeMirror-gutters {
-      background-color: #f6f7fb;
+      background: #f6f7fb;
     }
   }
 }
@@ -1251,12 +994,13 @@ export default {
   margin: 16px 16px 0 0;
 }
 .field-wrap {
+  // max-height: 110px;
   overflow: auto;
   margin-right: 16px;
+  cursor: pointer;
   .field-item {
     line-height: 32px;
     padding: 0 12px 0 16px;
-    cursor: pointer;
     .edit_field {
       display: none;
     }
@@ -1269,14 +1013,14 @@ export default {
   }
 }
 .right-setting {
-  height: 390px;
+  height: 358px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   .paramConfig {
-    max-height: 195px;
+    max-height: 179px;
     .field-wrap {
-      max-height: 143px;
+      max-height: 127px;
     }
   }
   .structure {
@@ -1290,12 +1034,6 @@ export default {
 /deep/ .el-page-header {
   .el-page-header__left {
     display: none;
-  }
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
   }
   .el-page-header__content {
     font-size: 14px;

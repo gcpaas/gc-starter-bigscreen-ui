@@ -7,9 +7,9 @@ import BigScreenRun from 'packages/BigScreenRun'
 // 大屏设计引擎
 import BigScreenDesign from 'packages/BigScreenDesign'
 // 数据源管理
-import DataSourceManagement from 'packages/DataSourceManagement/dataSourceSet'
+import DataSourceManagement from 'packages/DataSourceManagement'
 // 数据集管理
-import DataSetManagement from 'packages/DataSourceManagement/dataSetConfig'
+import DataSetManagement from 'packages/DataSourceManagement'
 
 // 大屏 vuex store数据
 import bigScreenStore from 'packages/store'

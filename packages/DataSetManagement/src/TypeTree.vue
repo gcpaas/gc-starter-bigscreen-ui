@@ -166,9 +166,8 @@ import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
 import { get, post } from 'packages/utils/http'
-import { getDatasetTypeList } from '../../../service/DatasetConfigService'
-import { categoryRemove } from '../../../service/CommonService'
-import OrgEditForm from 'packages/DataSet/common/components/CategroyEditForm/index.vue'
+import { getDatasetTypeList ,categoryRemove} from 'packages/utils/datasetConfigService'
+import OrgEditForm from './CategroyEditForm.vue'
 export default {
   name: 'OrgTreeIndex',
   components: {
