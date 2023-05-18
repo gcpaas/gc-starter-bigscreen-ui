@@ -141,11 +141,11 @@
 </template>
 <script>
 import _ from 'lodash'
-import basicComponents from '../js/config/basicComponentsConfig'
+import basicComponents from 'packages/js/config/basicComponentsConfig'
 import g2PlotComponents, { getCustomPlots } from '../G2Plots/plotList'
-import borderComponents from '../js/config/borderComponentsConfig'
-import decorationComponents from '../js/config/decorationComponentsConfig'
-import svgComponents from '../Svgs/svgConfigList'
+import borderComponents from 'packages/js/config/borderComponentsConfig'
+import decorationComponents from 'packages/js/config/decorationComponentsConfig'
+import svgComponents from 'packages/Svgs/svgConfigList'
 import LayerList from './LayerList/index.vue'
 import { mapMutations } from 'vuex'
 import IconSvg from 'packages/SvgIcon'
