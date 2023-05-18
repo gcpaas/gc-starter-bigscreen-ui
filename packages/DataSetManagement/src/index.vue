@@ -13,7 +13,7 @@
       <div
         id="left-box"
         class="left-box"
-        :style="{'transition':transition+'s'}"
+        :style="{ 'transition': transition + 's' }"
       >
         <div class="inner-container">
           <TypeTree
@@ -29,7 +29,7 @@
       </div>
       <div
         class="right-box inner-container"
-        :style="{'transition':transition+'s'}"
+        :style="{ 'transition': transition + 's' }"
       >
         <div
           id="resize"
@@ -41,11 +41,11 @@
           <a
             v-if="isPackUpTree"
             @click="packUpTree"
-            @mousedown="resize=null"
-            @mouseup="resize=null"
-            @mousemove="resize=null"
+            @mousedown="resize = null"
+            @mouseup="resize = null"
+            @mousemove="resize = null"
           >
-            <i :class="isPackUpTree=== false ? 'el-icon-caret-left' : 'el-icon-caret-right' " />
+            <i :class="isPackUpTree === false ? 'el-icon-caret-left' : 'el-icon-caret-right'" />
           </a>
           <a
             v-else
@@ -92,6 +92,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
+            :class="darkClass"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
@@ -291,6 +292,14 @@ export default {
     appCode: {
       type: String,
       default: ''
+    },
+    darkClass: {
+      type: String,
+      default: ''
+    },
+    isBorder: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -596,36 +605,68 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .app-container .inner-container .el-form .filter-item {
-    /deep/ .el-input__inner {
-      width: 200px;
+.app-container .inner-container .el-form .filter-item {
+  /deep/ .el-input__inner {
+    width: 200px;
+  }
+}
+
+.el-dialog {
+  .app-container {
+    max-height: calc(90vh - 236px) !important;
+
+    .el-table {
+      max-height: calc(90vh - 340px) !important;
+    }
+
+    /deep/ .ztree {
+      max-height: calc(90vh - 325px) !important;
+    }
+
+    /deep/ .el-tabs__item.is-active {
+      border-bottom: none !important;
+    }
+
+    .packUpStyle.resize {
+      width: 19px;
     }
   }
-  .el-dialog {
-    .app-container {
-      max-height: calc(90vh - 236px) !important;
-      .el-table {
-        max-height: calc(90vh - 340px) !important;
-      }
-      /deep/ .ztree {
-        max-height: calc(90vh - 325px) !important;
-      }
-      /deep/ .el-tabs__item.is-active {
-        border-bottom: none !important;
-      }
-      .packUpStyle.resize {
-        width: 19px;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+}
+
+.bs-table {
+  border: 1px solid #e6ebf5;
+
+  // border-bottom: 1px solid $bs-component;
+
+  background: $bs-component !important;
+  background-color: $bs-component !important;
+
+  ::v-deep .el-table__cell {
+    background: $bs-component !important;
+    background-color: $bs-component !important;
+    th.is-leaf {
+      background-color: $bs-component !important;
+    }
+    .cell {
+      color: $bs-title !important;
+    }
+
+    .el-input__inner {
+      color: $bs-text;
+      background-color: $bs-bg;
+
+      &::placeholder {
+        color: $bs-title;
       }
     }
+    .el-checkbox__inner{
+      background-color:  $bs-bg;
+    }
   }
-  .layout{
-    width: 100%;
-    height: 100%;
-  }
-  .table-box {
-    // .el-table {
-    //   max-height: calc(100vh - 275px) !important;
-    //   max-height: -webkit-calc(100vh - 275px) !important;
-    // }
-  }
+}
 </style>

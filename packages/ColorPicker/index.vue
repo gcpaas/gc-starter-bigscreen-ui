@@ -65,7 +65,7 @@ export default {
 
   .el-input__inner {
     background-color: $bs-bg;
-    color: $bs-value;
+    color: $bs-text;
   }
 }
 </style>

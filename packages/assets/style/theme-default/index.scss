@@ -91,7 +91,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       overflow-y: auto!important;
       th.is-leaf {
         //border-bottom: 2px solid #007aff;
-        background-color: var(--gc-element-header-bg);
+        // background-color: var(--gc-element-header-bg);
       }
 
       th>.cell {
@@ -175,7 +175,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
     th.is-leaf {
       border-bottom: 2px solid #007aff!important;
-      background-color: var(--gc-element-header-bg)!important;
+      // background-color: var(--gc-element-header-bg)!important;
     }
 
     th>.cell {
