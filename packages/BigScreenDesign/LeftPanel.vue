@@ -146,7 +146,7 @@ import g2PlotComponents, { getCustomPlots } from '../G2Plots/plotList'
 import borderComponents from '../js/config/borderComponentsConfig'
 import decorationComponents from '../js/config/decorationComponentsConfig'
 import svgComponents from '../Svgs/svgConfigList'
-import LayerList from './components/LayerList.vue'
+import LayerList from './LayerList/index.vue'
 import { mapMutations } from 'vuex'
 import IconSvg from 'packages/SvgIcon'
 export default {
