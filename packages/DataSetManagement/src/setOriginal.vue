@@ -62,7 +62,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
-                  :popper-class="darkClass+'-select'"
+                  :popper-class="darkClass + '-select'"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -76,6 +76,7 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
+                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -90,7 +91,9 @@
                           class="custom-tree-node"
                         >
                           <span>
-                            <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
+                            <i
+                              :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
+                            />
                             {{ data.name }}
                           </span>
                         </span>
@@ -109,7 +112,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
-                  :popper-class="darkClass+'-select'"
+                  :popper-class="darkClass + '-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -131,7 +134,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
-                  :popper-class="darkClass+'-select'"
+                  :popper-class="darkClass + '-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -143,7 +146,7 @@
                       :key="table.name"
                       :label="table.name"
                       :value="table.name"
-                      :disabled="table.status==1"
+                      :disabled="table.status == 1"
                     />
                   </el-option-group>
                   <el-option-group label="视图">
@@ -152,7 +155,7 @@
                       :key="table.name"
                       :label="table.name"
                       :value="table.name"
-                      :disabled="table.status==1"
+                      :disabled="table.status == 1"
                     />
                   </el-option-group>
                 </el-select>
@@ -167,7 +170,7 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
-                  :popper-class="darkClass+'-select'"
+                  :popper-class="darkClass + '-select'"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
                   filterable
@@ -258,7 +261,7 @@
           </div>
           <div
             class="field-wrap"
-            :class="darkClass+'-field-wrap'"
+            :class="darkClass + '-field-wrap'"
           >
             <div
               v-for="field in structurePreviewList"
@@ -269,7 +272,8 @@
               <span>{{ field.columnName }}</span>&nbsp;<span
                 v-show="field.fieldDesc"
                 style="color: #909399;"
-              >({{ field.fieldDesc }})</span>
+              >({{
+                field.fieldDesc }})</span>
               <el-button
                 class="edit_field"
                 type="text"
@@ -296,7 +300,7 @@
         class="bs-table-box is-Edit"
       >
         <el-table
-          :class="darkClass+'-table'"
+          :class="darkClass + '-table'"
           align="center"
           :data="dataPreviewList"
           max-height="400"
@@ -1013,75 +1017,106 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.bs-tree {
+  background-color: $bs-component;
+  color: $bs-title;
+
+  .el-tree-node__content:hover {
+    background-color: $bs-hover;
+  }
+
+  .el-tree-node.is-current>.el-tree-node__content {
+    background-color: $bs-hover;
+  }
+}
+</style>
+
 <style lang="scss" scoped>
 @import '/packages/assets/style/darkComponent.scss';
+
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
 }
+
 /deep/ .el-input__inner {
   width: 100% !important;
 }
+
 .header {
   position: relative;
+
   .search {
     position: absolute;
     right: 124px;
     top: 16px;
     display: none;
   }
+
   .save {
     position: absolute;
     right: 70px;
     top: 16px;
   }
+
   .back {
     position: absolute;
     right: 16px;
     top: 16px;
   }
 }
+
 /deep/ .fieldDescCheck {
   .el-dialog__body {
     height: fit-content !important;
     min-height: unset !important;
   }
 }
+
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
   border-left: 5px solid #007AFF;
   margin: 16px 16px 0 0;
 }
+
 .field-wrap {
   max-height: 156px;
   overflow: auto;
   margin-right: 16px;
+
   .field-item {
     line-height: 32px;
     padding: 0 12px 0 16px;
     cursor: pointer;
+
     .edit_field {
       display: none;
     }
+
     &:hover {
       background-color: #f2f7fe;
+
       .edit_field {
         display: block;
       }
     }
   }
 }
+
 /deep/ .el-page-header {
   .el-page-header__left {
     display: none;
   }
+
   .el-page-header__content {
     font-size: 14px;
     font-weight: 600;
     position: relative;
     padding-left: 12px;
   }
+
   .el-page-header__content::before {
     content: "";
     height: 24px;
@@ -1093,16 +1128,19 @@ export default {
 }
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: calc(100vh - 532px) !important;
+
   .el-table__body-wrapper {
     max-height: calc(100vh - 568px) !important;
   }
 }
+
 .result-view {
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;
   position: relative;
   line-height: 24px;
+
   &::before {
     content: "";
     height: 24px;
