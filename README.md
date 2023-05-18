@@ -1,17 +1,17 @@
 ## 📚简介
 <p align="center">
-	<img alt="logo" width="50" src="./doc/logo.png">
+  <img alt="logo" width="50" src="./doc/logo.png">
 </p>
 
 🔥基于SpringBoot、MyBatisPlus、ElementUI、G2Plot、Echarts等技术栈的大屏设计器，具备大屏目录管理、大屏设计、大屏预览能力，支持MySQL、Oracle、PostgreSQL、JSON等数据集接入，对于复杂数据处理还可以使用Groovy脚本数据集，使用简单，完全免费，代码开源。
 
 <p align="center">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gcpaas/gc-starter-bigscreen-ui?style=social">
-	<img alt="GitHub forks" src="https://img.shields.io/github/forks/gcpaas/gc-starter-bigscreen-ui?style=social">
-	<img alt="GitHub license" src="https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg">
-  	<img alt="npm" src="https://img.shields.io/npm/v/gc-starter-bigscreen-ui">
-	<img alt="Company" src="https://img.shields.io/badge/Author-科大国创云网科技有限公司-blue.svg">
-  	<img alt="QQ" src="https://img.shields.io/badge/QQ-322302395-blue.svg">
+  <img alt="GitHub forks" src="https://img.shields.io/github/forks/gcpaas/gc-starter-bigscreen-ui?style=social">
+  <img alt="GitHub license" src="https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg">
+    <img alt="npm" src="https://img.shields.io/npm/v/gc-starter-bigscreen-ui">
+  <img alt="Company" src="https://img.shields.io/badge/Author-科大国创云网科技有限公司-blue.svg">
+    <img alt="QQ" src="https://img.shields.io/badge/QQ-322302395-blue.svg">
 </p>
 
 -------------------------------------------------------------------------------
@@ -38,8 +38,7 @@ npm install @antv/g2plot@2.4.20  @jiaminghi/data-view@2.10.0 axios@0.18.1 elemen
 #### 1.1 在 `main.js` 注册基础配置
 在您的框架中，大屏接口的baseURL（需要启动大屏后端服务）可能有所不同，所以需要注册一些基础配置，如下：
 
-```js
-
+```javascript
 // 组件依赖于 element-ui，所以需要引入element-ui, 并导入其样式
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -68,14 +67,14 @@ registerConfig({
     // 数据集管理
     dataSetUrl: '/data-set'
   },
-	// 自定义http配置
+  // 自定义http配置
   httpConfigs: {
-		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
     // ...其他，比如请求头
     // headers: {
     //   'Content-Type': 'application/json; charset=utf-8',
     // }
-	}
+  }
 }, router)
 
 ```
@@ -87,9 +86,9 @@ registerConfig({
 registerConfig({
   // 自定义http配置
   httpConfigs: {
-		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-	}
-	// ...	
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+  }
+  // ...  
 }, router)
 ````
 
@@ -99,9 +98,9 @@ registerConfig({
 ```js
 registerConfig({
   httpConfigs: {
-		baseURL: process.env.VUE_APP_BASE_URL
-	}
-	// ...	
+    baseURL: process.env.VUE_APP_BASE_URL
+  }
+  // ...  
 }, router)
 ```
 
@@ -231,9 +230,6 @@ export default {
   }
 </script>
 ```
-
-
-
 
 
 #### 3.4 数据源管理页面
