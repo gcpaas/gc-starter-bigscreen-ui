@@ -1,0 +1,36 @@
+.bs-table {
+  border: 1px solid #e6ebf5;
+  background: $bs-component !important;
+  background-color: $bs-component !important;
+
+  ::v-deep .el-table__cell {
+    background: $bs-component !important;
+    background-color: $bs-component !important;
+
+    th.is-leaf {
+      background-color: $bs-component !important;
+    }
+
+    .cell {
+      color: $bs-text !important;
+    }
+
+    .el-input__inner {
+      color: $bs-text;
+      background-color: $bs-bg;
+
+      &::placeholder {
+        color: $bs-title;
+      }
+    }
+
+    .el-checkbox__inner {
+      background-color: $bs-bg;
+    }
+
+    .el-popper {
+      background: $bs-bg !important;
+      background-color: $bs-bg !important;
+    }
+  }
+}

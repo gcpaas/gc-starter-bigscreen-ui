@@ -62,6 +62,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  :popper-class="darkClass+'-select'"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -108,6 +109,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
+                  :popper-class="darkClass+'-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -129,6 +131,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
+                  :popper-class="darkClass+'-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -164,6 +167,7 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
+                  :popper-class="darkClass+'-select'"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
                   filterable
@@ -239,7 +243,10 @@
         :span="8"
       >
         <div class="structure">
-          <div class="title-style">
+          <div
+            class="title-style"
+            :class="darkClass + '-title-style'"
+          >
             输出字段
             <el-button
               type="text"
@@ -249,7 +256,10 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap">
+          <div
+            class="field-wrap"
+            :class="darkClass+'-field-wrap'"
+          >
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -286,6 +296,7 @@
         class="table-box is-Edit"
       >
         <el-table
+          :class="darkClass+'-table'"
           align="center"
           :data="dataPreviewList"
           max-height="400"
@@ -307,6 +318,7 @@
       </div>
       <div class="page-container">
         <el-pagination
+          :popper-class="darkClass + '-pagination'"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -454,6 +466,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
     >
@@ -552,6 +565,10 @@ export default {
       default: ''
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -997,6 +1014,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '/packages/assets/style/darkComponent.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
