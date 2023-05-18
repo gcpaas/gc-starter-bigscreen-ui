@@ -332,11 +332,15 @@ export default {
   },
   mounted () {
     this.init()
-    document.addEventListener('mousemove', function (event) {
-      if (event.buttons === 1) {
-        event.preventDefault()
-      }
-    })
+    if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)) {
+      // 当前浏览器为Safari浏览器
+      // 执行相关操作
+      document.addEventListener('mousemove', function (event) {
+        if (event.buttons === 1) {
+          event.preventDefault()
+        }
+      })
+    }
   },
   methods: {
     toggleRowSelection () {
