@@ -92,7 +92,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
-            :class="darkClass"
+            :class="darkClass+'-table'"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
@@ -171,6 +171,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
+            :popper-class="darkClass + '-pagination'"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
             :page-size="size"
@@ -189,6 +190,7 @@
     <set-dataset-type
       ref="setDatasetType"
       :ds-type="dsType"
+      :dark-class="darkClass"
       @setDatasetOfType="setDatasetOfType"
     />
     <!-- 新增/编辑-原始数据集 -->
@@ -200,6 +202,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
+      :dark-class="darkClass"
       @back="back"
     />
     <!-- 新增/编辑-自助数据集 -->
@@ -211,6 +214,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
+      :dark-class="darkClass"
       @back="back"
     />
     <!-- 新增/编辑-json数据集 -->
@@ -222,6 +226,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
+      :dark-class="darkClass"
       @back="back"
     />
     <!-- 新增/编辑-存储过程数据集 -->
@@ -233,6 +238,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
+      :dark-class="darkClass"
       @back="back"
     />
     <!-- 新增/编辑-脚本数据集 -->
@@ -244,6 +250,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
+      :dark-class="darkClass"
       @back="back"
     />
   </div>
@@ -419,7 +426,8 @@ export default {
       this.$confirm('确定删除当前数据集吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: this.darkClass + '-message-box'
       }).then(() => {
         datasetRemove(id).then(res => {
           this.init(false)
@@ -473,17 +481,10 @@ export default {
     addDataset () {
       this.$refs.setDatasetType.setTypeVisible = true
     },
-    // addDataset(datasetType) {
-    //   this.setType = datasetType
-    //   this.isEdit = true
-    // },
     selectChange () {
       this.getDataList()
     },
     getTreeList () {
-      // getOriginalTableList().then((r) => {
-      //   this.categoryData = r
-      // })
     },
     // 获取表格数据
     getDataList () {
@@ -604,8 +605,27 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+// Element-UI 分页
+.bs-pagination {
+  background: $bs-component;
+  .el-select-dropdown__item.hover,
+  .el-select-dropdown__item:hover {
+    background: $bs-hover;
+  }
+}
+.bs-message-box{
+  background: $bs-component;
+  p{
+    color: $bs-title;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .bs-container .inner-container .el-form .filter-item {
+@import '/packages/assets/style/darkComponent.scss';
+.app-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
   }
@@ -638,35 +658,4 @@ export default {
   height: 100%;
 }
 
-.bs-table {
-  border: 1px solid #e6ebf5;
-
-  // border-bottom: 1px solid $bs-component;
-
-  background: $bs-component !important;
-  background-color: $bs-component !important;
-
-  ::v-deep .el-table__cell {
-    background: $bs-component !important;
-    background-color: $bs-component !important;
-    th.is-leaf {
-      background-color: $bs-component !important;
-    }
-    .cell {
-      color: $bs-title !important;
-    }
-
-    .el-input__inner {
-      color: $bs-text;
-      background-color: $bs-bg;
-
-      &::placeholder {
-        color: $bs-title;
-      }
-    }
-    .el-checkbox__inner{
-      background-color:  $bs-bg;
-    }
-  }
-}
 </style>

@@ -181,7 +181,10 @@
       >
         <div class="right-setting">
           <div class="paramConfig">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               存储过程参数
               <el-button
                 type="text"
@@ -191,7 +194,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -214,7 +220,10 @@
             </div>
           </div>
           <div class="structure">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               输出字段
               <el-button
                 type="text"
@@ -224,7 +233,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -259,6 +271,7 @@
       </div>
       <div class="bs-table-box is-Edit">
         <el-table
+          :class="darkClass+'-table'"
           align="center"
           :data="dataPreviewList"
           max-height="400"
@@ -409,6 +422,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap"
@@ -483,6 +497,7 @@
       :visible.sync="paramsVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelParam"
       class="bs-dialog-wrap"
@@ -645,6 +660,10 @@ export default {
       default: ''
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -1189,6 +1208,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '/packages/assets/style/darkComponent.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;

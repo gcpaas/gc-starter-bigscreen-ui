@@ -181,7 +181,10 @@
       >
         <div class="right-setting">
           <div class="paramConfig">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               SQL参数
               <el-button
                 type="text"
@@ -191,7 +194,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -214,7 +220,10 @@
             </div>
           </div>
           <div class="structure">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               输出字段
               <el-button
                 type="text"
@@ -224,7 +233,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -262,6 +274,7 @@
           align="center"
           :data="dataPreviewList"
           max-height="400"
+          :class="darkClass+'-table'"
           :border="true"
         >
           <el-table-column
@@ -280,6 +293,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
+          :popper-class="darkClass + '-pagination'"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -456,6 +470,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap"
@@ -714,6 +729,10 @@ export default {
       default: ''
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -1276,7 +1295,24 @@ export default {
 }
 </script>
 
+<style lang="scss">
+ .bs-title-style{
+  color: $bs-title !important;
+  background-color:$bs-component !important;
+  .field-item:hover{
+    background-color: $bs-hover !important;
+  }
+}
+.bs-field-wrap{
+  .field-item:hover{
+    color: $bs-text;
+    background-color: $bs-hover !important;
+  }
+}
+</style>
+
 <style lang="scss" scoped>
+@import '/packages/assets/style/darkComponent.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;

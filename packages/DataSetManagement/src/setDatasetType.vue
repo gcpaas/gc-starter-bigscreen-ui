@@ -5,6 +5,7 @@
     width="800px"
     :before-close="handleClose"
     :append-to-body="true"
+    :custom-class="darkClass+'-dialog'"
     :close-on-click-modal="false"
     class="bs-dialog-wrap"
   >
@@ -14,7 +15,10 @@
           v-if="dsType.includes('original')"
           :span="spanNum"
         >
-          <el-card shadow="hover">
+          <el-card
+            :class="darkClass + '-card'"
+            shadow="hover"
+          >
             <div
               class="type-item"
               @click="typeChose('original')"
@@ -28,7 +32,10 @@
           v-if="dsType.includes('custom')"
           :span="spanNum"
         >
-          <el-card shadow="hover">
+          <el-card
+            :class="darkClass + '-card'"
+            shadow="hover"
+          >
             <div
               class="type-item"
               @click="typeChose('custom')"
@@ -42,7 +49,10 @@
           v-if="dsType.includes('storedProcedure')"
           :span="spanNum"
         >
-          <el-card shadow="hover">
+          <el-card
+            :class="darkClass + '-card'"
+            shadow="hover"
+          >
             <div
               class="type-item"
               @click="typeChose('storedProcedure')"
@@ -56,7 +66,10 @@
           v-if="dsType.includes('json')"
           :span="spanNum"
         >
-          <el-card shadow="hover">
+          <el-card
+            :class="darkClass + '-card'"
+            shadow="hover"
+          >
             <div
               class="type-item"
               @click="typeChose('json')"
@@ -70,7 +83,10 @@
           v-if="dsType.includes('script')"
           :span="spanNum"
         >
-          <el-card shadow="hover">
+          <el-card
+            :class="darkClass + '-card'"
+            shadow="hover"
+          >
             <div
               class="type-item"
               @click="typeChose('script')"
@@ -91,6 +107,10 @@ export default {
     dsType: {
       type: Array,
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
+    },
+    darkClass: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -117,6 +137,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.bs-card{
+  background-color: $bs-component;
+}
+</style>
 
 <style lang="scss" scoped>
 .type-item {

@@ -12,7 +12,7 @@
     <DataSetManagement
       ref="dataSetSetting"
       class="bs-data-set-management"
-      dark-class="bs-table"
+      dark-class="bs"
       :is-border="true"
       :is-dialog="true"
       :ds-id="dataSetId"
@@ -118,7 +118,7 @@ export default {
 <style lang="scss" scoped>
 .bs-data-set-management {
   ::v-deep .inner-container {
-    background: $bs-component;
+    background: $bs-bg;
   }
 
   ::v-deep .packUpStyle {

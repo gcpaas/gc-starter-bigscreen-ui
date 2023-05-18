@@ -390,6 +390,10 @@ export default {
     background-color: $bs-component;
     color: $bs-text;
   }
+  .el-select-dropdown__item.selected{
+    color: #007aff;
+    background-color: $bs-component !important;
+  }
 }
 
 .bs-input-number {
