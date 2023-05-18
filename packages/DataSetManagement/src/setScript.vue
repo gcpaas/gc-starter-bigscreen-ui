@@ -75,6 +75,7 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
+                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -143,7 +144,10 @@
       >
         <div class="right-setting">
           <div class="paramConfig">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               脚本参数
               <el-button
                 type="text"
@@ -153,7 +157,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -176,7 +183,10 @@
             </div>
           </div>
           <div class="structure">
-            <div class="title-style">
+            <div
+              class="title-style"
+              :class="darkClass + '-title-style'"
+            >
               输出字段
               <el-button
                 type="text"
@@ -186,7 +196,10 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap">
+            <div
+              class="field-wrap"
+              :class="darkClass+'-field-wrap'"
+            >
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -224,6 +237,7 @@
         class="table-box is-Edit"
       >
         <el-table
+          :class="darkClass+'-table'"
           align="center"
           :data="dataPreviewList"
           max-height="400"
@@ -348,6 +362,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
     >
@@ -574,6 +589,10 @@ export default {
       default: ''
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -929,6 +948,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '/packages/assets/style/darkComponent.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;

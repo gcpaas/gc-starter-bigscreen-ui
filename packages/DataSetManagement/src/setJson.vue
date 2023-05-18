@@ -75,6 +75,7 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
+                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -146,7 +147,10 @@
         :span="8"
       >
         <div class="structure">
-          <div class="title-style">
+          <div
+            class="title-style"
+            :class="darkClass + '-title-style'"
+          >
             输出字段
             <el-button
               type="text"
@@ -156,7 +160,10 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap">
+          <div
+            class="field-wrap"
+            :class="darkClass+'-field-wrap'"
+          >
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -194,6 +201,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
+          :class="darkClass+'-table'"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -312,6 +320,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
+      :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
     >
@@ -389,6 +398,10 @@ export default {
       default: ''
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -720,6 +733,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '/packages/assets/style/darkComponent.scss';
 .header {
   position: relative;
   .search {
