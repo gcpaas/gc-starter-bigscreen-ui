@@ -144,7 +144,7 @@ export default {
   height: 0;
   display: table-row;
   line-height: 0;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 ::v-deep .el-upload-list__item {

@@ -45,42 +45,11 @@
               <el-form-item label="单次动画时长">
                 <el-input-number
                   v-model="config.customize.dur"
+                  class="bs-input-number"
                   :precision="0"
                   label="请输入时长(s)"
                 />
               </el-form-item>
-              <!-- <el-form-item label="标题文字">
-                <el-input clearable placeholder="请输入标题文字" v-model="config.customize.title"/>
-              </el-form-item>
-              <el-form-item
-                label="标题字体大小"
-                label-width="100px"
-              >
-                <el-input
-                  v-model="config.customize.fontSize"
-                  placeholder="请输入标题字体大小"
-                  clearable
-                >
-                  <template slot="append">
-                    px
-                  </template>
-                </el-input>
-              </el-form-item>
-              <el-form-item
-                label="标题字体权重"
-                label-width="100px"
-              >
-                <el-input-number
-                  v-model="config.customize.fontWeight"
-                  placeholder="请输入标题字体权重"
-                />
-              </el-form-item>
-              <el-form-item
-                label="标题字体颜色"
-                label-width="100px"
-              >
-                <el-color-picker v-model="config.customize.color" :predefine="predefineThemeColors" />
-              </el-form-item> -->
             </el-form>
           </div>
         </el-collapse-item>

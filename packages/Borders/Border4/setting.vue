@@ -9,7 +9,8 @@
         <el-form-item label="翻转形态">
           <el-switch
             v-model="config.customize.reverse"
-            active-color="#13ce66"
+            class="bs-switch"
+            active-color="#007aff"
           />
         </el-form-item>
       </template>

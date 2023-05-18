@@ -59,8 +59,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
+<style lang="scss">
 .bs-color-picker {
   background-color: $bs-bg !important;
 
@@ -69,12 +68,17 @@ export default {
     color: $bs-value;
   }
 }
+</style>
+
+<style lang="scss" scoped>
+@import '~packages/assets/style/themeVar.scss';
+
 .border-color {
   display: flex;
 
   ::v-deep .el-input {
     width: auto;
-    min-width: 180px;
+    min-width: 150px;
     margin-right: 10px;
     position: relative;
 

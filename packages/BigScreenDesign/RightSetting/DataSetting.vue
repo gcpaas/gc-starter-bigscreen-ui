@@ -123,6 +123,7 @@
               <el-drag-select
                 v-if="config.option.displayOption.dimensionField.enable && config.option.displayOption.dimensionField.multiple"
                 v-model="config.dataSource.dimensionFieldList"
+                popper-class="bs-select"
                 clearable
                 :multiple="config.option.displayOption.dimensionField.multiple"
                 @change="dimensionFieldListChange"

@@ -372,20 +372,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
-// Element-Ui样式覆盖
+<style lang="scss">
 .bs-select {
   background-color: $bs-bg !important;
 
   .el-select-dropdown__item {
-    color: $bs-value;
+    color: $bs-title;
   }
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
     background-color: $bs-component;
+  }
+  .el-input__inner{
+    background:$bs-bg;
+    background-color: $bs-component;
+    color: $bs-value;
   }
 }
 
@@ -399,7 +402,12 @@ export default {
     background: $bs-component;
     border-left: 1px solid $bs-bg;
   }
-}
+}</style>
+
+<style lang="scss" scoped>
+@import '~packages/assets/style/themeVar.scss';
+// Element-Ui样式覆盖
+
 .bs-overall-wrap {
   position: relative;
   padding: 8px;

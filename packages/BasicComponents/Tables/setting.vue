@@ -19,18 +19,10 @@
           </template>
           <div class="lc-field-body">
             <div>
-              <!-- <el-form-item label="表格头部背景颜色">
-                <ColorPicker
-                  style="width:250px"
-                  v-model="config.customize.headerBackgroundColor"
-                  placeholder="请选择表格头部背景颜色"
-                  :predefineColors="predefineThemeColors"
-                />
-              </el-form-item> -->
               <el-form-item label="表格头部字体颜色">
                 <ColorPicker
                   v-model="config.customize.headerFontColor"
-                  style="width:250px"
+                  style="width:180px"
                   placeholder="请选择表格头部字体颜色"
                   :predefine-colors="predefineThemeColors"
                 />
@@ -38,23 +30,16 @@
               <el-form-item label="表格头部字体大小">
                 <el-input-number
                   v-model="config.customize.headerFontSize"
+                  class="bs-input-number"
                   :min="12"
                   :max="100"
                   :step="1"
                 />
               </el-form-item>
-              <!-- <el-form-item label="表格主体背景颜色">
-                <ColorPicker
-                  style="width:250px"
-                  v-model="config.customize.bodyBackgroundColor"
-                  placeholder="请选择表格头部字体颜色"
-                  :predefineColors="predefineThemeColors"
-                />
-              </el-form-item> -->
               <el-form-item label="表格主体字体颜色">
                 <ColorPicker
                   v-model="config.customize.bodyFontColor"
-                  style="width:250px"
+                  style="width:180px"
                   placeholder="请选择表格主体字体颜色"
                   :predefine-colors="predefineThemeColors"
                 />
@@ -62,6 +47,7 @@
               <el-form-item label="表格主体字体大小">
                 <el-input-number
                   v-model="config.customize.bodyFontSize"
+                  class="bs-input-number"
                   :min="12"
                   :max="100"
                   :step="1"
@@ -70,6 +56,7 @@
               <el-form-item label="表格斑马线">
                 <el-switch
                   v-model="config.customize.stripe"
+                  class="bs-switch"
                   active-color="#007aff"
                 />
               </el-form-item>
@@ -117,10 +104,19 @@ export default {
     }
   },
   watch: {},
-  mounted () {},
+  mounted () { },
   methods: {}
 }
 </script>
+
+<style lang="scss">
+// Element-UI Switch 组件样式覆盖
+.bs-switch {
+   .el-switch__core {
+    background: $bs-component;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 @import "../~packages/assets/style/settingWrap.scss";
