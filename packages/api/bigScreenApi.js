@@ -13,7 +13,7 @@ export function saveScreen (data) {
 
 // 根据数据集获取数据集详情
 export function getDataSetDetails (id) {
-  return get('/ds/getDataSetDetails', {
+  return get('/bigScreen/ds/getDataSetDetails', {
     id
   })
 }
@@ -24,7 +24,7 @@ export function getThemeConfig () {
 
 // 根据数据集id获取数据
 export function getDataByDataSetId (dataSetId) {
-  return post('/ds/getDataByDataSetId', {
+  return post('/bigScreen/ds/getDataByDataSetId', {
     dataSetId,
     params: []
   })
@@ -32,9 +32,9 @@ export function getDataByDataSetId (dataSetId) {
 
 // 得到图表详情
 export function getChatInfo (params) {
-  return post('/chart/data/list', params)
+  return post('/bigScreen/chart/data/list', params)
 }
 // 得到图表的更新数据
 export function getUpdateChartInfo (params) {
-  return post('/chart/data/chart', params)
+  return post('/bigScreen/chart/data/chart', params)
 }

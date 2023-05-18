@@ -1,17 +1,17 @@
 ## 📚简介
 <p align="center">
-	<img alt="logo" width="50" src="./doc/logo.png">
+  <img alt="logo" width="50" src="./doc/logo.png">
 </p>
 
 🔥基于SpringBoot、MyBatisPlus、ElementUI、G2Plot、Echarts等技术栈的大屏设计器，具备大屏目录管理、大屏设计、大屏预览能力，支持MySQL、Oracle、PostgreSQL、JSON等数据集接入，对于复杂数据处理还可以使用Groovy脚本数据集，使用简单，完全免费，代码开源。
 
 <p align="center">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gcpaas/gc-starter-bigscreen-ui?style=social">
-	<img alt="GitHub forks" src="https://img.shields.io/github/forks/gcpaas/gc-starter-bigscreen-ui?style=social">
-	<img alt="GitHub license" src="https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg">
-  	<img alt="npm" src="https://img.shields.io/npm/v/gc-starter-bigscreen-ui">
-	<img alt="Company" src="https://img.shields.io/badge/Author-科大国创云网科技有限公司-blue.svg">
-  	<img alt="QQ" src="https://img.shields.io/badge/QQ-322302395-blue.svg">
+  <img alt="GitHub forks" src="https://img.shields.io/github/forks/gcpaas/gc-starter-bigscreen-ui?style=social">
+  <img alt="GitHub license" src="https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg">
+    <img alt="npm" src="https://img.shields.io/npm/v/gc-starter-bigscreen-ui">
+  <img alt="Company" src="https://img.shields.io/badge/Author-科大国创云网科技有限公司-blue.svg">
+    <img alt="QQ" src="https://img.shields.io/badge/QQ-322302395-blue.svg">
 </p>
 
 -------------------------------------------------------------------------------
@@ -38,19 +38,24 @@ npm install @antv/g2plot@2.4.20  @jiaminghi/data-view@2.10.0 axios@0.18.1 elemen
 #### 1.1 在 `main.js` 注册基础配置
 在您的框架中，大屏接口的baseURL（需要启动大屏后端服务）可能有所不同，所以需要注册一些基础配置，如下：
 
-```js
+```javascript
+// 组件依赖于 element-ui，所以需要引入element-ui, 并导入其样式
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI, { size: 'mini' })
+
 // 全局引入css
-import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
 registerConfig({
   // 路由
   routers: {
     // 大屏设计路由
-    designUrl: '/design',
+    designUrl: 'big-screen/design',
     // 预览路由
-    previewUrl: '/preview',
+    previewUrl: '/big-screen/preview',
     // 页面管理路由（带头部跳转路由）
     pageManagementUrl: '/management',
     // 页面列表路由
@@ -58,18 +63,18 @@ registerConfig({
     // 数据管理（带头部）
     dsManageUrl: '/data-source-manage',
     // 数据源管理
-    dataSourceUrl: '/data-source',
+    dataSourceUrl: '/data-source-manage/data-source',
     // 数据集管理
-    dataSetUrl: '/data-set'
+    dataSetUrl: '/data-source-manage/data-set'
   },
-	// 自定义http配置
+  // 自定义http配置
   httpConfigs: {
-		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
     // ...其他，比如请求头
     // headers: {
     //   'Content-Type': 'application/json; charset=utf-8',
     // }
-	}
+  }
 }, router)
 
 ```
@@ -81,9 +86,9 @@ registerConfig({
 registerConfig({
   // 自定义http配置
   httpConfigs: {
-		baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-	}
-	// ...	
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+  }
+  // ...  
 }, router)
 ````
 
@@ -93,9 +98,9 @@ registerConfig({
 ```js
 registerConfig({
   httpConfigs: {
-		baseURL: process.env.VUE_APP_BASE_URL
-	}
-	// ...	
+    baseURL: process.env.VUE_APP_BASE_URL
+  }
+  // ...  
 }, router)
 ```
 
@@ -125,14 +130,13 @@ export default store
 下面的路由地址和在main.js 中 registerConfig 注入的配置一致
 
 ```js
-localhost:8080/pages
+localhost:8080/management
 localhost:8080/big-screen/design?code=xxx
 localhost:8080/big-screen/preview?code=xxx
-localhost:8080/data-sources/data-source-sets
-localhost:8080/data-sources/data-set-configuration
+localhost:8080/data-source-manage
 ```
 
-
+⚠️ 请注意，快速注入的路由，如果您的系统对路由有权限要求，要想正常访问，请先务必加入白名单。
 
 ### 3. 自定义页面路由
 

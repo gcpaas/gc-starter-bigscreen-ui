@@ -359,7 +359,7 @@ export default {
     // 获取所有的目录
     openCascader (node) {
       const excludeCategory = node.type === 'catalog' && !this.isAdd ? node.code : undefined
-      post('/category/tree', { searchKey: '', typeList: ['catalog'], excludeCategory, sort: false }).then(data => {
+      post('/bigScreen/category/tree', { searchKey: '', typeList: ['catalog'], excludeCategory, sort: false }).then(data => {
         const list = [{ name: '根目录', code: '', children: data }]
         this.catalogList = list
       }).catch(() => {
@@ -472,7 +472,7 @@ export default {
     // 获取页面的列表(获取，搜索，排序)
     getDataList () {
       this.pageLoading = true
-      post('/category/tree', { searchKey: this.searchKey, sort: this.sort }).then(data => {
+      post('/bigScreen/category/tree', { searchKey: this.searchKey, sort: this.sort }).then(data => {
         this.pageDesignList = data
         // 如果有addModel这个参数，说明是从页面直接新增过来的，直接进入页面或者表单的填写状态
         if (this.$route.query.add) {
@@ -570,7 +570,7 @@ export default {
     },
     // 复制页面
     copyPege (nodeData, node) {
-      post(`/${nodeData.type}/design/copy/${nodeData.code}`).then(() => {
+      post(`/bigScreen/${nodeData.type}/design/copy/${nodeData.code}`).then(() => {
         this.getDataList()
       })
     },
@@ -583,7 +583,7 @@ export default {
     useIt (pageTemplateId, parentNode, type) {
       this.templateLoading = true
       const className = 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO'
-      post(`/${type}/design/add/template`, {
+      post(`/bigScreen/${type}/design/add/template`, {
         pageTemplateId,
         parentCode: parentNode.code,
         type,
@@ -655,7 +655,7 @@ export default {
           return
         }
         if (this.isAdd) {
-          post('/category/add',
+          post('/bigScreen/category/add',
             {
               ...this.catalogData,
               id: '',
@@ -669,7 +669,7 @@ export default {
           }).catch(() => {
           })
         } else {
-          post('/category/update', { ...this.catalogData, excludeCategory: this.catalogData.code }).then(data => {
+          post('/bigScreen/category/update', { ...this.catalogData, excludeCategory: this.catalogData.code }).then(data => {
             this.catalogVisible = false
             this.getDataList()
           }).catch(() => {

@@ -263,7 +263,7 @@ export default {
     },
     // 获取所有的目录
     openCascader () {
-      post('/category/tree', { searchKey: '', typeList: ['catalog'], sort: false }).then(data => {
+      post('/bigScreen/category/tree', { searchKey: '', typeList: ['catalog'], sort: false }).then(data => {
         const list = [{ name: '根目录', code: '', children: data }]
         this.catalogList = list
       }).catch(() => {

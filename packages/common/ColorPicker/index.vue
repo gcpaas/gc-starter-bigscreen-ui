@@ -61,6 +61,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/themeVar.scss';
+@import '~packages/assets/style/variables.scss';
 .bs-color-picker {
   background-color: $bs-bg !important;
 

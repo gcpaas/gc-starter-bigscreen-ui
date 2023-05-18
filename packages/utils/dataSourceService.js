@@ -9,7 +9,7 @@ import { get, post } from 'packages/utils/http'
  * @param flag
  * @returns {*}
  */
-const addOrUpdateDataSource = (params = {}, flag = false) => post('/datasource/addOrUpdateDataSource', params, flag)
+const addOrUpdateDataSource = (params = {}, flag = false) => post('/bigScreen/datasource/addOrUpdateDataSource', params, flag)
 
 /**
  * 数据源名称校验
@@ -17,7 +17,7 @@ const addOrUpdateDataSource = (params = {}, flag = false) => post('/datasource/a
  * @param flag
  * @returns {*}
  */
-const checkRepeat = (params = {}, flag = false) => post('/datasource/checkRepeat', params, flag)
+const checkRepeat = (params = {}, flag = false) => post('/bigScreen/datasource/checkRepeat', params, flag)
 
 /**
  * 数据源连接测试
@@ -25,7 +25,7 @@ const checkRepeat = (params = {}, flag = false) => post('/datasource/checkRepeat
  * @param flag
  * @returns {*}
  */
-const sourceLinkTest = (params = {}, flag = false) => post('/datasource/sourceLinkTest', params, flag)
+const sourceLinkTest = (params = {}, flag = false) => post('/bigScreen/datasource/sourceLinkTest', params, flag)
 
 /**
  * 获取数据源列表
@@ -33,7 +33,7 @@ const sourceLinkTest = (params = {}, flag = false) => post('/datasource/sourceLi
  * @param flag
  * @returns {*}
  */
-const datasourcePage = (params = {}, flag = false) => get('/datasource/page', params, flag)
+const datasourcePage = (params = {}, flag = false) => get('/bigScreen/datasource/page', params, flag)
 
 /**
  * 获取数据源列表
@@ -41,7 +41,7 @@ const datasourcePage = (params = {}, flag = false) => get('/datasource/page', pa
  * @param flag
  * @returns {*}
  */
-const datasourceList = (params = {}, flag = false) => get('/datasource/list', params, flag)
+const datasourceList = (params = {}, flag = false) => get('/bigScreen/datasource/list', params, flag)
 
 /**
  * 删除数据源
@@ -49,7 +49,7 @@ const datasourceList = (params = {}, flag = false) => get('/datasource/list', pa
  * @param flag
  * @returns {*}
  */
-const sourceRemove = (id = '-1', flag = false) => get(`/datasource/sourceRemove/${id}`, {}, flag)
+const sourceRemove = (id = '-1', flag = false) => get(`/bigScreen/datasource/sourceRemove/${id}`, {}, flag)
 
 /**
  * 获取数据源下表列表
@@ -57,7 +57,7 @@ const sourceRemove = (id = '-1', flag = false) => get(`/datasource/sourceRemove/
  * @param flag
  * @returns {*}
  */
-const getSourceTable = (id = '-1', flag = false) => get(`/datasource/getSourceTable/${id}`, {}, flag)
+const getSourceTable = (id = '-1', flag = false) => get(`/bigScreen/datasource/getSourceTable/${id}`, {}, flag)
 
 /**
  * 获取数据源下视图列表
@@ -65,7 +65,7 @@ const getSourceTable = (id = '-1', flag = false) => get(`/datasource/getSourceTa
  * @param flag
  * @returns {*}
  */
-const getSourceView = (id = '-1', flag = false) => get(`/datasource/getSourceView/${id}`, {}, flag)
+const getSourceView = (id = '-1', flag = false) => get(`/bigScreen/datasource/getSourceView/${id}`, {}, flag)
 
 export {
   addOrUpdateDataSource,

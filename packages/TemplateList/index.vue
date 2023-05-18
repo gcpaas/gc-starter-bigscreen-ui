@@ -98,7 +98,7 @@ export default {
     // 得到模板列表
     getTemplateList (type) {
       this.type = type
-      get('/page/template/list', {
+      get('/bigScreen/template/list', {
         type
       }).then((list) => {
         this.templateList = list
@@ -125,7 +125,7 @@ export default {
         }).then(() => {
           const className = this.type === 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO'
           this.innerLoading = true
-          post(`/${this.type}/design/get/template`, {
+          post(`/bigScreen/${this.type}/design/get/template`, {
             pageTemplateId: id,
             name: this.pageInfo.name,
             code: this.pageInfo.code,
