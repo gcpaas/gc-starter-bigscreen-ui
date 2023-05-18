@@ -137,7 +137,7 @@
 
 <script>
 import { get, post } from 'packages/js/utils/http'
-import Icon from 'packages/assets/images/appPrependIcon/export'
+import Icon from 'packages/assets/images/dataSourceIcon/export'
 export default {
   name: 'EditForm',
   components: {

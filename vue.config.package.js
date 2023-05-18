@@ -79,7 +79,7 @@ module.exports = {
       .rule('svg')
       .exclude.add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
-      .add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .add(resolve('packages/assets/images/dataSourceIcon/svg'))
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .end()
 
@@ -88,7 +88,7 @@ module.exports = {
       .test(/\.svg$/)
       .include.add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
-      .add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .add(resolve('packages/assets/images/dataSourceIcon/svg'))
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .end()
       .use('svg-sprite-loader')

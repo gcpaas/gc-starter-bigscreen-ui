@@ -3,7 +3,7 @@
     <div class="logo-wrap item-wrap">
       <img
         class="menu-img"
-        src="~packages/assets/images/icons/app.png"
+        src="~packages/BigScreenDesign/images/app.png"
         alt="返回"
         @click="backManagement"
       >

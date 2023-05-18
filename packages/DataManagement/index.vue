@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Icon from 'packages/assets/images/appPrependIcon/export'
+import Icon from 'packages/assets/images/dataSourceIcon/export'
 import IconSvg from 'packages/SvgIcon'
 export default {
   name: 'DataSourceManagement',
