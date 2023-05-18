@@ -14,11 +14,6 @@ import bigScreenStore from 'packages/store'
 // 注册基础配置
 import registerConfig from 'packages/utils/registerConfig'
 
-// 引入element-ui
-import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI, { size: 'mini' })
 // 存储组件列表
 const components = [
   BigScreenManagement,

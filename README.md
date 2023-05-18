@@ -39,9 +39,15 @@ npm install @antv/g2plot@2.4.20  @jiaminghi/data-view@2.10.0 axios@0.18.1 elemen
 在您的框架中，大屏接口的baseURL（需要启动大屏后端服务）可能有所不同，所以需要注册一些基础配置，如下：
 
 ```js
+
+// 组件依赖于 element-ui，所以需要引入element-ui, 并导入其样式
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI, { size: 'mini' })
+
 // 全局引入css
-import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
 registerConfig({

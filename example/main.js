@@ -7,8 +7,9 @@ import ElementUI from 'element-ui'
 import App from './App'
 import store from './store'
 import router from './router'
-
+import 'element-ui/lib/theme-chalk/index.css'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+Vue.use(ElementUI, { size: 'mini' })
 
 registerConfig({
   routers: {

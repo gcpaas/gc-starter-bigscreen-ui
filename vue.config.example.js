@@ -41,7 +41,7 @@ module.exports = {
   },
   publicPath:
     process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : './',
-  outputDir: 'bigScreen',
+  outputDir: 'gc-starter-lowcode-ui',
   assetsDir: 'static',
   lintOnSave: false,
   productionSourceMap: false,
