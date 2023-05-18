@@ -55,7 +55,7 @@ import Svgs from '../Svgs/setting.vue'
 import { mapState } from 'vuex'
 // import { optionFormatting } from '../../utils/dataFormatting'
 // 整体动态导入右侧设置组件，不用手动注册
-let components = {}
+const components = {}
 for (const key in rightSetting) {
   if (Object.hasOwnProperty.call(rightSetting, key)) {
     const component = rightSetting[key]

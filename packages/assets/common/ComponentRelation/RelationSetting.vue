@@ -28,7 +28,7 @@
           label="当前组件映射参数"
           align="center"
         >
-          <template v-slot="scope">
+          <template #default="scope">
             <el-select v-model="configMapConfig.maps[scope.$index].sourceField">
               <el-option
                 v-for="sourceField in sourceFieldList"
@@ -43,7 +43,7 @@
           label="操作符"
           align="center"
         >
-          <template v-slot="scope">
+          <template #default="scope">
             <el-select v-model="configMapConfig.maps[scope.$index].queryRule">
               <el-option
                 v-for="operator in operatorList"
@@ -58,7 +58,7 @@
           label="目标组件接收参数"
           align="center"
         >
-          <template v-slot="scope">
+          <template #default="scope">
             <el-select v-model="configMapConfig.maps[scope.$index].targetField">
               <el-option
                 v-for="targetField in targetFieldList"
