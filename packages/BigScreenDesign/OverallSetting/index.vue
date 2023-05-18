@@ -26,6 +26,7 @@
       <el-form-item label="大屏宽度">
         <el-input-number
           v-model="form.w"
+          class="bs-input-number"
           :min="100"
           :max="8000"
         />
@@ -33,6 +34,7 @@
       <el-form-item label="大屏高度">
         <el-input-number
           v-model="form.h"
+          class="bs-input-number"
           :min="100"
           :max="8000"
         />
@@ -370,15 +372,39 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~packages/assets/style/variables.scss';
-@import '~packages/assets/style/themeVar.scss';
-.bs-select{
+<style lang="scss">
+// Element-Ui样式覆盖
+.bs-select {
   background-color: $bs-bg !important;
-  .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+
+  .el-select-dropdown__item {
+    color: $bs-value;
+  }
+
+  .el-select-dropdown__item.hover,
+  .el-select-dropdown__item:hover {
+    color: #007aff;
     background-color: $bs-component;
   }
 }
+
+.bs-input-number {
+  .el-input-number__decrease {
+    background: $bs-component;
+    border-right: 1px solid $bs-bg;
+  }
+
+  .el-input-number__increase {
+    background: $bs-component;
+    border-left: 1px solid $bs-bg;
+  }
+}
+</style>
+
+<style lang="scss" scoped>
+@import '~packages/assets/style/variables.scss';
+@import '~packages/assets/style/themeVar.scss';
+
 .bs-overall-wrap {
   position: relative;
   padding: 8px;
@@ -394,16 +420,6 @@ export default {
     background: $bs-component;
     color: $bs-value;
     border: 0 !important;
-  }
-
-  /deep/ .el-input-number__decrease {
-    background: $bs-component;
-    border-right: 1px solid $bs-bg;
-  }
-
-  /deep/ .el-input-number__increase {
-    background: $bs-component;
-    border-left: 1px solid $bs-bg;
   }
 
   /deep/ .el-form-item__label {
@@ -458,12 +474,13 @@ export default {
 
 .toolbar {
   width: 320px;
-  bottom:0;
+  bottom: 0;
   z-index: 10;
   position: fixed;
   text-align: center;
   bottom: 16px;
-  .el-button{
+
+  .el-button {
     margin-right: 10px;
   }
 }
@@ -551,4 +568,6 @@ export default {
     border: 0 !important;
   }
 }
-// 颜色选择器</style>
+
+// 颜色选择器
+</style>

@@ -2,8 +2,8 @@
  * @description: 设置联动的弹窗
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
- * @LastEditors: xing.heng
- * @LastEditTime: 2023-02-09 09:28:38
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-05-18 11:01:02
 -->
 <template>
   <el-dialog
@@ -12,6 +12,7 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     width="800px"
+    custom-class="bs-dialog"
     append-to-body
   >
     <el-form
@@ -21,6 +22,7 @@
       <el-table
         :data="configMapConfig.maps"
         class="config-map-table"
+        class-name="bs-table"
         border
         style="width: 100%"
       >
@@ -155,13 +157,13 @@ export default {
           maps: []
         }
       },
-      set () {}
+      set () { }
     },
     choosedTargetFields () {
       return this.configMapConfig.maps.map(item => item.targetField)
     }
   },
-  mounted () {},
+  mounted () { },
   methods: {
     /**
     * @description: 关闭弹窗
@@ -192,6 +194,29 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+// Element-Ui样式覆盖
+.bs-dialog {
+  background: $bs-bg !important;
+
+  .el-dialog__header {
+    background: $bs-component;
+    background-color: $bs-component;
+    .el-dialog__title{
+      color: $bs-title;
+    }
+  }
+}
+.bs-table{
+  background: $bs-bg;
+  background-color: $bs-component;
+  ::v-deep .el-table__cell{
+    background: $bs-component;
+    background-color: $bs-component;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .config-map-table {

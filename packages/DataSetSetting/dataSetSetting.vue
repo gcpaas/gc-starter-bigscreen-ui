@@ -5,6 +5,7 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
+    custom-class="bs-dialog"
     top="10vh"
     class="data-set-wrap"
   >
@@ -87,31 +88,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .data-set-wrap{
-    /deep/ .el-dialog__body{
-      position: relative;
-      padding: 0 !important;
-      min-height: 600px;
-      overflow: hidden;
-    }
-    /deep/ .packUpStyle{
-      pointer-events: none;
-      height: 600px;
-    }
-    /deep/ .showPackUp{
-      display: none;
-    }
-    .app-container{
-      /*height: 100% !important;*/
-      min-height: 560px;
-    }
-    /deep/.table-box{
-      height: calc(100% - 105px) !important;
-      .el-table{
-        height: 100% !important;
-        max-height: unset!important;
-      }
-    }
-  }
+/deep/ .el-dialog__body {
+  position: relative;
+  padding: 0 !important;
+  min-height: 600px;
+  overflow: hidden;
+}
 
+/deep/ .packUpStyle {
+  pointer-events: none;
+  height: 600px;
+}
+
+/deep/ .showPackUp {
+  display: none;
+}
 </style>

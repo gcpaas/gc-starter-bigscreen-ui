@@ -47,6 +47,7 @@
                   <el-select
                     v-else-if="setting.type === 'select'"
                     v-model="setting.value"
+                    popper-class="bs-select"
                     :placeholder="`请输入${setting.label}`"
                     clearable
                   >
@@ -57,22 +58,17 @@
                       :value="opt.value"
                     />
                   </el-select>
-                  <!-- <el-color-picker
-                    v-else-if="setting.type === 'colorPicker'"
-                    v-model="setting.value"
-                  /> -->
                   <template v-else-if="setting.type === 'colorSelect'">
                     <color-select
                       v-model="colorScheme"
                       @update="updateColorScheme"
                     />
-                    <div
-                      style="display: flex;align-items: center;height: 42px;flex-wrap: wrap"
-                    >
+                    <div style="display: flex;align-items: center;height: 42px;flex-wrap: wrap">
                       <el-color-picker
                         v-for="(colorItem, index) in colors"
                         :key="index"
                         v-model="setting.value[index]"
+                        popper-class="bs-color-picker"
                         show-alpha
                         class="start-color"
                       />
@@ -102,6 +98,7 @@
                   <el-input-number
                     v-else-if="setting.type === 'inputNumber'"
                     v-model="setting.value"
+                    class="bs-input-number"
                   />
                   <el-radio-group
                     v-else-if="setting.type === 'radio'"
