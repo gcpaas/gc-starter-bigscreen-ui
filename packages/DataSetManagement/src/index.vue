@@ -623,9 +623,8 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-.bs-container .inner-container .el-form .filter-item {
 @import '/packages/assets/style/darkComponent.scss';
-.app-container .inner-container .el-form .filter-item {
+.bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
   }
