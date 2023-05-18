@@ -34,7 +34,7 @@ module.exports = {
   parallel: require('os').cpus().length > 1,
   pages: {
     index: {
-      entry: ['node_modules/babel-polyfill', 'example/main.js'],
+      entry: ['example/main.js'],
       template: 'public/index.html',
       filename: 'index.html',
       chunks: 'all'
@@ -70,6 +70,10 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     // name: name,
+    config.cache = {
+      type: 'filesystem',
+      cacheDirectory: path.resolve(__dirname, '.cache')
+    }
     Object.assign(config.resolve, {
       alias: {
         '@': resolve('example'),
@@ -95,6 +99,7 @@ module.exports = {
       return {
         plugins: [
           new CompressionPlugin({
+            cache: true, // 开启缓存
             test: /\.js$|\.html$|\.css$|\.jpg$|\.jpeg$|\.png/, // 需要压缩的文件类型
             threshold: 10240, // 归档需要进行压缩的文件大小最小值，10K以上的进行压缩
             deleteOriginalAssets: false // 是否删除原文件
