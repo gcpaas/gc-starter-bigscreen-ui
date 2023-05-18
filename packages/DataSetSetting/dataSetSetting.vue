@@ -57,7 +57,7 @@ export default {
   },
   data () {
     return {
-      dataSetVisible: true,
+      dataSetVisible: false,
       dataSetId: null
     }
   },
