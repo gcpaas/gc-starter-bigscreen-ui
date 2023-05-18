@@ -21,7 +21,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 
-import chartContextMenu from '../js/mixins/chartContextMenu'
+import chartContextMenu from 'packages/js/mixins/chartContextMenu'
 export default {
   name: 'Configuration',
   mixins: [chartContextMenu],
@@ -73,7 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~packages/assets/fonts/bigScreenFont/iconfont.css';
 .configuration-wrap {
   height: 100%;
   width: 100%;

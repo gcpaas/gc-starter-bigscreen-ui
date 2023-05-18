@@ -8,6 +8,8 @@ import BigScreenDesign from 'packages/BigScreenDesign'
 import DataSourceManagement from 'packages/DataSourceManagement'
 // 数据集管理
 import DataSetManagement from 'packages/DataSetManagement'
+// 大屏管理-数据集管理的顶部路由框架
+import BigScreenTopLayout from 'packages/Layout'
 
 // 大屏 vuex store数据
 import bigScreenStore from 'packages/js/store'
@@ -20,7 +22,8 @@ const components = [
   BigScreenRun,
   BigScreenDesign,
   DataSetManagement,
-  DataSourceManagement
+  DataSourceManagement,
+  BigScreenTopLayout
 ]
 
 const $bigScreen = {
@@ -32,6 +35,7 @@ function install (Vue) {
     Vue.component(component.name, component)
   })
 }
+
 export {
   install,
   BigScreenManagement,
@@ -39,6 +43,7 @@ export {
   BigScreenDesign,
   DataSetManagement,
   DataSourceManagement,
+  BigScreenTopLayout,
 
   $bigScreen,
   registerConfig

@@ -138,7 +138,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~packages/assets/fonts/pageManagementFont/index.css";
+@import "~packages/BasicComponents/fonts/index.css";
 .bs-design-wrap{
   width: 100%;
 }

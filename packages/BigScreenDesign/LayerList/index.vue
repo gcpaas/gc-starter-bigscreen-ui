@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~packages/assets/fonts/bigScreenFont/iconfont.css';
+@import '~packages/BigScreenDesign/fonts/iconfont.css';
 .layer-list-wrap {
   width: 100%;
   height: 100%;

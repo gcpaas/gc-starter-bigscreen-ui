@@ -31,7 +31,7 @@ function registerRouters (config, router) {
     {
       path: config?.routers?.pageManagementUrl || '/pages',
       redirect: config?.routers?.pageListUrl || '/pages',
-      component: () => import('packages/layout/ApplicationCreateTop/index.vue'),
+      component: () => import('packages/Layout/ApplicationCreateTop/index.vue'),
       children: [
         {
           path: config?.routers?.pageListUrl || '/pages',

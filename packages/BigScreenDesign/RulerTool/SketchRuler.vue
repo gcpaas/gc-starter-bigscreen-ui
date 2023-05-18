@@ -188,7 +188,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~packages/assets/fonts/bigScreenFont/iconfont.css';
+@import '~packages/BigScreenDesign/fonts/iconfont.css';
 @import '~packages/assets/style/themeVar.scss';
 .wrapper {
   box-sizing: border-box;
