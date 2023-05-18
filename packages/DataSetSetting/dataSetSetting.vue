@@ -30,7 +30,7 @@
 </template>
 <script>
 import DataSetManagement from 'packages/DataSetManagement'
-import 'packages/assets/style/dataSource.scss'
+// import 'packages/assets/style/dataSource.scss'
 export default {
   name: 'DataSetSetting',
   components: { DataSetManagement },
@@ -88,19 +88,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .el-dialog__body {
-  position: relative;
-  padding: 0 !important;
-  min-height: 600px;
-  overflow: hidden;
-}
-
-/deep/ .packUpStyle {
-  pointer-events: none;
-  height: 600px;
-}
-
-/deep/ .showPackUp {
-  display: none;
-}
+  .data-set-wrap{
+    /deep/ .el-dialog__body{
+      position: relative;
+      padding: 0 !important;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    /deep/ .packUpStyle{
+      pointer-events: none;
+      /*height: 600px;*/
+      position: static;
+      height: 100%;
+    }
+    /deep/ .showPackUp{
+      display: none;
+    }
+    .app-container{
+      /*height: 100% !important;*/
+      min-height: 560px;
+    }
+    /deep/.table-box{
+      height: calc(100% - 105px) !important;
+      .el-table{
+        height: 100% !important;
+        max-height: unset!important;
+      }
+    }
+  }
 </style>
