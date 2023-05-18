@@ -9,12 +9,14 @@
         <el-form-item label="翻转形态">
           <el-switch
             v-model="config.customize.reverse"
-            active-color="#13ce66"
+            class="bs-switch"
+            active-color="#007aff"
           />
         </el-form-item>
         <el-form-item label="单次动画时长">
           <el-input-number
             v-model="config.customize.dur"
+            class="bs-input-number"
             :min="0"
             :max="1000"
             :step="1"

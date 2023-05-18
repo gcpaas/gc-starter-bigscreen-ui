@@ -2,8 +2,8 @@
  * @description: 设置联动的弹窗
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
- * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-18 13:26:16
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-05-18 15:21:01
 -->
 <template>
   <el-dialog
@@ -21,17 +21,18 @@
     >
       <el-table
         :data="configMapConfig.maps"
-        class="config-map-table"
-        class-name="bs-table"
+        class="bs-table"
         border
-        style="width: 100%"
       >
         <el-table-column
           label="当前组件映射参数"
           align="center"
         >
           <template #default="scope">
-            <el-select v-model="configMapConfig.maps[scope.$index].sourceField">
+            <el-select
+              v-model="configMapConfig.maps[scope.$index].sourceField"
+              popper-class="bs-select"
+            >
               <el-option
                 v-for="sourceField in sourceFieldList"
                 :key="sourceField.value"
@@ -46,7 +47,10 @@
           align="center"
         >
           <template #default="scope">
-            <el-select v-model="configMapConfig.maps[scope.$index].queryRule">
+            <el-select
+              v-model="configMapConfig.maps[scope.$index].queryRule"
+              popper-class="bs-select"
+            >
               <el-option
                 v-for="operator in operatorList"
                 :key="operator.value"
@@ -61,7 +65,10 @@
           align="center"
         >
           <template #default="scope">
-            <el-select v-model="configMapConfig.maps[scope.$index].targetField">
+            <el-select
+              v-model="configMapConfig.maps[scope.$index].targetField"
+              popper-class="bs-select"
+            >
               <el-option
                 v-for="targetField in targetFieldList"
                 :key="targetField.value"
@@ -203,20 +210,45 @@ export default {
   .el-dialog__header {
     background: $bs-component;
     background-color: $bs-component;
-    .el-dialog__title{
+
+    .el-dialog__title {
       color: $bs-title;
     }
   }
+
 }
-.bs-table{
+</style>
+
+<style lang="scss" scoped>
+.bs-table {
+  border: 1px solid #e6ebf5;
+
+  // border-bottom: 1px solid $bs-component;
+
   background: $bs-bg;
   background-color: $bs-component;
-  ::v-deep .el-table__cell{
+
+  ::v-deep .el-table__cell {
     background: $bs-component;
     background-color: $bs-component;
+
+    .cell {
+      color: $bs-title !important;
+    }
+
+    .el-input__inner {
+      color: $bs-value;
+      background-color: $bs-bg;
+
+      &::placeholder {
+        color: $bs-title;
+      }
+    }
   }
 }
-.config-map-table {
-  border-bottom: 1px solid #e6ebf5;
+
+::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
+  background-color: $bs-bg !important;
+  color: $bs-value !important;
 }
 </style>
