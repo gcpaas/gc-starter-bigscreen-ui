@@ -125,7 +125,7 @@ module.exports = {
     config.plugins.delete('prefetch-index') //  关闭prefetch
     config.module
       .rule('svg')
-      .exclude.add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .exclude.add(resolve('packages/assets/images/dataSourceIcon/svg'))
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
@@ -134,7 +134,7 @@ module.exports = {
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('packages/assets/images/appPrependIcon/svg'))
+      .include.add(resolve('packages/assets/images/dataSourceIcon/svg'))
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
