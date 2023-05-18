@@ -372,7 +372,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '~packages/assets/style/themeVar.scss';
 // Element-Ui样式覆盖
 .bs-select {
   background-color: $bs-bg !important;
@@ -399,12 +400,6 @@ export default {
     border-left: 1px solid $bs-bg;
   }
 }
-</style>
-
-<style lang="scss" scoped>
-@import '~packages/assets/style/variables.scss';
-@import '~packages/assets/style/themeVar.scss';
-
 .bs-overall-wrap {
   position: relative;
   padding: 8px;

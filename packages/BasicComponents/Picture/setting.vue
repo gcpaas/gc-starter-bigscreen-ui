@@ -170,7 +170,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "~packages/assets/style/settingWrap.scss";
 .bs-slider{
  .el-input-number__decrease {
     background: $bs-component;
@@ -182,10 +183,6 @@ export default {
     border-left: 1px solid $bs-bg;
   }
 }
-</style>
-
-<style lang="scss" scoped>
-@import "../~packages/assets/style/settingWrap.scss";
 .bs-setting-wrap {
   padding-top: 16px;
 

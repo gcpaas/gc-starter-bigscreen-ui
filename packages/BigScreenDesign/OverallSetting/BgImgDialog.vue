@@ -56,7 +56,7 @@
   </el-dialog>
 </template>
 <script>
-import { get } from 'packages/utils/http'
+import { get } from 'packages/js/utils/http'
 export default {
   name: 'BgImgDialog',
   props: {

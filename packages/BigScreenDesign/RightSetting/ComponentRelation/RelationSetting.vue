@@ -2,8 +2,8 @@
  * @description: 设置联动的弹窗
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
- * @LastEditors: wujian
- * @LastEditTime: 2023-05-18 11:01:02
+ * @LastEditors: xing.heng
+ * @LastEditTime: 2023-05-18 13:26:16
 -->
 <template>
   <el-dialog
@@ -216,9 +216,6 @@ export default {
     background-color: $bs-component;
   }
 }
-</style>
-
-<style lang="scss" scoped>
 .config-map-table {
   border-bottom: 1px solid #e6ebf5;
 }
