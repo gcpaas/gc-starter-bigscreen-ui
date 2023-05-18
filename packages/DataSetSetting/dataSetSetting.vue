@@ -11,6 +11,9 @@
   >
     <DataSetManagement
       ref="dataSetSetting"
+      class="bs-data-set-management"
+      dark-class="bs-table"
+      :is-border="true"
       :is-dialog="true"
       :ds-id="dataSetId"
       :multiple="multiple"
@@ -54,7 +57,7 @@ export default {
   },
   data () {
     return {
-      dataSetVisible: false,
+      dataSetVisible: true,
       dataSetId: null
     }
   },
@@ -86,33 +89,103 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .data-set-wrap{
-    /deep/ .el-dialog__body{
-      position: relative;
-      padding: 0 !important;
-      min-height: 600px;
-      overflow: hidden;
+<style lang="scss">
+.bs-data-set-management {
+  .ztree {
+    span {
+      color: $bs-text;
     }
-    /deep/ .packUpStyle{
-      pointer-events: none;
-      /*height: 600px;*/
-      position: static;
-      height: 100%;
+
+    li:hover {
+      background: transparent !important;
+      background-color: transparent !important;
     }
-    /deep/ .showPackUp{
-      display: none;
+
+    .curSelectedNode {
+      background: $bs-hover !important;
+      background-color: $bs-hover !important;
     }
-    .app-container{
-      /*height: 100% !important;*/
-      min-height: 560px;
-    }
-    /deep/.table-box{
-      height: calc(100% - 105px) !important;
-      .el-table{
-        height: 100% !important;
-        max-height: unset!important;
-      }
+
+    a:hover {
+      background: $bs-hover !important;
+      background-color: $bs-hover !important;
     }
   }
+
+}
+</style>
+
+<style lang="scss" scoped>
+.bs-data-set-management {
+  ::v-deep .inner-container {
+    background: $bs-component;
+  }
+
+  ::v-deep .packUpStyle {
+    pointer-events: none;
+    position: static;
+    height: 100%;
+    background-color: $bs-bg;
+  }
+
+  ::v-deep .ztreeNodeMenu {
+    ul {
+      background-color: $bs-bg;
+    }
+
+    li:hover {
+      background-color: $bs-hover;
+    }
+
+    span {
+      color: $bs-title;
+    }
+
+    .triangle {
+      background-color: $bs-bg !important;
+    }
+  }
+
+  ::v-deep .el-input__inner {
+    color: $bs-text;
+    background: $bs-component;
+  }
+  ::v-deep .left-tab-box {
+    span {
+      color: $bs-text;
+    }
+  }
+  ::v-deep .left-tab-box ul li.tab-active {
+    background-color: $bs-hover;
+  }
+  ::v-deep .left-tab-box ul li:hover {
+    background-color: $bs-hover;
+  }
+}
+
+.data-set-wrap {
+  /deep/ .el-dialog__body {
+    position: relative;
+    padding: 0 !important;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  /deep/ .showPackUp {
+    display: none;
+  }
+
+  .app-container {
+    min-height: 590px;
+  }
+
+  /deep/.table-box {
+    height: calc(100% - 105px) !important;
+
+    .el-table {
+      height: 100% !important;
+      max-height: unset !important;
+    }
+  }
+}
 </style>

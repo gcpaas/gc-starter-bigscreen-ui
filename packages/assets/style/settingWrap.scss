@@ -84,8 +84,8 @@
 
   input, textarea {
     background-color: $bs-component !important;
-    color: $bs-value !important;
-    border-color: $bs-value !important;
+    color: $bs-text !important;
+    border-color: $bs-text !important;
   }
 
 }
@@ -203,7 +203,7 @@
 /deep/ .el-radio__label
 {
   background: $bs-component;
-  color: $bs-value;
+  color: $bs-text;
   border: 0 !important;
 }
 
@@ -221,6 +221,6 @@
 /deep/ .el-table__cell {
   background: $bs-component !important;
   color: $bs-title !important;
-  border-color: $bs-value !important;
+  border-color: $bs-text !important;
 }
 

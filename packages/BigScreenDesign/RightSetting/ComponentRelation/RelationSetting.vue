@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-18 15:21:01
+ * @LastEditTime: 2023-05-18 16:15:24
 -->
 <template>
   <el-dialog
@@ -225,7 +225,7 @@ export default {
 
   // border-bottom: 1px solid $bs-component;
 
-  background: $bs-bg;
+  background:  $bs-component;
   background-color: $bs-component;
 
   ::v-deep .el-table__cell {
@@ -237,7 +237,7 @@ export default {
     }
 
     .el-input__inner {
-      color: $bs-value;
+      color: $bs-text;
       background-color: $bs-bg;
 
       &::placeholder {
@@ -249,6 +249,6 @@ export default {
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: $bs-bg !important;
-  color: $bs-value !important;
+  color: $bs-text !important;
 }
 </style>

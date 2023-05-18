@@ -388,7 +388,7 @@ export default {
   .el-input__inner{
     background:$bs-bg;
     background-color: $bs-component;
-    color: $bs-value;
+    color: $bs-text;
   }
 }
 
@@ -421,7 +421,7 @@ export default {
   /deep/ .el-input-group__append,
   /deep/ .el-radio__label {
     background: $bs-component;
-    color: $bs-value;
+    color: $bs-text;
     border: 0 !important;
   }
 
@@ -441,11 +441,11 @@ export default {
   /deep/ .el-table__cell {
     background: $bs-component !important;
     color: $bs-title !important;
-    border-color: $bs-value !important;
+    border-color: $bs-text !important;
   }
 
   /deep/ .el-input__inner::placeholder {
-    color: $bs-value;
+    color: $bs-text;
   }
 }
 
