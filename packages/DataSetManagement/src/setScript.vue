@@ -75,6 +75,7 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
+                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
