@@ -58,7 +58,6 @@ module.exports = {
     // 向所有 Sass 样式传入全局变量
     loaderOptions: {
       sass: {
-        // @ 是 example 的别名
         data: `
         @import "~packages/assets/style/variables.scss";
         `

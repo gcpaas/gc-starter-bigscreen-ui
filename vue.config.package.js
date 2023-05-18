@@ -16,9 +16,8 @@ module.exports = {
     // 向所有 Sass 样式传入全局变量
     loaderOptions: {
       sass: {
-        prependData: `
+        data: `
         @import "~packages/assets/style/variables.scss";
-        @import "~packages/assets/style/mixin.scss";
         `
       }
     },
