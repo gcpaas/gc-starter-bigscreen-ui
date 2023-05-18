@@ -53,9 +53,9 @@ registerConfig({
   // 路由
   routers: {
     // 大屏设计路由
-    designUrl: '/design',
+    designUrl: 'big-screen/design',
     // 预览路由
-    previewUrl: '/preview',
+    previewUrl: '/big-screen/preview',
     // 页面管理路由（带头部跳转路由）
     pageManagementUrl: '/management',
     // 页面列表路由
@@ -63,9 +63,9 @@ registerConfig({
     // 数据管理（带头部）
     dsManageUrl: '/data-source-manage',
     // 数据源管理
-    dataSourceUrl: '/data-source',
+    dataSourceUrl: '/data-source-manage/data-source',
     // 数据集管理
-    dataSetUrl: '/data-set'
+    dataSetUrl: '/data-source-manage/data-set'
   },
   // 自定义http配置
   httpConfigs: {
@@ -130,14 +130,13 @@ export default store
 下面的路由地址和在main.js 中 registerConfig 注入的配置一致
 
 ```js
-localhost:8080/pages
+localhost:8080/management
 localhost:8080/big-screen/design?code=xxx
 localhost:8080/big-screen/preview?code=xxx
-localhost:8080/data-sources/data-source-sets
-localhost:8080/data-sources/data-set-configuration
+localhost:8080/data-source-manage
 ```
 
-
+⚠️ 请注意，快速注入的路由，如果您的系统对路由有权限要求，要想正常访问，请先务必加入白名单。
 
 ### 3. 自定义页面路由
 
@@ -230,6 +229,9 @@ export default {
   }
 </script>
 ```
+
+
+
 
 
 #### 3.4 数据源管理页面
