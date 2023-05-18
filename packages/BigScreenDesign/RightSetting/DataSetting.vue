@@ -691,7 +691,6 @@ export default {
     },
     // 改变维度
     dimensionFieldListChange (list) {
-      console.log(list)
       const colFieldList = []
       if (list.length > 0) {
         list.forEach(item => {

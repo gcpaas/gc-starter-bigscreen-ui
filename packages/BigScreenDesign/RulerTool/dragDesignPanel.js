@@ -59,7 +59,6 @@ const dragDesignPanelMixin = {
       e.stopPropagation()
       // 判断鼠标移动时是否处于按下状态
       if (this.isMouseDown && e.buttons === 2) {
-        // console.log(this.isMouseDown, e)
         // 获取鼠标按下后移动的距离
         const offsetX = e.offsetX - this._startX
         const offsetY = e.offsetY - this._startY

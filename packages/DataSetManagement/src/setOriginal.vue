@@ -767,7 +767,6 @@ export default {
         this.dataForm.typeId = this.typeId
         this.$nextTick(() => {
           try {
-            console.log(1)
             this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
           } catch (error) {
             console.error(error)
@@ -788,7 +787,6 @@ export default {
           if (this.dataForm.typeId) {
             this.$nextTick(() => {
               try {
-                console.log(2)
                 this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
               } catch (error) {
                 console.error(error)
