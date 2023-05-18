@@ -63,7 +63,7 @@ import SketchDesignRuler from 'packages/BigScreenDesign/RulerTool/SketchRuler.vu
 import { G2 } from '@antv/g2plot'
 import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
-import MouseSelect from './components/MouseSelect.vue'
+import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
 export default {
   name: 'BigScreenDesign',

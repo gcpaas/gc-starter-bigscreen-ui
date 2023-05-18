@@ -112,8 +112,6 @@ module.exports = {
   },
 
   chainWebpack: config => {
-    // 禁用热重载
-    config.plugins.delete('hmr')
     if (process.env.NODE_ENV === 'production') {
       config.plugin('html-index').tap(args => {
         // html中添加cdn
