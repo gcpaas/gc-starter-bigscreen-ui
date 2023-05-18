@@ -257,7 +257,7 @@
       <div class="result-view">
         数据预览
       </div>
-      <div class="table-box is-Edit">
+      <div class="bs-table-box is-Edit">
         <el-table
           align="center"
           :data="dataPreviewList"
@@ -278,7 +278,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <div class="page-container">
+      <div class="bs-pagination">
         <el-pagination
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
@@ -303,7 +303,7 @@
           label="数据预览"
           name="data"
         >
-          <div class="table-box">
+          <div class="bs-table-box">
             <el-table
               align="center"
               :data="dataPreviewList"
@@ -324,7 +324,7 @@
               </el-table-column>
             </el-table>
           </div>
-          <div class="page-container">
+          <div class="bs-pagination">
             <el-pagination
               :current-page="current"
               :page-sizes="[10, 20, 50, 100]"
@@ -344,7 +344,7 @@
           label="数据集结构"
           name="structure"
         >
-          <div class="table-box">
+          <div class="bs-table-box">
             <el-table
               max-height="400"
               :data="structurePreviewList"
@@ -430,6 +430,7 @@
       append-to-body
       :close-on-click-modal="false"
       custom-class="fieldDescCheck"
+      class="bs-dialog-wrap"
     >
       <p style="line-height: 24px;padding-left: 10px;display: flex;">
         <i
@@ -457,8 +458,9 @@
       append-to-body
       :close-on-click-modal="false"
       :before-close="cancelField"
+      class="bs-dialog-wrap"
     >
-      <div class="table-box">
+      <div class="bs-table-box">
         <el-table
           max-height="350"
           :data="structurePreviewListCopy"
@@ -552,8 +554,9 @@
       append-to-body
       :close-on-click-modal="false"
       :before-close="cancelParam"
+      class="bs-dialog-wrap"
     >
-      <div class="table-box">
+      <div class="bs-table-box">
         <el-table
           ref="singleTable"
           :data="paramsListCopy"
@@ -1409,7 +1412,7 @@ export default {
     border-left: 4px solid #007AFF;
   }
 }
-/deep/ .table-box.is-Edit .el-table {
+/deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
   .el-table__body-wrapper {
     max-height: unset !important;

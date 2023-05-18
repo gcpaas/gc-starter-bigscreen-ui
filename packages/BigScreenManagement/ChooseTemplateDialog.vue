@@ -3,6 +3,7 @@
     :title="hasCreate ? '新建' : '模板'"
     :visible.sync="dialogVisible"
     width="50%"
+    class="bs-dialog-wrap"
     :before-close="handleClose"
   >
     <TemplateList

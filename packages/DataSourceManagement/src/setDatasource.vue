@@ -6,6 +6,7 @@
     :append-to-body="true"
     :close-on-click-modal="false"
     :before-close="handleClose"
+    class="bs-dialog-wrap"
   >
     <div
       v-loading="linkLoading"

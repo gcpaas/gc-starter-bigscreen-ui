@@ -140,7 +140,7 @@
       :title="catalogData.id ? '编辑目录':'新增目录'"
       :visible.sync="catalogVisible"
       width="30%"
-      class="catalog-dialog"
+      class="bs-dialog-wrap catalog-dialog"
       @close="handleClose"
     >
       <el-form

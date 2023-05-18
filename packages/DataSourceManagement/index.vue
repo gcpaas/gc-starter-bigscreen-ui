@@ -176,7 +176,7 @@ export default {
     height: 100%;
     .inner-router-view-wrap{
       height: 100%;
-      .table-box{
+      .bs-table-box{
         height: calc(100vh - 205px);
         .el-table{
           height: 100%;

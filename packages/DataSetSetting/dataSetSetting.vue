@@ -7,7 +7,7 @@
     width="80%"
     custom-class="bs-dialog"
     top="10vh"
-    class="data-set-wrap"
+    class="bs-dialog-wrap data-set-wrap"
   >
     <DataSetManagement
       ref="dataSetSetting"
@@ -175,11 +175,11 @@ export default {
     display: none;
   }
 
-  .app-container {
+  .bs-container {
     min-height: 590px;
   }
 
-  /deep/.table-box {
+  /deep/.bs-table {
     height: calc(100% - 105px) !important;
 
     .el-table {

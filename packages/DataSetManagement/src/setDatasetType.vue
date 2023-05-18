@@ -6,6 +6,7 @@
     :before-close="handleClose"
     :append-to-body="true"
     :close-on-click-modal="false"
+    class="bs-dialog-wrap"
   >
     <div class="type-wrap">
       <el-row :gutter="20">

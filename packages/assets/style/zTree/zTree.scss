@@ -1,5 +1,4 @@
-@import '~packages/assets/style/theme-default/common/mixin.scss';
-@import '~packages/assets/style/theme-default/index.scss';
+
 .tree-box {
   padding: 0 18px 10px 0;
 
@@ -59,24 +58,26 @@
 .ztreeNodeMenu {
   z-index: 5;
   cursor: pointer;
-  @include common-component-header-bg($gc-color-white);
+  background-color:#ffffff;
   ul {
     border-radius: 5px;
     outline: none;
     box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
       0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-        @include common-component-header-bg($gc-color-white);
+        background-color:#ffffff;
   }
 
   li {
     padding: 5px 10px 5px 10px;
 
     span {
-      @include common-span-color(#36474f);
+      color:#36474f;
       font-size: 12px;
     }
     &:hover{
-      @include common-hover(#f6f7fb)
+        //background-color: $color;
+        cursor: pointer;
+        //border-bottom: $color;
     }
   }
 
@@ -90,8 +91,7 @@
     }
     .triangle {
       top: 4px;
-      // background-color: #ffffff;
-      @include common-component-header-bg($gc-color-white);
+      background-color:#ffffff;
       border-color: transparent ;
       box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.06);
     }
@@ -110,7 +110,7 @@
     }
     .triangle {
       bottom: 4px;
-      @include common-component-header-bg($gc-color-white);
+      background-color:#ffffff;
       border-color: transparent transparent transparent transparent;
     }
 

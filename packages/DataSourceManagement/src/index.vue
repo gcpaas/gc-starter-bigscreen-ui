@@ -1,7 +1,7 @@
 <template>
   <div
     id="data-source-wrap"
-    class="app-container"
+    class="bs-container"
   >
     <!--数据源查看-->
     <div class="inner-container">
@@ -33,7 +33,7 @@
           </el-button>
         </el-form-item>
       </el-form>
-      <div class="table-box">
+      <div class="bs-table-box">
         <el-table
           v-loading="searchLoading"
           :element-loading-text="loadingText"
@@ -98,7 +98,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <div class="page-container">
+      <div class="bs-pagination">
         <el-pagination
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"

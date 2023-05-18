@@ -7,6 +7,7 @@
     :modal-append-to-body="false"
     custom-class="bs-dialog"
     :appen-to-body="true"
+    class="bs-dialog-wrap"
     @closed="$emit('imgUrl', imgUrl)"
   >
     <div>

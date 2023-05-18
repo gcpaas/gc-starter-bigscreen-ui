@@ -5,6 +5,7 @@
       :title="title ? '编辑' : '新增'"
       :visible.sync="formVisible"
       :append-to-body="true"
+      class="bs-dialog-wrap"
       @close="closeAddDialog"
     >
       <el-form

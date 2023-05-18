@@ -1,7 +1,7 @@
 <template>
   <div
     id="box"
-    class="app-container"
+    class="bs-container"
     @mousemove="mousemoveOnBox"
     @mouseup="mouseupOnBox"
   >
@@ -88,7 +88,7 @@
             </el-button>
           </el-form-item>
         </el-form>
-        <div class="table-box">
+        <div class="bs-table-box">
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
@@ -169,7 +169,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div class="page-container">
+        <div class="bs-pagination">
           <el-pagination
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
@@ -605,14 +605,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.app-container .inner-container .el-form .filter-item {
+.bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
   }
 }
 
 .el-dialog {
-  .app-container {
+  .bs-container {
     max-height: calc(90vh - 236px) !important;
 
     .el-table {

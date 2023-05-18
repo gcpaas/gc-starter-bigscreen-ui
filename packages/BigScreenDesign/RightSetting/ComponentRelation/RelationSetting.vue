@@ -14,6 +14,7 @@
     width="800px"
     custom-class="bs-dialog"
     append-to-body
+    class="bs-dialog-wrap"
   >
     <el-form
       ref="form"
@@ -21,7 +22,7 @@
     >
       <el-table
         :data="configMapConfig.maps"
-        class="bs-table"
+        class="bs-table-box bs-table"
         border
       >
         <el-table-column
@@ -220,7 +221,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.bs-table {
+.bs-table-box {
   border: 1px solid #e6ebf5;
 
   // border-bottom: 1px solid $bs-component;
