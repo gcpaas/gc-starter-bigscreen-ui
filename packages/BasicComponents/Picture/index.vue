@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      noImageUrl: require('packages/assets/images/noImage.png')
+      noImageUrl: require('packages/BasicComponents/Picture/images/noImage.png')
     }
   },
   computed: {
