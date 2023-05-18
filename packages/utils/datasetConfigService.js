@@ -9,7 +9,7 @@ import { get, post } from 'packages/utils/http'
  * @param flag
  * @returns {*}
  */
-const datasetPage = (params = {}, flag = false) => get('/dataset/page', params, flag)
+const datasetPage = (params = {}, flag = false) => get('/bigScreen/dataset/page', params, flag)
 
 /**
  * 删除数据集
@@ -17,7 +17,7 @@ const datasetPage = (params = {}, flag = false) => get('/dataset/page', params, 
  * @param flag
  * @returns {*}
  */
-const datasetRemove = (id = '-1', flag = false) => get(`/dataset/remove/${id}`, {}, flag)
+const datasetRemove = (id = '-1', flag = false) => get(`/bigScreen/dataset/remove/${id}`, {}, flag)
 
 /**
  * 数据集名称校验
@@ -25,7 +25,7 @@ const datasetRemove = (id = '-1', flag = false) => get(`/dataset/remove/${id}`, 
  * @param flag
  * @returns {*}
  */
-const nameCheckRepeat = (params = {}, flag = false) => post('/dataset/nameCheckRepeat', params, flag)
+const nameCheckRepeat = (params = {}, flag = false) => post('/bigScreen/dataset/nameCheckRepeat', params, flag)
 
 /**
  * 数据集新增/修改【json/脚本/数据模型】
@@ -33,7 +33,7 @@ const nameCheckRepeat = (params = {}, flag = false) => post('/dataset/nameCheckR
  * @param flag
  * @returns {*}
  */
-const datasetAddorUpdate = (params = {}, flag = false) => post('/dataset/addOrUpdate', params, flag)
+const datasetAddorUpdate = (params = {}, flag = false) => post('/bigScreen/dataset/addOrUpdate', params, flag)
 
 /**
  * 数据集执行【脚本】
@@ -41,7 +41,7 @@ const datasetAddorUpdate = (params = {}, flag = false) => post('/dataset/addOrUp
  * @param flag
  * @returns {*}
  */
-const datasetExecute = (params = {}, flag = false) => post('/dataset/execute', params, flag)
+const datasetExecute = (params = {}, flag = false) => post('/bigScreen/dataset/execute', params, flag)
 
 /**
  * 获取数据集信息【json/数据模型/脚本】
@@ -50,7 +50,7 @@ const datasetExecute = (params = {}, flag = false) => post('/dataset/execute', p
  * @returns {*}
  */
 
-const getDataset = (id = '-1', flag = false) => get(`/dataset/getDataSetDetailById?id=${id}`, {}, flag)
+const getDataset = (id = '-1', flag = false) => get(`/bigScreen/dataset/getDataSetDetailById?id=${id}`, {}, flag)
 
 /**
  * 数据集加工测试
@@ -58,7 +58,7 @@ const getDataset = (id = '-1', flag = false) => get(`/dataset/getDataSetDetailBy
  * @param flag
  * @returns {*}
  */
-const sqlTest = (params = {}, flag = false) => post('/datasetProcess/sqlTest', params, flag)
+const sqlTest = (params = {}, flag = false) => post('/bigScreen/datasetProcess/sqlTest', params, flag)
 
 /**
  * 数据集新增
@@ -66,7 +66,7 @@ const sqlTest = (params = {}, flag = false) => post('/datasetProcess/sqlTest', p
  * @param flag
  * @returns {*}
  */
-const datasetAdd = (params = {}, flag = false) => post('/datasetProcess/add', params, flag)
+const datasetAdd = (params = {}, flag = false) => post('/bigScreen/datasetProcess/add', params, flag)
 
 /**
   * 数据集修改
@@ -74,7 +74,7 @@ const datasetAdd = (params = {}, flag = false) => post('/datasetProcess/add', pa
   * @param flag
   * @returns {*}
   */
-const datasetUpdate = (params = {}, flag = false) => post('/datasetProcess/update', params, flag)
+const datasetUpdate = (params = {}, flag = false) => post('/bigScreen/datasetProcess/update', params, flag)
 
 /**
  * 获取自助数据集信息
@@ -82,7 +82,7 @@ const datasetUpdate = (params = {}, flag = false) => post('/datasetProcess/updat
  * @param flag
  * @returns {*}
  */
-const getDatasetInfo = (id = '-1', flag = false) => get(`/datasetProcess/getDatasetInfo/${id}`, {}, flag)
+const getDatasetInfo = (id = '-1', flag = false) => get(`/bigScreen/datasetProcess/getDatasetInfo/${id}`, {}, flag)
 
 /**
  * 获取数据集分类
@@ -90,7 +90,7 @@ const getDatasetInfo = (id = '-1', flag = false) => get(`/datasetProcess/getData
  * @param flag
  * @returns {*}
  */
-const getDatasetTypeList = (params = {}, flag = false) => get('/category/queryTreeList', params, flag)
+const getDatasetTypeList = (params = {}, flag = false) => get('/bigScreen/category/queryTreeList', params, flag)
 
 /**
  * 获取原始表信息，数据列表
@@ -98,7 +98,7 @@ const getDatasetTypeList = (params = {}, flag = false) => get('/category/queryTr
  * @param flag
  * @returns {*}
  */
-const getOriginalTableDetail = (params = {}, flag = false) => post('/original/getOriginalTableDetail', params, flag)
+const getOriginalTableDetail = (params = {}, flag = false) => post('/bigScreen/original/getOriginalTableDetail', params, flag)
 
 /**
  * 新增/修改原始数据集
@@ -106,14 +106,14 @@ const getOriginalTableDetail = (params = {}, flag = false) => post('/original/ge
  * @param flag
  * @returns {*}
  */
-const addOrUpdateOriginal = (params = {}, flag = false) => post('/original/addOrUpdate', params, flag)
+const addOrUpdateOriginal = (params = {}, flag = false) => post('/bigScreen/original/addOrUpdate', params, flag)
 /**
  * 获取原始数据集字段信息
  * @param params
  * @param flag
  * @returns {*}
  */
-const getOriginalTableFieldInfo = (params = {}, flag = false) => post('/original/getOriginalTableFieldInfo', params, flag)
+const getOriginalTableFieldInfo = (params = {}, flag = false) => post('/bigScreen/original/getOriginalTableFieldInfo', params, flag)
 
 /**
  * 获取数据集详细信息
@@ -121,14 +121,14 @@ const getOriginalTableFieldInfo = (params = {}, flag = false) => post('/original
  * @param flag
  * @returns {*}
  */
-const getOriginalTableDetailsById = (id = '-1', flag = false) => get(`/original/getOriginalTableDetailsById/${id}`, {}, flag)
+const getOriginalTableDetailsById = (id = '-1', flag = false) => get(`/bigScreen/original/getOriginalTableDetailsById/${id}`, {}, flag)
 /**
  * 删除菜单树节点
  * @param id
  * @param flag
  * @returns {*}
  */
-const categoryRemove = (id = '-1', flag = false) => get(`/category/remove/${id}`, {}, flag)
+const categoryRemove = (id = '-1', flag = false) => get(`/bigScreen/category/remove/${id}`, {}, flag)
 
 /**
  * 新增/编辑菜单树节点
@@ -136,7 +136,7 @@ const categoryRemove = (id = '-1', flag = false) => get(`/category/remove/${id}`
  * @param flag
  * @returns {*}
  */
-const addOrUpdateTree = (params = {}, flag = false) => post('/category/addOrUpdateTree', params, flag)
+const addOrUpdateTree = (params = {}, flag = false) => post('/bigScreen/category/addOrUpdateTree', params, flag)
 
 export {
   datasetPage,
