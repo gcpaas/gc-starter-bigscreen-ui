@@ -11,7 +11,7 @@
 </template>
 <script>
 import DvDecoration1 from '@jiaminghi/data-view/lib/components/decoration1/src/main.vue'
-import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 export default {
   name: 'Decoration1',
   components: {

@@ -28,7 +28,7 @@
 <script>
 import RenderCard from 'packages/Render/RenderCard.vue'
 import { mapActions, mapMutations, mapState } from 'vuex'
-import { getThemeConfig } from 'packages/api/bigScreenApi'
+import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import { compile } from 'tiny-sass-compiler/dist/tiny-sass-compiler.esm-browser.prod.js'
 import { G2 } from '@antv/g2plot'
 export default {

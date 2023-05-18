@@ -46,10 +46,10 @@
 </template>
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex'
-import { saveScreen } from 'packages/api/bigScreenApi'
+import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
 import _ from 'lodash'
-import { stringifyObjectFunctions } from 'packages/utils/evalFunctions'
+import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
 export default {
   name: 'PageTopSetting',
   components: {

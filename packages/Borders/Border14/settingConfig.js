@@ -1,4 +1,4 @@
-import { commonConfig } from '../../config'
+import { commonConfig } from '../../js/config'
 
 export const settingConfig = {
   // 设置面板属性的显隐

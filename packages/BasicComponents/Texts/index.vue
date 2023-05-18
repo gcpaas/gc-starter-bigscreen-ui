@@ -12,8 +12,8 @@
   </div>
 </template>
 <script>
-import commonMixins from 'packages/mixins/commonMixins'
-import paramsMixins from 'packages/mixins/paramsMixins'
+import commonMixins from 'packages/js/mixins/commonMixins'
+import paramsMixins from 'packages/js/mixins/paramsMixins'
 export default {
   name: 'Texts',
   components: {},

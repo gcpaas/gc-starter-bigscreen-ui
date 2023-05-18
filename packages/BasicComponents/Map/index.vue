@@ -12,9 +12,9 @@
 <script>
 import 'insert-css'
 import * as echarts from 'echarts'
-import commonMixins from 'packages/mixins/commonMixins.js'
-import paramsMixins from 'packages/mixins/paramsMixins'
-import { get } from 'packages/utils/http'
+import commonMixins from 'packages/js/mixins/commonMixins.js'
+import paramsMixins from 'packages/js/mixins/paramsMixins'
+import { get } from 'packages/js/utils/http'
 export default {
   name: 'MapCharts',
   mixins: [paramsMixins, commonMixins],

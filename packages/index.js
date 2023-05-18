@@ -10,9 +10,9 @@ import DataSourceManagement from 'packages/DataSourceManagement'
 import DataSetManagement from 'packages/DataSetManagement'
 
 // 大屏 vuex store数据
-import bigScreenStore from 'packages/store'
+import bigScreenStore from 'packages/js/store'
 // 注册基础配置
-import registerConfig from 'packages/utils/registerConfig'
+import registerConfig from 'packages/js/utils/registerConfig'
 
 // 存储组件列表
 const components = [

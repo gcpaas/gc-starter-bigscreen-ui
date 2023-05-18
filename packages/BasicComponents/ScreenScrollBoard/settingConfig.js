@@ -1,4 +1,4 @@
-import { commonConfig, displayOption } from 'packages/config'
+import { commonConfig, displayOption } from 'packages/js/config'
 
 export const settingConfig = {
   padding: [30, 30, 30, 60],

@@ -204,10 +204,10 @@
   </div>
 </template>
 <script>
-import { chartSettingMixins } from 'packages/mixins/chartSettingMixins'
-import ColorSelect from 'packages/common/ColorSelect/index.vue'
-import ColorPicker from 'packages/common/ColorPicker/index.vue'
-import { get } from 'packages/utils/http'
+import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
+import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
+import ColorPicker from 'packages/ColorPicker/index.vue'
+import { get } from 'packages/js/utils/http'
 export default {
   name: 'BarSetting',
   components: {

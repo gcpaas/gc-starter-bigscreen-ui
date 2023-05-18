@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import paramsMixins from 'packages/mixins/paramsMixins'
+import paramsMixins from 'packages/js/mixins/paramsMixins'
 export default {
   name: 'TimeCountDown',
   mixins: [paramsMixins],

@@ -1,4 +1,4 @@
-import { commonConfig } from 'packages/config'
+import { commonConfig } from 'packages/js/config'
 export const settingConfig = {
   // 设置面板属性的显隐
   displayOption: {

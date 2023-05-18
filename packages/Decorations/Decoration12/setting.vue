@@ -64,7 +64,7 @@
   </div>
 </template>
 <script>
-import ColorPicker from 'packages/common/ColorPicker/index.vue'
+import ColorPicker from 'packages/ColorPicker/index.vue'
 export default {
   name: 'BarSetting',
   components: {

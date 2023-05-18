@@ -124,10 +124,10 @@
 
 <script>
 import 'packages/assets/style/dataSource.scss'
-import { sourceLinkTest, datasourcePage, sourceRemove } from 'packages/utils/dataSourceService'
+import { sourceLinkTest, datasourcePage, sourceRemove } from 'packages/js/utils/dataSourceService'
 import setDatasource from './setDatasource.vue'
 import _ from 'lodash'
-import { pageMixins } from 'packages/mixins/page'
+import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'DataSource',
   components: {

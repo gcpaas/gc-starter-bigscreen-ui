@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 export default {
   name: 'Border14',
   components: {},

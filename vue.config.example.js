@@ -31,6 +31,7 @@ const plugins = [
   })
 ]
 module.exports = {
+  parallel: require('os').cpus().length > 1,
   pages: {
     index: {
       entry: ['node_modules/babel-polyfill', 'example/main.js'],

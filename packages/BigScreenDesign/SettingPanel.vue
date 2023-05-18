@@ -37,8 +37,8 @@
   </transition>
 </template>
 <script>
-import RightSetting from 'packages/common/RightSetting/index.vue'
-import OverallSetting from 'packages/common/OverallSetting/index.vue'
+import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
+import OverallSetting from 'packages/BigScreenDesign/OverallSetting/index.vue'
 import _ from 'lodash'
 import { mapState, mapMutations } from 'vuex'
 export default {

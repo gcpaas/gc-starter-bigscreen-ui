@@ -14,10 +14,10 @@
 <script>
 import DvScrollRankingBoard from '@jiaminghi/data-view/lib/components/scrollRankingBoard/src/main.vue'
 import '@jiaminghi/data-view/lib/components/scrollRankingBoard/src/main.css'
-import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
-import commonMixins from 'packages/mixins/commonMixins'
-import paramsMixins from 'packages/mixins/paramsMixins'
-import linkageMixins from 'packages/mixins/linkageMixins'
+import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
+import commonMixins from 'packages/js/mixins/commonMixins'
+import paramsMixins from 'packages/js/mixins/paramsMixins'
+import linkageMixins from 'packages/js/mixins/linkageMixins'
 export default {
   name: 'ScrollRankingBoard',
   components: {

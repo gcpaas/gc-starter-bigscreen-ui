@@ -363,7 +363,7 @@
 <script>
 import vueJsonEditor from 'vue-json-editor'
 import vueJsonViewer from 'vue-json-viewer'
-import { getDatasetTypeList, datasetAddorUpdate, getDataset, nameCheckRepeat } from 'packages/utils/datasetConfigService'
+import { getDatasetTypeList, datasetAddorUpdate, getDataset, nameCheckRepeat } from 'packages/js/utils/datasetConfigService'
 import _ from 'lodash'
 
 export default {

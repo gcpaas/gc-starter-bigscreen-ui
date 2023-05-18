@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import { get, post } from 'packages/utils/http'
+import { get, post } from 'packages/js/utils/http'
 import Icon from 'packages/assets/images/appPrependIcon/export'
 export default {
   name: 'EditForm',

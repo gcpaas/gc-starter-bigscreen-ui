@@ -3,7 +3,7 @@
  * @Date: 2023-03-17 11:17:00
  * @Author: xing.heng
  */
-import { commonConfig } from '../../config'
+import { commonConfig } from '../../js/config'
 
 export const settingConfig = {
   // 设置面板属性的显隐

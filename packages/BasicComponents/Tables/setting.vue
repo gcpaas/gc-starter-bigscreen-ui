@@ -81,8 +81,8 @@
   </div>
 </template>
 <script>
-import ColorPicker from 'packages/common/ColorPicker/index.vue'
-import { chartSettingMixins } from 'packages/mixins/chartSettingMixins'
+import ColorPicker from 'packages/ColorPicker/index.vue'
+import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 export default {
   components: {
     ColorPicker

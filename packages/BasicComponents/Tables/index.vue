@@ -24,9 +24,9 @@
   </div>
 </template>
 <script>
-import commonMixins from 'packages/mixins/commonMixins'
-import paramsMixins from 'packages/mixins/paramsMixins'
-import linkageMixins from 'packages/mixins/linkageMixins'
+import commonMixins from 'packages/js/mixins/commonMixins'
+import paramsMixins from 'packages/js/mixins/paramsMixins'
+import linkageMixins from 'packages/js/mixins/linkageMixins'
 export default {
   name: 'TableChart',
   mixins: [paramsMixins, commonMixins, linkageMixins],

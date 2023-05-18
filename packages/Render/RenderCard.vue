@@ -16,9 +16,9 @@
   </div>
 </template>
 <script>
-import { resolveComponentType } from 'packages/utils'
-import pcComponent from 'packages/utils/componentImport'
-import { dataInit, destroyedEvent } from 'packages/utils/eventBus'
+import { resolveComponentType } from 'packages/js/utils'
+import pcComponent from 'packages/js/utils/componentImport'
+import { dataInit, destroyedEvent } from 'packages/js/utils/eventBus'
 import CustomComponent from '../PlotRender/index.vue'
 import Svgs from '../Svgs/index.vue'
 const components = {}

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { addOrUpdateTree } from 'packages/utils/datasetConfigService'
+import { addOrUpdateTree } from 'packages/js/utils/datasetConfigService'
 export default {
   name: 'OriginalTableCategory',
   props: {

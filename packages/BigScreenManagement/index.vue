@@ -236,7 +236,7 @@ import Icon from 'packages/assets/images/pageIcon/export'
 import { getPageType } from './utils'
 import _ from 'lodash'
 import axios from 'axios'
-import { post } from 'packages/utils/http'
+import { post } from 'packages/js/utils/http'
 import IconSvg from 'packages/SvgIcon'
 let dashBoardPageCode = null
 export default {

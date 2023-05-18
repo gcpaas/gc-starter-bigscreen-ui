@@ -21,7 +21,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 
-import chartContextMenu from '../mixins/chartContextMenu'
+import chartContextMenu from '../js/mixins/chartContextMenu'
 export default {
   name: 'Configuration',
   mixins: [chartContextMenu],

@@ -547,7 +547,7 @@
 </template>
 
 <script>
-import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset, datasetExecute } from 'packages/utils/datasetConfigService'
+import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset, datasetExecute } from 'packages/js/utils/datasetConfigService'
 import { codemirror } from 'vue-codemirror'
 // import 'codemirror/mode/sql/sql.js'
 import 'codemirror/mode/groovy/groovy'

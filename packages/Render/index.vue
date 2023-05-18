@@ -70,7 +70,7 @@ import RenderCard from './RenderCard.vue'
 import Configuration from './Configuration.vue'
 import vdr from 'vue-draggable-resizable-gorkys'
 import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
-import { randomString } from '../utils'
+import { randomString } from '../js/utils'
 import { compile } from 'tiny-sass-compiler/dist/tiny-sass-compiler.esm-browser.prod.js'
 import plotList, { getCustomPlots } from '../G2Plots/plotList'
 export default {

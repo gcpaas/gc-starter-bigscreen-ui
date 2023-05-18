@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { get, post } from 'packages/utils/http'
+import { get, post } from 'packages/js/utils/http'
 export default {
   name: 'TemplateList',
   model: {

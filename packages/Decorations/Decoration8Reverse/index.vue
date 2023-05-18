@@ -12,7 +12,7 @@
 </template>
 <script>
 import DvDecoration8 from '@jiaminghi/data-view/lib/components/decoration8/src/main.vue'
-import { refreshComponentMixin } from 'packages/mixins/refreshComponent'
+import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 export default {
   name: 'Decoration8',
   components: {

@@ -682,8 +682,8 @@
 </template>
 
 <script>
-import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/utils/datasetConfigService'
-import { datasourcePage } from 'packages/utils/dataSourceService'
+import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/js/utils/datasetConfigService'
+import { datasourcePage } from 'packages/js/utils/dataSourceService'
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/sql/sql.js'

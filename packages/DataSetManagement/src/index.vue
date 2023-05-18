@@ -257,8 +257,8 @@ import setCustom from './setCustom.vue'
 import setJson from './setJson.vue'
 import setStoredProcedure from './setStoredProcedure.vue'
 import setScript from './setScript.vue'
-import { datasetPage, datasetRemove } from 'packages/utils/datasetConfigService'
-import { pageMixins } from 'packages/mixins/page'
+import { datasetPage, datasetRemove } from 'packages/js/utils/datasetConfigService'
+import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'DataSetManagement',
   components: {
