@@ -27,10 +27,6 @@
 ``` bash
 npm install gc-starter-bigscreen-ui
 ```
-组件依赖于一些组件，如果工程中没有，需要安装
-```bash
-npm install @antv/g2plot@2.4.20  @jiaminghi/data-view@2.10.0 axios@0.18.1 element-ui@2.15.6 insert-css@^2.0.0 jquery@^3.6.4  lodash@4.17.21 moment@^2.29.1 qs@^6.9.6 sortablejs@^1.15.0 tiny-sass-compiler@^0.12.2 vue-codemirror@^4.0.6 vue-contextmenujs@^1.4.9 vue-draggable-resizable-gorkys@^2.4.8 vue-json-editor@^1.4.3 vue-json-viewer@^2.2.22 vue-quill-editor@^3.0.6 vue-sketch-ruler@^1.0.3 vuedraggable@^2.24.3 ztree@3.5.24 echarts@^5.2.2
-```
 
 ## 二、组件使用
 
