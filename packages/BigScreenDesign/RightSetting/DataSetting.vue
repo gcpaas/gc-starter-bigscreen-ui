@@ -63,6 +63,7 @@
             >
               <el-select
                 v-model="config.dataSource.businessKey"
+                popper-class="bs-select"
                 clearable
                 @change="changeCacheBusinessKey"
               >
@@ -146,6 +147,7 @@
               <el-select
                 v-else
                 v-model="config.dataSource.dimensionField"
+                popper-class="bs-select"
                 clearable
               >
                 <el-option
@@ -174,6 +176,7 @@
             >
               <el-select
                 v-model="config.dataSource.metricField"
+                popper-class="bs-select"
                 clearable
               >
                 <el-option
@@ -205,6 +208,7 @@
               >
                 <el-select
                   v-if="setting.type === 'select'"
+                  popper-class="bs-select"
                   :value="setting.value"
                   clearable
                   :multiple="setting.multiple"
@@ -301,6 +305,7 @@
                 <template slot-scope="scope">
                   <el-select
                     v-model="scope.row.align"
+                    popper-class="bs-select"
                     clearable
                     placeholder="请选择对齐方式"
                   >
@@ -442,6 +447,7 @@
             >
               <el-select
                 v-model="config.dataSource.pageSize"
+                popper-class="bs-select"
                 filterable
                 allow-create
                 default-first-option

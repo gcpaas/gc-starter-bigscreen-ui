@@ -78,6 +78,7 @@
               >
                 <el-slider
                   v-model="config.customize.opacity"
+                  class="bs-slider"
                   :min="0"
                   :max="100"
                   show-input
@@ -89,6 +90,7 @@
               >
                 <el-input-number
                   v-model="config.customize.radius"
+                  class="bs-input-number"
                   placeholder="请输入圆角大小"
                   :min="0"
                 />
@@ -167,6 +169,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.bs-slider{
+ .el-input-number__decrease {
+    background: $bs-component;
+    border-right: 1px solid $bs-bg;
+  }
+
+  .el-input-number__increase {
+    background: $bs-component;
+    border-left: 1px solid $bs-bg;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 @import "../~packages/assets/style/settingWrap.scss";

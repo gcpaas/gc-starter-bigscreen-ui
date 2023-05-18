@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:42:51
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-01-13 16:23:06
+ * @LastEditTime: 2023-05-18 10:20:22
 -->
 <template>
   <div>
@@ -33,6 +33,7 @@
             >
               <el-select
                 v-model="field.componentKey"
+                popper-class="bs-select"
                 size="mini"
                 @change="changeComponent(...arguments, index)"
               >

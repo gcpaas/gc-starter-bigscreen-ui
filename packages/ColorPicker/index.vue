@@ -59,9 +59,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
-@import '~packages/assets/style/variables.scss';
+<style lang="scss">
+// Element-Ui样式覆盖 颜色选择器
 .bs-color-picker {
   background-color: $bs-bg !important;
 
@@ -70,6 +69,11 @@ export default {
     color: $bs-value;
   }
 }
+</style>
+
+<style lang="scss" scoped>
+@import '~packages/assets/style/themeVar.scss';
+
 .border-color {
   display: flex;
 

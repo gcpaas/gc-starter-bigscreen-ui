@@ -5,6 +5,7 @@
     width="50%"
     :modal="true"
     :modal-append-to-body="false"
+    custom-class="bs-dialog"
     :appen-to-body="true"
     @closed="$emit('imgUrl', imgUrl)"
   >
@@ -55,6 +56,7 @@
   </el-dialog>
 </template>
 <script>
+import { get } from 'packages/utils/http'
 export default {
   name: 'BgImgDialog',
   props: {
@@ -91,7 +93,7 @@ export default {
           }]
         : []
       this.hideUploadImgBtn = this.fileList.length !== 0
-      this.$get('/bigScreen/design/bg/list').then(list => {
+      get('/bigScreen/design/bg/list').then(list => {
         this.bgImgList = list
       })
     },
@@ -144,11 +146,12 @@ export default {
   line-height: 0;
   background-color: #ffffff;
 }
+
 ::v-deep .el-upload-list__item {
-    width: 200px;
-    height: 150px;
-    margin: 0;
-  }
+  width: 200px;
+  height: 150px;
+  margin: 0;
+}
 
 .bg-img {
   width: 100%;
