@@ -30,7 +30,6 @@
 </template>
 <script>
 import DataSetManagement from 'packages/DataSetManagement'
-// import 'packages/assets/style/dataSource.scss'
 export default {
   name: 'DataSetSetting',
   components: { DataSetManagement },
