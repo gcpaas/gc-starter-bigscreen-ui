@@ -635,7 +635,7 @@ export default {
     max-height: calc(90vh - 236px) !important;
 
     .el-table {
-      max-height: calc(90vh - 340px) !important;
+      height: calc(90vh - 340px) !important;
     }
 
     /deep/ .ztree {
@@ -651,7 +651,13 @@ export default {
     }
   }
 }
-
+/*.bs-table-box{*/
+/*  !*height: calc(100% - 100px);*!*/
+/*  .el-table{*/
+/*    !*height: 100%;*!*/
+/*    max-height: calc(90vh - 340px) !important;*/
+/*  }*/
+/*}*/
 .layout {
   width: 100%;
   height: 100%;
