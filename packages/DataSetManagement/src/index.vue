@@ -623,7 +623,7 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-@import '/packages/assets/style/darkComponent.scss';
+@import '/packages/assets/style/bsTheme.scss';
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;

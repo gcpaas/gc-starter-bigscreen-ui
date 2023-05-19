@@ -735,7 +735,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '/packages/assets/style/darkComponent.scss';
+@import '/packages/assets/style/bsTheme.scss';
 .header {
   position: relative;
   .search {

@@ -1313,7 +1313,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-@import '/packages/assets/style/darkComponent.scss';
+@import '/packages/assets/style/bsTheme.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
