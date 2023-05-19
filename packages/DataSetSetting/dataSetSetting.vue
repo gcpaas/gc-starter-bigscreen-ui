@@ -12,7 +12,7 @@
     <DataSetManagement
       ref="dataSetSetting"
       class="bs-data-set-management"
-      dark-class="bs"
+      dark-class="bs-theme"
       :is-border="true"
       :is-dialog="true"
       :ds-id="dataSetId"

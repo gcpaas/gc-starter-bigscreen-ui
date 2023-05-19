@@ -607,17 +607,17 @@ export default {
 
 <style lang="scss">
 // Element-UI 分页
-.bs-pagination {
-  background: $bs-component;
+.bs-theme-pagination {
+  background: $bs-theme-component;
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    background: $bs-hover;
+    background: $bs-theme-hover;
   }
 }
 .bs-message-box{
-  background: $bs-component;
+  background: $bs-theme-component;
   p{
-    color: $bs-title;
+    color: $bs-theme-title;
   }
 }
 </style>

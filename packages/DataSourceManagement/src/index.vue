@@ -100,6 +100,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
+          :popper-class="darkClass + '-pagination'"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
