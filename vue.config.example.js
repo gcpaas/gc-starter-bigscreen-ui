@@ -54,18 +54,6 @@ module.exports = {
       overlay: false
     }
   },
-  css: {
-    // 向所有 Sass 样式传入全局变量
-    loaderOptions: {
-      sass: {
-        data: `
-        @import "~packages/assets/style/bsThemeVariables.scss";
-        `
-      }
-    },
-    extract: false
-  },
-
   configureWebpack: config => {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

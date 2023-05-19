@@ -12,17 +12,6 @@ function resolve (dir) {
 
 module.exports = {
   lintOnSave: false,
-  css: {
-    // 向所有 Sass 样式传入全局变量
-    loaderOptions: {
-      sass: {
-        data: `
-        @import "~packages/assets/style/bsThemeVariables.scss";
-        `
-      }
-    },
-    extract: true
-  },
   configureWebpack: {
     externals: {
       vuex: 'vuex',

@@ -1,7 +1,7 @@
 <template>
   <div
     id="box"
-    class="bs-container"
+    class="bs-container bs-theme-wrap"
     @mousemove="mousemoveOnBox"
     @mouseup="mouseupOnBox"
   >
@@ -19,6 +19,7 @@
           <TypeTree
             ref="datasetsTypeTree"
             :ds-type="dsType"
+            :dark-class="darkClass"
             :app-code="appCode"
             @nodeClick="nodeClick"
             @refreshData="refreshData"
@@ -307,6 +308,7 @@ export default {
       type: Boolean,
       default: false
     }
+
   },
   data () {
     return {
@@ -608,16 +610,16 @@ export default {
 <style lang="scss">
 // Element-UI 分页
 .bs-theme-pagination {
-  background: $bs-theme-component;
+  background: var(--bs-theme-component);
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    background: $bs-theme-hover;
+    background: var(--bs-theme-hover);
   }
 }
 .bs-theme-message-box{
-  background: $bs-theme-component;
+  background: var(--bs-theme-component);
   p{
-    color: $bs-theme-title;
+    color: var(--bs-theme-title);
   }
 }
 </style>

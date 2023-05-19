@@ -6,10 +6,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import "~element-ui/packages/theme-chalk/src/index";
 // 布局样式
 .bs-container {
-  //height: 100% !important;
-  //width: 100%;
-  //position: absolute;
-  //box-sizing: border-box;
+  height: 100% !important;
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
 
   .inner-container {
     height: 100% !important;
@@ -85,7 +85,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 //表格样式
 
 .bs-table-box {
-  padding: 0 16px 8px;
   .el-table {
     overflow-y: auto !important;
     background-color: transparent !important;
@@ -93,6 +92,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
     th.is-leaf {
       //border-bottom: 2px solid #007aff!important;
+      //background-color: var(--gc-element-header-bg)!important;
     }
 
     th > .cell {
@@ -105,13 +105,14 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
     tr td {
       border-bottom: none !important;
+      background-color: var(--gc-content-bg) !important;
     }
 
     tr:last-child td {
       border-bottom: none !important;
     }
 
-    &::before {
+    /ddeep/ .el-table::before {
       display: none !important;
     }
 
@@ -164,7 +165,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
           border: 2px solid transparent !important;
           border-radius: 10px !important;
           // background-color: #ddd;
-          background-color: #dddddd !important;
+          background-color: var(--gc-scroll) !important;
         }
 
         .el-table__fixed::before,
@@ -207,7 +208,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       }
 
       .el-pagination .el-select .el-input .el-input__inner {
-        border: none !important;
+        border: var(--gc-border-none) !important;
         color: #bfbfbf;
 
         &:hover {
@@ -257,12 +258,14 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
     // 弹出层，有滚动条下最后一项显示不全
     .el-select-dropdown .el-scrollbar .el-select-dropdown__wrap {
-      margin-bottom: -15px!important;
+      margin-bottom: var(--gc-element-scrollbar-margn-bottom) !important;
     }
 
     // dialog设置
     .bs-dialog-wrap {
+      .el-dialog__wrapper {
         overflow: hidden !important;
+      }
 
       .el-dialog {
         margin-bottom: 100px !important;

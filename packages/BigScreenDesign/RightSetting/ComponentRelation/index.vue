@@ -336,6 +336,6 @@ export default {
 }
 .select-item-active {
   border: 1px solid #007aff;
-  background: $bs-theme-hover;
+  background: var(--bs-theme-hover);
 }
 </style>

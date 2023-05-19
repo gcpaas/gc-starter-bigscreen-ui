@@ -1,36 +1,83 @@
+// table
 .bs-theme-table {
   border: 1px solid #e6ebf5;
-  background: $bs-theme-component !important;
-  background-color: $bs-theme-component !important;
+  background: var(--bs-theme-component) !important;
+  background-color: var(--bs-theme-component) !important;
 
   ::v-deep .el-table__cell {
-    background: $bs-theme-component !important;
-    background-color: $bs-theme-component !important;
+    background: var(--bs-theme-component) !important;
+    background-color: var(--bs-theme-component) !important;
 
     th.is-leaf {
-      background-color: $bs-theme-component !important;
+      background-color: var(--bs-theme-component) !important;
     }
 
     .cell {
-      color: $bs-theme-text !important;
+      color: var(--bs-theme-text) !important;
     }
 
     .el-input__inner {
-      color: $bs-theme-text;
-      background-color: $bs-theme-bg;
+      color: var(--bs-theme-text);
+      background-color: var(--bs-theme-bg);
 
       &::placeholder {
-        color: $bs-theme-title;
+        color: var(--bs-theme-title);
       }
     }
 
     .el-checkbox__inner {
-      background-color: $bs-theme-bg;
+      background-color: var(--bs-theme-bg);
     }
 
     .el-popper {
-      background: $bs-theme-bg !important;
-      background-color: $bs-theme-bg !important;
+      background: var(--bs-theme-bg) !important;
+      background-color: var(--bs-theme-bg) !important;
     }
   }
+}
+
+// card
+.bs-theme-card {
+  background-color: var(--bs-theme-component) !important;
+}
+
+// select
+.bs-theme-select {
+  background-color: var(--bs-theme-bg) !important;
+
+  .el-select-dropdown__item {
+    color: var(--bs-theme-title);
+  }
+
+  .el-select-dropdown__item.hover,
+  .el-select-dropdown__item:hover {
+    color: #007aff;
+    background-color: var(--bs-theme-component);
+  }
+
+  .el-input__inner {
+    background: var(--bs-theme-bg);
+    background-color: var(--bs-theme-component);
+    color: var(--bs-theme-text);
+  }
+
+  .el-select-dropdown__item.selected {
+    color: #007aff;
+    background-color: var(--bs-theme-component);
+  }
+}
+
+// dialog
+.bs-theme-dialog {
+  background: var(--bs-theme-bg) !important;
+
+  .el-dialog__header {
+    background: var(--bs-theme-component);
+    background-color: var(--bs-theme-component);
+
+    .el-dialog__title {
+      color: var(--bs-theme-title);
+    }
+  }
+
 }

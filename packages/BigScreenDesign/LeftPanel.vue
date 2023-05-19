@@ -272,7 +272,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/BigScreenDesign/fonts/iconfont.css';
-@import '~packages/assets/style/themeVar.scss';
 .bs-left-panel {
   display: flex;
 
@@ -299,7 +298,7 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: $bs-theme-bg;
+    background: var(--bs-theme-bg);
 
     >* {
       color: #fff;
@@ -342,7 +341,7 @@ export default {
         border-left: 1px solid #1D1D1D;
 
         .page-left-content-title {
-          color: $bs-theme-title;
+          color: var(--bs-theme-title);
           height: 30px;
           line-height: 30px;
           padding-left: 20px;
@@ -402,7 +401,7 @@ export default {
             }
 
             .component-name {
-              color: $bs-theme-title;
+              color: var(--bs-theme-title);
               font-size: 12px;
               padding: 5px;
               display: inline-block;

@@ -374,42 +374,41 @@ export default {
 
 <style lang="scss">
 .bs-theme-select {
-  background-color: $bs-theme-bg !important;
+  background-color: var(--bs-theme-bg) !important;
 
   .el-select-dropdown__item {
-    color: $bs-theme-title;
+    color: var(--bs-theme-title);
   }
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
-    background-color: $bs-theme-component;
+    background-color: var(--bs-theme-component);
   }
   .el-input__inner{
-    background:$bs-theme-bg;
-    background-color: $bs-theme-component;
-    color: $bs-theme-text;
+    background:var(--bs-theme-bg);
+    background-color: var(--bs-theme-component);
+    color: var(--bs-theme-text);
   }
   .el-select-dropdown__item.selected{
     color: #007aff;
-    background-color: $bs-theme-component !important;
+    background-color: var(--bs-theme-component) !important;
   }
 }
 
 .bs-theme-input-number {
   .el-input-number__decrease {
-    background: $bs-theme-component;
-    border-right: 1px solid $bs-theme-bg;
+    background: var(--bs-theme-component);
+    border-right: 1px solid var(--bs-theme-bg);
   }
 
   .el-input-number__increase {
-    background: $bs-theme-component;
-    border-left: 1px solid $bs-theme-bg;
+    background: var(--bs-theme-component);
+    border-left: 1px solid var(--bs-theme-bg);
   }
 }</style>
 
 <style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
 // Element-Ui样式覆盖
 
 .bs-overall-wrap {
@@ -424,13 +423,13 @@ export default {
   /deep/ .el-textarea__inner,
   /deep/ .el-input-group__append,
   /deep/ .el-radio__label {
-    background: $bs-theme-component;
-    color: $bs-theme-text;
+    background: var(--bs-theme-component);
+    color: var(--bs-theme-text);
     border: 0 !important;
   }
 
   /deep/ .el-form-item__label {
-    color: $bs-theme-title;
+    color: var(--bs-theme-title);
   }
 
   /deep/ .el-radio {
@@ -438,18 +437,18 @@ export default {
   }
 
   /deep/ .el-table {
-    background: $bs-theme-component;
-    border-bottom: 1px solid $bs-theme-title;
+    background: var(--bs-theme-component);
+    border-bottom: 1px solid var(--bs-theme-title);
   }
 
   /deep/ .el-table__cell {
-    background: $bs-theme-component !important;
-    color: $bs-theme-title !important;
-    border-color: $bs-theme-text !important;
+    background: var(--bs-theme-component) !important;
+    color: var(--bs-theme-title) !important;
+    border-color: var(--bs-theme-text) !important;
   }
 
   /deep/ .el-input__inner::placeholder {
-    color: $bs-theme-text;
+    color: var(--bs-theme-text);
   }
 }
 
@@ -567,11 +566,11 @@ export default {
 /deep/ .el-color-picker--mini .el-color-picker__trigger {
   height: 32px;
   width: 32px;
-  border: 1px solid $bs-theme-component;
-  background: $bs-theme-component;
+  border: 1px solid var(--bs-theme-component);
+  background: var(--bs-theme-component);
 
   .el-color-picker__color {
-    background: $bs-theme-component;
+    background: var(--bs-theme-component);
     border: 0 !important;
   }
 }

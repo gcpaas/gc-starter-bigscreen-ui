@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!pageLoading"
-    class="bs-page-design-wrap"
+    class="bs-page-design-wrap bs-theme-wrap"
   >
     <PageTopSetting
       v-show="headerShow"
@@ -213,10 +213,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
 .bs-page-design-wrap {
   overflow: hidden;
-  background: $bs-theme-bg;
+  background: var(--bs-theme-bg);
 
   .drag-wrap {
     display: flex;

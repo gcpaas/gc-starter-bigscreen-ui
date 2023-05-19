@@ -174,13 +174,13 @@ export default {
 @import "~packages/assets/style/settingWrap.scss";
 .bs-slider{
  .el-input-number__decrease {
-    background: $bs-theme-component;
-    border-right: 1px solid $bs-theme-bg;
+    background: var(--bs-theme-component);
+    border-right: 1px solid var(--bs-theme-bg);
   }
 
   .el-input-number__increase {
-    background: $bs-theme-component;
-    border-left: 1px solid $bs-theme-bg;
+    background: var(--bs-theme-component);
+    border-left: 1px solid var(--bs-theme-bg);
   }
 }
 .bs-setting-wrap {

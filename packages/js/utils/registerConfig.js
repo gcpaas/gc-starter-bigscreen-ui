@@ -95,10 +95,29 @@ function registerRouters (config, router) {
 }
 
 // 注册配置
+function registerTheme (config) {
+  const style = document.createElement('style')
+  style.type = 'text/css'
+  const theme = config?.customTheme
+  let themeStr = ''
+  for (const key in theme) {
+    themeStr += `${key}:${theme[key]};`
+  }
+  style.innerHTML = `
+  .el-dialog__wrapper, .el-popper, .bs-theme-wrap {
+      ${themeStr}
+    }
+  `
+  document.getElementsByTagName('head')[0].appendChild(style)
+}
+
+// 注册配置
 export default function (config, router) {
   window.BS_CONFIG = {}
   window.BS_CONFIG = configDeepMerge(window.BS_CONFIG, config)
 
   // 注册路由
   registerRouters(config, router)
+  // 注册自定义主题
+  registerTheme(config)
 }

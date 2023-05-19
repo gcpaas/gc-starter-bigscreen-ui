@@ -475,7 +475,7 @@
       :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
-      class="bs-dialog-wrap"
+      class="bs-dialog-wrap bs-theme-wrap"
     >
       <div class="bs-table-box">
         <el-table
@@ -1021,15 +1021,15 @@ export default {
 
 <style lang="scss">
 .bs-tree {
-  background-color: $bs-theme-component;
-  color: $bs-theme-title;
+  background-color: var(--bs-theme-component);
+  color: var(--bs-theme-title);
 
   .el-tree-node__content:hover {
-    background-color: $bs-theme-hover;
+    background-color: var(--bs-theme-hover);
   }
 
   .el-tree-node.is-current>.el-tree-node__content {
-    background-color: $bs-theme-hover;
+    background-color: var(--bs-theme-hover);
   }
 }
 </style>

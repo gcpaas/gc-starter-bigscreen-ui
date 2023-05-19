@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-19 10:13:08
+ * @LastEditTime: 2023-05-19 17:04:55
 -->
 <template>
   <el-dialog
@@ -12,9 +12,9 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     width="800px"
-    custom-class="bs-theme-dialog"
+    custom-class="bs-theme-dialog bs-theme-wrap"
     append-to-body
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-theme-wrap"
   >
     <el-form
       ref="form"
@@ -204,52 +204,39 @@ export default {
 </script>
 
 <style lang="scss">
-// Element-Ui样式覆盖
-.bs-theme-dialog {
-  background: $bs-theme-bg !important;
-
-  .el-dialog__header {
-    background: $bs-theme-component;
-    background-color: $bs-theme-component;
-
-    .el-dialog__title {
-      color: $bs-theme-title;
-    }
-  }
-
-}
+@import '~packages/assets/style/bsTheme.scss';
 </style>
 
 <style lang="scss" scoped>
 .bs-table-box {
   border: 1px solid #e6ebf5;
 
-  // border-bottom: 1px solid $bs-theme-component;
+  // border-bottom: 1px solid var(--bs-theme-component);
 
-  background:  $bs-theme-component;
-  background-color: $bs-theme-component;
+  background:  var(--bs-theme-component);
+  background-color: var(--bs-theme-component);
 
   ::v-deep .el-table__cell {
-    background: $bs-theme-component;
-    background-color: $bs-theme-component;
+    background: var(--bs-theme-component);
+    background-color: var(--bs-theme-component);
 
     .cell {
-      color: $bs-theme-title !important;
+      color: var(--bs-theme-title) !important;
     }
 
     .el-input__inner {
-      color: $bs-theme-text;
-      background-color: $bs-theme-bg;
+      color: var(--bs-theme-text);
+      background-color: var(--bs-theme-bg);
 
       &::placeholder {
-        color: $bs-theme-title;
+        color: var(--bs-theme-title);
       }
     }
   }
 }
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: $bs-theme-bg !important;
-  color: $bs-theme-text !important;
+  background-color: var(--bs-theme-bg) !important;
+  color: var(--bs-theme-text) !important;
 }
 </style>

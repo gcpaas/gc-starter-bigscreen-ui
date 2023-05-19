@@ -151,6 +151,7 @@
         v-if="editFormVisible"
         ref="editForm"
         :app-code="appCode"
+        :dark-class="darkClass"
       />
     </div>
   </div>
@@ -178,6 +179,10 @@ export default {
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
     },
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -463,7 +468,8 @@ export default {
         {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass: this.darkClass + '-message-box'
         }
       ).then(() => {
         if (!org.id) {
