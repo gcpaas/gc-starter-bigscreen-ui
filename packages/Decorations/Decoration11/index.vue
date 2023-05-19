@@ -101,7 +101,7 @@ export default {
   height: 4px;
 }
 /deep/::-webkit-scrollbar-thumb {
-  background: var(--gc-scroll) !important;
+  background: #dddddd !important;
   border-radius: 10px;
 }
 </style>

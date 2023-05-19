@@ -51,13 +51,13 @@
   line-height: 40px !important;
   position: absolute !important;
   cursor: col-resize !important;
-  background-color: var(--gc-content-bg) !important;
+  background-color: #615e5e !important;
   opacity: 0.8;
 
   span {
     opacity: 0.7;
     font-size: 16px;
-    color: var(--gc-text);
+    color: #ffffff;
     align-self: center;
 
     display: block;
@@ -98,8 +98,8 @@
   z-index: 1;
   width: 14px;
   height: auto;
-  // background-color: #f6f7fb;
-  background-color: var(--gc-bg);
+  background-color: #f6f7fb;
+  height: 100%;
 
   a {
     position: relative;
