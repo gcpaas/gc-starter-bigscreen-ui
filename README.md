@@ -49,7 +49,7 @@ registerConfig({
   // 路由
   routers: {
     // 大屏设计路由
-    designUrl: 'big-screen/design',
+    designUrl: '/big-screen/design',
     // 预览路由
     previewUrl: '/big-screen/preview',
     // 页面管理路由（带头部跳转路由）
