@@ -478,6 +478,7 @@
     >
       <div class="bs-table-box">
         <el-table
+          :class="darkClass+'-table'"
           max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
@@ -575,6 +576,7 @@
       <div class="bs-table-box">
         <el-table
           ref="singleTable"
+          :class="darkClass+'-table'"
           :data="paramsListCopy"
           :border="true"
           align="center"

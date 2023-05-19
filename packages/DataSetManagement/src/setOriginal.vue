@@ -300,11 +300,11 @@
         class="bs-table-box is-Edit"
       >
         <el-table
-          :class="darkClass + '-table'"
           align="center"
           :data="dataPreviewList"
           max-height="400"
           :border="true"
+          :class="darkClass + '-table'"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -352,6 +352,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
+              :class="darkClass+'-table'"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -482,6 +483,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
+          :class="darkClass+'-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
