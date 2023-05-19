@@ -614,7 +614,7 @@ export default {
     background: $bs-theme-hover;
   }
 }
-.bs-message-box{
+.bs-theme-message-box{
   background: $bs-theme-component;
   p{
     color: $bs-theme-title;
@@ -622,7 +622,7 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-@import '/packages/assets/style/bsTheme.scss';
+@import '~packages/assets/style/bsTheme.scss';
 @import '~packages/assets/style/zTree/treePackUp.scss';
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {

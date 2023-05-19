@@ -1297,14 +1297,14 @@ export default {
 </script>
 
 <style lang="scss">
- .bs-title-style{
+ .bs-theme-title-style{
   color: $bs-theme-title !important;
   background-color:$bs-theme-component !important;
   .field-item:hover{
     background-color: $bs-theme-hover !important;
   }
 }
-.bs-field-wrap{
+.bs-theme-field-wrap{
   .field-item:hover{
     color: $bs-theme-text;
     background-color: $bs-theme-hover !important;
@@ -1313,7 +1313,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-@import '/packages/assets/style/bsTheme.scss';
+@import '~packages/assets/style/bsTheme.scss';
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
