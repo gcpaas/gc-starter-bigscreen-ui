@@ -298,7 +298,7 @@ export default {
       } else {
         this.form.themeJson = {}
         this.changePageConfig(this.form)
-        this.changeChart(themeName)
+        // this.changeChart(themeName)
       }
       // 获取缓存数据集数据和配置
       // eslint-disable-next-line no-unused-expressions
