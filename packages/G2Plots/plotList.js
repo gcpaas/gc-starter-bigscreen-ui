@@ -29,7 +29,7 @@ function getPlotList (files) {
       name: config.name,
       title: config.title,
       icon: null,
-      img: require(`packages/assets/images/componentLogo/${config.title}.png`),
+      img: require(`packages/G2Plots/images/componentLogo/${config.title}.png`),
       className:
         'com.gccloud.bigscreen.core.module.chart.components.CustomComponentChart',
       w: 450,
