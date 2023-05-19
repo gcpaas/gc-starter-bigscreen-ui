@@ -614,7 +614,7 @@ export default {
     background: $bs-theme-hover;
   }
 }
-.bs-message-box{
+.bs-theme-message-box{
   background: $bs-theme-component;
   p{
     color: $bs-theme-title;
