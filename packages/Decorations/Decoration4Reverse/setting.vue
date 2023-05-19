@@ -45,7 +45,7 @@
               <el-form-item label="单次动画时长">
                 <el-input-number
                   v-model="config.customize.dur"
-                  class="bs-input-number"
+                  class="bs-theme-input-number"
                   :precision="0"
                   label="请输入时长(s)"
                 />

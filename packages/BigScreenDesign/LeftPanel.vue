@@ -299,7 +299,7 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: $bs-bg;
+    background: $bs-theme-bg;
 
     >* {
       color: #fff;
@@ -342,7 +342,7 @@ export default {
         border-left: 1px solid #1D1D1D;
 
         .page-left-content-title {
-          color: $bs-title;
+          color: $bs-theme-title;
           height: 30px;
           line-height: 30px;
           padding-left: 20px;
@@ -402,7 +402,7 @@ export default {
             }
 
             .component-name {
-              color: $bs-title;
+              color: $bs-theme-title;
               font-size: 12px;
               padding: 5px;
               display: inline-block;

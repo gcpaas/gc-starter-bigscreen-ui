@@ -30,7 +30,7 @@
               <el-form-item label="表格头部字体大小">
                 <el-input-number
                   v-model="config.customize.headerFontSize"
-                  class="bs-input-number"
+                  class="bs-theme-input-number"
                   :min="12"
                   :max="100"
                   :step="1"
@@ -47,7 +47,7 @@
               <el-form-item label="表格主体字体大小">
                 <el-input-number
                   v-model="config.customize.bodyFontSize"
-                  class="bs-input-number"
+                  class="bs-theme-input-number"
                   :min="12"
                   :max="100"
                   :step="1"
@@ -113,7 +113,7 @@ export default {
 // Element-UI Switch 组件样式覆盖
 .bs-switch {
    .el-switch__core {
-    background: $bs-component;
+    background: $bs-theme-component;
   }
 }
 </style>

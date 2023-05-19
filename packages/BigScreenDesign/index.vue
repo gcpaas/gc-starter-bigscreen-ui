@@ -216,7 +216,7 @@ export default {
 @import '~packages/assets/style/themeVar.scss';
 .bs-page-design-wrap {
   overflow: hidden;
-  background: $bs-bg;
+  background: $bs-theme-bg;
 
   .drag-wrap {
     display: flex;

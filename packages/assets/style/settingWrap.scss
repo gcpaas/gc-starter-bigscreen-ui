@@ -65,7 +65,7 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: $bs-bg;
+  background: $bs-theme-bg;
   height: 32px;
   padding: 0 12px;
 }
@@ -75,17 +75,17 @@
 }
 
 /deep/ .lc-field-title {
-  color: $bs-title;
+  color: $bs-theme-title;
 }
 
 .lc-field-body {
   padding: 12px;
-  background: $bs-bg;
+  background: $bs-theme-bg;
 
   input, textarea {
-    background-color: $bs-component !important;
-    color: $bs-text !important;
-    border-color: $bs-text !important;
+    background-color: $bs-theme-component !important;
+    color: $bs-theme-text !important;
+    border-color: $bs-theme-text !important;
   }
 
 }
@@ -95,7 +95,7 @@
 
 /deep/ .select-item {
   border: none;
-  color: $bs-title;
+  color: $bs-theme-title;
 }
 
 /deep/ .el-tabs__nav-scroll {
@@ -186,11 +186,11 @@
 /deep/ .el-tabs__item,
 /deep/ .el-collapse-item__arrow
 {
-  color: $bs-title !important
+  color: $bs-theme-title !important
 }
 /deep/ .el-collapse-item__wrap {
-  background: $bs-bg;
-  color: $bs-title;
+  background: $bs-theme-bg;
+  color: $bs-theme-title;
 }
 
 
@@ -202,8 +202,8 @@
 /deep/ .el-input-group__append,
 /deep/ .el-radio__label
 {
-  background: $bs-component;
-  color: $bs-text;
+  background: $bs-theme-component;
+  color: $bs-theme-text;
   border: 0 !important;
 }
 
@@ -214,13 +214,13 @@
 }
 
 /deep/ .el-table {
-  background: $bs-component;
-  border-bottom: 1px solid $bs-title;
+  background: $bs-theme-component;
+  border-bottom: 1px solid $bs-theme-title;
 }
 
 /deep/ .el-table__cell {
-  background: $bs-component !important;
-  color: $bs-title !important;
-  border-color: $bs-text !important;
+  background: $bs-theme-component !important;
+  color: $bs-theme-title !important;
+  border-color: $bs-theme-text !important;
 }
 

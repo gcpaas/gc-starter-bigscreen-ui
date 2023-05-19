@@ -140,7 +140,7 @@ export default {
 
 <style lang="scss">
 .bs-card{
-  background-color: $bs-component;
+  background-color: $bs-theme-component;
 }
 </style>
 

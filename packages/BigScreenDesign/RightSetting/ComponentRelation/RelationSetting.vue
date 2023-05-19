@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-18 16:15:24
+ * @LastEditTime: 2023-05-19 10:13:08
 -->
 <template>
   <el-dialog
@@ -12,7 +12,7 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     width="800px"
-    custom-class="bs-dialog"
+    custom-class="bs-theme-dialog"
     append-to-body
     class="bs-dialog-wrap"
   >
@@ -32,7 +32,7 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].sourceField"
-              popper-class="bs-select"
+              popper-class="bs-theme-select"
             >
               <el-option
                 v-for="sourceField in sourceFieldList"
@@ -50,7 +50,7 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].queryRule"
-              popper-class="bs-select"
+              popper-class="bs-theme-select"
             >
               <el-option
                 v-for="operator in operatorList"
@@ -68,7 +68,7 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].targetField"
-              popper-class="bs-select"
+              popper-class="bs-theme-select"
             >
               <el-option
                 v-for="targetField in targetFieldList"
@@ -205,15 +205,15 @@ export default {
 
 <style lang="scss">
 // Element-Ui样式覆盖
-.bs-dialog {
-  background: $bs-bg !important;
+.bs-theme-dialog {
+  background: $bs-theme-bg !important;
 
   .el-dialog__header {
-    background: $bs-component;
-    background-color: $bs-component;
+    background: $bs-theme-component;
+    background-color: $bs-theme-component;
 
     .el-dialog__title {
-      color: $bs-title;
+      color: $bs-theme-title;
     }
   }
 
@@ -224,32 +224,32 @@ export default {
 .bs-table-box {
   border: 1px solid #e6ebf5;
 
-  // border-bottom: 1px solid $bs-component;
+  // border-bottom: 1px solid $bs-theme-component;
 
-  background:  $bs-component;
-  background-color: $bs-component;
+  background:  $bs-theme-component;
+  background-color: $bs-theme-component;
 
   ::v-deep .el-table__cell {
-    background: $bs-component;
-    background-color: $bs-component;
+    background: $bs-theme-component;
+    background-color: $bs-theme-component;
 
     .cell {
-      color: $bs-title !important;
+      color: $bs-theme-title !important;
     }
 
     .el-input__inner {
-      color: $bs-text;
-      background-color: $bs-bg;
+      color: $bs-theme-text;
+      background-color: $bs-theme-bg;
 
       &::placeholder {
-        color: $bs-title;
+        color: $bs-theme-title;
       }
     }
   }
 }
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: $bs-bg !important;
-  color: $bs-text !important;
+  background-color: $bs-theme-bg !important;
+  color: $bs-theme-text !important;
 }
 </style>

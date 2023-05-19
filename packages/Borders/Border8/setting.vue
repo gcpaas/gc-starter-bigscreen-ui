@@ -16,7 +16,7 @@
         <el-form-item label="单次动画时长">
           <el-input-number
             v-model="config.customize.dur"
-            class="bs-input-number"
+            class="bs-theme-input-number"
             :min="0"
             :max="1000"
             :step="1"

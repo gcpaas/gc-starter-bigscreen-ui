@@ -1019,21 +1019,21 @@ export default {
 
 <style lang="scss">
 .bs-tree {
-  background-color: $bs-component;
-  color: $bs-title;
+  background-color: $bs-theme-component;
+  color: $bs-theme-title;
 
   .el-tree-node__content:hover {
-    background-color: $bs-hover;
+    background-color: $bs-theme-hover;
   }
 
   .el-tree-node.is-current>.el-tree-node__content {
-    background-color: $bs-hover;
+    background-color: $bs-theme-hover;
   }
 }
 </style>
 
 <style lang="scss" scoped>
-@import '/packages/assets/style/bs-theme.scss';
+@import '/packages/assets/style/bsTheme.scss';
 
 .tree-box {
   padding: 5px 0;

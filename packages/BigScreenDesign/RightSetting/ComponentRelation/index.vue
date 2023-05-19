@@ -33,7 +33,7 @@
             >
               <el-select
                 v-model="field.componentKey"
-                popper-class="bs-select"
+                popper-class="bs-theme-select"
                 size="mini"
                 @change="changeComponent(...arguments, index)"
               >
@@ -336,6 +336,6 @@ export default {
 }
 .select-item-active {
   border: 1px solid #007aff;
-  background: $bs-hover;
+  background: $bs-theme-hover;
 }
 </style>

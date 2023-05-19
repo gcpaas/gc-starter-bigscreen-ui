@@ -90,7 +90,7 @@
               >
                 <el-input-number
                   v-model="config.customize.radius"
-                  class="bs-input-number"
+                  class="bs-theme-input-number"
                   placeholder="请输入圆角大小"
                   :min="0"
                 />
@@ -174,13 +174,13 @@ export default {
 @import "~packages/assets/style/settingWrap.scss";
 .bs-slider{
  .el-input-number__decrease {
-    background: $bs-component;
-    border-right: 1px solid $bs-bg;
+    background: $bs-theme-component;
+    border-right: 1px solid $bs-theme-bg;
   }
 
   .el-input-number__increase {
-    background: $bs-component;
-    border-left: 1px solid $bs-bg;
+    background: $bs-theme-component;
+    border-left: 1px solid $bs-theme-bg;
   }
 }
 .bs-setting-wrap {

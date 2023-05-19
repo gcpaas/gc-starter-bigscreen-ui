@@ -47,7 +47,7 @@
                   <el-select
                     v-else-if="setting.type === 'select'"
                     v-model="setting.value"
-                    popper-class="bs-select"
+                    popper-class="bs-theme-select"
                     :placeholder="`请输入${setting.label}`"
                     clearable
                   >
@@ -98,7 +98,7 @@
                   <el-input-number
                     v-else-if="setting.type === 'inputNumber'"
                     v-model="setting.value"
-                    class="bs-input-number"
+                    class="bs-theme-input-number"
                   />
                   <el-radio-group
                     v-else-if="setting.type === 'radio'"

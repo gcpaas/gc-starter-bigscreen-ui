@@ -10,7 +10,7 @@
       <el-form-item label="推荐分辨率">
         <el-select
           v-model="resolutionRatioValue"
-          popper-class="bs-select"
+          popper-class="bs-theme-select"
           class="select"
           placeholder="请选择分辨率"
           clearable
@@ -26,7 +26,7 @@
       <el-form-item label="大屏宽度">
         <el-input-number
           v-model="form.w"
-          class="bs-input-number"
+          class="bs-theme-input-number"
           :min="100"
           :max="8000"
         />
@@ -34,7 +34,7 @@
       <el-form-item label="大屏高度">
         <el-input-number
           v-model="form.h"
-          class="bs-input-number"
+          class="bs-theme-input-number"
           :min="100"
           :max="8000"
         />
@@ -42,7 +42,7 @@
       <el-form-item label="自适应模式">
         <el-select
           v-model="form.fitMode"
-          popper-class="bs-select"
+          popper-class="bs-theme-select"
           placeholder="自适应模式"
           clearable
         >
@@ -57,7 +57,7 @@
       <el-form-item label="主题">
         <el-select
           v-model="form.customTheme"
-          popper-class="bs-select"
+          popper-class="bs-theme-select"
           placeholder="请选择主题"
           clearable
         >
@@ -373,38 +373,38 @@ export default {
 </script>
 
 <style lang="scss">
-.bs-select {
-  background-color: $bs-bg !important;
+.bs-theme-select {
+  background-color: $bs-theme-bg !important;
 
   .el-select-dropdown__item {
-    color: $bs-title;
+    color: $bs-theme-title;
   }
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
-    background-color: $bs-component;
+    background-color: $bs-theme-component;
   }
   .el-input__inner{
-    background:$bs-bg;
-    background-color: $bs-component;
-    color: $bs-text;
+    background:$bs-theme-bg;
+    background-color: $bs-theme-component;
+    color: $bs-theme-text;
   }
   .el-select-dropdown__item.selected{
     color: #007aff;
-    background-color: $bs-component !important;
+    background-color: $bs-theme-component !important;
   }
 }
 
-.bs-input-number {
+.bs-theme-input-number {
   .el-input-number__decrease {
-    background: $bs-component;
-    border-right: 1px solid $bs-bg;
+    background: $bs-theme-component;
+    border-right: 1px solid $bs-theme-bg;
   }
 
   .el-input-number__increase {
-    background: $bs-component;
-    border-left: 1px solid $bs-bg;
+    background: $bs-theme-component;
+    border-left: 1px solid $bs-theme-bg;
   }
 }</style>
 
@@ -424,13 +424,13 @@ export default {
   /deep/ .el-textarea__inner,
   /deep/ .el-input-group__append,
   /deep/ .el-radio__label {
-    background: $bs-component;
-    color: $bs-text;
+    background: $bs-theme-component;
+    color: $bs-theme-text;
     border: 0 !important;
   }
 
   /deep/ .el-form-item__label {
-    color: $bs-title;
+    color: $bs-theme-title;
   }
 
   /deep/ .el-radio {
@@ -438,18 +438,18 @@ export default {
   }
 
   /deep/ .el-table {
-    background: $bs-component;
-    border-bottom: 1px solid $bs-title;
+    background: $bs-theme-component;
+    border-bottom: 1px solid $bs-theme-title;
   }
 
   /deep/ .el-table__cell {
-    background: $bs-component !important;
-    color: $bs-title !important;
-    border-color: $bs-text !important;
+    background: $bs-theme-component !important;
+    color: $bs-theme-title !important;
+    border-color: $bs-theme-text !important;
   }
 
   /deep/ .el-input__inner::placeholder {
-    color: $bs-text;
+    color: $bs-theme-text;
   }
 }
 
@@ -567,11 +567,11 @@ export default {
 /deep/ .el-color-picker--mini .el-color-picker__trigger {
   height: 32px;
   width: 32px;
-  border: 1px solid $bs-component;
-  background: $bs-component;
+  border: 1px solid $bs-theme-component;
+  background: $bs-theme-component;
 
   .el-color-picker__color {
-    background: $bs-component;
+    background: $bs-theme-component;
     border: 0 !important;
   }
 }
