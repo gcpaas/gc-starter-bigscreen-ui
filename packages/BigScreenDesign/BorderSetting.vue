@@ -91,7 +91,10 @@
                 v-if="config.customize.colorType === 'gradient'"
                 label="渐变色方向"
               >
-                <el-select v-model="config.customize.gradientDirection">
+                <el-select
+                  v-model="config.customize.gradientDirection"
+                  popper-class="bs-theme-select"
+                >
                   <el-option
                     v-for="item in gradientDirection"
                     :key="item.value"

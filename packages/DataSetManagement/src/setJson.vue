@@ -233,6 +233,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
+              :class="darkClass+'-table'"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -259,6 +260,7 @@
               :data="structurePreviewList"
               :border="true"
               align="center"
+              :class="darkClass+'-table'"
             >
               <el-table-column
                 align="center"
@@ -332,6 +334,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
+          :class="darkClass+'-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
