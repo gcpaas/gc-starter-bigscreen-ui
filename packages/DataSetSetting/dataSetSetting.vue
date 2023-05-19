@@ -165,10 +165,10 @@ export default {
 
 .data-set-wrap {
   /deep/ .el-dialog__body {
-    position: relative;
-    padding: 0 !important;
-    min-height: 600px;
-    overflow: hidden;
+    /*position: relative;*/
+    /*padding: 0 !important;*/
+    /*min-height: 600px;*/
+    /*overflow: hidden;*/
   }
 
   /deep/ .showPackUp {
@@ -176,16 +176,17 @@ export default {
   }
 
   .bs-container {
-    min-height: 590px;
+    /*min-height: 590px;*/
   }
 
-  /deep/.bs-table {
-    height: calc(100% - 105px) !important;
+  /*.bs-table-box{*/
+  /*  height: calc(100% - 105px) !important;*/
 
-    .el-table {
-      height: 100% !important;
-      max-height: unset !important;
-    }
-  }
+  /*  .el-table {*/
+  /*    !*height: 100% !important;*!*/
+  /*    !*max-height: unset !important;*!*/
+  /*    height: calc(90vh - 340px)!important;*/
+  /*  }*/
+  /*}*/
 }
 </style>
