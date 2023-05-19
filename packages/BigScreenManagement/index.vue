@@ -680,7 +680,7 @@ export default {
     // 删除页面设计
     deletePageDesign (nodeData, node) {
       const type = getPageType(nodeData.type)// 由于类型与接口不统一需要转化一下
-      const url = type === 'category' ? `/category/delete/${nodeData.code}` : `/${type}/design/delete/${nodeData.code}`// 接口地址
+      const url = type === 'category' ? `/bigScreen/category/delete/${nodeData.code}` : `/bigScreen/${type}/design/delete/${nodeData.code}`// 接口地址
       this.$confirm('确定删除该页面设计？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

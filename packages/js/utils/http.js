@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import _ from 'lodash'
+import { Message } from 'element-ui'
 /**
  * 统一进行异常输出
  * 如果异常只是弹框显示即可，可使用该实例
@@ -62,16 +63,28 @@ http.interceptors.response.use(response => {
   if (res && res.code === 401) {
   } else if (res && res.code !== 200) {
     // return Promise.reject(response.data.msg)
+    Message({
+      message: response.data.msg,
+      type: 'error'
+    })
     throw new EipException(response.data.msg, response.data.code)
   } else {
     return res
   }
 }, error => {
   if (error.message && error.message === 'Network Error') {
+    Message({
+      message: error.message,
+      type: 'error'
+    })
     return Promise.reject(error)
   // eslint-disable-next-line no-empty
   } else {
   }
+  Message({
+    message: '服务异常',
+    type: 'error'
+  })
   return Promise.reject(error)
 })
 
@@ -87,6 +100,10 @@ httpCustom.interceptors.response.use(response => {
   // eslint-disable-next-line no-empty
   } else {
   }
+  Message({
+    message: '服务异常',
+    type: 'error'
+  })
   return Promise.reject(error)
 })
 

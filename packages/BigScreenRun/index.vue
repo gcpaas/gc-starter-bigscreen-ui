@@ -249,6 +249,7 @@ export default {
 .bs-preview-wrap {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: auto;
 
   .bs-render-wrap {
