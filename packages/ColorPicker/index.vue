@@ -61,18 +61,16 @@ export default {
 
 <style lang="scss">
 .bs-color-picker {
-  background-color: $bs-theme-bg !important;
+  background-color: var(--bs-theme-bg) !important;
 
   .el-input__inner {
-    background-color: $bs-theme-bg;
-    color: $bs-theme-text;
+    background-color: var(--bs-theme-bg);
+    color: var(--bs-theme-text);
   }
 }
 </style>
 
 <style lang="scss" scoped>
-@import '~packages/assets/style/themeVar.scss';
-
 .border-color {
   display: flex;
 
@@ -87,7 +85,7 @@ export default {
     }
 
     .el-input-group__append {
-      background-color: $bs-theme-bg;
+      background-color: var(--bs-theme-bg);
 
       .el-color-picker--mini {
         position: absolute;

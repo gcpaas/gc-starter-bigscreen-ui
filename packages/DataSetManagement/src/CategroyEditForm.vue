@@ -2,8 +2,9 @@
   <el-dialog
     width="500px"
     :title="title"
-    class="bs-dialog-wrap dialogClass"
+    class="bs-dialog-wrap dialogClass bs-theme-wrap"
     :visible.sync="dialogFormVisible"
+    :custom-class="darkClass + '-dialog'"
     :append-to-body="true"
     :before-close="handleClose"
   >
@@ -46,6 +47,10 @@ export default {
   name: 'OriginalTableCategory',
   props: {
     appCode: {
+      type: String,
+      default: ''
+    },
+    darkClass: {
       type: String,
       default: ''
     }
@@ -145,9 +150,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .dialogClass .el-dialog__body {
-    min-height: auto;
-  }
-</style>

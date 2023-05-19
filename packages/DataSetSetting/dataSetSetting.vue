@@ -5,7 +5,7 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
-    custom-class="bs-theme-dialog"
+    custom-class="bs-theme-dialog bs-theme-wrap"
     top="10vh"
     class="bs-dialog-wrap data-set-wrap"
   >
@@ -93,7 +93,7 @@ export default {
 .bs-data-set-management {
   .ztree {
     span {
-      color: $bs-theme-text;
+      color: var(--bs-theme-text);
     }
 
     li:hover {
@@ -102,13 +102,13 @@ export default {
     }
 
     .curSelectedNode {
-      background: $bs-theme-hover !important;
-      background-color: $bs-theme-hover !important;
+      background: var(--bs-theme-hover) !important;
+      background-color: var(--bs-theme-hover) !important;
     }
 
     a:hover {
-      background: $bs-theme-hover !important;
-      background-color: $bs-theme-hover !important;
+      background: var(--bs-theme-hover) !important;
+      background-color: var(--bs-theme-hover) !important;
     }
   }
 
@@ -118,75 +118,61 @@ export default {
 <style lang="scss" scoped>
 .bs-data-set-management {
   ::v-deep .inner-container {
-    background: $bs-theme-bg;
+    background: var(--bs-theme-bg);
   }
 
   ::v-deep .packUpStyle {
     pointer-events: none;
     position: static;
     height: 100%;
-    background-color: $bs-theme-bg;
+    background-color: var(--bs-theme-bg);
   }
 
   ::v-deep .ztreeNodeMenu {
     ul {
-      background-color: $bs-theme-bg;
+      background-color: var(--bs-theme-bg);
     }
 
     li:hover {
-      background-color: $bs-theme-hover;
+      background-color: var(--bs-theme-hover);
     }
 
     span {
-      color: $bs-theme-title;
+      color: var(--bs-theme-title);
     }
 
     .triangle {
-      background-color: $bs-theme-bg !important;
+      background-color: var(--bs-theme-bg) !important;
     }
   }
 
   ::v-deep .el-input__inner {
-    color: $bs-theme-text;
-    background: $bs-theme-component;
+    color: var(--bs-theme-text);
+    background: var(--bs-theme-component);
   }
   ::v-deep .left-tab-box {
     span {
-      color: $bs-theme-text;
+      color: var(--bs-theme-text);
     }
   }
   ::v-deep .left-tab-box ul li.tab-active {
-    background-color: $bs-theme-hover;
+    background-color: var(--bs-theme-hover);
   }
   ::v-deep .left-tab-box ul li:hover {
-    background-color: $bs-theme-hover;
+    background-color: var(--bs-theme-hover);
   }
 }
 
 .data-set-wrap {
   /deep/ .el-dialog__body {
-    /*position: relative;*/
-    /*padding: 0 !important;*/
-    /*min-height: 600px;*/
-    /*overflow: hidden;*/
+   position: relative;
+    padding: 0 !important;
+    min-height: 600px;
+    overflow: hidden;
   }
 
   /deep/ .showPackUp {
     display: none;
   }
-
-  .bs-container {
-    /*min-height: 590px;*/
-  }
-
-  /*.bs-table-box{*/
-  /*  height: calc(100% - 105px) !important;*/
-
-  /*  .el-table {*/
-  /*    !*height: 100% !important;*!*/
-  /*    !*max-height: unset !important;*!*/
-  /*    height: calc(90vh - 340px)!important;*/
-  /*  }*/
-  /*}*/
 }
 </style>

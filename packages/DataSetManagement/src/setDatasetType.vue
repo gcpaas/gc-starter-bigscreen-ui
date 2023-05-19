@@ -7,7 +7,7 @@
     :append-to-body="true"
     :custom-class="darkClass+'-dialog'"
     :close-on-click-modal="false"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-theme-wrap"
   >
     <div class="type-wrap">
       <el-row :gutter="20">
@@ -139,12 +139,11 @@ export default {
 </script>
 
 <style lang="scss">
-.bs-card{
-  background-color: $bs-theme-component;
-}
+@import '~packages/assets/style/bsTheme.scss';
 </style>
 
 <style lang="scss" scoped>
+
 .type-item {
   height: 104px;
   line-height: 90px;

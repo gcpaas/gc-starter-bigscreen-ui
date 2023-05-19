@@ -189,7 +189,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~packages/BigScreenDesign/fonts/iconfont.css';
-@import '~packages/assets/style/themeVar.scss';
 .wrapper {
   box-sizing: border-box;
   position: absolute;
@@ -262,11 +261,11 @@ export default {
   }
 }
 /deep/ .ruler, /deep/ .corner {
-  background: $bs-theme-bg;
+  background: var(--bs-theme-bg);
 }
 /deep/ .corner {
   z-index: 999;
-  background: $bs-theme-bg !important;
+  background: var(--bs-theme-bg) !important;
 }
 
 /deep/ .mb-ruler {

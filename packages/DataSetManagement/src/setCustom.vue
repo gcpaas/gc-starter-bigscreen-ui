@@ -474,7 +474,7 @@
       :custom-class="darkClass + '-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
-      class="bs-dialog-wrap"
+      class="bs-dialog-wrap bs-theme-wrap"
     >
       <div class="bs-table-box">
         <el-table
@@ -1300,16 +1300,16 @@ export default {
 
 <style lang="scss">
  .bs-theme-title-style{
-  color: $bs-theme-title !important;
-  background-color:$bs-theme-component !important;
+  color: var(--bs-theme-title) !important;
+  background-color:var(--bs-theme-component) !important;
   .field-item:hover{
-    background-color: $bs-theme-hover !important;
+    background-color: var(--bs-theme-hover) !important;
   }
 }
 .bs-theme-field-wrap{
   .field-item:hover{
-    color: $bs-theme-text;
-    background-color: $bs-theme-hover !important;
+    color: var(--bs-theme-text);
+    background-color: var(--bs-theme-hover) !important;
   }
 }
 </style>
