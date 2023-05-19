@@ -1033,7 +1033,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-@import '/packages/assets/style/bsTheme.scss';
+@import '/packages/assets/style/bs-theme.scss';
 
 .tree-box {
   padding: 5px 0;
