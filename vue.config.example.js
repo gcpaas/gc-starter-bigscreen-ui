@@ -44,7 +44,7 @@ module.exports = {
     process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : './',
   outputDir: 'gc-starter-lowcode-ui',
   assetsDir: 'static',
-  lintOnSave: false,
+  lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   runtimeCompiler: true,
   devServer: {

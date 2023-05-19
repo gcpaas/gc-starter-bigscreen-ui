@@ -39,14 +39,20 @@ export default {
       pageInfo: state => state.pageInfo,
       customTheme: state => state.pageInfo.pageConfig.customTheme
     }),
-    isPreview () {
-      return this.$route.name !== 'BigScreenDesign'
-    },
     chatId () {
-      if (this.isPreview) {
-        return 'preview_chart' + this.config.code
+      let prefix = 'chart_'
+      if (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) {
+        prefix = 'preview_chart_'
       }
-      return 'chart' + this.config.code
+
+      if (this.$route.path === window?.BS_CONFIG?.routers?.designUrl) {
+        prefix = 'design_chart_'
+      }
+
+      if (this.$route.path === window?.BS_CONFIG?.routers?.pageListUrl) {
+        prefix = 'management_chart_'
+      }
+      return prefix + this.config.code
     }
   },
   created () {
