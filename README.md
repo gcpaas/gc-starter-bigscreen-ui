@@ -44,7 +44,7 @@ Vue.use(ElementUI, { size: 'mini' })
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 
-// 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问
+// 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问，不写则不注册
 registerConfig({
   // 路由
   routers: {
@@ -136,7 +136,24 @@ localhost:8080/data-source-manage
 
 ### 3. 自定义页面路由
 
+首先关闭自动注册路由, 第二个参数不传入router对象即可
 
+```javascript
+registerConfig({
+ // 路由
+  routers: {
+    // 大屏设计路由 必填
+    designUrl: 'big-screen/design',
+    // 预览路由    必填
+    previewUrl: '/big-screen/preview'
+  },
+  // 自定义http配置
+  httpConfigs: {
+    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+  }
+})
+
+```
 #### 3.1 大屏管理页页面
 > 在组件中引入设计器组件
 ```vue

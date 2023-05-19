@@ -26,6 +26,10 @@ function configDeepMerge (target, source) {
 }
 // 自动注册路由
 function registerRouters (config, router) {
+  // 没有router对象不注册路由
+  if (!router) {
+    return
+  }
   const routers = [
     // 页面管理
     {
