@@ -76,7 +76,7 @@ export default {
       fileUploadParam: {
         module: 'attachment'
       },
-      actionUrl: window.BS_CONFIG.baseUrl + '/sys/file/upload'
+      actionUrl: window?.BS_CONFIG.httpConfigs?.baseURL + '/bigScreen/file/upload'
     }
   },
   computed: {

@@ -528,49 +528,49 @@ export default {
         case 'delete':
           this.deletePageDesign(nodeData, node)
           break
-        case 'code':
-          this.code(nodeData, node)
-          break
+        // case 'code':
+        //   this.code(nodeData, node)
+        //   break
       }
     },
-    code (nodeData, node) {
-      axios({
-        method: 'get',
-        url: `${window.BS_CONFIG.baseUrl}/code/generation/adminPage/${nodeData.code}`,
-        headers: {
-        },
-        // 通过URL传参，后端通过  @RequestParam 注解获取参数
-        params: {},
-        // 通过body传参，后端通过  @RequestBody 注解获取参数
-        data: {},
-        withCredentials: false,
-        responseType: 'arraybuffer'
-      }).then(res => {
-        const fileUrl = window.URL.createObjectURL(new Blob([res.data]))
-        // 创建超链接
-        const fileLink = document.createElement('a')
-        fileLink.href = fileUrl
-        // 设置下载文件名
-        let responseFileName = res.headers.filename
-        // 解决中文乱码
-        responseFileName = window.decodeURI(responseFileName)
-        fileLink.setAttribute('download', responseFileName)
-        document.body.appendChild(fileLink)
-        // 模拟人工点击下载超链接
-        fileLink.click()
-        this.submitLoading = false
-        // 释放资源
-        document.body.removeChild(fileLink)
-        window.URL.revokeObjectURL(fileUrl)
-        this.step++
-      }).catch((error) => {
-        this.submitLoading = false
-        console.error(error)
-      })
-    },
+    // code (nodeData, node) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${window.BS_CONFIG.baseUrl}/code/generation/adminPage/${nodeData.code}`,
+    //     headers: {
+    //     },
+    //     // 通过URL传参，后端通过  @RequestParam 注解获取参数
+    //     params: {},
+    //     // 通过body传参，后端通过  @RequestBody 注解获取参数
+    //     data: {},
+    //     withCredentials: false,
+    //     responseType: 'arraybuffer'
+    //   }).then(res => {
+    //     const fileUrl = window.URL.createObjectURL(new Blob([res.data]))
+    //     // 创建超链接
+    //     const fileLink = document.createElement('a')
+    //     fileLink.href = fileUrl
+    //     // 设置下载文件名
+    //     let responseFileName = res.headers.filename
+    //     // 解决中文乱码
+    //     responseFileName = window.decodeURI(responseFileName)
+    //     fileLink.setAttribute('download', responseFileName)
+    //     document.body.appendChild(fileLink)
+    //     // 模拟人工点击下载超链接
+    //     fileLink.click()
+    //     this.submitLoading = false
+    //     // 释放资源
+    //     document.body.removeChild(fileLink)
+    //     window.URL.revokeObjectURL(fileUrl)
+    //     this.step++
+    //   }).catch((error) => {
+    //     this.submitLoading = false
+    //     console.error(error)
+    //   })
+    // },
     // 复制页面
     copyPege (nodeData, node) {
-      post(`/bigScreen/${nodeData.type}/design/copy/${nodeData.code}`).then(() => {
+      post(`/${nodeData.type}/design/copy/${nodeData.code}`).then(() => {
         this.getDataList()
       })
     },

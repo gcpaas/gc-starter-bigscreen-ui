@@ -109,7 +109,7 @@ export default {
   },
   data () {
     return {
-      upLoadUrl: window.BS_CONFIG?.httpConfigs?.baseURL + '/sys/file/upload',
+      upLoadUrl: window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
       fileUploadParam: {
         module: 'form'
       },

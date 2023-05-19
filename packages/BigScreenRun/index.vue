@@ -100,6 +100,11 @@ export default {
     }
   },
   watch: {
+    pageCode (val) {
+      if (val) {
+        this.init()
+      }
+    }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -127,6 +132,7 @@ export default {
       'changePageConfig'
     ]),
     init () {
+      if (!this.pageCode) { return }
       this.changePageLoading(true)
       this.initLayout(this.pageCode).then(() => {
         const themeName = this.pageConfig.customTheme
