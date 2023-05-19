@@ -17,7 +17,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-        @import "~packages/assets/style/variables.scss";
+        @import "~packages/assets/style/bs-theme-variables.scss";
         `
       }
     },
