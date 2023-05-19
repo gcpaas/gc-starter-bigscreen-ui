@@ -147,6 +147,10 @@ export default {
     appCode: {
       type: String,
       default: ''
+    },
+    darkClass: {
+      type: String,
+      default: ''
     }
   },
   data () {
