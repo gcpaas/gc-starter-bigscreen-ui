@@ -63,14 +63,22 @@ registerConfig({
     // 数据集管理
     dataSetUrl: '/data-source-manage/data-set'
   },
-  // 自定义http配置
+  // 自定义http配置 详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/kq97pycosmnslgt2
   httpConfigs: {
     baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
     // ...其他，比如请求头
     // headers: {
     //   'Content-Type': 'application/json; charset=utf-8',
     // }
-  }
+  },
+  // 自定义主题颜色变量，详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/ld7vsswz7czecpk0
+  customTheme: {
+    '--bs-theme-bg': '#1d1d1d',
+    '--bs-theme-component': '#0F1014',
+    '--bs-theme-title': '#859094',
+    '--bs-theme-text': '#ffffff',
+    '--bs-theme-hover': '#007aff30'
+  },
 }, router)
 
 ```
