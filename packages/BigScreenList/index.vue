@@ -6,8 +6,8 @@
         placeholder="请输入关键字"
         prefix-icon="el-icon-search"
         clearable
-        @clear="search"
-        @keyup.enter.native="search"
+        @clear="reSearch"
+        @keyup.enter.native="reSearch"
       />
       <el-button
         type="primary"
@@ -57,7 +57,7 @@
             />
           </div>
         </div>
-      </div> 
+      </div>
     </div>
 
     <div class="footer-pagination-wrap">
@@ -65,40 +65,60 @@
         background
         layout="prev, pager, next"
         :total="total"
-        :page-size="pageSize"
+        :page-size="page"
         @current-change="handleCurrentChange"
       />
     </div>
   </div>
 </template>
 <script>
+import { get } from 'packages/js/utils/http'
+import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'BigScreenList',
+  mixins: [pageMixins],
   props: {
     type: {
       type: String,
       default: 'screen' // screen | template
     },
-    list: {
-      type: Array,
-      default: () => []
+    catalogInfo: {
+      type: Object,
+      default: () => {}
     }
   },
   data () {
     return {
       searchKey: '',
       total: 0,
-      pageSize: 10,
-      currentPage: 1
     }
   },
-  mounted () {},
+  computed: {
+    code () {
+      return this.catalogInfo?.page?.code
+    }
+  },
+  watch: {
+    code (value) {
+      this.getDataList()
+    }
+  },
+  mounted () {
+  },
   methods: {
     handleCurrentChange (val) {
       this.currentPage = val
     },
-    search () {
-      console.log('search')
+    getDataList () {
+      get('/bigScreen/design/page', {
+        parentCode: this.catalogInfo?.page.code || null,
+        current: this.current,
+        size: this.size,
+        searchKey: this.searchKey
+      }).then(data => {
+        console.log(data)
+        this.list = data.list
+      })
     }
   }
 }
@@ -108,6 +128,7 @@ export default {
 .big-screen-list-wrap {
   color: #9ea9b2;
   padding: 20px;
+  height: 100%;
   .top-search-wrap {
     display: flex;
     justify-content: flex-end;
@@ -170,10 +191,12 @@ export default {
     }
   }
   .footer-pagination-wrap {
+    position: absolute;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
+    bottom: 10px;
   }
 }
 </style>

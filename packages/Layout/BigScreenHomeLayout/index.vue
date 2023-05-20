@@ -2,8 +2,11 @@
   <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
-        <img class="logo" :src="logo">
-        <span>{{ title || 'GCPAA大屏设计器' }}</span>
+        <img
+          class="logo"
+          :src="logo"
+        >
+        <span>{{ title || 'GCPAAS大屏设计器' }}</span>
       </div>
 
       <div class="big-screen-nav-container">

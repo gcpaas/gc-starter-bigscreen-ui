@@ -1,6 +1,6 @@
 <template>
   <div class="right-screen-list-wrap">
-    <BigScreenList />
+    <BigScreenList :catalog-info="catalogInfo" />
   </div>
 </template>
 <script>
@@ -8,20 +8,25 @@ import BigScreenList from 'packages/BigScreenList'
 export default {
   name: '',
   props: {
-    
+    catalogInfo: {
+      type: Object,
+      default: () => ({
+        isAll: false,
+        page: {}
+      })
+    }
   },
   components: { BigScreenList },
   data () {
     return {
 
     }
-  },
-  mounted () {},
-  methods: {
-
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.right-screen-list-wrap {
+  width: 100%;
+}
 </style>
