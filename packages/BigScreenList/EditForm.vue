@@ -146,12 +146,11 @@ export default {
           label: '7680*4320'
         }
       ],
-      parentCode: '', // 父节点的code
       formVisible: false,
       title: '', // 弹框标题(新增/编辑)
       dataForm: {
         id: '',
-        type: '',
+        type: 'bigScreen',
         name: '',
         icon: '',
         code: '',
@@ -168,7 +167,6 @@ export default {
           { required: true, message: '页面名称不能为空', trigger: 'blur' }
         ]
       },
-      currentPageType: '基础表格',
       sureLoading: false,
       toDesignLoading: false,
       sureDisabled: false,
@@ -197,8 +195,6 @@ export default {
     // 初始化
     init (nodeData, parentNode) {
       this.title = ''
-      this.dataForm.code = nodeData ? nodeData.code : ''
-      this.dataForm.type = nodeData ? nodeData.type : 'bigScreen'
       const code = nodeData ? nodeData.code : ''
       this.formVisible = true
       this.$nextTick(() => {
@@ -223,7 +219,6 @@ export default {
               this.resolutionRatio.h = h
               this.resolutionRatioValue = `${w}*${h}`
             }
-            this.getTemplateList(this.dataForm.type)
           })
         } else {
           this.$set(this.dataForm, 'name', '')
@@ -242,7 +237,6 @@ export default {
             this.resolutionRatio.w = '1920'
             this.resolutionRatio.h = '1080'
           }
-          this.getTemplateList(this.dataForm.type)
         }
       })
     },
@@ -314,7 +308,6 @@ export default {
     },
     // 跳转设计态
     toDesign (form) {
-      // eslint-disable-next-line no-case-declarations
       const { href: bigScreenHref } = this.$router.resolve({
         path: window.BS_CONFIG?.routers?.designUrl || '/big-screen/design',
         query: {
@@ -322,16 +315,6 @@ export default {
         }
       })
       window.open(bigScreenHref, '_self')
-    },
-    // 得到模板列表
-    getTemplateList (type) {
-      this.$nextTick(() => {
-        // this.$refs.TemplateList.init(type)
-      })
-    },
-    // 选择模版后覆盖配置
-    selectTemplate (template) {
-      // TODO: 选择模版后覆盖配置
     }
   }
 }
@@ -416,11 +399,6 @@ export default {
   position: relative;
   overflow: hidden;
 
-  /*.icon-svg {*/
-  /*  padding: 5px;*/
-  /*  width: 60px !important;*/
-  /*  height: 60px !important;*/
-  /*}*/
 }
 
 .icon-uploader-icon {
