@@ -31,5 +31,6 @@ export default {
 <style lang="scss" scoped>
 .bs-manage-main-wrap {
   display: flex;
+  height: 100%;
 }
 </style>

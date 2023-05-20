@@ -41,7 +41,7 @@
       >
         <div class="big-screen-card-inner">
           <div class="big-screen-card-img">
-            <img :src="screen.imgUrl" />
+            <img :src="screen.imgUrl">
           </div>
           <div class="big-screen-card-text">
             {{ screen.name }}
@@ -57,7 +57,7 @@
             />
           </div>
         </div>
-      </div> 
+      </div>
     </div>
 
     <div class="footer-pagination-wrap">

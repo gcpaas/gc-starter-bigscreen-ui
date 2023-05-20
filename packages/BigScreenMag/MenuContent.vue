@@ -8,7 +8,7 @@ import BigScreenList from 'packages/BigScreenList'
 export default {
   name: '',
   props: {
-    
+
   },
   components: { BigScreenList },
   data () {
