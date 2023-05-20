@@ -4,7 +4,7 @@
     :title="title"
     class="bs-dialog-wrap dialogClass bs-theme-wrap"
     :visible.sync="dialogFormVisible"
-    :custom-class="darkClass + '-dialog'"
+    :custom-class="themeClass + 'el-dialog'"
     :append-to-body="true"
     :before-close="handleClose"
   >
@@ -50,7 +50,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }

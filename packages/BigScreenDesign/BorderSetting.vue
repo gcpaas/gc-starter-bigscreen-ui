@@ -106,7 +106,7 @@
               <el-form-item label="不透明度">
                 <el-input-number
                   v-model="config.customize.opacity"
-                  class="bs-theme-input-number"
+                  class="bs-el-input-number"
                   :min="0"
                   :max="100"
                   :step="10"

@@ -100,7 +100,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          :popper-class="darkClass + '-pagination'"
+          :popper-class="themeClass + '-pagination'"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -148,7 +148,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }

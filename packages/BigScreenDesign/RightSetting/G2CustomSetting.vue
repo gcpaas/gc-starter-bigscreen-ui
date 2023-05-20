@@ -98,7 +98,7 @@
                   <el-input-number
                     v-else-if="setting.type === 'inputNumber'"
                     v-model="setting.value"
-                    class="bs-theme-input-number"
+                    class="bs-el-input-number"
                   />
                   <el-radio-group
                     v-else-if="setting.type === 'radio'"

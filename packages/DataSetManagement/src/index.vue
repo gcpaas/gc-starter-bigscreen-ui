@@ -19,7 +19,7 @@
           <TypeTree
             ref="datasetsTypeTree"
             :ds-type="dsType"
-            :dark-class="darkClass"
+            :theme-class="themeClass"
             :app-code="appCode"
             @nodeClick="nodeClick"
             @refreshData="refreshData"
@@ -93,7 +93,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
-            :class="darkClass+'-table'"
+            :class="themeClass+'el-table'"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
@@ -172,7 +172,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            :popper-class="darkClass + '-pagination'"
+            :popper-class="themeClass + '-pagination'"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
             :page-size="size"
@@ -191,7 +191,7 @@
     <set-dataset-type
       ref="setDatasetType"
       :ds-type="dsType"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @setDatasetOfType="setDatasetOfType"
     />
     <!-- 新增/编辑-原始数据集 -->
@@ -203,7 +203,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-自助数据集 -->
@@ -215,7 +215,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-json数据集 -->
@@ -227,7 +227,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-存储过程数据集 -->
@@ -239,7 +239,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-脚本数据集 -->
@@ -251,7 +251,7 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :dark-class="darkClass"
+      :theme-class="themeClass"
       @back="back"
     />
   </div>
@@ -300,7 +300,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     },
@@ -428,7 +428,7 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
-        customClass: this.darkClass + '-message-box'
+        customClass: this.themeClass + 'el-message-box'
       }).then(() => {
         datasetRemove(id).then(res => {
           this.init(false)
@@ -637,7 +637,7 @@ export default {
     max-height: calc(90vh - 236px) !important;
 
     .el-table {
-      height: calc(90vh - 340px) !important;
+      height: calc(90vh - 340px) ;
     }
 
     /deep/ .ztree {
@@ -653,13 +653,6 @@ export default {
     }
   }
 }
-/*.bs-table-box{*/
-/*  !*height: calc(100% - 100px);*!*/
-/*  .el-table{*/
-/*    !*height: 100%;*!*/
-/*    max-height: calc(90vh - 340px) !important;*/
-/*  }*/
-/*}*/
 .layout {
   width: 100%;
   height: 100%;
