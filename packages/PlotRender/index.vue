@@ -112,7 +112,7 @@ export default {
             this.changeChartConfig(config)
             this.chart.update(config.option)
           } else {
-            config.option.data = plotList.find(plot => plot.name === config.name)?.option.data
+            config.option.data = this.plotList.find(plot => plot.name === config.name)?.option.data
             this.chart.update(config.option)
           }
         })
