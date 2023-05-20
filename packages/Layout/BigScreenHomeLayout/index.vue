@@ -37,25 +37,25 @@ export default {
           id: 0,
           name: '大屏管理',
           path: '/big-screen-list',
-          icon: 'el-icon-s-home'
+          icon: 'icon-icon-shujudaping'
         },
         {
           id: 1,
           name: '模版管理',
           path: '/big-screen-template',
-          icon: 'el-icon-s-home'
+          icon: 'icon-xiangmuwenjianmobanku_mobanku'
         },
         {
           id: 2,
           name: '数据源管理',
           path: '/big-screen-dataSource',
-          icon: 'el-icon-s-home'
+          icon: 'icon-datafull'
         },
         {
           id: 3,
           name: '数据集管理',
           path: '/big-screen-dataSet',
-          icon: 'el-icon-s-home'
+          icon: 'icon-data'
         }
       ]
     }

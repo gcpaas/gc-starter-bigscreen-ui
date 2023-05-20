@@ -16,7 +16,7 @@
       >
         <span class="nav-icon">
           <i
-            :class="[ 'iconfont', nav.icon]"
+            :class="[ 'iconfont-bigscreen', nav.icon]"
           />
         </span>
         {{ nav.name }}
