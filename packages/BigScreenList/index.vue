@@ -41,6 +41,34 @@
         class="big-screen-card-wrap"
       >
         <div class="big-screen-card-inner">
+          <div class="screen-card__hover">
+            <div class="preview">
+              <div
+                class="screen-card__oper-label circle"
+                @click="preview(screen)"
+              >
+                <span>预览</span>
+              </div>
+              <div
+                class="circle"
+                @click="design(screen)"
+              >
+                <span>设计</span>
+              </div>
+              <div
+                class="circle"
+                @click="edit(screen)"
+              >
+                <span>编辑</span>
+              </div>
+              <div
+                class="circle"
+                @click="del(screen)"
+              >
+                <span>删除</span>
+              </div>
+            </div>
+          </div>
           <div class="big-screen-card-img">
             <img :src="screen.imgUrl || defaultImg">
           </div>
@@ -127,6 +155,31 @@ export default {
       }).finally(() => {
         this.loading = false
       })
+    },
+    preview (screen) {
+      const { href } = this.$router.resolve({
+        path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview', // 这里写的是要跳转的路由地址
+        query: {
+          code: screen.code
+        }
+      })
+      window.open(href, '_blank')
+    },
+    design (screen) {
+      const path = window.BS_CONFIG?.routers?.designUrl || '/big-screen/design'
+      const { href } = this.$router.resolve({
+        path,
+        query: {
+          code: screen.code
+        }
+      })
+      window.open(href, '_self')
+    },
+    edit (screen) {
+      // TODO
+    },
+    del (screen) {
+      // TODO
     }
   }
 }
@@ -134,6 +187,7 @@ export default {
 
 <style lang="scss" scoped>
 .big-screen-list-wrap {
+  position: relative;
   height: 100%;
   padding: 20px;
   color: #9ea9b2;
@@ -152,20 +206,73 @@ export default {
 
   .list-wrap {
     display: grid;
-    // 每份 290px
-    grid-template-columns: repeat(auto-fill, 290px);
+    overflow: auto;
     // 间隙自适应
     justify-content: space-around;
-    overflow: auto;
     height: calc(100vh - 320px);
+    // 每份 290px
+
+    grid-template-columns: repeat(auto-fill, 290px);
 
     .big-screen-card-wrap {
+      position: relative;
       width: 290px;
       height: 220px;
       margin-right: 20px;
       margin-bottom: 20px;
       cursor: pointer;
       border: 1px solid #204d5f;
+
+      &:hover {
+        .screen-card__hover {
+          height: 220px;
+        }
+      }
+
+      .screen-card__hover {
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        height: 0;
+        transition: height .4s;
+        background: #00000080;
+
+        .preview {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          width: 100%;
+          cursor: pointer;
+          color: #007aff;
+
+          .circle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border: 4px solid #007aff;
+            border-radius: 50%;
+            background: #fff;
+
+            &:hover {
+              color: #fff;
+              background: #007aff;
+            }
+
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
 
       .big-screen-card-inner {
         overflow: hidden;
@@ -236,12 +343,13 @@ export default {
 
   .footer-pagination-wrap {
     position: absolute;
-    /* width: 100%; */
     bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    width: 100%;
     margin-top: 20px;
+    padding: 0 20px;
   }
 }
 </style>
