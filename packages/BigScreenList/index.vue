@@ -130,6 +130,7 @@ export default {
   color: #9ea9b2;
   padding: 20px;
   height: 100%;
+  box-sizing: border-box;
   .top-search-wrap {
     display: flex;
     justify-content: flex-end;
