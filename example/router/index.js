@@ -24,6 +24,22 @@ export const baseRoutes = [
         meta: {
           title: '模版管理'
         }
+      },
+      {
+        path: '/big-screen-dataSource',
+        name: 'dataSource',
+        component: () => require.ensure([], () => require('packages/DataSourceManagement')),
+        meta: {
+          title: '数据源管理'
+        }
+      },
+      {
+        path: '/big-screen-dataSet',
+        name: 'dataSet',
+        component: () => require.ensure([], () => require('packages/DataSetSetting')),
+        meta: {
+          title: '数据集管理'
+        }
       }
     ]
   }

@@ -44,6 +44,18 @@ export default {
           name: '模版管理',
           path: '/big-screen-template',
           icon: 'el-icon-s-home'
+        },
+        {
+          id: 2,
+          name: '数据源管理',
+          path: '/big-screen-dataSource',
+          icon: 'el-icon-s-home'
+        },
+        {
+          id: 3,
+          name: '数据集管理',
+          path: '/big-screen-dataSet',
+          icon: 'el-icon-s-home'
         }
       ]
     }

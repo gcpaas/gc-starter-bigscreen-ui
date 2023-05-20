@@ -11,7 +11,7 @@
       />
       <el-button
         type="primary"
-        @click="search"
+        @click="reSearch"
       >
         搜索
       </el-button>
@@ -41,7 +41,7 @@
       >
         <div class="big-screen-card-inner">
           <div class="big-screen-card-img">
-            <img :src="screen.imgUrl" />
+            <img :src="screen.imgUrl">
           </div>
           <div class="big-screen-card-text">
             {{ screen.name }}
@@ -65,7 +65,7 @@
         background
         layout="prev, pager, next"
         :total="total"
-        :page-size="page"
+        :page-size="current"
         @current-change="handleCurrentChange"
       />
     </div>
@@ -90,7 +90,7 @@ export default {
   data () {
     return {
       searchKey: '',
-      total: 0,
+      total: 0
     }
   },
   computed: {
