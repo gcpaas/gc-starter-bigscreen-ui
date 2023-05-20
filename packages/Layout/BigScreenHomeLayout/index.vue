@@ -81,6 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.big-screen-home-wrap >* {
+  box-sizing: border-box;
+}
 .big-screen-home-wrap {
   position: relative;
   overflow: hidden;
@@ -127,7 +130,7 @@ export default {
   .big-screen-router-view-wrap {
     position: absolute;
     top: 200px;
-    overflow: auto;
+    overflow: hidden;
     width: 100%;
     height: calc(100vh - 200px);
     background-color: #171b22;

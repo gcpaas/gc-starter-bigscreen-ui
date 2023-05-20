@@ -1,6 +1,6 @@
 <template>
   <div>
-    大屏管理
+    模版管理
   </div>
 </template>
 <script>
