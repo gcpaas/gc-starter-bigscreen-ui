@@ -26,7 +26,7 @@
       <el-form-item label="大屏宽度">
         <el-input-number
           v-model="form.w"
-          class="bs-theme-input-number"
+          class="bs-el-input-number"
           :min="100"
           :max="8000"
         />
@@ -34,7 +34,7 @@
       <el-form-item label="大屏高度">
         <el-input-number
           v-model="form.h"
-          class="bs-theme-input-number"
+          class="bs-el-input-number"
           :min="100"
           :max="8000"
         />
@@ -396,7 +396,7 @@ export default {
   }
 }
 
-.bs-theme-input-number {
+.bs-el-input-number {
   .el-input-number__decrease {
     background: var(--bs-theme-component);
     border-right: 1px solid var(--bs-theme-bg);

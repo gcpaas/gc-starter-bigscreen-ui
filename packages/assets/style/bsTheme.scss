@@ -1,5 +1,5 @@
 // table
-.bs-theme-table {
+.bs-el-table {
   border: 1px solid #e6ebf5;
   background: var(--bs-theme-component) !important;
   background-color: var(--bs-theme-component) !important;
@@ -37,12 +37,12 @@
 }
 
 // card
-.bs-theme-card {
+.bs-el-card {
   background-color: var(--bs-theme-component) !important;
 }
 
 // select
-.bs-theme-select {
+.bs-el-select {
   background-color: var(--bs-theme-bg) !important;
 
   .el-select-dropdown__item {
@@ -68,7 +68,7 @@
 }
 
 // dialog
-.bs-theme-dialog {
+.bs-el-dialog {
   background: var(--bs-theme-bg) !important;
 
   .el-dialog__header {
@@ -80,4 +80,26 @@
     }
   }
 
+}
+
+// tree
+.bs-el-tree {
+  background-color: var(--bs-theme-component);
+  color: var(--bs-theme-title)
+}
+
+.bs-title-style{
+  color: var(--bs-theme-title) !important;
+  background-color:var(--bs-theme-component) !important;
+  .field-item:hover{
+    background-color: var(--bs-theme-hover) !important;
+  }
+}
+
+
+.bs-field-wrap{
+  .field-item:hover{
+    color: var(--bs-theme-text);
+    background-color: var(--bs-theme-hover) !important;
+  }
 }

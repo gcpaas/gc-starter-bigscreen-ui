@@ -12,7 +12,7 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     width="800px"
-    custom-class="bs-theme-dialog bs-theme-wrap"
+    custom-class="bs-el-dialog bs-theme-wrap"
     append-to-body
     class="bs-dialog-wrap bs-theme-wrap"
   >

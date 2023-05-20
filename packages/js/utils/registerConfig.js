@@ -104,7 +104,7 @@ function registerTheme (config) {
     themeStr += `${key}:${theme[key]};`
   }
   style.innerHTML = `
-  .el-dialog__wrapper, .el-popper, .bs-theme-wrap {
+  .el-dialog__wrapper, .el-popper, el-color-dropdown, .bs-theme-wrap {
       ${themeStr}
     }
   `

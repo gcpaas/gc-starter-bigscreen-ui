@@ -62,7 +62,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
-                  :popper-class="darkClass + '-select'"
+                  :popper-class="themeClass + 'el-select'"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -76,7 +76,6 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
-                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -84,6 +83,8 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
+                        :class="themeClass + 'el-tree'"
+                        class="bs-theme-wrap"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -112,7 +113,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
-                  :popper-class="darkClass + '-select'"
+                  :popper-class="themeClass + 'el-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -134,7 +135,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
-                  :popper-class="darkClass + '-select'"
+                  :popper-class="themeClass + 'el-select'"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -170,13 +171,14 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
-                  :popper-class="darkClass + '-select'"
+                  :popper-class="themeClass + 'el-select'"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
                   filterable
                   multiple
                   collapse-tags
                   :disabled="!isEdit"
+                  class="bs-theme-wrap"
                   @change="setFields"
                 >
                   <el-option
@@ -248,7 +250,7 @@
         <div class="structure">
           <div
             class="title-style"
-            :class="darkClass + '-title-style'"
+            :class="themeClass + 'title-style'"
           >
             输出字段
             <el-button
@@ -261,7 +263,7 @@
           </div>
           <div
             class="field-wrap"
-            :class="darkClass + '-field-wrap'"
+            :class="themeClass + 'field-wrap'"
           >
             <div
               v-for="field in structurePreviewList"
@@ -304,7 +306,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="darkClass + '-table'"
+          :class="themeClass + 'el-table'"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -322,7 +324,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          :popper-class="darkClass + '-pagination'"
+          :popper-class="themeClass + '-pagination'"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -352,7 +354,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="darkClass+'-table'"
+              :class="themeClass+'el-table'"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -472,7 +474,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="darkClass + '-dialog'"
+      :custom-class="themeClass + 'el-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -483,7 +485,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="darkClass+'-table'"
+          :class="themeClass+'el-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -576,7 +578,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }
@@ -1020,18 +1022,6 @@ export default {
 </script>
 
 <style lang="scss">
-.bs-tree {
-  background-color: var(--bs-theme-component);
-  color: var(--bs-theme-title);
-
-  .el-tree-node__content:hover {
-    background-color: var(--bs-theme-hover);
-  }
-
-  .el-tree-node.is-current>.el-tree-node__content {
-    background-color: var(--bs-theme-hover);
-  }
-}
 </style>
 
 <style lang="scss" scoped>

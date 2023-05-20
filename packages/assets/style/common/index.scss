@@ -90,10 +90,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     background-color: transparent !important;
     border: 1px solid #e4e4e4 !important;
 
-    th.is-leaf {
-      //border-bottom: 2px solid #007aff!important;
-      //background-color: var(--gc-element-header-bg)!important;
-    }
 
     th > .cell {
       padding-left: 14px !important;
@@ -105,7 +101,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
     tr td {
       border-bottom: none !important;
-      background-color: var(--gc-content-bg) !important;
     }
 
     tr:last-child td {
@@ -165,7 +160,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
           border: 2px solid transparent !important;
           border-radius: 10px !important;
           // background-color: #ddd;
-          background-color: var(--gc-scroll) !important;
         }
 
         .el-table__fixed::before,
@@ -208,7 +202,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       }
 
       .el-pagination .el-select .el-input .el-input__inner {
-        border: var(--gc-border-none) !important;
         color: #bfbfbf;
 
         &:hover {
@@ -256,10 +249,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       overflow-x: hidden !important;
     }
 
-    // 弹出层，有滚动条下最后一项显示不全
-    .el-select-dropdown .el-scrollbar .el-select-dropdown__wrap {
-      margin-bottom: var(--gc-element-scrollbar-margn-bottom) !important;
-    }
+   
 
     // dialog设置
     .bs-dialog-wrap {
@@ -267,9 +257,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         overflow: hidden !important;
       }
 
-      .el-dialog {
-        margin-bottom: 100px !important;
-      }
+      // .el-dialog {
+      //   margin-bottom: 100px !important;
+      // }
 
       .el-dialog__body {
         padding: 18px 24px !important;

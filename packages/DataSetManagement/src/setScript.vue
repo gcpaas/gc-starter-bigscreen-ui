@@ -75,7 +75,6 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
-                        class="bs-tree"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -83,6 +82,8 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
+                        :class="themeClass + 'el-tree'"
+                        class="bs-theme-wrap"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -146,7 +147,7 @@
           <div class="paramConfig">
             <div
               class="title-style"
-              :class="darkClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               脚本参数
               <el-button
@@ -159,7 +160,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="darkClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="param in dataForm.paramsList"
@@ -185,7 +186,7 @@
           <div class="structure">
             <div
               class="title-style"
-              :class="darkClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               输出字段
               <el-button
@@ -198,7 +199,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="darkClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="field in structurePreviewList"
@@ -241,7 +242,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="darkClass+'-table'"
+          :class="themeClass+'el-table'"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -274,7 +275,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="darkClass+'-table'"
+              :class="themeClass+'el-table'"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -364,7 +365,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="darkClass + '-dialog'"
+      :custom-class="themeClass + 'el-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -375,7 +376,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="darkClass+'-table'"
+          :class="themeClass+'el-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -428,7 +429,7 @@
           :data="paramsListCopy"
           :border="true"
           align="center"
-          :class="darkClass+'-table'"
+          :class="themeClass+'el-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -598,7 +599,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }

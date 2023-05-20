@@ -5,7 +5,7 @@
     width="800px"
     :before-close="handleClose"
     :append-to-body="true"
-    :custom-class="darkClass+'-dialog'"
+    :custom-class="themeClass+'el-dialog'"
     :close-on-click-modal="false"
     class="bs-dialog-wrap bs-theme-wrap"
   >
@@ -16,7 +16,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="darkClass + '-card'"
+            :class="themeClass + 'el-card'"
             shadow="hover"
           >
             <div
@@ -33,7 +33,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="darkClass + '-card'"
+            :class="themeClass + 'el-card'"
             shadow="hover"
           >
             <div
@@ -50,7 +50,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="darkClass + '-card'"
+            :class="themeClass + 'el-card'"
             shadow="hover"
           >
             <div
@@ -67,7 +67,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="darkClass + '-card'"
+            :class="themeClass + 'el-card'"
             shadow="hover"
           >
             <div
@@ -84,7 +84,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="darkClass + '-card'"
+            :class="themeClass + 'el-card'"
             shadow="hover"
           >
             <div
@@ -108,7 +108,7 @@ export default {
       type: Array,
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }

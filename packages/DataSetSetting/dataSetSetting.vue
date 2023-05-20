@@ -5,14 +5,14 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
-    custom-class="bs-theme-dialog bs-theme-wrap"
+    custom-class="bs-el-dialog bs-theme-wrap"
     top="10vh"
     class="bs-dialog-wrap data-set-wrap"
   >
     <DataSetManagement
       ref="dataSetSetting"
       class="bs-data-set-management"
-      dark-class="bs-theme"
+      theme-class="bs-"
       :is-border="true"
       :is-dialog="true"
       :ds-id="dataSetId"
@@ -165,7 +165,7 @@ export default {
 
 .data-set-wrap {
   /deep/ .el-dialog__body {
-   position: relative;
+    position: relative;
     padding: 0 !important;
     min-height: 600px;
     overflow: hidden;
@@ -173,6 +173,19 @@ export default {
 
   /deep/ .showPackUp {
     display: none;
+  }
+
+  .bs-container {
+    min-height: 590px;
+  }
+
+  /deep/.bs-table {
+    height: calc(100% - 105px) !important;
+
+    .el-table {
+      height: 100% !important;
+      max-height: unset !important;
+    }
   }
 }
 </style>

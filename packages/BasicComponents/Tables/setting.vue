@@ -30,7 +30,7 @@
               <el-form-item label="表格头部字体大小">
                 <el-input-number
                   v-model="config.customize.headerFontSize"
-                  class="bs-theme-input-number"
+                  class="bs-el-input-number"
                   :min="12"
                   :max="100"
                   :step="1"
@@ -47,7 +47,7 @@
               <el-form-item label="表格主体字体大小">
                 <el-input-number
                   v-model="config.customize.bodyFontSize"
-                  class="bs-theme-input-number"
+                  class="bs-el-input-number"
                   :min="12"
                   :max="100"
                   :step="1"

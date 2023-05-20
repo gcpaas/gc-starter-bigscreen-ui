@@ -62,8 +62,10 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  :popper-class="themeClass + 'el-select'"
                   clearable
                   :disabled="!isEdit"
+                  class="bs-theme-wrap"
                   @clear="clearType"
                   @visible-change="setCurrentNode"
                 >
@@ -75,7 +77,7 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
-                        class="bs-tree"
+                        :class="themeClass + 'el-tree'"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -83,6 +85,7 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
+                        class="bs-theme-wrap"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -90,7 +93,9 @@
                           class="custom-tree-node"
                         >
                           <span>
-                            <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
+                            <i
+                              :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
+                            />
                             {{ data.name }}
                           </span>
                         </span>
@@ -149,7 +154,7 @@
         <div class="structure">
           <div
             class="title-style"
-            :class="darkClass + '-title-style'"
+            :class="themeClass + 'title-style'"
           >
             输出字段
             <el-button
@@ -162,7 +167,7 @@
           </div>
           <div
             class="field-wrap"
-            :class="darkClass+'-field-wrap'"
+            :class="themeClass + 'field-wrap'"
           >
             <div
               v-for="field in structurePreviewList"
@@ -173,7 +178,8 @@
               <span>{{ field.columnName }}</span>&nbsp;<span
                 v-show="field.fieldDesc"
                 style="color: #909399;"
-              >({{ field.fieldDesc }})</span>
+              >({{
+                field.fieldDesc }})</span>
               <el-button
                 class="edit_field"
                 type="text"
@@ -201,7 +207,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="darkClass+'-table'"
+          :class="themeClass + 'el-table'"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -233,7 +239,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="darkClass+'-table'"
+              :class="themeClass + 'el-table'"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -260,7 +266,7 @@
               :data="structurePreviewList"
               :border="true"
               align="center"
-              :class="darkClass+'-table'"
+              :class="themeClass + 'el-table'"
             >
               <el-table-column
                 align="center"
@@ -323,7 +329,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="darkClass + '-dialog'"
+      :custom-class="themeClass + 'el-dialog'"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -334,7 +340,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="darkClass+'-table'"
+          :class="themeClass + 'el-table'"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -406,7 +412,7 @@ export default {
       type: String,
       default: ''
     },
-    darkClass: {
+    themeClass: {
       type: String,
       default: ''
     }
@@ -739,36 +745,47 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
+.tree-box {
+  padding: 5px 0;
+  max-height: 270px;
+}
 .header {
   position: relative;
+
   .search {
     position: absolute;
     right: 124px;
     top: 16px;
     display: none;
   }
+
   .save {
     position: absolute;
     right: 70px;
     top: 16px;
   }
+
   .back {
     position: absolute;
     right: 16px;
     top: 16px;
   }
 }
+
 /deep/ .el-input__inner {
   width: 100% !important;
 }
+
 .no-border {
   border: 0;
 }
+
 .title-tip {
   line-height: 40px;
   font-weight: 600;
   padding-left: 16px;
   position: relative;
+
   &::before {
     content: '';
     width: 4px;
@@ -779,12 +796,14 @@ export default {
     top: 10px;
   }
 }
+
 .card-border {
   margin: 0 16px;
   border: 1px solid #e4e4e4;
   max-height: 300px;
   overflow: auto;
   position: relative;
+
   .test-btn {
     position: absolute;
     right: 0;
@@ -792,64 +811,79 @@ export default {
     z-index: 1;
   }
 }
+
 .transfer-wrap {
   width: fit-content;
   margin: 16px;
   max-height: 300px;
   overflow: auto;
 }
-/deep/ .jsoneditor-poweredBy, /deep/ .jsoneditor-modes {
+
+/deep/ .jsoneditor-poweredBy,
+/deep/ .jsoneditor-modes {
   display: none;
 }
+
 /deep/ .ace_editor.ace-jsoneditor {
   min-height: 250px;
 }
+
 .tag-wrap {
   .el-tag {
     margin-right: 8px;
   }
 }
+
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
   border-left: 5px solid #007AFF;
   margin: 16px 16px 0 0;
 }
+
 .field-wrap {
   max-height: 410px;
   overflow: auto;
   margin-right: 16px;
+
   .field-item {
     line-height: 32px;
     padding: 0 12px 0 16px;
     cursor: pointer;
+
     .edit_field {
       display: none;
     }
+
     &:hover {
       background-color: #f2f7fe;
+
       .edit_field {
         display: block;
       }
     }
   }
 }
+
 /deep/ .fieldDescCheck {
   .el-dialog__body {
     height: fit-content !important;
     min-height: unset !important;
   }
 }
+
 /deep/ .el-page-header {
   .el-page-header__left {
     display: none;
   }
+
   .el-page-header__content {
     font-size: 14px;
     font-weight: 600;
     position: relative;
     padding-left: 12px;
   }
+
   .el-page-header__content::before {
     content: "";
     height: 24px;
@@ -859,12 +893,14 @@ export default {
     border-left: 4px solid #007AFF;
   }
 }
+
 .result-view {
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;
   position: relative;
   line-height: 24px;
+
   &::before {
     content: "";
     height: 24px;
@@ -874,18 +910,23 @@ export default {
     border-left: 4px solid #007AFF;
   }
 }
+
 /deep/ .ace_layer.ace_gutter-layer.ace_folding-enabled {
   background: #f6f7fb;
 }
+
 /deep/ .jsoneditor-menu {
   background: #007AFF;
   border-color: #007AFF;
 }
+
 /deep/ .jsoneditor-mode-code {
   border-color: #007AFF;
 }
+
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
+
   .el-table__body-wrapper {
     max-height: unset !important;
   }

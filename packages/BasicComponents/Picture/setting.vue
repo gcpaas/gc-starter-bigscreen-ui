@@ -90,7 +90,7 @@
               >
                 <el-input-number
                   v-model="config.customize.radius"
-                  class="bs-theme-input-number"
+                  class="bs-el-input-number"
                   placeholder="请输入圆角大小"
                   :min="0"
                 />
