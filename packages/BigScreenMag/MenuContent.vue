@@ -8,10 +8,7 @@ import BigScreenList from 'packages/BigScreenList'
 export default {
   name: '',
   props: {
-    pageList: {
-      type: Array,
-      default: () => []
-    }
+    
   },
   components: { BigScreenList },
   data () {

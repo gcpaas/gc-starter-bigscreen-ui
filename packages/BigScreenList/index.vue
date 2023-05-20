@@ -1,0 +1,179 @@
+<template>
+  <div class="big-screen-list-wrap">
+    <div class="top-search-wrap">
+      <el-input
+        v-model="searchKey"
+        placeholder="请输入关键字"
+        prefix-icon="el-icon-search"
+        clearable
+        @clear="search"
+        @keyup.enter.native="search"
+      />
+      <el-button
+        type="primary"
+        @click="search"
+      >
+        搜索
+      </el-button>
+    </div>
+
+    <div class="list-wrap">
+      <!-- 第一个是新增大屏卡片 -->
+      <div class="big-screen-card-wrap">
+        <div class="big-screen-card-inner">
+          <div class="add-big-screen-card">
+            <div class="add-big-screen-card-inner">
+              <div class="add-big-screen-card-icon">
+                <i class="el-icon-plus" />
+              </div>
+              <div class="add-big-screen-card-text">
+                新增大屏
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 后面遍历 list, 产生卡片，上面是图片，下面文字，左边编辑，右边删除-->
+      <div
+        v-for="(screen) in list"
+        :key="screen.id"
+        class="big-screen-card-wrap"
+      >
+        <div class="big-screen-card-inner">
+          <div class="big-screen-card-img">
+            <img :src="screen.imgUrl" />
+          </div>
+          <div class="big-screen-card-text">
+            {{ screen.name }}
+          </div>
+          <div class="big-screen-card-btns">
+            <el-button
+              type="text"
+              icon="el-icon-edit"
+            />
+            <el-button
+              type="text"
+              icon="el-icon-delete"
+            />
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="footer-pagination-wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="total"
+        :page-size="pageSize"
+        @current-change="handleCurrentChange"
+      />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'BigScreenList',
+  props: {
+    type: {
+      type: String,
+      default: 'screen' // screen | template
+    },
+    list: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data () {
+    return {
+      searchKey: '',
+      total: 0,
+      pageSize: 10,
+      currentPage: 1
+    }
+  },
+  mounted () {},
+  methods: {
+    handleCurrentChange (val) {
+      this.currentPage = val
+    },
+    search () {
+      console.log('search')
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.big-screen-list-wrap {
+  color: #9ea9b2;
+  padding: 20px;
+  .top-search-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+    .el-input {
+      width: 200px;
+      margin-right: 20px;
+    }
+  }
+  .list-wrap {
+    display: flex;
+    flex-wrap: wrap;
+
+    .big-screen-card-wrap {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+
+      .big-screen-card-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        .big-screen-card-img {
+          width: 100%;
+          height: 100px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .big-screen-card-text {
+          padding: 10px;
+          font-size: 14px;
+          color: #333;
+          text-align: center;
+        }
+        .big-screen-card-btns {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          .el-button {
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #333;
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-pagination-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+  }
+}
+</style>
