@@ -185,7 +185,7 @@
           <div class="paramConfig">
             <div
               class="title-style"
-              :class="themeClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               SQL参数
               <el-button
@@ -198,7 +198,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="themeClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="param in dataForm.paramsList"
@@ -224,7 +224,7 @@
           <div class="structure">
             <div
               class="title-style"
-              :class="themeClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               输出字段
               <el-button
@@ -237,7 +237,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="themeClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="field in structurePreviewList"
@@ -1300,14 +1300,14 @@ export default {
 </script>
 
 <style lang="scss">
- .bs-theme-title-style{
+ .bs-themetitle-style{
   color: var(--bs-theme-title) !important;
   background-color:var(--bs-theme-component) !important;
   .field-item:hover{
     background-color: var(--bs-theme-hover) !important;
   }
 }
-.bs-theme-field-wrap{
+.bs-themefield-wrap{
   .field-item:hover{
     color: var(--bs-theme-text);
     background-color: var(--bs-theme-hover) !important;

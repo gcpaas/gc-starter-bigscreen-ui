@@ -185,7 +185,7 @@
           <div class="paramConfig">
             <div
               class="title-style"
-              :class="themeClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               存储过程参数
               <el-button
@@ -198,7 +198,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="themeClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="param in dataForm.paramsList"
@@ -224,7 +224,7 @@
           <div class="structure">
             <div
               class="title-style"
-              :class="themeClass + '-title-style'"
+              :class="themeClass + 'title-style'"
             >
               输出字段
               <el-button
@@ -237,7 +237,7 @@
             </div>
             <div
               class="field-wrap"
-              :class="themeClass+'-field-wrap'"
+              :class="themeClass+'field-wrap'"
             >
               <div
                 v-for="field in structurePreviewList"

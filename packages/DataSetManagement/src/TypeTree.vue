@@ -469,7 +469,7 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning',
-          customClass: this.themeClass + '-message-box'
+          customClass: this.themeClass + 'el-message-box'
         }
       ).then(() => {
         if (!org.id) {

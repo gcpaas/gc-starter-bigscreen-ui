@@ -154,7 +154,7 @@
         <div class="structure">
           <div
             class="title-style"
-            :class="themeClass + '-title-style'"
+            :class="themeClass + 'title-style'"
           >
             输出字段
             <el-button
@@ -167,7 +167,7 @@
           </div>
           <div
             class="field-wrap"
-            :class="themeClass + '-field-wrap'"
+            :class="themeClass + 'field-wrap'"
           >
             <div
               v-for="field in structurePreviewList"

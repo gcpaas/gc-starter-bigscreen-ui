@@ -616,7 +616,7 @@ export default {
     background: var(--bs-theme-hover);
   }
 }
-.bs-theme-message-box{
+.bs-el-message-box{
   background: var(--bs-theme-component);
   p{
     color: var(--bs-theme-title);
