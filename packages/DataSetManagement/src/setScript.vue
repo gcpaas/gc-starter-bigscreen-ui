@@ -6,8 +6,8 @@
   >
     <div class="header">
       <el-page-header
+        class="bs-el-page-header"
         :content="!isEdit ? '脚本数据集详情' : dataForm.id ? '脚本数据集编辑' : '脚本数据集新增'"
-        style="padding: 16px 16px 0"
       />
       <el-button
         v-if="isEdit"

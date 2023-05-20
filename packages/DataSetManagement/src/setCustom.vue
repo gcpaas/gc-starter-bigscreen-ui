@@ -7,8 +7,8 @@
   >
     <div class="header">
       <el-page-header
+        class="bs-el-page-header"
         :content="!isEdit ? '自助数据集详情' : dataForm.id ? '自助数据集编辑' : '自助数据集新增'"
-        style="padding: 16px 16px 0"
       />
       <el-button
         v-if="isEdit"
@@ -182,10 +182,7 @@
       >
         <div class="right-setting">
           <div class="paramConfig">
-            <div
-              class="title-style"
-              :class="bs-title-style"
-            >
+            <div class="title-style bs-title-style">
               SQL参数
               <el-button
                 type="text"
@@ -558,6 +555,7 @@
     </el-dialog>
     <!-- 参数配置 -->
     <el-dialog
+      custom-class="bs-el-dialog"
       title="SQL参数配置"
       :visible.sync="paramsVisible"
       width="1000px"
@@ -727,7 +725,7 @@ export default {
     appCode: {
       type: String,
       default: ''
-    },
+    }
   },
   data () {
     const validateName = (rule, value, callback) => {
