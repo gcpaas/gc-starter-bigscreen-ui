@@ -10,10 +10,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   width: 100%;
   position: absolute;
   box-sizing: border-box;
-
   .inner-container {
     height: 100% !important;
-    background: #ffffff;
+    background-color: var(--bs-background);
 
     .filter-container {
       padding: 16px 16px 6px;

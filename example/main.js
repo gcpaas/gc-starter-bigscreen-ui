@@ -33,11 +33,11 @@ registerConfig({
     baseURL: window.CONFIG?.baseUrl
   },
   customTheme: {
-    '--bs-theme-bg': '#1d1d1d',
-    '--bs-theme-component': '#0F1014',
-    '--bs-theme-title': '#859094',
-    '--bs-theme-text': '#ffffff',
-    '--bs-theme-hover': '#007aff30'
+    '--bs-backgroud': '#1d1d1d',
+    '--bs-el-backgroud': '#0F1014',
+    '--bs-el-title': '#859094',
+    '--bs-el-text': '#ffffff',
+    '--bs-el-hover': '#007aff30'
   },
   customPlots: []
 }, router)

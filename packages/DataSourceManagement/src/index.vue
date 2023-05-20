@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="data-source-wrap"
-    class="bs-container"
-  >
+  <div class="bs-container bs-theme-wrap">
     <!--数据源查看-->
     <div class="inner-container">
       <el-form
@@ -100,7 +97,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          :popper-class="themeClass + '-pagination'"
+          popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"

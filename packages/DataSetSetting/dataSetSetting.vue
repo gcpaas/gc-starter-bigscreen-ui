@@ -93,7 +93,7 @@ export default {
 .bs-data-set-management {
   .ztree {
     span {
-      color: var(--bs-theme-text);
+      color: var(--bs-el-text);
     }
 
     li:hover {
@@ -102,13 +102,13 @@ export default {
     }
 
     .curSelectedNode {
-      background: var(--bs-theme-hover) !important;
-      background-color: var(--bs-theme-hover) !important;
+      background: var(--bs-el-hover) !important;
+      background-color: var(--bs-el-hover) !important;
     }
 
     a:hover {
-      background: var(--bs-theme-hover) !important;
-      background-color: var(--bs-theme-hover) !important;
+      background: var(--bs-el-hover) !important;
+      background-color: var(--bs-el-hover) !important;
     }
   }
 
@@ -118,48 +118,48 @@ export default {
 <style lang="scss" scoped>
 .bs-data-set-management {
   ::v-deep .inner-container {
-    background: var(--bs-theme-bg);
+    background: var(--bs-backgroud);
   }
 
   ::v-deep .packUpStyle {
     pointer-events: none;
     position: static;
     height: 100%;
-    background-color: var(--bs-theme-bg);
+    background-color: var(--bs-backgroud);
   }
 
   ::v-deep .ztreeNodeMenu {
     ul {
-      background-color: var(--bs-theme-bg);
+      background-color: var(--bs-backgroud);
     }
 
     li:hover {
-      background-color: var(--bs-theme-hover);
+      background-color: var(--bs-el-hover);
     }
 
     span {
-      color: var(--bs-theme-title);
+      color: var(--bs-el-title);
     }
 
     .triangle {
-      background-color: var(--bs-theme-bg) !important;
+      background-color: var(--bs-backgroud) !important;
     }
   }
 
   ::v-deep .el-input__inner {
-    color: var(--bs-theme-text);
-    background: var(--bs-theme-component);
+    color: var(--bs-el-text);
+    background: var(--bs-el-backgroud);
   }
   ::v-deep .left-tab-box {
     span {
-      color: var(--bs-theme-text);
+      color: var(--bs-el-text);
     }
   }
   ::v-deep .left-tab-box ul li.tab-active {
-    background-color: var(--bs-theme-hover);
+    background-color: var(--bs-el-hover);
   }
   ::v-deep .left-tab-box ul li:hover {
-    background-color: var(--bs-theme-hover);
+    background-color: var(--bs-el-hover);
   }
 }
 

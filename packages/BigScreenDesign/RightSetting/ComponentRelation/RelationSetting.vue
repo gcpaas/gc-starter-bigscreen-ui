@@ -211,32 +211,32 @@ export default {
 .bs-table-box {
   border: 1px solid #e6ebf5;
 
-  // border-bottom: 1px solid var(--bs-theme-component);
+  // border-bottom: 1px solid var(--bs-el-backgroud);
 
-  background:  var(--bs-theme-component);
-  background-color: var(--bs-theme-component);
+  background:  var(--bs-el-backgroud);
+  background-color: var(--bs-el-backgroud);
 
   ::v-deep .el-table__cell {
-    background: var(--bs-theme-component);
-    background-color: var(--bs-theme-component);
+    background: var(--bs-el-backgroud);
+    background-color: var(--bs-el-backgroud);
 
     .cell {
-      color: var(--bs-theme-title) !important;
+      color: var(--bs-el-title) !important;
     }
 
     .el-input__inner {
-      color: var(--bs-theme-text);
-      background-color: var(--bs-theme-bg);
+      color: var(--bs-el-text);
+      background-color: var(--bs-backgroud);
 
       &::placeholder {
-        color: var(--bs-theme-title);
+        color: var(--bs-el-title);
       }
     }
   }
 }
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: var(--bs-theme-bg) !important;
-  color: var(--bs-theme-text) !important;
+  background-color: var(--bs-backgroud) !important;
+  color: var(--bs-el-text) !important;
 }
 </style>

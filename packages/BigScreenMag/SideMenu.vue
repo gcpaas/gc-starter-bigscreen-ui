@@ -23,19 +23,19 @@
           trigger="click"
         >
           <span class="el-dropdown-link menu-dropdown-link">
-            <i class="el-icon-more" />
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="catalogEdit(catalog)">
-              编辑
-            </el-dropdown-item>
-            <el-dropdown-item
-              class="delete-item"
-              @click.native="catalogDel(catalog)"
-            >
-              删除
-            </el-dropdown-item>
-          </el-dropdown-menu>
+            <span class="page-more">.&nbsp;.&nbsp;.<span />
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="catalogEdit(catalog)">
+                  编辑
+                </el-dropdown-item>
+                <el-dropdown-item
+                  class="delete-item"
+                  @click.native="catalogDel(catalog)"
+                >
+                  删除
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </span></span>
         </el-dropdown>
       </div>
     </div>
@@ -93,10 +93,12 @@
 <script>
 import { post } from '../../packages/js/utils/http'
 import _ from 'lodash'
+
 export default {
+  components: { },
   data () {
     return {
-      isAll: false,
+      isAll: true,
       catalogList: [],
       catalogVisible: false,
       currentCatalog: {
@@ -226,10 +228,17 @@ export default {
         justify-content: space-between;
         &:hover{
           color: #007AFF;
+          cursor: pointer;
         }
-        .el-icon-more{
-          transform: rotate(90deg);
+        .page-more{
           color: #FFFFFF;
+          display: flex;
+          transform: rotate(90deg);
+          font-size: 20px;
+          height: 100%;
+          width: 24px;
+          justify-content: center;
+          align-items: center;
         }
         .catalog-name{
           overflow:hidden;
@@ -238,6 +247,7 @@ export default {
           -o-text-overflow:ellipsis;
         }
       }
+      /*菜单激活时的样式*/
       .active-catalog{
         background-image: url(./images/nav-menu-img.png);
         background-repeat: round;
