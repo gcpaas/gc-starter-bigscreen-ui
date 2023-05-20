@@ -90,7 +90,8 @@ export default {
   data () {
     return {
       searchKey: '',
-      total: 0
+      total: 0,
+      list: []
     }
   },
   computed: {
@@ -111,7 +112,7 @@ export default {
     },
     getDataList () {
       get('/bigScreen/design/page', {
-        parentCode: this.catalogInfo?.page.code || null,
+        parentCode: this.code || null,
         current: this.current,
         size: this.size,
         searchKey: this.searchKey
