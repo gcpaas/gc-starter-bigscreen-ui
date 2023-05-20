@@ -1,7 +1,7 @@
 <template>
   <div>
-    <side-menu @getPageList="getPageList"/>
-    <menu-content :page-list="pageList" />
+    <side-menu @getPageInfo="getPageInfo" />
+    <menu-content :page-info="pageInfo" />
   </div>
 </template>
 <script>
@@ -13,13 +13,16 @@ export default {
   components: { SideMenu, MenuContent },
   data () {
     return {
-      pageList: []
+      pageInfo: {
+        isAll: false,
+        page: {}
+      }
     }
   },
   mounted () {},
   methods: {
-    getPageList (list) {
-      this.pageList = list
+    getPageInfo (pageInfo) {
+      this.pageInfo = pageInfo
     }
   }
 }

@@ -96,7 +96,7 @@ import _ from 'lodash'
 export default {
   data () {
     return {
-      isAll: true,
+      isAll: false,
       catalogList: [],
       catalogVisible: false,
       currentCatalog: {
@@ -117,17 +117,14 @@ export default {
   methods: {
     // 点击全部
     clickAllCatalog () {
-      // this.isAll = true
-      // const pageList = this.catalogList.map((catalog) => {
-      //   if (catalog.children && catalog.children.length) {
-      //     return pageList
-      //   }
-      // })
+      this.isAll = true
+      this.$emit('getPageInfo', { isAll: true })
     },
     // 点击目录
     clickCatalog (catalog) {
       this.currentCatalog = _.cloneDeep(catalog)
       this.isAll = false
+      this.$emit('getPageInfo', { isAll: false, page: catalog })
     },
     // 关闭目录弹窗
     handleClose () {
@@ -198,7 +195,7 @@ export default {
     // 获取目录的列表
     getCatalogList () {
       this.pageLoading = true
-      post('/bigScreen/category/tree', { searchKey: this.searchKey, sort: this.sort }).then(data => {
+      post('/bigScreen/category/list', { typeList: 'catalog' }).then(data => {
         this.catalogList = data
       }).catch(() => {
       }).finally(() => {
