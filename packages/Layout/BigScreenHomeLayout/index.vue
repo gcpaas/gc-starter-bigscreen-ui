@@ -131,6 +131,7 @@ export default {
     width: 100%;
     height: calc(100vh - 200px);
     background-color: #171b22;
+    box-sizing: border-box;
   }
 }
 

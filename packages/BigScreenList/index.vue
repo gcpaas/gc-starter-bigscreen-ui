@@ -23,11 +23,8 @@
         <div class="big-screen-card-inner">
           <div class="add-big-screen-card">
             <div class="add-big-screen-card-inner">
-              <div class="add-big-screen-card-icon">
-                <i class="el-icon-plus" />
-              </div>
               <div class="add-big-screen-card-text">
-                新增大屏
+                新建大屏
               </div>
             </div>
           </div>
@@ -145,10 +142,12 @@ export default {
     flex-wrap: wrap;
 
     .big-screen-card-wrap {
-      width: 200px;
-      height: 200px;
+      width: 290px;
+      height: 220px;
       margin-right: 20px;
       margin-bottom: 20px;
+      border: 1px solid #204d5f;
+      cursor: pointer;
 
       .big-screen-card-inner {
         width: 100%;
@@ -156,6 +155,17 @@ export default {
         border-radius: 4px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // 渐变色
+        background: linear-gradient(180deg, #204d5f 0%, #1a3e4b 100%);
+        .add-big-screen-card-text {
+          font-size: 14px;
+          color: var(--bs-el-text);
+          font-size: 38px;
+        }
+
         .big-screen-card-img {
           width: 100%;
           height: 100px;
