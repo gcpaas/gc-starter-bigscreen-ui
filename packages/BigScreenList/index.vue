@@ -116,14 +116,13 @@
 import { get, post } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import EditForm from './EditForm.vue'
-import {getPageType} from "../BigScreenManagement/utils";
 export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
   props: {
     type: {
       type: String,
-      default: 'screen' // screen | template
+      default: 'bigScreen' // bigScreen | template
     },
     catalogInfo: {
       type: Object,

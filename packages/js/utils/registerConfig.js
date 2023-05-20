@@ -35,39 +35,37 @@ function registerRouters (config, router) {
     {
       path: config?.routers?.pageManagementUrl || '/pages',
       redirect: config?.routers?.pageListUrl || '/pages',
-      component: () => import('packages/Layout/ApplicationCreateTop/index.vue'),
+      component: () => import('packages/Layout/BigScreenHomeLayout'),
       children: [
         {
-          path: config?.routers?.pageListUrl || '/pages',
+          path: config?.routers?.pageListUrl || '/big-screen-list',
           name: 'Management',
-          component: () => require.ensure([], () => require('packages/BigScreenManagement')),
+          component: () => require.ensure([], () => require('packages/BigScreenMag')),
           meta: {
-            title: '页面管理'
+            title: '大屏管理'
           }
         },
         {
-          path: config?.routers?.dsManageUrl || '/data-sources',
-          redirect: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
-          component: () => import('packages/DataManagement/index.vue'),
+          path: config?.routers?.templateListUrl || '/big-screen-template',
+          name: 'Template',
+          component: () => require.ensure([], () => require('packages/BigScreenTempMag')),
           meta: {
-            title: '数据源管理页面'
-          },
-          children: [
-            {
-              path: config?.routers?.dataSourceUrl || '/data-sources/data-source-sets',
-              component: () => import('packages/DataSourceManagement'),
-              meta: {
-                title: '数据源管理'
-              }
-            },
-            {
-              path: config?.routers?.dataSetUrl || '/data-sources/data-set-configuration',
-              component: () => import('packages/DataSetManagement'),
-              meta: {
-                title: '数据集管理'
-              }
-            }
-          ]
+            title: '模版管理'
+          }
+        },
+        {
+          path: config?.routers?.dataSourceUrl || '/big-screen-dataSource',
+          component: () => import('packages/DataSourceManagement'),
+          meta: {
+            title: '数据源管理'
+          }
+        },
+        {
+          path: config?.routers?.dataSetUrl || '/big-screen-dataSet',
+          component: () => import('packages/DataSetManagement'),
+          meta: {
+            title: '数据集管理'
+          }
         }
       ]
     },

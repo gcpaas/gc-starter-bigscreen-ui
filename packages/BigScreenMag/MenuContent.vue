@@ -1,6 +1,6 @@
 <template>
   <div class="right-screen-list-wrap">
-    <BigScreenList :catalog-info="catalogInfo" />
+    <BigScreenList :catalog-info="catalogInfo" :type="type"/>
   </div>
 </template>
 <script>
@@ -14,6 +14,10 @@ export default {
         isAll: false,
         page: {}
       })
+    },
+    type: {
+      type: String,
+      default: 'bigScreen'
     }
   },
   components: { BigScreenList },

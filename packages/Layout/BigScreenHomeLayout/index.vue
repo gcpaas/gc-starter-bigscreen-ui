@@ -54,7 +54,7 @@ export default {
         {
           id: 3,
           name: '数据集管理',
-          path: '/big-screen-dataSet',
+          path: '/big-screen-dataSource',
           icon: 'icon-data'
         }
       ]

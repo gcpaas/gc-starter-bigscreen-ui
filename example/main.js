@@ -21,13 +21,13 @@ registerConfig({
     // 页面管理路由（带头部跳转路由）
     pageManagementUrl: '/',
     // 页面列表路由
-    pageListUrl: '/pages',
-    // 数据管理（带头部）
-    dsManageUrl: '/data-source-manage',
+    pageListUrl: '/big-screen-list',
+    // 模版列表
+    templateListUrl: '/big-screen-template',
     // 数据源管理
-    dataSourceUrl: '/data-source-manage/data-source',
+    dataSourceUrl: '/big-screen-dataSource',
     // 数据集管理
-    dataSetUrl: '/data-source-manage/data-set'
+    dataSetUrl: '/big-screen-dataSource'
   },
   httpConfigs: {
     baseURL: window.CONFIG?.baseUrl

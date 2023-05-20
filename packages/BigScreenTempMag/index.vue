@@ -1,12 +1,16 @@
 <template>
   <div>
-    模版管理
+    <BigScreenMag type="template" />
   </div>
 </template>
 <script>
+import BigScreenMag from 'packages/BigScreenMag'
 export default {
   name: '',
   props: {},
+  components: {
+    BigScreenMag
+  },
   data () {
     return {
 
