@@ -31,7 +31,7 @@
           <div class="add-big-screen-card">
             <div class="add-big-screen-card-inner">
               <div class="add-big-screen-card-text">
-                新建大屏
+                新建 {{ type === 'bigScreen' ? '大屏' : '模板' }}
               </div>
             </div>
           </div>
