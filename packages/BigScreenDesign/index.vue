@@ -215,7 +215,7 @@ export default {
 <style lang="scss" scoped>
 .bs-page-design-wrap {
   overflow: hidden;
-  background: var(--bs-theme-bg);
+  background: var(--bs-backgroud);
 
   .drag-wrap {
     display: flex;

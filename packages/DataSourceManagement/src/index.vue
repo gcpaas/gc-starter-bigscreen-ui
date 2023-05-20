@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="data-source-wrap"
-    class="bs-container"
-  >
+  <div class="bs-container data-source-wrap">
     <!--数据源查看-->
     <div class="inner-container">
       <el-form

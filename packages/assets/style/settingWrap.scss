@@ -64,7 +64,7 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: var(--bs-theme-bg);
+  background: var(--bs-backgroud);
   height: 32px;
   padding: 0 12px;
 }
@@ -74,17 +74,17 @@
 }
 
 /deep/ .lc-field-title {
-  color: var(--bs-theme-title);
+  color: var(--bs-el-title);
 }
 
 .lc-field-body {
   padding: 12px;
-  background: var(--bs-theme-bg);
+  background: var(--bs-backgroud);
 
   input, textarea {
-    background-color: var(--bs-theme-component) !important;
-    color: var(--bs-theme-text) !important;
-    border-color: var(--bs-theme-text) !important;
+    background-color: var(--bs-el-backgroud) !important;
+    color: var(--bs-el-text) !important;
+    border-color: var(--bs-el-text) !important;
   }
 
 }
@@ -94,7 +94,7 @@
 
 /deep/ .select-item {
   border: none;
-  color: var(--bs-theme-title);
+  color: var(--bs-el-title);
 }
 
 /deep/ .el-tabs__nav-scroll {
@@ -185,11 +185,11 @@
 /deep/ .el-tabs__item,
 /deep/ .el-collapse-item__arrow
 {
-  color: var(--bs-theme-title) !important
+  color: var(--bs-el-title) !important
 }
 /deep/ .el-collapse-item__wrap {
-  background: var(--bs-theme-bg);
-  color: var(--bs-theme-title);
+  background: var(--bs-backgroud);
+  color: var(--bs-el-title);
 }
 
 
@@ -201,8 +201,8 @@
 /deep/ .el-input-group__append,
 /deep/ .el-radio__label
 {
-  background: var(--bs-theme-component);
-  color: var(--bs-theme-text);
+  background: var(--bs-el-backgroud);
+  color: var(--bs-el-text);
   border: 0 !important;
 }
 
@@ -213,13 +213,13 @@
 }
 
 /deep/ .el-table {
-  background: var(--bs-theme-component);
-  border-bottom: 1px solid var(--bs-theme-title);
+  background: var(--bs-el-backgroud);
+  border-bottom: 1px solid var(--bs-el-title);
 }
 
 /deep/ .el-table__cell {
-  background: var(--bs-theme-component) !important;
-  color: var(--bs-theme-title) !important;
-  border-color: var(--bs-theme-text) !important;
+  background: var(--bs-el-backgroud) !important;
+  color: var(--bs-el-title) !important;
+  border-color: var(--bs-el-text) !important;
 }
 

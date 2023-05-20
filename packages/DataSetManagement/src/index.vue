@@ -610,16 +610,16 @@ export default {
 <style lang="scss">
 // Element-UI 分页
 .bs-theme-pagination {
-  background: var(--bs-theme-component);
+  background: var(--bs-el-backgroud);
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    background: var(--bs-theme-hover);
+    background: var(--bs-el-hover);
   }
 }
 .bs-el-message-box{
-  background: var(--bs-theme-component);
+  background: var(--bs-el-backgroud);
   p{
-    color: var(--bs-theme-title);
+    color: var(--bs-el-title);
   }
 }
 </style>

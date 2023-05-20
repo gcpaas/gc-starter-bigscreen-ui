@@ -298,7 +298,7 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: var(--bs-theme-bg);
+    background: var(--bs-backgroud);
 
     >* {
       color: #fff;
@@ -341,7 +341,7 @@ export default {
         border-left: 1px solid #1D1D1D;
 
         .page-left-content-title {
-          color: var(--bs-theme-title);
+          color: var(--bs-el-title);
           height: 30px;
           line-height: 30px;
           padding-left: 20px;
@@ -401,7 +401,7 @@ export default {
             }
 
             .component-name {
-              color: var(--bs-theme-title);
+              color: var(--bs-el-title);
               font-size: 12px;
               padding: 5px;
               display: inline-block;
