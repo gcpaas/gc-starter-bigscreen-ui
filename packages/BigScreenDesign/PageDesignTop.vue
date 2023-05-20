@@ -45,6 +45,7 @@
   </div>
 </template>
 <script>
+import { toPng } from 'html-to-image'
 import { mapMutations, mapActions, mapState } from 'vuex'
 import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
@@ -119,12 +120,20 @@ export default {
         if (!hasPageTemplateId) {
           delete pageInfo.pageTemplateId
         }
-        saveScreen(pageInfo).then(res => {
-          this.$message.success('保存成功')
-          resolve(res)
-        }).finally(() => {
-          this[loadingType] = false
-        })
+        const node = document.querySelector('.render-theme-wrap')
+        toPng(node)
+          .then(function (dataUrl) {
+            pageInfo.remark = dataUrl
+            saveScreen(pageInfo).then(res => {
+              this.$message.success('保存成功')
+              resolve(res)
+            }).finally(() => {
+              this[loadingType] = false
+            })
+          })
+          .catch(() => {
+            this[loadingType] = false
+          })
       })
     },
     goBack (path) {
