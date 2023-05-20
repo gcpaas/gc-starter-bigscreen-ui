@@ -227,7 +227,7 @@ export default {
         display: flex;
         justify-content: space-between;
         &:hover{
-          color: #007AFF;
+          /*color: #007AFF;*/
           cursor: pointer;
         }
         .el-icon-more{
@@ -247,9 +247,9 @@ export default {
         background-image: url(./images/nav-menu-img.png);
         background-repeat: round;
         color: #FFFFFF;
-        &:hover{
-          color: #FFFFFF;
-        }
+        /*&:hover{*/
+        /*  color: #FFFFFF;*/
+        /*}*/
       }
     }
     .add-catalog-box{
@@ -259,10 +259,10 @@ export default {
       .el-icon-plus{
         padding: 0 5px;
       }
-      &:hover{
-        cursor: pointer;
-        color: #007AFF;
-      }
+      /*&:hover{*/
+      /*  cursor: pointer;*/
+      /*  color: #007AFF;*/
+      /*}*/
     }
 
   }
