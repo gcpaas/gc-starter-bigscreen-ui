@@ -150,14 +150,17 @@ export default {
     color: var(--bs-el-text);
     background: var(--bs-el-backgroud);
   }
+
   ::v-deep .left-tab-box {
     span {
       color: var(--bs-el-text);
     }
   }
+
   ::v-deep .left-tab-box ul li.tab-active {
     background-color: var(--bs-el-hover);
   }
+
   ::v-deep .left-tab-box ul li:hover {
     background-color: var(--bs-el-hover);
   }

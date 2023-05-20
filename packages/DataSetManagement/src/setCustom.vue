@@ -83,8 +83,7 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
-                        :class="themeClass + 'el-tree'"
-                        class="bs-theme-wrap"
+                        class="bs-theme-wrap bs-el-tree"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -185,7 +184,7 @@
           <div class="paramConfig">
             <div
               class="title-style"
-              :class="themeClass + 'title-style'"
+              :class="bs-title-style"
             >
               SQL参数
               <el-button
@@ -196,10 +195,7 @@
                 配置
               </el-button>
             </div>
-            <div
-              class="field-wrap"
-              :class="themeClass+'field-wrap'"
-            >
+            <div class="field-wrap bs-field-wrap">
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -222,10 +218,7 @@
             </div>
           </div>
           <div class="structure">
-            <div
-              class="title-style"
-              :class="themeClass + 'title-style'"
-            >
+            <div class="title-style bs-title-style">
               输出字段
               <el-button
                 type="text"
@@ -236,8 +229,7 @@
               </el-button>
             </div>
             <div
-              class="field-wrap"
-              :class="themeClass+'field-wrap'"
+              class="field-wrap bs-field-wrap"
             >
               <div
                 v-for="field in structurePreviewList"
@@ -276,7 +268,7 @@
           align="center"
           :data="dataPreviewList"
           max-height="400"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
           :border="true"
         >
           <el-table-column
@@ -295,7 +287,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          :popper-class="themeClass + 'el-pagination'"
+          popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -472,14 +464,14 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="themeClass + 'el-dialog'"
+      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
     >
       <div class="bs-table-box">
         <el-table
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
           max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
@@ -577,7 +569,7 @@
       <div class="bs-table-box">
         <el-table
           ref="singleTable"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
           :data="paramsListCopy"
           :border="true"
           align="center"
@@ -736,10 +728,6 @@ export default {
       type: String,
       default: ''
     },
-    themeClass: {
-      type: String,
-      default: ''
-    }
   },
   data () {
     const validateName = (rule, value, callback) => {

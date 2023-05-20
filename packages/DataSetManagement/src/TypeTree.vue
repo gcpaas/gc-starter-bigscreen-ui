@@ -151,7 +151,6 @@
         v-if="editFormVisible"
         ref="editForm"
         :app-code="appCode"
-        :theme-class="themeClass"
       />
     </div>
   </div>
@@ -179,10 +178,6 @@ export default {
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
     },
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     }
@@ -469,7 +464,7 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning',
-          customClass: this.themeClass + 'el-message-box'
+          customClass: 'bs-el-message-box'
         }
       ).then(() => {
         if (!org.id) {

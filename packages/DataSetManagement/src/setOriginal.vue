@@ -62,7 +62,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
-                  :popper-class="themeClass + 'el-select'"
+                  popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -83,8 +83,7 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
-                        :class="themeClass + 'el-tree'"
-                        class="bs-theme-wrap"
+                        class="bs-theme-wrap bs-el-tree"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -113,7 +112,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
-                  :popper-class="themeClass + 'el-select'"
+                  popper-class="bs-el-select"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -135,7 +134,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
-                  :popper-class="themeClass + 'el-select'"
+                  popper-class="bs-el-select"
                   clearable
                   filterable
                   :disabled="!isEdit"
@@ -171,7 +170,7 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
-                  :popper-class="themeClass + 'el-select'"
+                  popper-class="bs-el-select"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
                   filterable
@@ -248,10 +247,7 @@
         :span="8"
       >
         <div class="structure">
-          <div
-            class="title-style"
-            :class="themeClass + 'title-style'"
-          >
+          <div class="title-style bs-title-style">
             输出字段
             <el-button
               type="text"
@@ -261,10 +257,7 @@
               配置
             </el-button>
           </div>
-          <div
-            class="field-wrap"
-            :class="themeClass + 'field-wrap'"
-          >
+          <div class="field-wrap bs-field-wrap">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -306,7 +299,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="themeClass + 'el-table'"
+          class="bs-el-table"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -324,7 +317,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          :popper-class="themeClass + '-pagination'"
+          popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
           :page-size="size"
@@ -354,7 +347,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="themeClass+'el-table'"
+              class="bs-el-table"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -474,7 +467,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="themeClass + 'el-dialog'"
+      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -485,7 +478,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -575,10 +568,6 @@ export default {
       default: ''
     },
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     }

@@ -4,7 +4,7 @@
     :title="title"
     class="bs-dialog-wrap dialogClass bs-theme-wrap"
     :visible.sync="dialogFormVisible"
-    :custom-class="themeClass + 'el-dialog'"
+    custom-class="bs-el-dialog"
     :append-to-body="true"
     :before-close="handleClose"
   >
@@ -47,10 +47,6 @@ export default {
   name: 'OriginalTableCategory',
   props: {
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     }

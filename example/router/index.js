@@ -36,7 +36,7 @@ export const baseRoutes = [
       {
         path: '/big-screen-dataSet',
         name: 'dataSet',
-        component: () => require.ensure([], () => require('packages/DataSetSetting')),
+        component: () => require.ensure([], () => require('packages/DataSetManagement/src/index.vue')),
         meta: {
           title: '数据集管理'
         }
