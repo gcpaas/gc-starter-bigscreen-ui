@@ -19,7 +19,6 @@
           <TypeTree
             ref="datasetsTypeTree"
             :ds-type="dsType"
-            :theme-class="themeClass"
             :app-code="appCode"
             @nodeClick="nodeClick"
             @refreshData="refreshData"
@@ -93,7 +92,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
-            :class="themeClass+'el-table'"
+            class="bs-el-table"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
@@ -172,7 +171,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            :popper-class="themeClass + '-pagination'"
+            popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
             :page-size="size"
@@ -191,7 +190,6 @@
     <set-dataset-type
       ref="setDatasetType"
       :ds-type="dsType"
-      :theme-class="themeClass"
       @setDatasetOfType="setDatasetOfType"
     />
     <!-- 新增/编辑-原始数据集 -->
@@ -203,7 +201,6 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-自助数据集 -->
@@ -215,7 +212,6 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-json数据集 -->
@@ -227,7 +223,6 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-存储过程数据集 -->
@@ -239,7 +234,6 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :theme-class="themeClass"
       @back="back"
     />
     <!-- 新增/编辑-脚本数据集 -->
@@ -251,7 +245,6 @@
       :type-id="typeId"
       :is-edit="isEdit"
       :app-code="appCode"
-      :theme-class="themeClass"
       @back="back"
     />
   </div>
@@ -297,10 +290,6 @@ export default {
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'dataModel', 'script'])
     },
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     },
@@ -428,7 +417,7 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
-        customClass: this.themeClass + 'el-message-box'
+        customClass: 'bs-el-message-box'
       }).then(() => {
         datasetRemove(id).then(res => {
           this.init(false)

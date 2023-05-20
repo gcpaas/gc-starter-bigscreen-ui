@@ -4,9 +4,10 @@
     :title="title"
     :visible.sync="setDatasourceVisible"
     :append-to-body="true"
+    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-theme-wrap"
   >
     <div
       v-loading="linkLoading"
@@ -24,9 +25,11 @@
         <el-form-item
           label="类型"
           prop="sourceType"
+          class="bs-theme-wrap"
         >
           <el-select
             v-model="dataForm.sourceType"
+            popper-class="bs-el-select"
             clearable
             filterable
             @change="sourceEdit"
@@ -45,6 +48,7 @@
         >
           <el-input
             v-model="dataForm.sourceName"
+            class="bs-el-input"
             maxlength="200"
           />
         </el-form-item>
@@ -54,6 +58,7 @@
         >
           <el-input
             v-model="dataForm.url"
+            class="bs-el-input"
             type="textarea"
             rows="4"
             @keydown.enter.native="textareaKeydown"
@@ -63,7 +68,10 @@
           label="用户名"
           prop="username"
         >
-          <el-input v-model="dataForm.username" />
+          <el-input
+            v-model="dataForm.username"
+            class="bs-el-input"
+          />
         </el-form-item>
         <el-form-item
           label="密码"
@@ -71,6 +79,7 @@
         >
           <el-input
             v-model="dataForm.password"
+            class="bs-el-input"
             type="password"
             show-password
           />
@@ -81,6 +90,7 @@
         >
           <el-input
             v-model="dataForm.remark"
+            class="bs-el-input"
             type="textarea"
             rows="4"
             @keydown.enter.native="textareaKeydown"

@@ -83,8 +83,7 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
-                        :class="themeClass + 'el-tree'"
-                        class="bs-theme-wrap"
+                        class="bs-theme-wrap bs-el-tree"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -183,10 +182,7 @@
       >
         <div class="right-setting">
           <div class="paramConfig">
-            <div
-              class="title-style"
-              :class="themeClass + 'title-style'"
-            >
+            <div class="title-style bs-title-style">
               存储过程参数
               <el-button
                 type="text"
@@ -196,10 +192,7 @@
                 配置
               </el-button>
             </div>
-            <div
-              class="field-wrap"
-              :class="themeClass+'field-wrap'"
-            >
+            <div class="field-wrap bs-field-wrap">
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -222,10 +215,7 @@
             </div>
           </div>
           <div class="structure">
-            <div
-              class="title-style"
-              :class="themeClass + 'title-style'"
-            >
+            <div class="title-style bs-title-style">
               输出字段
               <el-button
                 type="text"
@@ -235,10 +225,7 @@
                 配置
               </el-button>
             </div>
-            <div
-              class="field-wrap"
-              :class="themeClass+'field-wrap'"
-            >
+            <div class="field-wrap bs-field-wrap">
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -259,6 +246,7 @@
                 </el-button>
               </div>
             </div>
+            </divclass="field-wrap>
           </div>
         </div>
       </el-col>
@@ -277,7 +265,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -313,7 +301,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="themeClass+'el-table'"
+              class="bs-el-table"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -341,7 +329,7 @@
               :data="structurePreviewList"
               :border="true"
               align="center"
-              :class="themeClass+'el-table'"
+              class="bs-el-table"
             >
               <el-table-column
                 align="center"
@@ -426,7 +414,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="themeClass + 'el-dialog'"
+      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -437,7 +425,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -502,7 +490,7 @@
       :visible.sync="paramsVisible"
       width="1000px"
       append-to-body
-      :custom-class="themeClass + 'el-dialog'"
+      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelParam"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -513,7 +501,7 @@
           :data="paramsListCopy"
           :border="true"
           align="center"
-          :class="themeClass+'el-table'"
+          class="bs-el-table"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -666,10 +654,6 @@ export default {
       default: ''
     },
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     }

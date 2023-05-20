@@ -62,7 +62,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
-                  :popper-class="themeClass + 'el-select'"
+                  popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   class="bs-theme-wrap"
@@ -77,7 +77,6 @@
                     <div class="tree-box">
                       <el-tree
                         ref="categorySelectTree"
-                        :class="themeClass + 'el-tree'"
                         :data="categoryData"
                         node-key="id"
                         :indent="0"
@@ -85,7 +84,7 @@
                         :default-expand-all="true"
                         :highlight-current="true"
                         :expand-on-click-node="false"
-                        class="bs-theme-wrap"
+                        class="bs-theme-wrap bs-el-tree"
                         @node-click="selectParentCategory"
                       >
                         <span
@@ -152,10 +151,7 @@
         :span="8"
       >
         <div class="structure">
-          <div
-            class="title-style"
-            :class="themeClass + 'title-style'"
-          >
+          <div class="title-style bs-title-style">
             输出字段
             <el-button
               type="text"
@@ -165,10 +161,7 @@
               配置
             </el-button>
           </div>
-          <div
-            class="field-wrap"
-            :class="themeClass + 'field-wrap'"
-          >
+          <div class="field-wrap bs-field-wrap">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -207,7 +200,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          :class="themeClass + 'el-table'"
+          class="bs-el-table"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -239,7 +232,7 @@
               :data="dataPreviewList"
               max-height="400"
               :border="true"
-              :class="themeClass + 'el-table'"
+              class="bs-el-table"
             >
               <el-table-column
                 v-for="(value, key) in dataPreviewList[0]"
@@ -266,7 +259,7 @@
               :data="structurePreviewList"
               :border="true"
               align="center"
-              :class="themeClass + 'el-table'"
+              class="bs-el-table"
             >
               <el-table-column
                 align="center"
@@ -329,7 +322,7 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      :custom-class="themeClass + 'el-dialog'"
+      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
       class="bs-dialog-wrap bs-theme-wrap"
@@ -340,7 +333,7 @@
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
-          :class="themeClass + 'el-table'"
+          class="bs-el-table"
         >
           <el-empty slot="empty" />
           <el-table-column
@@ -412,10 +405,6 @@ export default {
       type: String,
       default: ''
     },
-    themeClass: {
-      type: String,
-      default: ''
-    }
   },
   data () {
     const validateName = (rule, value, callback) => {

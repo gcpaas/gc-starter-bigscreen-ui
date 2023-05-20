@@ -5,7 +5,7 @@
     width="800px"
     :before-close="handleClose"
     :append-to-body="true"
-    :custom-class="themeClass+'el-dialog'"
+    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     class="bs-dialog-wrap bs-theme-wrap"
   >
@@ -16,7 +16,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="themeClass + 'el-card'"
+            class="bs-el-card"
             shadow="hover"
           >
             <div
@@ -33,7 +33,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="themeClass + 'el-card'"
+            class="bs-el-card"
             shadow="hover"
           >
             <div
@@ -50,7 +50,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="themeClass + 'el-card'"
+            class="bs-el-card"
             shadow="hover"
           >
             <div
@@ -67,7 +67,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="themeClass + 'el-card'"
+            class="bs-el-card"
             shadow="hover"
           >
             <div
@@ -84,7 +84,7 @@
           :span="spanNum"
         >
           <el-card
-            :class="themeClass + 'el-card'"
+            class="bs-el-card"
             shadow="hover"
           >
             <div
@@ -107,10 +107,6 @@ export default {
     dsType: {
       type: Array,
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
-    },
-    themeClass: {
-      type: String,
-      default: ''
     }
   },
   data () {

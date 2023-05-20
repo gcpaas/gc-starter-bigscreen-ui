@@ -33,6 +33,7 @@
       <div class="bs-table-box">
         <el-table
           v-loading="searchLoading"
+          class="bs-el-table"
           :element-loading-text="loadingText"
           :data="dataSourceList"
           @current-change="handleCurrentChange"
@@ -97,6 +98,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
+          class="bs-theme-wrap"
           popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
@@ -142,10 +144,6 @@ export default {
       default: null
     },
     appCode: {
-      type: String,
-      default: ''
-    },
-    themeClass: {
       type: String,
       default: ''
     }
@@ -266,3 +264,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '~packages/assets/style/bsTheme.scss';
+
+.bs-el-pagination {
+  background: var(--bs-el-background);
+
+}
+</style>
+
+<style lang="scss" scoped>
+@import '~packages/assets/style/bsTheme.scss';
+
+::v-deep .el-input__inner {
+  background: var(--bs-el-background);
+}
+</style>
