@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       catalogInfo: {
-        isAll: false,
+        isAll: true,
         page: {}
       }
     }
