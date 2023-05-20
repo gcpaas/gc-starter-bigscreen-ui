@@ -25,7 +25,7 @@
       <!-- 第一个是新增大屏卡片 -->
       <div
         class="big-screen-card-wrap"
-        @click="addPageDesign"
+        @click="add"
       >
         <div class="big-screen-card-inner big-screen-card-inner-add">
           <div class="add-big-screen-card">
@@ -116,6 +116,7 @@
 import { get, post } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import EditForm from './EditForm.vue'
+import {getPageType} from "../BigScreenManagement/utils";
 export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
@@ -153,13 +154,6 @@ export default {
     this.getDataList()
   },
   methods: {
-    addPageDesign () {
-      const page = {
-        code: '',
-        type: 'bigScreen'
-      }
-      this.$refs.EditForm.init(page, this.catalogInfo.page)
-    },
     getDataList () {
       this.loading = true
       get('/bigScreen/design/page', {
@@ -193,11 +187,35 @@ export default {
       })
       window.open(href, '_self')
     },
+    add () {
+      const page = {
+        code: '',
+        type: 'bigScreen'
+      }
+      this.$refs.EditForm.init(page, this.catalogInfo.page)
+    },
     edit (screen) {
-      // TODO
+      this.$refs.EditForm.init(screen, this.catalogInfo.page)
     },
     del (screen) {
-      // TODO
+      this.$confirm('确定删除该页面设计？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(async () => {
+        post(`/bigScreen/design/delete/${screen.code}`).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功'
+          })
+          this.getDataList()
+        }).catch(() => {
+          this.$message({
+            type: 'error',
+            message: '删除失败!'
+          })
+        })
+      }).catch()
     }
   }
 }
