@@ -1,13 +1,19 @@
 <template>
-  <div>
-    pageList
+  <div class="right-screen-list-wrap">
+    <BigScreenList />
   </div>
 </template>
 <script>
+import BigScreenList from 'packages/BigScreenList'
 export default {
   name: '',
-  props: {},
-  components: { },
+  props: {
+    pageList: {
+      type: Array,
+      default: () => []
+    }
+  },
+  components: { BigScreenList },
   data () {
     return {
 

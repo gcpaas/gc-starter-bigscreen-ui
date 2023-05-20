@@ -208,7 +208,6 @@ export default {
 <style lang="scss" scoped>
   .side-catalog-wrap{
     padding-top: 16px;
-    position: absolute;
     width: 300px;
     height: 100%;
     background-color: #202023;

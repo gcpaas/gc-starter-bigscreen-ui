@@ -2,6 +2,7 @@
   <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
+        <img class="logo" :src="logo">
         <span>{{ title || 'GCPAA大屏设计器' }}</span>
       </div>
 
@@ -47,6 +48,9 @@ export default {
   computed: {
     title () {
       return window?.BS_CONFIG?.starter?.title
+    },
+    logo () {
+      return window?.BS_CONFIG?.starter?.logo || require('./images/logo.png')
     }
   },
   created () {
@@ -63,51 +67,54 @@ export default {
 
 <style lang="scss" scoped>
 .big-screen-home-wrap {
-  height: 100vh;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  height: 100vh;
 
   .big-screen-home-wrap-top {
-    height: 200px;
-    background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
     position: absolute;
     top: 0;
     width: 100%;
+    height: 200px;
+    background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
 
     .logo-title {
-      color: #007aff;
+      font-size: 30px;
       position: absolute;
       z-index: 23;
-      left: 40px;
       top: 40px;
-      font-size: 30px;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      color: #007aff;
+
       -webkit-box-reflect: below -3px linear-gradient(transparent,rgba(0,0,0,.4));
+
+      .logo {
+        height: 30px;
+      }
 
       span {
         font-family: Source Han Sans CN;
-        padding-left: 8px;
         font-size: 30px;
         font-weight: 700;
-        background: linear-gradient(315deg,#c805bb 3%,#f9fafa 38%,#30eee2 68%,#ff1919 98%);
+        padding-left: 8px;
         -webkit-animation: text-animate 8s ease infinite;
-        animation: text-animate 8s ease infinite;
+                animation: text-animate 8s ease infinite;
+        color: transparent;
+        background: linear-gradient(315deg,#c805bb 3%,#f9fafa 38%,#30eee2 68%,#ff1919 98%);
         -webkit-background-clip: text;
         background-size: 400% 400%;
-        color: transparent;
       }
-    }
-
-    .big-screen-nav-container {
-
     }
   }
 
   .big-screen-router-view-wrap {
     position: absolute;
     top: 200px;
+    overflow: auto;
     width: 100%;
     height: calc(100vh - 200px);
-    overflow: auto;
     background-color: #171b22;
   }
 }
@@ -117,10 +124,12 @@ export default {
     background-position: 0 0;
     -webkit-background-clip: text;
   }
+
   50% {
     background-position: 0 0;
     -webkit-background-clip: text;
   }
+
   100% {
     background-position: 0 0;
     -webkit-background-clip: text;
