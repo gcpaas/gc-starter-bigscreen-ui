@@ -12,6 +12,9 @@ function resolve (dir) {
 
 module.exports = {
   lintOnSave: false,
+  css: {
+    extract: true
+  },
   configureWebpack: {
     externals: {
       vuex: 'vuex',
