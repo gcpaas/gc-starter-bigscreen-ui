@@ -23,19 +23,19 @@
           trigger="click"
         >
           <span class="el-dropdown-link menu-dropdown-link">
-            <span class="page-more">.&nbsp;.&nbsp;.<span />
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native="catalogEdit(catalog)">
-                  编辑
-                </el-dropdown-item>
-                <el-dropdown-item
-                  class="delete-item"
-                  @click.native="catalogDel(catalog)"
-                >
-                  删除
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </span></span>
+            <i class="el-icon-more" />
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="catalogEdit(catalog)">
+                编辑
+              </el-dropdown-item>
+              <el-dropdown-item
+                class="delete-item"
+                @click.native="catalogDel(catalog)"
+              >
+                删除
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </span></span>
         </el-dropdown>
       </div>
     </div>
@@ -230,15 +230,10 @@ export default {
           color: #007AFF;
           cursor: pointer;
         }
-        .page-more{
-          color: #FFFFFF;
-          display: flex;
+        .el-icon-more{
           transform: rotate(90deg);
-          font-size: 20px;
-          height: 100%;
-          width: 24px;
-          justify-content: center;
-          align-items: center;
+          color: #FFFFFF;
+          font-weight: 400;
         }
         .catalog-name{
           overflow:hidden;
