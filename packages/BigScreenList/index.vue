@@ -23,7 +23,10 @@
       element-loading-text="加载中"
     >
       <!-- 第一个是新增大屏卡片 -->
-      <div class="big-screen-card-wrap">
+      <div
+        class="big-screen-card-wrap"
+        @click="addPageDesign"
+      >
         <div class="big-screen-card-inner big-screen-card-inner-add">
           <div class="add-big-screen-card">
             <div class="add-big-screen-card-inner">
@@ -102,11 +105,17 @@
         @size-change="sizeChangeHandle"
       />
     </div>
+    <!-- 新增或编辑弹窗 -->
+    <EditForm
+      ref="EditForm"
+      @refreshData="reSearch"
+    />
   </div>
 </template>
 <script>
-import { get } from 'packages/js/utils/http'
+import { get, post } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
+import EditForm from './EditForm.vue'
 export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
@@ -120,8 +129,10 @@ export default {
       default: () => {}
     }
   },
+  components: { EditForm },
   data () {
     return {
+      templateLoading: false,
       searchKey: '',
       list: [],
       defaultImg: require('./images/defaultImg.png'),
@@ -142,6 +153,13 @@ export default {
     this.getDataList()
   },
   methods: {
+    addPageDesign () {
+      const page = {
+        code: '',
+        type: 'bigScreen'
+      }
+      this.$refs.EditForm.init(page, this.catalogInfo.page)
+    },
     getDataList () {
       this.loading = true
       get('/bigScreen/design/page', {

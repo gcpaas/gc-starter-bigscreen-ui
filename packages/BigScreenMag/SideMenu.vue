@@ -120,7 +120,7 @@ export default {
     // 点击全部
     clickAllCatalog () {
       this.isAll = true
-      this.$emit('getPageInfo', { isAll: true })
+      this.$emit('getPageInfo', { isAll: true, page: { id: '', code: '', name: '' } })
     },
     // 点击目录
     clickCatalog (catalog) {

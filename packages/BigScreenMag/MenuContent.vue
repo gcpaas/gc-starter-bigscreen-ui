@@ -14,7 +14,7 @@ export default {
         isAll: false,
         page: {}
       })
-}
+    }
   },
   components: { BigScreenList },
   data () {
