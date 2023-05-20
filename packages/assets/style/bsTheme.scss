@@ -85,7 +85,21 @@
 // tree
 .bs-el-tree {
   background-color: var(--bs-theme-component);
-  color: var(--bs-theme-title);
+  color: var(--bs-theme-title)
+}
 
- 
+.bs-title-style{
+  color: var(--bs-theme-title) !important;
+  background-color:var(--bs-theme-component) !important;
+  .field-item:hover{
+    background-color: var(--bs-theme-hover) !important;
+  }
+}
+
+
+.bs-field-wrap{
+  .field-item:hover{
+    color: var(--bs-theme-text);
+    background-color: var(--bs-theme-hover) !important;
+  }
 }

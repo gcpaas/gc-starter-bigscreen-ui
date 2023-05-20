@@ -1300,19 +1300,7 @@ export default {
 </script>
 
 <style lang="scss">
- .bs-themetitle-style{
-  color: var(--bs-theme-title) !important;
-  background-color:var(--bs-theme-component) !important;
-  .field-item:hover{
-    background-color: var(--bs-theme-hover) !important;
-  }
-}
-.bs-themefield-wrap{
-  .field-item:hover{
-    color: var(--bs-theme-text);
-    background-color: var(--bs-theme-hover) !important;
-  }
-}
+@import '~packages/assets/style/bsTheme.scss';
 </style>
 
 <style lang="scss" scoped>
