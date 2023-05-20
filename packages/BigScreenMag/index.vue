@@ -15,7 +15,11 @@ export default {
     return {
       catalogInfo: {
         isAll: true,
-        page: {}
+        page: {
+          id: null,
+          code: null,
+          type: ''
+        }
       }
     }
   },
