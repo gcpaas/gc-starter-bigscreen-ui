@@ -21,6 +21,7 @@
       v-loading="loading"
       class="list-wrap"
       element-loading-text="加载中"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
     >
       <!-- 第一个是新增大屏卡片 -->
       <div
