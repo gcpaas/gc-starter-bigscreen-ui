@@ -11,7 +11,7 @@
     th.is-leaf {
       background-color: var(--bs-el-backgroud) !important;
     }
-
+    bs-el-pagination
     .cell {
       color: var(--bs-el-text) !important;
     }
@@ -86,6 +86,21 @@
 .bs-el-tree {
   background-color: var(--bs-el-backgroud);
   color: var(--bs-el-title)
+}
+
+.bs-el-pagination {
+  background: var(--bs-el-background);
+  .el-select-dropdown__item.hover,
+  .el-select-dropdown__item:hover {
+    background: var(--bs-el-hover);
+  }
+}
+
+.bs-el-message-box{
+  background: var(--bs-el-background);
+  p{
+    color: var(--bs-el-title);
+  }
 }
 
 .bs-title-style{

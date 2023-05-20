@@ -40,7 +40,7 @@
           </el-select>
         </el-form-item>
         <el-form-item
-          label="数据源2名称"
+          label="数据源名称"
           prop="sourceName"
         >
           <el-input
