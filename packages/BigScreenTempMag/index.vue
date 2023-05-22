@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="template-mag-wrap">
     <BigScreenMag type="template" />
   </div>
 </template>
@@ -24,4 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .template-mag-wrap{
+    height: 100%;
+  }
 </style>
