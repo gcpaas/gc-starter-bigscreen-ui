@@ -279,7 +279,7 @@
                     v-if="isEdit"
                     v-model="scope.row.fieldDesc"
                     size="small"
-                    class="labeldsc"
+                    class="labeldsc bs-el-input"
                   />
                   <span v-else>{{ scope.row.fieldDesc }}</span>
                 </template>
@@ -354,7 +354,7 @@
                 v-if="isEdit"
                 v-model="scope.row.fieldDesc"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.fieldDesc }}</span>
             </template>
@@ -365,11 +365,18 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelField">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="cancelField"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="setField"
-        >确 定</el-button>
+        >
+          确定
+        </el-button>
       </span>
     </el-dialog>
   </div>
@@ -922,5 +929,8 @@ export default {
   .el-table__body-wrapper {
     max-height: unset !important;
   }
+}
+.bs-table-box{
+  height: 100% !important;
 }
 </style>

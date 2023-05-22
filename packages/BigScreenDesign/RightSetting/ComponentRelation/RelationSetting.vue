@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-19 17:04:55
+ * @LastEditTime: 2023-05-22 19:21:57
 -->
 <template>
   <el-dialog
@@ -210,9 +210,6 @@ export default {
 <style lang="scss" scoped>
 .bs-table-box {
   border: 1px solid #e6ebf5;
-
-  // border-bottom: 1px solid var(--bs-el-background);
-
   background:  var(--bs-el-background);
   background-color: var(--bs-el-background);
 

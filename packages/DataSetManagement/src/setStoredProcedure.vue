@@ -452,7 +452,7 @@
                 v-if="isEdit"
                 v-model="scope.row.fieldDesc"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.fieldDesc }}</span>
             </template>
@@ -468,7 +468,7 @@
                 v-if="isEdit"
                 v-model="scope.row.orderNum"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.orderNum }}</span>
             </template>
@@ -479,11 +479,11 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelField">取 消</el-button>
+        <el-button @click="cancelField">取消</el-button>
         <el-button
           type="primary"
           @click="setField"
-        >确 定</el-button>
+        >确定</el-button>
       </span>
     </el-dialog>
     <!-- 参数配置 -->
@@ -521,6 +521,8 @@
             <template slot-scope="scope">
               <el-select
                 v-model="scope.row.type"
+                popper-class="bs-el-select"
+                class="bs-el-select"
                 placeholder="请选择"
               >
                 <el-option
@@ -566,6 +568,7 @@
               <el-input
                 v-else
                 v-model="scope.row.value"
+                class="bs-el-input"
                 clearable
                 placeholder="请输入值"
               />
@@ -580,6 +583,7 @@
               <el-input
                 v-model="scope.row.remark"
                 clearable
+                class="bs-el-input"
                 placeholder="请输入备注"
               />
             </template>
@@ -618,11 +622,18 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelParam">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="cancelParam"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="setParam"
-        >确 定</el-button>
+        >
+          确定
+        </el-button>
       </span>
     </el-dialog>
   </div>
@@ -1344,5 +1355,9 @@ export default {
   .el-table__body-wrapper {
     max-height: unset !important;
   }
+}
+
+.bs-table-box{
+  height: 100% !important;
 }
 </style>

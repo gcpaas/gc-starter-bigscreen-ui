@@ -206,11 +206,11 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="catalogVisible = false">取 消</el-button>
+        <el-button @click="catalogVisible = false">取消</el-button>
         <el-button
           type="primary"
           @click="addCatalog"
-        >确 定</el-button>
+        >确定</el-button>
       </span>
     </el-dialog>
     <ChooseTemplateDialog

@@ -541,11 +541,18 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelField">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="cancelField"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="setField"
-        >确 定</el-button>
+        >
+          确定
+        </el-button>
       </span>
     </el-dialog>
   </div>
@@ -1137,5 +1144,8 @@ export default {
     left: 0;
     border-left: 4px solid #007AFF;
   }
+}
+.bs-table-box{
+  height: 100% !important;
 }
 </style>
