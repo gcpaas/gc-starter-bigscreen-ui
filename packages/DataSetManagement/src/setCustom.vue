@@ -291,6 +291,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
+            class="bs-theme-wrap bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
@@ -338,6 +339,8 @@
             </div>
             <div class="bs-pagination">
               <el-pagination
+                class="bs-theme-wrap bs-el-pagination"
+                popper-class="bs-el-pagination"
                 :current-page="current"
                 :page-sizes="[10, 20, 50, 100]"
                 :page-size="size"
@@ -1346,12 +1349,12 @@ export default {
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
-  .CodeMirror-scroll {
-    // background: #fff;
-    .CodeMirror-gutters {
-      // background-color: #f6f7fb;
-    }
-  }
+  // .CodeMirror-scroll {
+  //   background: #fff;
+  //   .CodeMirror-gutters {
+  //     background-color: #f6f7fb;
+  //   }
+  // }
 }
 .no-border {
   border: 0;

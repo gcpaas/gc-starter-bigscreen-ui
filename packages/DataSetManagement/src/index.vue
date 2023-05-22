@@ -177,7 +177,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            class="bs-el-pagination"
+            class="bs-theme-wrap bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
@@ -609,7 +609,11 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 @import '~packages/assets/style/zTree/treePackUp.scss';
-
+.bs-pagination{
+ ::v-deep .el-input__inner{
+    background: var(--bs-el-background);
+  }
+}
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;

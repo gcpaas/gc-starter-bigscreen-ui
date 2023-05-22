@@ -22,10 +22,12 @@
     background: var(--bs-el-background);
     border-color: var(--bs-el-border-color);
   }
+
   .el-input-number__decrease {
     background: var(--bs-el-background);
     border-color: var(--bs-el-border-color) !important;
   }
+
   .el-input-number__increase {
     background: var(--bs-el-background);
     border-color: var(--bs-el-border-color) !important;
@@ -108,22 +110,21 @@
 
 // select
 .bs-el-select {
-  border-color:var(--bs-el-border-color) ;
+  border-color: var(--bs-el-border-color);
   background-color: var(--bs-el-background) !important;
 
   .el-select-dropdown__item {
     color: var(--bs-el-title);
   }
 
-   .popper__arrow {
+  .popper__arrow {
     border-bottom-color: var(--bs-el-background) !important;
-    &:after{
-      top: 1px;
-      margin-left: -6px;
-      border-top-width: 0;
-      border-bottom-color:  var(--bs-el-background) !important;
+
+    &:after {
+      border-bottom-color: var(--bs-el-background) !important;
     }
-}
+  }
+
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
@@ -151,6 +152,7 @@
     background: var(--bs-background-2);
     background-color: var(--bs-background-2);
     border-bottom: 2px solid var(--bs-background-1);
+
     .el-dialog__title {
       color: var(--bs-el-title);
     }
@@ -182,7 +184,27 @@
 }
 
 .bs-el-pagination {
-  background: var(--bs-background-2);
+  border: none !important;
+
+  .popper__arrow {
+    border-top-color: var(--bs-el-background) !important;
+
+    &:after {
+      border-top-color: var(--bs-el-background) !important;
+    }
+  }
+
+  ::v-deep .el-select-dropdown {
+    border-color: var(--bs-el-border-color) !important;
+  }
+
+  .el-select-dropdown__wrap {
+    background-color: var(--bs-background-1);
+
+    .el-select-dropdown__item {
+      color: var(--bs-el-text);
+    }
+  }
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
@@ -200,13 +222,16 @@
 
 .bs-el-message-box {
   background: var(--bs-background-1);
-  .el-message-box__title{
+
+  .el-message-box__title {
     color: var(--bs-el-title);
   }
+
   p {
     color: var(--bs-el-text);
   }
-   .el-button--default {
+
+  .el-button--default {
     color: var(--bs-el-text);
     border-color: var(--bs-el-border-color);
     background-color: var(--bs-el-background-2);
@@ -217,10 +242,12 @@
       background-color: var(--bs-background-2);
     }
   }
-  .el-button--primary{
+
+  .el-button--primary {
     color: #FFFFFF;
     background-color: #409EFF;
     border-color: #409EFF;
+
     &:hover {
       color: #FFFFFF;
       background-color: #66b1ff;
