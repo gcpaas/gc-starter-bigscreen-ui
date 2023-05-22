@@ -2,8 +2,8 @@
   <div class="big-screen-list-wrap">
     <div class="top-search-wrap">
       <el-input
-        class="bs-el-input"
         v-model="searchKey"
+        class="bs-el-input"
         placeholder="请输入关键字"
         prefix-icon="el-icon-search"
         clearable
@@ -57,36 +57,38 @@
       >
         <div class="big-screen-card-inner">
           <div class="screen-card__hover">
-            <div class="preview">
-              <div
-                class="screen-card__oper-label circle"
-                @click="preview(screen)"
-              >
-                <span>预览</span>
-              </div>
-              <div
-                class="circle"
-                @click="design(screen)"
-              >
-                <span>设计</span>
-              </div>
-              <div
-                class="circle"
-                @click="edit(screen)"
-              >
-                <span>编辑</span>
-              </div>
-              <div
-                class="circle"
-                @click="copy(screen)"
-              >
-                <span>复制</span>
-              </div>
-              <div
-                class="circle"
-                @click="del(screen)"
-              >
-                <span>删除</span>
+            <div class="screen-card__hover-box">
+              <div class="preview">
+                <div
+                  class="screen-card__oper-label circle"
+                  @click="preview(screen)"
+                >
+                  <span>预览</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="design(screen)"
+                >
+                  <span>设计</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="edit(screen)"
+                >
+                  <span>编辑</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="copy(screen)"
+                >
+                  <span>复制</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="del(screen)"
+                >
+                  <span>删除</span>
+                </div>
               </div>
             </div>
           </div>
@@ -322,8 +324,17 @@ export default {
         justify-content: center;
         height: 0;
         transition: height .4s;
-        background: #00000050;
-
+        background: #00000099;
+          .screen-card__hover-box{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #00000080;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+          }
         .preview {
           display: flex;
           flex-direction: row;
