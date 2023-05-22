@@ -57,7 +57,7 @@
     </div>
     <!-- 新增或编辑目录弹窗 -->
     <el-dialog
-      :title="isAdd ? '编辑目录':'新增目录'"
+      :title="currentCatalog.code ? '编辑分组':'新建分组'"
       :visible.sync="catalogVisible"
       custom-class="bs-el-dialog bs-theme-wrap"
       width="30%"
@@ -71,7 +71,7 @@
         :rules="formRules"
       >
         <el-form-item
-          label="目录名称"
+          label="分组名称"
           prop="name"
         >
           <el-input
@@ -112,7 +112,6 @@ export default {
   components: { },
   data () {
     return {
-      isAdd: true,
       showDropdown: false,
       hoverItem: null,
       isAll: true,
