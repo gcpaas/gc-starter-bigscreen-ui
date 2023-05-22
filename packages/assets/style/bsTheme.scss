@@ -1,3 +1,10 @@
+.bs-theme-wrap{
+  .el-loading-mask{
+    opacity: 0.7;
+    background-color: var(--bs-background-3);
+  }
+}
+
 // input
 .bs-el-input {
   .el-input__inner {
@@ -195,6 +202,7 @@
     }
   }
   .el-select-dropdown__list{
+    padding:0 0 6px 0;
     margin-bottom: 6px !important;
   }
   ::v-deep .el-select-dropdown {
