@@ -18,7 +18,7 @@
       <el-form
         ref="dataForm"
         :model="dataForm"
-        :rules="rules"
+        :rules= 'this.dataForm.id ? updateRules : rules'
         size="small"
         label-position="right"
         :label-width="dataForm.advanceSettingFlag ? '200px' : '150px'"
@@ -295,12 +295,36 @@ export default {
         coding: [
           { required: true, message: '请选择编码', trigger: 'blur' }
         ]
+      },
+      updateRules: {
+        sourceType: [
+          { required: true, message: '请选择数据源类型', trigger: 'blur' }
+        ],
+        sourceName: [
+          { required: true, message: '请输入数据源名称', trigger: 'blur' },
+          { validator: this.validateSourceName, trigger: 'blur' }
+        ],
+        driverClassName: [
+          { required: true, message: '请选择连接驱动', trigger: 'blur' }
+        ],
+        database: [
+          { required: true, message: '请输入数据库名称', trigger: 'blur' },
+          { pattern: /^[^\u4e00-\u9fa5]+$/, message: '数据库名称不能包含汉字' }
+        ],
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { pattern: /^[^\u4e00-\u9fa5]+$/, message: '用户名不能包含汉字' }
+        ]
       }
     }
   },
   methods: {
     // 初始化
     init (row) {
+      // 清除表单验证
+      if (this.$refs['dataForm']) {
+        this.$refs['dataForm'].clearValidate()
+      }
       if (row && row.id) {
         this.dataForm = row
       }
