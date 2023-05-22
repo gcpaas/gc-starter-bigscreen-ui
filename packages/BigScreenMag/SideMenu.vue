@@ -1,6 +1,6 @@
 <template>
   <div class="side-catalog-wrap bs-theme-wrap">
-    <div class="side-catalog-box">
+    <el-scrollbar class="side-catalog-box">
       <div
         class="side-catalog-all side-catalog-item"
         :class="{'active-catalog':isAll}"
@@ -47,7 +47,7 @@
           </span>
         </el-dropdown>
       </div>
-    </div>
+    </el-scrollbar>
     <div
       class="add-catalog-box"
       @click="catalogAdd"
