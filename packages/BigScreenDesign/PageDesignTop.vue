@@ -254,6 +254,7 @@ export default {
       justify-content: center;
       align-items: center;
       margin-right: 4px;
+      padding: 4px 0;
 
       &:hover {
         background-color: #414750;

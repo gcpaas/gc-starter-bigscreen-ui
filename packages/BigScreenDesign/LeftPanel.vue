@@ -295,7 +295,7 @@ export default {
 
     .flexible {
       width: 45px;
-      border-right: 1px solid #ccc;
+      /* border-right: 1px solid #ccc; */
       text-align: center;
     }
 
@@ -425,14 +425,14 @@ export default {
 
     .el-tabs__nav-wrap {
       height: 100%;
-      border-right: 1px solid #ccc;
+      /* border-right: 1px solid #ccc; */
     }
   }
 
   .page-left-fold {
     width: 45px;
     overflow: hidden;
-    border-right: 1px solid #ccc;
+    /* border-right: 1px solid #ccc; */
 
     .el-tabs__content {
       border: none;

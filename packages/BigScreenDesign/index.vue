@@ -224,6 +224,7 @@ export default {
       flex: 1;
       overflow: hidden;
       position: relative;
+      margin: 8px;
     }
 
     /deep/ .el-loading-mask {
