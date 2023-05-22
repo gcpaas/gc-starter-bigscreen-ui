@@ -311,6 +311,9 @@ export default {
           { required: true, message: '请输入数据库名称', trigger: 'blur' },
           { pattern: /^[^\u4e00-\u9fa5]+$/, message: '数据库名称不能包含汉字' }
         ],
+        url: [
+          { required: true, message: '请输入连接url', trigger: 'blur' }
+        ],
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { pattern: /^[^\u4e00-\u9fa5]+$/, message: '用户名不能包含汉字' }
