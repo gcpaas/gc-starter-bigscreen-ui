@@ -170,7 +170,7 @@ export default {
       },
       dataFormRules: {
         name: [
-          { required: true, message: '页面名称不能为空', trigger: 'blur' }
+          { required: true, message: '名称不能为空', trigger: 'blur' }
         ]
       },
       sureLoading: false,

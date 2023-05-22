@@ -4,7 +4,7 @@
       <el-input
         v-model="searchKey"
         class="bs-el-input"
-        placeholder="请输入关键字"
+        placeholder="请输入大屏名称"
         prefix-icon="el-icon-search"
         clearable
         @clear="reSearch"
@@ -17,7 +17,6 @@
         搜索
       </el-button>
     </div>
-
     <div
       v-loading="loading"
       class="list-wrap"
@@ -98,12 +97,12 @@
               fit="fill"
               style="width: 100%;height:100%"
             >
-              <!-- <div
-                slot="error"
+              <div
+                slot="placeholder"
                 class="image-slot"
               >
-                <img :src="defaultImg">
-              </div> -->
+                加载中···
+              </div>
             </el-image>
           </div>
           <div class="big-screen-bottom">
@@ -123,7 +122,7 @@
 
     <div class="footer-pagination-wrap">
       <div class="footer-pagination-wrap-text">
-        总共 {{ totalCount }} 个项目
+        共 {{ totalCount }} 条
       </div>
       <el-pagination
         class="bs-theme-wrap bs-el-pagination"
@@ -234,7 +233,7 @@ export default {
       this.$refs.EditForm.init(screen, this.catalogInfo.page)
     },
     del (screen) {
-      this.$confirm('确定删除该页面设计？', '提示', {
+      this.$confirm('确定删除该大屏？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -313,12 +312,12 @@ export default {
 
     .big-screen-card-wrap {
       position: relative;
-      height: 220px;
+      height: 180px;
       cursor: pointer;
 
       &:hover {
         .screen-card__hover {
-          height: 220px;
+          height: 180px;
         }
       }
 
@@ -394,7 +393,7 @@ export default {
 
         .big-screen-card-img {
           width: 100%;
-          height: 190px;
+          height: 150px;
 
           img {
             width: 100%;
@@ -405,6 +404,13 @@ export default {
 
           /deep/.image-slot {
             height: 100%;
+            background-color: var(--bs-background-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          /deep/.el-image__error{
+            background-color: #1D1D1D;
           }
         }
 
@@ -417,7 +423,7 @@ export default {
           width: 100%;
           /*height: 26px;*/
           padding: 0 10px;
-          height: calc(100% - 190px);
+          height: calc(100% - 150px);
           color: var(--bs-el-title);
           background-color: var(--bs-background-2);
 

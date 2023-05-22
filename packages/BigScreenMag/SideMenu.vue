@@ -134,7 +134,7 @@ export default {
       },
       formRules: {
         name: [
-          { required: true, message: '目录名称不能为空', trigger: 'blur' }
+          { required: true, message: '分组名称不能为空', trigger: 'blur' }
         ]
       }
     }
