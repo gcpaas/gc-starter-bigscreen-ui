@@ -67,6 +67,12 @@
               </div>
               <div
                 class="circle"
+                @click="copy(screen)"
+              >
+                <span>复制</span>
+              </div>
+              <div
+                class="circle"
                 @click="del(screen)"
               >
                 <span>删除</span>
@@ -197,6 +203,11 @@ export default {
     edit (screen) {
       this.$refs.EditForm.init(screen, this.catalogInfo.page)
     },
+    copy (screen) {
+      post(`/bigScreen/design/copy/${screen.code}`).then(() => {
+        this.getDataList()
+      })
+    },
     del (screen) {
       this.$confirm('确定删除该页面设计？', '提示', {
         confirmButtonText: '确定',
@@ -292,8 +303,8 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border: 4px solid #007aff;
             border-radius: 50%;
             background: #fff;
