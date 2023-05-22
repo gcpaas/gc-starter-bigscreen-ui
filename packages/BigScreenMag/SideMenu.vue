@@ -78,7 +78,7 @@
             :min="0"
             :max="30000"
             controls-position="right"
-            class="bs-el-input"
+            class="bs-el-input-number"
           />
         </el-form-item>
       </el-form>

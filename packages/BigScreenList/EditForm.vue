@@ -34,7 +34,7 @@
         >
           <el-select
             v-model="resolutionRatioValue"
-            class="select bs-el-select"
+            popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
           >
@@ -53,7 +53,7 @@
             v-model="resolutionRatio.w"
             :min="100"
             :max="8000"
-            class="bs-el-input"
+            class="bs-el-input-number"
           />
         </el-form-item>
         <el-form-item
@@ -63,7 +63,7 @@
             v-model="resolutionRatio.h"
             :min="100"
             :max="8000"
-            class="bs-el-input"
+            class="bs-el-input-number"
           />
         </el-form-item>
         <el-form-item label="排序">
@@ -72,7 +72,7 @@
             :min="0"
             :max="30000"
             controls-position="right"
-            class="bs-el-input"
+            class="bs-el-input-number"
           />
         </el-form-item>
       </el-form>
