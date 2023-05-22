@@ -215,10 +215,10 @@ export default {
 <style lang="scss" scoped>
 .bs-page-design-wrap {
   overflow: hidden;
-  background: var(--bs-background-1);
 
   .drag-wrap {
     display: flex;
+    background-color: var(--bs-background-design-inner);
 
     .grid-wrap-box {
       flex: 1;

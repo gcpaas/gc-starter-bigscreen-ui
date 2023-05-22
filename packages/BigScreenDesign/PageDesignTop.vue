@@ -14,19 +14,22 @@
         class="head-btn"
         @click="execRun()"
       >
-        <i class="iconfont-bigscreen icon-yulan" />
+        预览
+        <!-- <i class="iconfont-bigscreen icon-yulan" /> -->
       </div>
       <div
         class="head-btn"
         @click="save('saveLoading')"
       >
-        <i class="iconfont-bigscreen icon-baocun" />
+        <!-- <i class="iconfont-bigscreen icon-baocun" /> -->
+        保存
       </div>
       <div
         class="head-btn"
         @click="empty"
       >
-        <i class="iconfont-bigscreen icon-qingkong" />
+        清空
+        <!-- <i class="iconfont-bigscreen icon-qingkong" /> -->
       </div>
     </div>
     <ChooseTemplateDialog
@@ -227,13 +230,13 @@ export default {
 
 .page-top-setting-wrap {
   height: 40px;
-  background-color: var(--bs-background);
+  background-color: var(--bs-background-1);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   position: relative;
   color: #ffffff;
-  padding: 0 16px;
+  padding: 0 5px;
 
   .app-name {
     cursor: pointer;

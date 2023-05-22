@@ -97,8 +97,9 @@
                     <div
                       v-for="element in menu.components"
                       :key="element.type + element.name"
-                      :class="element.component ? 'menu-component' : 'item'"
+                      :class="element.component ? 'item menu-component' : 'item'"
                     >
+                      <div class="component-name">{{ element.title }}</div>
                       <div
                         class="img_dispaly chooseDragNode"
                         draggable="true"
@@ -123,7 +124,6 @@
                           class="page-opt-list-component"
                         />
                       </div>
-                      <span class="component-name">{{ element.title }}</span>
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-      <div
+      <!-- <div
         class="bs-folder-wrap"
         :style="{ height }"
       >
@@ -140,7 +140,7 @@
           :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
           @click="toggleSidebar"
         />
-      </div>
+      </div> -->
     </div>
   </transition>
 </template>
@@ -279,6 +279,7 @@ export default {
 @import '~packages/BigScreenDesign/fonts/iconfont.css';
 .bs-left-panel {
   display: flex;
+  background-color: var(--bs-background-1);
 
   .bs-folder-wrap {
     width: 20px;
@@ -302,7 +303,6 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: var(--bs-background-1);
 
     >* {
       color: #fff;
@@ -319,13 +319,16 @@ export default {
     }
 
     .el-tabs {
-      width: 300px;
+      width: 250;
       position: relative;
       height: 100% !important;
       overflow: visible;
 
       .is-active {
         .iconfont-bigscreen {
+          color: #007aff;
+        }
+        .menu-title-span {
           color: #007aff;
         }
       }
@@ -340,7 +343,7 @@ export default {
 
       /deep/.el-tabs__content {
         height: 100%;
-        width: 254px;
+        width: 204px;
 
         .page-left-content-title {
           color: var(--bs-el-title);
@@ -357,6 +360,7 @@ export default {
           text-align: center;
           padding-bottom: 20px;
           margin-bottom: 20px;
+
           .draggable {
             display: flex;
             flex-wrap: wrap;
@@ -365,13 +369,19 @@ export default {
 
             .chooseDragNode {
               cursor: move;
-              background: #232323;
             }
 
             .item {
-              width: 42%;
-              margin: 8px;
+              width: 90%;
+              background: var(--bs-background-2);
+              margin-bottom: 10px;
 
+              .component-name {
+                background: var(--bs-background-3);
+                color: var(--bs-el-title);
+                font-size: 12px;
+                padding: 5px;
+              }
               .sampleImg {
                 margin: 0 auto;
                 width: 102px;
@@ -400,14 +410,6 @@ export default {
                 width: 102px;
                 height: 75px;
               }
-            }
-
-            .component-name {
-              color: var(--bs-el-title);
-              font-size: 12px;
-              padding: 5px;
-              display: inline-block;
-              margin-top: 6px;
             }
           }
         }

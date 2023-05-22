@@ -35,7 +35,8 @@ registerConfig({
   customTheme: {
     '--bs-background-1': '#151a26',
     '--bs-background-2': '#232832',
-    '--bs-background-3': '#2e323',
+    '--bs-background-3': '#212326',
+    '--bs-background-design-inner': '#1d1e20',
     '--bs-el-background': '#0F1014',
     '--bs-el-title': '#859094',
     '--bs-el-text': '#ffffff',

@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-fade">
     <div class="bs-right-panel-wrap">
-      <div
+      <!-- <div
         class="bs-folder-wrap"
         :style="{ height }"
       >
@@ -17,7 +17,7 @@
           :min="10"
           @input="changeScreenZoom"
         />
-      </div>
+      </div> -->
       <el-scrollbar>
         <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
           <RightSetting
@@ -116,6 +116,7 @@ export default {
 <style lang="scss" scoped>
 .bs-right-panel-wrap {
   display: flex;
+  background-color: var(--bs-background-1);
 
   .bs-folder-wrap {
     width: 20px;

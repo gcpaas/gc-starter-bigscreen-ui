@@ -38,11 +38,16 @@
   }
   .toolbar{
     width: 320px;
-    bottom:0;
+    height: 50px;
+    bottom: 0;
     z-index: 10;
     position: fixed;
     text-align: center;
-    bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-background-1);
+
     .el-button{
       margin-right: 10px;
     }
