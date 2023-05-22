@@ -36,7 +36,6 @@
           </el-tab-pane>
           <el-tab-pane
             name="layer"
-            @click.native="changeActiveCode('')"
           >
             <div
               slot="label"
@@ -343,11 +342,13 @@ export default {
         width: 190px;
 
         .page-left-content-title {
+          background-color: var(--bs-background-2);
           color: var(--bs-el-title);
-          height: 30px;
-          line-height: 30px;
           padding-left: 20px;
           font-size: 14px;
+          margin: 8px;
+          padding: 8px 16px;
+          border-left: 4px solid #007aff;
         }
         .el-scrollbar__view{
           height: calc(100vh - 55px);
