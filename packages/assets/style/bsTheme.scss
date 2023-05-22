@@ -115,13 +115,13 @@
     color: var(--bs-el-title);
   }
 
-  .el-popper[x-placement^="bottom"] .popper__arrow {
+   .popper__arrow {
+    border-bottom-color: var(--bs-el-background) !important;
     &:after{
       top: 1px;
-
       margin-left: -6px;
       border-top-width: 0;
-      border-bottom-color:  var(--bs-el-background);
+      border-bottom-color:  var(--bs-el-background) !important;
     }
 }
   .el-select-dropdown__item.hover,

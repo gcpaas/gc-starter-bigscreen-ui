@@ -33,7 +33,7 @@
       >
         <div
           id="resize"
-          class="resize  packUpStyle"
+          class="resize  pack-up-box"
           @mousedown="mousedown"
           @mouseup="mouseup"
           @mousemove="mousemove"
@@ -49,7 +49,7 @@
           </a>
           <a
             v-else
-            class="showPackUp"
+            class="visible-pack-up"
           >
             <span>||</span>
           </a>
@@ -177,6 +177,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
+            class="bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
@@ -635,7 +636,7 @@ export default {
     }
   }
   .resize {
-    width: 19px;
+    width: 15px;
     background-color: var(--bs-el-background) !important;
     a{
       height: 40px;
@@ -679,6 +680,26 @@ export default {
 
 }
 
+  ::v-deep .ztreeNodeMenu {
+    ul {
+      background-color: var(--bs-background-1);
+    }
+
+    li:hover {
+      background-color: var(--bs-el-hover);
+      span{
+        color: var(--bs-el-text);
+      }
+    }
+
+    span {
+      color: var(--bs-el-title);
+    }
+
+    .triangle {
+      background-color: var(--bs-background-1) !important;
+    }
+  }
 .layout {
   width: 100%;
   height: 100%;
