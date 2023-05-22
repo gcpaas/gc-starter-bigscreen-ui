@@ -1,26 +1,29 @@
 <template>
-  <transition name="slide-fade">
-    <div class="bs-right-panel-wrap">
-      <div class="bs-set-title">
-        {{ chartSettingShow ? `${title}图表设置` : '大屏设置' }}
-      </div>
-      <el-scrollbar>
-        <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
-          <RightSetting
-            v-if="chartSettingShow"
-            @closeRightPanel="close"
-            @updateSetting="updateSetting"
-            @updateDataSetting="updateDataSetting"
-          />
-          <OverallSetting
-            v-if="rightVisiable && pageInfoVisiable"
-            ref="OverallSetting"
-            @close="close"
-          />
-        </div>
-      </el-scrollbar>
+  <!-- <transition name="slide-fade"> -->
+  <div
+    v-if="rightVisiable"
+    class="bs-right-panel-wrap"
+  >
+    <div class="bs-set-title">
+      {{ chartSettingShow ? `${title}图表设置` : '大屏设置' }}
     </div>
-  </transition>
+    <el-scrollbar>
+      <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
+        <RightSetting
+          v-if="chartSettingShow"
+          @closeRightPanel="close"
+          @updateSetting="updateSetting"
+          @updateDataSetting="updateDataSetting"
+        />
+        <OverallSetting
+          v-if="rightVisiable && pageInfoVisiable"
+          ref="OverallSetting"
+          @close="close"
+        />
+      </div>
+    </el-scrollbar>
+  </div>
+  <!-- </transition> -->
 </template>
 <script>
 import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
@@ -135,7 +138,7 @@ export default {
   }
 
   .bs-page-right {
-    height: calc(100vh - 40px);
+    height: calc(100vh - 80px);
     width: 320px;
     box-sizing: border-box;
 
@@ -204,7 +207,7 @@ export default {
   opacity: 0;
 }
 /deep/ .el-scrollbar__view{
-  height: calc(100vh - 40px);
+  height: calc(100vh - 80px);
   overflow-x: unset;
 }
 </style>
