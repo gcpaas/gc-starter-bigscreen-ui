@@ -308,14 +308,12 @@ export default {
     justify-content: space-around;
     max-height: calc(100vh - 270px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 15px;
 
     .big-screen-card-wrap {
       position: relative;
       height: 220px;
-      margin-right: 20px;
-      margin-bottom: 20px;
       cursor: pointer;
 
       &:hover {
