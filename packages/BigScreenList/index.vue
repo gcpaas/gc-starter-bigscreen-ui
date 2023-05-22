@@ -268,7 +268,7 @@ export default {
   height: 100%;
   padding: 20px;
   color: #9ea9b2;
-
+  background-color: #151A26!important;
   .top-search-wrap {
     display: flex;
     align-items: center;
@@ -387,9 +387,11 @@ export default {
           justify-content: space-between;
           box-sizing: border-box;
           width: 100%;
-          height: 26px;
+          /*height: 26px;*/
           padding: 0 10px;
+          height: calc(100% - 190px);
           color: var(--bs-el-text);
+          background-color: #232832;
 
           .left-bigscreen-title {
             font-size: 14px;
