@@ -26,13 +26,13 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
       </el-button>
     </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
+    <el-row style="margin: 16px 16px 0;">
       <el-col :span="isEdit ? 16 : 24">
         <el-form
           ref="form"
@@ -49,6 +49,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -62,6 +63,8 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -109,6 +112,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -956,7 +960,7 @@ export default {
   }
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
   .back {
@@ -1061,6 +1065,7 @@ export default {
   }
 }
 .result-view {
+  color: var(--bs-el-text);
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;

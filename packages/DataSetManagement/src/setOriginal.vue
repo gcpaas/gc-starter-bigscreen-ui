@@ -26,13 +26,13 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
       </el-button>
     </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
+    <el-row style="margin: 16px 16px 0;">
       <el-col :span="isEdit ? 16 : 24">
         <el-form
           ref="form"
@@ -63,6 +63,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
@@ -113,6 +114,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   filterable
@@ -135,6 +137,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   filterable
@@ -171,6 +174,7 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
@@ -178,7 +182,6 @@
                   multiple
                   collapse-tags
                   :disabled="!isEdit"
-                  class="bs-theme-wrap"
                   @change="setFields"
                 >
                   <el-option
@@ -1039,7 +1042,7 @@ export default {
 
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
 
@@ -1118,6 +1121,7 @@ export default {
 }
 
 .result-view {
+  color: var(--bs-el-text);
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;

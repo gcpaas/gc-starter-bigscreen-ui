@@ -1,711 +1,713 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-  <div
-    v-loading="saveloading"
-    class="inner-container"
-    :element-loading-text="saveText"
-  >
-    <div class="header">
-      <el-page-header
-        class="bs-el-page-header"
-        :content="!isEdit ? '自助数据集详情' : dataForm.id ? '自助数据集编辑' : '自助数据集新增'"
-      />
-      <el-button
-        v-if="isEdit"
-        id="search"
-        type="primary"
-        class="search"
-      >
-        帮助
-      </el-button>
-      <el-button
-        v-if="isEdit"
-        type="primary"
-        class="save"
-        @click="save('form')"
-      >
-        保存
-      </el-button>
-      <el-button
-        class="back bs-el-button-default"
-        @click="goBack"
-      >
-        返回
-      </el-button>
-    </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
-      <el-col :span="isEdit ? 16 : 24">
-        <el-form
-          ref="form"
-          :model="dataForm"
-          :rules="rules"
-          label-width="120px"
-          style="padding: 16px 16px 0;"
-        >
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-form-item
-                label="名称"
-                prop="name"
-              >
-                <el-input
-                  v-model="dataForm.name"
-                  class="bs-el-input"
-                  clearable
-                  :disabled="!isEdit"
-                />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item
-                label="分组"
-                prop="typeId"
-              >
-                <el-select
-                  ref="selectParentName"
-                  v-model="dataForm.typeId"
-                  popper-class="bs-el-select"
-                  class="bs-el-select"
-                  clearable
-                  :disabled="!isEdit"
-                  @clear="clearType"
-                  @visible-change="setCurrentNode"
-                >
-                  <el-option
-                    style="height: auto;padding: 0;"
-                    :label="typeName"
-                    :value="dataForm.typeId"
-                  >
-                    <div class="tree-box">
-                      <el-tree
-                        ref="categorySelectTree"
-                        :data="categoryData"
-                        node-key="id"
-                        :indent="0"
-                        :props="{ label: 'name', children: 'children' }"
-                        :default-expand-all="true"
-                        :highlight-current="true"
-                        :expand-on-click-node="false"
-                        class="bs-theme-wrap bs-el-tree"
-                        @node-click="selectParentCategory"
-                      >
-                        <span
-                          slot-scope="{ data }"
-                          class="custom-tree-node"
-                        >
-                          <span>
-                            <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
-                            {{ data.name }}
-                          </span>
-                        </span>
-                      </el-tree>
-                    </div>
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-form-item
-                label="描述"
-                prop="remark"
-              >
-                <el-input
-                  v-model="dataForm.remark"
-                  class="bs-el-input"
-                  :disabled="!isEdit"
-                />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item
-                label="数据源"
-                prop="sourceId"
-              >
-                <el-select
-                  v-model="dataForm.sourceId"
-                  clearable
-                  filterable
-                  class="bs-el-select"
-                  popper-class="bs-el-select"
-                  placeholder="请选择数据源"
-                  :disabled="!isEdit"
-                >
-                  <el-option
-                    v-for="source in sourceList"
-                    :key="source.id"
-                    :label="source.sourceName"
-                    :value="source.id"
-                  />
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-        <div
+  <el-scrollbar class="scrollbar">
+    <div
+      v-loading="saveloading"
+      class="inner-container"
+      :element-loading-text="saveText"
+    >
+      <div class="header">
+        <el-page-header
+          class="bs-el-page-header"
+          :content="!isEdit ? '自助数据集详情' : dataForm.id ? '自助数据集编辑' : '自助数据集新增'"
+        />
+        <el-button
           v-if="isEdit"
-          class="sql-config"
+          id="search"
+          type="primary"
+          class="search"
         >
-          <div>
-            <codemirror
-              ref="targetInSql"
-              v-model="dataForm.sqlProcess"
-              :options="cOptions"
-              class="codeStyle"
-              style="margin-top: 2px"
-            />
-            <div style="background: #f6f7fb;line-height: 32px; padding-left: 10px;">
-              示例：
-              <strong v-if="dataForm.curingType == '3'">call 存储过程名称(<span style="color: red;">${参数名称}</span>,?)</strong>
-              <strong v-else><br>
-                1、常规使用 select * from table where table_field = <span style="color: red;">${参数名称}</span><br>
-                2、标签使用
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  content="<参数名称></参数名称>为非空标签, 当该参数值为空时, 标签部分不进行处理"
-                  placement="top-start"
-                ><i class="el-icon-question" />
-                </el-tooltip>
-                select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
-              </strong>
+          帮助
+        </el-button>
+        <el-button
+          v-if="isEdit"
+          type="primary"
+          class="save"
+          @click="save('form')"
+        >
+          保存
+        </el-button>
+        <el-button
+          class="back bs-el-button-default"
+          @click="goBack"
+        >
+          返回
+        </el-button>
+      </div>
+      <el-row style="margin: 16px 16px 0;">
+        <el-col :span="isEdit ? 16 : 24">
+          <el-form
+            ref="form"
+            :model="dataForm"
+            :rules="rules"
+            label-width="120px"
+            style="padding: 16px 16px 0;"
+          >
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item
+                  label="名称"
+                  prop="name"
+                >
+                  <el-input
+                    v-model="dataForm.name"
+                    class="bs-el-input"
+                    clearable
+                    :disabled="!isEdit"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="分组"
+                  prop="typeId"
+                >
+                  <el-select
+                    ref="selectParentName"
+                    v-model="dataForm.typeId"
+                    popper-class="bs-el-select"
+                    class="bs-el-select"
+                    clearable
+                    :disabled="!isEdit"
+                    @clear="clearType"
+                    @visible-change="setCurrentNode"
+                  >
+                    <el-option
+                      style="height: auto;padding: 0;"
+                      :label="typeName"
+                      :value="dataForm.typeId"
+                    >
+                      <div class="tree-box">
+                        <el-tree
+                          ref="categorySelectTree"
+                          :data="categoryData"
+                          node-key="id"
+                          :indent="0"
+                          :props="{ label: 'name', children: 'children' }"
+                          :default-expand-all="true"
+                          :highlight-current="true"
+                          :expand-on-click-node="false"
+                          class="bs-theme-wrap bs-el-tree"
+                          @node-click="selectParentCategory"
+                        >
+                          <span
+                            slot-scope="{ data }"
+                            class="custom-tree-node"
+                          >
+                            <span>
+                              <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
+                              {{ data.name }}
+                            </span>
+                          </span>
+                        </el-tree>
+                      </div>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item
+                  label="描述"
+                  prop="remark"
+                >
+                  <el-input
+                    v-model="dataForm.remark"
+                    class="bs-el-input"
+                    :disabled="!isEdit"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="数据源"
+                  prop="sourceId"
+                >
+                  <el-select
+                    v-model="dataForm.sourceId"
+                    clearable
+                    filterable
+                    class="bs-el-select"
+                    popper-class="bs-el-select"
+                    placeholder="请选择数据源"
+                    :disabled="!isEdit"
+                  >
+                    <el-option
+                      v-for="source in sourceList"
+                      :key="source.id"
+                      :label="source.sourceName"
+                      :value="source.id"
+                    />
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <div
+            v-if="isEdit"
+            class="sql-config"
+          >
+            <div>
+              <codemirror
+                ref="targetInSql"
+                v-model="dataForm.sqlProcess"
+                :options="cOptions"
+                class="codeStyle"
+                style="margin-top: 2px"
+              />
+              <div style="background: #f6f7fb;line-height: 32px; padding-left: 10px;">
+                示例：
+                <strong v-if="dataForm.curingType == '3'">call 存储过程名称(<span style="color: red;">${参数名称}</span>,?)</strong>
+                <strong v-else><br>
+                  1、常规使用 select * from table where table_field = <span style="color: red;">${参数名称}</span><br>
+                  2、标签使用
+                  <el-tooltip
+                    class="item"
+                    effect="dark"
+                    content="<参数名称></参数名称>为非空标签, 当该参数值为空时, 标签部分不进行处理"
+                    placement="top-start"
+                  ><i class="el-icon-question" />
+                  </el-tooltip>
+                  select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
+                </strong>
+              </div>
             </div>
-          </div>
-          <div style="text-align: center; padding: 16px 0;">
-            <el-button
-              type="primary"
-              @click="buildParams"
-            >
-              解析并运行
-            </el-button>
-          </div>
-        </div>
-      </el-col>
-      <el-col
-        v-if="isEdit"
-        :span="8"
-      >
-        <div class="right-setting">
-          <div class="paramConfig">
-            <div class="title-style bs-title-style">
-              SQL参数
+            <div style="text-align: center; padding: 16px 0;">
               <el-button
-                type="text"
-                style="float: right;border: none;margin-top: -4px;"
-                @click="openParamsConfig"
+                type="primary"
+                @click="buildParams"
               >
-                配置
+                解析并运行
               </el-button>
             </div>
-            <div class="field-wrap bs-field-wrap">
-              <div
-                v-for="param in dataForm.paramsList"
-                :key="param.name"
-                class="field-item"
-                @click="openParamsConfig"
-              >
-                <span>{{ param.name }}</span>&nbsp;<span
-                  v-show="param.remark"
-                  style="color: #909399;"
-                >({{ param.remark }})</span>
+          </div>
+        </el-col>
+        <el-col
+          v-if="isEdit"
+          :span="8"
+        >
+          <div class="right-setting">
+            <div class="paramConfig">
+              <div class="title-style bs-title-style">
+                SQL参数
                 <el-button
-                  class="edit_field"
                   type="text"
-                  style="float: right;border: none;margin-top: 2px;"
+                  style="float: right;border: none;margin-top: -4px;"
                   @click="openParamsConfig"
                 >
                   配置
                 </el-button>
               </div>
+              <div class="field-wrap bs-field-wrap">
+                <div
+                  v-for="param in dataForm.paramsList"
+                  :key="param.name"
+                  class="field-item"
+                  @click="openParamsConfig"
+                >
+                  <span>{{ param.name }}</span>&nbsp;<span
+                    v-show="param.remark"
+                    style="color: #909399;"
+                  >({{ param.remark }})</span>
+                  <el-button
+                    class="edit_field"
+                    type="text"
+                    style="float: right;border: none;margin-top: 2px;"
+                    @click="openParamsConfig"
+                  >
+                    配置
+                  </el-button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="structure">
-            <div class="title-style bs-title-style">
-              输出字段
-              <el-button
-                type="text"
-                style="float: right;border: none;margin-top: -4px;"
-                @click="fieldsetVisible = true"
-              >
-                配置
-              </el-button>
-            </div>
-            <div
-              class="field-wrap bs-field-wrap"
-            >
-              <div
-                v-for="field in structurePreviewList"
-                :key="field.columnName"
-                class="field-item"
-                @click="fieldsetVisible = true"
-              >
-                <span>{{ field.columnName }}</span>&nbsp;<span
-                  v-show="field.fieldDesc"
-                  style="color: #909399;"
-                >({{ field.fieldDesc }})</span>
+            <div class="structure">
+              <div class="title-style bs-title-style">
+                输出字段
                 <el-button
-                  class="edit_field"
                   type="text"
-                  style="float: right;border: none;margin-top: 2px;"
+                  style="float: right;border: none;margin-top: -4px;"
                   @click="fieldsetVisible = true"
                 >
                   配置
                 </el-button>
               </div>
+              <div
+                class="field-wrap bs-field-wrap"
+              >
+                <div
+                  v-for="field in structurePreviewList"
+                  :key="field.columnName"
+                  class="field-item"
+                  @click="fieldsetVisible = true"
+                >
+                  <span>{{ field.columnName }}</span>&nbsp;<span
+                    v-show="field.fieldDesc"
+                    style="color: #909399;"
+                  >({{ field.fieldDesc }})</span>
+                  <el-button
+                    class="edit_field"
+                    type="text"
+                    style="float: right;border: none;margin-top: 2px;"
+                    @click="fieldsetVisible = true"
+                  >
+                    配置
+                  </el-button>
+                </div>
+              </div>
             </div>
           </div>
+        </el-col>
+      </el-row>
+      <div
+        v-if="isEdit"
+        class="dataPreView"
+        style="margin-top: 12px;"
+      >
+        <div class="result-view">
+          数据预览
         </div>
-      </el-col>
-    </el-row>
-    <div
-      v-if="isEdit"
-      class="dataPreView"
-      style="margin-top: 12px;"
-    >
-      <div class="result-view">
-        数据预览
-      </div>
-      <div class="bs-table-box is-Edit">
-        <el-table
-          align="center"
-          :data="dataPreviewList"
-          max-height="400"
-          class="bs-el-table"
-          :border="true"
-        >
-          <el-table-column
-            v-for="(value, key) in dataPreviewList[0]"
-            :key="key"
-            :label="key"
+        <div class="bs-table-box is-Edit">
+          <el-table
             align="center"
-            show-overflow-tooltip
-            :render-header="renderHeader"
+            :data="dataPreviewList"
+            max-height="400"
+            class="bs-el-table"
+            :border="true"
           >
-            <template slot-scope="scope">
-              <span>{{ scope.row[key] }}</span>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <div class="bs-pagination">
-        <el-pagination
-          popper-class="bs-el-pagination"
-          :current-page="current"
-          :page-sizes="[10, 20, 50, 100]"
-          :page-size="size"
-          :total="totalCount"
-          background
-          prev-text="上一页"
-          next-text="下一页"
-          layout="total, prev, pager, next,sizes"
-          @size-change="sizeChangeHandle"
-          @current-change="currentChangeHandle"
-        />
-      </div>
-    </div>
-    <div
-      v-if="!isEdit"
-      class="dataPreView"
-    >
-      <el-tabs v-model="activeName">
-        <el-tab-pane
-          v-loading="tableLoading"
-          label="数据预览"
-          name="data"
-        >
-          <div class="bs-table-box">
-            <el-table
+            <el-table-column
+              v-for="(value, key) in dataPreviewList[0]"
+              :key="key"
+              :label="key"
               align="center"
-              :data="dataPreviewList"
-              max-height="400"
-              :border="true"
+              show-overflow-tooltip
+              :render-header="renderHeader"
             >
-              <el-table-column
-                v-for="(value, key) in dataPreviewList[0]"
-                :key="key"
-                :label="key"
+              <template slot-scope="scope">
+                <span>{{ scope.row[key] }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="bs-pagination">
+          <el-pagination
+            popper-class="bs-el-pagination"
+            :current-page="current"
+            :page-sizes="[10, 20, 50, 100]"
+            :page-size="size"
+            :total="totalCount"
+            background
+            prev-text="上一页"
+            next-text="下一页"
+            layout="total, prev, pager, next,sizes"
+            @size-change="sizeChangeHandle"
+            @current-change="currentChangeHandle"
+          />
+        </div>
+      </div>
+      <div
+        v-if="!isEdit"
+        class="dataPreView"
+      >
+        <el-tabs v-model="activeName">
+          <el-tab-pane
+            v-loading="tableLoading"
+            label="数据预览"
+            name="data"
+          >
+            <div class="bs-table-box">
+              <el-table
                 align="center"
-                show-overflow-tooltip
-                :render-header="renderHeader"
+                :data="dataPreviewList"
+                max-height="400"
+                :border="true"
               >
-                <template slot-scope="scope">
-                  <span>{{ scope.row[key] }}</span>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-          <div class="bs-pagination">
-            <el-pagination
-              :current-page="current"
-              :page-sizes="[10, 20, 50, 100]"
-              :page-size="size"
-              :total="totalCount"
-              background
-              prev-text="上一页"
-              next-text="下一页"
-              layout="total, prev, pager, next,sizes"
-              @size-change="sizeChangeHandle"
-              @current-change="currentChangeHandle"
-            />
-          </div>
-        </el-tab-pane>
-        <el-tab-pane
-          v-loading="tableLoading"
-          label="数据集结构"
-          name="structure"
-        >
-          <div class="bs-table-box">
-            <el-table
-              max-height="400"
-              :data="structurePreviewList"
-              :border="true"
-              align="center"
-            >
-              <el-table-column
-                align="center"
-                show-overflow-tooltip
-                prop="columnName"
-                label="字段值"
+                <el-table-column
+                  v-for="(value, key) in dataPreviewList[0]"
+                  :key="key"
+                  :label="key"
+                  align="center"
+                  show-overflow-tooltip
+                  :render-header="renderHeader"
+                >
+                  <template slot-scope="scope">
+                    <span>{{ scope.row[key] }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+            <div class="bs-pagination">
+              <el-pagination
+                :current-page="current"
+                :page-sizes="[10, 20, 50, 100]"
+                :page-size="size"
+                :total="totalCount"
+                background
+                prev-text="上一页"
+                next-text="下一页"
+                layout="total, prev, pager, next,sizes"
+                @size-change="sizeChangeHandle"
+                @current-change="currentChangeHandle"
               />
-              <el-table-column
+            </div>
+          </el-tab-pane>
+          <el-tab-pane
+            v-loading="tableLoading"
+            label="数据集结构"
+            name="structure"
+          >
+            <div class="bs-table-box">
+              <el-table
+                max-height="400"
+                :data="structurePreviewList"
+                :border="true"
                 align="center"
-                show-overflow-tooltip
-                prop="columnType"
-                label="字段类型"
-              />
-              <el-table-column
-                align="center"
-                prop="fieldDesc"
-                label="字段描述"
               >
-                <template slot-scope="scope">
-                  <el-input
-                    v-if="isEdit"
-                    v-model="scope.row.fieldDesc"
-                    size="small"
-                    class="labeldsc"
-                  />
-                  <span v-else>{{ scope.row.fieldDesc }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="orderNum"
-                label="字段排序"
-                sortable
-              >
-                <template slot-scope="scope">
-                  <el-input
-                    v-if="isEdit"
-                    v-model="scope.row.orderNum"
-                    size="small"
-                    class="labeldsc"
-                  />
-                  <span v-else>{{ scope.row.orderNum }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="sourceTable"
-                label="字段来源"
-              >
-                <template slot-scope="scope">
-                  <el-select
-                    v-if="isEdit"
-                    v-model="scope.row.sourceTable"
-                    clearable
-                    filterable
-                  >
-                    <el-option
-                      v-for="table in tableNameList"
-                      :key="table"
-                      :label="table"
-                      :value="table"
+                <el-table-column
+                  align="center"
+                  show-overflow-tooltip
+                  prop="columnName"
+                  label="字段值"
+                />
+                <el-table-column
+                  align="center"
+                  show-overflow-tooltip
+                  prop="columnType"
+                  label="字段类型"
+                />
+                <el-table-column
+                  align="center"
+                  prop="fieldDesc"
+                  label="字段描述"
+                >
+                  <template slot-scope="scope">
+                    <el-input
+                      v-if="isEdit"
+                      v-model="scope.row.fieldDesc"
+                      size="small"
+                      class="labeldsc"
                     />
-                  </el-select>
-                  <span v-else>{{ scope.row.sourceTable }}</span>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+                    <span v-else>{{ scope.row.fieldDesc }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="orderNum"
+                  label="字段排序"
+                  sortable
+                >
+                  <template slot-scope="scope">
+                    <el-input
+                      v-if="isEdit"
+                      v-model="scope.row.orderNum"
+                      size="small"
+                      class="labeldsc"
+                    />
+                    <span v-else>{{ scope.row.orderNum }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="sourceTable"
+                  label="字段来源"
+                >
+                  <template slot-scope="scope">
+                    <el-select
+                      v-if="isEdit"
+                      v-model="scope.row.sourceTable"
+                      clearable
+                      filterable
+                    >
+                      <el-option
+                        v-for="table in tableNameList"
+                        :key="table"
+                        :label="table"
+                        :value="table"
+                      />
+                    </el-select>
+                    <span v-else>{{ scope.row.sourceTable }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
 
-    <!-- 字段填充方式 -->
-    <el-dialog
-      title="提示"
-      :visible.sync="fieldDescVisible"
-      width="420px"
-      append-to-body
-      :close-on-click-modal="false"
-      custom-class="fieldDescCheck"
-      class="bs-dialog-wrap"
-    >
-      <p style="line-height: 24px;padding-left: 10px;display: flex;">
-        <i
-          class="el-icon-warning"
-          style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
-        />存在字段描述信息为空，请确认
-      </p>
-      <span
-        slot="footer"
-        class="dialog-footer"
+      <!-- 字段填充方式 -->
+      <el-dialog
+        title="提示"
+        :visible.sync="fieldDescVisible"
+        width="420px"
+        append-to-body
+        :close-on-click-modal="false"
+        custom-class="fieldDescCheck"
+        class="bs-dialog-wrap"
       >
-        <el-button @click="fieldDescFill">使用字段名填充</el-button>
-        <el-button @click="fieldDescEdit">进入编辑</el-button>
-        <el-button
-          type="primary"
-          @click="toSave"
-        >继续保存</el-button>
-      </span>
-    </el-dialog>
-    <!-- 字段填充 -->
-    <el-dialog
-      title="输出字段配置"
-      :visible.sync="fieldsetVisible"
-      width="1000px"
-      append-to-body
-      custom-class="bs-el-dialog"
-      :close-on-click-modal="false"
-      :before-close="cancelField"
-      class="bs-dialog-wrap bs-theme-wrap"
-    >
-      <div class="bs-table-box">
-        <el-table
-          class="bs-el-table"
-          max-height="350"
-          :data="structurePreviewListCopy"
-          :border="true"
-          align="center"
+        <p style="line-height: 24px;padding-left: 10px;display: flex;">
+          <i
+            class="el-icon-warning"
+            style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
+          />存在字段描述信息为空，请确认
+        </p>
+        <span
+          slot="footer"
+          class="dialog-footer"
         >
-          <el-empty slot="empty" />
-          <el-table-column
-            align="left"
-            show-overflow-tooltip
-            prop="columnName"
-            label="字段值"
-          />
-          <el-table-column
-            align="center"
-            show-overflow-tooltip
-            prop="columnType"
-            label="字段类型"
-          />
-          <el-table-column
-            align="center"
-            prop="fieldDesc"
-            label="字段描述"
-          >
-            <template slot-scope="scope">
-              <el-input
-                v-if="isEdit"
-                v-model="scope.row.fieldDesc"
-                size="small"
-                class="labeldsc"
-              />
-              <span v-else>{{ scope.row.fieldDesc }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            prop="orderNum"
-            label="字段排序"
-            sortable
-          >
-            <template slot-scope="scope">
-              <el-input
-                v-if="isEdit"
-                v-model="scope.row.orderNum"
-                size="small"
-                class="labeldsc"
-              />
-              <span v-else>{{ scope.row.orderNum }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            prop="sourceTable"
-            label="字段来源"
-          >
-            <template slot-scope="scope">
-              <el-select
-                v-if="isEdit"
-                v-model="scope.row.sourceTable"
-                clearable
-                filterable
-              >
-                <el-option
-                  v-for="table in tableNameList"
-                  :key="table"
-                  :label="table"
-                  :value="table"
-                />
-              </el-select>
-              <span v-else>{{ scope.row.sourceTable }}</span>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <span
-        slot="footer"
-        class="dialog-footer"
+          <el-button @click="fieldDescFill">使用字段名填充</el-button>
+          <el-button @click="fieldDescEdit">进入编辑</el-button>
+          <el-button
+            type="primary"
+            @click="toSave"
+          >继续保存</el-button>
+        </span>
+      </el-dialog>
+      <!-- 字段填充 -->
+      <el-dialog
+        title="输出字段配置"
+        :visible.sync="fieldsetVisible"
+        width="1000px"
+        append-to-body
+        custom-class="bs-el-dialog"
+        :close-on-click-modal="false"
+        :before-close="cancelField"
+        class="bs-dialog-wrap bs-theme-wrap"
       >
-        <el-button @click="cancelField">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="setField"
-        >确 定</el-button>
-      </span>
-    </el-dialog>
-    <!-- 参数配置 -->
-    <el-dialog
-      custom-class="bs-el-dialog"
-      title="SQL参数配置"
-      :visible.sync="paramsVisible"
-      width="1000px"
-      append-to-body
-      :close-on-click-modal="false"
-      :before-close="cancelParam"
-      class="bs-dialog-wrap"
-    >
-      <div class="bs-table-box">
-        <el-table
-          ref="singleTable"
-          class="bs-el-table"
-          :data="paramsListCopy"
-          :border="true"
-          align="center"
+        <div class="bs-table-box">
+          <el-table
+            class="bs-el-table"
+            max-height="350"
+            :data="structurePreviewListCopy"
+            :border="true"
+            align="center"
+          >
+            <el-empty slot="empty" />
+            <el-table-column
+              align="left"
+              show-overflow-tooltip
+              prop="columnName"
+              label="字段值"
+            />
+            <el-table-column
+              align="center"
+              show-overflow-tooltip
+              prop="columnType"
+              label="字段类型"
+            />
+            <el-table-column
+              align="center"
+              prop="fieldDesc"
+              label="字段描述"
+            >
+              <template slot-scope="scope">
+                <el-input
+                  v-if="isEdit"
+                  v-model="scope.row.fieldDesc"
+                  size="small"
+                  class="labeldsc"
+                />
+                <span v-else>{{ scope.row.fieldDesc }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="orderNum"
+              label="字段排序"
+              sortable
+            >
+              <template slot-scope="scope">
+                <el-input
+                  v-if="isEdit"
+                  v-model="scope.row.orderNum"
+                  size="small"
+                  class="labeldsc"
+                />
+                <span v-else>{{ scope.row.orderNum }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="sourceTable"
+              label="字段来源"
+            >
+              <template slot-scope="scope">
+                <el-select
+                  v-if="isEdit"
+                  v-model="scope.row.sourceTable"
+                  clearable
+                  filterable
+                >
+                  <el-option
+                    v-for="table in tableNameList"
+                    :key="table"
+                    :label="table"
+                    :value="table"
+                  />
+                </el-select>
+                <span v-else>{{ scope.row.sourceTable }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <span
+          slot="footer"
+          class="dialog-footer"
         >
-          <el-empty slot="empty" />
-          <el-table-column
-            prop="name"
-            label="参数名称"
-            align="center"
-          />
-          <el-table-column
-            prop="type"
-            label="参数类型"
-            align="center"
-            width="200"
-            filterable
-          >
-            <template slot-scope="scope">
-              <el-select
-                v-model="scope.row.type"
-                placeholder="请选择"
-              >
-                <el-option
-                  v-for="item in typeSelect"
-                  :key="item.value"
-                  :label="item.value"
-                  :value="item.value"
-                />
-              </el-select>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="require"
-            label="是否必填"
-            align="center"
-            width="200"
-            filterable
-          >
-            <template slot-scope="scope">
-              <el-radio-group v-model="scope.row.require">
-                <el-radio :label="1">
-                  是
-                </el-radio>
-                <el-radio :label="0">
-                  否
-                </el-radio>
-              </el-radio-group>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="value"
-            label="参数值"
-            align="center"
-          >
-            <template slot-scope="scope">
-              <el-date-picker
-                v-if="scope.row.type==='Date'"
-                v-model="scope.row.value"
-                type="datetime"
-                value-format="yyyy-MM-dd HH:mm:ss"
-                placeholder="选择日期时间"
-              />
-              <el-input
-                v-else
-                v-model="scope.row.value"
-                clearable
-                placeholder="请输入值"
-              />
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="remark"
-            label="备注"
-            align="center"
-          >
-            <template slot-scope="scope">
-              <el-input
-                v-model="scope.row.remark"
-                clearable
-                placeholder="请输入备注"
-              />
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="操作"
-            width="105"
-            align="center"
-          >
-            <template slot="header">
-              <el-button
-                icon="el-icon-plus"
-                type="text"
-                class="no-border"
-                @click="addParam"
-              >
-                添加
-              </el-button>
-            </template>
-            <template slot-scope="scope">
-              <el-button
-                type="text"
-                style="color: #e47470;"
-                class="no-border"
-                @click="delRow(scope.$index)"
-              >
-                删除
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <span
-        slot="footer"
-        class="dialog-footer"
+          <el-button @click="cancelField">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="setField"
+          >确 定</el-button>
+        </span>
+      </el-dialog>
+      <!-- 参数配置 -->
+      <el-dialog
+        custom-class="bs-el-dialog"
+        title="SQL参数配置"
+        :visible.sync="paramsVisible"
+        width="1000px"
+        append-to-body
+        :close-on-click-modal="false"
+        :before-close="cancelParam"
+        class="bs-dialog-wrap"
       >
-        <el-button @click="cancelParam">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="setParam"
-        >确 定</el-button>
-      </span>
-    </el-dialog>
-  </div>
+        <div class="bs-table-box">
+          <el-table
+            ref="singleTable"
+            class="bs-el-table"
+            :data="paramsListCopy"
+            :border="true"
+            align="center"
+          >
+            <el-empty slot="empty" />
+            <el-table-column
+              prop="name"
+              label="参数名称"
+              align="center"
+            />
+            <el-table-column
+              prop="type"
+              label="参数类型"
+              align="center"
+              width="200"
+              filterable
+            >
+              <template slot-scope="scope">
+                <el-select
+                  v-model="scope.row.type"
+                  placeholder="请选择"
+                >
+                  <el-option
+                    v-for="item in typeSelect"
+                    :key="item.value"
+                    :label="item.value"
+                    :value="item.value"
+                  />
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="require"
+              label="是否必填"
+              align="center"
+              width="200"
+              filterable
+            >
+              <template slot-scope="scope">
+                <el-radio-group v-model="scope.row.require">
+                  <el-radio :label="1">
+                    是
+                  </el-radio>
+                  <el-radio :label="0">
+                    否
+                  </el-radio>
+                </el-radio-group>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="value"
+              label="参数值"
+              align="center"
+            >
+              <template slot-scope="scope">
+                <el-date-picker
+                  v-if="scope.row.type==='Date'"
+                  v-model="scope.row.value"
+                  type="datetime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  placeholder="选择日期时间"
+                />
+                <el-input
+                  v-else
+                  v-model="scope.row.value"
+                  clearable
+                  placeholder="请输入值"
+                />
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="remark"
+              label="备注"
+              align="center"
+            >
+              <template slot-scope="scope">
+                <el-input
+                  v-model="scope.row.remark"
+                  clearable
+                  placeholder="请输入备注"
+                />
+              </template>
+            </el-table-column>
+            <el-table-column
+              label="操作"
+              width="105"
+              align="center"
+            >
+              <template slot="header">
+                <el-button
+                  icon="el-icon-plus"
+                  type="text"
+                  class="no-border"
+                  @click="addParam"
+                >
+                  添加
+                </el-button>
+              </template>
+              <template slot-scope="scope">
+                <el-button
+                  type="text"
+                  style="color: #e47470;"
+                  class="no-border"
+                  @click="delRow(scope.$index)"
+                >
+                  删除
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <span
+          slot="footer"
+          class="dialog-footer"
+        >
+          <el-button @click="cancelParam">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="setParam"
+          >确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
+  </el-scrollbar>
 </template>
 
 <script>
 import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/js/utils/datasetConfigService'
 import { datasourcePage } from 'packages/js/utils/dataSourceService'
 import { codemirror } from 'vue-codemirror'
-import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/sql/sql.js'
-import 'codemirror/theme/solarized.css'
+import 'codemirror/theme/dracula.css'
+import 'codemirror/lib/codemirror.css'
 import _ from 'lodash'
 export default {
   components: {
@@ -1297,6 +1299,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
+.scrollbar{
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: none;
+}
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
@@ -1334,15 +1341,15 @@ export default {
   display: flex;
 }
 .codeStyle {
-  border: 1px solid #EBEEF5;
+  // border: 1px solid #EBEEF5;
 }
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
   .CodeMirror-scroll {
-    background: #fff;
+    // background: #fff;
     .CodeMirror-gutters {
-      background-color: #f6f7fb;
+      // background-color: #f6f7fb;
     }
   }
 }

@@ -27,13 +27,13 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
       </el-button>
     </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
+    <el-row style="margin: 16px 16px 0;">
       <el-col :span="isEdit ? 16 : 24">
         <el-form
           ref="form"
@@ -50,6 +50,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -63,6 +64,8 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -110,6 +113,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -122,6 +126,8 @@
                 <el-select
                   v-model="dataForm.sourceId"
                   clearable
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   filterable
                   placeholder="请选择数据源"
                   :disabled="!isEdit"
@@ -253,7 +259,6 @@
     </el-row>
     <div
       v-if="isEdit"
-      class="dataPreView"
       style="margin-top: 12px;"
     >
       <div class="result-view">
@@ -285,10 +290,7 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="!isEdit"
-      class="dataPreView"
-    >
+    <div v-if="!isEdit">
       <el-tabs v-model="activeName">
         <el-tab-pane
           v-loading="tableLoading"
@@ -630,6 +632,7 @@
 import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/js/utils/datasetConfigService'
 import { datasourcePage } from 'packages/js/utils/dataSourceService'
 import { codemirror } from 'vue-codemirror'
+import 'codemirror/theme/dracula.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
 export default {
@@ -864,11 +867,6 @@ export default {
         this.$message.error('请确保数据集SQL加工脚本不为空且测试通过')
         return
       }
-      // if (this.structurePreviewList.some(item => item.sourceTable == '')) {
-      //   this.$message.warning('字段来源不能为空')
-      //   this.fieldDescEdit()
-      //   return
-      // }
       if (!this.structurePreviewList.length) {
         this.$message.warning('该存储过程未生成输出字段，请重新检查')
         return
@@ -1216,7 +1214,7 @@ export default {
   }
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
   .back {
@@ -1326,6 +1324,7 @@ export default {
   }
 }
 .result-view {
+  color: var(--bs-el-text);
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;

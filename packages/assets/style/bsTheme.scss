@@ -51,8 +51,13 @@
   border-color: var(--bs-el-border-color) !important;
   background: var(--bs-background-2);
   background-color: var(--bs-background-2);
-&:before {
+
+  &:before {
     display: none;
+  }
+
+  &:after {
+    display: none !important;
   }
 
   ::v-deep .el-table__cell {
@@ -178,7 +183,8 @@
   ::v-deep .el-select-dropdown {
     background: var(--bs-el-background);
   }
-  ::v-deep .el-input__inner{
+
+  ::v-deep .el-input__inner {
     border-color: var(--bs-el-border-color);
   }
 }
