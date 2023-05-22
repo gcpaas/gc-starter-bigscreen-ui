@@ -22,11 +22,14 @@ export default {
   changeActiveCode (state, code) {
     state.activeCode = code
     state.hoverCode = code
+
     const activeItem = _.cloneDeep(state.pageInfo.chartList?.find(
       item => item.code === code
     ))
     changeGroup(code, state)
-    state.activeItemConfig = _.cloneDeep(activeItem)
+    if (activeItem) {
+      state.activeItemConfig = _.cloneDeep(activeItem)
+    }
   },
   changeActiveCodes (state, codes) {
     state.activeCodes = codes
