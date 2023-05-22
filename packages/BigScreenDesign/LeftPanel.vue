@@ -99,7 +99,7 @@
                       :key="element.type + element.name"
                       :class="element.component ? 'item menu-component' : 'item'"
                     >
-                      <div class="component-name">{{ element.title }}</div>
+                      <div class="component-name">{{ element.title || element.name }}</div>
                       <div
                         class="img_dispaly chooseDragNode"
                         draggable="true"
@@ -409,6 +409,9 @@ export default {
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
+              }
+              .img_dispaly {
+                height: 80px;
               }
             }
           }

@@ -14,8 +14,8 @@ function getSvgList (iconList) {
   const svgList = []
   iconList.forEach((svg, index) => {
     svgList[index] = {
+      title: svg?.name,
       name: svg,
-      title: '',
       icon: svg,
       className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenSvgsChart',
       w: 100,
@@ -32,6 +32,7 @@ function getSvgList (iconList) {
       ..._.cloneDeep(dataConfig)
     }
   })
+  debugger
   return svgList
 }
 
