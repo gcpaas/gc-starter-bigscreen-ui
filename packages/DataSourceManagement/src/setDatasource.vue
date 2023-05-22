@@ -7,17 +7,18 @@
     custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    class="bs-dialog-wrap bs-theme-wrap"
+    class="bs-dialog-wrap"
   >
     <div
       v-loading="linkLoading"
       element-loading-text="正在测试连接..."
       style="padding-right: 80px;"
+      class="bs-theme-wrap"
     >
       <el-form
         ref="dataForm"
         :model="dataForm"
-        :rules="rules"
+        :rules= 'this.dataForm.id ? updateRules : rules'
         size="small"
         label-position="right"
         :label-width="dataForm.advanceSettingFlag ? '200px' : '150px'"
@@ -25,7 +26,6 @@
         <el-form-item
           label="类型"
           prop="sourceType"
-          class="bs-theme-wrap"
         >
           <el-select
             v-model="dataForm.sourceType"
@@ -182,12 +182,21 @@
       <el-button
         type="primary"
         @click="sourceLinkCheck"
-      >测 试</el-button>
-      <el-button @click="handleClose">取 消</el-button>
+      >
+        测试
+      </el-button>
+      <el-button
+        class="bs-el-button-default "
+        @click="handleClose"
+      >
+        取消
+      </el-button>
       <el-button
         type="primary"
         @click="submitForm"
-      >确 定</el-button>
+      >
+        确定
+      </el-button>
     </span>
   </el-dialog>
 </template>
@@ -286,12 +295,39 @@ export default {
         coding: [
           { required: true, message: '请选择编码', trigger: 'blur' }
         ]
+      },
+      updateRules: {
+        sourceType: [
+          { required: true, message: '请选择数据源类型', trigger: 'blur' }
+        ],
+        sourceName: [
+          { required: true, message: '请输入数据源名称', trigger: 'blur' },
+          { validator: this.validateSourceName, trigger: 'blur' }
+        ],
+        driverClassName: [
+          { required: true, message: '请选择连接驱动', trigger: 'blur' }
+        ],
+        database: [
+          { required: true, message: '请输入数据库名称', trigger: 'blur' },
+          { pattern: /^[^\u4e00-\u9fa5]+$/, message: '数据库名称不能包含汉字' }
+        ],
+        url: [
+          { required: true, message: '请输入连接url', trigger: 'blur' }
+        ],
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { pattern: /^[^\u4e00-\u9fa5]+$/, message: '用户名不能包含汉字' }
+        ]
       }
     }
   },
   methods: {
     // 初始化
     init (row) {
+      // 清除表单验证
+      if (this.$refs['dataForm']) {
+        this.$refs['dataForm'].clearValidate()
+      }
       if (row && row.id) {
         this.dataForm = row
       }
@@ -453,6 +489,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+@import '~packages/assets/style/bsTheme.scss';
 </style>

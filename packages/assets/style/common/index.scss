@@ -139,9 +139,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       padding: 8px 0 !important;
     }
 
-        th.is-leaf {
-          border-bottom: 2px solid #007aff !important;
-        }
+        // th.is-leaf {
+        //   border-bottom: 2px solid #007aff !important;
+        // }
 
         /* 滚动条样式设置*/
         .el-table__body-wrapper::-webkit-scrollbar {
@@ -225,9 +225,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         border-radius: 2px !important;
       }
 
-      .el-pager li:not(.disabled).active {
-        background-color: #007aff !important;
-      }
+      // .el-pager li:not(.disabled).active {
+      //   background-color: #007aff !important;
+      // }
 
       .el-pagination span:not([class*=suffix]), .el-pagination button {
         font-size: 14px !important;
@@ -252,7 +252,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       overflow-x: hidden !important;
     }
 
-   
+
 
     // dialog设置
     .bs-dialog-wrap {

@@ -6,6 +6,7 @@
       :visible.sync="formVisible"
       :append-to-body="true"
       class="bs-dialog-wrap"
+      custom-class="bs-el-dialog bs-theme-wrap"
       @close="closeAddDialog"
     >
       <el-form
@@ -25,6 +26,7 @@
             placeholder="请输入名称"
             clearable
             maxlength="30"
+            class="bs-el-input"
           />
         </el-form-item>
         <el-form-item
@@ -32,7 +34,7 @@
         >
           <el-select
             v-model="resolutionRatioValue"
-            class="select"
+            popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
           >
@@ -51,6 +53,7 @@
             v-model="resolutionRatio.w"
             :min="100"
             :max="8000"
+            class="bs-el-input-number"
           />
         </el-form-item>
         <el-form-item
@@ -60,6 +63,7 @@
             v-model="resolutionRatio.h"
             :min="100"
             :max="8000"
+            class="bs-el-input-number"
           />
         </el-form-item>
         <el-form-item label="排序">
@@ -68,6 +72,7 @@
             :min="0"
             :max="30000"
             controls-position="right"
+            class="bs-el-input-number"
           />
         </el-form-item>
       </el-form>
