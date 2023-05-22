@@ -14,33 +14,34 @@
           v-model="activeName"
           tab-position="left"
           style="height: 200px;"
+          class="left-tabs-box"
           @tab-click="tabClick"
         >
-          <el-tab-pane
-            name="default"
-            @click.native="changeActiveCode('')"
-          >
-            <span
-              slot="label"
-              class="menu-imgs"
-              name="default"
-              @click="toggleSidebar"
-            >
-              <i
-                :class="[
-                  'iconfont-bigscreen',
-                  'icon-menu'
-                ]"
-              />
-            </span>
-          </el-tab-pane>
+<!--          <el-tab-pane-->
+<!--            name="default"-->
+<!--            @click.native="changeActiveCode('')"-->
+<!--          >-->
+<!--            <span-->
+<!--              slot="label"-->
+<!--              class="menu-imgs"-->
+<!--              name="default"-->
+<!--              @click="toggleSidebar"-->
+<!--            >-->
+<!--              <i-->
+<!--                :class="[-->
+<!--                  'iconfont-bigscreen',-->
+<!--                  'icon-menu'-->
+<!--                ]"-->
+<!--              />-->
+<!--            </span>-->
+<!--          </el-tab-pane>-->
           <el-tab-pane
             name="layer"
             @click.native="changeActiveCode('')"
           >
-            <span
+            <div
               slot="label"
-              class="menu-imgs"
+              class="menu-slot"
               name="layer"
             >
               <i
@@ -48,8 +49,10 @@
                   'iconfont-bigscreen',
                   'icon-layer'
                 ]"
+                class="menu-icon"
               />
-            </span>
+              <span class="menu-title-span">图层</span>
+            </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
                 图层
@@ -71,17 +74,19 @@
               changeActiveCode('')
             "
           >
-            <span
+            <div
               slot="label"
-              class="menu-imgs"
+              class="menu-slot"
             >
               <i
                 :class="[
                   'iconfont-bigscreen',
                   menu.icon
                 ]"
+                class="menu-icon"
               />
-            </span>
+              <span class="menu-title-span">{{ menu.title }}</span>
+            </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
                 {{ menu.title }}
@@ -172,11 +177,11 @@ export default {
       fold: false, // 控制左侧菜单栏伸缩
       currentTab: 'basic',
       menuList: [
-        { id: 1, name: 'chart', title: '基础组件', icon: 'icon-zujian', components: basicComponents },
-        { id: 2, name: 'g2PlotComponents', title: '图表组件', icon: 'icon-jichushuju', components: this.g2PlotComponents },
-        { id: 3, name: 'dataV', title: '边框组件', icon: 'icon-border-outer', components: borderComponents },
-        { id: 4, name: 'decoration', title: '装饰组件', icon: 'icon-a-1', components: decorationComponents },
-        { id: 5, name: 'svg', title: '图标组件', icon: 'icon-svg', components: svgComponents }
+        { id: 1, name: 'chart', title: '基础', icon: 'icon-zujian', components: basicComponents },
+        { id: 2, name: 'g2PlotComponents', title: '图表', icon: 'icon-jichushuju', components: this.g2PlotComponents },
+        { id: 3, name: 'dataV', title: '边框', icon: 'icon-border-outer', components: borderComponents },
+        { id: 4, name: 'decoration', title: '装饰', icon: 'icon-a-1', components: decorationComponents },
+        { id: 5, name: 'svg', title: '图标', icon: 'icon-svg', components: svgComponents }
       ],
       currentActive: 'chart'
     }
@@ -443,6 +448,27 @@ export default {
       border: none;
     }
   }
+  .left-tabs-box{
+    /deep/.el-tabs__item{
+      height: 70px!important;
+      .menu-slot{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        color: #bcc9d4;
+        .menu-icon{
+          height: 20px;
+        }
+        .menu-title-span{
+          display: block;
+          width: 100%;
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
 .slide-fade-enter-active {
@@ -465,14 +491,6 @@ export default {
 /deep/ .el-tabs__item.is-left {
   text-align: center;
   padding: 0;
-}
-
-.menu-imgs {
-  display: block;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .page-opt-list-img {
