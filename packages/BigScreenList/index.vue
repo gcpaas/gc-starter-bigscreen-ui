@@ -171,6 +171,7 @@ export default {
   },
   watch: {
     code (value) {
+      this.current = 1
       this.getDataList()
     }
   },
