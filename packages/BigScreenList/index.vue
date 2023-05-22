@@ -93,7 +93,18 @@
             </div>
           </div>
           <div class="big-screen-card-img">
-            <img :src="screen.imgUrl || defaultImg">
+            <el-image
+              :src="screen.coverPicture"
+              fit="fill"
+              style="width: 100%;height:100%"
+            >
+              <div
+                slot="error"
+                class="image-slot"
+              >
+                <img :src="defaultImg">
+              </div>
+            </el-image>
           </div>
           <div class="big-screen-bottom">
             <div
@@ -103,7 +114,7 @@
               {{ screen.name }}
             </div>
             <div class="right-bigscreen-time-title">
-              {{ screen.createTime || '2023-01-01 08:11:34' }}
+              {{ screen.updateDate || '-' }}
             </div>
           </div>
         </div>
@@ -392,6 +403,10 @@ export default {
             height: 100%;
 
             object-fit: cover;
+          }
+
+          /deep/.image-slot {
+            height: 100%;
           }
         }
 
