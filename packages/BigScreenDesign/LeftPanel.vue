@@ -18,6 +18,23 @@
           @tab-click="tabClick"
         >
           <el-tab-pane
+            name="default"
+            @click.native="changeActiveCode('')"
+          >
+            <span
+              slot="label"
+              class="menu-slot"
+              name="default"
+              @click="toggleSidebar"
+            >
+              <i
+                class="iconfont-bigscreen menu-icon"
+                :class="fold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
+              />
+              <span class="menu-title-span">{{ foldText }}</span>
+            </span>
+          </el-tab-pane>
+          <el-tab-pane
             name="layer"
             @click.native="changeActiveCode('')"
           >
@@ -83,7 +100,9 @@
                       :key="element.type + element.name"
                       :class="element.component ? 'item menu-component' : 'item'"
                     >
-                      <div class="component-name">{{ element.title || element.name }}</div>
+                      <div class="component-name">
+                        {{ element.title || element.name }}
+                      </div>
                       <div
                         class="img_dispaly chooseDragNode"
                         draggable="true"
@@ -116,12 +135,6 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-
-      <i
-        class="iconfont-bigscreen menu-fold"
-        :class="fold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
-        @click="toggleSidebar"
-      />
     </div>
   </transition>
 </template>
@@ -171,6 +184,9 @@ export default {
     // 获取当前类型的组件
     currentComponentList () {
       return this.componentList.filter(item => item.type === this.currentTab)
+    },
+    foldText () {
+      return this.fold ? '展开' : '收起'
     }
   },
   watch: {
@@ -460,18 +476,6 @@ export default {
           font-size: 12px;
         }
       }
-    }
-  }
-
-  .menu-fold {
-    position: absolute;
-    bottom: 16px;
-    left: 10px;
-    color: var(--bs-el-title);
-    cursor: pointer;
-
-    &:hover {
-      color: var(--bs-el-hover);
     }
   }
 }

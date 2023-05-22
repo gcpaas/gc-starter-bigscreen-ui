@@ -97,6 +97,7 @@ export default {
     width: 100%;
     height: 150px;
     background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
+    background-size: cover;
 
     .logo-title {
       font-size: 30px;

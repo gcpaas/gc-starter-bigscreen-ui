@@ -15,13 +15,11 @@
         @click="execRun()"
       >
         预览
-        <!-- <i class="iconfont-bigscreen icon-yulan" /> -->
       </div>
       <div
         class="head-btn"
         @click="save('saveLoading')"
       >
-        <!-- <i class="iconfont-bigscreen icon-baocun" /> -->
         保存
       </div>
       <div
@@ -29,7 +27,21 @@
         @click="empty"
       >
         清空
-        <!-- <i class="iconfont-bigscreen icon-qingkong" /> -->
+      </div>
+      <div
+        class="head-btn"
+        @click="showPageInfo"
+      >
+        画布信息
+      </div>
+      <div
+        class="head-btn"
+        @click="updateRightVisiable"
+      >
+        <i
+          class="iconfont-bigscreen"
+          :class="rightFold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
+        />
       </div>
     </div>
     <ChooseTemplateDialog
@@ -56,6 +68,10 @@ export default {
     code: {
       type: String,
       default: ''
+    },
+    rightFold: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -175,6 +191,12 @@ export default {
         ...this.pageInfo,
         chartList: newChartList
       })
+    },
+    updateRightVisiable () {
+      this.$emit('updateRightVisiable', !this.rightFold)
+    },
+    showPageInfo () {
+      this.$emit('showPageInfo')
     }
   }
 }

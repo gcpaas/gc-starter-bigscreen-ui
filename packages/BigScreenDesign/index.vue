@@ -6,8 +6,10 @@
     <PageTopSetting
       v-show="headerShow"
       ref="PageTopSetting"
+      :right-fold="rightVisiable"
+      @updateRightVisiable="updateRightVisiable"
+      @showPageInfo="showPageInfo"
       @empty="empty"
-      @click.native="changeActiveCode('')"
     />
     <div class="drag-wrap">
       <!-- 左侧面板 -->
@@ -71,6 +73,7 @@
         :header-show="headerShow"
         :height="height"
         :right-visiable.sync="rightVisiable"
+        :page-info-visiable="pageInfoVisiable"
         @updateSetting="updateSetting"
         @updateDataSetting="updateDataSetting"
       />
@@ -116,7 +119,8 @@ export default {
   },
   data () {
     return {
-      rightVisiable: true,
+      rightVisiable: false,
+      pageInfoVisiable: false,
       ruleStartX: 0,
       ruleStartY: 0,
       zoomList: [
@@ -208,6 +212,7 @@ export default {
     // 点击当前组件时打开右侧面板
     openRightPanel (card) {
       this.rightVisiable = true
+      this.pageInfoVisiable = false
     },
     /**
      * @description: 清空页面
@@ -255,6 +260,13 @@ export default {
     },
     changeScreenZoom (zoom) {
       this.changeZoom(zoom)
+    },
+    updateRightVisiable (visiable) {
+      this.rightVisiable = visiable
+    },
+    showPageInfo () {
+      this.pageInfoVisiable = true
+      this.rightVisiable = true
     }
   }
 }

@@ -116,13 +116,13 @@ export default {
       event.preventDefault()
       this.$contextmenu({
         items: [
-          // {
-          //   label: '配置',
-          //   icon: 'el-icon-setting',
-          //   onClick: () => {
-          //     this.openRightPanel(chart)
-          //   }
-          // },
+          {
+            label: '配置',
+            icon: 'el-icon-setting',
+            onClick: () => {
+              this.openRightPanel(chart)
+            }
+          },
           {
             label: '删除',
             icon: 'el-icon-delete',
