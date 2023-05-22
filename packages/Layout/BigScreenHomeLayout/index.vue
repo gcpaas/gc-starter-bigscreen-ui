@@ -49,12 +49,12 @@ export default {
           path: window?.BS_CONFIG?.routers?.pageListUrl || '/big-screen-list',
           icon: 'icon-icon-shujudaping'
         },
-        {
-          id: 1,
-          name: '模版管理',
-          path: window?.BS_CONFIG?.routers?.templateListUrl || '/big-screen-template',
-          icon: 'icon-xiangmuwenjianmobanku_mobanku'
-        },
+        // {
+        //   id: 1,
+        //   name: '模版管理',
+        //   path: window?.BS_CONFIG?.routers?.templateListUrl || '/big-screen-template',
+        //   icon: 'icon-xiangmuwenjianmobanku_mobanku'
+        // },
         {
           id: 2,
           name: '数据源管理',
