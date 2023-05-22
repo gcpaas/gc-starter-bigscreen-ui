@@ -427,6 +427,10 @@ export default {
       height: 100%;
       /* border-right: 1px solid #ccc; */
     }
+
+    /deep/ .el-tabs__nav-scroll {
+      background-color: var(--bs-background-2);
+    }
   }
 
   .page-left-fold {
