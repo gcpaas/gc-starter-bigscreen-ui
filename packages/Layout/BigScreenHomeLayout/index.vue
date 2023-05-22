@@ -56,13 +56,13 @@ export default {
         //   icon: 'icon-xiangmuwenjianmobanku_mobanku'
         // },
         {
-          id: 2,
+          id: 1,
           name: '数据源管理',
           path: window?.BS_CONFIG?.routers?.dataSourceUrl || '/big-screen-dataSource',
           icon: 'icon-datafull'
         },
         {
-          id: 3,
+          id: 2,
           name: '数据集管理',
           path: window?.BS_CONFIG?.routers?.dataSetUrl || '/big-screen-dataSet',
           icon: 'icon-data'
