@@ -225,7 +225,7 @@ export default {
 <style lang="scss" scoped>
   .side-catalog-wrap{
     padding-top: 16px;
-    width: 300px;
+    width: 220px;
     height: 100%;
     box-sizing: border-box;
     color: var(--bs-el-title);

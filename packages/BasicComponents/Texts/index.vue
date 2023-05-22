@@ -57,7 +57,6 @@ export default {
     width: 100%;
   }
   .content-box{
-
     text-align: center;
   }
 </style>
