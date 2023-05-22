@@ -98,12 +98,12 @@
               fit="fill"
               style="width: 100%;height:100%"
             >
-              <div
+              <!-- <div
                 slot="error"
                 class="image-slot"
               >
                 <img :src="defaultImg">
-              </div>
+              </div> -->
             </el-image>
           </div>
           <div class="big-screen-bottom">
