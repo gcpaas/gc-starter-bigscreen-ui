@@ -32,32 +32,6 @@ export default {
   data () {
     return {
       // 和此处路由保持一致，将会激活tab，请按需更改
-      tabList: [
-        {
-          id: 0,
-          name: '大屏管理',
-          path: '/big-screen-list',
-          icon: 'icon-icon-shujudaping'
-        },
-        {
-          id: 1,
-          name: '模版管理',
-          path: '/big-screen-template',
-          icon: 'icon-xiangmuwenjianmobanku_mobanku'
-        },
-        {
-          id: 2,
-          name: '数据源管理',
-          path: '/big-screen-dataSource',
-          icon: 'icon-datafull'
-        },
-        {
-          id: 3,
-          name: '数据集管理',
-          path: '/big-screen-dataSet',
-          icon: 'icon-data'
-        }
-      ]
     }
   },
   computed: {
@@ -66,6 +40,34 @@ export default {
     },
     logo () {
       return window?.BS_CONFIG?.starter?.logo || require('./images/logo.png')
+    },
+    tabList () {
+      return [
+        {
+          id: 0,
+          name: '大屏管理',
+          path: window?.BS_CONFIG?.routers?.pageListUrl || '/big-screen-list',
+          icon: 'icon-icon-shujudaping'
+        },
+        {
+          id: 1,
+          name: '模版管理',
+          path: window?.BS_CONFIG?.routers?.templateListUrl || '/big-screen-template',
+          icon: 'icon-xiangmuwenjianmobanku_mobanku'
+        },
+        {
+          id: 2,
+          name: '数据源管理',
+          path: window?.BS_CONFIG?.routers?.dataSourceUrl || '/big-screen-dataSource',
+          icon: 'icon-datafull'
+        },
+        {
+          id: 3,
+          name: '数据集管理',
+          path: window?.BS_CONFIG?.routers?.dataSetUrl || '/big-screen-dataSet',
+          icon: 'icon-data'
+        }
+      ]
     }
   },
   created () {
@@ -93,7 +95,7 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
 
     .logo-title {
@@ -106,8 +108,6 @@ export default {
       align-items: center;
       color: #007aff;
 
-      -webkit-box-reflect: below -3px linear-gradient(transparent,rgba(0,0,0,.4));
-
       .logo {
         height: 30px;
       }
@@ -117,10 +117,6 @@ export default {
         font-size: 30px;
         font-weight: 700;
         padding-left: 8px;
-        -webkit-animation: text-animate 8s ease infinite;
-                animation: text-animate 8s ease infinite;
-        color: transparent;
-        background: linear-gradient(315deg,#c805bb 3%,#f9fafa 38%,#30eee2 68%,#ff1919 98%);
         -webkit-background-clip: text;
         background-size: 400% 400%;
       }
@@ -129,10 +125,10 @@ export default {
 
   .big-screen-router-view-wrap {
     position: absolute;
-    top: 200px;
+    top: 150px;
     overflow: hidden;
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 150px);
     background-color: #171b22;
     box-sizing: border-box;
   }

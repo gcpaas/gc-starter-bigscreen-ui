@@ -256,14 +256,13 @@ export default {
     overflow: auto;
     // 间隙自适应
     justify-content: space-around;
-    height: calc(100vh - 320px);
-    // 每份 290px
-
-    grid-template-columns: repeat(auto-fill, 290px);
+    height: calc(100vh - 270px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-gap: 20px;
 
     .big-screen-card-wrap {
       position: relative;
-      width: 290px;
       height: 220px;
       margin-right: 20px;
       margin-bottom: 20px;

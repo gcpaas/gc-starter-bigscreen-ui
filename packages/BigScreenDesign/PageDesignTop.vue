@@ -123,7 +123,7 @@ export default {
         const node = document.querySelector('.render-theme-wrap')
         toPng(node)
           .then(function (dataUrl) {
-            pageInfo.remark = dataUrl
+            pageInfo.coverPicture = dataUrl
             saveScreen(pageInfo).then(res => {
               this.$message.success('保存成功')
               resolve(res)
