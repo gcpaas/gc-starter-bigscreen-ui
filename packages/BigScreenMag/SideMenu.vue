@@ -53,6 +53,7 @@
     <el-dialog
       :title="currentCatalog.id ? '编辑目录':'新增目录'"
       :visible.sync="catalogVisible"
+      custom-class="bs-el-dialog bs-theme-wrap"
       width="30%"
       class="bs-dialog-wrap catalog-dialog"
       @close="handleClose"
@@ -67,7 +68,7 @@
           label="目录名称"
           prop="name"
         >
-          <el-input v-model="currentCatalog.name" />
+          <el-input class="bs-el-input" v-model="currentCatalog.name" />
         </el-form-item>
         <el-form-item
           label="排序"
@@ -77,6 +78,7 @@
             :min="0"
             :max="30000"
             controls-position="right"
+            class="bs-el-input"
           />
         </el-form-item>
       </el-form>
