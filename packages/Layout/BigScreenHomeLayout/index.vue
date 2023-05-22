@@ -95,7 +95,7 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
 
     .logo-title {
@@ -125,10 +125,10 @@ export default {
 
   .big-screen-router-view-wrap {
     position: absolute;
-    top: 200px;
+    top: 150px;
     overflow: hidden;
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 150px);
     background-color: #171b22;
     box-sizing: border-box;
   }
