@@ -63,6 +63,7 @@
           <el-table-column
             prop="sourceType"
             label="类型"
+            align="center"
             show-overflow-tooltip
           />
           <el-table-column
