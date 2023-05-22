@@ -2,8 +2,8 @@
  * @description: 设置联动的弹窗
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
- * @LastEditors: wujian
- * @LastEditTime: 2023-05-22 19:21:57
+ * @LastEditors: xing.heng
+ * @LastEditTime: 2023-05-22 20:55:48
 -->
 <template>
   <el-dialog
@@ -22,8 +22,7 @@
     >
       <el-table
         :data="configMapConfig.maps"
-        class="bs-table-box bs-table"
-        border
+        class="bs-table-box bs-table bs-el-table"
       >
         <el-table-column
           label="当前组件映射参数"
@@ -208,8 +207,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.bs-table-box {
-  border: 1px solid #e6ebf5;
+/* .bs-table-box {
   background:  var(--bs-el-background);
   background-color: var(--bs-el-background);
 
@@ -235,5 +233,5 @@ export default {
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: var(--bs-background-1) !important;
   color: var(--bs-el-text) !important;
-}
+} */
 </style>

@@ -115,6 +115,7 @@ export default {
     font-size: 16px;
     border-left: 4px solid #007aff;
     padding-left: 8px;
+    border-bottom: 2px solid var(--bs-background-1);
   }
 
   .bs-folder-wrap {
@@ -141,6 +142,7 @@ export default {
     height: calc(100vh - 80px);
     width: 320px;
     box-sizing: border-box;
+    background-color: var(--bs-background-2);
 
     .config-title {
       display: flex;
@@ -149,7 +151,7 @@ export default {
       padding: 0 10px;
       color: #fff;
       font-size: 14px;
-      border-bottom: 1px solid #ebeef5;
+      /* border-bottom: 1px solid #ebeef5; */
 
       .config-title-text {
         display: inline-block;

@@ -55,7 +55,7 @@
           <span class="select-zoom-text">缩放比例</span>
           <el-select
             class="bs-el-select"
-            popper-class="bs-theme-select"
+            popper-class="bs-el-select bs-theme-wrap"
             :value="zoom"
             @change="changeScreenZoom"
           >

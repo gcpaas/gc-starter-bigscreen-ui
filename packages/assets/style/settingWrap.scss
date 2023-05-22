@@ -29,6 +29,14 @@
 .bs-setting-wrap{
   position: relative;
   height: 100%;
+
+  /deep/ .el-collapse {
+    border: none !important;
+  }
+  /deep/ .el-collapse-item__wrap {
+    border: none !important;
+  }
+
   /*overflow-y: auto;*/
 .table-header{
   border-bottom: 2px solid #007aff;
@@ -69,9 +77,10 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: var(--bs-background-1);
+  background: var(--bs-background-2);
   height: 32px;
   padding: 0 12px;
+  border:none
 }
 
 /deep/ .el-collapse-item__content {
@@ -84,7 +93,7 @@
 
 .lc-field-body {
   padding: 12px;
-  background: var(--bs-background-1);
+  background: var(--bs-background-2);
 
   input, textarea {
     background-color: var(--bs-el-background) !important;
@@ -203,10 +212,16 @@
 /deep/ .el-radio__inner,
 /deep/ .el-input-number--mini,
 /deep/ .el-textarea__inner,
-/deep/ .el-input-group__append,
-/deep/ .el-radio__label
+/deep/ .el-input-group__append
 {
   background: var(--bs-el-background);
+  color: var(--bs-el-text);
+  border: 0 !important;
+}
+
+/deep/ .el-radio__label
+{
+  background: var(--bs-el-background-1);
   color: var(--bs-el-text);
   border: 0 !important;
 }

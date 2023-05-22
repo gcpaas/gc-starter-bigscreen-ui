@@ -30,6 +30,7 @@
             >
               <el-radio-group
                 v-model="config.dataSource.dataSetType"
+                class="bs-radio-wrap"
               >
                 <el-radio
                   :label="'1'"
@@ -123,7 +124,8 @@
               <el-drag-select
                 v-if="config.option.displayOption.dimensionField.enable && config.option.displayOption.dimensionField.multiple"
                 v-model="config.dataSource.dimensionFieldList"
-                popper-class="bs-theme-select"
+                class="bs-theme-select"
+                popper-class="bs-el-select bs-theme-wrap"
                 clearable
                 :multiple="config.option.displayOption.dimensionField.multiple"
                 @change="dimensionFieldListChange"
@@ -148,7 +150,8 @@
               <el-select
                 v-else
                 v-model="config.dataSource.dimensionField"
-                popper-class="bs-theme-select"
+                class="bs-theme-select"
+                popper-class="bs-el-select bs-theme-wrap"
                 clearable
               >
                 <el-option
@@ -177,7 +180,8 @@
             >
               <el-select
                 v-model="config.dataSource.metricField"
-                popper-class="bs-theme-select"
+                class="bs-theme-select"
+                popper-class="bs-el-select bs-theme-wrap"
                 clearable
               >
                 <el-option
@@ -209,7 +213,8 @@
               >
                 <el-select
                   v-if="setting.type === 'select'"
-                  popper-class="bs-theme-select"
+                  class="bs-theme-select select"
+                  popper-class="bs-el-select bs-theme-wrap"
                   :value="setting.value"
                   clearable
                   :multiple="setting.multiple"
@@ -306,7 +311,8 @@
                 <template slot-scope="scope">
                   <el-select
                     v-model="scope.row.align"
-                    popper-class="bs-theme-select"
+                    class="bs-theme-select"
+                    popper-class="bs-el-select bs-theme-wrap"
                     clearable
                     placeholder="请选择对齐方式"
                   >
@@ -448,7 +454,8 @@
             >
               <el-select
                 v-model="config.dataSource.pageSize"
-                popper-class="bs-theme-select"
+                class="bs-theme-select"
+                popper-class="bs-el-select bs-theme-wrap"
                 filterable
                 allow-create
                 default-first-option
