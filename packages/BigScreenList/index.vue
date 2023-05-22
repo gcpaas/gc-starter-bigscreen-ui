@@ -67,6 +67,12 @@
               </div>
               <div
                 class="circle"
+                @click="copy(screen)"
+              >
+                <span>复制</span>
+              </div>
+              <div
+                class="circle"
                 @click="del(screen)"
               >
                 <span>删除</span>
@@ -216,6 +222,28 @@ export default {
           })
         })
       }).catch()
+    },
+    copy (screen) {
+      this.$confirm('确定复制该页面设计？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(async () => {
+        post(`/bigScreen/design/copy/${screen.code}`).then(() => {
+          this.$message({
+            type: 'success',
+            message: '复制成功'
+          })
+          this.getDataList()
+        }).catch(() => {
+          this.$message({
+            type: 'error',
+            message: '复制失败!'
+          })
+        })
+      }).catch(e => {
+        console.error(e)
+      })
     }
   }
 }
@@ -291,11 +319,10 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            border: 4px solid #007aff;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #007aff;
             border-radius: 50%;
-            background: #fff;
 
             &:hover {
               color: #fff;
@@ -303,7 +330,7 @@ export default {
             }
 
             span {
-              font-size: 14px;
+              font-size: 12px;
             }
           }
         }
@@ -317,6 +344,13 @@ export default {
         // 渐变色
         background: linear-gradient(180deg, #204d5f 0%, #1a3e4b 100%);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+
+        &:hover {
+          .big-screen-card-img {
+            transform: scale(1.1);
+          }
+          border: 1px solid #007aff;
+        }
 
         .add-big-screen-card-text {
           font-size: 14px;
