@@ -760,7 +760,7 @@ export default {
     .page-manage-menu-list{
       width: 100%;
       overflow: auto;
-      height: calc(100vh - 52px - 50px);
+      height: calc(100vh - 40px - 50px);
       .tree-node-name{
         width: 170px;
         display: inline-block;
@@ -791,7 +791,7 @@ export default {
     }
     .page-manage-content{
       width: calc(100vw - 260px);
-      height: calc(100vh - 52px);
+      height: calc(100vh - 40px);
       .page-manage-content-top{
         height: 50px;
         width: 100%;
@@ -806,7 +806,7 @@ export default {
       }
       .page-manage-content-body-box{
         width: 100%;
-        height: calc(100vh - 52px - 50px);
+        height: calc(100vh - 40px - 50px);
         background-color: #F5F7FA;
         .page-manage-content-body{
           height: 100%;

@@ -9,32 +9,25 @@
       >
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
-
-    <div class="action-bar action-bar-top">
-      <div class="choose-layout-item item-wrap" />
-      <el-button
-        class="top-button"
-        :loading="saveAndPreviewLoading"
-        type="primary"
+    <div class="head-btn-group">
+      <div
+        class="head-btn"
         @click="execRun()"
       >
-        保存并预览
-      </el-button>
-      <el-button
-        class="top-button"
-        type="primary"
-        @click="empty"
-      >
-        清空
-      </el-button>
-      <el-button
-        class="top-button"
-        :loading="saveLoading"
-        type="primary"
+        <i class="iconfont-bigscreen icon-yulan" />
+      </div>
+      <div
+        class="head-btn"
         @click="save('saveLoading')"
       >
-        保存
-      </el-button>
+        <i class="iconfont-bigscreen icon-baocun" />
+      </div>
+      <div
+        class="head-btn"
+        @click="empty"
+      >
+        <i class="iconfont-bigscreen icon-qingkong" />
+      </div>
     </div>
     <ChooseTemplateDialog
       ref="ChooseTemplateDialog"
@@ -184,6 +177,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~packages/BigScreenDesign/fonts/iconfont.css';
 .default-layout-box {
   display: flex;
   flex-wrap: wrap;
@@ -232,12 +226,11 @@ export default {
 }
 
 .page-top-setting-wrap {
-  height: 52px;
-  background-color: #007AFF;
-  /*border-bottom: 1px solid #dfe1e5;*/
+  height: 40px;
+  background-color: var(--bs-backgroud);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
   color: #ffffff;
   padding: 0 16px;
@@ -246,8 +239,26 @@ export default {
     cursor: pointer;
   }
 
+  .head-btn-group {
+    display: flex;
+    margin-left: 50px;
+
+    .head-btn {
+      display: flex;
+      background-color: #303640;
+      cursor: pointer;
+      width: 60px;
+      justify-content: center;
+      align-items: center;
+      margin-right: 4px;
+
+      &:hover {
+        background-color: #414750;
+      }
+    }
+  }
+
   .item-wrap {
-    flex: 1;
     display: flex;
     align-items: center;
 
@@ -272,74 +283,6 @@ export default {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-  }
-
-  .img-btn {
-    flex: 1;
-    display: flex;
-    height: 100%;
-
-    .svg-box {
-      width: 50px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        cursor: pointer;
-      }
-    }
-
-    .active-avg-box {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .img-btn-svg {
-      width: 30px;
-      height: 30px;
-      color: #ffffff;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .choose-layout-item {
-    margin-right: 7px;
-    cursor: pointer;
-
-  }
-
-  .action-bar {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 20px;
-
-    .delete-btn {
-      color: #ea0b30;
-    }
-  }
-
-  .equipment-menu {
-    margin: 0 auto;
-
-    img {
-      display: inline-block;
-      margin: 0 15px;
-    }
-  }
-  .action-bar-top {
-    /deep/.el-button--primary:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-    }
-  }
-  /deep/.el-button--primary {
-    background-color: #007AFF!important;
-    border: 1px solid #007AFF!important;
   }
 }
 </style>

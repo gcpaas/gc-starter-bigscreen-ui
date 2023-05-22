@@ -278,7 +278,6 @@ export default {
   .bs-folder-wrap {
     width: 20px;
     position: relative;
-    border-top: 1px solid #fff;
 
     i {
       position: absolute;
@@ -337,8 +336,6 @@ export default {
       /deep/.el-tabs__content {
         height: 100%;
         width: 254px;
-        border-right: 1px solid #ccc;
-        border-left: 1px solid #1D1D1D;
 
         .page-left-content-title {
           color: var(--bs-el-title);

@@ -87,7 +87,7 @@ export default {
     },
     height: {
       type: String,
-      default: 'calc(100vh - 53px)'
+      default: 'calc(100vh - 40px)'
     }
   },
   data () {
@@ -224,7 +224,6 @@ export default {
       flex: 1;
       overflow: hidden;
       position: relative;
-      border-top: 1px solid #dfe1e5;
     }
 
     /deep/ .el-loading-mask {

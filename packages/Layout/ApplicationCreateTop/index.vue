@@ -74,7 +74,7 @@ export default {
   height: 100vh;
 
   .application-create-top {
-    height: 52px;
+    height: 40px;
     display: flex;
     align-items: center;
     background-color: #007aff !important;
@@ -132,8 +132,8 @@ export default {
       }
 
       /deep/.el-tabs__item {
-        height: 52px !important;
-        line-height: 52px !important;
+        height: 40px !important;
+        line-height: 40px !important;
         padding:0 10px!important;
         box-sizing: border-box;
       }
@@ -189,7 +189,7 @@ export default {
     // overflow: auto;
     overflow-y: auto;
     overflow-x: hidden;
-    height: calc(100% - 52px);
+    height: calc(100% - 40px);
   }
 
   .pt16 {

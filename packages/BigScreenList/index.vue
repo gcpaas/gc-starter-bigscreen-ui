@@ -359,9 +359,6 @@ export default {
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 
         &:hover {
-          .big-screen-card-img {
-            transform: scale(1.1);
-          }
           border: 1px solid #007aff;
         }
 

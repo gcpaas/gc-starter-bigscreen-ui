@@ -108,7 +108,7 @@ export default {
 <style lang="scss" scoped>
 .application-setting-wrap {
   display: flex;
-  height: calc(100vh - 52px);
+  height: calc(100vh - 40px);
   overflow-y: hidden;
   background: #f5f7fa;
 

@@ -506,8 +506,8 @@ export default {
 }
 
 /deep/ .el-drawer__container {
-  height: calc(100% - 52px) !important;
-  top: 52px !important;
+  height: calc(100% - 40px) !important;
+  top: 40px !important;
   position: relative;
   left: 0;
   right: 0;

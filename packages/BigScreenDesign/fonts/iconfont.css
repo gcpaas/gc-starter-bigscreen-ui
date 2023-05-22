@@ -13,6 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-yulan:before {
+  content: "\e852";
+}
+
+.icon-baocun:before {
+  content: "\e936";
+}
+
+.icon-qingkong:before {
+  content: "\e60e";
+}
 
 .icon-icon-shujudaping:before {
   content: "\e611";
@@ -73,3 +84,4 @@
 .icon-border-outer:before {
   content: "\eb01";
 }
+

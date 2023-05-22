@@ -1037,7 +1037,7 @@ export default {
     flex: 1;
     overflow: hidden;
     .field-wrap {
-      height: calc(100% - 52px);
+      height: calc(100% - 40px);
     }
   }
 }

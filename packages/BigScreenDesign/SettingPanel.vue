@@ -120,7 +120,6 @@ export default {
   .bs-folder-wrap {
     width: 20px;
     position: relative;
-    border-top: 1px solid #fff;
 
     i {
       position: absolute;
@@ -139,10 +138,9 @@ export default {
   }
 
   .bs-page-right {
-    height: calc(100vh - 53px);
+    height: calc(100vh - 40px);
     width: 320px;
     box-sizing: border-box;
-    border-left: 1px solid #ccc;
 
     .config-title {
       display: flex;
@@ -209,7 +207,7 @@ export default {
   opacity: 0;
 }
 /deep/ .el-scrollbar__view{
-  height: calc(100vh - 52px);
+  height: calc(100vh - 40px);
   overflow-x: unset;
 }
 </style>
