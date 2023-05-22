@@ -1,5 +1,5 @@
 <template>
-  <div class="side-catalog-wrap">
+  <div class="side-catalog-wrap bs-theme-wrap">
     <div class="side-catalog-box">
       <div
         class="side-catalog-all side-catalog-item"
@@ -24,7 +24,10 @@
         >
           <span class="el-dropdown-link menu-dropdown-link">
             <i class="el-icon-more" />
-            <el-dropdown-menu slot="dropdown">
+            <el-dropdown-menu
+              slot="dropdown"
+              class="dropdown-menu-box"
+            >
               <el-dropdown-item @click.native="catalogEdit(catalog)">
                 编辑
               </el-dropdown-item>
@@ -35,7 +38,7 @@
                 删除
               </el-dropdown-item>
             </el-dropdown-menu>
-          </span></span>
+          </span>
         </el-dropdown>
       </div>
     </div>
@@ -215,7 +218,7 @@ export default {
     box-sizing: border-box;
     color: #FFFFFF;
     .side-catalog-box{
-      height: calc(100% - 30px);
+      height: calc(100% - 50px);
       overflow-y: auto;
       .side-catalog-all{
         font-weight: bold;
@@ -252,9 +255,16 @@ export default {
       }
     }
     .add-catalog-box{
+      padding: 10px 0;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
+      &:hover{
+        background-color: rgba(255,255,255,0.1);
+        cursor: pointer;
+        color: #409EFF;
+      }
       .el-icon-plus{
         padding: 0 5px;
       }
@@ -264,5 +274,18 @@ export default {
       /*}*/
     }
 
+  }
+  .dropdown-menu-box{
+    left: 50%;
+    transform: translateX(-40%);
+    width: 100px!important;
+    /deep/.el-dropdown-menu__item{
+      text-align: center;
+      padding: 5px;
+    }
+    /deep/.popper__arrow{
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
   }
 </style>
