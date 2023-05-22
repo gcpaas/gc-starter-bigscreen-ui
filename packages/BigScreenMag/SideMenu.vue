@@ -19,7 +19,7 @@
       >
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
-          v-if="(showDropdown && hoverItem === catalog.code) || currentCatalog.code === catalog.code"
+          :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || currentCatalog.code === catalog.code}"
           class="page-list-dropdown"
           placement="bottom-start"
           node-key="id"
@@ -257,6 +257,12 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           -o-text-overflow:ellipsis;
+        }
+        .page-list-dropdown{
+          opacity: 0;
+        }
+        .dropdown-show{
+          opacity: 1;
         }
       }
       /*菜单激活时的样式*/
