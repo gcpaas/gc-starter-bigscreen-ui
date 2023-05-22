@@ -297,7 +297,7 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: var(--bs-backgroud);
+    background: var(--bs-backgroud-1);
 
     >* {
       color: #fff;

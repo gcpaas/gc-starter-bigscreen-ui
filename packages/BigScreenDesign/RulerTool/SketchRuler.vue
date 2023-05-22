@@ -261,11 +261,11 @@ export default {
   }
 }
 /deep/ .ruler, /deep/ .corner {
-  background: var(--bs-backgroud);
+  background: var(--bs-backgroud-1);
 }
 /deep/ .corner {
   z-index: 999;
-  background: var(--bs-backgroud) !important;
+  background: var(--bs-backgroud-1) !important;
 }
 
 /deep/ .mb-ruler {

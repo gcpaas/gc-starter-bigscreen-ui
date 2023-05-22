@@ -18,7 +18,7 @@
       <el-form
         ref="dataForm"
         :model="dataForm"
-        :rules= 'this.dataForm.id ? updateRules : rules'
+        :rules="dataForm.id ? updateRules : rules"
         size="small"
         label-position="right"
         :label-width="dataForm.advanceSettingFlag ? '200px' : '150px'"
@@ -325,8 +325,8 @@ export default {
     // 初始化
     init (row) {
       // 清除表单验证
-      if (this.$refs['dataForm']) {
-        this.$refs['dataForm'].clearValidate()
+      if (this.$refs.dataForm) {
+        this.$refs.dataForm.clearValidate()
       }
       if (row && row.id) {
         this.dataForm = row

@@ -33,11 +33,14 @@ registerConfig({
     baseURL: window.CONFIG?.baseUrl
   },
   customTheme: {
-    '--bs-backgroud': '#1d1d1d',
+    '--bs-backgroud-1': '#151a26',
+    '--bs-backgroud-2': '#232832',
+    '--bs-backgroud-3': '#2e323',
     '--bs-el-backgroud': '#0F1014',
     '--bs-el-title': '#859094',
     '--bs-el-text': '#ffffff',
-    '--bs-el-hover': '#007aff30'
+    '--bs-el-hover': '#007aff30',
+    '--bs-el-border-color': 'transparent'
   },
   customPlots: []
 }, router)

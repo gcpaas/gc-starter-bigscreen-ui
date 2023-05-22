@@ -61,10 +61,10 @@ export default {
 
 <style lang="scss">
 .bs-color-picker {
-  background-color: var(--bs-backgroud) !important;
+  background-color: var(--bs-backgroud-1) !important;
 
   .el-input__inner {
-    background-color: var(--bs-backgroud);
+    background-color: var(--bs-backgroud-1);
     color: var(--bs-el-text);
   }
 }
@@ -85,7 +85,7 @@ export default {
     }
 
     .el-input-group__append {
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
 
       .el-color-picker--mini {
         position: absolute;

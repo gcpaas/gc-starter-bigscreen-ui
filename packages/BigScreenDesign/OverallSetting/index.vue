@@ -374,7 +374,7 @@ export default {
 
 <style lang="scss">
 .bs-theme-select {
-  background-color: var(--bs-backgroud) !important;
+  background-color: var(--bs-backgroud-1) !important;
 
   .el-select-dropdown__item {
     color: var(--bs-el-title);
@@ -386,7 +386,7 @@ export default {
     background-color: var(--bs-el-backgroud);
   }
   .el-input__inner{
-    background:var(--bs-backgroud);
+    background:var(--bs-backgroud-1);
     background-color: var(--bs-el-backgroud);
     color: var(--bs-el-text);
   }
@@ -399,12 +399,12 @@ export default {
 .bs-el-input-number {
   .el-input-number__decrease {
     background: var(--bs-el-backgroud);
-    border-right: 1px solid var(--bs-backgroud);
+    border-right: 1px solid var(--bs-backgroud-1);
   }
 
   .el-input-number__increase {
     background: var(--bs-el-backgroud);
-    border-left: 1px solid var(--bs-backgroud);
+    border-left: 1px solid var(--bs-backgroud-1);
   }
 }</style>
 

@@ -175,12 +175,12 @@ export default {
 .bs-slider{
  .el-input-number__decrease {
     background: var(--bs-el-backgroud);
-    border-right: 1px solid var(--bs-backgroud);
+    border-right: 1px solid var(--bs-backgroud-1);
   }
 
   .el-input-number__increase {
     background: var(--bs-el-backgroud);
-    border-left: 1px solid var(--bs-backgroud);
+    border-left: 1px solid var(--bs-backgroud-1);
   }
 }
 .bs-setting-wrap {

@@ -226,7 +226,7 @@ export default {
 
     .el-input__inner {
       color: var(--bs-el-text);
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
 
       &::placeholder {
         color: var(--bs-el-title);
@@ -236,7 +236,7 @@ export default {
 }
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: var(--bs-backgroud) !important;
+  background-color: var(--bs-backgroud-1) !important;
   color: var(--bs-el-text) !important;
 }
 </style>

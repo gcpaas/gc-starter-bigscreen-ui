@@ -64,7 +64,7 @@
 }
 
 /deep/ .el-collapse-item__header {
-  background: var(--bs-backgroud);
+  background: var(--bs-backgroud-1);
   height: 32px;
   padding: 0 12px;
 }
@@ -79,7 +79,7 @@
 
 .lc-field-body {
   padding: 12px;
-  background: var(--bs-backgroud);
+  background: var(--bs-backgroud-1);
 
   input, textarea {
     background-color: var(--bs-el-backgroud) !important;
@@ -188,7 +188,7 @@
   color: var(--bs-el-title) !important
 }
 /deep/ .el-collapse-item__wrap {
-  background: var(--bs-backgroud);
+  background: var(--bs-backgroud-1);
   color: var(--bs-el-title);
 }
 

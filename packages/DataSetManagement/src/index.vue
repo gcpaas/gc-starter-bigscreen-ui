@@ -619,7 +619,7 @@ export default {
   margin-left: 20px;
   ::v-deep .ztreeNodeMenu {
     ul {
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
     }
 
     li:hover {
@@ -631,7 +631,7 @@ export default {
     }
 
     .triangle {
-      background-color: var(--bs-backgroud) !important;
+      background-color: var(--bs-backgroud-1) !important;
     }
   }
   .resize {

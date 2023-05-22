@@ -1,6 +1,7 @@
 // input
 .bs-el-input {
   .el-input__inner {
+    border: none;
     color: var(--bs-el-text);
     background: var(--bs-el-backgroud);
     width: 100% !important;
@@ -13,12 +14,30 @@
   }
 }
 
+// el-input-number
+.bs-el-input-number {
+  .el-input__inner {
+    color: var(--bs-el-text);
+    background: var(--bs-el-backgroud);
+    width: 100% !important;
+  }
+  .el-input-number__decrease {
+    background: var(--bs-el-backgroud);
+    border-right: 1px solid var(--bs-backgroud-1);
+  }
+
+  .el-input-number__increase {
+    background: var(--bs-el-backgroud);
+    border-left: 1px solid var(--bs-backgroud-1);
+  }
+}
+
 // button
 .bs-el-button-default {
   color: var(--bs-el-title);
-  background-color: var(--bs-backgroud);
+  background-color: var(--bs-backgroud-1);
   &:hover{
-    background-color: var(--bs-backgroud);
+    background-color: var(--bs-backgroud-1);
   }
 }
 
@@ -43,7 +62,7 @@
 
     .el-input__inner {
       color: var(--bs-el-text);
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
 
       &::placeholder {
         color: var(--bs-el-title);
@@ -51,12 +70,12 @@
     }
 
     .el-checkbox__inner {
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
     }
 
     .el-popper {
-      background: var(--bs-backgroud) !important;
-      background-color: var(--bs-backgroud) !important;
+      background: var(--bs-backgroud-1) !important;
+      background-color: var(--bs-backgroud-1) !important;
     }
   }
 }
@@ -80,7 +99,8 @@
     background-color: var(--bs-el-backgroud);
   }
 
-  ::v-deep .el-input__inner {
+   .el-input__inner {
+    border-color: red;
     background: var(--bs-el-backgroud);
     background-color: var(--bs-el-backgroud);
     color: var(--bs-el-text);
@@ -94,7 +114,7 @@
 
 // dialog
 .bs-el-dialog {
-  background: var(--bs-backgroud) !important;
+  background: var(--bs-backgroud-1) !important;
 
   .el-dialog__header {
     background: var(--bs-el-backgroud);

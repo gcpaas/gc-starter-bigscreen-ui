@@ -105,7 +105,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
-          class="bs-theme-wrap"
+          class="bs-theme-wrap bs-el-pagination"
           popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"

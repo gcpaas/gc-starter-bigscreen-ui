@@ -118,19 +118,19 @@ export default {
 <style lang="scss" scoped>
 .bs-data-set-management {
   ::v-deep .inner-container {
-    background: var(--bs-backgroud);
+    background: var(--bs-backgroud-1);
   }
 
   ::v-deep .packUpStyle {
     pointer-events: none;
     position: static;
     height: 100%;
-    background-color: var(--bs-backgroud);
+    background-color: var(--bs-backgroud-1);
   }
 
   ::v-deep .ztreeNodeMenu {
     ul {
-      background-color: var(--bs-backgroud);
+      background-color: var(--bs-backgroud-1);
     }
 
     li:hover {
@@ -142,7 +142,7 @@ export default {
     }
 
     .triangle {
-      background-color: var(--bs-backgroud) !important;
+      background-color: var(--bs-backgroud-1) !important;
     }
   }
 

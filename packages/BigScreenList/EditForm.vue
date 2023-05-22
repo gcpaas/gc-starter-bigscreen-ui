@@ -34,6 +34,7 @@
         >
           <el-select
             v-model="resolutionRatioValue"
+            class="bs-el-select"
             popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
