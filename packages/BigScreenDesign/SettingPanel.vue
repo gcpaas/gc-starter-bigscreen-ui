@@ -4,13 +4,13 @@
       <el-scrollbar>
         <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
           <RightSetting
-            v-if="chartSettingShow"
+            v-if="rightVisiable && !pageInfoVisiable"
             @closeRightPanel="close"
             @updateSetting="updateSetting"
             @updateDataSetting="updateDataSetting"
           />
           <OverallSetting
-            v-if="!chartSettingShow"
+            v-if="rightVisiable && pageInfoVisiable"
             ref="OverallSetting"
             @close="close"
           />
@@ -33,7 +33,11 @@ export default {
   props: {
     rightVisiable: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    pageInfoVisiable: {
+      type: Boolean,
+      default: false
     },
     headerShow: {
       type: Boolean,
