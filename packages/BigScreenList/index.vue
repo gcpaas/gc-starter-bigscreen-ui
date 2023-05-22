@@ -113,6 +113,8 @@
         总共 {{ totalCount }} 个项目
       </div>
       <el-pagination
+        class="bs-theme-wrap bs-el-pagination"
+        popper-class="bs-el-pagination"
         background
         layout="sizes, prev, pager, next"
         :page-size="size"
@@ -267,18 +269,21 @@ export default {
 .big-screen-list-wrap {
   position: relative;
   height: 100%;
-  padding: 20px;
+  padding: 16px;
   color: #9ea9b2;
   background-color: var(--bs-background-1)!important;
   .top-search-wrap {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     .el-input {
       width: 200px;
       margin-right: 20px;
+      /deep/.el-input__inner{
+        background-color: #232832;
+      }
     }
   }
 
