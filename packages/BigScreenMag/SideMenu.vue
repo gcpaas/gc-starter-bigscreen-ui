@@ -26,7 +26,7 @@
           trigger="click"
         >
           <span class="el-dropdown-link menu-dropdown-link">
-            <i class="el-icon-more" />
+            <i class="el-icon-more"  :class="{'active-icon-more':currentCatalog.code === catalog.code && !isAll}"/>
             <el-dropdown-menu
               slot="dropdown"
               class="dropdown-menu-box"
@@ -228,8 +228,8 @@ export default {
     width: 300px;
     height: 100%;
     box-sizing: border-box;
-    color: #FFFFFF;
-    background-color: #232832;
+    color: var(--bs-el-title);
+    background-color: var(--bs-background-2);
     .side-catalog-box{
       height: calc(100% - 50px);
       overflow-y: auto;
@@ -246,8 +246,11 @@ export default {
         }
         .el-icon-more{
           transform: rotate(90deg);
-          color: #FFFFFF;
+          color: var(--bs-el-title);
           font-weight: 400;
+        }
+        .active-icon-more{
+          color:var(--bs-el-text);
         }
         .catalog-name{
           overflow:hidden;
@@ -258,9 +261,9 @@ export default {
       }
       /*菜单激活时的样式*/
       .active-catalog{
-        background-image: url(./images/nav-menu-img.png);
+        background-image: linear-gradient(to right , var(--bs-el-hover), var(--bs-background-2));
         background-repeat: round;
-        color: #FFFFFF;
+        color: var(--bs-el-text);
       }
     }
     .add-catalog-box{
@@ -272,9 +275,9 @@ export default {
       border-radius: 10px;
       margin: 0 8px;
       &:hover{
-        background-color: rgba(255,255,255,0.1);
+        background-color: var(--bs-background-1);
         cursor: pointer;
-        color: #409EFF;
+        color: var(--bs-el-text);;
       }
       .el-icon-plus{
         padding: 0 5px;

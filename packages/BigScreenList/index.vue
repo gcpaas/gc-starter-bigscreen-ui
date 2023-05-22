@@ -2,6 +2,7 @@
   <div class="big-screen-list-wrap">
     <div class="top-search-wrap">
       <el-input
+        class="bs-el-input"
         v-model="searchKey"
         placeholder="请输入关键字"
         prefix-icon="el-icon-search"
@@ -268,7 +269,7 @@ export default {
   height: 100%;
   padding: 20px;
   color: #9ea9b2;
-  background-color: #151A26!important;
+  background-color: var(--bs-background-1)!important;
   .top-search-wrap {
     display: flex;
     align-items: center;
@@ -391,7 +392,7 @@ export default {
           padding: 0 10px;
           height: calc(100% - 190px);
           color: var(--bs-el-text);
-          background-color: #232832;
+          background-color: var(--bs-background-2);
 
           .left-bigscreen-title {
             font-size: 14px;
