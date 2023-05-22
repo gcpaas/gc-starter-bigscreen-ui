@@ -1239,12 +1239,12 @@ export default {
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
-  .CodeMirror-scroll {
-    background: #fff;
-    .CodeMirror-gutters {
-      background-color: #f6f7fb;
-    }
-  }
+  // .CodeMirror-scroll {
+  //   background: #fff;
+  //   .CodeMirror-gutters {
+  //     background-color: #f6f7fb;
+  //   }
+  // }
 }
 .no-border {
   border: 0;
