@@ -1,10 +1,13 @@
 <template>
   <transition name="slide-fade">
     <div class="bs-right-panel-wrap">
+      <div class="bs-set-title">
+        {{ chartSettingShow ? `${title}图表设置` : '大屏设置' }}
+      </div>
       <el-scrollbar>
         <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
           <RightSetting
-            v-if="rightVisiable && !pageInfoVisiable"
+            v-if="chartSettingShow"
             @closeRightPanel="close"
             @updateSetting="updateSetting"
             @updateDataSetting="updateDataSetting"
@@ -22,7 +25,6 @@
 <script>
 import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
 import OverallSetting from 'packages/BigScreenDesign/OverallSetting/index.vue'
-import _ from 'lodash'
 import { mapState } from 'vuex'
 export default {
   name: '',
@@ -58,7 +60,10 @@ export default {
       activeCode: state => state.activeCode
     }),
     chartSettingShow () {
-      return Boolean(!_.isEmpty(this.activeItem) && this.rightVisiable && this.activeCode)
+      return this.rightVisiable && !this.pageInfoVisiable
+    },
+    title () {
+      return this.activeItem?.title || ''
     }
   },
   watch: {
@@ -96,7 +101,18 @@ export default {
 <style lang="scss" scoped>
 .bs-right-panel-wrap {
   display: flex;
+  flex-direction: column;
   background-color: var(--bs-background-1);
+
+  .bs-set-title {
+    background-color: var(--bs-background-2);
+    color: var(--bs-el-title);
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    border-left: 4px solid #007aff;
+    padding-left: 8px;
+  }
 
   .bs-folder-wrap {
     width: 20px;
