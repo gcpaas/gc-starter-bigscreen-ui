@@ -27,7 +27,7 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
@@ -50,6 +50,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -63,6 +64,8 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  popper-class="bs-el-select"
+                  class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -110,6 +113,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -123,6 +127,8 @@
                   v-model="dataForm.sourceId"
                   clearable
                   filterable
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   placeholder="请选择数据源"
                   :disabled="!isEdit"
                 >
@@ -1308,7 +1314,7 @@ export default {
   }
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
   .back {
@@ -1412,6 +1418,7 @@ export default {
   }
 }
 .result-view {
+  color: var(--bs-el-text);
   padding: 8px 12px;
   margin: 0 16px 0;
   font-weight: 600;

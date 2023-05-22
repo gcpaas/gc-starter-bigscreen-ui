@@ -33,14 +33,15 @@ registerConfig({
     baseURL: window.CONFIG?.baseUrl
   },
   customTheme: {
-    '--bs-background-1': '#151a26',
-    '--bs-background-2': '#232832',
+    '--bs-background-1': '#151a26', // 黑色
+    '--bs-background-2': '#232832', // 灰色
     '--bs-background-3': '#212326',
     '--bs-background-design-inner': '#1d1e20',
-    '--bs-el-background': '#0F1014',
-    '--bs-el-title': '#859094',
-    '--bs-el-text': '#ffffff',
-    '--bs-el-hover': '#007aff30',
+    '--bs-el-background': '#151A26',
+    '--bs-el-background-2': '#35393F',
+    '--bs-el-title': '#87888E', // 白色字体
+    '--bs-el-text': '#ffffff', // 激活白色字体
+    '--bs-el-hover': '#007aff',
     '--bs-el-border-color': 'transparent'
   },
   customPlots: []
