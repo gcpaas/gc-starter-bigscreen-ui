@@ -1,13 +1,13 @@
 <template>
   <div
     v-loading="saveloading"
-    class="inner-container"
+    class="inner-container "
     :element-loading-text="saveText"
   >
     <div class="header">
       <el-page-header
+        class="bs-el-page-header"
         :content="!isEdit ? 'JSON数据集详情' : dataForm.id ? 'JSON数据集编辑' : 'JSON数据集新增'"
-        style="padding: 16px 16px 0"
       />
       <el-button
         v-if="isEdit"
@@ -49,6 +49,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -65,7 +66,6 @@
                   popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
-                  class="bs-theme-wrap"
                   @clear="clearType"
                   @visible-change="setCurrentNode"
                 >
@@ -113,6 +113,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -404,7 +405,7 @@ export default {
     appCode: {
       type: String,
       default: ''
-    },
+    }
   },
   data () {
     const validateName = (rule, value, callback) => {
@@ -732,6 +733,8 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@import '~packages/assets/style/bsTheme.scss'</style>
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 .tree-box {
@@ -759,10 +762,6 @@ export default {
     right: 16px;
     top: 16px;
   }
-}
-
-/deep/ .el-input__inner {
-  width: 100% !important;
 }
 
 .no-border {

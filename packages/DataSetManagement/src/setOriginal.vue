@@ -6,8 +6,8 @@
   >
     <div class="header">
       <el-page-header
+        class="bs-el-page-header"
         :content="!isEdit ? '原始数据集详情' : dataForm.id ? '原始数据集编辑' : '原始数据集新增'"
-        style="padding: 16px 16px 0"
       />
       <el-button
         v-if="isEdit"
@@ -49,6 +49,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -235,6 +236,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -398,7 +400,7 @@
                     v-if="isEdit"
                     v-model="scope.row.fieldDesc"
                     size="small"
-                    class="labeldsc"
+                    class="labeldsc bs-el-input"
                   />
                   <span v-else>{{ scope.row.fieldDesc }}</span>
                 </template>
@@ -415,7 +417,7 @@
                     v-if="isEdit"
                     v-model="scope.row.orderNum"
                     size="small"
-                    class="labeldsc"
+                    class="labeldsc bs-el-input"
                   />
                   <span v-else>{{ scope.row.orderNum }}</span>
                 </template>
@@ -503,7 +505,7 @@
                 v-if="isEdit"
                 v-model="scope.row.fieldDesc"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.fieldDesc }}</span>
             </template>
@@ -519,7 +521,7 @@
                 v-if="isEdit"
                 v-model="scope.row.orderNum"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.orderNum }}</span>
             </template>

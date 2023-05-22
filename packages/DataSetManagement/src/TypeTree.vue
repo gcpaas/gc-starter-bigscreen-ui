@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="bs-theme-wrap">
     <div class="tree-box">
       <div class="ztree-filter-container filter-container">
         <el-input
           v-model="queryForm.searchKey"
           placeholder="请输入数据集分类"
           clearable
-          class="ztree-input"
+          class="ztree-input bs-el-input"
           @keyup.enter.native="reSearch()"
           @clear="reSearch()"
         />
@@ -334,21 +334,6 @@ export default {
         })
       } else {
         this.loading = true
-        // $gc.orgService.getDirectChildren(nodeData.id, {
-        //   sortFieldOrderList: ['orderNum'],
-        //   sortFieldMap: {
-        //     'orderNum': 'ascending'
-        //   }
-        // }).then((res) => {
-        //   res.forEach((item, index) => {
-        //     item.isParent = item.hasChildren
-        //   })
-        //   this.ztreeObj.addNodes(nodeData, -1, res)
-        // }).then(() => {
-        //   this.loading = false
-        // }).catch((e) => {
-        //   this.loading = false
-        // })
       }
     },
     // 未知
@@ -488,6 +473,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~packages/assets/style/bsTheme.scss';
   /deep/ .el-tabs {
     .el-tabs__header {
       margin: 0;
@@ -545,4 +531,8 @@ export default {
     height: 100%;
     overflow: hidden;
   }
+  .el-textarea__inner{
+      color: var(--bs-el-text) ;
+      background-color: var(--bs-el-backgroud) !important;
+}
 </style>

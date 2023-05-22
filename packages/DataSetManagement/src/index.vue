@@ -66,6 +66,7 @@
           >
             <el-input
               v-model="queryForm.name"
+              class="bs-el-input"
               placeholder="请输入数据集名称"
               clearable
               @keyup.enter.native="handleSearch()"
@@ -600,14 +601,17 @@ export default {
 // Element-UI 分页
 .bs-theme-pagination {
   background: var(--bs-el-backgroud);
+
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     background: var(--bs-el-hover);
   }
 }
-.bs-el-message-box{
+
+.bs-el-message-box {
   background: var(--bs-el-backgroud);
-  p{
+
+  p {
     color: var(--bs-el-title);
   }
 }
@@ -615,18 +619,63 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 @import '~packages/assets/style/zTree/treePackUp.scss';
+
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
   }
 }
 
+.right-box {
+  margin-left: 20px;
+  ::v-deep .ztreeNodeMenu {
+    ul {
+      background-color: var(--bs-backgroud);
+    }
+
+    li:hover {
+      background-color: var(--bs-el-hover);
+    }
+
+    span {
+      color: var(--bs-el-title);
+    }
+
+    .triangle {
+      background-color: var(--bs-backgroud) !important;
+    }
+  }
+  .resize {
+    width: 19px;
+    background-color: var(--bs-el-backgroud) !important;
+    a{
+      height: 40px;
+      background-color: #bababa;
+      &:hover{
+        background-color: #bababa;
+      }
+    }
+  }
+}
+::v-deep .left-tab-box {
+    span {
+      color: var(--bs-el-text);
+    }
+  }
+
+  ::v-deep .left-tab-box ul li.tab-active {
+    background-color: var(--bs-el-hover);
+  }
+
+  ::v-deep .left-tab-box ul li:hover {
+    background-color: var(--bs-el-hover);
+  }
 .el-dialog {
   .bs-container {
     max-height: calc(90vh - 236px) !important;
 
     .el-table {
-      height: calc(90vh - 340px) ;
+      height: calc(90vh - 340px);
     }
 
     /deep/ .ztree {
@@ -637,14 +686,12 @@ export default {
       border-bottom: none !important;
     }
 
-    .packUpStyle.resize {
-      width: 19px;
-    }
   }
+
 }
+
 .layout {
   width: 100%;
   height: 100%;
 }
-
 </style>
