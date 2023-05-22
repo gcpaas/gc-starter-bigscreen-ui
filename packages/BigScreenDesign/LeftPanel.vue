@@ -17,24 +17,6 @@
           class="left-tabs-box"
           @tab-click="tabClick"
         >
-          <!--          <el-tab-pane-->
-          <!--            name="default"-->
-          <!--            @click.native="changeActiveCode('')"-->
-          <!--          >-->
-          <!--            <span-->
-          <!--              slot="label"-->
-          <!--              class="menu-imgs"-->
-          <!--              name="default"-->
-          <!--              @click="toggleSidebar"-->
-          <!--            >-->
-          <!--              <i-->
-          <!--                :class="[-->
-          <!--                  'iconfont-bigscreen',-->
-          <!--                  'icon-menu'-->
-          <!--                ]"-->
-          <!--              />-->
-          <!--            </span>-->
-          <!--          </el-tab-pane>-->
           <el-tab-pane
             name="layer"
             @click.native="changeActiveCode('')"
@@ -43,6 +25,7 @@
               slot="label"
               class="menu-slot"
               name="layer"
+              @dbclick.native="toggleSidebar"
             >
               <i
                 :class="[
@@ -77,6 +60,7 @@
             <div
               slot="label"
               class="menu-slot"
+              @dbclick.native="toggleSidebar"
             >
               <i
                 :class="[
@@ -132,15 +116,12 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-      <!-- <div
-        class="bs-folder-wrap"
-        :style="{ height }"
-      >
-        <i
-          :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
-          @click="toggleSidebar"
-        />
-      </div> -->
+
+      <i
+        class="iconfont-bigscreen menu-fold"
+        :class="fold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
+        @click="toggleSidebar"
+      />
     </div>
   </transition>
 </template>
@@ -361,26 +342,30 @@ export default {
           padding-bottom: 20px;
           margin-bottom: 20px;
 
+
           .draggable {
             display: flex;
             flex-wrap: wrap;
             cursor: pointer;
             box-sizing: border-box;
+            justify-content: center;
+            padding: 8px;
 
             .chooseDragNode {
               cursor: move;
             }
 
             .item {
-              width: 90%;
+              width: 100%;
               background: var(--bs-background-2);
-              margin-bottom: 10px;
+              margin-bottom: 8px;
 
               .component-name {
                 background: var(--bs-background-3);
                 color: var(--bs-el-title);
                 font-size: 12px;
-                padding: 5px;
+                padding: 4px 16px;
+                text-align: left;
               }
               .sampleImg {
                 margin: 0 auto;
@@ -472,6 +457,18 @@ export default {
           font-size: 12px;
         }
       }
+    }
+  }
+
+  .menu-fold {
+    position: absolute;
+    bottom: 16px;
+    left: 10px;
+    color: var(--bs-el-title);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--bs-el-hover);
     }
   }
 }

@@ -32,7 +32,6 @@ function getSvgList (iconList) {
       ..._.cloneDeep(dataConfig)
     }
   })
-  debugger
   return svgList
 }
 
