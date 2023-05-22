@@ -93,7 +93,18 @@
             </div>
           </div>
           <div class="big-screen-card-img">
-            <img :src="screen.imgUrl || defaultImg">
+            <el-image
+              :src="screen.coverPicture"
+              fit="fill"
+              style="width: 100%;height:100%"
+            >
+              <div
+                slot="error"
+                class="image-slot"
+              >
+                <img :src="defaultImg">
+              </div>
+            </el-image>
           </div>
           <div class="big-screen-bottom">
             <div
@@ -103,7 +114,7 @@
               {{ screen.name }}
             </div>
             <div class="right-bigscreen-time-title">
-              {{ screen.createTime || '2023-01-01 08:11:34' }}
+              {{ screen.updateDate || '-' }}
             </div>
           </div>
         </div>
@@ -279,7 +290,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 
     .el-input {
       width: 200px;
@@ -373,14 +384,14 @@ export default {
         cursor: pointer;
         background-color: var(--bs-background-2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
-
+        color: var(--bs-el-title);
         &:hover {
+          color: var(--bs-el-text);
           border: 1px solid #007aff;
         }
 
         .add-big-screen-card-text {
           font-size: 24px;
-          color: var(--bs-el-text);
         }
 
         .big-screen-card-img {
@@ -392,6 +403,10 @@ export default {
             height: 100%;
 
             object-fit: cover;
+          }
+
+          /deep/.image-slot {
+            height: 100%;
           }
         }
 
@@ -405,7 +420,7 @@ export default {
           /*height: 26px;*/
           padding: 0 10px;
           height: calc(100% - 190px);
-          color: var(--bs-el-text);
+          color: var(--bs-el-title);
           background-color: var(--bs-background-2);
 
           .left-bigscreen-title {
