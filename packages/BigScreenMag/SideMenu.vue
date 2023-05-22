@@ -95,11 +95,16 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="catalogVisible = false">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="catalogVisible = false"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="addOrEditCatalog"
-        >确 定</el-button>
+        >确定</el-button>
       </span>
     </el-dialog>
   </div>

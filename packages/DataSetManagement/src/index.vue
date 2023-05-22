@@ -639,17 +639,7 @@ export default {
       background-color: var(--bs-background-1) !important;
     }
   }
-  .resize {
-    width: 15px;
-    background-color: var(--bs-el-background) !important;
-    a{
-      height: 40px;
-      background-color: #bababa;
-      &:hover{
-        background-color: #bababa;
-      }
-    }
-  }
+
 }
 ::v-deep .left-tab-box {
     span {

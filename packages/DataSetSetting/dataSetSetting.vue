@@ -23,11 +23,11 @@
       slot="footer"
       class="dialog-footer"
     >
-      <el-button @click="dataSetVisible = false">取 消</el-button>
+      <el-button @click="dataSetVisible = false">取消</el-button>
       <el-button
         type="primary"
         @click="sure"
-      >确 定</el-button>
+      >确定</el-button>
     </span>
   </el-dialog>
 </template>

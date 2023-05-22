@@ -10,8 +10,8 @@
   position: absolute;
   margin: 0 -16px;
   height: none;
-  min-height:calc(100vh - 40px);
-  line-height:calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
+  line-height: calc(100vh - 40px);
   background-color: #f6f7fb;
   display: flex;
 
@@ -51,7 +51,7 @@
   line-height: 40px !important;
   position: absolute !important;
   cursor: col-resize !important;
-  background-color: #bababa !important;
+  background-color: var(--bs-background-2) !important;
   opacity: 0.8;
 
   span {
@@ -94,11 +94,11 @@
   cursor: col-resize;
   float: left;
   user-select: none;
-
+  width: 15px;
   z-index: 1;
   width: 14px;
   height: auto;
-  background-color: #f6f7fb;
+  background-color: var(--bs-el-background);
   height: 100%;
 
   a {
@@ -111,7 +111,7 @@
     justify-content: center;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    background-color: #EBEEF5;
+    background-color: var(--bs-background-2);
 
     i {
       align-self: center;
