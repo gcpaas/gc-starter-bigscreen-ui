@@ -533,6 +533,6 @@ export default {
   }
   .el-textarea__inner{
       color: var(--bs-el-text) ;
-      background-color: var(--bs-el-backgroud) !important;
+      background-color: var(--bs-el-background) !important;
 }
 </style>

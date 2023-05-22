@@ -17,24 +17,24 @@
           class="left-tabs-box"
           @tab-click="tabClick"
         >
-<!--          <el-tab-pane-->
-<!--            name="default"-->
-<!--            @click.native="changeActiveCode('')"-->
-<!--          >-->
-<!--            <span-->
-<!--              slot="label"-->
-<!--              class="menu-imgs"-->
-<!--              name="default"-->
-<!--              @click="toggleSidebar"-->
-<!--            >-->
-<!--              <i-->
-<!--                :class="[-->
-<!--                  'iconfont-bigscreen',-->
-<!--                  'icon-menu'-->
-<!--                ]"-->
-<!--              />-->
-<!--            </span>-->
-<!--          </el-tab-pane>-->
+          <!--          <el-tab-pane-->
+          <!--            name="default"-->
+          <!--            @click.native="changeActiveCode('')"-->
+          <!--          >-->
+          <!--            <span-->
+          <!--              slot="label"-->
+          <!--              class="menu-imgs"-->
+          <!--              name="default"-->
+          <!--              @click="toggleSidebar"-->
+          <!--            >-->
+          <!--              <i-->
+          <!--                :class="[-->
+          <!--                  'iconfont-bigscreen',-->
+          <!--                  'icon-menu'-->
+          <!--                ]"-->
+          <!--              />-->
+          <!--            </span>-->
+          <!--          </el-tab-pane>-->
           <el-tab-pane
             name="layer"
             @click.native="changeActiveCode('')"
@@ -302,7 +302,7 @@ export default {
 
   .page-left {
     box-sizing: border-box;
-    background: var(--bs-backgroud-1);
+    background: var(--bs-background-1);
 
     >* {
       color: #fff;

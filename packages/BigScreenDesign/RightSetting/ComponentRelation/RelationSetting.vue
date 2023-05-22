@@ -211,14 +211,14 @@ export default {
 .bs-table-box {
   border: 1px solid #e6ebf5;
 
-  // border-bottom: 1px solid var(--bs-el-backgroud);
+  // border-bottom: 1px solid var(--bs-el-background);
 
-  background:  var(--bs-el-backgroud);
-  background-color: var(--bs-el-backgroud);
+  background:  var(--bs-el-background);
+  background-color: var(--bs-el-background);
 
   ::v-deep .el-table__cell {
-    background: var(--bs-el-backgroud);
-    background-color: var(--bs-el-backgroud);
+    background: var(--bs-el-background);
+    background-color: var(--bs-el-background);
 
     .cell {
       color: var(--bs-el-title) !important;
@@ -226,7 +226,7 @@ export default {
 
     .el-input__inner {
       color: var(--bs-el-text);
-      background-color: var(--bs-backgroud-1);
+      background-color: var(--bs-background-1);
 
       &::placeholder {
         color: var(--bs-el-title);
@@ -236,7 +236,7 @@ export default {
 }
 
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: var(--bs-backgroud-1) !important;
+  background-color: var(--bs-background-1) !important;
   color: var(--bs-el-text) !important;
 }
 </style>

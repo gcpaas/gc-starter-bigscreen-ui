@@ -227,7 +227,7 @@ export default {
 
 .page-top-setting-wrap {
   height: 40px;
-  background-color: var(--bs-backgroud);
+  background-color: var(--bs-background);
   display: flex;
   align-items: center;
   justify-content: flex-start;

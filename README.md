@@ -73,8 +73,8 @@ registerConfig({
   },
   // 自定义主题颜色变量，详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/ld7vsswz7czecpk0
   customTheme: {
-    '--bs-backgroud-1': '#1d1d1d',
-    '--bs-el-backgroud': '#0F1014',
+    '--bs-background-1': '#1d1d1d',
+    '--bs-el-background': '#0F1014',
     '--bs-el-title': '#859094',
     '--bs-el-text': '#ffffff',
     '--bs-el-hover': '#007aff30'

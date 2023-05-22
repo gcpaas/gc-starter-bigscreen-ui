@@ -374,7 +374,7 @@ export default {
 
 <style lang="scss">
 .bs-theme-select {
-  background-color: var(--bs-backgroud-1) !important;
+  background-color: var(--bs-background-1) !important;
 
   .el-select-dropdown__item {
     color: var(--bs-el-title);
@@ -383,28 +383,28 @@ export default {
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
-    background-color: var(--bs-el-backgroud);
+    background-color: var(--bs-el-background);
   }
   .el-input__inner{
-    background:var(--bs-backgroud-1);
-    background-color: var(--bs-el-backgroud);
+    background:var(--bs-background-1);
+    background-color: var(--bs-el-background);
     color: var(--bs-el-text);
   }
   .el-select-dropdown__item.selected{
     color: #007aff;
-    background-color: var(--bs-el-backgroud) !important;
+    background-color: var(--bs-el-background) !important;
   }
 }
 
 .bs-el-input-number {
   .el-input-number__decrease {
-    background: var(--bs-el-backgroud);
-    border-right: 1px solid var(--bs-backgroud-1);
+    background: var(--bs-el-background);
+    border-right: 1px solid var(--bs-background-1);
   }
 
   .el-input-number__increase {
-    background: var(--bs-el-backgroud);
-    border-left: 1px solid var(--bs-backgroud-1);
+    background: var(--bs-el-background);
+    border-left: 1px solid var(--bs-background-1);
   }
 }</style>
 
@@ -423,7 +423,7 @@ export default {
   /deep/ .el-textarea__inner,
   /deep/ .el-input-group__append,
   /deep/ .el-radio__label {
-    background: var(--bs-el-backgroud);
+    background: var(--bs-el-background);
     color: var(--bs-el-text);
     border: 0 !important;
   }
@@ -437,12 +437,12 @@ export default {
   }
 
   /deep/ .el-table {
-    background: var(--bs-el-backgroud);
+    background: var(--bs-el-background);
     border-bottom: 1px solid var(--bs-el-title);
   }
 
   /deep/ .el-table__cell {
-    background: var(--bs-el-backgroud) !important;
+    background: var(--bs-el-background) !important;
     color: var(--bs-el-title) !important;
     border-color: var(--bs-el-text) !important;
   }
@@ -566,11 +566,11 @@ export default {
 /deep/ .el-color-picker--mini .el-color-picker__trigger {
   height: 32px;
   width: 32px;
-  border: 1px solid var(--bs-el-backgroud);
-  background: var(--bs-el-backgroud);
+  border: 1px solid var(--bs-el-background);
+  background: var(--bs-el-background);
 
   .el-color-picker__color {
-    background: var(--bs-el-backgroud);
+    background: var(--bs-el-background);
     border: 0 !important;
   }
 }

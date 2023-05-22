@@ -129,7 +129,7 @@ export default {
     overflow: hidden;
     width: 100%;
     height: calc(100vh - 150px);
-    background-color: var(--bs-backgroud-1);
+    background-color: var(--bs-background-1);
     box-sizing: border-box;
   }
 }
