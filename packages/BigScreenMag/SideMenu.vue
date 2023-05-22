@@ -229,6 +229,7 @@ export default {
     height: 100%;
     box-sizing: border-box;
     color: #FFFFFF;
+    background-color: #232832;
     .side-catalog-box{
       height: calc(100% - 50px);
       overflow-y: auto;
