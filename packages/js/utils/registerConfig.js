@@ -102,7 +102,7 @@ function registerTheme (config) {
     themeStr += `${key}:${theme[key]};`
   }
   style.innerHTML = `
-  .el-dialog__wrapper, .el-popper, el-color-dropdown, .el-input, .bs-theme-wrap {
+  .el-dialog__wrapper, .el-message-box__wrapper, .el-popper, el-color-dropdown, .el-input, .bs-theme-wrap {
       ${themeStr}
     }
   `

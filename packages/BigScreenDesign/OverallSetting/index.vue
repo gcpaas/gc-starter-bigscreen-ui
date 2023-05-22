@@ -395,18 +395,7 @@ export default {
     background-color: var(--bs-el-backgroud) !important;
   }
 }
-
-.bs-el-input-number {
-  .el-input-number__decrease {
-    background: var(--bs-el-backgroud);
-    border-right: 1px solid var(--bs-backgroud-1);
-  }
-
-  .el-input-number__increase {
-    background: var(--bs-el-backgroud);
-    border-left: 1px solid var(--bs-backgroud-1);
-  }
-}</style>
+</style>
 
 <style lang="scss" scoped>
 // Element-Ui样式覆盖

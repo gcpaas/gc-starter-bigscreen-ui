@@ -39,6 +39,7 @@ registerConfig({
     '--bs-background-design-inner': '#1d1e20',
     '--bs-el-background': '#151A26',
     '--bs-el-background-2': '#35393F',
+    '--bs-el-background-3': '#303640', // 表头背景色
     '--bs-el-title': '#87888E', // 白色字体
     '--bs-el-text': '#ffffff', // 激活白色字体
     '--bs-el-hover': '#007aff',

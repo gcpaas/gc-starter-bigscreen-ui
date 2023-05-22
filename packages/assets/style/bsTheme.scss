@@ -17,19 +17,18 @@
 // el-input-number
 .bs-el-input-number {
   .el-input__inner {
+    width: 100% !important;
     color: var(--bs-el-text);
     background: var(--bs-el-background);
-    width: 100% !important;
+    border-color: var(--bs-el-border-color);
   }
-
   .el-input-number__decrease {
     background: var(--bs-el-background);
-    border-right: 1px solid var(--bs-background-1);
+    border-color: var(--bs-el-border-color) !important;
   }
-
   .el-input-number__increase {
     background: var(--bs-el-background);
-    border-left: 1px solid var(--bs-background-1);
+    border-color: var(--bs-el-border-color) !important;
   }
 }
 
@@ -98,7 +97,7 @@
   }
 
   .el-table__cell.is-leaf {
-    background-color: var(--bs-background-3) !important;
+    background-color: var(--bs-el-background-3) !important;
   }
 }
 
@@ -109,12 +108,22 @@
 
 // select
 .bs-el-select {
+  border-color:var(--bs-el-border-color) ;
   background-color: var(--bs-el-background) !important;
 
   .el-select-dropdown__item {
     color: var(--bs-el-title);
   }
 
+  .el-popper[x-placement^="bottom"] .popper__arrow {
+    &:after{
+      top: 1px;
+
+      margin-left: -6px;
+      border-top-width: 0;
+      border-bottom-color:  var(--bs-el-background);
+    }
+}
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
     color: #007aff;
@@ -139,9 +148,9 @@
   background: var(--bs-background-2);
 
   .el-dialog__header {
-    background: var(--bs-background-1);
-    background-color: var(--bs-background-1);
-
+    background: var(--bs-background-2);
+    background-color: var(--bs-background-2);
+    border-bottom: 2px solid var(--bs-background-1);
     .el-dialog__title {
       color: var(--bs-el-title);
     }
@@ -190,10 +199,33 @@
 }
 
 .bs-el-message-box {
-  background: var(--bs-el-background);
-
-  p {
+  background: var(--bs-background-1);
+  .el-message-box__title{
     color: var(--bs-el-title);
+  }
+  p {
+    color: var(--bs-el-text);
+  }
+   .el-button--default {
+    color: var(--bs-el-text);
+    border-color: var(--bs-el-border-color);
+    background-color: var(--bs-el-background-2);
+
+    &:hover {
+      color: var(--bs-el-hover);
+      border-color: var(--bs-el-hover);
+      background-color: var(--bs-background-2);
+    }
+  }
+  .el-button--primary{
+    color: #FFFFFF;
+    background-color: #409EFF;
+    border-color: #409EFF;
+    &:hover {
+      color: #FFFFFF;
+      background-color: #66b1ff;
+      border-color: #66b1ff;
+    }
   }
 }
 
