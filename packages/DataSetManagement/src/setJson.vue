@@ -753,7 +753,7 @@ export default {
 
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
 

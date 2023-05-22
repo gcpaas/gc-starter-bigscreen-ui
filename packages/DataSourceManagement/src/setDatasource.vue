@@ -29,6 +29,7 @@
         >
           <el-select
             v-model="dataForm.sourceType"
+            class="bs-el-select"
             popper-class="bs-el-select"
             clearable
             filterable
@@ -186,7 +187,7 @@
         测试
       </el-button>
       <el-button
-        class="bs-el-button-default "
+        class="bs-el-button-default"
         @click="handleClose"
       >
         取消
