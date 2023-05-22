@@ -29,6 +29,7 @@
         >
           <el-select
             v-model="dataForm.sourceType"
+            placeholder="请选择类型"
             class="bs-el-select"
             popper-class="bs-el-select"
             clearable
@@ -49,6 +50,7 @@
         >
           <el-input
             v-model="dataForm.sourceName"
+            placeholder="请输入数据源名称"
             class="bs-el-input"
             maxlength="200"
           />
@@ -59,6 +61,7 @@
         >
           <el-input
             v-model="dataForm.url"
+            placeholder="请输入JDBC URL"
             class="bs-el-input"
             type="textarea"
             rows="4"
@@ -71,6 +74,7 @@
         >
           <el-input
             v-model="dataForm.username"
+            placeholder="请输入用户名"
             class="bs-el-input"
           />
         </el-form-item>
@@ -80,6 +84,7 @@
         >
           <el-input
             v-model="dataForm.password"
+            :placeholder="dataForm.id ? '请输入密码，不输入代表不更新' : '请输入密码'"
             class="bs-el-input"
             type="password"
             show-password
@@ -91,6 +96,7 @@
         >
           <el-input
             v-model="dataForm.remark"
+            placeholder="请输入备注"
             class="bs-el-input"
             type="textarea"
             rows="4"
