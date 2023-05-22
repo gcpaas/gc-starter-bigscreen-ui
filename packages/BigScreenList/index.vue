@@ -83,12 +83,6 @@
               </div>
               <div
                 class="circle"
-                @click="copy(screen)"
-              >
-                <span>复制</span>
-              </div>
-              <div
-                class="circle"
                 @click="del(screen)"
               >
                 <span>删除</span>

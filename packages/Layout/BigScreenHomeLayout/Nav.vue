@@ -87,7 +87,7 @@ export default {
       align-items: center;
       transition: color 0.2s;
       text-decoration: none !important;
-      color: #b9c2cc;
+      color: var(--bs-el-title);
       width: auto;
       min-width: 140px;
       line-height: 40px;
@@ -98,7 +98,7 @@ export default {
 
       &.nav-active,
       &:hover {
-        color: #fff !important;
+        color: var(--bs-el-text) !important;
       }
     }
 

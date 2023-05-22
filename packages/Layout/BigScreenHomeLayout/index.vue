@@ -1,5 +1,5 @@
 <template>
-  <div class="big-screen-home-wrap">
+  <div class="big-screen-home-wrap bs-theme-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
         <img
@@ -129,7 +129,7 @@ export default {
     overflow: hidden;
     width: 100%;
     height: calc(100vh - 150px);
-    background-color: #171b22;
+    background-color: var(--bs-backgroud);
     box-sizing: border-box;
   }
 }

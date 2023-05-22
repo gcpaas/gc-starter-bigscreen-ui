@@ -212,7 +212,6 @@ export default {
     padding-top: 16px;
     width: 300px;
     height: 100%;
-    background-color: #202023;
     box-sizing: border-box;
     color: #FFFFFF;
     .side-catalog-box{
