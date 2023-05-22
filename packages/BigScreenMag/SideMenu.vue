@@ -13,10 +13,13 @@
         :key="index"
         class="side-catalog-item"
         :class="{'active-catalog':currentCatalog.code === catalog.code && !isAll}"
+        @mouseenter="mouseenter(catalog.code)"
+        @mouseleave="mouseleave"
         @click="clickCatalog(catalog)"
       >
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
+          v-if="(showDropdown && hoverItem === catalog.code) || currentCatalog.code === catalog.code"
           class="page-list-dropdown"
           placement="bottom-start"
           node-key="id"
@@ -68,7 +71,10 @@
           label="目录名称"
           prop="name"
         >
-          <el-input class="bs-el-input" v-model="currentCatalog.name" />
+          <el-input
+            v-model="currentCatalog.name"
+            class="bs-el-input"
+          />
         </el-form-item>
         <el-form-item
           label="排序"
@@ -103,6 +109,8 @@ export default {
   components: { },
   data () {
     return {
+      showDropdown: false,
+      hoverItem: null,
       isAll: true,
       catalogList: [],
       catalogVisible: false,
@@ -122,6 +130,13 @@ export default {
     this.getCatalogList()
   },
   methods: {
+    mouseenter (code) {
+      this.showDropdown = true
+      this.hoverItem = code
+    },
+    mouseleave () {
+      this.showDropdown = false
+    },
     // 点击全部
     clickAllCatalog () {
       this.isAll = true
@@ -168,11 +183,6 @@ export default {
     // 新增目录
     catalogAdd () {
       this.catalogVisible = true
-      this.currentCatalog = {
-        name: '',
-        id: '',
-        code: ''
-      }
     },
     // 编辑目录
     catalogEdit () {
@@ -231,7 +241,6 @@ export default {
         display: flex;
         justify-content: space-between;
         &:hover{
-          /*color: #007AFF;*/
           cursor: pointer;
         }
         .el-icon-more{
@@ -251,9 +260,6 @@ export default {
         background-image: url(./images/nav-menu-img.png);
         background-repeat: round;
         color: #FFFFFF;
-        /*&:hover{*/
-        /*  color: #FFFFFF;*/
-        /*}*/
       }
     }
     .add-catalog-box{
@@ -262,6 +268,8 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 10px;
+      margin: 0 8px;
       &:hover{
         background-color: rgba(255,255,255,0.1);
         cursor: pointer;
@@ -270,10 +278,6 @@ export default {
       .el-icon-plus{
         padding: 0 5px;
       }
-      /*&:hover{*/
-      /*  cursor: pointer;*/
-      /*  color: #007AFF;*/
-      /*}*/
     }
 
   }
