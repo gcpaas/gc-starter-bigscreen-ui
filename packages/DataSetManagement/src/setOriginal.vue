@@ -1148,4 +1148,11 @@ export default {
 .bs-table-box{
   height: 100% !important;
 }
+.bs-pagination{
+  min-width: 100px;
+ ::v-deep .el-input__inner{
+  border:none;
+    background: var(--bs-el-background);
+  }
+}
 </style>

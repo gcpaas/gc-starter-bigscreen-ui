@@ -184,8 +184,8 @@
             :page-size="size"
             :total="totalCount"
             background
-            :prev-text="prevText"
-            :next-text="nextText"
+            prev-text="上一页"
+            next-text="下一页"
             layout="total, prev, pager, next, sizes"
             @size-change="sizeChangeHandle"
             @current-change="currentChangeHandle"
@@ -609,11 +609,15 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 @import '~packages/assets/style/zTree/treePackUp.scss';
-.bs-pagination{
- ::v-deep .el-input__inner{
+
+.bs-pagination {
+  min-width: 100px;
+  ::v-deep .el-input__inner {
+    border:none;
     background: var(--bs-el-background);
   }
 }
+
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
@@ -622,6 +626,7 @@ export default {
 
 .right-box {
   margin-left: 20px;
+
   ::v-deep .ztreeNodeMenu {
     ul {
       background-color: var(--bs-background-1);
@@ -641,19 +646,21 @@ export default {
   }
 
 }
+
 ::v-deep .left-tab-box {
-    span {
-      color: var(--bs-el-text);
-    }
+  span {
+    color: var(--bs-el-text);
   }
+}
 
-  ::v-deep .left-tab-box ul li.tab-active {
-    background-color: var(--bs-el-hover);
-  }
+::v-deep .left-tab-box ul li.tab-active {
+  background-color: var(--bs-el-hover);
+}
 
-  ::v-deep .left-tab-box ul li:hover {
-    background-color: var(--bs-el-hover);
-  }
+::v-deep .left-tab-box ul li:hover {
+  background-color: var(--bs-el-hover);
+}
+
 .el-dialog {
   .bs-container {
     max-height: calc(90vh - 236px) !important;
@@ -674,26 +681,28 @@ export default {
 
 }
 
-  ::v-deep .ztreeNodeMenu {
-    ul {
-      background-color: var(--bs-background-1);
-    }
+::v-deep .ztreeNodeMenu {
+  ul {
+    background-color: var(--bs-background-1);
+  }
 
-    li:hover {
-      background-color: var(--bs-el-hover);
-      span{
-        color: var(--bs-el-text);
-      }
-    }
+  li:hover {
+    background-color: var(--bs-el-hover);
 
     span {
-      color: var(--bs-el-title);
-    }
-
-    .triangle {
-      background-color: var(--bs-background-1) !important;
+      color: var(--bs-el-text);
     }
   }
+
+  span {
+    color: var(--bs-el-title);
+  }
+
+  .triangle {
+    background-color: var(--bs-background-1) !important;
+  }
+}
+
 .layout {
   width: 100%;
   height: 100%;

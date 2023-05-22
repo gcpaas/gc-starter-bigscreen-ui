@@ -121,21 +121,25 @@
     </div>
 
     <div class="footer-pagination-wrap">
-      <div class="footer-pagination-wrap-text">
-        共 {{ totalCount }} 条
+      <!-- <div class="footer-pagination-wrap-text">
+        总共 {{ totalCount }} 个项目
+      </div> -->
+      <div class="bs-pagination">
+        <el-pagination
+          class="bs-theme-wrap bs-el-pagination"
+          popper-class="bs-el-pagination"
+          background
+          layout="total, prev, pager, next, sizes"
+          :page-size="size"
+          prev-text="上一页"
+          next-text="下一页"
+          :total="totalCount"
+          :page-sizes="[10, 20, 50, 100]"
+          :current-page="current"
+          @current-change="currentChangeHandle"
+          @size-change="sizeChangeHandle"
+        />
       </div>
-      <el-pagination
-        class="bs-theme-wrap bs-el-pagination"
-        popper-class="bs-el-pagination"
-        background
-        layout="sizes, prev, pager, next"
-        :page-size="size"
-        :total="totalCount"
-        :page-sizes="[10, 20, 50, 100]"
-        :current-page="current"
-        @current-change="currentChangeHandle"
-        @size-change="sizeChangeHandle"
-      />
     </div>
     <!-- 新增或编辑弹窗 -->
     <EditForm
@@ -279,6 +283,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~packages/assets/style/bsTheme.scss';
 .big-screen-list-wrap {
   position: relative;
   height: 100%;
@@ -465,6 +470,13 @@ export default {
     width: 100%;
     margin-top: 20px;
     padding: 0 20px;
+  }
+}
+.bs-pagination{
+  min-width: 100px;
+ ::v-deep .el-input__inner{
+    border: none;
+    background: var(--bs-el-background);
   }
 }
 </style>

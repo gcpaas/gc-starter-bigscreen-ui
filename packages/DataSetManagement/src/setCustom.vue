@@ -95,7 +95,9 @@
                             class="custom-tree-node"
                           >
                             <span>
-                              <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
+                              <i
+                                :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
+                              />
                               {{ data.name }}
                             </span>
                           </span>
@@ -169,7 +171,9 @@
                     placement="top-start"
                   ><i class="el-icon-question" />
                   </el-tooltip>
-                  select * from table where 1=1  <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span style="color: red;">${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
+                  select * from table where 1=1 <span style="color: blue;">&lt;参数名称&gt;</span> and table_field = <span
+                    style="color: red;"
+                  >${参数名称}</span> <span style="color: blue;">&lt;/参数名称&gt;</span>
                 </strong>
               </div>
             </div>
@@ -209,7 +213,8 @@
                   <span>{{ param.name }}</span>&nbsp;<span
                     v-show="param.remark"
                     style="color: #909399;"
-                  >({{ param.remark }})</span>
+                  >({{ param.remark
+                  }})</span>
                   <el-button
                     class="edit_field"
                     type="text"
@@ -232,9 +237,7 @@
                   配置
                 </el-button>
               </div>
-              <div
-                class="field-wrap bs-field-wrap"
-              >
+              <div class="field-wrap bs-field-wrap">
                 <div
                   v-for="field in structurePreviewList"
                   :key="field.columnName"
@@ -244,7 +247,8 @@
                   <span>{{ field.columnName }}</span>&nbsp;<span
                     v-show="field.fieldDesc"
                     style="color: #909399;"
-                  >({{ field.fieldDesc }})</span>
+                  >({{
+                    field.fieldDesc }})</span>
                   <el-button
                     class="edit_field"
                     type="text"
@@ -647,7 +651,7 @@
             >
               <template slot-scope="scope">
                 <el-date-picker
-                  v-if="scope.row.type==='Date'"
+                  v-if="scope.row.type === 'Date'"
                   v-model="scope.row.value"
                   type="datetime"
                   value-format="yyyy-MM-dd HH:mm:ss"
@@ -1320,47 +1324,58 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-.scrollbar{
+
+.scrollbar {
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
 }
+
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
 }
+
 /deep/ .el-input__inner {
   width: 100% !important;
 }
+
 .header {
   position: relative;
+
   .search {
     position: absolute;
     right: 124px;
     top: 16px;
     display: none;
   }
+
   .save {
     position: absolute;
     right: 86px;
     top: 16px;
   }
+
   .back {
     position: absolute;
     right: 16px;
     top: 16px;
   }
 }
+
 .sql-config {
   padding: 0 16px;
 }
+
 .operation {
   /deep/ .el-select {
     width: 200px !important;
     margin-right: 16px;
   }
+
   display: flex;
 }
+
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
@@ -1371,68 +1386,84 @@ export default {
   //   }
   // }
 }
+
 .no-border {
   border: 0;
 }
+
 /deep/ .fieldDescCheck {
   .el-dialog__body {
     height: fit-content !important;
     min-height: unset !important;
   }
 }
+
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
   border-left: 5px solid #007AFF;
   margin: 16px 16px 0 0;
 }
+
 .field-wrap {
   overflow: auto;
   margin-right: 16px;
+
   .field-item {
     line-height: 32px;
     padding: 0 12px 0 16px;
     cursor: pointer;
+
     .edit_field {
       display: none;
     }
+
     &:hover {
       background-color: #f2f7fe;
+
       .edit_field {
         display: block;
       }
     }
   }
 }
+
 .right-setting {
   height: 454px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
   .paramConfig {
     max-height: 227px;
+
     .field-wrap {
       max-height: 175px;
     }
   }
+
   .structure {
     flex: 1;
     overflow: hidden;
+
     .field-wrap {
       height: calc(100% - 40px);
     }
   }
 }
+
 /deep/ .el-page-header {
   .el-page-header__left {
     display: none;
   }
+
   .el-page-header__content {
     font-size: 14px;
     font-weight: 600;
     position: relative;
     padding-left: 12px;
   }
+
   .el-page-header__content::before {
     content: "";
     height: 24px;
@@ -1442,6 +1473,7 @@ export default {
     border-left: 4px solid #007AFF;
   }
 }
+
 .result-view {
   color: var(--bs-el-text);
   padding: 8px 12px;
@@ -1449,6 +1481,7 @@ export default {
   font-weight: 600;
   position: relative;
   line-height: 24px;
+
   &::before {
     content: "";
     height: 24px;
@@ -1458,13 +1491,24 @@ export default {
     border-left: 4px solid #007AFF;
   }
 }
-.bs-table-box{
+
+.bs-table-box {
   height: 100% !important;
 }
+
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
+
   .el-table__body-wrapper {
     max-height: unset !important;
+  }
+}
+
+.bs-pagination {
+  min-width: 100px;
+  ::v-deep .el-input__inner {
+    border:none;
+    background: var(--bs-el-background);
   }
 }
 </style>

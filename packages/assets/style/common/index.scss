@@ -188,8 +188,8 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       .el-pagination.is-background .btn-prev,
       .el-pagination.is-background .btn-next,
       .el-pagination.is-background .el-pager li {
-        background-color: transparent !important;
         color: #bfbfbf;
+        background-color: var(--bs-el-background-2) !important;
 
         &:hover {
           color: #007aff;
@@ -226,9 +226,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         border-radius: 2px !important;
       }
 
-      // .el-pager li:not(.disabled).active {
-      //   background-color: #007aff !important;
-      // }
+      .el-pager li:not(.disabled).active {
+        background-color: var(--bs-el-hover) !important;
+      }
 
       .el-pagination span:not([class*=suffix]), .el-pagination button {
         font-size: 14px !important;
