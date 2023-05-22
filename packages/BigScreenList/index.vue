@@ -22,10 +22,17 @@
       class="list-wrap"
       element-loading-text="加载中"
       element-loading-background="rgba(0, 0, 0, 0.8)"
+      :style="{
+        display: gridComputed ? 'grid' : 'flex',
+        justifyContent: gridComputed ? 'space-around' : 'flex-start'
+      }"
     >
       <!-- 第一个是新增大屏卡片 -->
       <div
         class="big-screen-card-wrap"
+        :style="{
+          width: gridComputed ? 'auto' : '290px'
+        }"
         @click="add"
       >
         <div class="big-screen-card-inner big-screen-card-inner-add">
@@ -43,6 +50,9 @@
         v-for="(screen) in list"
         :key="screen.id"
         class="big-screen-card-wrap"
+        :style="{
+          width: gridComputed ? 'auto' : '290px'
+        }"
       >
         <div class="big-screen-card-inner">
           <div class="screen-card__hover">
@@ -155,6 +165,9 @@ export default {
   computed: {
     code () {
       return this.catalogInfo?.page?.code
+    },
+    gridComputed () {
+      return this.list.length > 2
     }
   },
   watch: {
@@ -275,11 +288,11 @@ export default {
   }
 
   .list-wrap {
-    display: grid;
+    /* display: grid; */
     overflow: auto;
     // 间隙自适应
     justify-content: space-around;
-    height: calc(100vh - 270px);
+    max-height: calc(100vh - 270px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     grid-gap: 20px;
