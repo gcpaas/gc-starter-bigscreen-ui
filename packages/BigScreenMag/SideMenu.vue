@@ -12,21 +12,24 @@
         v-for="(catalog,index) in catalogList"
         :key="index"
         class="side-catalog-item"
-        :class="{'active-catalog':currentCatalog.code === catalog.code && !isAll}"
+        :class="{'active-catalog':activeCatalog.code === catalog.code && !isAll}"
         @mouseenter="mouseenter(catalog.code)"
         @mouseleave="mouseleave"
         @click="clickCatalog(catalog)"
       >
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
-          :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || currentCatalog.code === catalog.code}"
+          :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || activeCatalog.code === catalog.code}"
           class="page-list-dropdown"
           placement="bottom-start"
           node-key="id"
           trigger="click"
         >
           <span class="el-dropdown-link menu-dropdown-link">
-            <i class="el-icon-more"  :class="{'active-icon-more':currentCatalog.code === catalog.code && !isAll}"/>
+            <i
+              class="el-icon-more"
+              :class="{'active-icon-more':activeCatalog.code === catalog.code && !isAll}"
+            />
             <el-dropdown-menu
               slot="dropdown"
               class="dropdown-menu-box"
@@ -54,7 +57,7 @@
     </div>
     <!-- 新增或编辑目录弹窗 -->
     <el-dialog
-      :title="currentCatalog.id ? '编辑目录':'新增目录'"
+      :title="currentCatalog.code ? '编辑分组':'新建分组'"
       :visible.sync="catalogVisible"
       custom-class="bs-el-dialog bs-theme-wrap"
       width="30%"
@@ -68,7 +71,7 @@
         :rules="formRules"
       >
         <el-form-item
-          label="目录名称"
+          label="分组名称"
           prop="name"
         >
           <el-input
@@ -114,7 +117,12 @@ export default {
       isAll: true,
       catalogList: [],
       catalogVisible: false,
-      currentCatalog: {
+      activeCatalog: { // 激活的目录
+        name: '',
+        id: '',
+        code: ''
+      },
+      currentCatalog: { // 选中目录
         name: '',
         id: '',
         code: ''
@@ -145,6 +153,7 @@ export default {
     // 点击目录
     clickCatalog (catalog) {
       this.currentCatalog = _.cloneDeep(catalog)
+      this.activeCatalog = _.cloneDeep(catalog)
       this.isAll = false
       this.$emit('getPageInfo', { isAll: false, page: catalog })
     },
@@ -183,6 +192,11 @@ export default {
     // 新增目录
     catalogAdd () {
       this.catalogVisible = true
+      this.currentCatalog = { // 选中目录
+        name: '',
+        id: '',
+        code: ''
+      }
     },
     // 编辑目录
     catalogEdit () {
