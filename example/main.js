@@ -27,7 +27,7 @@ registerConfig({
     // 数据源管理
     dataSourceUrl: '/big-screen-dataSource',
     // 数据集管理
-    dataSetUrl: '/big-screen-dataSource'
+    dataSetUrl: '/big-screen-dataSet'
   },
   httpConfigs: {
     baseURL: window.CONFIG?.baseUrl
