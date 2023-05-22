@@ -255,6 +255,7 @@ export default {
       align-items: center;
       margin-right: 4px;
       padding: 4px 0;
+      font-size: 12px;
 
       &:hover {
         background-color: #414750;

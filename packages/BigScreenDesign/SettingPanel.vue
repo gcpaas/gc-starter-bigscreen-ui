@@ -1,23 +1,6 @@
 <template>
   <transition name="slide-fade">
     <div class="bs-right-panel-wrap">
-      <!-- <div
-        class="bs-folder-wrap"
-        :style="{ height }"
-      >
-        <i
-          :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
-          @click="toggleShow"
-        />
-        <el-slider
-          :value="zoom"
-          vertical
-          height="200px"
-          class="slider-zoom"
-          :min="10"
-          @input="changeScreenZoom"
-        />
-      </div> -->
       <el-scrollbar>
         <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
           <RightSetting
@@ -40,7 +23,7 @@
 import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
 import OverallSetting from 'packages/BigScreenDesign/OverallSetting/index.vue'
 import _ from 'lodash'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: '',
   components: {
@@ -68,8 +51,7 @@ export default {
   computed: {
     ...mapState('bigScreen', {
       activeItem: state => state.activeItemConfig,
-      activeCode: state => state.activeCode,
-      zoom: state => state.zoom
+      activeCode: state => state.activeCode
     }),
     chartSettingShow () {
       return Boolean(!_.isEmpty(this.activeItem) && this.rightVisiable && this.activeCode)
@@ -91,9 +73,6 @@ export default {
   },
   mounted () { },
   methods: {
-    ...mapMutations('bigScreen', [
-      'changeZoom'
-    ]),
     toggleShow () {
       this.$emit('update:rightVisiable', !this.rightVisiable)
     },
@@ -105,9 +84,6 @@ export default {
     },
     updateDataSetting (config) {
       this.$emit('updateDataSetting', config)
-    },
-    changeScreenZoom (zoom) {
-      this.changeZoom(zoom)
     }
   }
 }

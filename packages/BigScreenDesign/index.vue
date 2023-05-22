@@ -20,7 +20,9 @@
       <div
         v-loading="pageLoading"
         class="grid-wrap-box"
-        :style="{ height }"
+        :style="{
+          height: 'calc(100vh - 48px)'
+        }"
       >
         <SketchDesignRuler
           :width="pageConfig.w"
@@ -41,6 +43,28 @@
             />
           </MouseSelect>
         </SketchDesignRuler>
+        <div class="footer-tools-bar">
+          <el-slider
+            :value="zoom"
+            :min="10"
+            style="width: 200px;margin-right: 20px;"
+            @input="changeScreenZoom"
+          />
+          <span class="select-zoom-text">缩放比例</span>
+          <el-select
+            class="bs-el-select"
+            popper-class="bs-theme-select"
+            :value="zoom"
+            @change="changeScreenZoom"
+          >
+            <el-option
+              v-for="zoom in zoomList"
+              :key="zoom.value"
+              :label="zoom.label"
+              :value="zoom.value"
+            />
+          </el-select>
+        </div>
       </div>
       <!-- 右侧折叠设置面板   -->
       <SettingPanel
@@ -94,7 +118,25 @@ export default {
     return {
       rightVisiable: true,
       ruleStartX: 0,
-      ruleStartY: 0
+      ruleStartY: 0,
+      zoomList: [
+        {
+          label: '100%',
+          value: 100
+        },
+        {
+          label: '80%',
+          value: 80
+        },
+        {
+          label: '50%',
+          value: 50
+        },
+        {
+          label: '20%',
+          value: 20
+        }
+      ]
     }
   },
   computed: {
@@ -106,7 +148,8 @@ export default {
       hoverCode: state => state.bigScreen.hoverCode,
       presetLine: state => state.bigScreen.presetLine,
       updateKey: state => state.bigScreen.updateKey,
-      hasGrid: state => state.bigScreen.hasGrid
+      hasGrid: state => state.bigScreen.hasGrid,
+      zoom: state => state.bigScreen.zoom
     }),
     offset () {
       return {
@@ -136,7 +179,8 @@ export default {
       'changeActiveCodes',
       'changePageConfig',
       'changeChartConfig',
-      'changeChartKey'
+      'changeChartKey',
+      'changeZoom'
     ]),
     init () {
       this.changePageLoading(true)
@@ -208,6 +252,9 @@ export default {
     // 保存
     save () {
       this.$refs.PageTopSetting.save('saveLoading')
+    },
+    changeScreenZoom (zoom) {
+      this.changeZoom(zoom)
     }
   }
 }
@@ -224,7 +271,28 @@ export default {
       flex: 1;
       overflow: hidden;
       position: relative;
-      margin: 8px;
+      margin: 8px 0 0 8px;
+
+      .footer-tools-bar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        z-index: 1000;
+        background-color: var(--bs-background-2);
+
+        .bs-select-wrap {
+          margin-right: 16px;
+        }
+
+        .select-zoom-text {
+          color: var(--bs-el-title);
+          margin-right: 16px;
+        }
+      }
     }
 
     /deep/ .el-loading-mask {

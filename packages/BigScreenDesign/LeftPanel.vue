@@ -324,7 +324,7 @@ export default {
 
       /deep/.el-tabs__content {
         height: 100%;
-        width: 204px;
+        width: 190px;
 
         .page-left-content-title {
           color: var(--bs-el-title);
@@ -341,7 +341,6 @@ export default {
           text-align: center;
           padding-bottom: 20px;
           margin-bottom: 20px;
-
 
           .draggable {
             display: flex;
