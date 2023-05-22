@@ -9,6 +9,7 @@
         <el-form-item class="filter-input filter-item">
           <el-input
             v-model="searchForm.sourceName"
+            class="bs-el-input"
             placeholder="请输入数据源名称"
             clearable
             maxlength="200"
@@ -25,7 +26,10 @@
           </el-button>
         </el-form-item>
         <el-form-item class="filter-item">
-          <el-button @click="addSource">
+          <el-button
+            class="bs-el-button-default"
+            @click="addSource"
+          >
             新增
           </el-button>
         </el-form-item>
@@ -75,18 +79,21 @@
           >
             <template slot-scope="scope">
               <el-button
+                class="bs-el-button-default"
                 :loading="testBtnLoading.includes(scope.row.id)"
                 @click="sourceLinkTest(scope.row)"
               >
                 测试
               </el-button>
               <el-button
+                class="bs-el-button-default"
                 :disabled="scope.row.editable == 1 && !appCode"
                 @click="viewSource(scope.row)"
               >
                 编辑
               </el-button>
               <el-button
+                class="bs-el-button-default"
                 :disabled="scope.row.editable == 1 && !appCode"
                 @click="handleDelete(scope.row)"
               >
@@ -241,7 +248,8 @@ export default {
       this.$confirm('确定删除当前数据源吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(() => {
         sourceRemove(row.id).then((r) => {
           this.$message.success('删除成功')
@@ -266,18 +274,17 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~packages/assets/style/bsTheme.scss';
-
+// @import '~packages/assets/style/bsTheme.scss';
 .bs-el-pagination {
   background: var(--bs-el-background);
-
 }
 </style>
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-
-::v-deep .el-input__inner {
-  background: var(--bs-el-background);
+.bs-pagination{
+ ::v-deep .el-input__inner{
+    background: var(--bs-el-background);
+  }
 }
 </style>

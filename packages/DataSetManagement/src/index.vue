@@ -84,7 +84,10 @@
             </el-button>
           </el-form-item>
           <el-form-item class="filter-item">
-            <el-button @click="addDataset">
+            <el-button
+              class="bs-el-button-default"
+              @click="addDataset"
+            >
               新增
             </el-button>
           </el-form-item>
@@ -155,12 +158,14 @@
             >
               <template slot-scope="scope">
                 <el-button
+                  class="bs-el-button-default"
                   :disabled="scope.row.editable === 1 && !appCode"
                   @click="toEdit(scope.row.id, scope.row.datasetType, scope.row.name, scope.row.typeId)"
                 >
                   编辑
                 </el-button>
                 <el-button
+                  class="bs-el-button-default"
                   :disabled="scope.row.editable === 1 && !appCode"
                   @click="delDataset(scope.row.id)"
                 >
@@ -598,23 +603,7 @@ export default {
 </script>
 
 <style lang="scss">
-// Element-UI 分页
-.bs-theme-pagination {
-  background: var(--bs-el-backgroud);
-
-  .el-select-dropdown__item.hover,
-  .el-select-dropdown__item:hover {
-    background: var(--bs-el-hover);
-  }
-}
-
-.bs-el-message-box {
-  background: var(--bs-el-backgroud);
-
-  p {
-    color: var(--bs-el-title);
-  }
-}
+@import '~packages/assets/style/bsTheme.scss';
 </style>
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';

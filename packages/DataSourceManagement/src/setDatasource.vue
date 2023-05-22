@@ -7,12 +7,13 @@
     custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    class="bs-dialog-wrap bs-theme-wrap"
+    class="bs-dialog-wrap"
   >
     <div
       v-loading="linkLoading"
       element-loading-text="正在测试连接..."
       style="padding-right: 80px;"
+      class="bs-theme-wrap"
     >
       <el-form
         ref="dataForm"
@@ -25,7 +26,6 @@
         <el-form-item
           label="类型"
           prop="sourceType"
-          class="bs-theme-wrap"
         >
           <el-select
             v-model="dataForm.sourceType"
@@ -182,12 +182,21 @@
       <el-button
         type="primary"
         @click="sourceLinkCheck"
-      >测 试</el-button>
-      <el-button @click="handleClose">取 消</el-button>
+      >
+        测试
+      </el-button>
+      <el-button
+        class="bs-el-button-default "
+        @click="handleClose"
+      >
+        取消
+      </el-button>
       <el-button
         type="primary"
         @click="submitForm"
-      >确 定</el-button>
+      >
+        确定
+      </el-button>
     </span>
   </el-dialog>
 </template>
@@ -453,6 +462,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+@import '~packages/assets/style/bsTheme.scss';
 </style>

@@ -148,6 +148,7 @@ export default {
   font-weight: 400;
   cursor: pointer;
   position: relative;
+  color: var(--bs-el-text);
   p {
     position: absolute;
     width: 100%;
