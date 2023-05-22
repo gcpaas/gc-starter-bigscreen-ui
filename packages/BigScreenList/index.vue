@@ -113,6 +113,8 @@
         总共 {{ totalCount }} 个项目
       </div>
       <el-pagination
+        class="bs-theme-wrap bs-el-pagination"
+        popper-class="bs-el-pagination"
         background
         layout="sizes, prev, pager, next"
         :page-size="size"
@@ -267,18 +269,21 @@ export default {
 .big-screen-list-wrap {
   position: relative;
   height: 100%;
-  padding: 20px;
+  padding: 16px;
   color: #9ea9b2;
   background-color: var(--bs-background-1)!important;
   .top-search-wrap {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     .el-input {
       width: 200px;
       margin-right: 20px;
+      /deep/.el-input__inner{
+        background-color: #232832;
+      }
     }
   }
 
@@ -298,7 +303,6 @@ export default {
       margin-right: 20px;
       margin-bottom: 20px;
       cursor: pointer;
-      border: 1px solid #204d5f;
 
       &:hover {
         .screen-card__hover {
@@ -318,7 +322,7 @@ export default {
         justify-content: center;
         height: 0;
         transition: height .4s;
-        background: #00000080;
+        background: #00000050;
 
         .preview {
           display: flex;
@@ -355,8 +359,7 @@ export default {
         width: 100%;
         height: 100%;
         cursor: pointer;
-        // 渐变色
-        background: linear-gradient(180deg, #204d5f 0%, #1a3e4b 100%);
+        background-color: var(--bs-background-2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 
         &:hover {
@@ -364,8 +367,7 @@ export default {
         }
 
         .add-big-screen-card-text {
-          font-size: 14px;
-          font-size: 30px;
+          font-size: 24px;
           color: var(--bs-el-text);
         }
 

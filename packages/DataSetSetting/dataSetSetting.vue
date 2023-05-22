@@ -121,7 +121,7 @@ export default {
     background: var(--bs-background-1);
   }
 
-  ::v-deep .packUpStyle {
+  ::v-deep .pack-up-box {
     pointer-events: none;
     position: static;
     height: 100%;
@@ -174,7 +174,7 @@ export default {
     overflow: hidden;
   }
 
-  /deep/ .showPackUp {
+  /deep/ .visible-pack-up {
     display: none;
   }
 
