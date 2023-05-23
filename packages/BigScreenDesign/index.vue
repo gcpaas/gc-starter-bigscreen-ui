@@ -47,6 +47,7 @@
         </SketchDesignRuler>
         <div class="footer-tools-bar">
           <el-slider
+            class="bs-slider-wrap"
             :value="zoom"
             :min="10"
             style="width: 200px;margin-right: 20px;"

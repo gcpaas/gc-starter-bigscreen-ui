@@ -301,3 +301,19 @@
     }
   }
 }
+
+.bs-slider-wrap {
+  .el-slider__runway {
+    background-color: #848b99;
+
+  }
+
+  .el-slider__bar {
+    background-color: #4b77a4;
+  }
+
+  .el-slider__button {
+    background-color: #929292;
+    border: solid 2px #4b77a4;
+  }
+}
