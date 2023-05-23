@@ -45,6 +45,7 @@
           >
             <el-input-number
               v-model="config.customize.fontWeight"
+              class="bs-el-input-number"
               placeholder="请输入标题字体权重"
             />
           </el-form-item>

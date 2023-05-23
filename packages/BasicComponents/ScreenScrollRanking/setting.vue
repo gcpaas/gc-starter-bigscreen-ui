@@ -37,6 +37,7 @@
           <el-form-item label="显示行数">
             <el-input-number
               v-model="config.customize.rowNum"
+              class="bs-el-input-number"
               :precision="0"
               label="请输入行数"
             />
