@@ -354,7 +354,7 @@ export default {
           justify-content: space-evenly;
           width: 100%;
           cursor: pointer;
-          color: #007aff;
+          color: var(--bs-el-hover);
 
           .circle {
             position: relative;
@@ -363,12 +363,12 @@ export default {
             justify-content: center;
             width: 40px;
             height: 40px;
-            border: 1px solid #007aff;
+            border: 1px solid var(--bs-el-hover);
             border-radius: 50%;
 
             &:hover {
               color: #fff;
-              background: #007aff;
+              background: var(--bs-el-hover);
             }
 
             span {
@@ -389,7 +389,7 @@ export default {
         border: 1px solid var(--bs-background-2);
         &:hover {
           color: var(--bs-el-text);
-          border: 1px solid #007aff;
+          border: 1px solid var(--bs-el-hover);
         }
 
         .add-big-screen-card-text {

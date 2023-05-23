@@ -502,8 +502,8 @@ export default {
     }
 
     .curSelectedNode {
-      background: var(--bs-el-hover) !important;
-      background-color: var(--bs-el-hover) !important;
+      background: var(--bs-el-background-3) !important;
+      background-color: var(--bs-el-background-3) !important;
     }
 
     a:hover {
@@ -542,7 +542,7 @@ export default {
     line-height: 40px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    border-left: 4px solid var(--bs-el-hover);
   }
 }
 

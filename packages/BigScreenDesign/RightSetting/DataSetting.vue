@@ -725,7 +725,7 @@ export default {
   ::v-deep .el-tag__close.el-icon-close {
     top: -1px;
     &:hover {
-      background-color:#007aff;
+      background-color:var(--bs-el-hover);
     }
   }
   .opt-wrap{

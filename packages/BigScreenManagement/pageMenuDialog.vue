@@ -81,7 +81,7 @@ export default {
         align-items: center;
         border: 1px solid #e5e5e5;
         &:hover{
-          border: 1px dashed #007aff;
+          border: 1px dashed var(--bs-el-hover);
         }
       }
       img{

@@ -749,7 +749,7 @@ export default {
         .page-icon{
           font-size: 20px;
           margin-left: 10px;
-          color: #007aff;
+          color: var(--bs-el-hover);
           &:hover{
             cursor: pointer;
           }
@@ -800,7 +800,7 @@ export default {
         justify-content: space-between;
         padding: 0 20px;
         .page-name-icon{
-          color: #007aff;
+          color: var(--bs-el-hover);
           padding-right: 10px;
         }
       }
@@ -899,7 +899,7 @@ export default {
   .sort-icon {
     font-size: 20px;
     margin-left: 10px;
-    color: #007aff;
+    color: var(--bs-el-hover);
     &:hover{
       cursor: pointer;
     }
@@ -911,7 +911,7 @@ export default {
   }
   /*选中树节点后*/
   .page-list-tree  /deep/ .ztree li a.curSelectedNode span{
-    color: #007aff!important;
+    color: var(--bs-el-hover)!important;
   }
   #settingDropdown{
     display: inline-block;
@@ -927,12 +927,12 @@ export default {
   /*当前tree节点激活样式*/
  .page-list-tree /deep/.is-current>.el-tree-node__content{
     background: #007aff10;
-    color: #007aff;
+    color: var(--bs-el-hover);
   }
   .page-list-tree /deep/.is-current>.el-tree-node__content::before{
     position: absolute;
     left: 0;
-    border-left: 4px solid #007aff;
+    border-left: 4px solid var(--bs-el-hover);
     content: "";
     height: 40px;
     width: 4px;

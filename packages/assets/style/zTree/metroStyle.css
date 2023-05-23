@@ -1,14 +1,14 @@
 
 .ztree * {padding:0; margin:0 ; font-size:12px;}
 .ztree {margin:0; padding:5px; color:#36474f;}
-.ztree li{overflow: hidden; position: relative; display:block;padding:0; margin:0; list-style:none; line-height:12px; text-align:left; white-space:nowrap; outline:0}
+.ztree li{overflow: hidden; position: relative; display:block;padding:0; margin:0; margin-right:10px; list-style:none; line-height:12px; text-align:left; white-space:nowrap; outline:0}
 /* .ztree li:hover{cursor: pointer;} */
 /* .ztree li:hover{ background-color:  rgba(0, 0, 0, 0.025)} */
 .ztree li ul{  margin:0; padding:0 0 0 18px;height: auto;}
 .ztree li ul:hover {cursor: pointer;}
 .ztree li ul.line{ background:url(./img/line_conn.png) 0 0 repeat-y;}
 
-.ztree li a {display:inline-block;width:100%; overflow:hidden; text-overflow: ellipsis;padding:5px 45px 5px 10px; margin:0; cursor:pointer;color:#36474f; background-color: transparent; text-decoration:none; vertical-align:top;}
+.ztree li a {display:inline-block;width:100%; overflow:hidden; text-overflow: ellipsis;padding:5px 45px 5px 8px; margin:0; cursor:pointer;color:#36474f; background-color: transparent; text-decoration:none; vertical-align:top;}
 .ztree li a:hover {text-decoration:none;cursor: pointer;}
 /* .ztree li a.curSelectedNode {padding-top:0px; background-color:#e5e5e5; color:black; height:21px; opacity:0.8;} */
 .ztree li a.curSelectedNode_Edit {padding-top:0px; background-color:#e5e5e5; color:black; height:21px; }

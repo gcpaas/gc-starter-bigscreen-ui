@@ -277,13 +277,13 @@ export default {
 }
 /deep/.action {
   .value {
-    background: #007aff;
+    background: var(--bs-el-hover);
     padding: 4px;
     color: #fff;
   }
 
   .del {
-    color: #007aff;
+    color: var(--bs-el-hover);
   }
 }
 /deep/ .ruler, /deep/ .corner {
