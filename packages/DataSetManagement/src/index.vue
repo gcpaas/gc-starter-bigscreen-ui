@@ -627,23 +627,23 @@ export default {
 .right-box {
   margin-left: 20px;
 
-  ::v-deep .ztreeNodeMenu {
-    ul {
-      background-color: var(--bs-background-1);
-    }
+  // ::v-deep .ztreeNodeMenu {
+  //   ul {
+  //     background-color: var(--bs-background-1);
+  //   }
 
-    li:hover {
-      background-color: var(--bs-el-hover);
-    }
+  //   li:hover {
+  //     background-color: var(--bs-el-hover);
+  //   }
 
-    span {
-      color: var(--bs-el-title);
-    }
+  //   span {
+  //     color: var(--bs-el-text);
+  //   }
 
-    .triangle {
-      background-color: var(--bs-background-1) !important;
-    }
-  }
+  //   .triangle {
+  //     background-color: var(--bs-background-1) !important;
+  //   }
+  // }
 
 }
 
@@ -654,11 +654,11 @@ export default {
 }
 
 ::v-deep .left-tab-box ul li.tab-active {
-  background-color: var(--bs-el-hover);
+  background-color: var(--bs-el-background-3);
 }
 
 ::v-deep .left-tab-box ul li:hover {
-  background-color: var(--bs-el-hover);
+  background-color: var(--bs-el-background-3);
 }
 
 .el-dialog {
@@ -687,15 +687,15 @@ export default {
   }
 
   li:hover {
-    background-color: var(--bs-el-hover);
+    background-color: var(--bs-el-background-3);
 
     span {
-      color: var(--bs-el-text);
+      color: var(--bs-el-hover);
     }
   }
 
   span {
-    color: var(--bs-el-title);
+    color: var(--bs-el-text);
   }
 
   .triangle {

@@ -324,10 +324,9 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
-      class="bs-dialog-wrap bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
     >
       <div class="bs-table-box">
         <el-table

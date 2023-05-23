@@ -138,7 +138,7 @@ export default {
     }
 
     span {
-      color: var(--bs-el-title);
+      color: var(--bs-el-text);
     }
 
     .triangle {

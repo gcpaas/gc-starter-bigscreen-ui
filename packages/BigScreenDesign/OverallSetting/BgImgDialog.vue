@@ -5,9 +5,8 @@
     width="50%"
     :modal="true"
     :modal-append-to-body="false"
-    custom-class="bs-el-dialog"
     :appen-to-body="true"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
     @closed="$emit('imgUrl', imgUrl)"
   >
     <div>
