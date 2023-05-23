@@ -112,9 +112,9 @@
             >
               {{ screen.name }}
             </div>
-            <div class="right-bigscreen-time-title">
-              {{ screen.updateDate || '-' }}
-            </div>
+<!--            <div class="right-bigscreen-time-title">-->
+<!--              {{ screen.updateDate || '-' }}-->
+<!--            </div>-->
           </div>
         </div>
       </div>
