@@ -309,6 +309,10 @@ export default {
           color: var(--bs-el-title);
           margin-right: 16px;
         }
+
+        /deep/ .el-select {
+          width: 150px !important
+        }
       }
     }
 

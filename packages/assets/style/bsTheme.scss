@@ -413,28 +413,28 @@
 }
 .bs-scrollbar {
   &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 6px !important;
+    height: 6px !important;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: transparent;
+    border-radius: 6px !important;
+    background-color: transparent !important;
   }
   &::-webkit-scrollbar-track {
-    border-radius: 6px;
+    border-radius: 6px !important;
     // background-color: transparent;
   }
   &:hover {
     &::-webkit-scrollbar-thumb {
-      background-color: #494848;
+      background-color: #494848 !important;
     }
   }
 }
 
 .bs-scrollbar-bg-1 {
   &::-webkit-scrollbar-track {
-    border-radius: 6px;
-    background: var(--bs-background-1)
+    border-radius: 6px !important;
+    background: var(--bs-background-1) !important
   }
 }
 
