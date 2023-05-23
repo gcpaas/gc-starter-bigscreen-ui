@@ -302,7 +302,7 @@ export default {
       } else {
         this.form.themeJson = {}
         this.changePageConfig(this.form)
-        // this.changeChart(themeName)
+        this.changeChart(themeName)
       }
       // 获取缓存数据集数据和配置
       // eslint-disable-next-line no-unused-expressions
@@ -314,7 +314,8 @@ export default {
     // 改变
     changeChart (themeName) {
       // 统一改变组件的主题
-      const chartList = this.pageInfo.chartList.map(chart => {
+      const newChartList = _.cloneDeep(this.pageInfo.chartList)
+      const chartList = newChartList.map(chart => {
         chart.option.theme = themeName
         chart.key = new Date().getTime()
         // this.changeChartKey(chart.code)
