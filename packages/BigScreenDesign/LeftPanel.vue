@@ -351,8 +351,19 @@ export default {
           padding: 8px 0;
 
           .page-left-content-title-text {
-            border-left: 4px solid #007aff;
-            padding-left: 8px;
+            /*border-left: 4px solid #007aff;*/
+            position: relative;
+            padding-left: 12px;
+            &:after{
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              content: '';
+              width: 4px;
+              height: 14px;
+              background-color: var(--bs-el-hover);
+            }
           }
         }
         .el-scrollbar__view{
