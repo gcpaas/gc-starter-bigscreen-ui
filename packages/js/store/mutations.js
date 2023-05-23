@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-04-24 16:58:45
+ * @LastEditTime: 2023-05-23 09:26:43
  */
 
 import Vue from 'vue'
@@ -27,9 +27,7 @@ export default {
       item => item.code === code
     ))
     changeGroup(code, state)
-    if (activeItem) {
-      state.activeItemConfig = _.cloneDeep(activeItem)
-    }
+    state.activeItemConfig = _.cloneDeep(activeItem)
   },
   changeActiveCodes (state, codes) {
     state.activeCodes = codes

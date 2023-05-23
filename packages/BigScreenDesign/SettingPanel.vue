@@ -5,7 +5,7 @@
     class="bs-right-panel-wrap"
   >
     <div class="bs-set-title">
-      {{ chartSettingShow ? `${title}图表设置` : '大屏设置' }}
+      <span class="bs-set-title-text">{{ chartSettingShow ? `${title}设置` : '大屏设置' }}</span>
     </div>
     <el-scrollbar>
       <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
@@ -16,7 +16,7 @@
           @updateDataSetting="updateDataSetting"
         />
         <OverallSetting
-          v-if="rightVisiable && pageInfoVisiable"
+          v-if="!chartSettingShow"
           ref="OverallSetting"
           @close="close"
         />
@@ -63,7 +63,7 @@ export default {
       activeCode: state => state.activeCode
     }),
     chartSettingShow () {
-      return this.rightVisiable && !this.pageInfoVisiable
+      return this.rightVisiable && !this.pageInfoVisiable && this.activeCode
     },
     title () {
       return this.activeItem?.title || ''
@@ -111,11 +111,16 @@ export default {
     background-color: var(--bs-background-2);
     color: var(--bs-el-title);
     height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    border-left: 4px solid #007aff;
-    padding-left: 8px;
+    font-size: 14px;
     border-bottom: 2px solid var(--bs-background-1);
+    display: flex;
+    align-items: center;
+
+    .bs-set-title-text {
+      display: inline-block;
+      border-left: 4px solid #007aff;
+      padding-left: 10px;
+    }
   }
 
   .bs-folder-wrap {
