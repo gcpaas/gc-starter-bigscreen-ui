@@ -5,9 +5,8 @@
     width="800px"
     :before-close="handleClose"
     :append-to-body="true"
-    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
-    class="bs-dialog-wrap bs-theme-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
   >
     <div class="type-wrap">
       <el-row :gutter="20">

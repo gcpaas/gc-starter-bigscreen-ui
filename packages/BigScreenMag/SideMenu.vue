@@ -20,7 +20,7 @@
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
           :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || activeCatalog.code === catalog.code}"
-          class="page-list-dropdown"
+          class="page-list-dropdown bs-theme-wrap"
           placement="bottom-start"
           node-key="id"
           trigger="click"
@@ -32,7 +32,7 @@
             />
             <el-dropdown-menu
               slot="dropdown"
-              class="dropdown-menu-box"
+              class="dropdown-menu-box bs-el-dropdown-menu"
             >
               <el-dropdown-item @click.native="catalogEdit(catalog)">
                 编辑
@@ -231,7 +231,7 @@ export default {
     // 获取目录的列表
     getCatalogList () {
       this.pageLoading = true
-      post('/bigScreen/category/list', { typeList: 'catalog' }).then(data => {
+      post('/bigScreen/category/list', { typeList: ['catalog'] }).then(data => {
         this.catalogList = data
       }).catch(() => {
       }).finally(() => {

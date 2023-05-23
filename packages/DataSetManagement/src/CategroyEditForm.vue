@@ -2,9 +2,8 @@
   <el-dialog
     width="500px"
     :title="title"
-    class="bs-dialog-wrap dialogClass bs-theme-wrap"
+    class="bs-dialog-wrap dialogClass bs-el-dialog"
     :visible.sync="dialogFormVisible"
-    custom-class="bs-el-dialog"
     :append-to-body="true"
     :before-close="handleClose"
   >

@@ -1,9 +1,11 @@
 .bs-theme-wrap {
+
   // 加载效果
   .el-loading-mask {
     opacity: 0.9;
     background-color: var(--bs-el-background-2);
   }
+
   // 空状态
   .el-empty__image {
     filter: opacity(0.5);
@@ -139,8 +141,8 @@
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    color: #007aff;
-    background-color: var(--bs-el-background);
+    color: var(--bs-el-hover);
+    background-color: var(--bs-el-background-3);
   }
 
   .el-input__inner {
@@ -151,14 +153,14 @@
   }
 
   .el-select-dropdown__item.selected {
-    color: #007aff;
-    background-color: var(--bs-el-background);
+    color: var(--bs-el-hover);
+    // background-color: var(--bs-el-background-3);
   }
 }
 
 // dialog
 .bs-el-dialog {
-  background: var(--bs-background-2);
+  //
 
   .el-dialog__header {
     background: var(--bs-background-2);
@@ -169,6 +171,41 @@
       color: var(--bs-el-text);
     }
   }
+  .el-dialog__footer{
+    background: var(--bs-background-2);
+  }
+
+  ::v-deep .el-dialog__body {
+    background: var(--bs-background-2);
+    overflow-y: auto;
+  }
+
+  ::v-deep .el-scrollbar {
+    height: 300px;
+    overflow-x: hidden;
+
+    .el-scrollbar__view {
+      overflow-x: hidden;
+    }
+  }
+
+  ::v-deep ::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 4px;
+    height: 4px;
+  }
+
+  ::v-deep ::-webkit-scrollbar-thumb {
+    background: var(--bs-el-background-3) !important;
+    border-radius: 10px;
+  }
+
+  // .el-dialog__body{
+  //     overflow-y: auto;
+  //     overflow-x: none;
+  //     max-height: calc(90vh - 200px) !important;
+  //     min-height: 200px;
+  // }
 
 }
 
@@ -221,6 +258,12 @@
   .el-select-dropdown__wrap {
     background-color: var(--bs-background-1);
 
+    .selected {
+      span {
+        color: var(--bs-el-hover);
+      }
+    }
+
     .el-select-dropdown__item {
       color: var(--bs-el-text);
     }
@@ -228,7 +271,8 @@
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    background: var(--bs-el-hover);
+    color: var(--bs-el-hover);
+    background: var(--bs-el-background-3);
   }
 
   ::v-deep .el-select-dropdown {
@@ -265,8 +309,8 @@
 
   .el-button--primary {
     color: #FFFFFF;
-    background-color: #409EFF;
-    border-color: #409EFF;
+    background-color: var(--bs-el-hover);
+    border-color: var(--bs-el-hover);
 
     &:hover {
       color: #FFFFFF;
@@ -298,6 +342,32 @@
 
     &:hover {
       background-color: var(--bs-el-hover) !important;
+    }
+  }
+}
+
+.bs-el-dropdown-menu {
+  border-color: var(--bs-el-border-color);
+  background-color: var(--bs-background-1);
+
+  .el-dropdown-menu__item,
+  .el-dropdown-menu__item {
+    border-color: var(--bs-el-border-color);
+    background-color: var(--bs-background-1);
+    color: var(--bs-el-text);
+
+    &:hover {
+      color: var(--bs-el-hover);
+      background-color: var(--bs-el-background-3);
+    }
+  }
+
+  .popper__arrow {
+    border-top-color: var(--bs-el-background) !important;
+    border-bottom-color: var(--bs-el-background) !important;
+
+    &:after {
+      display: none;
     }
   }
 }

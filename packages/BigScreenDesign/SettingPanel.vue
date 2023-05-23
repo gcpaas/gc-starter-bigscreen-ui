@@ -117,9 +117,19 @@ export default {
     align-items: center;
 
     .bs-set-title-text {
+      position: relative;
+      padding-left: 12px;
       display: inline-block;
-      border-left: 4px solid #007aff;
-      padding-left: 10px;
+      &:after{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        content: '';
+        width: 4px;
+        height: 14px;
+        background-color: var(--bs-el-hover);
+      }
     }
   }
 

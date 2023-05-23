@@ -5,8 +5,7 @@
       :title="title ? '编辑' : '新增'"
       :visible.sync="formVisible"
       :append-to-body="true"
-      class="bs-dialog-wrap"
-      custom-class="bs-el-dialog bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
       @close="closeAddDialog"
     >
       <el-form
@@ -81,7 +80,10 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button  class="bs-el-button-default" @click="closeAddDialog">
+        <el-button
+          class="bs-el-button-default"
+          @click="closeAddDialog"
+        >
           取消
         </el-button>
         <el-button
@@ -327,10 +329,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .el-dialog__body {
-  overflow-y: auto;
-}
-
+@import '~packages/assets/style/bsTheme.scss';
 .el-scrollbar {
   height: 300px;
   overflow-x: hidden;

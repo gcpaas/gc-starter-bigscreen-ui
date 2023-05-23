@@ -507,8 +507,8 @@ export default {
     }
 
     a:hover {
-      background: var(--bs-el-hover) !important;
-      background-color: var(--bs-el-hover) !important;
+      background: var(--bs-el-background-3) !important;
+      background-color: var(--bs-el-background-3) !important;
     }
   }
 /deep/ .el-tabs__nav-wrap::after {

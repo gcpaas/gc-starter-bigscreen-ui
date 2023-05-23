@@ -4,16 +4,14 @@
     :title="title"
     :visible.sync="setDatasourceVisible"
     :append-to-body="true"
-    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
   >
     <div
       v-loading="linkLoading"
       element-loading-text="正在测试连接..."
       style="padding-right: 80px;"
-      class="bs-theme-wrap"
     >
       <el-form
         ref="dataForm"
@@ -182,6 +180,7 @@
         </template>
       </el-form>
     </div>
+
     <span
       slot="footer"
       class="dialog-footer"
@@ -497,5 +496,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~packages/assets/style/bsTheme.scss';
+</style>
+<style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 </style>
