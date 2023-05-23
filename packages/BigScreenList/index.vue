@@ -289,6 +289,7 @@ export default {
   padding: 16px;
   color: #9ea9b2;
   background-color: var(--bs-background-1)!important;
+
   .top-search-wrap {
     display: flex;
     align-items: center;
@@ -313,6 +314,15 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 15px;
+
+    /deep/ .el-loading-mask {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 260px) !important;
+      z-index: 999;
+      top: 50px;
+    }
 
     .big-screen-card-wrap {
       position: relative;
@@ -463,6 +473,10 @@ export default {
         justify-content: center;
       }
     }
+  }
+
+  .el-loading-parent--relative {
+    position: unset !important;
   }
 
   .footer-pagination-wrap {
