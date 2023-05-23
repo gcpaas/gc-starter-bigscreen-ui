@@ -110,10 +110,6 @@ export default {
     overflow: hidden;
   }
 
-  /deep/ .visible-pack-up {
-    display: none;
-  }
-
   .bs-container {
     padding: 0;
     min-height: 590px;

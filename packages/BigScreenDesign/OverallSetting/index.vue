@@ -11,8 +11,8 @@
         <el-form-item label="推荐分辨率">
           <el-select
             v-model="resolutionRatioValue"
-            class="bs-theme-select select"
-            popper-class="bs-el-select bs-theme-wrap"
+            class="bs-el-select select"
+            popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
           >
@@ -43,7 +43,8 @@
         <el-form-item label="自适应模式">
           <el-select
             v-model="form.fitMode"
-            popper-class="bs-theme-select bs-theme-wrap"
+            class="bs-el-select"
+            popper-class="bs-el-select"
             placeholder="自适应模式"
             clearable
           >
@@ -58,7 +59,7 @@
         <el-form-item label="主题">
           <el-select
             v-model="form.customTheme"
-            class="bs-theme-select select"
+            class="bs-el-select select"
             popper-class="bs-el-select bs-theme-wrap"
             placeholder="请选择主题"
             clearable
@@ -380,34 +381,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.bs-theme-select {
-  background-color: var(--bs-background-1) !important;
-
-  .el-select-dropdown__item {
-    color: var(--bs-el-title);
-  }
-
-  .el-select-dropdown__item.hover,
-  .el-select-dropdown__item:hover {
-    color: var(--bs-el-hover);
-    background-color: var(--bs-el-background);
-  }
-  .el-input__inner{
-    background:var(--bs-background-1);
-    background-color: var(--bs-el-background);
-    color: var(--bs-el-text);
-  }
-  .el-select-dropdown__item.selected{
-    color: var(--bs-el-hover);
-    background-color: var(--bs-el-background) !important;
-  }
-}
-</style>
-
 <style lang="scss" scoped>
-// Element-Ui样式覆盖
-
 .bs-overall-wrap {
   position: relative;
   height: 100%;
