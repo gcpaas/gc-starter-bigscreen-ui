@@ -198,7 +198,7 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap bs-field-wrap">
+            <div class="field-wrap bs-field-wrap bs-scrollbar">
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -270,7 +270,7 @@
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          class="bs-el-table"
+          class="bs-el-table bs-scrollbar"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"

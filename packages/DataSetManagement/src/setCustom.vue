@@ -203,7 +203,7 @@
                   配置
                 </el-button>
               </div>
-              <div class="field-wrap bs-field-wrap">
+              <div class="field-wrap bs-field-wrap bs-scrollbar">
                 <div
                   v-for="param in dataForm.paramsList"
                   :key="param.name"
