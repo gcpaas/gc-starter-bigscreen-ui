@@ -27,8 +27,8 @@
         }"
       >
         <SketchDesignRuler
-          :width="pageConfig.w"
-          :height="pageConfig.h"
+          :width="3000"
+          :height="3000"
           @changeStart="changeStart"
         >
           <MouseSelect
@@ -158,8 +158,8 @@ export default {
     }),
     offset () {
       return {
-        x: 340 - this.ruleStartX,
-        y: 73 - this.ruleStartY
+        x: 260 + 100 - this.ruleStartX,
+        y: 60 + 100 - this.ruleStartY
       }
     }
   },
@@ -313,16 +313,6 @@ export default {
     /deep/ .el-loading-mask {
       background-color: transparent !important
     }
-  }
-
-  .grid-bg {
-    background: #5588aa40 !important;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0) !important;
-    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px !important;
   }
 }
 </style>

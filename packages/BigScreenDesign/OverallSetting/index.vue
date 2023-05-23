@@ -231,7 +231,7 @@ export default {
         w: 1920,
         h: 1080,
         bg: '',
-        bgColor: '#1d1d1d', // 背景色
+        bgColor: '#0e2a43', // 背景色
         opacity: 100,
         customTheme: 'auto',
         themeJson: {},
@@ -327,7 +327,7 @@ export default {
     saveOverallSetting () {
       this.form.bgColor =
         this.form.bgColor === null
-          ? (this.form.bgColor = '#1d1d1d')
+          ? (this.form.bgColor = '#0e2a43')
           : this.form.bgColor
       // 如果主题的值被清空了，那么就默认为auto
       this.form.customTheme = this.form.customTheme || 'auto'

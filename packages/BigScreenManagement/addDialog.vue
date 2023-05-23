@@ -361,7 +361,7 @@ export default {
           pageConfig: {
             w: this.resolutionRatio.w || '1920',
             h: this.resolutionRatio.h || '1080',
-            bgColor: '#1d1d1d',
+            bgColor: '#0e2a43',
             opacity: 100,
             customTheme: 'auto'
           },

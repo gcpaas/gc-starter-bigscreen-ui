@@ -19,7 +19,7 @@ export const defaultData = {
     pageConfig: {
       w: 1920,
       h: 1080,
-      bgColor: '#1d1d1d', // 背景色
+      bgColor: '#0e2a43', // 背景色
       bg: '', // 背景图
       opacity: 100,
       customTheme: 'auto',

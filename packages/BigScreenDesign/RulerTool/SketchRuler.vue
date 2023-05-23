@@ -38,12 +38,14 @@
       ref="screensRef"
       :style="{
         cursor: isMouseDown ? 'move' : 'default',
+        width: innerWidth + 'px',
+        height: innerHeight + 'px'
       }"
       @scroll="handleScroll"
     >
       <div
         ref="containerRef"
-        class="screen-container"
+        class="screen-container grid-bg"
         :style="containerRefStyle"
       >
         <div
@@ -102,7 +104,9 @@ export default {
       containerRefStyle: {
         width: this.width + 'px',
         height: this.height + 'px'
-      }
+      },
+      innerHeight: 0,
+      innerWidth: 0
     }
   },
   computed: {
@@ -148,6 +152,9 @@ export default {
           .querySelector('.grid-wrap-box')
           .getBoundingClientRect()
 
+        // 30是grid-wrap-box的底部工具栏高度
+        this.innerHeight = screensRect.height - 30
+        this.innerWidth = screensRect.width
         this.diffX = this.width - screensRect.width
         this.diffY = this.height - screensRect.height
 
@@ -180,8 +187,8 @@ export default {
       this.startY = startY >> 0
 
       this.$emit('changeStart', {
-        x: this.startX,
-        y: this.startY
+        x: this.startX + 100 - 20,
+        y: this.startY + 100 - 20
       })
     }
   }
@@ -192,8 +199,6 @@ export default {
 .wrapper {
   box-sizing: border-box;
   position: absolute;
-  top: 0;
-  left: 0;
 
   .iconfont-bigscreen {
     position: absolute;
@@ -208,13 +213,27 @@ export default {
 
 #screens {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: auto; }
+  overflow: scroll;
+
+  // 滚动条美化，始终在最下方和最右方
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #358f92;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #494848;
+  }
+}
 
 .screen-container {
   position: absolute;
-
+  width: 6000px;
+  height: 6000px;
 }
 
 .scale-value {
@@ -242,8 +261,8 @@ export default {
 
 #canvas {
   position: absolute;
-  top: 21px;
-  left: 21px;
+  top: 100px;
+  left: 100px;
 }
 /deep/ .line {
   border-left: 1px dashed #0089d0 !important;
@@ -270,5 +289,14 @@ export default {
 
 /deep/ .mb-ruler {
   z-index: 998
+}
+.grid-bg {
+  background: #5588aa40 !important;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0) !important;
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px !important;
 }
 </style>
