@@ -109,6 +109,12 @@ export default {
       innerWidth: 0
     }
   },
+  watch: {
+    // 缩放改变的时候，改变startX，startY
+    scale (scale) {
+      this.handleScroll()
+    }
+  },
   computed: {
     ...mapState('bigScreen', {
       scale: state => state.zoom / 100
@@ -144,6 +150,7 @@ export default {
     // 监听屏幕改变
     window.onresize = this.initRuleHeight
     this.initRuleHeight()
+    this.handleScroll()
   },
   methods: {
     initRuleHeight () {

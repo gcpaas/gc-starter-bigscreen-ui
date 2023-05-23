@@ -122,8 +122,8 @@ export default {
     return {
       rightVisiable: false,
       pageInfoVisiable: false,
-      ruleStartX: 0,
-      ruleStartY: 0,
+      ruleStartX: 100,
+      ruleStartY: 100,
       zoomList: [
         {
           label: '100%',
