@@ -300,10 +300,13 @@
   }
 
   .popper__arrow {
+    border-bottom-color: var(--bs-el-background) !important;
     border-top-color: var(--bs-el-background) !important;
 
     &:after {
+      top: 0 !important;
       bottom: 0 !important;
+      border-bottom-color: var(--bs-el-background) !important;
       border-top-color: var(--bs-el-background) !important;
     }
   }

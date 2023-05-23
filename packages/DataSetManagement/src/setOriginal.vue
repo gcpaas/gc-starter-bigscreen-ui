@@ -1030,7 +1030,7 @@ export default {
 @import '~packages/assets/style/bsTheme.scss';
 
 .tree-box {
-  padding: 5px 0;
+  padding: 0;
   max-height: 270px;
 }
 

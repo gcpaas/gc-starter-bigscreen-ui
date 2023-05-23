@@ -38,7 +38,8 @@
     "set-commit-hook": "git config core.hooksPath hooks",
     "generate-changelog": "conventional-changelog -p -i CHANGELOG.md -s -r 0",
     "analyzer": "cross-env NODE_ENV=production npm_config_report=true npm run build",
-    "lib": "vue-cli-service build --no-lint --mode package  --target lib --name bigScreen --dest lib packages/index.js"
+    "lib": "vue-cli-service build --no-lint --mode package  --target lib --name bigScreen --dest lib packages/index.js",
+    "package": "npm run lib && npm publish" 
   },
   "husky": {
     "hooks": {

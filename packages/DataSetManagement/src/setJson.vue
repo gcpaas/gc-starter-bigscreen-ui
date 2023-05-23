@@ -754,7 +754,7 @@ export default {
   overflow-x: none;
 }
 .tree-box {
-  padding: 5px 0;
+  padding:0;
   max-height: 270px;
 }
 .header {
