@@ -54,7 +54,9 @@
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                图层
+                <div class="page-left-content-title-text">
+                  图层
+                </div>
               </div>
               <div class="page-left-content-components">
                 <el-scrollbar>
