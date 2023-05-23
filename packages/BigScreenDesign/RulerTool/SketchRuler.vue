@@ -61,7 +61,8 @@
 <script>
 import SketchRule from 'vue-sketch-ruler'
 import { dragDesignPanelMixin } from './dragDesignPanel'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import { debounce } from 'lodash'
 export default {
   components: {
     SketchRule
@@ -75,6 +76,14 @@ export default {
     height: {
       type: Number,
       default: 400
+    },
+    pageWidth: {
+      type: Number,
+      default: 1920
+    },
+    pageHeight: {
+      type: Number,
+      default: 1080
     }
   },
   data () {
@@ -112,7 +121,10 @@ export default {
   watch: {
     // 缩放改变的时候，改变startX，startY
     scale (scale) {
-      this.handleScroll()
+      // 防抖调用方法
+      debounce(() => {
+        this.handleScroll()
+      }, 5000)()
     }
   },
   computed: {
@@ -153,6 +165,9 @@ export default {
     this.handleScroll()
   },
   methods: {
+    ...mapMutations('bigScreen', [
+      'changeZoom'
+    ]),
     initRuleHeight () {
       setTimeout(() => {
         const screensRect = document
@@ -169,6 +184,7 @@ export default {
           width: this.diffX > 0 ? ((this.width + this.diffX + this.thick + 30) + 'px') : (this.width + 'px'),
           height: this.diffY > 0 ? ((this.height + this.diffY + this.thick + 30) + 'px') : (this.height + 'px')
         }
+        this.initZoom()
       }, 1000)
     },
     handleLine (lines) {
@@ -197,6 +213,19 @@ export default {
         x: this.startX + 50 - 20,
         y: this.startY + 50 - 20
       })
+    },
+    // 保证画布能完整展示大屏
+    initZoom () {
+      // 横向比例
+      const xRadio = this.innerWidth / this.pageWidth
+      // 纵向比例
+      const yRadio = this.innerHeight / this.pageHeight
+      // 取最大比例，尽量大
+      const scale = Math.floor(Math.max(xRadio * 100, yRadio * 100))
+      // 然后再缩小20%
+      if (scale > 30) {
+        this.changeZoom(scale - 20)
+      }
     }
   }
 }

@@ -29,6 +29,8 @@
         <SketchDesignRuler
           :width="3000"
           :height="3000"
+          :page-width="pageConfig.w"
+          :page-height="pageConfig.h"
           @changeStart="changeStart"
         >
           <MouseSelect
