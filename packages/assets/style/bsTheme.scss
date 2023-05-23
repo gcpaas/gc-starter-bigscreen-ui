@@ -302,6 +302,10 @@
   }
 }
 
+.bs-el-dropdown-menu{
+  background-color: var(--bs-background) !important;
+}
+
 .bs-slider-wrap {
   .el-slider__runway {
     background-color: #a6a7aa;
