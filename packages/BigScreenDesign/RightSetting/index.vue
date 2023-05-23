@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bs-setting-wrap"
+    class="bs-setting-wrap bs-scrollbar"
     @click.stop
   >
     <el-tabs

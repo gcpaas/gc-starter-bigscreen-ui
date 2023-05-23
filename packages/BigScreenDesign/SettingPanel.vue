@@ -7,21 +7,19 @@
     <div class="bs-set-title">
       <span class="bs-set-title-text">{{ chartSettingShow ? `${title}设置` : '大屏设置' }}</span>
     </div>
-    <el-scrollbar>
-      <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
-        <RightSetting
-          v-if="chartSettingShow"
-          @closeRightPanel="close"
-          @updateSetting="updateSetting"
-          @updateDataSetting="updateDataSetting"
-        />
-        <OverallSetting
-          v-if="!chartSettingShow"
-          ref="OverallSetting"
-          @close="close"
-        />
-      </div>
-    </el-scrollbar>
+    <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
+      <RightSetting
+        v-if="chartSettingShow"
+        @closeRightPanel="close"
+        @updateSetting="updateSetting"
+        @updateDataSetting="updateDataSetting"
+      />
+      <OverallSetting
+        v-if="!chartSettingShow"
+        ref="OverallSetting"
+        @close="close"
+      />
+    </div>
   </div>
   <!-- </transition> -->
 </template>

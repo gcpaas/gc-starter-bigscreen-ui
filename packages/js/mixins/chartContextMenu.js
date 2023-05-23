@@ -184,7 +184,7 @@ export default {
           }
         ],
         event, // 鼠标事件信息
-        customClass: 'custom--menu-class', // 自定义菜单 class
+        customClass: 'bs-context-menu-class bs-theme-wrap', // 自定义菜单 class
         zIndex: 999, // 菜单样式 z-index
         minWidth: 150 // 主菜单最小宽度
       })
