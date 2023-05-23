@@ -63,7 +63,7 @@ export default {
       activeCode: state => state.activeCode
     }),
     chartSettingShow () {
-      return this.rightVisiable && !this.pageInfoVisiable && this.activeCode
+      return this.rightVisiable && this.activeCode
     },
     title () {
       return this.activeItem?.title || ''

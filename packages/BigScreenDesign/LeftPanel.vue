@@ -101,16 +101,16 @@
                     <div
                       v-for="element in menu.components"
                       :key="element.type + element.name"
-                      :class="element.component ? 'item menu-component' : 'item'"
+                      :class="element.component ? 'item menu-component drag-node' : 'item drag-node'"
+                      draggable="true"
+                      :data-type="element.type"
+                      :data-name="element.name"
                     >
                       <div class="component-name">
                         {{ element.title || element.name }}
                       </div>
                       <div
                         class="img_dispaly chooseDragNode"
-                        draggable="true"
-                        :data-type="element.type"
-                        :data-name="element.name"
                         @click.stop="addComponent(element)"
                       >
                         <icon-svg
@@ -214,7 +214,7 @@ export default {
     ...mapMutations('bigScreen', ['changeActiveCode']),
     nodeDrag () {
       this.$nextTick(() => {
-        const nodes = document.querySelectorAll('.chooseDragNode')
+        const nodes = document.querySelectorAll('.drag-node')
         nodes.forEach(node => {
           node.addEventListener('dragstart', event => {
             const type = node.getAttribute('data-type')
@@ -384,10 +384,7 @@ export default {
             box-sizing: border-box;
             justify-content: center;
             padding: 8px;
-
-            .chooseDragNode {
-              cursor: move;
-            }
+            cursor: move;
 
             .item {
               width: 100%;
