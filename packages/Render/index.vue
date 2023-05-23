@@ -16,6 +16,7 @@
       :id="chart.code"
       :key="chart.updateKey || chart.code"
       class="drag-item"
+      :scale-ratio="scale"
       :x="chart.x"
       :y="chart.y"
       :w="chart.w"
@@ -104,7 +105,8 @@ export default {
       activeCode: state => state.bigScreen.activeCode,
       hoverCode: state => state.bigScreen.hoverCode,
       themeJson: state => state.bigScreen.pageInfo.pageConfig.themeJson,
-      isInit: state => !state.bigScreen.pageLoading
+      isInit: state => !state.bigScreen.pageLoading,
+      scale: state => state.bigScreen.zoom / 100
     })
   },
   watch: {
