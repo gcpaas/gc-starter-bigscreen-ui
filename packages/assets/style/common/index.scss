@@ -189,16 +189,18 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       .el-pagination.is-background .btn-next,
       .el-pagination.is-background .el-pager li {
         color: #bfbfbf;
-        background-color: var(--bs-el-background-2) !important;
+        background-color: var(--bs-el-background-2);
 
         &:hover {
-          color: #007aff;
+          color: var(--bs-el-text);
+          background-color: var(--bs-el-hover);
         }
       }
 
       .el-pagination.is-background .btn-prev:disabled,
       .el-pagination.is-background .btn-next:disabled {
         color: #bfbfbf;
+        background-color: var(--bs-el-background-2);
       }
 
       .el-pagination__total {
