@@ -270,10 +270,10 @@ export default {
       }
       const config = {
         ..._chart,
-        x: position.x - left - _chart.offsetX,
-        y: position.y - top - _chart.offsetY,
-        width: 200,
-        height: 200,
+        x: (position.x - left - _chart.offsetX) / this.scale,
+        y: (position.y - top - _chart.offsetX) / this.scale,
+        width: 200 * this.scale,
+        height: 200 * this.scale,
         code: randomString(8),
         option
       }
