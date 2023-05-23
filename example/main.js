@@ -42,7 +42,7 @@ registerConfig({
     '--bs-el-background-3': '#303640', // 表头背景色
     '--bs-el-title': '#87888E', // 白色字体
     '--bs-el-text': '#ffffff', // 激活白色字体
-    '--bs-el-hover': '#007aff',
+    '--bs-el-hover': '#409EFF',
     '--bs-el-border-color': 'transparent'
   },
   customPlots: []
