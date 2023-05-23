@@ -231,7 +231,7 @@ export default {
     // 获取目录的列表
     getCatalogList () {
       this.pageLoading = true
-      post('/bigScreen/category/list', { typeList: 'catalog' }).then(data => {
+      post('/bigScreen/category/list', { typeList: ['catalog'] }).then(data => {
         this.catalogList = data
       }).catch(() => {
       }).finally(() => {
