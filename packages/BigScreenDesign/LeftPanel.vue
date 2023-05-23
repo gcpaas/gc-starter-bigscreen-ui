@@ -326,10 +326,10 @@ export default {
 
       .is-active {
         .iconfont-bigscreen {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
         .menu-title-span {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
       }
 
