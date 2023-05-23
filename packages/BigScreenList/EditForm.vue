@@ -6,7 +6,6 @@
       :visible.sync="formVisible"
       :append-to-body="true"
       class="bs-dialog-wrap bs-el-dialog"
-      custom-class="bs-el-dialog bs-theme-wrap"
       @close="closeAddDialog"
     >
       <el-form
@@ -330,10 +329,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .el-dialog__body {
-  overflow-y: auto;
-}
-
+@import '~packages/assets/style/bsTheme.scss';
 .el-scrollbar {
   height: 300px;
   overflow-x: hidden;
