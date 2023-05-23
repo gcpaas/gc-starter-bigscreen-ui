@@ -141,7 +141,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     }
 
         // th.is-leaf {
-        //   border-bottom: 2px solid #007aff !important;
+        //   border-bottom: 2px solid var(--bs-el-hover) !important;
         // }
 
         /* 滚动条样式设置*/
@@ -211,7 +211,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         color: #bfbfbf;
 
         &:hover {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
       }
 
@@ -300,7 +300,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       .el-dialog__title {
         display: inline-block;
         font-size: 16px;
-        border-left: 4px solid #007aff;
+        border-left: 4px solid var(--bs-el-hover);
         padding-left: 16px;
       }
     }

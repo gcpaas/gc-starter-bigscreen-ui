@@ -146,7 +146,7 @@ export default {
           line-height: 40px;
           position: absolute;
           left: 0;
-          border-left: 4px solid #007aff;
+          border-left: 4px solid var(--bs-el-hover);
         }
       }
 

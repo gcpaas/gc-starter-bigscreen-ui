@@ -39,7 +39,7 @@
     }
 
     &:hover {
-      background-color: #007aff;
+      background-color: var(--bs-el-hover);
     }
   }
 }
@@ -120,7 +120,7 @@
     }
 
     &:hover {
-      background-color: #007aff;
+      background-color: var(--bs-el-hover);
     }
   }
 }

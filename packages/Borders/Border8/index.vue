@@ -56,7 +56,7 @@ export default {
     font-size: 14px;
     color: #333;
     font-weight: bold;
-    border-left: 3px solid #007aff;
+    border-left: 3px solid var(--bs-el-hover);
     padding-left: 16px;
   }
 

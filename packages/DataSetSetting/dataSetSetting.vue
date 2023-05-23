@@ -5,9 +5,8 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
-    custom-class="bs-el-dialog bs-theme-wrap"
     top="10vh"
-    class="bs-dialog-wrap data-set-wrap"
+    class="bs-dialog-wrap data-set-wrap bs-el-dialog"
   >
     <DataSetManagement
       ref="dataSetSetting"
@@ -23,7 +22,12 @@
       slot="footer"
       class="dialog-footer"
     >
-      <el-button @click="dataSetVisible = false">取消</el-button>
+      <el-button
+        class="bs-el-button-default"
+        @click="dataSetVisible = false"
+      >
+        取消
+      </el-button>
       <el-button
         type="primary"
         @click="sure"
@@ -90,82 +94,14 @@ export default {
 </script>
 
 <style lang="scss">
-.bs-data-set-management {
-  .ztree {
-    span {
-      color: var(--bs-el-text);
-    }
-
-    li:hover {
-      background: transparent !important;
-      background-color: transparent !important;
-    }
-
-    .curSelectedNode {
-      background: var(--bs-el-hover) !important;
-      background-color: var(--bs-el-hover) !important;
-    }
-
-    a:hover {
-      background: var(--bs-el-hover) !important;
-      background-color: var(--bs-el-hover) !important;
-    }
-  }
-
-}
 </style>
 
 <style lang="scss" scoped>
-.bs-data-set-management {
-  ::v-deep .inner-container {
-    background: var(--bs-background-1);
+@import '~packages/assets/style/bsTheme.scss';
+::v-deep .el-scrollbar{
+    height: 560px !important;
+    overflow-y: auto !important;
   }
-
-  ::v-deep .pack-up-box {
-    pointer-events: none;
-    position: static;
-    height: 100%;
-    background-color: var(--bs-background-1);
-  }
-
-  ::v-deep .ztreeNodeMenu {
-    ul {
-      background-color: var(--bs-background-1);
-    }
-
-    li:hover {
-      background-color: var(--bs-el-hover);
-    }
-
-    span {
-      color: var(--bs-el-text);
-    }
-
-    .triangle {
-      background-color: var(--bs-background-1) !important;
-    }
-  }
-
-  ::v-deep .el-input__inner {
-    color: var(--bs-el-text);
-    background: var(--bs-el-background);
-  }
-
-  ::v-deep .left-tab-box {
-    span {
-      color: var(--bs-el-text);
-    }
-  }
-
-  ::v-deep .left-tab-box ul li.tab-active {
-    background-color: var(--bs-el-hover);
-  }
-
-  ::v-deep .left-tab-box ul li:hover {
-    background-color: var(--bs-el-hover);
-  }
-}
-
 .data-set-wrap {
   /deep/ .el-dialog__body {
     position: relative;
@@ -179,7 +115,11 @@ export default {
   }
 
   .bs-container {
+    padding: 0;
     min-height: 590px;
+    .ztree {
+      max-width: none !important;
+    }
   }
 
   /deep/.bs-table {

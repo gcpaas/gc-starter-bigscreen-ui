@@ -387,7 +387,7 @@ export default {
 
   .el-select-dropdown__item.hover,
   .el-select-dropdown__item:hover {
-    color: #007aff;
+    color: var(--bs-el-hover);
     background-color: var(--bs-el-background);
   }
   .el-input__inner{
@@ -396,7 +396,7 @@ export default {
     color: var(--bs-el-text);
   }
   .el-select-dropdown__item.selected{
-    color: #007aff;
+    color: var(--bs-el-hover);
     background-color: var(--bs-el-background) !important;
   }
 }

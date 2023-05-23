@@ -333,7 +333,7 @@ export default {
   }
 }
 .select-item-active {
-  border: 1px solid #007aff;
+  border: 1px solid var(--bs-el-hover);
   background: var(--bs-el-hover);
 }
 // 修改设置面板样式

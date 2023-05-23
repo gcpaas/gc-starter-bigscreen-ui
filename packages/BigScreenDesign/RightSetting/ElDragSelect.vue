@@ -2,7 +2,7 @@
  * @Descripttion:
  * @Author: liu.shiyi
  * @Date: 2023-03-14 10:20:54
- * @LastEditTime: 2023-03-14 15:46:44
+ * @LastEditTime: 2023-05-23 15:14:47
 -->
 <template>
   <el-select
@@ -77,7 +77,7 @@ export default {
     .sortable-ghost {
       opacity: 0.8;
       color: #fff !important;
-      background:#007aff !important;
+      background:var(--bs-el-hover) !important;
     }
 
     .el-tag {

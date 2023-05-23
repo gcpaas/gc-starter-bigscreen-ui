@@ -1070,7 +1070,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid #007AFF;
+  border-left: 5px solid var(--bs-el-hover);
   margin: 16px 16px 0 0;
 }
 
@@ -1116,7 +1116,7 @@ export default {
     line-height: 24px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    border-left: 4px solid var(--bs-el-hover);
   }
 }
 /deep/ .bs-table-box.is-Edit .el-table {
@@ -1141,7 +1141,7 @@ export default {
     line-height: 24px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    border-left: 4px solid var(--bs-el-hover);
   }
 }
 .bs-table-box{
