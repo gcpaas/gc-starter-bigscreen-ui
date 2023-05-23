@@ -684,7 +684,8 @@ export default {
       this.$confirm('确定删除该页面设计？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(async () => {
         post(url).then(() => {
           this.$message({

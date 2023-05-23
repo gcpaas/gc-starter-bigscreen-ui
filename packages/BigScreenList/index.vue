@@ -239,7 +239,8 @@ export default {
       this.$confirm('确定删除该大屏？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(async () => {
         post(`/bigScreen/design/delete/${screen.code}`).then(() => {
           this.$message({
@@ -300,7 +301,7 @@ export default {
       width: 200px;
       margin-right: 20px;
       /deep/.el-input__inner{
-        background-color: #232832;
+        background-color: #232832!important;
       }
     }
   }
@@ -491,8 +492,8 @@ export default {
   }
 }
 .bs-pagination{
-  min-width: 100px;
  ::v-deep .el-input__inner{
+     width: 110px !important;
     border: none;
     background: var(--bs-el-background);
   }

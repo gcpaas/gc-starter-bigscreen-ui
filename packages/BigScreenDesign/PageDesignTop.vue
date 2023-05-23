@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import { toPng } from 'html-to-image'
+import { toJpeg } from 'html-to-image'
 import { mapMutations, mapActions, mapState } from 'vuex'
 import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
@@ -132,8 +132,9 @@ export default {
           delete pageInfo.pageTemplateId
         }
         const node = document.querySelector('.render-theme-wrap')
-        toPng(node)
+        toJpeg(node, { quality: 0.2 })
           .then((dataUrl) => {
+            console.log(dataUrl)
             pageInfo.coverPicture = dataUrl
             saveScreen(pageInfo).then(res => {
               this.$message.success('保存成功')

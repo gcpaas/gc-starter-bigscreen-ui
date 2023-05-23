@@ -65,7 +65,8 @@ export default {
       this.$confirm('确定删除该组件吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(() => {
         this.delItem(config.code)
       })
@@ -75,7 +76,8 @@ export default {
       this.$confirm('确定批量删除选中的组件吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(() => {
         // 找到和本组件group相同的组件 删除
         const codes = this.chartList.filter(_chart => _chart.group === config.group && config.group).map(_chart => _chart.code)

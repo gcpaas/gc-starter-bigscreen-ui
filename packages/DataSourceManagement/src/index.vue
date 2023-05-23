@@ -281,9 +281,9 @@ export default {
 @import '~packages/assets/style/bsTheme.scss';
 
 .bs-pagination {
-  min-width: 100px;
   ::v-deep .el-input__inner {
-    width: 110px;
+
+    width: 110px !important;
     border: none;
     background: var(--bs-el-background);
   }

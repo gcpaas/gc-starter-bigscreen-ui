@@ -212,7 +212,8 @@ export default {
       this.$confirm('确定删除该目录？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(async () => {
         post(`/bigScreen/category/delete/${catalog.code}`).then(() => {
           this.$message({

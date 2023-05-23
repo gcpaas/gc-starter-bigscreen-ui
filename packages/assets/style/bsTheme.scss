@@ -275,10 +275,9 @@
     font-weight: 600 !important;
     color: var(--bs-el-text) !important;
     border-bottom: 1px solid var(--bs-background-1) !important;
-    padding: 16px 0 0 0 !important;
+    padding: 16px 0px!important;
     padding-left: 12px !important;
     position: relative !important;
-
     &:after {
       content: ""   !important;
       height: 14px !important;
@@ -353,7 +352,7 @@
 
 .bs-el-message-box {
   background: var(--bs-background-1) !important;
-
+  border-color: var(--bs-el-border-color) !important;
   .el-message-box__title {
     color: var(--bs-el-title) !important;
   }
