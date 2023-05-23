@@ -37,6 +37,7 @@ export default {
   getCacheDataFields ({ commit, dispatch }, { dataSetId }) {
     getDataSetDetails(dataSetId).then(data => {
       commit('changeCacheDataFields', { dataSetId, data })
+      commit('changeCacheDataParams', { dataSetId, data })
     })
   }
 }

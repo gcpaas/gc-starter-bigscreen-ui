@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-23 09:26:43
+ * @LastEditTime: 2023-05-23 19:08:38
  */
 
 import Vue from 'vue'
@@ -136,6 +136,15 @@ export default {
       return
     }
     Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'fields', data?.fields || [])
+  },
+  // 改变缓存数据集中的数据参数
+  changeCacheDataParams (state, { dataSetId, data }) {
+    // 将 state.pageInfo.pageConfig.cacheDataSets 中的 dataSetId 对应fields字段数据替换为 data
+    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
+    if (index < 0) {
+      return
+    }
+    Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'params', data?.params || [])
   },
   // 改变缓存数据集中的数据
   changeCacheDataSetData (state, { dataSetId, data }) {

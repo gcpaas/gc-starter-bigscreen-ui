@@ -700,6 +700,7 @@ export default {
     changeCacheBusinessKey (id) {
       // 根据id在缓存中获取fields
       this.fieldsList = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.fields
+      this.params = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.params
     }
   }
 }
