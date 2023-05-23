@@ -59,7 +59,7 @@
     font-size: 16px;
     color: #ffffff;
     align-self: center;
-
+    white-space: nowrap;
     display: block;
     margin-right: 4px;
   }
@@ -97,25 +97,22 @@
   width: 15px;
   z-index: 1;
   width: 14px;
+  display: flex;
   height: auto;
   background-color: var(--bs-el-background);
   height: 100%;
 
   a {
-    position: relative;
+    align-self: center;
     display: block;
     height: 100px;
     line-height: 0px;
-    display: flex;
-    top: 40.5%;
-    justify-content: center;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     background-color: var(--bs-background-2);
 
     i {
-      align-self: center;
-
+      line-height: 100px;
       color: #c6c6db;
     }
 

@@ -37,7 +37,8 @@
               <el-select
                 v-else-if="setting.type === 'select'"
                 v-model="setting.value"
-                popper-class="bs-theme-select"
+                popper-class="bs-el-select"
+                class="bs-el-select"
                 :placeholder="`请输入${setting.label}`"
                 clearable
               >

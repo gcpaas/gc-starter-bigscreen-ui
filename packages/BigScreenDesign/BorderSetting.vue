@@ -84,7 +84,8 @@
           >
             <el-select
               v-model="config.customize.gradientDirection"
-              popper-class="bs-theme-select bs-theme-wrap"
+              popper-class="bs-el-select"
+              class="bs-el-select"
             >
               <el-option
                 v-for="item in gradientDirection"
