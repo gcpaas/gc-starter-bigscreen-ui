@@ -421,6 +421,7 @@ export default {
 
   /deep/ .el-form-item__label {
     color: var(--bs-el-title);
+    font-size: 12px;
   }
 
   /deep/ .el-radio {
