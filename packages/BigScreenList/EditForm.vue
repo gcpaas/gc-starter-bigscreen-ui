@@ -81,7 +81,7 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="closeAddDialog">
+        <el-button  class="bs-el-button-default" @click="closeAddDialog">
           取消
         </el-button>
         <el-button

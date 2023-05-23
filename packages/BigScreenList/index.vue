@@ -387,6 +387,7 @@ export default {
         background-color: var(--bs-background-2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
         color: var(--bs-el-title);
+        border: 1px solid var(--bs-background-2);
         &:hover {
           color: var(--bs-el-text);
           border: 1px solid #007aff;
