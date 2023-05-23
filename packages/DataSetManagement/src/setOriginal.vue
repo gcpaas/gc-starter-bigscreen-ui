@@ -297,7 +297,7 @@
       </div>
       <div
         v-loading="tableLoading"
-        class="bs-table-box is-Edit"
+        class="bs-table-box is-Edit bs-scrollbar"
       >
         <el-table
           align="center"

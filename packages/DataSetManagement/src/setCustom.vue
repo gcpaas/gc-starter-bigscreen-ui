@@ -237,7 +237,7 @@
                   配置
                 </el-button>
               </div>
-              <div class="field-wrap bs-field-wrap">
+              <div class="field-wrap bs-field-wrap bs-scrollbar">
                 <div
                   v-for="field in structurePreviewList"
                   :key="field.columnName"
@@ -276,7 +276,7 @@
             align="center"
             :data="dataPreviewList"
             max-height="400"
-            class="bs-el-table"
+            class="bs-el-table bs-scrollbar"
             :border="true"
           >
             <el-table-column

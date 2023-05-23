@@ -163,7 +163,7 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap bs-field-wrap">
+          <div class="field-wrap bs-field-wrap bs-scrollbar">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -196,7 +196,7 @@
       <div class="result-view">
         数据预览
       </div>
-      <div class="bs-table-box is-Edit">
+      <div class="bs-table-box is-Edit bs-scrollbar">
         <el-table
           align="center"
           :data="dataPreviewList"

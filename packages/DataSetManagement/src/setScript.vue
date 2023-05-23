@@ -191,7 +191,7 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap bs-field-wrap">
+            <div class="field-wrap bs-field-wrap bs-scrollbar">
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -226,7 +226,7 @@
       </div>
       <div
         v-loading="tableLoading"
-        class="bs-table-box is-Edit"
+        class="bs-table-box is-Edit bs-scrollbar"
       >
         <el-table
           align="center"
