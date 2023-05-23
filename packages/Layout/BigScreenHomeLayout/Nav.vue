@@ -27,7 +27,7 @@
 
 <script lang='ts'>
 import { NavCanvas } from './utils/nav-canvas'
-
+import { debounce } from 'lodash'
 export default {
   name: 'NavMain',
   components: {},
@@ -62,7 +62,9 @@ export default {
     },
     debNavResize () {
       if (this.nc) {
-        this.nc.resize()
+        debounce(() => {
+          this.nc.resize()
+        }, 1000)()
       }
     }
   }
