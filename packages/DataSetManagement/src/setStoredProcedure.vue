@@ -152,10 +152,9 @@
               ref="targetInSql"
               v-model="dataForm.sqlProcess"
               :options="cOptions"
-              class="codeStyle"
               style="margin-top: 2px"
             />
-            <div style="background: #f6f7fb;line-height: 32px; padding-left: 10px;">
+            <div class="bs-codemirror-bottom-text">
               示例：
               <strong v-if="dataForm.curingType === '3'">call 存储过程名称(<span style="color: red;">${参数名称}</span>,?)</strong>
               <strong v-else><br>
@@ -641,7 +640,8 @@
 import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/js/utils/datasetConfigService'
 import { datasourcePage } from 'packages/js/utils/dataSourceService'
 import { codemirror } from 'vue-codemirror'
-import 'codemirror/theme/dracula.css'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/nord.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
 export default {
@@ -721,6 +721,7 @@ export default {
         mode: 'text/x-mysql',
         lineNumbers: true,
         lineWrapping: true,
+        theme: 'nord',
         extraKey: { Ctrl: 'autocomplete' },
         hintOptions: {
           completeSingle: true
@@ -1242,9 +1243,9 @@ export default {
   }
   display: flex;
 }
-.codeStyle {
-  border: 1px solid #EBEEF5;
-}
+// .codeStyle {
+//   border: 1px solid #EBEEF5;
+// }
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;

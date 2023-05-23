@@ -59,7 +59,7 @@
                     v-for="(colorItem, index) in colors"
                     :key="index"
                     v-model="setting.value[index]"
-                    popper-class="bs-color-picker"
+                    popper-class="bs-theme-wrap bs-el-color-picker"
                     show-alpha
                     class="start-color"
                   />
@@ -192,4 +192,8 @@ export default {
     top: 0;
   }
 }
+::v-deep .el-color-picker__trigger{
+    border-color: var(--bs-el-border-color);
+  }
+
 </style>
