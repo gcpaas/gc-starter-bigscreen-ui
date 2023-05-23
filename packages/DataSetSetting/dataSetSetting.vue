@@ -99,7 +99,7 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 ::v-deep .el-scrollbar{
-    height: 560px !important;
+    height: 490px !important;
     overflow-y: auto !important;
   }
 .data-set-wrap {
@@ -110,11 +110,11 @@ export default {
     overflow: hidden;
   }
 
-  .bs-container {
+ ::v-deep .bs-container {
     padding: 0;
     min-height: 590px;
     .ztree {
-      max-width: none !important;
+      max-height: none !important;
     }
   }
 

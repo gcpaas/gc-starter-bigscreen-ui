@@ -128,7 +128,6 @@
               ref="targetInSql"
               v-model="dataForm.script"
               :options="cOptions"
-              class="codeStyle"
               style="margin-top: 2px"
             />
           </div>
@@ -578,6 +577,9 @@ import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset, da
 import { codemirror } from 'vue-codemirror'
 // import 'codemirror/mode/sql/sql.js'
 import 'codemirror/mode/groovy/groovy'
+
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/nord.css'
 import _ from 'lodash'
 export default {
   components: {
@@ -641,6 +643,7 @@ export default {
         mode: 'text/x-groovy',
         lineNumbers: true,
         lineWrapping: true,
+        theme: 'nord',
         extraKey: { Ctrl: 'autocomplete' },
         hintOptions: {
           completeSingle: true
@@ -993,9 +996,9 @@ export default {
   }
   display: flex;
 }
-.codeStyle {
-  border: 1px solid #EBEEF5;
-}
+// .codeStyle {
+//   border: 1px solid #EBEEF5;
+// }
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
