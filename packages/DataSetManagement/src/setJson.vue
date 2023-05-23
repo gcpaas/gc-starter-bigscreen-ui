@@ -163,7 +163,7 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap bs-field-wrap bs-scrollbar">
+          <div class="field-wrap bs-field-wrap bs-scrollbar bs-scrollbar-bg-1">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"

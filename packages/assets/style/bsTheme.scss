@@ -427,12 +427,19 @@
   }
   &::-webkit-scrollbar-track {
     border-radius: 6px;
-    background-color: transparent;
+    // background-color: transparent;
   }
   &:hover {
     &::-webkit-scrollbar-thumb {
       background-color: #494848;
     }
+  }
+}
+
+.bs-scrollbar-bg-1 {
+  &::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background: var(--bs-background-1)
   }
 }
 
