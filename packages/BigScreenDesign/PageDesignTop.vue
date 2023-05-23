@@ -10,39 +10,36 @@
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
-      <div
-        class="head-btn"
-        @click="execRun()"
+      <CusBtn
+        :loading="saveAndPreviewLoading"
+        @click.native="execRun()"
       >
         预览
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
+        :loading="saveLoading"
         @click="save('saveLoading')"
       >
         保存
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
         @click="empty"
       >
         清空
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
         @click="showPageInfo"
       >
         设置
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
         @click="updateRightVisiable"
       >
         <i
           class="iconfont-bigscreen"
           :class="rightFold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
         />
-      </div>
+      </CusBtn>
     </div>
     <ChooseTemplateDialog
       ref="ChooseTemplateDialog"
@@ -59,10 +56,12 @@ import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
+import CusBtn from './BtnLoading'
 export default {
   name: 'PageTopSetting',
   components: {
-    ChooseTemplateDialog
+    ChooseTemplateDialog,
+    CusBtn
   },
   props: {
     code: {
@@ -267,22 +266,6 @@ export default {
   .head-btn-group {
     display: flex;
     margin-left: 50px;
-
-    .head-btn {
-      display: flex;
-      background-color: #303640;
-      cursor: pointer;
-      width: 60px;
-      justify-content: center;
-      align-items: center;
-      margin-right: 4px;
-      padding: 4px 0;
-      font-size: 12px;
-
-      &:hover {
-        background-color: #414750;
-      }
-    }
   }
 
   .item-wrap {
