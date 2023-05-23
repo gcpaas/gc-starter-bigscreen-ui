@@ -61,7 +61,7 @@
       :visible.sync="catalogVisible"
       custom-class="bs-el-dialog bs-theme-wrap"
       width="30%"
-      class="bs-dialog-wrap catalog-dialog"
+      class="bs-dialog-wrap bs-el-dialog"
       @close="handleClose"
     >
       <el-form
@@ -242,6 +242,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  @import '~packages/assets/style/bsTheme.scss';
   .side-catalog-wrap{
     padding-top: 16px;
     width: 220px;
