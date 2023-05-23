@@ -414,3 +414,18 @@
     }
   }
 }
+
+// upload
+.bs-el-upload {
+  .el-upload {
+    color: var(--bs-el-hover);
+    background-color: var(--bs-el-background-2) !important;
+  }
+
+
+  &:hover {
+    color: var(--bs-el-hover);
+    border-color: var(--bs-el-hover);
+    background-color: var(--bs-background-2);
+  }
+}

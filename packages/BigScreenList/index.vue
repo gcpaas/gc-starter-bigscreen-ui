@@ -21,7 +21,6 @@
       v-loading="loading"
       class="list-wrap bs-scrollbar"
       element-loading-text="加载中"
-      element-loading-background="rgba(0, 0, 0, 0.8)"
       :style="{
         display: gridComputed ? 'grid' : 'flex',
         justifyContent: gridComputed ? 'space-around' : 'flex-start'

@@ -17,8 +17,10 @@
           <el-form-item
             label="链接"
             label-width="100px"
+            prop="customize.url"
           >
             <el-upload
+              class="bs-el-upload"
               :class="{hide: fileList.length >= 1 }"
               :action="upLoadUrl"
               :data="fileUploadParam"
@@ -55,8 +57,8 @@
               </div>
               <el-input
                 slot="tip"
+                v-model="config.customize.url"
                 class="upload-tip"
-                :value="config.customize.url"
                 placeholder="或输入链接地址"
                 clearable
                 @change="handleUrlChange"
@@ -69,7 +71,7 @@
           >
             <el-slider
               v-model="config.customize.opacity"
-              class="bs-slider"
+              class="bs-slider bs-el-input-number"
               :min="0"
               :max="100"
               show-input
@@ -107,7 +109,27 @@ export default {
       fileList: [],
       accept: 'image/*',
       hideUpload: false,
-      rules: {}
+      rules: {
+        'customize.url': [
+          { required: true, message: '请输入链接地址', trigger: 'blur' },
+          // 地址校验
+          {
+            validator: (rule, value, callback) => {
+              if (value) {
+                const reg = /^(http|https):\/\/([\w.]+\/?)\S*/
+                if (!reg.test(value)) {
+                  callback(new Error('请输入正确的链接地址'))
+                } else {
+                  callback()
+                }
+              } else {
+                callback()
+              }
+            },
+            trigger: 'blur'
+          }
+        ]
+      }
     }
   },
   computed: {
@@ -137,6 +159,12 @@ export default {
     handleUploadSuccess (res) {
       if (res.code === 200) {
         this.config.customize.url = res.data.url
+        this.fileList = [
+          {
+            name: this.config.title,
+            url: this.config.customize.url
+          }
+        ]
       } else {
         this.$message.error(res.msg)
       }
