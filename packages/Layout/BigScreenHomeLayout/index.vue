@@ -107,7 +107,7 @@ export default {
       left: 40px;
       display: flex;
       align-items: center;
-      color: #007aff;
+      color: var(--bs-el-hover);
 
       .logo {
         height: 30px;
