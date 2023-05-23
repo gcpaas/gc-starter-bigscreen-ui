@@ -387,3 +387,22 @@
     border: solid 2px #7e7e7e;
   }
 }
+.bs-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: transparent;
+  }
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: #494848;
+    }
+  }
+}

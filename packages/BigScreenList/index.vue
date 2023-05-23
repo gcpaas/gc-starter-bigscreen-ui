@@ -19,7 +19,7 @@
     </div>
     <div
       v-loading="loading"
-      class="list-wrap"
+      class="list-wrap bs-scrollbar"
       element-loading-text="加载中"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :style="{

@@ -96,7 +96,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
-            class="bs-el-table"
+            class="bs-el-table bs-scrollbar"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
