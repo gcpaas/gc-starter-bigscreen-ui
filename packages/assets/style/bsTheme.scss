@@ -353,7 +353,7 @@
 
 .bs-el-message-box {
   background: var(--bs-background-1) !important;
-
+  border-color: var(--bs-el-border-color) !important;
   .el-message-box__title {
     color: var(--bs-el-title) !important;
   }
