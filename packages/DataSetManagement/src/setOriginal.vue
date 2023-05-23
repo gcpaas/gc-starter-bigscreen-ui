@@ -1129,9 +1129,9 @@ export default {
   height: 100% !important;
 }
 .bs-pagination{
-  min-width: 100px;
  ::v-deep .el-input__inner{
-  border:none;
+    width: 110px !important;
+    border:none;
     background: var(--bs-el-background);
   }
 }
