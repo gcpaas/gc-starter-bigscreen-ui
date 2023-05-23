@@ -441,7 +441,11 @@ export default {
           }
 
           .right-bigscreen-time-title {
-            font-size: 12px;
+            font-size: 14px;
+            overflow: hidden;
+            width: 140px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
         }
 

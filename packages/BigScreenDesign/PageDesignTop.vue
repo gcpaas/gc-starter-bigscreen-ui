@@ -32,7 +32,7 @@
         class="head-btn"
         @click="showPageInfo"
       >
-        画布信息
+        设置
       </div>
       <div
         class="head-btn"
@@ -305,7 +305,7 @@ export default {
     }
 
     .name-span {
-      max-width: 100px;
+      max-width: 300px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
