@@ -32,6 +32,7 @@
       </div>
     </draggable>
     <el-empty
+      :image-size="90"
       v-if="!chartList.length"
       description="请拖拽组件后配置图层关系"
     />
