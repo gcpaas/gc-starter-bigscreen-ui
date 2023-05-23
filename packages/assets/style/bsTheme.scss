@@ -492,3 +492,16 @@
     background-color: var(--bs-background-2);
   }
 }
+
+.bs-context-menu-class {
+  background-color: var(--bs-background-1) !important;
+
+  .menu_item__available {
+    color: var(--bs-el-text) !important;
+  }
+
+  .menu_item__available:hover {
+    background: var(--bs-el-background-3) !important;;
+    color: var(--bs-el-hover) !important;
+  }
+}
