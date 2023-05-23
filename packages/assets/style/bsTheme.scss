@@ -160,11 +160,14 @@
     color: var(--bs-el-hover);
     // background-color: var(--bs-el-background-3);
   }
+  // 弹出层，有滚动条下最后一项显示不全
+  .el-select-dropdown__wrap {
+    margin-bottom: 0px !important;
+  }
 }
 
 // dialog
 .bs-el-dialog {
-  //
 
   .el-dialog__header {
     background: var(--bs-background-2);
