@@ -219,6 +219,7 @@
               >
                 <el-radio-group
                   v-model="dataForm.repeatStatus"
+                  class="bs-radio-wrap"
                   :disabled="!isEdit"
                 >
                   <el-radio :label="0">
@@ -262,7 +263,7 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap bs-field-wrap bs-scrollbar bs-scrollbar-bg-1">
+          <div class="field-wrap bs-field-wrap bs-scrollbar">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -1097,7 +1098,6 @@ export default {
     }
   }
 }
-
 
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: calc(100vh - 532px) !important;

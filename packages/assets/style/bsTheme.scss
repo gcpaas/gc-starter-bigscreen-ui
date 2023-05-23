@@ -67,6 +67,9 @@
   background: var(--bs-background-2);
   background-color: var(--bs-background-2);
 
+  th.gutter {
+    background-color: var(--bs-el-background-3) !important;
+  }
   &:before {
     display: none;
   }
@@ -131,10 +134,11 @@
   border-color: var(--bs-el-border-color);
   background-color: var(--bs-el-background) !important;
 
-  .el-select-dropdown__item {
+  .el-tag.el-tag--info{
     color: var(--bs-el-text);
+    border-color: var(--bs-el-border-color);
+    background-color: var(--bs-el-background-3);
   }
-
   .popper__arrow {
     border-bottom-color: var(--bs-el-background) !important;
 
@@ -155,10 +159,19 @@
     background-color: var(--bs-el-background);
     color: var(--bs-el-text);
   }
+  .el-select-dropdown__item{
+    .el-checkbox__label{
+      color: var(--bs-el-text) !important;
+    }
+  }
 
   .el-select-dropdown__item.selected {
     color: var(--bs-el-hover);
-    // background-color: var(--bs-el-background-3);
+    background-color: var(--bs-background-1);
+    &:hover{
+      color: var(--bs-el-hover);
+      background-color: var(--bs-el-background-3);
+    }
   }
   // 弹出层，有滚动条下最后一项显示不全
   .el-select-dropdown__wrap {
@@ -215,11 +228,13 @@
   color: var(--bs-el-title);
 
   .el-tree-node__content:hover {
-    background-color: var(--bs-el-hover);
+    color: var(--bs-el-text);
+    background-color: var(--bs-el-background-3);
   }
 
   .el-tree-node.is-current>.el-tree-node__content {
-    background-color: var(--bs-el-hover) !important;
+    color: var(--bs-el-hover);
+    background-color: var(--bs-el-background);
   }
 
 }

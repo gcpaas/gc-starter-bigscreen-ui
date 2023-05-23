@@ -748,6 +748,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
+.scrollbar {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: none;
+}
 .tree-box {
   padding: 5px 0;
   max-height: 270px;
@@ -902,7 +907,9 @@ export default {
 /deep/ .jsoneditor-mode-code {
   border-color: var(--bs-el-hover);
 }
-
+.bs-table-box{
+  margin-bottom: 0;
+}
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
 
