@@ -124,7 +124,7 @@ export default {
       // 防抖调用方法
       debounce(() => {
         this.handleScroll()
-      }, 5000)()
+      }, 500)()
     }
   },
   computed: {
