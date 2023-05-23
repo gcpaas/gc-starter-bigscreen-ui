@@ -46,39 +46,39 @@ import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 
 // 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问，不写则不注册
 registerConfig({
-  // 路由
   routers: {
     // 大屏设计路由
-    designUrl: '/big-screen/design',
+    designUrl: '/bigscreen/design',
     // 预览路由
-    previewUrl: '/big-screen/preview',
+    previewUrl: '/bigscreen/preview',
     // 页面管理路由（带头部跳转路由）
-    pageManagementUrl: '/management',
+    pageManagementUrl: '/',
     // 页面列表路由
-    pageListUrl: '/pages',
-    // 数据管理（带头部）
-    dsManageUrl: '/data-source-manage',
+    pageListUrl: '/big-screen-list',
+    // 模版列表
+    templateListUrl: '/big-screen-template',
     // 数据源管理
-    dataSourceUrl: '/data-source-manage/data-source',
+    dataSourceUrl: '/big-screen-dataSource',
     // 数据集管理
-    dataSetUrl: '/data-source-manage/data-set'
+    dataSetUrl: '/big-screen-dataSet'
   },
-  // 自定义http配置 详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/kq97pycosmnslgt2
   httpConfigs: {
-    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-    // ...其他，比如请求头
-    // headers: {
-    //   'Content-Type': 'application/json; charset=utf-8',
-    // }
+    baseURL: window.CONFIG?.baseUrl
   },
-  // 自定义主题颜色变量，详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/ld7vsswz7czecpk0
   customTheme: {
-    '--bs-background-1': '#1d1d1d',
-    '--bs-el-background': '#0F1014',
-    '--bs-el-title': '#859094',
-    '--bs-el-text': '#ffffff',
-    '--bs-el-hover': '#007aff30'
+    '--bs-background-1': '#151a26', // 黑色
+    '--bs-background-2': '#232832', // 灰色
+    '--bs-background-3': '#212326',
+    '--bs-background-design-inner': '#1d1e20',
+    '--bs-el-background': '#151A26',
+    '--bs-el-background-2': '#35393F',
+    '--bs-el-background-3': '#303640', // 表头背景色
+    '--bs-el-title': '#87888E', // 白色字体
+    '--bs-el-text': '#ffffff', // 激活白色字体
+    '--bs-el-hover': '#007aff',
+    '--bs-el-border-color': 'transparent'
   },
+  customPlots: []
 }, router)
 
 ```
@@ -90,7 +90,7 @@ registerConfig({
 registerConfig({
   // 自定义http配置
   httpConfigs: {
-    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
+    baseURL: window.baseURL // 必填 
   }
   // ...  
 }, router)
