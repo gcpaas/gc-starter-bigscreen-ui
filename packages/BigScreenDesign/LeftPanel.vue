@@ -89,7 +89,9 @@
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                {{ menu.title }}
+                <div class="page-left-content-title-text">
+                  {{ menu.title }}
+                </div>
               </div>
               <el-scrollbar>
                 <div class="page-left-content-components">
@@ -344,11 +346,14 @@ export default {
         .page-left-content-title {
           background-color: var(--bs-background-2);
           color: var(--bs-el-title);
-          padding-left: 20px;
           font-size: 14px;
           margin: 8px;
-          padding: 8px 16px;
-          border-left: 4px solid #007aff;
+          padding: 8px 0;
+
+          .page-left-content-title-text {
+            border-left: 4px solid #007aff;
+            padding-left: 8px;
+          }
         }
         .el-scrollbar__view{
           height: calc(100vh - 55px);
