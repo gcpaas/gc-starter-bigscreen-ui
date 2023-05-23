@@ -1,26 +1,34 @@
-
+<!--
+ * @description: 指标组件案例设计面板
+ * @Date: 2022-08-17 16:53:28
+ * @Author: xingheng
+-->
 <template>
-  <div class="bs-setting-wrap">
+  <div class="setting-wrap">
     <el-form
       ref="form"
       label-width="100px"
       label-position="left"
       :model="config"
-      :rules="rules"
     >
-      待开发
+      <el-form-item
+        label="标题"
+        label-width="100px"
+      >
+        <el-input
+          v-model="config.title"
+          placeholder="请输入标题"
+        />
+      </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
 export default {
-  name: 'SvgsSetting',
-  components: {
-  },
+  name: 'CurrentTimeSetting',
   data () {
     return {
-      rules: {
-      }
+      activeName: 'data'
     }
   },
   computed: {
@@ -42,8 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "~packages/assets/style/settingWrap.scss";
-  .bs-setting-wrap{
-    padding-top: 16px;
+  @import "../~packages/assets/style/settingWrap.scss";
+  .setting-wrap{
+    padding: 16px;
   }
 </style>
