@@ -86,6 +86,10 @@
 
     bs-el-pagination .cell {
       color: var(--bs-el-text) !important;
+
+      li:hover {
+        color: var(--bs-el-text) !important;
+      }
     }
 
     .el-input__inner {
@@ -234,6 +238,10 @@
 
 .bs-el-pagination {
   border: none !important;
+
+  li:hover {
+    color: var(--bs-el-text) !important;
+  }
 
   .popper__arrow {
     border-top-color: var(--bs-el-background) !important;
