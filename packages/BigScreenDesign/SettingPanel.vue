@@ -67,20 +67,6 @@ export default {
       return this.activeItem?.title || ''
     }
   },
-  watch: {
-    activeCode: {
-      handler (val) {
-        if (!val) {
-          this.$nextTick(() => {
-            // eslint-disable-next-line no-unused-expressions
-            this.$refs.OverallSetting && this.$refs?.OverallSetting?.init()
-          })
-        }
-      },
-      deep: true,
-      immediate: true
-    }
-  },
   mounted () { },
   methods: {
     toggleShow () {

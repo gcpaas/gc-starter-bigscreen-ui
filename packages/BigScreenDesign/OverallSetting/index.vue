@@ -284,7 +284,9 @@ export default {
   },
 
   created () { },
-  mounted () { },
+  mounted () {
+    this.init()
+  },
   methods: {
     ...mapMutations('bigScreen', [
       'changePageLoading',
