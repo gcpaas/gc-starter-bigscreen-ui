@@ -300,10 +300,13 @@
   }
 
   .popper__arrow {
+    border-bottom-color: var(--bs-el-background) !important;
     border-top-color: var(--bs-el-background) !important;
 
     &:after {
+      top: 0 !important;
       bottom: 0 !important;
+      border-bottom-color: var(--bs-el-background) !important;
       border-top-color: var(--bs-el-background) !important;
     }
   }
@@ -535,5 +538,14 @@
     background: var(--bs-el-background-3) !important;
     ;
     color: var(--bs-el-hover) !important;
+  }
+}
+//img
+.bs-el-img{
+  /deep/.el-image__error{
+    background-color: var(--bs-background-1) !important;
+  }
+  /deep/.close-icon{
+    color: var(--bs-el-title);
   }
 }

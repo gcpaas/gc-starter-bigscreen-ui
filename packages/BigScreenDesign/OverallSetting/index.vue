@@ -1,5 +1,5 @@
 <template>
-  <div class="bs-overall-wrap">
+  <div class="bs-overall-wrap bs-theme-wrap">
     <div class="bs-overall-setting-wrap">
       <el-form
         ref="form"
@@ -82,7 +82,7 @@
           </el-button>
           <el-image
             v-show="form.bg"
-            class="bg-img"
+            class="bg-img bs-el-img"
             :src="form.bg"
             fit="cover"
             @click="$refs.bgImg.init()"
@@ -384,6 +384,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~packages/assets/style/bsTheme.scss';
 .bs-overall-wrap {
   position: relative;
   height: 100%;
