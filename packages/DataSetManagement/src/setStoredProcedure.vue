@@ -1307,44 +1307,22 @@ export default {
     }
   }
 }
-/deep/ .el-page-header {
-  .el-page-header__left {
-    display: none;
-  }
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-  .el-page-header__content::before {
-    content: "";
-    height: 24px;
-    line-height: 24px;
-    position: absolute;
-    left: 0;
-    border-left: 4px solid var(--bs-el-hover);
-  }
-}
+
 .result-view {
-  color: var(--bs-el-text);
-  padding: 8px 12px;
-  margin: 0 16px 0;
+  font-size: 14px;
   font-weight: 600;
+  color: var(--bs-el-text);
   position: relative;
-  line-height: 24px;
+  padding: 16px 0;
+  padding-left: 12px;
+  border-bottom: 1px solid var(--bs-background-1);
   &::before {
     content: "";
-    height: 24px;
-    line-height: 24px;
+    height: 14px;
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     border-left: 4px solid var(--bs-el-hover);
   }
 }

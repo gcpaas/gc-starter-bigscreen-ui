@@ -23,7 +23,6 @@
               @click="typeChose('original')"
             >
               原始数据集
-              <p>原始数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -40,7 +39,6 @@
               @click="typeChose('custom')"
             >
               自助数据集
-              <p>自助数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -57,7 +55,6 @@
               @click="typeChose('storedProcedure')"
             >
               存储过程数据集
-              <p>存储过程数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -74,7 +71,6 @@
               @click="typeChose('json')"
             >
               JSON数据集
-              <p>JSON数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -91,7 +87,6 @@
               @click="typeChose('script')"
             >
               脚本数据集
-              <p>脚本数据集描述</p>
             </div>
           </el-card>
         </el-col>
