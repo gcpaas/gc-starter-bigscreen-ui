@@ -1,7 +1,12 @@
-.bs-theme-wrap{
-  .el-loading-mask{
-    opacity: 0.7;
-    background-color: var(--bs-background-3);
+.bs-theme-wrap {
+  // 加载效果
+  .el-loading-mask {
+    opacity: 0.9;
+    background-color: var(--bs-el-background-2);
+  }
+  // 空状态
+  .el-empty__image {
+    filter: opacity(0.5);
   }
 }
 
@@ -201,10 +206,12 @@
       border-top-color: var(--bs-el-background) !important;
     }
   }
-  .el-select-dropdown__list{
-    padding:0 0 6px 0;
+
+  .el-select-dropdown__list {
+    padding: 0 0 6px 0;
     margin-bottom: 6px !important;
   }
+
   ::v-deep .el-select-dropdown {
     width: 100px;
     min-width: 100px;
