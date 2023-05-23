@@ -194,8 +194,8 @@ export default {
       this.startY = startY >> 0
 
       this.$emit('changeStart', {
-        x: this.startX + 100 - 20,
-        y: this.startY + 100 - 20
+        x: this.startX + 50 - 20,
+        y: this.startY + 50 - 20
       })
     }
   }
@@ -229,11 +229,11 @@ export default {
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #358f92;
+    background-color: #494848;
   }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #494848;
+    background-color: transparent;
   }
 }
 
@@ -268,8 +268,8 @@ export default {
 
 #canvas {
   position: absolute;
-  top: 100px;
-  left: 100px;
+  top: 50px;
+  left: 50px;
 }
 /deep/ .line {
   border-left: 1px dashed #0089d0 !important;
@@ -298,12 +298,9 @@ export default {
   z-index: 998
 }
 .grid-bg {
-  background: #5588aa40 !important;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0),
-    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0) !important;
-  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px !important;
+  background-color: #2a2e33 !important;
+  background-image: url(./images/canvas-bg.png);
+    background-repeat: repeat;
+    word-spacing: 10px;
 }
 </style>

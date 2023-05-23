@@ -106,8 +106,8 @@ const dragDesignPanelMixin = {
         father.scrollLeft = this.scrollLeft
 
         this.$emit('changeStart', {
-          x: this.startX + 100 - 20,
-          y: this.startY + 100 - 20
+          x: this.startX + 50 - 20,
+          y: this.startY + 50 - 20
         })
       }
     },

@@ -26,11 +26,11 @@ export default {
   props: {
     offsetX: {
       type: Number,
-      default: 340 + 100
+      default: 340 + 50
     },
     offsetY: {
       type: Number,
-      default: 73 + 100
+      default: 73 + 50
     }
   },
   data () {
