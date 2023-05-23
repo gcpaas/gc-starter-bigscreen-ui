@@ -60,7 +60,7 @@
           <el-select
             v-model="form.customTheme"
             class="bs-el-select select"
-            popper-class="bs-el-select bs-theme-wrap"
+            popper-class="bs-el-select"
             placeholder="请选择主题"
             clearable
           >
