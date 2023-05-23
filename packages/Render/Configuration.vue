@@ -121,9 +121,9 @@ export default {
 }
 
 .hover {
-  border: 1px dashed #007aff;
+  border: 1px dashed var(--bs-el-hover);
 }
 .active {
-  border: 1px solid #007aff;
+  border: 1px solid var(--bs-el-hover);
 }
 </style>
