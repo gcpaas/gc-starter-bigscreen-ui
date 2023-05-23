@@ -29,7 +29,10 @@
             />
           </el-form-item>
           <el-form-item label="边框线宽度">
-            <el-input-number v-model="config.customize.borderWidth" />
+            <el-input-number
+              v-model="config.customize.borderWidth"
+              class="bs-el-input-number"
+            />
           </el-form-item>
           <el-form-item label="背景色">
             <ColorPicker

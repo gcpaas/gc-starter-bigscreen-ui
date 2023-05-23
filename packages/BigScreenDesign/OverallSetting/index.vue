@@ -120,7 +120,10 @@
     </div>
 
     <div class="toolbar">
-      <el-button @click="close">
+      <el-button
+        class="bs-el-button-default"
+        @click="close"
+      >
         取消
       </el-button>
       <el-button

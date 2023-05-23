@@ -432,3 +432,10 @@
     background-color: var(--bs-background-2);
   }
 }
+
+// radio
+.bs-radio-wrap {
+  .el-radio__inner {
+    border: 1px solid #DCDFE6 !important;
+  }
+}
