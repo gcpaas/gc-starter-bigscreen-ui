@@ -7,77 +7,33 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-
-          <div class="lc-field-body">
-            <el-form
-              :model="config.customize"
-              label-position="left"
-              class="setting-body"
-              label-width="90px"
-            >
-              <el-form-item label="装饰名称">
-                <el-input
-                  v-model="config.title"
-                  clearable
-                />
-              </el-form-item>
-              <el-form-item label="装饰主颜色">
-                <ColorPicker
-                  v-model="config.customize.decorationColor1"
-                  :predefine="predefineThemeColors"
-                />
-              </el-form-item>
-              <el-form-item label="装饰副颜色">
-                <ColorPicker
-                  v-model="config.customize.decorationColor2"
-                  :predefine="predefineThemeColors"
-                />
-              </el-form-item>
-              <!-- <el-form-item label="标题文字">
-                <el-input clearable placeholder="请输入标题文字" v-model="config.customize.title"/>
-              </el-form-item>
-              <el-form-item
-                label="标题字体大小"
-                label-width="100px"
-              >
-                <el-input
-                  v-model="config.customize.fontSize"
-                  placeholder="请输入标题字体大小"
-                  clearable
-                >
-                  <template slot="append">
-                    px
-                  </template>
-                </el-input>
-              </el-form-item>
-              <el-form-item
-                label="标题字体权重"
-                label-width="100px"
-              >
-                <el-input-number
-                  v-model="config.customize.fontWeight"
-                  placeholder="请输入标题字体权重"
-                />
-              </el-form-item>
-              <el-form-item
-                label="标题字体颜色"
-                label-width="100px"
-              >
-                <el-color-picker v-model="config.customize.color" :predefine="predefineThemeColors" />
-              </el-form-item> -->
-            </el-form>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <div class="lc-field-body">
+        <el-form
+          :model="config.customize"
+          label-position="left"
+          class="setting-body"
+          label-width="90px"
+        >
+          <el-form-item label="装饰名称">
+            <el-input
+              v-model="config.title"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="装饰主颜色">
+            <ColorPicker
+              v-model="config.customize.decorationColor1"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="装饰副颜色">
+            <ColorPicker
+              v-model="config.customize.decorationColor2"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
+        </el-form>
+      </div>
     </el-form>
   </div>
 </template>

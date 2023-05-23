@@ -8,138 +8,126 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1','2']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-
-          <div class="lc-field-body">
-            <div class="">
-              <el-form-item
-                label="标题"
-                label-width="100px"
+      <div class="lc-field-body">
+        <div class="">
+          <el-form-item
+            label="标题"
+            label-width="100px"
+          >
+            <el-input
+              v-model="config.title"
+              placeholder="请输入标题"
+              clearable
+            />
+          </el-form-item>
+          <template
+            v-for="(setting, index) in config.setting.filter(item => item.tabName === 'custom')"
+          >
+            <el-form-item
+              :key="index"
+              :label="setting.label"
+              label-width="100px"
+            >
+              <el-input
+                v-if="setting.type === 'input'"
+                v-model="setting.value"
+                :placeholder="`请输入${setting.label}`"
+                clearable
+              />
+              <el-select
+                v-else-if="setting.type === 'select'"
+                v-model="setting.value"
+                popper-class="bs-theme-select"
+                :placeholder="`请输入${setting.label}`"
+                clearable
               >
-                <el-input
-                  v-model="config.title"
-                  placeholder="请输入标题"
-                  clearable
+                <el-option
+                  v-for="(opt, optIndex) in setting.options"
+                  :key="optIndex"
+                  :label="opt.label"
+                  :value="opt.value"
                 />
-              </el-form-item>
-              <template
-                v-for="(setting, index) in config.setting.filter(item => item.tabName === 'custom')"
-              >
-                <el-form-item
-                  :key="index"
-                  :label="setting.label"
-                  label-width="100px"
-                >
-                  <el-input
-                    v-if="setting.type === 'input'"
-                    v-model="setting.value"
-                    :placeholder="`请输入${setting.label}`"
-                    clearable
+              </el-select>
+              <template v-else-if="setting.type === 'colorSelect'">
+                <color-select
+                  v-model="colorScheme"
+                  @update="updateColorScheme"
+                />
+                <div style="display: flex;align-items: center;height: 42px;flex-wrap: wrap">
+                  <el-color-picker
+                    v-for="(colorItem, index) in colors"
+                    :key="index"
+                    v-model="setting.value[index]"
+                    popper-class="bs-color-picker"
+                    show-alpha
+                    class="start-color"
                   />
-                  <el-select
-                    v-else-if="setting.type === 'select'"
-                    v-model="setting.value"
-                    popper-class="bs-theme-select"
-                    :placeholder="`请输入${setting.label}`"
-                    clearable
-                  >
-                    <el-option
-                      v-for="(opt, optIndex) in setting.options"
-                      :key="optIndex"
-                      :label="opt.label"
-                      :value="opt.value"
-                    />
-                  </el-select>
-                  <template v-else-if="setting.type === 'colorSelect'">
-                    <color-select
-                      v-model="colorScheme"
-                      @update="updateColorScheme"
-                    />
-                    <div style="display: flex;align-items: center;height: 42px;flex-wrap: wrap">
-                      <el-color-picker
-                        v-for="(colorItem, index) in colors"
-                        :key="index"
-                        v-model="setting.value[index]"
-                        popper-class="bs-color-picker"
-                        show-alpha
-                        class="start-color"
-                      />
-                      <span
-                        class="el-icon-circle-plus-outline"
-                        style="color: #007AFF;font-size: 20px"
-                        @click="addColor"
-                      />
-                      <span
-                        v-if="colors.length"
-                        class="el-icon-remove-outline"
-                        style="color: #ea0b30;font-size: 20px"
-                        @click="delColor()"
-                      />
-                    </div>
-                  </template>
-                  <color-picker
-                    v-else-if="setting.type === 'colorPicker'"
-                    v-model="setting.value"
-                    style="width: 100%;display: grid;"
+                  <span
+                    class="el-icon-circle-plus-outline"
+                    style="color: #007AFF;font-size: 20px"
+                    @click="addColor"
                   />
-                  <!-- 渐变色设置 -->
-                  <GradualSetting
-                    v-else-if="setting.type === 'gradual'"
-                    v-model="setting.value"
+                  <span
+                    v-if="colors.length"
+                    class="el-icon-remove-outline"
+                    style="color: #ea0b30;font-size: 20px"
+                    @click="delColor()"
                   />
-                  <el-input-number
-                    v-else-if="setting.type === 'inputNumber'"
-                    v-model="setting.value"
-                    class="bs-el-input-number"
-                  />
-                  <el-radio-group
-                    v-else-if="setting.type === 'radio'"
-                    v-model="setting.value"
-                  >
-                    <template v-for="(opt, optIndex) in setting.options">
-                      <el-radio-button
-                        :key="optIndex"
-                        :label="opt.value"
-                      >
-                        {{ opt.label }}
-                      </el-radio-button>
-                    </template>
-                  </el-radio-group>
-                  <el-switch
-                    v-else-if="setting.type === 'switch'"
-                    v-model="setting.value"
-                  />
-                  <el-switch
-                    v-else-if="setting.type === 'switchNumber'"
-                    v-model="setting.value"
-                    :active-value="1"
-                    :inactive-value="0"
-                  />
-                  <el-slider
-                    v-else-if="setting.type === 'slider'"
-                    v-model="setting.value"
-                    :min="0"
-                    :max="1"
-                    :step="0.01"
-                  />
-                  <PaddingSetting
-                    v-else-if="setting.type === 'padding'"
-                    v-model="setting.value"
-                  />
-                </el-form-item>
+                </div>
               </template>
-            </div>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+              <color-picker
+                v-else-if="setting.type === 'colorPicker'"
+                v-model="setting.value"
+                style="width: 100%;display: grid;"
+              />
+              <!-- 渐变色设置 -->
+              <GradualSetting
+                v-else-if="setting.type === 'gradual'"
+                v-model="setting.value"
+              />
+              <el-input-number
+                v-else-if="setting.type === 'inputNumber'"
+                v-model="setting.value"
+                class="bs-el-input-number"
+              />
+              <el-radio-group
+                v-else-if="setting.type === 'radio'"
+                v-model="setting.value"
+              >
+                <template v-for="(opt, optIndex) in setting.options">
+                  <el-radio-button
+                    :key="optIndex"
+                    :label="opt.value"
+                  >
+                    {{ opt.label }}
+                  </el-radio-button>
+                </template>
+              </el-radio-group>
+              <el-switch
+                v-else-if="setting.type === 'switch'"
+                v-model="setting.value"
+              />
+              <el-switch
+                v-else-if="setting.type === 'switchNumber'"
+                v-model="setting.value"
+                :active-value="1"
+                :inactive-value="0"
+              />
+              <el-slider
+                v-else-if="setting.type === 'slider'"
+                v-model="setting.value"
+                :min="0"
+                :max="1"
+                :step="0.01"
+              />
+              <PaddingSetting
+                v-else-if="setting.type === 'padding'"
+                v-model="setting.value"
+              />
+            </el-form-item>
+          </template>
+        </div>
+      </div>
     </el-form>
   </div>
 </template>

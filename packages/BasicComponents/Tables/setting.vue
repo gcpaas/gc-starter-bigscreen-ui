@@ -8,62 +8,51 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1', '2']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-          <div class="lc-field-body">
-            <div>
-              <el-form-item label="表格头部字体颜色">
-                <ColorPicker
-                  v-model="config.customize.headerFontColor"
-                  style="width:180px"
-                  placeholder="请选择表格头部字体颜色"
-                  :predefine-colors="predefineThemeColors"
-                />
-              </el-form-item>
-              <el-form-item label="表格头部字体大小">
-                <el-input-number
-                  v-model="config.customize.headerFontSize"
-                  class="bs-el-input-number"
-                  :min="12"
-                  :max="100"
-                  :step="1"
-                />
-              </el-form-item>
-              <el-form-item label="表格主体字体颜色">
-                <ColorPicker
-                  v-model="config.customize.bodyFontColor"
-                  style="width:180px"
-                  placeholder="请选择表格主体字体颜色"
-                  :predefine-colors="predefineThemeColors"
-                />
-              </el-form-item>
-              <el-form-item label="表格主体字体大小">
-                <el-input-number
-                  v-model="config.customize.bodyFontSize"
-                  class="bs-el-input-number"
-                  :min="12"
-                  :max="100"
-                  :step="1"
-                />
-              </el-form-item>
-              <el-form-item label="表格斑马线">
-                <el-switch
-                  v-model="config.customize.stripe"
-                  class="bs-switch"
-                  active-color="#007aff"
-                />
-              </el-form-item>
-            </div>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <div class="lc-field-body">
+        <div>
+          <el-form-item label="表格头部字体颜色">
+            <ColorPicker
+              v-model="config.customize.headerFontColor"
+              style="width:180px"
+              placeholder="请选择表格头部字体颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="表格头部字体大小">
+            <el-input-number
+              v-model="config.customize.headerFontSize"
+              class="bs-el-input-number"
+              :min="12"
+              :max="100"
+              :step="1"
+            />
+          </el-form-item>
+          <el-form-item label="表格主体字体颜色">
+            <ColorPicker
+              v-model="config.customize.bodyFontColor"
+              style="width:180px"
+              placeholder="请选择表格主体字体颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="表格主体字体大小">
+            <el-input-number
+              v-model="config.customize.bodyFontSize"
+              class="bs-el-input-number"
+              :min="12"
+              :max="100"
+              :step="1"
+            />
+          </el-form-item>
+          <el-form-item label="表格斑马线">
+            <el-switch
+              v-model="config.customize.stripe"
+              class="bs-switch"
+              active-color="#007aff"
+            />
+          </el-form-item>
+        </div>
+      </div>
     </el-form>
   </div>
 </template>

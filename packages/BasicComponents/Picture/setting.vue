@@ -12,93 +12,82 @@
       :model="config"
       :rules="rules"
     >
-      <el-collapse :value="['1', '2', '3']">
-        <el-collapse-item name="2">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-          <div class="lc-field-body">
-            <div class="">
-              <el-form-item
-                label="链接"
-                label-width="100px"
+      <div class="lc-field-body">
+        <div class="">
+          <el-form-item
+            label="链接"
+            label-width="100px"
+          >
+            <el-upload
+              :class="{hide: fileList.length >= 1 }"
+              :action="upLoadUrl"
+              :data="fileUploadParam"
+              :headers="headers"
+              :accept="accept"
+              :file-list="fileList"
+              :auto-upload="true"
+              :limit="1"
+              list-type="picture-card"
+              :on-success="handleUploadSuccess"
+              :before-upload="beforeUpload"
+            >
+              <i
+                slot="default"
+                class="el-icon-plus"
+              />
+              <div
+                slot="file"
+                slot-scope="{ file }"
               >
-                <el-upload
-                  :class="{hide: fileList.length >= 1 }"
-                  :action="upLoadUrl"
-                  :data="fileUploadParam"
-                  :headers="headers"
-                  :accept="accept"
-                  :file-list="fileList"
-                  :auto-upload="true"
-                  :limit="1"
-                  list-type="picture-card"
-                  :on-success="handleUploadSuccess"
-                  :before-upload="beforeUpload"
+                <img
+                  class="el-upload-list__item-thumbnail"
+                  :src="file.url"
+                  alt=""
                 >
-                  <i
-                    slot="default"
-                    class="el-icon-plus"
-                  />
-                  <div
-                    slot="file"
-                    slot-scope="{ file }"
+                <span class="el-upload-list__item-actions">
+                  <span
+                    class="el-upload-list__item-delete"
+                    @click="handleRemove(file)"
                   >
-                    <img
-                      class="el-upload-list__item-thumbnail"
-                      :src="file.url"
-                      alt=""
-                    >
-                    <span class="el-upload-list__item-actions">
-                      <span
-                        class="el-upload-list__item-delete"
-                        @click="handleRemove(file)"
-                      >
-                        <i class="el-icon-delete" />
-                      </span>
-                    </span>
-                  </div>
-                  <el-input
-                    slot="tip"
-                    class="upload-tip"
-                    :value="config.customize.url"
-                    placeholder="或输入链接地址"
-                    clearable
-                    @change="handleUrlChange"
-                  />
-                </el-upload>
-              </el-form-item>
-              <el-form-item
-                label="不透明度"
-                label-width="100px"
-              >
-                <el-slider
-                  v-model="config.customize.opacity"
-                  class="bs-slider"
-                  :min="0"
-                  :max="100"
-                  show-input
-                />
-              </el-form-item>
-              <el-form-item
-                label="圆角"
-                label-width="100px"
-              >
-                <el-input-number
-                  v-model="config.customize.radius"
-                  class="bs-el-input-number"
-                  placeholder="请输入圆角大小"
-                  :min="0"
-                />
-              </el-form-item>
-            </div>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+                    <i class="el-icon-delete" />
+                  </span>
+                </span>
+              </div>
+              <el-input
+                slot="tip"
+                class="upload-tip"
+                :value="config.customize.url"
+                placeholder="或输入链接地址"
+                clearable
+                @change="handleUrlChange"
+              />
+            </el-upload>
+          </el-form-item>
+          <el-form-item
+            label="不透明度"
+            label-width="100px"
+          >
+            <el-slider
+              v-model="config.customize.opacity"
+              class="bs-slider"
+              :min="0"
+              :max="100"
+              show-input
+            />
+          </el-form-item>
+          <el-form-item
+            label="圆角"
+            label-width="100px"
+          >
+            <el-input-number
+              v-model="config.customize.radius"
+              class="bs-el-input-number"
+              placeholder="请输入圆角大小"
+              :min="0"
+            />
+          </el-form-item>
+        </div>
+      </div>
     </el-form>
   </div>
 </template>
