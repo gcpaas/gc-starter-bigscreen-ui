@@ -456,15 +456,15 @@
 // upload
 .bs-el-upload {
   .el-upload {
-    color: var(--bs-el-hover);
+    color: var(--bs-el-hover) !important;
     background-color: var(--bs-el-background-2) !important;
   }
 
 
   &:hover {
-    color: var(--bs-el-hover);
-    border-color: var(--bs-el-hover);
-    background-color: var(--bs-background-2);
+    color: var(--bs-el-hover)!important;
+    border-color: var(--bs-el-hover) !important;
+    background-color: var(--bs-background-2) !important;
   }
 }
 
@@ -501,7 +501,7 @@
   }
 
   .menu_item__available:hover {
-    background: var(--bs-el-background-3) !important;;
+    background: var(--bs-el-background-3) !important;
     color: var(--bs-el-hover) !important;
   }
 }

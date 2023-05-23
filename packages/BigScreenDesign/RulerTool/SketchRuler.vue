@@ -258,11 +258,11 @@ export default {
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #494848;
+    background-color: var(--bs-el-background-2) !important;
   }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: transparent;
+    background-color: transparent !important;
   }
 }
 
