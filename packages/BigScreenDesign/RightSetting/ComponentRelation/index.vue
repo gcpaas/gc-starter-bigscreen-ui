@@ -7,14 +7,12 @@
 -->
 <template>
   <div>
-    <el-collapse-item name="relations">
-      <template slot="title">
-        <div class="lc-field-head">
-          <div class="lc-field-title">
-            组件联动
-          </div>
+    <div class="data-setting-data-box">
+      <div class="lc-field-head">
+        <div class="lc-field-title">
+          组件联动
         </div>
-      </template>
+      </div>
       <div class="lc-field-body">
         <div class="select-item select-item-title">
           <span class="input-wrap">目标组件</span>
@@ -76,7 +74,7 @@
           新增联动组件
         </el-button>
       </div>
-    </el-collapse-item>
+    </div>
     <RelationSetting
       :setting-visible.sync="settingVisible"
       :config-map="configMap"
@@ -337,5 +335,29 @@ export default {
 .select-item-active {
   border: 1px solid #007aff;
   background: var(--bs-el-hover);
+}
+// 修改设置面板样式
+.data-setting-box{
+  .data-setting-data-box{
+    .lc-field-head{
+      height: 30px;
+      .lc-field-title{
+        position: relative;
+        padding-left: 12px;
+        line-height: 30px;
+        height: 30px;
+        &:after{
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          content: '';
+          width: 4px;
+          height: 14px;
+          background-color: var(--bs-el-hover);
+        }
+      }
+    }
+  }
 }
 </style>

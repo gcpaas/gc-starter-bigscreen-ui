@@ -11,18 +11,16 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse v-model="activeNames">
-        <el-collapse-item
+      <div class="data-setting-box">
+        <div
           v-if="config.option.displayOption.dataSourceType.enable"
-          name="数据来源"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据来源
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据来源
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-form-item
               label="数据类型"
@@ -77,18 +75,16 @@
               </el-select>
             </el-form-item>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.type === 'customComponent'"
-          name="数据处理"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据处理
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据处理
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-form-item
               label="数据处理脚本"
@@ -101,18 +97,16 @@
               />
             </el-form-item>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="!['tree','multipleNumberChart','carousel'].includes(config.type) && config.option.displayOption.dataSourceType.enable "
-          name="数据配置"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据配置
             </div>
-          </template>
+          </div>
           <template v-if="config.type !== 'customComponent'">
             <!--维度多选-->
             <el-form-item
@@ -246,8 +240,8 @@
               </el-form-item>
             </template>
           </template>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.headerField && config.option.displayOption.headerField.enable"
           name="轮播表配置"
         >
@@ -333,18 +327,16 @@
               </el-table-column>
             </el-table>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.params.enable"
-          name="参数配置"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                参数配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              参数配置
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-table
               ref="singleTable"
@@ -412,18 +404,17 @@
               </el-table-column>
             </el-table>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.serverPagination.enable"
+          class="data-setting-data-box"
           name="分页配置"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                分页配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              分页配置
             </div>
-          </template>
+          </div>
           <div class="form">
             <el-form-item
               v-if="config.option.displayOption.serverPagination.enable"
@@ -469,13 +460,13 @@
               </el-select>
             </el-form-item>
           </div>
-        </el-collapse-item>
+        </div>
         <ComponentRelation
           v-if="!['carousel','gauge','liquid'].includes(config.type)"
           :config="config"
           :source-field-list="sourceFieldList"
         />
-      </el-collapse>
+      </div>
     </el-form>
   </div>
 </template>
@@ -497,18 +488,6 @@ export default {
     return {
       fieldsList: [],
       params: [], // 参数配置
-      activeNames: [
-        '数据来源',
-        '时间范围',
-        '数据查询',
-        '数据配置',
-        '参数配置',
-        '分页配置',
-        'relations',
-        '字段配置',
-        '轮播表配置',
-        '数据处理'
-      ],
       datasetName: '',
       headerList: [],
       pageSizeList: [10, 20, 50, 100],
@@ -772,6 +751,30 @@ export default {
     .opt-wrap {
       display: flex;
       justify-content: center;
+    }
+  }
+  // 修改设置面板样式
+  .data-setting-box{
+    .data-setting-data-box{
+      .lc-field-head{
+        height: 30px;
+        .lc-field-title{
+          position: relative;
+          padding-left: 12px;
+          line-height: 30px;
+          height: 30px;
+          &:after{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '';
+            width: 4px;
+            height: 14px;
+            background-color: var(--bs-el-hover);
+          }
+        }
+      }
     }
   }
 </style>
