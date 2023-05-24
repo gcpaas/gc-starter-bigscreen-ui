@@ -112,7 +112,9 @@ function registerTheme (config) {
   for (const key in mergedTheme) {
     themeStr += `${key}:${mergedTheme[key]};`
   }
-  style.innerHTML = `el-color-dropdown, .el-dialog__wrapper, .el-message-box__wrapper, .el-popper, el-color-dropdown, .el-input, .bs-theme-wrap {${themeStr}}`
+  // 给body添加class bs-body-theme-wrap
+  document.body.classList.add('bs-body-theme-wrap')
+  style.innerHTML = `.bs-body-theme-wrap {${themeStr}}`
   document.getElementsByTagName('head')[0].appendChild(style)
 }
 
