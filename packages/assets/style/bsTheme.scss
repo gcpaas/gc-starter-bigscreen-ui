@@ -132,10 +132,6 @@
   &:hover {
     border-color: var(--bs-el-hover) !important;
   }
-
-  ::v-deep .type-item::hover {
-    border-color: var(--bs-el-hover) !important;
-  }
 }
 
 // select
@@ -223,6 +219,9 @@
   ::v-deep .el-dialog__body {
     background: var(--bs-background-2) !important;
     overflow-y: auto !important;
+    .el-empty__image {
+      filter: opacity(0.5) !important;
+    }
   }
 
   ::v-deep .el-scrollbar {
