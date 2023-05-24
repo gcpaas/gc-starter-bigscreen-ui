@@ -1,37 +1,41 @@
 <template>
-  <el-scrollbar class="scrollbar">
-    <div
-      v-loading="saveloading"
-      class="inner-container"
-      :element-loading-text="saveText"
-    >
+  <div
+    v-loading="saveloading"
+    class="inner-container"
+    :element-loading-text="saveText"
+  >
+    <el-scrollbar class="data-set-scrollbar">
       <div class="header">
-        <el-page-header
-          class="bs-el-page-header"
-          :content="!isEdit ? '脚本数据集详情' : dataForm.id ? '脚本数据集编辑' : '脚本数据集新增'"
-        />
-        <el-button
-          v-if="isEdit"
-          id="search"
-          type="primary"
-          class="search"
-        >
-          帮助
-        </el-button>
-        <el-button
-          v-if="isEdit"
-          type="primary"
-          class="save"
-          @click="save('form')"
-        >
-          保存
-        </el-button>
-        <el-button
-          class="back bs-el-button-default"
-          @click="goBack"
-        >
-          返回
-        </el-button>
+        <el-page-header class="bs-el-page-header">
+          <template slot="content">
+            <div class="page-header">
+              <div class="page-header-left">
+                {{ !isEdit ? '脚本数据集详情' : dataForm.id ? '脚本数据集编辑' : '脚本数据集新增' }}
+              </div>
+              <div class="page-header-right">
+                <el-button
+                  class="bs-el-button-default"
+                  @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/groovy_dataset')"
+                >
+                  帮助
+                </el-button>
+                <el-button
+                  v-if="isEdit"
+                  type="primary"
+                  @click="save('form')"
+                >
+                  保存
+                </el-button>
+                <el-button
+                  class="bs-el-button-default"
+                  @click="goBack"
+                >
+                  返回
+                </el-button>
+              </div>
+            </div>
+          </template>
+        </el-page-header>
       </div>
       <el-row style="margin: 16px 16px 0;">
         <el-col :span="isEdit ? 16 : 24">
@@ -94,7 +98,9 @@
                             class="custom-tree-node"
                           >
                             <span>
-                              <i :class="data.children && data.children.length ? 'el-icon el-icon-folder': 'el-icon el-icon-document'" />
+                              <i
+                                :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
+                              />
                               {{ data.name }}
                             </span>
                           </span>
@@ -168,7 +174,8 @@
                   <span>{{ param.name }}</span>&nbsp;<span
                     v-show="param.remark"
                     style="color: #909399;"
-                  >({{ param.remark }})</span>
+                  >({{ param.remark
+                  }})</span>
                   <el-button
                     class="edit_field"
                     type="text"
@@ -201,7 +208,8 @@
                   <span>{{ field.columnName }}</span>&nbsp;<span
                     v-show="field.fieldDesc"
                     style="color: #909399;"
-                  >({{ field.fieldDesc }})</span>
+                  >({{
+                    field.fieldDesc }})</span>
                   <el-button
                     class="edit_field"
                     type="text"
@@ -496,7 +504,7 @@
             >
               <template slot-scope="scope">
                 <el-date-picker
-                  v-if="scope.row.type==='Date'"
+                  v-if="scope.row.type === 'Date'"
                   v-model="scope.row.value"
                   type="datetime"
                   value-format="yyyy-MM-dd HH:mm:ss"
@@ -569,8 +577,8 @@
           >确定</el-button>
         </span>
       </el-dialog>
-    </div>
-  </el-scrollbar>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -954,6 +962,9 @@ export default {
       const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
       column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
       return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
+    },
+    openNewWindow (url) {
+      window.open(url, '_blank')
     }
   }
 }
@@ -961,47 +972,49 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-.scrollbar {
+
+.data-set-scrollbar {
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
+
+  .el-scrollbar__view {
+    height: 100%;
+  }
 }
+
 .tree-box {
   padding: 0;
   max-height: 270px;
 }
+
 /deep/ .el-input__inner {
   width: 100% !important;
 }
-.header {
+
+.page-header {
+  display: flex;
   position: relative;
-  .search {
-    position: absolute;
-    right: 124px;
-    top: 16px;
-    display: none;
-  }
-  .save {
-    position: absolute;
-    right: 86px;
-    top: 16px;
-  }
-  .back {
+
+  .page-header-right {
     position: absolute;
     right: 16px;
-    top: 16px;
   }
 }
+
 .sql-config {
   padding: 0 16px;
 }
+
 .operation {
   /deep/ .el-select {
     width: 200px !important;
     margin-right: 16px;
   }
+
   display: flex;
 }
+
 // .codeStyle {
 //   border: 1px solid #EBEEF5;
 // }
@@ -1015,54 +1028,67 @@ export default {
   //   }
   // }
 }
+
 .no-border {
   border: 0;
 }
+
 /deep/ .fieldDescCheck {
   .el-dialog__body {
     height: fit-content !important;
     min-height: unset !important;
   }
 }
+
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
   border-left: 5px solid var(--bs-el-hover);
   margin: 16px 16px 0 0;
 }
+
 .field-wrap {
   // max-height: 110px;
   overflow: auto;
   margin-right: 16px;
   cursor: pointer;
+
   .field-item {
     line-height: 32px;
     padding: 0 12px 0 16px;
+
     .edit_field {
       display: none;
     }
+
     &:hover {
       background-color: #f2f7fe;
+
       .edit_field {
         display: block;
       }
     }
   }
 }
+
 .right-setting {
   height: 358px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
   .paramConfig {
     max-height: 179px;
+
     .field-wrap {
       max-height: 127px;
     }
   }
+
   .structure {
     flex: 1;
     overflow: hidden;
+
     .field-wrap {
       height: calc(100% - 40px);
     }
@@ -1077,6 +1103,7 @@ export default {
   padding: 16px 0;
   padding-left: 12px;
   border-bottom: 1px solid var(--bs-background-1);
+
   &::before {
     content: "";
     height: 14px;
@@ -1087,14 +1114,17 @@ export default {
     border-left: 4px solid var(--bs-el-hover);
   }
 }
+
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
+
   .el-table__body-wrapper {
     max-height: unset !important;
   }
 }
-.bs-table-box{
+
+.bs-table-box {
   height: 100% !important;
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 </style>

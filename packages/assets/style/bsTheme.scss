@@ -483,15 +483,8 @@
 
   &:hover {
     &::-webkit-scrollbar-thumb {
-      background-color: #494848 !important;
+      background-color: rgba(144, 147, 153, 0.3) !important;
     }
-  }
-}
-
-.bs-scrollbar-bg-1 {
-  &::-webkit-scrollbar-track {
-    border-radius: 6px !important;
-    background: var(--bs-background-1) !important
   }
 }
 

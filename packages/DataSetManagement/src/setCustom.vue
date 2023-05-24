@@ -1,38 +1,44 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-  <el-scrollbar class="scrollbar">
-    <div
-      v-loading="saveloading"
-      class="inner-container"
-      :element-loading-text="saveText"
-    >
+  <div
+    v-loading="saveloading"
+    class="inner-container"
+    :element-loading-text="saveText"
+  >
+    <el-scrollbar class="data-set-scrollbar">
       <div class="header">
         <el-page-header
           class="bs-el-page-header"
-          :content="!isEdit ? '自助数据集详情' : dataForm.id ? '自助数据集编辑' : '自助数据集新增'"
-        />
-        <el-button
-          v-if="isEdit"
-          id="search"
-          type="primary"
-          class="search"
         >
-          帮助
-        </el-button>
-        <el-button
-          v-if="isEdit"
-          type="primary"
-          class="save"
-          @click="save('form')"
-        >
-          保存
-        </el-button>
-        <el-button
-          class="back bs-el-button-default"
-          @click="goBack"
-        >
-          返回
-        </el-button>
+          <template slot="content">
+            <div class="page-header">
+              <div class="page-header-left">
+                {{ !isEdit ? '自助数据集详情' : dataForm.id ? '自助数据集编辑' : '自助数据集新增' }}
+              </div>
+              <div class="page-header-right">
+                <el-button
+                  class="bs-el-button-default"
+                  @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/self_dataset')"
+                >
+                  帮助
+                </el-button>
+                <el-button
+                  v-if="isEdit"
+                  type="primary"
+                  @click="save('form')"
+                >
+                  保存
+                </el-button>
+                <el-button
+                  class="back bs-el-button-default"
+                  @click="goBack"
+                >
+                  返回
+                </el-button>
+              </div>
+            </div>
+          </template>
+        </el-page-header>
       </div>
       <el-row style="margin: 16px 16px 0;">
         <el-col :span="isEdit ? 16 : 24">
@@ -718,8 +724,8 @@
           >确定</el-button>
         </span>
       </el-dialog>
-    </div>
-  </el-scrollbar>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -1305,6 +1311,9 @@ export default {
       const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
       column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
       return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
+    },
+    openNewWindow (url) {
+      window.open(url, '_blank')
     }
   }
 }
@@ -1317,7 +1326,7 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 
-.scrollbar {
+.data-set-scrollbar {
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
@@ -1332,26 +1341,13 @@ export default {
   width: 100% !important;
 }
 
-.header {
+.page-header {
+  display: flex;
   position: relative;
 
-  .search {
-    position: absolute;
-    right: 124px;
-    top: 16px;
-    display: none;
-  }
-
-  .save {
-    position: absolute;
-    right: 86px;
-    top: 16px;
-  }
-
-  .back {
+  .page-header-right {
     position: absolute;
     right: 16px;
-    top: 16px;
   }
 }
 
