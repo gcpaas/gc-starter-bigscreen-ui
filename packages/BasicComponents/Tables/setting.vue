@@ -102,7 +102,7 @@ export default {
 // Element-UI Switch 组件样式覆盖
 .bs-switch {
    .el-switch__core {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
   }
 }
 </style>

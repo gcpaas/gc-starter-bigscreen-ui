@@ -281,7 +281,7 @@ export default {
 
   .drag-wrap {
     display: flex;
-    background-color: var(--bs-background-design-inner);
+    background-color: #1d1e20;
     height: calc(100vh - 40px);
     overflow: hidden;
 

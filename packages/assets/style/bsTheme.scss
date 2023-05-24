@@ -23,7 +23,7 @@
 
   .el-textarea__inner {
     color: var(--bs-el-text) !important;
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
     border-color: var(--bs-el-border-color) !important;
   }
 }
@@ -33,17 +33,17 @@
   .el-input__inner {
     width: 100% !important;
     color: var(--bs-el-text) !important;
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
     border-color: var(--bs-el-border-color) !important;
   }
 
   .el-input-number__decrease {
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
     border-color: var(--bs-el-border-color) !important;
   }
 
   .el-input-number__increase {
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
     border-color: var(--bs-el-border-color) !important;
   }
 }
@@ -85,7 +85,7 @@
 
 
     th.is-leaf {
-      background-color: var(--bs-el-background) !important;
+      background-color: var(--bs-el-background-1) !important;
     }
 
     bs-el-pagination .cell {
@@ -127,7 +127,7 @@
 
 // card
 .bs-el-card {
-  background-color: var(--bs-el-background) !important;
+  background-color: var(--bs-el-background-1) !important;
 
   &:hover {
     border-color: var(--bs-el-hover) !important;
@@ -141,7 +141,7 @@
 // select
 .bs-el-select {
   border-color: var(--bs-el-border-color) !important;
-  background-color: var(--bs-el-background) !important;
+  background-color: var(--bs-el-background-1) !important;
 
   .el-tag.el-tag--info {
     color: var(--bs-el-text) !important;
@@ -150,10 +150,10 @@
   }
 
   .popper__arrow {
-    border-bottom-color: var(--bs-el-background) !important;
+    border-bottom-color: var(--bs-el-background-1) !important;
 
     &:after {
-      border-bottom-color: var(--bs-el-background) !important;
+      border-bottom-color: var(--bs-el-background-1) !important;
     }
   }
 
@@ -177,8 +177,8 @@
 
   .el-input__inner {
     border-color: var(--bs-el-border-color) !important;
-    background: var(--bs-el-background) !important;
-    background-color: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
+    background-color: var(--bs-el-background-1) !important;
     color: var(--bs-el-text) !important;
   }
 
@@ -251,10 +251,10 @@
 .bs-el-tree {
   .el-tree-node__content {
     color: var(--bs-el-text) !important;
-    background-color: var(--bs-el-background) !important;
+    background-color: var(--bs-el-background-1) !important;
   }
 
-  background-color: var(--bs-el-background) !important;
+  background-color: var(--bs-el-background-1) !important;
   color: var(--bs-el-text) !important;
 
   .el-tree-node__content:hover {
@@ -264,7 +264,7 @@
 
   .el-tree-node.is-current>.el-tree-node__content {
     color: var(--bs-el-hover) !important;
-    background-color: var(--bs-el-background) !important;
+    background-color: var(--bs-el-background-1) !important;
   }
 
 }
@@ -308,14 +308,14 @@
   }
 
   .popper__arrow {
-    border-bottom-color: var(--bs-el-background) !important;
-    border-top-color: var(--bs-el-background) !important;
+    border-bottom-color: var(--bs-el-background-1) !important;
+    border-top-color: var(--bs-el-background-1) !important;
 
     &:after {
       top: 0 !important;
       bottom: 0 !important;
-      border-bottom-color: var(--bs-el-background) !important;
-      border-top-color: var(--bs-el-background) !important;
+      border-bottom-color: var(--bs-el-background-1) !important;
+      border-top-color: var(--bs-el-background-1) !important;
     }
   }
 
@@ -351,7 +351,7 @@
   }
 
   ::v-deep .el-select-dropdown {
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
   }
 
   ::v-deep .el-input__inner {
@@ -441,8 +441,8 @@
   }
 
   .popper__arrow {
-    border-top-color: var(--bs-el-background) !important;
-    border-bottom-color: var(--bs-el-background) !important;
+    border-top-color: var(--bs-el-background-1) !important;
+    border-bottom-color: var(--bs-el-background-1) !important;
 
     &:after {
       display: none !important;

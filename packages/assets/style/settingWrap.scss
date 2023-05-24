@@ -96,7 +96,7 @@
   background: var(--bs-background-2);
 
   input, textarea {
-    background-color: var(--bs-el-background) !important;
+    background-color: var(--bs-el-background-1) !important;
     color: var(--bs-el-text) !important;
     border-color: var(--bs-el-text) !important;
   }
@@ -232,7 +232,7 @@
 /deep/ .el-textarea__inner,
 /deep/ .el-input-group__append
 {
-  background: var(--bs-el-background);
+  background: var(--bs-el-background-1);
   color: var(--bs-el-text);
   border: 0 !important;
 }
@@ -240,7 +240,7 @@
 /deep/ .el-radio__label
 {
   font-size: 12px;
-  background: var(--bs-el-background-1);
+  background: var(--bs-el-background-1-1);
   color: var(--bs-el-title);
   border: 0 !important;
 }
@@ -252,12 +252,12 @@
 }
 
 /deep/ .el-table {
-  background: var(--bs-el-background);
+  background: var(--bs-el-background-1);
   border-bottom: 1px solid var(--bs-el-title);
 }
 
 /deep/ .el-table__cell {
-  background: var(--bs-el-background) !important;
+  background: var(--bs-el-background-1) !important;
   color: var(--bs-el-title) !important;
   border-color: var(--bs-el-text) !important;
 }

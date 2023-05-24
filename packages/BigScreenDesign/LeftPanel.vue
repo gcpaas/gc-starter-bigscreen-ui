@@ -392,7 +392,7 @@ export default {
               margin-bottom: 8px;
 
               .component-name {
-                background: var(--bs-background-3);
+                background: var(--bs-el-background-3);
                 color: var(--bs-el-title);
                 font-size: 12px;
                 padding: 4px 16px;

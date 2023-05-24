@@ -191,12 +191,12 @@ export default {
 @import "~packages/assets/style/settingWrap.scss";
 .bs-slider{
  .el-input-number__decrease {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
     border-right: 1px solid var(--bs-background-1);
   }
 
   .el-input-number__increase {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
     border-left: 1px solid var(--bs-background-1);
   }
 }

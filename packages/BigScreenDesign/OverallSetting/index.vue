@@ -401,7 +401,7 @@ export default {
   /deep/ .el-textarea__inner,
   /deep/ .el-input-group__append,
   /deep/ .el-radio__label {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
     color: var(--bs-el-text);
     border: 0 !important;
   }
@@ -416,12 +416,12 @@ export default {
   }
 
   /deep/ .el-table {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
     border-bottom: 1px solid var(--bs-el-title);
   }
 
   /deep/ .el-table__cell {
-    background: var(--bs-el-background) !important;
+    background: var(--bs-el-background-1) !important;
     color: var(--bs-el-title) !important;
     border-color: var(--bs-el-text) !important;
   }
@@ -549,11 +549,11 @@ export default {
 /deep/ .el-color-picker--mini .el-color-picker__trigger {
   height: 32px;
   width: 32px;
-  border: 1px solid var(--bs-el-background);
-  background: var(--bs-el-background);
+  border: 1px solid var(--bs-el-background-1);
+  background: var(--bs-el-background-1);
 
   .el-color-picker__color {
-    background: var(--bs-el-background);
+    background: var(--bs-el-background-1);
     border: 0 !important;
   }
 }
