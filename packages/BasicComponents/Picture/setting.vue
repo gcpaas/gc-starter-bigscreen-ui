@@ -105,6 +105,7 @@ export default {
         module: 'form'
       },
       headers: {
+        ...window.BS_CONFIG?.httpConfigs?.headers
       },
       fileList: [],
       accept: 'image/*',
