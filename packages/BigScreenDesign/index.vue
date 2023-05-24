@@ -161,8 +161,8 @@ export default {
     }),
     offset () {
       return {
-        x: 260 + 50 - this.ruleStartX,
-        y: 60 + 50 - this.ruleStartY
+        x: 220 + 50 - this.ruleStartX,
+        y: 55 + 50 - this.ruleStartY
       }
     }
   },
