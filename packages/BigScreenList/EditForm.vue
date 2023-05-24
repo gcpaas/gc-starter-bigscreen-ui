@@ -221,6 +221,7 @@ export default {
             this.$set(this.dataForm, 'type', resp.type)
             this.$set(this.dataForm, 'orderNum', nodeData.orderNum)
             this.$set(this.dataForm, 'pageTemplateId', resp?.pageTemplateId)
+            this.$set(this.dataForm, 'pageConfig', resp?.pageConfig)
             if (this.dataForm.type === 'bigScreen') {
               const { w, h } = resp.pageConfig
               this.resolutionRatio.w = w
@@ -241,6 +242,14 @@ export default {
           this.$set(this.dataForm, 'type', this.dataForm.type)
           this.$set(this.dataForm, 'orderNum', 0)
           this.$set(this.dataForm, 'pageTemplateId', '')
+          this.$set(this.dataForm, 'pageConfig', {
+            w: '1920',
+            h: '1080',
+            bgColor: '#0e2a43',
+            opacity: 100,
+            customTheme: 'auto',
+            bg: null
+          })
           if (this.dataForm.type === 'bigScreen') {
             this.resolutionRatio.w = '1920'
             this.resolutionRatio.h = '1080'
@@ -274,13 +283,7 @@ export default {
           style: this.dataForm.style,
           type: 'bigScreen',
           orderNum: this.dataForm.orderNum,
-          pageConfig: {
-            w: this.resolutionRatio.w || '1920',
-            h: this.resolutionRatio.h || '1080',
-            bgColor: '#0e2a43',
-            opacity: 100,
-            customTheme: 'auto'
-          },
+          pageConfig: this.dataForm.pageConfig,
           pageTemplateId: this.dataForm.pageTemplateId
         }
         if (isToDesign) {
