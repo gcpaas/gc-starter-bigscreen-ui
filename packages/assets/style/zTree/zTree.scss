@@ -1,10 +1,6 @@
 
 .tree-box {
   padding: 0 18px 10px 0;
-
-  .el-input {
-    line-height: 32px;
-  }
 }
 
 .input-with-select {
@@ -82,7 +78,7 @@
   }
 
 
-  #orgTreeNodeMenuBottom {
+  .node-bottom-menu {
     z-index: 4;
     padding-top: 10px;
     ul{
@@ -102,7 +98,7 @@
       transform: translateX(-50%) rotate(45deg);
     }
   }
-  #orgTreeNodeMenuTop {
+  .node-top-menu {
     z-index: 4;
     padding-bottom: 10px;
     ul{

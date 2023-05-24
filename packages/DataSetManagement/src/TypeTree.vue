@@ -68,7 +68,7 @@
           @mouseleave="rightClickForm.visible = false"
           @mouseenter="rightClickForm.visible = true"
         >
-          <div id="orgTreeNodeMenuBottom">
+          <div id="node-bottom-menu">
             <div class="triangle" />
             <ul>
               <li
@@ -94,7 +94,7 @@
               </li>
             </ul>
           </div>
-          <div id="orgTreeNodeMenuTop">
+          <div id="node-top-menu">
             <ul>
               <li
                 v-if="!isBoth"
@@ -277,8 +277,8 @@ export default {
           const clientY = nodeElObj.top + 34
           if (clientHeight - clientY < 200) {
             hieght = clientY - 200
-            document.querySelector('#orgTreeNodeMenuBottom').style.display = 'none'
-            const menu = document.querySelector('#orgTreeNodeMenuTop')
+            document.querySelector('.node-bottom-menu').style.display = 'none'
+            const menu = document.querySelector('.node-top-menu')
             /* 菜单定位基于鼠标点击位置 */
             menu.style.display = ''
             menu.style.left = nodeElObj.right - 92 + 'px'
@@ -287,8 +287,8 @@ export default {
             menu.style.width = 110 + 'px'
           } else {
             hieght = clientY
-            document.querySelector('#orgTreeNodeMenuTop').style.display = 'none'
-            const menu = document.querySelector('#orgTreeNodeMenuBottom')
+            document.querySelector('.node-top-menu').style.display = 'none'
+            const menu = document.querySelector('.node-bottom-menu')
             /* 菜单定位基于鼠标点击位置 */
             menu.style.display = ''
             menu.style.left = nodeElObj.right - 92 + 'px'

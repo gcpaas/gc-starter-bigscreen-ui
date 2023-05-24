@@ -128,6 +128,14 @@
 // card
 .bs-el-card {
   background-color: var(--bs-el-background) !important;
+
+  &:hover {
+    border-color: var(--bs-el-hover) !important;
+  }
+
+  ::v-deep .type-item::hover {
+    border-color: var(--bs-el-hover) !important;
+  }
 }
 
 // select
@@ -275,11 +283,12 @@
     font-weight: 600 !important;
     color: var(--bs-el-text) !important;
     border-bottom: 1px solid var(--bs-background-1) !important;
-    padding: 16px 0px!important;
+    padding: 17px 0px !important;
     padding-left: 12px !important;
     position: relative !important;
+
     &:after {
-      content: ""   !important;
+      content: "" !important;
       height: 14px !important;
       position: absolute !important;
       left: 0 !important;
@@ -353,6 +362,7 @@
 .bs-el-message-box {
   background: var(--bs-background-1) !important;
   border-color: var(--bs-el-border-color) !important;
+
   .el-message-box__title {
     color: var(--bs-el-title) !important;
   }
@@ -539,12 +549,14 @@
     color: var(--bs-el-hover) !important;
   }
 }
+
 //img
-.bs-el-img{
-  /deep/.el-image__error{
+.bs-el-img {
+  /deep/.el-image__error {
     background-color: var(--bs-background-1) !important;
   }
-  /deep/.close-icon{
+
+  /deep/.close-icon {
     color: var(--bs-el-title);
   }
 }
