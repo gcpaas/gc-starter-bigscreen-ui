@@ -95,6 +95,7 @@ import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
+import {get} from "../js/utils/http";
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -166,9 +167,17 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // 重置大屏的vuex store
-      vm.$store.commit('bigScreen/resetStoreData')
+    // 判断进入预览页面前是否有访问权限
+    const code = to.query.code
+    get(`/bigScreen/permission/check/${code}`).then(res => {
+      if (res) {
+        next(vm => {
+          // 重置大屏的vuex store
+          vm.$store.commit('bigScreen/resetStoreData')
+        })
+      } else {
+        next('/notPermission')
+      }
     })
   },
   created () {
