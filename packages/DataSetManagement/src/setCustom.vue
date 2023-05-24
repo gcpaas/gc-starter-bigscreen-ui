@@ -968,11 +968,6 @@ export default {
         this.$message.warning('该自助数据集未生成输出字段，请重新检查')
         return
       }
-      if (this.structurePreviewList.some(item => item.sourceTable === '')) {
-        this.$message.warning('字段来源不能为空')
-        this.fieldDescEdit()
-        return
-      }
       if (!nochecktosave) {
         const temp = this.structurePreviewList.some(item => {
           return item.fieldDesc === '' || !item.hasOwnProperty('fieldDesc')
