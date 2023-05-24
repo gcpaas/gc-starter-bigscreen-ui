@@ -40,7 +40,7 @@
         width: innerWidth + 'px',
         height: innerHeight + 'px'
       }"
-      @scroll="handleScroll"
+      @scroll="debounceScroll"
     >
       <div
         ref="containerRef"
@@ -121,9 +121,7 @@ export default {
     // 缩放改变的时候，改变startX，startY
     scale (scale) {
       // 防抖调用方法
-      debounce(() => {
-        this.handleScroll()
-      }, 500)()
+      this.debounceScroll()
     }
   },
   computed: {
@@ -159,9 +157,12 @@ export default {
   },
   mounted () {
     // 监听屏幕改变
-    window.onresize = this.initRuleHeight
+    window.onresize = debounce(() => {
+      this.initRuleHeight()
+    }, 500)
+
     this.initRuleHeight()
-    this.handleScroll()
+    this.debounceScroll()
   },
   methods: {
     ...mapMutations('bigScreen', [
@@ -171,7 +172,10 @@ export default {
       setTimeout(() => {
         const screensRect = document
           .querySelector('.grid-wrap-box')
-          .getBoundingClientRect()
+          ?.getBoundingClientRect()
+        if (!screensRect) {
+          return
+        }
 
         // 30是grid-wrap-box的底部工具栏高度
         this.innerHeight = screensRect.height - 30
@@ -192,6 +196,11 @@ export default {
     handleCornerClick () {
       this.isShowReferLine = !this.isShowReferLine
       this.cornerActive = !this.cornerActive
+    },
+    debounceScroll () {
+      debounce(() => {
+        this.handleScroll()
+      }, 500)()
     },
     handleScroll () {
       const screensRect = document
