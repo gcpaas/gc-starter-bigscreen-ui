@@ -33,13 +33,13 @@ function registerRouters (config, router) {
   const routers = [
     // 页面管理
     {
-      path: config?.routers?.pageManagementUrl || '/pages',
-      redirect: config?.routers?.pageListUrl || '/pages',
+      path: config?.routers?.pageManagementUrl || '/management',
+      redirect: config?.routers?.pageListUrl || '/big-screen-list',
       component: () => import('packages/Layout/BigScreenHomeLayout'),
       children: [
         {
           path: config?.routers?.pageListUrl || '/big-screen-list',
-          name: 'Management',
+          name: 'BigScreenList',
           component: () => require.ensure([], () => require('packages/BigScreenMag')),
           meta: {
             title: '大屏管理'
