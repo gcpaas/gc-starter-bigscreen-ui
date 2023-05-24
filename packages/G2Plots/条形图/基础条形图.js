@@ -52,19 +52,19 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '柱子颜色',
+    type: 'gradual', // 设置组件类型
+    field: 'barStyle_fill', // 字段
+    optionField: 'barStyle.fill', // 对应options中的字段
+    value: 'l(0) 0:#5E8EED 1:#5E8EED',
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
-  },
-  {
-    label: '柱子颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'color', // 字段
-    optionField: 'color', // 对应options中的字段
-    value: '',
     tabName: 'custom'
   }
 ]
@@ -87,6 +87,9 @@ const option = {
   xField: 'value',
   yField: 'year',
   color: '',
+  barStyle: { // 设置柱子渐变色
+    fill: 'l(0) 0:#5E8EED 1:#5E8EED'
+  },
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   legend: {
     position: 'top-left'
