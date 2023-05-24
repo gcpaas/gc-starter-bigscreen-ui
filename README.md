@@ -50,12 +50,18 @@ import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
 **方式一：后端服务地址配置在`.js`文件中**
 
 ```javascript
+// file: xxx.js
+
+window.CONFIG.baseUrl=http://127.0.0.1:8081/bigScreenServer
+```
+
+```javascript
 // file: main.js
 
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 registerConfig({
   httpConfigs: {
-    baseURL: `这里是后端服务地址的值，如：window.CONFIG?.baseUrl`
+    baseURL: `这里是后端服务地址的值，如：window.CONFIG.baseUrl`
   }
 }, router)
 ```
