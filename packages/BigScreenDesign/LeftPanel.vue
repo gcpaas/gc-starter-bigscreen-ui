@@ -409,7 +409,7 @@ export default {
                 padding: 8px 0;
                 margin: 0 auto;
                 text-align: center;
-                width: 100px;
+                width: 120px;
 
                 .icon-svg {
                   width: 60px !important;
@@ -417,7 +417,6 @@ export default {
                 }
 
                 img {
-                  width: 85px;
                   height: 60px;
                 }
               }
