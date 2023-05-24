@@ -1,46 +1,32 @@
 <template>
-  <transition name="slide-fade">
-    <div class="bs-right-panel-wrap">
-      <!-- <div
-        class="bs-folder-wrap"
-        :style="{ height }"
-      >
-        <i
-          :class="rightVisiable ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
-          @click="toggleShow"
-        />
-        <el-slider
-          :value="zoom"
-          vertical
-          height="200px"
-          class="slider-zoom"
-          :min="10"
-          @input="changeScreenZoom"
-        />
-      </div> -->
-      <el-scrollbar>
-        <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
-          <RightSetting
-            v-if="chartSettingShow"
-            @closeRightPanel="close"
-            @updateSetting="updateSetting"
-            @updateDataSetting="updateDataSetting"
-          />
-          <OverallSetting
-            v-if="!chartSettingShow"
-            ref="OverallSetting"
-            @close="close"
-          />
-        </div>
-      </el-scrollbar>
+  <!-- <transition name="slide-fade"> -->
+  <div
+    v-if="rightVisiable"
+    class="bs-right-panel-wrap"
+  >
+    <div class="bs-set-title">
+      <span class="bs-set-title-text">{{ chartSettingShow ? `${title}设置` : '大屏设置' }}</span>
     </div>
-  </transition>
+    <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
+      <RightSetting
+        v-if="chartSettingShow"
+        @closeRightPanel="close"
+        @updateSetting="updateSetting"
+        @updateDataSetting="updateDataSetting"
+      />
+      <OverallSetting
+        v-if="!chartSettingShow"
+        ref="OverallSetting"
+        @close="close"
+      />
+    </div>
+  </div>
+  <!-- </transition> -->
 </template>
 <script>
 import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
 import OverallSetting from 'packages/BigScreenDesign/OverallSetting/index.vue'
-import _ from 'lodash'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: '',
   components: {
@@ -50,7 +36,11 @@ export default {
   props: {
     rightVisiable: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    pageInfoVisiable: {
+      type: Boolean,
+      default: false
     },
     headerShow: {
       type: Boolean,
@@ -68,32 +58,17 @@ export default {
   computed: {
     ...mapState('bigScreen', {
       activeItem: state => state.activeItemConfig,
-      activeCode: state => state.activeCode,
-      zoom: state => state.zoom
+      activeCode: state => state.activeCode
     }),
     chartSettingShow () {
-      return Boolean(!_.isEmpty(this.activeItem) && this.rightVisiable && this.activeCode)
-    }
-  },
-  watch: {
-    activeCode: {
-      handler (val) {
-        if (!val) {
-          this.$nextTick(() => {
-            // eslint-disable-next-line no-unused-expressions
-            this.$refs.OverallSetting && this.$refs?.OverallSetting?.init()
-          })
-        }
-      },
-      deep: true,
-      immediate: true
+      return this.rightVisiable && this.activeCode
+    },
+    title () {
+      return this.activeItem?.title || ''
     }
   },
   mounted () { },
   methods: {
-    ...mapMutations('bigScreen', [
-      'changeZoom'
-    ]),
     toggleShow () {
       this.$emit('update:rightVisiable', !this.rightVisiable)
     },
@@ -105,9 +80,6 @@ export default {
     },
     updateDataSetting (config) {
       this.$emit('updateDataSetting', config)
-    },
-    changeScreenZoom (zoom) {
-      this.changeZoom(zoom)
     }
   }
 }
@@ -116,7 +88,34 @@ export default {
 <style lang="scss" scoped>
 .bs-right-panel-wrap {
   display: flex;
+  flex-direction: column;
   background-color: var(--bs-background-1);
+
+  .bs-set-title {
+    background-color: var(--bs-background-2);
+    color: var(--bs-el-title);
+    height: 40px;
+    font-size: 14px;
+    border-bottom: 2px solid var(--bs-background-1);
+    display: flex;
+    align-items: center;
+
+    .bs-set-title-text {
+      position: relative;
+      padding-left: 12px;
+      display: inline-block;
+      &:after{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        content: '';
+        width: 4px;
+        height: 14px;
+        background-color: var(--bs-el-hover);
+      }
+    }
+  }
 
   .bs-folder-wrap {
     width: 20px;
@@ -139,9 +138,10 @@ export default {
   }
 
   .bs-page-right {
-    height: calc(100vh - 40px);
+    height: calc(100vh - 80px);
     width: 320px;
     box-sizing: border-box;
+    background-color: var(--bs-background-2);
 
     .config-title {
       display: flex;
@@ -150,7 +150,7 @@ export default {
       padding: 0 10px;
       color: #fff;
       font-size: 14px;
-      border-bottom: 1px solid #ebeef5;
+      /* border-bottom: 1px solid #ebeef5; */
 
       .config-title-text {
         display: inline-block;
@@ -208,7 +208,7 @@ export default {
   opacity: 0;
 }
 /deep/ .el-scrollbar__view{
-  height: calc(100vh - 40px);
+  height: calc(100vh - 80px);
   overflow-x: unset;
 }
 </style>

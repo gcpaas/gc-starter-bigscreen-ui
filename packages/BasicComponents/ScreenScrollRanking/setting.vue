@@ -7,67 +7,56 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-
-          <div class="lc-field-body">
-            <el-form
-              :model="config.customize"
-              label-position="left"
-              class="setting-body"
-              label-width="100px"
+      <div class="lc-field-body">
+        <el-form
+          :model="config.customize"
+          label-position="left"
+          class="setting-body"
+          label-width="100px"
+        >
+          <el-form-item label="排名轮播表名称">
+            <el-input
+              v-model="config.title"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item
+            label="轮播时间间隔"
+            label-width="100px"
+          >
+            <el-input
+              v-model="config.customize.waitTime"
+              placeholder="请输入时间间隔"
+              clearable
             >
-              <el-form-item label="排名轮播表名称">
-                <el-input
-                  v-model="config.title"
-                  clearable
-                />
-              </el-form-item>
-              <el-form-item
-                label="轮播时间间隔"
-                label-width="100px"
-              >
-                <el-input
-                  v-model="config.customize.waitTime"
-                  placeholder="请输入时间间隔"
-                  clearable
-                >
-                  <template slot="append">
-                    ms
-                  </template>
-                </el-input>
-              </el-form-item>
-              <el-form-item label="显示行数">
-                <el-input-number
-                  v-model="config.customize.rowNum"
-                  :precision="0"
-                  label="请输入行数"
-                />
-              </el-form-item>
-              <el-form-item label="数值单位">
-                <el-input
-                  v-model="config.customize.unit"
-                  clearable
-                />
-              </el-form-item>
-              <el-form-item label="自动排序">
-                <el-switch
-                  v-model="config.customize.sort"
-                  :active-value="true"
-                  :inactive-value="false"
-                />
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+              <template slot="append">
+                ms
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="显示行数">
+            <el-input-number
+              v-model="config.customize.rowNum"
+              class="bs-el-input-number"
+              :precision="0"
+              label="请输入行数"
+            />
+          </el-form-item>
+          <el-form-item label="数值单位">
+            <el-input
+              v-model="config.customize.unit"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="自动排序">
+            <el-switch
+              v-model="config.customize.sort"
+              :active-value="true"
+              :inactive-value="false"
+            />
+          </el-form-item>
+        </el-form>
+      </div>
     </el-form>
   </div>
 </template>

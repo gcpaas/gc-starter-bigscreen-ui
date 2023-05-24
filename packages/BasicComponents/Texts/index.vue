@@ -53,4 +53,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .bs-design-wrap{
+    width: 100%;
+  }
+  .content-box{
+    text-align: center;
+  }
 </style>

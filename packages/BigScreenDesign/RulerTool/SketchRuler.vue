@@ -38,12 +38,14 @@
       ref="screensRef"
       :style="{
         cursor: isMouseDown ? 'move' : 'default',
+        width: innerWidth + 'px',
+        height: innerHeight + 'px'
       }"
       @scroll="handleScroll"
     >
       <div
         ref="containerRef"
-        class="screen-container"
+        class="screen-container grid-bg"
         :style="containerRefStyle"
       >
         <div
@@ -59,7 +61,8 @@
 <script>
 import SketchRule from 'vue-sketch-ruler'
 import { dragDesignPanelMixin } from './dragDesignPanel'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import { debounce } from 'lodash'
 export default {
   components: {
     SketchRule
@@ -73,6 +76,14 @@ export default {
     height: {
       type: Number,
       default: 400
+    },
+    pageWidth: {
+      type: Number,
+      default: 1920
+    },
+    pageHeight: {
+      type: Number,
+      default: 1080
     }
   },
   data () {
@@ -102,7 +113,18 @@ export default {
       containerRefStyle: {
         width: this.width + 'px',
         height: this.height + 'px'
-      }
+      },
+      innerHeight: 0,
+      innerWidth: 0
+    }
+  },
+  watch: {
+    // 缩放改变的时候，改变startX，startY
+    scale (scale) {
+      // 防抖调用方法
+      debounce(() => {
+        this.handleScroll()
+      }, 500)()
     }
   },
   computed: {
@@ -140,14 +162,21 @@ export default {
     // 监听屏幕改变
     window.onresize = this.initRuleHeight
     this.initRuleHeight()
+    this.handleScroll()
   },
   methods: {
+    ...mapMutations('bigScreen', [
+      'changeZoom'
+    ]),
     initRuleHeight () {
       setTimeout(() => {
         const screensRect = document
           .querySelector('.grid-wrap-box')
           .getBoundingClientRect()
 
+        // 30是grid-wrap-box的底部工具栏高度
+        this.innerHeight = screensRect.height - 30
+        this.innerWidth = screensRect.width
         this.diffX = this.width - screensRect.width
         this.diffY = this.height - screensRect.height
 
@@ -155,6 +184,7 @@ export default {
           width: this.diffX > 0 ? ((this.width + this.diffX + this.thick + 30) + 'px') : (this.width + 'px'),
           height: this.diffY > 0 ? ((this.height + this.diffY + this.thick + 30) + 'px') : (this.height + 'px')
         }
+        this.initZoom()
       }, 1000)
     },
     handleLine (lines) {
@@ -180,9 +210,22 @@ export default {
       this.startY = startY >> 0
 
       this.$emit('changeStart', {
-        x: this.startX,
-        y: this.startY
+        x: this.startX + 50 - 20,
+        y: this.startY + 50 - 20
       })
+    },
+    // 保证画布能完整展示大屏
+    initZoom () {
+      // 横向比例
+      const xRadio = this.innerWidth / this.pageWidth
+      // 纵向比例
+      const yRadio = this.innerHeight / this.pageHeight
+      // 取最大比例，尽量大
+      const scale = Math.floor(Math.max(xRadio * 100, yRadio * 100))
+      // 然后再缩小20%
+      if (scale > 30) {
+        this.changeZoom(scale - 20)
+      }
     }
   }
 }
@@ -192,8 +235,6 @@ export default {
 .wrapper {
   box-sizing: border-box;
   position: absolute;
-  top: 0;
-  left: 0;
 
   .iconfont-bigscreen {
     position: absolute;
@@ -208,13 +249,27 @@ export default {
 
 #screens {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: auto; }
+  overflow: scroll;
+
+  // 滚动条美化，始终在最下方和最右方
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--bs-el-background-2) !important;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent !important;
+  }
+}
 
 .screen-container {
   position: absolute;
-
+  width: 6000px;
+  height: 6000px;
 }
 
 .scale-value {
@@ -242,8 +297,8 @@ export default {
 
 #canvas {
   position: absolute;
-  top: 21px;
-  left: 21px;
+  top: 50px;
+  left: 50px;
 }
 /deep/ .line {
   border-left: 1px dashed #0089d0 !important;
@@ -251,13 +306,13 @@ export default {
 }
 /deep/.action {
   .value {
-    background: #007aff;
+    background: var(--bs-el-hover);
     padding: 4px;
     color: #fff;
   }
 
   .del {
-    color: #007aff;
+    color: var(--bs-el-hover);
   }
 }
 /deep/ .ruler, /deep/ .corner {
@@ -270,5 +325,11 @@ export default {
 
 /deep/ .mb-ruler {
   z-index: 998
+}
+.grid-bg {
+  background-color: #2a2e33 !important;
+  background-image: url(./images/canvas-bg.png);
+    background-repeat: repeat;
+    word-spacing: 10px;
 }
 </style>

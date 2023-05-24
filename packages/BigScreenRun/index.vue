@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+import { get } from 'packages/js/utils/http'
 import RenderCard from 'packages/Render/RenderCard.vue'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
@@ -107,9 +108,17 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // 重置大屏的vuex store
-      vm.$store.commit('bigScreen/resetStoreData')
+    // 判断进入预览页面前是否有访问权限
+    const code = to.query.code
+    get(`/bigScreen/permission/check/${code}`).then(res => {
+      if (res) {
+        next(vm => {
+          // 重置大屏的vuex store
+          vm.$store.commit('bigScreen/resetStoreData')
+        })
+      } else {
+        next('/notPermission')
+      }
     })
   },
   beforeRouteLeave (to, from, next) {
@@ -253,7 +262,7 @@ export default {
 
 <style lang="scss" scoped>
 .bs-preview-wrap {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow: auto;

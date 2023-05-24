@@ -15,9 +15,7 @@
         @click="toggleNav(nav)"
       >
         <span class="nav-icon">
-          <i
-            :class="[ 'iconfont-bigscreen', nav.icon]"
-          />
+          <i :class="['iconfont-bigscreen', nav.icon]" />
         </span>
         {{ nav.name }}
       </a>
@@ -27,7 +25,7 @@
 
 <script lang='ts'>
 import { NavCanvas } from './utils/nav-canvas'
-
+import { debounce } from 'lodash'
 export default {
   name: 'NavMain',
   components: {},
@@ -43,6 +41,15 @@ export default {
       required: true
     }
   },
+  watch: {
+    $route () {
+      const nav = this.navs.find(m => m.path === this.$route.path)
+      if (nav) {
+        this.activeNav = nav.id
+        this.nc.toggle(nav.id)
+      }
+    }
+  },
   mounted () {
     const nav = this.navs.find(m => m.path === this.$route.path)
     this.activeNav = nav ? nav.id : 0
@@ -54,17 +61,22 @@ export default {
   },
   methods: {
     toggleNav (nav) {
-      if (this.nc) {
+      const nc = this.nc
+      if (nc) {
         this.activeNav = nav.id
-        this.nc.toggle(nav.id)
+        nc.toggle(nav.id)
         this.$emit('change', nav)
       }
     },
     debNavResize () {
-      if (this.nc) {
-        this.nc.resize()
+      const nc = this.nc
+      if (nc) {
+        debounce(() => {
+          nc.resize()
+        }, 1000)()
       }
     }
+
   }
 
 }

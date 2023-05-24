@@ -1,6 +1,6 @@
 <template>
   <div class="side-catalog-wrap bs-theme-wrap">
-    <div class="side-catalog-box">
+    <el-scrollbar class="side-catalog-box">
       <div
         class="side-catalog-all side-catalog-item"
         :class="{'active-catalog':isAll}"
@@ -12,24 +12,27 @@
         v-for="(catalog,index) in catalogList"
         :key="index"
         class="side-catalog-item"
-        :class="{'active-catalog':currentCatalog.code === catalog.code && !isAll}"
+        :class="{'active-catalog':activeCatalog.code === catalog.code && !isAll}"
         @mouseenter="mouseenter(catalog.code)"
         @mouseleave="mouseleave"
         @click="clickCatalog(catalog)"
       >
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
-          v-if="(showDropdown && hoverItem === catalog.code) || currentCatalog.code === catalog.code"
-          class="page-list-dropdown"
+          :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || activeCatalog.code === catalog.code}"
+          class="page-list-dropdown bs-theme-wrap"
           placement="bottom-start"
           node-key="id"
           trigger="click"
         >
           <span class="el-dropdown-link menu-dropdown-link">
-            <i class="el-icon-more"  :class="{'active-icon-more':currentCatalog.code === catalog.code && !isAll}"/>
+            <i
+              class="el-icon-more"
+              :class="{'active-icon-more':activeCatalog.code === catalog.code && !isAll}"
+            />
             <el-dropdown-menu
               slot="dropdown"
-              class="dropdown-menu-box"
+              class="dropdown-menu-box bs-el-dropdown-menu"
             >
               <el-dropdown-item @click.native="catalogEdit(catalog)">
                 编辑
@@ -44,7 +47,7 @@
           </span>
         </el-dropdown>
       </div>
-    </div>
+    </el-scrollbar>
     <div
       class="add-catalog-box"
       @click="catalogAdd"
@@ -54,11 +57,11 @@
     </div>
     <!-- 新增或编辑目录弹窗 -->
     <el-dialog
-      :title="currentCatalog.id ? '编辑目录':'新增目录'"
+      :title="currentCatalog.code ? '编辑分组':'新建分组'"
       :visible.sync="catalogVisible"
       custom-class="bs-el-dialog bs-theme-wrap"
       width="30%"
-      class="bs-dialog-wrap catalog-dialog"
+      class="bs-dialog-wrap bs-el-dialog"
       @close="handleClose"
     >
       <el-form
@@ -68,7 +71,7 @@
         :rules="formRules"
       >
         <el-form-item
-          label="目录名称"
+          label="分组名称"
           prop="name"
         >
           <el-input
@@ -92,11 +95,16 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="catalogVisible = false">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="catalogVisible = false"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="addOrEditCatalog"
-        >确 定</el-button>
+        >确定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -114,14 +122,19 @@ export default {
       isAll: true,
       catalogList: [],
       catalogVisible: false,
-      currentCatalog: {
+      activeCatalog: { // 激活的目录,点击其他非目录按钮时需要保持当前的菜单激活状态
+        name: '',
+        id: '',
+        code: ''
+      },
+      currentCatalog: { // 选中目录
         name: '',
         id: '',
         code: ''
       },
       formRules: {
         name: [
-          { required: true, message: '目录名称不能为空', trigger: 'blur' }
+          { required: true, message: '分组名称不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -145,6 +158,7 @@ export default {
     // 点击目录
     clickCatalog (catalog) {
       this.currentCatalog = _.cloneDeep(catalog)
+      this.activeCatalog = _.cloneDeep(catalog)
       this.isAll = false
       this.$emit('getPageInfo', { isAll: false, page: catalog })
     },
@@ -183,6 +197,11 @@ export default {
     // 新增目录
     catalogAdd () {
       this.catalogVisible = true
+      this.currentCatalog = { // 选中目录
+        name: '',
+        id: '',
+        code: ''
+      }
     },
     // 编辑目录
     catalogEdit () {
@@ -193,7 +212,8 @@ export default {
       this.$confirm('确定删除该目录？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(async () => {
         post(`/bigScreen/category/delete/${catalog.code}`).then(() => {
           this.$message({
@@ -212,7 +232,7 @@ export default {
     // 获取目录的列表
     getCatalogList () {
       this.pageLoading = true
-      post('/bigScreen/category/list', { typeList: 'catalog' }).then(data => {
+      post('/bigScreen/category/list', { typeList: ['catalog'] }).then(data => {
         this.catalogList = data
       }).catch(() => {
       }).finally(() => {
@@ -223,9 +243,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  @import '~packages/assets/style/bsTheme.scss';
   .side-catalog-wrap{
     padding-top: 16px;
-    width: 300px;
+    width: 220px;
     height: 100%;
     box-sizing: border-box;
     color: var(--bs-el-title);
@@ -257,6 +278,12 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           -o-text-overflow:ellipsis;
+        }
+        .page-list-dropdown{
+          opacity: 0;
+        }
+        .dropdown-show{
+          opacity: 1;
         }
       }
       /*菜单激活时的样式*/

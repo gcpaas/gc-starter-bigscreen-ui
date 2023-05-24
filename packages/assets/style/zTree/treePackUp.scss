@@ -1,4 +1,4 @@
-.packUpStyle {
+.pack-up-box {
   margin: 0 -16px;
   height: 100%;
   position: absolute;
@@ -6,12 +6,12 @@
   display: flex;
 }
 
-.packUpBtn {
+.pack-up-button {
   position: absolute;
   margin: 0 -16px;
   height: none;
-  min-height:calc(100vh - 40px);
-  line-height:calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
+  line-height: calc(100vh - 40px);
   background-color: #f6f7fb;
   display: flex;
 
@@ -39,19 +39,19 @@
     }
 
     &:hover {
-      background-color: #007aff;
+      background-color: var(--bs-el-hover);
     }
   }
 }
 
-.showPackUp {
+.visible-pack-up {
   right: 7px;
   display: flex;
   height: 40px !important;
   line-height: 40px !important;
   position: absolute !important;
   cursor: col-resize !important;
-  background-color: #bababa !important;
+  background-color: var(--bs-background-2) !important;
   opacity: 0.8;
 
   span {
@@ -59,7 +59,7 @@
     font-size: 16px;
     color: #ffffff;
     align-self: center;
-
+    white-space: nowrap;
     display: block;
     margin-right: 4px;
   }
@@ -69,23 +69,23 @@
   }
 }
 
-.treeShow {
+.visible-tree {
   width: 25%;
   float: left;
 }
 
-.treeHidden {
+.hidden-tree {
   opacity: 0;
   width: 0%;
   height: 0;
 }
 
-.tablePortion {
+.table-portion {
   float: left;
   width: 75%;
 }
 
-.tableAll {
+.table-overall {
   width: 100%;
   height: 100%;
 }
@@ -94,33 +94,30 @@
   cursor: col-resize;
   float: left;
   user-select: none;
-
+  width: 15px;
   z-index: 1;
   width: 14px;
+  display: flex;
   height: auto;
-  background-color: #f6f7fb;
+  background-color: var(--bs-el-background-1);
   height: 100%;
 
   a {
-    position: relative;
+    align-self: center;
     display: block;
     height: 100px;
     line-height: 0px;
-    display: flex;
-    top: 40.5%;
-    justify-content: center;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    background-color: #EBEEF5;
+    background-color: var(--bs-background-2);
 
     i {
-      align-self: center;
-
+      line-height: 100px;
       color: #c6c6db;
     }
 
     &:hover {
-      background-color: #007aff;
+      background-color: var(--bs-el-hover);
     }
   }
 }

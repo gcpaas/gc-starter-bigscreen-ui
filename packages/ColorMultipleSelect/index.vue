@@ -6,6 +6,8 @@
 <template>
   <el-select
     ref="colorSelect"
+    class="bs-el-select select"
+    popper-class="bs-el-select"
     v-model="myColor"
     placeholder=""
     style="width: 100%"

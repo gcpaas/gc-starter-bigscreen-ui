@@ -5,9 +5,8 @@
     width="50%"
     :modal="true"
     :modal-append-to-body="false"
-    custom-class="bs-el-dialog"
     :appen-to-body="true"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
     @closed="$emit('imgUrl', imgUrl)"
   >
     <div>
@@ -45,7 +44,7 @@
             style="max-width: 200px"
           >
             <el-image
-              class="bg-img"
+              class="bg-img bs-el-img"
               :src="img.url"
               fit="cover"
               @click.native="imgUrl = img.url; dialogVisible = false"
@@ -158,5 +157,6 @@ export default {
   width: 100%;
   height: 100px;
   cursor: pointer;
+
 }
 </style>

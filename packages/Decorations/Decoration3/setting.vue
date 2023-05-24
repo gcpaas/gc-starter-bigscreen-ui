@@ -7,45 +7,33 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-
-          <div class="lc-field-body">
-            <el-form
-              :model="config.customize"
-              label-position="left"
-              class="setting-body"
-              label-width="90px"
-            >
-              <el-form-item label="装饰名称">
-                <el-input
-                  v-model="config.title"
-                  clearable
-                />
-              </el-form-item>
-              <el-form-item label="装饰主颜色">
-                <ColorPicker
-                  v-model="config.customize.decorationColor1"
-                  :predefine="predefineThemeColors"
-                />
-              </el-form-item>
-              <el-form-item label="装饰副颜色二">
-                <ColorPicker
-                  v-model="config.customize.decorationColor2"
-                  :predefine="predefineThemeColors"
-                />
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <div class="lc-field-body">
+        <el-form
+          :model="config.customize"
+          label-position="left"
+          class="setting-body"
+          label-width="90px"
+        >
+          <el-form-item label="装饰名称">
+            <el-input
+              v-model="config.title"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="装饰主颜色">
+            <ColorPicker
+              v-model="config.customize.decorationColor1"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="装饰副颜色二">
+            <ColorPicker
+              v-model="config.customize.decorationColor2"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
+        </el-form>
+      </div>
     </el-form>
   </div>
 </template>

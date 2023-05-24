@@ -4,16 +4,14 @@
     :title="title"
     :visible.sync="setDatasourceVisible"
     :append-to-body="true"
-    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    class="bs-dialog-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
   >
     <div
       v-loading="linkLoading"
       element-loading-text="正在测试连接..."
       style="padding-right: 80px;"
-      class="bs-theme-wrap"
     >
       <el-form
         ref="dataForm"
@@ -29,6 +27,7 @@
         >
           <el-select
             v-model="dataForm.sourceType"
+            placeholder="请选择类型"
             class="bs-el-select"
             popper-class="bs-el-select"
             clearable
@@ -49,6 +48,7 @@
         >
           <el-input
             v-model="dataForm.sourceName"
+            placeholder="请输入数据源名称"
             class="bs-el-input"
             maxlength="200"
           />
@@ -59,6 +59,7 @@
         >
           <el-input
             v-model="dataForm.url"
+            placeholder="请输入JDBC URL"
             class="bs-el-input"
             type="textarea"
             rows="4"
@@ -71,6 +72,7 @@
         >
           <el-input
             v-model="dataForm.username"
+            placeholder="请输入用户名"
             class="bs-el-input"
           />
         </el-form-item>
@@ -80,6 +82,7 @@
         >
           <el-input
             v-model="dataForm.password"
+            :placeholder="dataForm.id ? '请输入密码，不输入代表不更新' : '请输入密码'"
             class="bs-el-input"
             type="password"
             show-password
@@ -91,6 +94,7 @@
         >
           <el-input
             v-model="dataForm.remark"
+            placeholder="请输入备注"
             class="bs-el-input"
             type="textarea"
             rows="4"
@@ -176,6 +180,7 @@
         </template>
       </el-form>
     </div>
+
     <span
       slot="footer"
       class="dialog-footer"
@@ -491,5 +496,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~packages/assets/style/bsTheme.scss';
+</style>
+<style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 </style>

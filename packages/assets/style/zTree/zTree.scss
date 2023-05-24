@@ -1,10 +1,6 @@
 
 .tree-box {
   padding: 0 18px 10px 0;
-
-  .el-input {
-    line-height: 32px;
-  }
 }
 
 .input-with-select {
@@ -25,9 +21,9 @@
 }
 
 .ztree {
-  height: calc(100vh - 220px);
+  height: calc(100vh - 290px);
   li a.curSelectedNode {
-    color: #007aff;
+    color: var(--bs-el-hover);
     text-decoration: none;
   }
 
@@ -82,7 +78,7 @@
   }
 
 
-  #orgTreeNodeMenuBottom {
+  .node-bottom-menu {
     z-index: 4;
     padding-top: 10px;
     ul{
@@ -102,7 +98,7 @@
       transform: translateX(-50%) rotate(45deg);
     }
   }
-  #orgTreeNodeMenuTop {
+  .node-top-menu {
     z-index: 4;
     padding-bottom: 10px;
     ul{
@@ -163,8 +159,8 @@
   height: 12px;
   border-radius: 2px;
   margin-bottom: 3px;
-  border: 1px solid #007aff;
-  background-color: #007aff;
+  border: 1px solid var(--bs-el-hover);
+  background-color: var(--bs-el-hover);
 }
 
 .ztree li span.button.chk.checkbox_true_full_focus {
@@ -173,9 +169,9 @@
   cursor: pointer;
   border-radius: 2px;
   margin-bottom: 3px;
-  border: 1px solid #007aff;
+  border: 1px solid var(--bs-el-hover);
   padding: 1px;
-  background-color: #007aff;
+  background-color: var(--bs-el-hover);
 }
 
 .ztree li span.button.chk.checkbox_true_part {
@@ -183,9 +179,9 @@
   height: 12px;
   border-radius: 2px;
   margin-bottom: 3px;
-  border: 1px solid #007aff;
+  border: 1px solid var(--bs-el-hover);
   padding: 1px;
-  background-color: #007aff;
+  background-color: var(--bs-el-hover);
 }
 
 .ztree li span.button.chk.checkbox_true_part_focus {
@@ -194,9 +190,9 @@
   cursor: pointer;
   border-radius: 2px;
   margin-bottom: 3px;
-  border: 1px solid #007aff;
+  border: 1px solid var(--bs-el-hover);
   padding: 1px;
-  background-color: #007aff;
+  background-color: var(--bs-el-hover);
 }
 
 .ztree li span.button.chk.checkbox_false_part {

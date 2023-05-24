@@ -12,9 +12,9 @@
     min-width: 100px !important;
     margin-right: 10px;
   }
-  .el-button{
-    display: inline-flex !important;
-  }
+  // .el-button{
+  //   display: inline-flex !important;
+  // }
 }
 
 .loading {
@@ -46,7 +46,7 @@
     height: 100%;
     padding: 0;
     ::v-deep li a.curSelectedNode {
-      color: #007aff;
+      color: var(--bs-el-hover);
       text-decoration: none;
     }
   }

@@ -16,6 +16,7 @@
       :id="chart.code"
       :key="chart.updateKey || chart.code"
       class="drag-item"
+      :scale-ratio="scale"
       :x="chart.x"
       :y="chart.y"
       :w="chart.w"
@@ -104,7 +105,8 @@ export default {
       activeCode: state => state.bigScreen.activeCode,
       hoverCode: state => state.bigScreen.hoverCode,
       themeJson: state => state.bigScreen.pageInfo.pageConfig.themeJson,
-      isInit: state => !state.bigScreen.pageLoading
+      isInit: state => !state.bigScreen.pageLoading,
+      scale: state => state.bigScreen.zoom / 100
     })
   },
   watch: {
@@ -268,10 +270,10 @@ export default {
       }
       const config = {
         ..._chart,
-        x: position.x - left - _chart.offsetX,
-        y: position.y - top - _chart.offsetY,
-        width: 200,
-        height: 200,
+        x: (position.x - left - _chart.offsetX) / this.scale,
+        y: (position.y - top - _chart.offsetX) / this.scale,
+        width: 200 * this.scale,
+        height: 200 * this.scale,
         code: randomString(8),
         option
       }
@@ -346,5 +348,8 @@ export default {
   .ref-line {
     background-color: transparent;
   }
+}
+.design-drag-wrap {
+  box-shadow: 0 0 30px 0 rgba(0,0,0,.5);
 }
 </style>

@@ -33,7 +33,7 @@
       >
         <div
           id="resize"
-          class="resize  packUpStyle"
+          class="resize  pack-up-box"
           @mousedown="mousedown"
           @mouseup="mouseup"
           @mousemove="mousemove"
@@ -49,7 +49,7 @@
           </a>
           <a
             v-else
-            class="showPackUp"
+            class="visible-pack-up"
           >
             <span>||</span>
           </a>
@@ -96,7 +96,7 @@
           <el-table
             ref="userTable"
             v-loading="dataListLoading"
-            class="bs-el-table"
+            class="bs-el-table bs-scrollbar"
             :element-loading-text="loadingText"
             :data="tableData"
             :header-cell-style="sortStyle"
@@ -177,14 +177,15 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
+            class="bs-theme-wrap bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
             :page-size="size"
             :total="totalCount"
             background
-            :prev-text="prevText"
-            :next-text="nextText"
+            prev-text="上一页"
+            next-text="下一页"
             layout="total, prev, pager, next, sizes"
             @size-change="sizeChangeHandle"
             @current-change="currentChangeHandle"
@@ -609,6 +610,14 @@ export default {
 @import '~packages/assets/style/bsTheme.scss';
 @import '~packages/assets/style/zTree/treePackUp.scss';
 
+.bs-pagination {
+  ::v-deep .el-input__inner {
+    width: 110px !important;
+    border:none;
+    background: var(--bs-el-background-1);
+  }
+}
+
 .bs-container .inner-container .el-form .filter-item {
   /deep/ .el-input__inner {
     width: 200px;
@@ -617,48 +626,41 @@ export default {
 
 .right-box {
   margin-left: 20px;
-  ::v-deep .ztreeNodeMenu {
-    ul {
-      background-color: var(--bs-background-1);
-    }
 
-    li:hover {
-      background-color: var(--bs-el-hover);
-    }
+  // ::v-deep .ztreeNodeMenu {
+  //   ul {
+  //     background-color: var(--bs-background-1);
+  //   }
 
-    span {
-      color: var(--bs-el-title);
-    }
+  //   li:hover {
+  //     background-color: var(--bs-el-hover);
+  //   }
 
-    .triangle {
-      background-color: var(--bs-background-1) !important;
-    }
-  }
-  .resize {
-    width: 19px;
-    background-color: var(--bs-el-background) !important;
-    a{
-      height: 40px;
-      background-color: #bababa;
-      &:hover{
-        background-color: #bababa;
-      }
-    }
+  //   span {
+  //     color: var(--bs-el-text);
+  //   }
+
+  //   .triangle {
+  //     background-color: var(--bs-background-1) !important;
+  //   }
+  // }
+
+}
+
+::v-deep .left-tab-box {
+  span {
+    color: var(--bs-el-text);
   }
 }
-::v-deep .left-tab-box {
-    span {
-      color: var(--bs-el-text);
-    }
-  }
 
-  ::v-deep .left-tab-box ul li.tab-active {
-    background-color: var(--bs-el-hover);
-  }
+::v-deep .left-tab-box ul li.tab-active {
+  background-color: var(--bs-el-background-3);
+}
 
-  ::v-deep .left-tab-box ul li:hover {
-    background-color: var(--bs-el-hover);
-  }
+::v-deep .left-tab-box ul li:hover {
+  background-color: var(--bs-el-background-3);
+}
+
 .el-dialog {
   .bs-container {
     max-height: calc(90vh - 236px) !important;
@@ -677,6 +679,28 @@ export default {
 
   }
 
+}
+
+::v-deep .ztreeNodeMenu {
+  ul {
+    background-color: var(--bs-background-1);
+  }
+
+  li:hover {
+    background-color: var(--bs-el-background-3);
+
+    span {
+      color: var(--bs-el-hover);
+    }
+  }
+
+  span {
+    color: var(--bs-el-text);
+  }
+
+  .triangle {
+    background-color: var(--bs-background-1) !important;
+  }
 }
 
 .layout {

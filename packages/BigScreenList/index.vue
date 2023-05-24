@@ -2,9 +2,9 @@
   <div class="big-screen-list-wrap">
     <div class="top-search-wrap">
       <el-input
-        class="bs-el-input"
         v-model="searchKey"
-        placeholder="请输入关键字"
+        class="bs-el-input"
+        placeholder="请输入大屏名称"
         prefix-icon="el-icon-search"
         clearable
         @clear="reSearch"
@@ -17,12 +17,10 @@
         搜索
       </el-button>
     </div>
-
     <div
       v-loading="loading"
-      class="list-wrap"
+      class="list-wrap bs-scrollbar"
       element-loading-text="加载中"
-      element-loading-background="rgba(0, 0, 0, 0.8)"
       :style="{
         display: gridComputed ? 'grid' : 'flex',
         justifyContent: gridComputed ? 'space-around' : 'flex-start'
@@ -57,41 +55,54 @@
       >
         <div class="big-screen-card-inner">
           <div class="screen-card__hover">
-            <div class="preview">
-              <div
-                class="screen-card__oper-label circle"
-                @click="preview(screen)"
-              >
-                <span>预览</span>
-              </div>
-              <div
-                class="circle"
-                @click="design(screen)"
-              >
-                <span>设计</span>
-              </div>
-              <div
-                class="circle"
-                @click="edit(screen)"
-              >
-                <span>编辑</span>
-              </div>
-              <div
-                class="circle"
-                @click="copy(screen)"
-              >
-                <span>复制</span>
-              </div>
-              <div
-                class="circle"
-                @click="del(screen)"
-              >
-                <span>删除</span>
+            <div class="screen-card__hover-box">
+              <div class="preview">
+                <div
+                  class="screen-card__oper-label circle"
+                  @click="preview(screen)"
+                >
+                  <span>预览</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="design(screen)"
+                >
+                  <span>设计</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="edit(screen)"
+                >
+                  <span>编辑</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="copy(screen)"
+                >
+                  <span>复制</span>
+                </div>
+                <div
+                  class="circle"
+                  @click="del(screen)"
+                >
+                  <span>删除</span>
+                </div>
               </div>
             </div>
           </div>
           <div class="big-screen-card-img">
-            <img :src="screen.imgUrl || defaultImg">
+            <el-image
+              :src="screen.coverPicture"
+              fit="fill"
+              style="width: 100%;height:100%"
+            >
+              <div
+                slot="placeholder"
+                class="image-slot"
+              >
+                加载中···
+              </div>
+            </el-image>
           </div>
           <div class="big-screen-bottom">
             <div
@@ -100,28 +111,34 @@
             >
               {{ screen.name }}
             </div>
-            <div class="right-bigscreen-time-title">
-              {{ screen.createTime || '2023-01-01 08:11:34' }}
-            </div>
+<!--            <div class="right-bigscreen-time-title">-->
+<!--              {{ screen.updateDate || '-' }}-->
+<!--            </div>-->
           </div>
         </div>
       </div>
     </div>
 
     <div class="footer-pagination-wrap">
-      <div class="footer-pagination-wrap-text">
+      <!-- <div class="footer-pagination-wrap-text">
         总共 {{ totalCount }} 个项目
+      </div> -->
+      <div class="bs-pagination">
+        <el-pagination
+          class="bs-theme-wrap bs-el-pagination"
+          popper-class="bs-el-pagination"
+          background
+          layout="total, prev, pager, next, sizes"
+          :page-size="size"
+          prev-text="上一页"
+          next-text="下一页"
+          :total="totalCount"
+          :page-sizes="[10, 20, 50, 100]"
+          :current-page="current"
+          @current-change="currentChangeHandle"
+          @size-change="sizeChangeHandle"
+        />
       </div>
-      <el-pagination
-        background
-        layout="sizes, prev, pager, next"
-        :page-size="size"
-        :total="totalCount"
-        :page-sizes="[10, 20, 50, 100]"
-        :current-page="current"
-        @current-change="currentChangeHandle"
-        @size-change="sizeChangeHandle"
-      />
     </div>
     <!-- 新增或编辑弹窗 -->
     <EditForm
@@ -167,6 +184,7 @@ export default {
   },
   watch: {
     code (value) {
+      this.current = 1
       this.getDataList()
     }
   },
@@ -218,10 +236,11 @@ export default {
       this.$refs.EditForm.init(screen, this.catalogInfo.page)
     },
     del (screen) {
-      this.$confirm('确定删除该页面设计？', '提示', {
+      this.$confirm('确定删除该大屏？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(async () => {
         post(`/bigScreen/design/delete/${screen.code}`).then(() => {
           this.$message({
@@ -264,21 +283,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~packages/assets/style/bsTheme.scss';
 .big-screen-list-wrap {
   position: relative;
   height: 100%;
-  padding: 20px;
+  padding: 16px;
   color: #9ea9b2;
   background-color: var(--bs-background-1)!important;
+
   .top-search-wrap {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 
     .el-input {
       width: 200px;
       margin-right: 20px;
+      /deep/.el-input__inner{
+        background-color: #232832!important;
+      }
     }
   }
 
@@ -289,20 +313,26 @@ export default {
     justify-content: space-around;
     max-height: calc(100vh - 270px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 15px;
+
+    /deep/ .el-loading-mask {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 260px) !important;
+      z-index: 999;
+      top: 50px;
+    }
 
     .big-screen-card-wrap {
       position: relative;
-      height: 220px;
-      margin-right: 20px;
-      margin-bottom: 20px;
+      height: 180px;
       cursor: pointer;
-      border: 1px solid #204d5f;
 
       &:hover {
         .screen-card__hover {
-          height: 220px;
+          height: 180px;
         }
       }
 
@@ -318,15 +348,24 @@ export default {
         justify-content: center;
         height: 0;
         transition: height .4s;
-        background: #00000080;
-
+        background: #00000099;
+          .screen-card__hover-box{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #00000080;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+          }
         .preview {
           display: flex;
           flex-direction: row;
           justify-content: space-evenly;
           width: 100%;
           cursor: pointer;
-          color: #007aff;
+          color: var(--bs-el-hover);
 
           .circle {
             position: relative;
@@ -335,12 +374,12 @@ export default {
             justify-content: center;
             width: 40px;
             height: 40px;
-            border: 1px solid #007aff;
+            border: 1px solid var(--bs-el-hover);
             border-radius: 50%;
 
             &:hover {
               color: #fff;
-              background: #007aff;
+              background: var(--bs-el-hover);
             }
 
             span {
@@ -355,29 +394,39 @@ export default {
         width: 100%;
         height: 100%;
         cursor: pointer;
-        // 渐变色
-        background: linear-gradient(180deg, #204d5f 0%, #1a3e4b 100%);
+        background-color: var(--bs-background-2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
-
+        color: var(--bs-el-title);
+        border: 1px solid var(--bs-background-2);
         &:hover {
-          border: 1px solid #007aff;
+          color: var(--bs-el-text);
+          border: 1px solid var(--bs-el-hover);
         }
 
         .add-big-screen-card-text {
-          font-size: 14px;
-          font-size: 30px;
-          color: var(--bs-el-text);
+          font-size: 24px;
         }
 
         .big-screen-card-img {
           width: 100%;
-          height: 190px;
+          height: 150px;
 
           img {
             width: 100%;
             height: 100%;
 
             object-fit: cover;
+          }
+
+          /deep/.image-slot {
+            height: 100%;
+            background-color: var(--bs-background-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          /deep/.el-image__error{
+            background-color: #1D1D1D;
           }
         }
 
@@ -390,8 +439,8 @@ export default {
           width: 100%;
           /*height: 26px;*/
           padding: 0 10px;
-          height: calc(100% - 190px);
-          color: var(--bs-el-text);
+          height: calc(100% - 150px);
+          color: var(--bs-el-title);
           background-color: var(--bs-background-2);
 
           .left-bigscreen-title {
@@ -403,7 +452,11 @@ export default {
           }
 
           .right-bigscreen-time-title {
-            font-size: 12px;
+            font-size: 14px;
+            overflow: hidden;
+            width: 140px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
         }
 
@@ -423,6 +476,10 @@ export default {
     }
   }
 
+  .el-loading-parent--relative {
+    position: unset !important;
+  }
+
   .footer-pagination-wrap {
     position: absolute;
     bottom: 10px;
@@ -432,6 +489,13 @@ export default {
     width: 100%;
     margin-top: 20px;
     padding: 0 20px;
+  }
+}
+.bs-pagination{
+ ::v-deep .el-input__inner{
+     width: 110px !important;
+    border: none;
+    background: var(--bs-el-background-1);
   }
 }
 </style>

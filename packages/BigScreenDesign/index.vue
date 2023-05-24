@@ -6,8 +6,10 @@
     <PageTopSetting
       v-show="headerShow"
       ref="PageTopSetting"
+      :right-fold="rightVisiable"
+      @updateRightVisiable="updateRightVisiable"
+      @showPageInfo="showPageInfo"
       @empty="empty"
-      @click.native="changeActiveCode('')"
     />
     <div class="drag-wrap">
       <!-- 左侧面板 -->
@@ -20,11 +22,15 @@
       <div
         v-loading="pageLoading"
         class="grid-wrap-box"
-        :style="{ height }"
+        :style="{
+          height: 'calc(100vh - 48px)'
+        }"
       >
         <SketchDesignRuler
-          :width="pageConfig.w"
-          :height="pageConfig.h"
+          :width="3000"
+          :height="3000"
+          :page-width="pageConfig.w"
+          :page-height="pageConfig.h"
           @changeStart="changeStart"
         >
           <MouseSelect
@@ -41,12 +47,36 @@
             />
           </MouseSelect>
         </SketchDesignRuler>
+        <div class="footer-tools-bar">
+          <el-slider
+            class="bs-slider-wrap"
+            :value="zoom"
+            :min="10"
+            style="width: 200px;margin-right: 20px;"
+            @input="changeScreenZoom"
+          />
+          <span class="select-zoom-text">缩放比例</span>
+          <el-select
+            class="bs-el-select"
+            popper-class="bs-el-select"
+            :value="zoom"
+            @change="changeScreenZoom"
+          >
+            <el-option
+              v-for="zoom in zoomList"
+              :key="zoom.value"
+              :label="zoom.label"
+              :value="zoom.value"
+            />
+          </el-select>
+        </div>
       </div>
       <!-- 右侧折叠设置面板   -->
       <SettingPanel
         :header-show="headerShow"
         :height="height"
         :right-visiable.sync="rightVisiable"
+        :page-info-visiable="pageInfoVisiable"
         @updateSetting="updateSetting"
         @updateDataSetting="updateDataSetting"
       />
@@ -65,6 +95,7 @@ import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
+import { get } from '../js/utils/http'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -92,9 +123,28 @@ export default {
   },
   data () {
     return {
-      rightVisiable: true,
-      ruleStartX: 0,
-      ruleStartY: 0
+      rightVisiable: false,
+      pageInfoVisiable: false,
+      ruleStartX: 100,
+      ruleStartY: 100,
+      zoomList: [
+        {
+          label: '100%',
+          value: 100
+        },
+        {
+          label: '80%',
+          value: 80
+        },
+        {
+          label: '50%',
+          value: 50
+        },
+        {
+          label: '20%',
+          value: 20
+        }
+      ]
     }
   },
   computed: {
@@ -106,19 +156,28 @@ export default {
       hoverCode: state => state.bigScreen.hoverCode,
       presetLine: state => state.bigScreen.presetLine,
       updateKey: state => state.bigScreen.updateKey,
-      hasGrid: state => state.bigScreen.hasGrid
+      hasGrid: state => state.bigScreen.hasGrid,
+      zoom: state => state.bigScreen.zoom
     }),
     offset () {
       return {
-        x: 340 - this.ruleStartX,
-        y: 73 - this.ruleStartY
+        x: 260 + 50 - this.ruleStartX,
+        y: 60 + 50 - this.ruleStartY
       }
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // 重置大屏的vuex store
-      vm.$store.commit('bigScreen/resetStoreData')
+    // 判断进入设计页面前是否有访问权限
+    const code = to.query.code
+    get(`/bigScreen/permission/check/${code}`).then(res => {
+      if (res) {
+        next(vm => {
+          // 重置大屏的vuex store
+          vm.$store.commit('bigScreen/resetStoreData')
+        })
+      } else {
+        next('/notPermission')
+      }
     })
   },
   created () {
@@ -136,7 +195,8 @@ export default {
       'changeActiveCodes',
       'changePageConfig',
       'changeChartConfig',
-      'changeChartKey'
+      'changeChartKey',
+      'changeZoom'
     ]),
     init () {
       this.changePageLoading(true)
@@ -164,6 +224,7 @@ export default {
     // 点击当前组件时打开右侧面板
     openRightPanel (card) {
       this.rightVisiable = true
+      this.pageInfoVisiable = false
     },
     /**
      * @description: 清空页面
@@ -172,7 +233,8 @@ export default {
       this.$confirm('确定清空页面吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        customClass: 'bs-el-message-box'
       }).then(() => {
         this.changeLayout([])
         this.resetPresetLine()
@@ -208,6 +270,16 @@ export default {
     // 保存
     save () {
       this.$refs.PageTopSetting.save('saveLoading')
+    },
+    changeScreenZoom (zoom) {
+      this.changeZoom(zoom)
+    },
+    updateRightVisiable (visiable) {
+      this.rightVisiable = visiable
+    },
+    showPageInfo () {
+      this.pageInfoVisiable = true
+      this.rightVisiable = true
     }
   }
 }
@@ -218,27 +290,45 @@ export default {
 
   .drag-wrap {
     display: flex;
-    background-color: var(--bs-background-design-inner);
+    background-color: #1d1e20;
+    height: calc(100vh - 40px);
+    overflow: hidden;
 
     .grid-wrap-box {
       flex: 1;
       overflow: hidden;
       position: relative;
+      margin: 8px 0 0 8px;
+
+      .footer-tools-bar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        z-index: 1000;
+        background-color: var(--bs-background-2);
+
+        .bs-select-wrap {
+          margin-right: 16px;
+        }
+
+        .select-zoom-text {
+          color: var(--bs-el-title);
+          margin-right: 16px;
+        }
+
+        /deep/ .el-select {
+          width: 150px !important
+        }
+      }
     }
 
     /deep/ .el-loading-mask {
       background-color: transparent !important
     }
-  }
-
-  .grid-bg {
-    background: #5588aa40 !important;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 0) !important;
-    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px !important;
   }
 }
 </style>

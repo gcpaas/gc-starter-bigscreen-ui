@@ -11,18 +11,16 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse v-model="activeNames">
-        <el-collapse-item
+      <div class="data-setting-box">
+        <div
           v-if="config.option.displayOption.dataSourceType.enable"
-          name="数据来源"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据来源
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据来源
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-form-item
               label="数据类型"
@@ -30,6 +28,7 @@
             >
               <el-radio-group
                 v-model="config.dataSource.dataSetType"
+                class="bs-radio-wrap"
               >
                 <el-radio
                   :label="'1'"
@@ -63,7 +62,8 @@
             >
               <el-select
                 v-model="config.dataSource.businessKey"
-                popper-class="bs-theme-select"
+                popper-class="bs-el-select"
+                class="bs-el-select"
                 clearable
                 @change="changeCacheBusinessKey"
               >
@@ -76,18 +76,16 @@
               </el-select>
             </el-form-item>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.type === 'customComponent'"
-          name="数据处理"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据处理
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据处理
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-form-item
               label="数据处理脚本"
@@ -100,18 +98,16 @@
               />
             </el-form-item>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="!['tree','multipleNumberChart','carousel'].includes(config.type) && config.option.displayOption.dataSourceType.enable "
-          name="数据配置"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                数据配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              数据配置
             </div>
-          </template>
+          </div>
           <template v-if="config.type !== 'customComponent'">
             <!--维度多选-->
             <el-form-item
@@ -123,7 +119,8 @@
               <el-drag-select
                 v-if="config.option.displayOption.dimensionField.enable && config.option.displayOption.dimensionField.multiple"
                 v-model="config.dataSource.dimensionFieldList"
-                popper-class="bs-theme-select"
+                class="bs-el-select"
+                popper-class="bs-el-select"
                 clearable
                 :multiple="config.option.displayOption.dimensionField.multiple"
                 @change="dimensionFieldListChange"
@@ -148,7 +145,8 @@
               <el-select
                 v-else
                 v-model="config.dataSource.dimensionField"
-                popper-class="bs-theme-select"
+                class="bs-el-select"
+                popper-class="bs-el-select"
                 clearable
               >
                 <el-option
@@ -177,7 +175,8 @@
             >
               <el-select
                 v-model="config.dataSource.metricField"
-                popper-class="bs-theme-select"
+                class="bs-el-select"
+                popper-class="bs-el-select"
                 clearable
               >
                 <el-option
@@ -209,7 +208,8 @@
               >
                 <el-select
                   v-if="setting.type === 'select'"
-                  popper-class="bs-theme-select"
+                  class="bs-el-select select"
+                  popper-class="bs-el-select"
                   :value="setting.value"
                   clearable
                   :multiple="setting.multiple"
@@ -241,8 +241,8 @@
               </el-form-item>
             </template>
           </template>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.headerField && config.option.displayOption.headerField.enable"
           name="轮播表配置"
         >
@@ -306,7 +306,8 @@
                 <template slot-scope="scope">
                   <el-select
                     v-model="scope.row.align"
-                    popper-class="bs-theme-select"
+                    class="bs-el-select"
+                    popper-class="bs-el-select"
                     clearable
                     placeholder="请选择对齐方式"
                   >
@@ -327,18 +328,16 @@
               </el-table-column>
             </el-table>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.params.enable"
-          name="参数配置"
+          class="data-setting-data-box"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                参数配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              参数配置
             </div>
-          </template>
+          </div>
           <div class="lc-field-body">
             <el-table
               ref="singleTable"
@@ -406,18 +405,17 @@
               </el-table-column>
             </el-table>
           </div>
-        </el-collapse-item>
-        <el-collapse-item
+        </div>
+        <div
           v-if="config.option.displayOption.serverPagination.enable"
+          class="data-setting-data-box"
           name="分页配置"
         >
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                分页配置
-              </div>
+          <div class="lc-field-head">
+            <div class="lc-field-title">
+              分页配置
             </div>
-          </template>
+          </div>
           <div class="form">
             <el-form-item
               v-if="config.option.displayOption.serverPagination.enable"
@@ -448,7 +446,8 @@
             >
               <el-select
                 v-model="config.dataSource.pageSize"
-                popper-class="bs-theme-select"
+                class="bs-el-select"
+                popper-class="bs-el-select"
                 filterable
                 allow-create
                 default-first-option
@@ -462,13 +461,13 @@
               </el-select>
             </el-form-item>
           </div>
-        </el-collapse-item>
+        </div>
         <ComponentRelation
           v-if="!['carousel','gauge','liquid'].includes(config.type)"
           :config="config"
           :source-field-list="sourceFieldList"
         />
-      </el-collapse>
+      </div>
     </el-form>
   </div>
 </template>
@@ -490,18 +489,6 @@ export default {
     return {
       fieldsList: [],
       params: [], // 参数配置
-      activeNames: [
-        '数据来源',
-        '时间范围',
-        '数据查询',
-        '数据配置',
-        '参数配置',
-        '分页配置',
-        'relations',
-        '字段配置',
-        '轮播表配置',
-        '数据处理'
-      ],
       datasetName: '',
       headerList: [],
       pageSizeList: [10, 20, 50, 100],
@@ -713,6 +700,7 @@ export default {
     changeCacheBusinessKey (id) {
       // 根据id在缓存中获取fields
       this.fieldsList = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.fields
+      this.params = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.params
     }
   }
 }
@@ -739,7 +727,7 @@ export default {
   ::v-deep .el-tag__close.el-icon-close {
     top: -1px;
     &:hover {
-      background-color:#007aff;
+      background-color:var(--bs-el-hover);
     }
   }
   .opt-wrap{
@@ -765,6 +753,30 @@ export default {
     .opt-wrap {
       display: flex;
       justify-content: center;
+    }
+  }
+  // 修改设置面板样式
+  .data-setting-box{
+    .data-setting-data-box{
+      .lc-field-head{
+        height: 30px;
+        .lc-field-title{
+          position: relative;
+          padding-left: 12px;
+          line-height: 30px;
+          height: 30px;
+          &:after{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '';
+            width: 4px;
+            height: 14px;
+            background-color: var(--bs-el-hover);
+          }
+        }
+      }
     }
   }
 </style>

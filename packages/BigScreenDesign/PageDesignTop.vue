@@ -10,27 +10,36 @@
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
-      <div
-        class="head-btn"
-        @click="execRun()"
+      <CusBtn
+        :loading="saveAndPreviewLoading"
+        @click.native="execRun()"
       >
         预览
-        <!-- <i class="iconfont-bigscreen icon-yulan" /> -->
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
+        :loading="saveLoading"
         @click="save('saveLoading')"
       >
-        <!-- <i class="iconfont-bigscreen icon-baocun" /> -->
         保存
-      </div>
-      <div
-        class="head-btn"
+      </CusBtn>
+      <CusBtn
         @click="empty"
       >
         清空
-        <!-- <i class="iconfont-bigscreen icon-qingkong" /> -->
-      </div>
+      </CusBtn>
+      <CusBtn
+        @click="showPageInfo"
+      >
+        设置
+      </CusBtn>
+      <CusBtn
+        @click="updateRightVisiable"
+      >
+        <i
+          class="iconfont-bigscreen"
+          :class="rightFold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
+        />
+      </CusBtn>
     </div>
     <ChooseTemplateDialog
       ref="ChooseTemplateDialog"
@@ -41,21 +50,27 @@
   </div>
 </template>
 <script>
-import { toPng } from 'html-to-image'
+import { toJpeg } from 'html-to-image'
 import { mapMutations, mapActions, mapState } from 'vuex'
 import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
+import CusBtn from './BtnLoading'
 export default {
   name: 'PageTopSetting',
   components: {
-    ChooseTemplateDialog
+    ChooseTemplateDialog,
+    CusBtn
   },
   props: {
     code: {
       type: String,
       default: ''
+    },
+    rightFold: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -84,7 +99,7 @@ export default {
       changePageInfo: 'bigScreen/changePageInfo'
     }),
     backManagement () {
-      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/pages' })
+      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/home' })
     },
     // 清空
     empty () {
@@ -117,7 +132,7 @@ export default {
           delete pageInfo.pageTemplateId
         }
         const node = document.querySelector('.render-theme-wrap')
-        toPng(node)
+        toJpeg(node, { quality: 0.2 })
           .then((dataUrl) => {
             pageInfo.coverPicture = dataUrl
             saveScreen(pageInfo).then(res => {
@@ -175,6 +190,12 @@ export default {
         ...this.pageInfo,
         chartList: newChartList
       })
+    },
+    updateRightVisiable () {
+      this.$emit('updateRightVisiable', !this.rightFold)
+    },
+    showPageInfo () {
+      this.$emit('showPageInfo')
     }
   }
 }
@@ -230,7 +251,7 @@ export default {
 
 .page-top-setting-wrap {
   height: 40px;
-  background-color: var(--bs-background-1);
+  background-color: var(--bs-background-2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -245,20 +266,6 @@ export default {
   .head-btn-group {
     display: flex;
     margin-left: 50px;
-
-    .head-btn {
-      display: flex;
-      background-color: #303640;
-      cursor: pointer;
-      width: 60px;
-      justify-content: center;
-      align-items: center;
-      margin-right: 4px;
-
-      &:hover {
-        background-color: #414750;
-      }
-    }
   }
 
   .item-wrap {
@@ -281,7 +288,7 @@ export default {
     }
 
     .name-span {
-      max-width: 100px;
+      max-width: 300px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

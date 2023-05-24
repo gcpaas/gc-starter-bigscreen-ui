@@ -17,32 +17,31 @@
           class="left-tabs-box"
           @tab-click="tabClick"
         >
-          <!--          <el-tab-pane-->
-          <!--            name="default"-->
-          <!--            @click.native="changeActiveCode('')"-->
-          <!--          >-->
-          <!--            <span-->
-          <!--              slot="label"-->
-          <!--              class="menu-imgs"-->
-          <!--              name="default"-->
-          <!--              @click="toggleSidebar"-->
-          <!--            >-->
-          <!--              <i-->
-          <!--                :class="[-->
-          <!--                  'iconfont-bigscreen',-->
-          <!--                  'icon-menu'-->
-          <!--                ]"-->
-          <!--              />-->
-          <!--            </span>-->
-          <!--          </el-tab-pane>-->
+          <el-tab-pane
+            name="default"
+            @click.native="changeActiveCode('')"
+          >
+            <span
+              slot="label"
+              class="menu-slot"
+              name="default"
+              @click="toggleSidebar"
+            >
+              <i
+                class="iconfont-bigscreen menu-icon"
+                :class="fold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
+              />
+              <span class="menu-title-span">{{ foldText }}</span>
+            </span>
+          </el-tab-pane>
           <el-tab-pane
             name="layer"
-            @click.native="changeActiveCode('')"
           >
             <div
               slot="label"
               class="menu-slot"
               name="layer"
+              @dbclick.native="toggleSidebar"
             >
               <i
                 :class="[
@@ -55,7 +54,9 @@
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                图层
+                <div class="page-left-content-title-text">
+                  图层
+                </div>
               </div>
               <div class="page-left-content-components">
                 <el-scrollbar>
@@ -77,6 +78,7 @@
             <div
               slot="label"
               class="menu-slot"
+              @dbclick.native="toggleSidebar"
             >
               <i
                 :class="[
@@ -89,7 +91,9 @@
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                {{ menu.title }}
+                <div class="page-left-content-title-text">
+                  {{ menu.title }}
+                </div>
               </div>
               <el-scrollbar>
                 <div class="page-left-content-components">
@@ -97,14 +101,16 @@
                     <div
                       v-for="element in menu.components"
                       :key="element.type + element.name"
-                      :class="element.component ? 'item menu-component' : 'item'"
+                      :class="element.component ? 'item menu-component drag-node' : 'item drag-node'"
+                      draggable="true"
+                      :data-type="element.type"
+                      :data-name="element.name"
                     >
-                      <div class="component-name">{{ element.title || element.name }}</div>
+                      <div class="component-name">
+                        {{ element.title || element.name }}
+                      </div>
                       <div
                         class="img_dispaly chooseDragNode"
-                        draggable="true"
-                        :data-type="element.type"
-                        :data-name="element.name"
                         @click.stop="addComponent(element)"
                       >
                         <icon-svg
@@ -132,15 +138,6 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-      <!-- <div
-        class="bs-folder-wrap"
-        :style="{ height }"
-      >
-        <i
-          :class="fold ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
-          @click="toggleSidebar"
-        />
-      </div> -->
     </div>
   </transition>
 </template>
@@ -190,6 +187,9 @@ export default {
     // 获取当前类型的组件
     currentComponentList () {
       return this.componentList.filter(item => item.type === this.currentTab)
+    },
+    foldText () {
+      return this.fold ? '展开' : '收起'
     }
   },
   watch: {
@@ -214,7 +214,7 @@ export default {
     ...mapMutations('bigScreen', ['changeActiveCode']),
     nodeDrag () {
       this.$nextTick(() => {
-        const nodes = document.querySelectorAll('.chooseDragNode')
+        const nodes = document.querySelectorAll('.drag-node')
         nodes.forEach(node => {
           node.addEventListener('dragstart', event => {
             const type = node.getAttribute('data-type')
@@ -314,7 +314,7 @@ export default {
 
     .flexible {
       width: 45px;
-      border-right: 1px solid #ccc;
+      /* border-right: 1px solid #ccc; */
       text-align: center;
     }
 
@@ -326,10 +326,10 @@ export default {
 
       .is-active {
         .iconfont-bigscreen {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
         .menu-title-span {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
       }
 
@@ -343,14 +343,30 @@ export default {
 
       /deep/.el-tabs__content {
         height: 100%;
-        width: 204px;
+        width: 190px;
 
         .page-left-content-title {
+          background-color: var(--bs-background-2);
           color: var(--bs-el-title);
-          height: 30px;
-          line-height: 30px;
-          padding-left: 20px;
           font-size: 14px;
+          margin: 8px;
+          padding: 8px 0;
+
+          .page-left-content-title-text {
+            /*border-left: 4px solid #007aff;*/
+            position: relative;
+            padding-left: 12px;
+            &:after{
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              content: '';
+              width: 4px;
+              height: 14px;
+              background-color: var(--bs-el-hover);
+            }
+          }
         }
         .el-scrollbar__view{
           height: calc(100vh - 55px);
@@ -366,21 +382,21 @@ export default {
             flex-wrap: wrap;
             cursor: pointer;
             box-sizing: border-box;
-
-            .chooseDragNode {
-              cursor: move;
-            }
+            justify-content: center;
+            padding: 8px;
+            cursor: move;
 
             .item {
-              width: 90%;
+              width: 100%;
               background: var(--bs-background-2);
-              margin-bottom: 10px;
+              margin-bottom: 8px;
 
               .component-name {
-                background: var(--bs-background-3);
+                background: var(--bs-el-background-3);
                 color: var(--bs-el-title);
                 font-size: 12px;
-                padding: 5px;
+                padding: 4px 16px;
+                text-align: left;
               }
               .sampleImg {
                 margin: 0 auto;
@@ -440,14 +456,18 @@ export default {
 
     .el-tabs__nav-wrap {
       height: 100%;
-      border-right: 1px solid #ccc;
+      /* border-right: 1px solid #ccc; */
+    }
+
+    /deep/ .el-tabs__nav-scroll {
+      background-color: var(--bs-background-2);
     }
   }
 
   .page-left-fold {
     width: 45px;
     overflow: hidden;
-    border-right: 1px solid #ccc;
+    /* border-right: 1px solid #ccc; */
 
     .el-tabs__content {
       border: none;

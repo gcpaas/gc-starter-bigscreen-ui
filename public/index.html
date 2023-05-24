@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title><%= webpackConfig.name %></title>
+  <title>GCPAAS大屏设计器</title>
   <!-- 使用CDN的JS文件 -->
   <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
     <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
@@ -27,7 +27,7 @@
       width: 100%;
       height: 100%;
       z-index: 99999;
-      background-color: var(--bs-background);
+      background-color: #151a26;
     }
 
     #loader-wrapper .loader-box {
@@ -40,7 +40,7 @@
       text-align: center;
       vertical-align: center;
       font-weight: bold;
-      color: #595959;
+      color: #87888E;
       font-size: 35px;
     }
 
@@ -95,7 +95,7 @@
       position: absolute;
       top: 50%;
       margin-top: 15px;
-      color: #595959;
+      color: #87888E;
       font-size: 18px;
       width: 100%;
       height: 30px;
@@ -126,13 +126,12 @@
   </noscript>
   <div id="loader-wrapper" class="bs-theme-wrap">
     <div class="loader-box">
-      <span>国</span>
-      <span>创</span>
-      <span>可</span>
-      <span>视</span>
-      <span>化</span>
+      <span>GCPAAS</span>
       <span>大</span>
       <span>屏</span>
+      <span>设</span>
+      <span>计</span>
+      <span>器</span>
     </div>
     <div class="load_title">加载中…</div>
   </div>

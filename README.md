@@ -16,109 +16,84 @@
 
 -------------------------------------------------------------------------------
 
+## 效果图
+
+<img alt="logo" src="./doc/images/design01.png">
+
 ## 📝 文档
 
 [📘中文文档](https://www.yuque.com/chuinixiongkou/bigscreen/index)
 
+## 📦 如何集成
 
-# 大屏组件使用
-## 一、安装
+### 1. 安装依赖
 
 ``` bash
 npm install gc-starter-bigscreen-ui
 ```
 
-## 二、组件使用
-
-### 1. 注册配置
-#### 1.1 在 `main.js` 注册基础配置
-在您的框架中，大屏接口的baseURL（需要启动大屏后端服务）可能有所不同，所以需要注册一些基础配置，如下：
-
+### 2. 在 `main.js` 引入大屏
 ```javascript
-// 组件依赖于 element-ui，所以需要引入element-ui, 并导入其样式
+// file: main.js
+
+// 组件依赖 element-ui，项目已有element-ui可以忽略此步骤
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'mini' })
 
-// 全局引入css
-import { registerConfig } from 'gc-starter-bigscreen-ui'
+// 引入大屏css
 import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
-
-// 第二个参数router是路由实例，添加后内部将会为您注册路由，快速访问，不写则不注册
-registerConfig({
-  // 路由
-  routers: {
-    // 大屏设计路由
-    designUrl: '/big-screen/design',
-    // 预览路由
-    previewUrl: '/big-screen/preview',
-    // 页面管理路由（带头部跳转路由）
-    pageManagementUrl: '/management',
-    // 页面列表路由
-    pageListUrl: '/pages',
-    // 数据管理（带头部）
-    dsManageUrl: '/data-source-manage',
-    // 数据源管理
-    dataSourceUrl: '/data-source-manage/data-source',
-    // 数据集管理
-    dataSetUrl: '/data-source-manage/data-set'
-  },
-  // 自定义http配置 详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/kq97pycosmnslgt2
-  httpConfigs: {
-    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-    // ...其他，比如请求头
-    // headers: {
-    //   'Content-Type': 'application/json; charset=utf-8',
-    // }
-  },
-  // 自定义主题颜色变量，详细可见 https://www.yuque.com/chuinixiongkou/bigscreen/ld7vsswz7czecpk0
-  customTheme: {
-    '--bs-background-1': '#1d1d1d',
-    '--bs-el-background': '#0F1014',
-    '--bs-el-title': '#859094',
-    '--bs-el-text': '#ffffff',
-    '--bs-el-hover': '#007aff30'
-  },
-}, router)
-
 ```
 
-- Q: 如何使用系统内已经存在的配置，比如baseURL 在window.baseURL上已经绑定，根据环境不同这个baseURL不同而不一样，怎么写。
-- A:  可这样写
+###  3. 在 `main.js` 配置大屏
 
-````js
-registerConfig({
-  // 自定义http配置
-  httpConfigs: {
-    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-  }
-  // ...  
-}, router)
-````
+**方式一：后端服务地址配置在`.js`文件中**
 
-- Q: 如何使用在 .env.prod   、 .env.dev中的变量？
-- A: 比如，在 .env.prod   、 .env.dev中定义了 VUE_APP_BASE_URL （必须以VUE_APP_开头），在js中这么取即可
+```javascript
+// file: xxx.js
 
-```js
+window.CONFIG.baseUrl=http://127.0.0.1:8081/bigScreenServer
+```
+
+```javascript
+// file: main.js
+
+import { registerConfig } from 'gc-starter-bigscreen-ui'
 registerConfig({
   httpConfigs: {
-    baseURL: process.env.VUE_APP_BASE_URL
+    baseURL: `这里是后端服务地址的值，如：window.CONFIG.baseUrl`
   }
-  // ...  
 }, router)
 ```
 
+**方式二：后端服务地址配置在`.env文件中**
 
+```javascript
+// file: .env.development
 
-#### 1.2 引入大屏运行器所需要的vuex模块
+VUE_APP_BASE_URL=http://127.0.0.1:8081/bigScreenServer
+```
+
+```javascript
+// file: main.js
+
+import { registerConfig } from 'gc-starter-bigscreen-ui'
+registerConfig({
+  httpConfigs: {
+    baseURL: `这里是后端服务地址的值，如：process.env.VUE_APP_BASE_URL`
+  }
+}, router)
+```
+
+### 4.  `vuex`模块新增大屏`store`
 
 ```js
-// 其他代码省略
-// 此处引入页面运行器vuex模块
+// file: 项目中导出strore的文件
+
 import { $bigScreen } from 'gc-starter-bigscreen-ui'
 const store = new Vuex.Store({
-  modules: {
-    // 此处导出大屏所需vuex模块
+  modules: 
+    // 导出大屏所需vuex模块
     bigScreen: $bigScreen.bigScreenStore
   }
 })
@@ -126,169 +101,20 @@ export default store
 
 ```
 
-### 2. 快速访问（不用建页面，直接访问）
+### 5. 访问大屏
 
-启动项目后，可分别访问
-
-（此处假设前端基础路径为 localhost:8080）
-下面的路由地址和在main.js 中 registerConfig 注入的配置一致
-
-```js
-localhost:8080/management
-localhost:8080/big-screen/design?code=xxx
-localhost:8080/big-screen/preview?code=xxx
-localhost:8080/data-source-manage
-```
-
-⚠️ 请注意，快速注入的路由，如果您的系统对路由有权限要求，要想正常访问，请先务必加入白名单。
-
-### 3. 自定义页面路由
-
-首先关闭自动注册路由, 第二个参数不传入router对象即可
-
-```javascript
-registerConfig({
- // 路由
-  routers: {
-    // 大屏设计路由 必填
-    designUrl: 'big-screen/design',
-    // 预览路由    必填
-    previewUrl: '/big-screen/preview'
-  },
-  // 自定义http配置
-  httpConfigs: {
-    baseURL: 'http://127.0.0.1:8081/bigScreenServer' // 必填 
-  }
-})
-
-```
-#### 3.1 大屏管理页页面
-> 在组件中引入设计器组件
-```vue
-<template>
-  <BigScreenManagement />
-</template>
-<script>
-import { BigScreenManagement } from 'gc-starter-bigscreen-ui'
-export default {
-  components: {
-    BigScreenManagement
-  }
-}
-</script>
-```
-
-#### 3.2 设计态页面
-
-> 在组件中引入设计器组件
-引用该组件的路由必须包含code参数，code参数为页面的唯一标识
-
-```vue
-<template>
-  <!-- code为大屏设计时的编码，你可以携带到本页面路由中获取 -->
-  <BigScreenDesign ref="BigScreenDesign" :header-show="headerShow" :code="code" />
-</template>
-<script>
-import { BigScreenDesign } from "gc-starter-bigscreen-ui";
-export default {
-  components: {
-    BigScreenDesign,
-  },
-  data() {
-    return {
-      // 是否展示头部，可隐藏后自己写头部
-      headerShow: true,
-      // 当头部隐藏后，用户自己设置的头部高度不定，我们可自定义此时下方的设计器高度
-      height: '100vh'
-    };
-  },
-  computed: {
-    code() {
-      return this.$route.query.code;
-    },
-  },
-  methods: {
-    // 下面是其方法
-    // 保存并预览
-    saveAndPreview() {
-      this.$refs.BigScreenDesign.saveAndPreview();
-    },
-    // 保存
-    save() {
-      this.$refs.BigScreenDesign.save();
-    },
-    // 清空
-    empty() {
-      this.$refs.BigScreenDesign.empty();
-    },
-  },
-};
-</script>
-```
-
-#### 3.3 运行态页面
-
-> 在组件中引入运行态组件
-> 引用该组件的路由必须包含code参数，code参数为页面的唯一标识
-
-```vue
-<template>
-  <!-- code为大屏运行时的编码，你可以携带到本页面路由中获取 -->
-  <BigScreenRun :code="code"/>
-</template>
-<script>
-  import { BigScreenRun }  from 'gc-starter-bigscreen-ui'
-  export default {
-    components: {
-      BigScreenRun
-    },
-    computed: {
-      code() {
-        return this.$route.query.code
-      }
-    }
-  }
-</script>
-```
+启动项目后，访问前端地址 http://ip:port/management
 
 
+## 演示DEMO
 
+<a href="http://gcpaas.gccloud.com/bigScreen"> http://gcpaas.gccloud.com/bigScreen </a>
 
+## 联系我们
+<img alt="Email" src="https://img.shields.io/badge/Email-tech@ustcinfo.com-blue.svg">
 
-#### 3.4 数据源管理页面
+<img alt="QQ群" src="https://img.shields.io/badge/QQ群-322302395-blue.svg">
 
-```vue
-<template>
-  <DataSourceManagement />
-</template>
-<script>
-  import { DataSourceManagement }  from 'gc-starter-bigscreen-ui'
-  export default {
-    components: {
-      DataSourceManagement
-    }
-  }
-</script>
-```
+## License
 
-
-
-#### 3.5 数据集管理页面
-
-```vue
-<template>
-  <DataSetManagement />
-</template>
-<script>
-  import { DataSetManagement }  from 'gc-starter-bigscreen-ui'
-  export default {
-    components: {
-      DataSetManagement
-    }
-  }
-</script>
-```
-
-#### 3.6 创建路由
-
-为 步骤3 中的页面创建路由，即可使用，路由和registerConfig注册的路径保持一致
+Apache License 2.0

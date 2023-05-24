@@ -141,7 +141,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     }
 
         // th.is-leaf {
-        //   border-bottom: 2px solid #007aff !important;
+        //   border-bottom: 2px solid var(--bs-el-hover) !important;
         // }
 
         /* 滚动条样式设置*/
@@ -188,17 +188,19 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       .el-pagination.is-background .btn-prev,
       .el-pagination.is-background .btn-next,
       .el-pagination.is-background .el-pager li {
-        background-color: transparent !important;
         color: #bfbfbf;
+        background-color: var(--bs-el-background-2);
 
         &:hover {
-          color: #007aff;
+          color: var(--bs-el-text);
+          background-color: var(--bs-el-hover);
         }
       }
 
       .el-pagination.is-background .btn-prev:disabled,
       .el-pagination.is-background .btn-next:disabled {
         color: #bfbfbf;
+        background-color: var(--bs-el-background-2);
       }
 
       .el-pagination__total {
@@ -209,7 +211,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         color: #bfbfbf;
 
         &:hover {
-          color: #007aff;
+          color: var(--bs-el-hover);
         }
       }
 
@@ -226,9 +228,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
         border-radius: 2px !important;
       }
 
-      // .el-pager li:not(.disabled).active {
-      //   background-color: #007aff !important;
-      // }
+      .el-pager li:not(.disabled).active {
+        background-color: var(--bs-el-hover) !important;
+      }
 
       .el-pagination span:not([class*=suffix]), .el-pagination button {
         font-size: 14px !important;
@@ -298,16 +300,8 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
       .el-dialog__title {
         display: inline-block;
         font-size: 16px;
-        border-left: 4px solid #007aff;
+        border-left: 4px solid var(--bs-el-hover);
         padding-left: 16px;
       }
-    }
-
-    .packUpStyle {
-      margin: 0 -16px;
-      height: 100%;
-      position: fixed;
-      background-color: #f6f7fb;
-      display: flex;
     }
 

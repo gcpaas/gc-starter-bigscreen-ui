@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shouqicaidan:before {
+  content: "\e622";
+}
+
+.icon-zhankaicaidan:before {
+  content: "\e624";
+}
+
 .icon-yulan:before {
   content: "\e852";
 }
@@ -84,4 +92,3 @@
 .icon-border-outer:before {
   content: "\eb01";
 }
-

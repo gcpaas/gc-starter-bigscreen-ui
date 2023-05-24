@@ -1,377 +1,385 @@
 <template>
-  <div
-    v-loading="saveloading"
-    class="inner-container "
-    :element-loading-text="saveText"
-  >
-    <div class="header">
-      <el-page-header
-        class="bs-el-page-header"
-        :content="!isEdit ? 'JSON数据集详情' : dataForm.id ? 'JSON数据集编辑' : 'JSON数据集新增'"
-      />
-      <el-button
-        v-if="isEdit"
-        id="search"
-        type="primary"
-        class="search"
-      >
-        帮助
-      </el-button>
-      <el-button
-        v-if="isEdit"
-        type="primary"
-        class="save"
-        @click="save('form')"
-      >
-        保存
-      </el-button>
-      <el-button
-        class="back"
-        @click="goBack"
-      >
-        返回
-      </el-button>
-    </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
-      <el-col :span="isEdit ? 16 : 24">
-        <el-form
-          ref="form"
-          :model="dataForm"
-          :rules="rules"
-          label-width="120px"
-          style="padding: 16px 16px 0;"
-        >
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-form-item
-                label="名称"
-                prop="name"
-              >
-                <el-input
-                  v-model="dataForm.name"
-                  class="bs-el-input"
-                  clearable
-                  :disabled="!isEdit"
-                />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item
-                label="分组"
-                prop="typeId"
-              >
-                <el-select
-                  ref="selectParentName"
-                  v-model="dataForm.typeId"
-                  popper-class="bs-el-select"
-                  clearable
-                  :disabled="!isEdit"
-                  @clear="clearType"
-                  @visible-change="setCurrentNode"
-                >
-                  <el-option
-                    style="height: auto;padding: 0;"
-                    :label="typeName"
-                    :value="dataForm.typeId"
-                  >
-                    <div class="tree-box">
-                      <el-tree
-                        ref="categorySelectTree"
-                        :data="categoryData"
-                        node-key="id"
-                        :indent="0"
-                        :props="{ label: 'name', children: 'children' }"
-                        :default-expand-all="true"
-                        :highlight-current="true"
-                        :expand-on-click-node="false"
-                        class="bs-theme-wrap bs-el-tree"
-                        @node-click="selectParentCategory"
-                      >
-                        <span
-                          slot-scope="{ data }"
-                          class="custom-tree-node"
-                        >
-                          <span>
-                            <i
-                              :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
-                            />
-                            {{ data.name }}
-                          </span>
-                        </span>
-                      </el-tree>
-                    </div>
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-form-item
-                label="描述"
-                prop="remark"
-              >
-                <el-input
-                  v-model="dataForm.remark"
-                  class="bs-el-input"
-                  :disabled="!isEdit"
-                />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-        <div class="card-border">
-          <vue-json-editor
-            v-if="isEdit"
-            v-model="dataForm.json"
-            :show-btns="false"
-            mode="code"
-            @has-error="onError"
-          />
-          <vue-json-viewer
-            v-else
-            :value="dataForm.json"
-            :expand-depth="5"
-            sort
-          />
-        </div>
-        <div
+  <el-scrollbar class="scrollbar">
+    <div
+      v-loading="saveloading"
+      class="inner-container "
+      :element-loading-text="saveText"
+    >
+      <div class="header">
+        <el-page-header
+          class="bs-el-page-header"
+          :content="!isEdit ? 'JSON数据集详情' : dataForm.id ? 'JSON数据集编辑' : 'JSON数据集新增'"
+        />
+        <el-button
           v-if="isEdit"
-          style="text-align: center; padding: 16px 0;"
+          id="search"
+          type="primary"
+          class="search"
         >
-          <el-button
-            type="primary"
-            @click="analysisJSON"
+          帮助
+        </el-button>
+        <el-button
+          v-if="isEdit"
+          type="primary"
+          class="save"
+          @click="save('form')"
+        >
+          保存
+        </el-button>
+        <el-button
+          class="back bs-el-button-default"
+          @click="goBack"
+        >
+          返回
+        </el-button>
+      </div>
+      <el-row style="margin: 16px 16px 0;">
+        <el-col :span="isEdit ? 16 : 24">
+          <el-form
+            ref="form"
+            :model="dataForm"
+            :rules="rules"
+            label-width="120px"
+            style="padding: 16px 16px 0;"
           >
-            解析JSON
-          </el-button>
-        </div>
-      </el-col>
-      <el-col
-        v-if="isEdit"
-        :span="8"
-      >
-        <div class="structure">
-          <div class="title-style bs-title-style">
-            输出字段
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item
+                  label="名称"
+                  prop="name"
+                >
+                  <el-input
+                    v-model="dataForm.name"
+                    class="bs-el-input"
+                    clearable
+                    :disabled="!isEdit"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="分组"
+                  prop="typeId"
+                >
+                  <el-select
+                    ref="selectParentName"
+                    v-model="dataForm.typeId"
+                    class="bs-el-select"
+                    popper-class="bs-el-select"
+                    clearable
+                    :disabled="!isEdit"
+                    @clear="clearType"
+                    @visible-change="setCurrentNode"
+                  >
+                    <el-option
+                      style="height: auto;padding: 0;"
+                      :label="typeName"
+                      :value="dataForm.typeId"
+                    >
+                      <div class="tree-box">
+                        <el-tree
+                          ref="categorySelectTree"
+                          :data="categoryData"
+                          node-key="id"
+                          :indent="0"
+                          :props="{ label: 'name', children: 'children' }"
+                          :default-expand-all="true"
+                          :highlight-current="true"
+                          :expand-on-click-node="false"
+                          class="bs-theme-wrap bs-el-tree"
+                          @node-click="selectParentCategory"
+                        >
+                          <span
+                            slot-scope="{ data }"
+                            class="custom-tree-node"
+                          >
+                            <span>
+                              <i
+                                :class="data.children && data.children.length ? 'el-icon el-icon-folder' : 'el-icon el-icon-document'"
+                              />
+                              {{ data.name }}
+                            </span>
+                          </span>
+                        </el-tree>
+                      </div>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item
+                  label="描述"
+                  prop="remark"
+                >
+                  <el-input
+                    v-model="dataForm.remark"
+                    class="bs-el-input"
+                    :disabled="!isEdit"
+                  />
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <div class="card-border">
+            <vue-json-editor
+              v-if="isEdit"
+              v-model="dataForm.json"
+              :show-btns="false"
+              mode="code"
+              @has-error="onError"
+            />
+            <vue-json-viewer
+              v-else
+              :value="dataForm.json"
+              :expand-depth="5"
+              sort
+            />
+          </div>
+          <div
+            v-if="isEdit"
+            style="text-align: center; padding: 16px 0;"
+          >
             <el-button
-              type="text"
-              style="float: right;border: none;margin-top: -4px;"
-              @click="fieldsetVisible = true"
+              type="primary"
+              @click="analysisJSON"
             >
-              配置
+              解析JSON
             </el-button>
           </div>
-          <div class="field-wrap bs-field-wrap">
-            <div
-              v-for="field in structurePreviewList"
-              :key="field.columnName"
-              class="field-item"
-              @click="fieldsetVisible = true"
-            >
-              <span>{{ field.columnName }}</span>&nbsp;<span
-                v-show="field.fieldDesc"
-                style="color: #909399;"
-              >({{
-                field.fieldDesc }})</span>
+        </el-col>
+        <el-col
+          v-if="isEdit"
+          :span="8"
+        >
+          <div class="structure">
+            <div class="title-style bs-title-style">
+              输出字段
               <el-button
-                class="edit_field"
                 type="text"
-                style="float: right;border: none;margin-top: 2px;"
+                style="float: right;border: none;margin-top: -4px;"
                 @click="fieldsetVisible = true"
               >
                 配置
               </el-button>
             </div>
+            <div class="field-wrap bs-field-wrap">
+              <div
+                v-for="field in structurePreviewList"
+                :key="field.columnName"
+                class="field-item"
+                @click="fieldsetVisible = true"
+              >
+                <span>{{ field.columnName }}</span>&nbsp;<span
+                  v-show="field.fieldDesc"
+                  style="color: #909399;"
+                >({{
+                  field.fieldDesc }})</span>
+                <el-button
+                  class="edit_field"
+                  type="text"
+                  style="float: right;border: none;margin-top: 2px;"
+                  @click="fieldsetVisible = true"
+                >
+                  配置
+                </el-button>
+              </div>
+            </div>
           </div>
+        </el-col>
+      </el-row>
+      <div
+        v-if="isEdit"
+        class="dataPreView"
+        style="margin-top: 12px;"
+      >
+        <div class="result-view">
+          数据预览
         </div>
-      </el-col>
-    </el-row>
-    <div
-      v-if="isEdit"
-      class="dataPreView"
-      style="margin-top: 12px;"
-    >
-      <div class="result-view">
-        数据预览
-      </div>
-      <div class="bs-table-box is-Edit">
-        <el-table
-          align="center"
-          :data="dataPreviewList"
-          max-height="400"
-          :border="true"
-          class="bs-el-table"
-        >
-          <el-table-column
-            v-for="(value, key) in dataPreviewList[0]"
-            :key="key"
-            :label="key"
+        <div class="bs-table-box is-Edit">
+          <el-table
             align="center"
-            show-overflow-tooltip
-            :render-header="renderHeader"
+            :data="dataPreviewList"
+            max-height="400"
+            :border="true"
+            class="bs-el-table"
           >
-            <template slot-scope="scope">
-              <span>{{ scope.row[key] }}</span>
-            </template>
-          </el-table-column>
-        </el-table>
+            <el-table-column
+              v-for="(value, key) in dataPreviewList[0]"
+              :key="key"
+              :label="key"
+              align="center"
+              show-overflow-tooltip
+              :render-header="renderHeader"
+            >
+              <template slot-scope="scope">
+                <span>{{ scope.row[key] }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
-    </div>
-    <div
-      v-if="!isEdit"
-      class="dataPreView"
-    >
-      <el-tabs v-model="activeName">
-        <el-tab-pane
-          label="数据预览"
-          name="data"
-        >
-          <div class="bs-table-box">
-            <el-table
-              align="center"
-              :data="dataPreviewList"
-              max-height="400"
-              :border="true"
-              class="bs-el-table"
-            >
-              <el-table-column
-                v-for="(value, key) in dataPreviewList[0]"
-                :key="key"
-                :label="key"
+      <div
+        v-if="!isEdit"
+        class="dataPreView"
+      >
+        <el-tabs v-model="activeName">
+          <el-tab-pane
+            label="数据1预览"
+            name="data"
+          >
+            <div class="bs-table-box">
+              <el-table
                 align="center"
-                show-overflow-tooltip
-                :render-header="renderHeader"
+                :data="dataPreviewList"
+                max-height="400"
+                :border="true"
+                class="bs-el-table"
               >
-                <template slot-scope="scope">
-                  <span>{{ scope.row[key] }}</span>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane
-          label="数据集结构"
-          name="structure"
-        >
-          <div class="bs-table-box">
-            <el-table
-              max-height="400"
-              :data="structurePreviewList"
-              :border="true"
-              align="center"
-              class="bs-el-table"
-            >
-              <el-table-column
+                <el-table-column
+                  v-for="(value, key) in dataPreviewList[0]"
+                  :key="key"
+                  :label="key"
+                  align="center"
+                  show-overflow-tooltip
+                  :render-header="renderHeader"
+                >
+                  <template slot-scope="scope">
+                    <span>{{ scope.row[key] }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane
+            label="数据集结构"
+            name="structure"
+          >
+            <div class="bs-table-box">
+              <el-table
+                max-height="400"
+                :data="structurePreviewList"
+                :border="true"
                 align="center"
-                show-overflow-tooltip
-                prop="columnName"
-                label="字段值"
-              />
-              <el-table-column
-                align="center"
-                prop="fieldDesc"
-                label="字段描述"
+                class="bs-el-table"
               >
-                <template slot-scope="scope">
-                  <el-input
-                    v-if="isEdit"
-                    v-model="scope.row.fieldDesc"
-                    size="small"
-                    class="labeldsc"
-                  />
-                  <span v-else>{{ scope.row.fieldDesc }}</span>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+                <el-table-column
+                  align="center"
+                  show-overflow-tooltip
+                  prop="columnName"
+                  label="字段值"
+                />
+                <el-table-column
+                  align="center"
+                  prop="fieldDesc"
+                  label="字段描述"
+                >
+                  <template slot-scope="scope">
+                    <el-input
+                      v-if="isEdit"
+                      v-model="scope.row.fieldDesc"
+                      size="small"
+                      class="labeldsc bs-el-input"
+                    />
+                    <span v-else>{{ scope.row.fieldDesc }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
 
-    <!-- 字段填充方式 -->
-    <el-dialog
-      title="提示"
-      :visible.sync="fieldDescVisible"
-      width="420px"
-      append-to-body
-      :close-on-click-modal="false"
-      custom-class="fieldDescCheck"
-      class="bs-dialog-wrap"
-    >
-      <p style="line-height: 24px;padding-left: 10px;display: flex;">
-        <i
-          class="el-icon-warning"
-          style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
-        />存在字段描述信息为空，请确认
-      </p>
-      <span
-        slot="footer"
-        class="dialog-footer"
+      <!-- 字段填充方式 -->
+      <el-dialog
+        title="提示"
+        :visible.sync="fieldDescVisible"
+        width="420px"
+        append-to-body
+        :close-on-click-modal="false"
+        custom-class="fieldDescCheck"
+        class="bs-dialog-wrap"
       >
-        <el-button @click="fieldDescFill">使用字段名填充</el-button>
-        <el-button @click="fieldDescEdit">进入编辑</el-button>
-        <el-button
-          type="primary"
-          @click="toSave"
-        >继续保存</el-button>
-      </span>
-    </el-dialog>
-    <!-- 字段填充 -->
-    <el-dialog
-      title="输出字段配置"
-      :visible.sync="fieldsetVisible"
-      width="1000px"
-      append-to-body
-      custom-class="bs-el-dialog"
-      :close-on-click-modal="false"
-      :before-close="cancelField"
-      class="bs-dialog-wrap bs-theme-wrap"
-    >
-      <div class="bs-table-box">
-        <el-table
-          max-height="350"
-          :data="structurePreviewListCopy"
-          :border="true"
-          align="center"
-          class="bs-el-table"
+        <p style="line-height: 24px;padding-left: 10px;display: flex;">
+          <i
+            class="el-icon-warning"
+            style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
+          />存在字段描述信息为空，请确认
+        </p>
+        <span
+          slot="footer"
+          class="dialog-footer"
         >
-          <el-empty slot="empty" />
-          <el-table-column
-            align="left"
-            show-overflow-tooltip
-            prop="columnName"
-            label="字段值"
-          />
-          <el-table-column
-            align="center"
-            prop="fieldDesc"
-            label="字段描述"
-          >
-            <template slot-scope="scope">
-              <el-input
-                v-if="isEdit"
-                v-model="scope.row.fieldDesc"
-                size="small"
-                class="labeldsc"
-              />
-              <span v-else>{{ scope.row.fieldDesc }}</span>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <span
-        slot="footer"
-        class="dialog-footer"
+          <el-button @click="fieldDescFill">使用字段名填充</el-button>
+          <el-button @click="fieldDescEdit">进入编辑</el-button>
+          <el-button
+            type="primary"
+            @click="toSave"
+          >继续保存</el-button>
+        </span>
+      </el-dialog>
+      <!-- 字段填充 -->
+      <el-dialog
+        title="输出字段配置"
+        :visible.sync="fieldsetVisible"
+        width="1000px"
+        append-to-body
+        :close-on-click-modal="false"
+        :before-close="cancelField"
+        class="bs-dialog-wrap bs-el-dialog"
       >
-        <el-button @click="cancelField">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="setField"
-        >确 定</el-button>
-      </span>
-    </el-dialog>
-  </div>
+        <div class="bs-table-box">
+          <el-table
+            :data="structurePreviewListCopy"
+            :border="true"
+            align="center"
+            class="bs-el-table"
+          >
+            <el-empty slot="empty" />
+            <el-table-column
+              align="left"
+              show-overflow-tooltip
+              prop="columnName"
+              label="字段值"
+            />
+            <el-table-column
+              align="center"
+              prop="fieldDesc"
+              label="字段描述"
+            >
+              <template slot-scope="scope">
+                <el-input
+                  v-if="isEdit"
+                  v-model="scope.row.fieldDesc"
+                  size="small"
+                  class="labeldsc bs-el-input"
+                />
+                <span v-else>{{ scope.row.fieldDesc }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <span
+          slot="footer"
+          class="dialog-footer"
+        >
+          <el-button
+            class="bs-el-button-default"
+            @click="cancelField"
+          >
+            取消
+          </el-button>
+          <el-button
+            type="primary"
+            @click="setField"
+          >
+            确定
+          </el-button>
+        </span>
+      </el-dialog>
+    </div>
+  </el-scrollbar>
 </template>
 
 <script>
@@ -734,11 +742,18 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~packages/assets/style/bsTheme.scss'</style>
+@import '~packages/assets/style/bsTheme.scss';
+</style>
+
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
+.scrollbar {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: none;
+}
 .tree-box {
-  padding: 5px 0;
+  padding:0;
   max-height: 270px;
 }
 .header {
@@ -825,7 +840,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid #007AFF;
+  border-left: 5px solid var(--bs-el-hover);
   margin: 16px 16px 0 0;
 }
 
@@ -860,42 +875,22 @@ export default {
   }
 }
 
-/deep/ .el-page-header {
-  .el-page-header__left {
-    display: none;
-  }
-
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-
-  .el-page-header__content::before {
-    content: "";
-    height: 24px;
-    line-height: 24px;
-    position: absolute;
-    left: 0;
-    border-left: 4px solid #007AFF;
-  }
-}
-
 .result-view {
-  padding: 8px 12px;
-  margin: 0 16px 0;
+  font-size: 14px;
   font-weight: 600;
+  color: var(--bs-el-text);
   position: relative;
-  line-height: 24px;
-
+  padding: 16px 0;
+  padding-left: 12px;
+  border-bottom: 1px solid var(--bs-background-1);
   &::before {
     content: "";
-    height: 24px;
-    line-height: 24px;
+    height: 14px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 4px solid var(--bs-el-hover);
   }
 }
 
@@ -904,19 +899,24 @@ export default {
 }
 
 /deep/ .jsoneditor-menu {
-  background: #007AFF;
-  border-color: #007AFF;
+  background: var(--bs-el-hover);
+  border-color: var(--bs-el-hover);
 }
 
 /deep/ .jsoneditor-mode-code {
-  border-color: #007AFF;
+  border-color: var(--bs-el-hover);
 }
-
+.bs-table-box{
+  margin-bottom: 0;
+}
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
 
   .el-table__body-wrapper {
     max-height: unset !important;
   }
+}
+.bs-table-box{
+  height: 100% !important;
 }
 </style>

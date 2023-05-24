@@ -37,7 +37,7 @@
       <div class="bs-table-box">
         <el-table
           v-loading="searchLoading"
-          class="bs-el-table"
+          class="bs-el-table bs-scrollbar"
           :element-loading-text="loadingText"
           :data="dataSourceList"
           @current-change="handleCurrentChange"
@@ -279,9 +279,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-.bs-pagination{
- ::v-deep .el-input__inner{
-    background: var(--bs-el-background);
+
+.bs-pagination {
+  ::v-deep .el-input__inner {
+
+    width: 110px !important;
+    border: none;
+    background: var(--bs-el-background-1);
   }
 }
 </style>

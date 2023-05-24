@@ -26,13 +26,13 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
       </el-button>
     </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
+    <el-row style="margin: 16px 16px 0;">
       <el-col :span="isEdit ? 16 : 24">
         <el-form
           ref="form"
@@ -63,6 +63,7 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
@@ -113,6 +114,7 @@
               >
                 <el-select
                   v-model="dataForm.sourceId"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   filterable
@@ -135,6 +137,7 @@
               >
                 <el-select
                   v-model="dataForm.tableName"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   clearable
                   filterable
@@ -171,6 +174,7 @@
               >
                 <el-select
                   v-model="dataForm.fieldInfo"
+                  class="bs-el-select"
                   popper-class="bs-el-select"
                   placeholder="请选择字段（为空时默认选择全部字段）"
                   clearable
@@ -178,7 +182,6 @@
                   multiple
                   collapse-tags
                   :disabled="!isEdit"
-                  class="bs-theme-wrap"
                   @change="setFields"
                 >
                   <el-option
@@ -216,6 +219,7 @@
               >
                 <el-radio-group
                   v-model="dataForm.repeatStatus"
+                  class="bs-radio-wrap"
                   :disabled="!isEdit"
                 >
                   <el-radio :label="0">
@@ -259,7 +263,7 @@
               配置
             </el-button>
           </div>
-          <div class="field-wrap bs-field-wrap">
+          <div class="field-wrap bs-field-wrap bs-scrollbar">
             <div
               v-for="field in structurePreviewList"
               :key="field.columnName"
@@ -294,14 +298,14 @@
       </div>
       <div
         v-loading="tableLoading"
-        class="bs-table-box is-Edit"
+        class="bs-table-box is-Edit bs-scrollbar"
       >
         <el-table
           align="center"
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          class="bs-el-table"
+          class="bs-el-table bs-scrollbar"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -319,6 +323,7 @@
       </div>
       <div class="bs-pagination">
         <el-pagination
+          class="bs-theme-wrap bs-el-pagination"
           popper-class="bs-el-pagination"
           :current-page="current"
           :page-sizes="[10, 20, 50, 100]"
@@ -469,14 +474,12 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
-      class="bs-dialog-wrap bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
     >
       <div class="bs-table-box">
         <el-table
-          max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
@@ -537,11 +540,18 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelField">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="cancelField"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="setField"
-        >确 定</el-button>
+        >
+          确定
+        </el-button>
       </span>
     </el-dialog>
   </div>
@@ -1019,7 +1029,7 @@ export default {
 @import '~packages/assets/style/bsTheme.scss';
 
 .tree-box {
-  padding: 5px 0;
+  padding: 0;
   max-height: 270px;
 }
 
@@ -1039,7 +1049,7 @@ export default {
 
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
 
@@ -1060,7 +1070,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid #007AFF;
+  border-left: 5px solid var(--bs-el-hover);
   margin: 16px 16px 0 0;
 }
 
@@ -1088,27 +1098,6 @@ export default {
   }
 }
 
-/deep/ .el-page-header {
-  .el-page-header__left {
-    display: none;
-  }
-
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-
-  .el-page-header__content::before {
-    content: "";
-    height: 24px;
-    line-height: 24px;
-    position: absolute;
-    left: 0;
-    border-left: 4px solid #007AFF;
-  }
-}
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: calc(100vh - 532px) !important;
 
@@ -1118,19 +1107,31 @@ export default {
 }
 
 .result-view {
-  padding: 8px 12px;
-  margin: 0 16px 0;
+  font-size: 14px;
   font-weight: 600;
+  color: var(--bs-el-text);
   position: relative;
-  line-height: 24px;
-
+  padding: 16px 0;
+  padding-left: 12px;
+  border-bottom: 1px solid var(--bs-background-1);
   &::before {
     content: "";
-    height: 24px;
-    line-height: 24px;
+    height: 14px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 4px solid var(--bs-el-hover);
+  }
+}
+.bs-table-box{
+  height: 100% !important;
+}
+.bs-pagination{
+ ::v-deep .el-input__inner{
+    width: 110px !important;
+    border:none;
+    background: var(--bs-el-background-1);
   }
 }
 </style>

@@ -1,6 +1,6 @@
 import 'packages/assets/style/common/index.scss'
 // 大屏管理页面
-import BigScreenManagement from 'packages/BigScreenManagement'
+import BigScreenManagement from 'packages/BigScreenMag'
 // 渲染整个bigScreen的渲染引擎
 import BigScreenRun from 'packages/BigScreenRun'
 // 大屏设计引擎
@@ -10,7 +10,7 @@ import DataSourceManagement from 'packages/DataSourceManagement'
 // 数据集管理
 import DataSetManagement from 'packages/DataSetManagement'
 // 大屏管理-数据集管理的顶部路由框架
-import BigScreenTopLayout from 'packages/Layout'
+// import BigScreenTopLayout from 'packages/Layout'
 
 // 大屏 vuex store数据
 import bigScreenStore from 'packages/js/store'
@@ -23,8 +23,8 @@ const components = [
   BigScreenRun,
   BigScreenDesign,
   DataSetManagement,
-  DataSourceManagement,
-  BigScreenTopLayout
+  DataSourceManagement
+  // BigScreenTopLayout
 ]
 
 const $bigScreen = {
@@ -44,7 +44,7 @@ export {
   BigScreenDesign,
   DataSetManagement,
   DataSourceManagement,
-  BigScreenTopLayout,
+  // BigScreenTopLayout,
 
   $bigScreen,
   registerConfig

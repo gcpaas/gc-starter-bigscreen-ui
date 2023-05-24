@@ -5,9 +5,8 @@
     width="800px"
     :before-close="handleClose"
     :append-to-body="true"
-    custom-class="bs-el-dialog"
     :close-on-click-modal="false"
-    class="bs-dialog-wrap bs-theme-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
   >
     <div class="type-wrap">
       <el-row :gutter="20">
@@ -24,7 +23,6 @@
               @click="typeChose('original')"
             >
               原始数据集
-              <p>原始数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -41,7 +39,6 @@
               @click="typeChose('custom')"
             >
               自助数据集
-              <p>自助数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -58,7 +55,6 @@
               @click="typeChose('storedProcedure')"
             >
               存储过程数据集
-              <p>存储过程数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -75,7 +71,6 @@
               @click="typeChose('json')"
             >
               JSON数据集
-              <p>JSON数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -92,7 +87,6 @@
               @click="typeChose('script')"
             >
               脚本数据集
-              <p>脚本数据集描述</p>
             </div>
           </el-card>
         </el-col>
@@ -157,6 +151,9 @@ export default {
     line-height: 16px;
     color: #909399;
   }
+  &:hover{
+      color: var(--bs-el-hover);
+    }
 }
 /deep/ .el-dialog__body {
   min-height: 130px !important;

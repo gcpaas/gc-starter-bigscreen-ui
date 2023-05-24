@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:57:06
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-19 17:04:55
+ * @LastEditTime: 2023-05-23 15:46:03
 -->
 <template>
   <el-dialog
@@ -12,9 +12,8 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     width="800px"
-    custom-class="bs-el-dialog bs-theme-wrap"
     append-to-body
-    class="bs-dialog-wrap bs-theme-wrap"
+    class="bs-dialog-wrap bs-el-dialog"
   >
     <el-form
       ref="form"
@@ -22,9 +21,9 @@
     >
       <el-table
         :data="configMapConfig.maps"
-        class="bs-table-box bs-table"
-        border
+        class="bs-table bs-el-table"
       >
+        <el-empty />
         <el-table-column
           label="当前组件映射参数"
           align="center"
@@ -32,7 +31,8 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].sourceField"
-              popper-class="bs-theme-select"
+              popper-class="bs-el-select"
+              class="bs-el-select"
             >
               <el-option
                 v-for="sourceField in sourceFieldList"
@@ -50,7 +50,8 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].queryRule"
-              popper-class="bs-theme-select"
+              popper-class="bs-el-select"
+              class="bs-el-select"
             >
               <el-option
                 v-for="operator in operatorList"
@@ -68,7 +69,8 @@
           <template #default="scope">
             <el-select
               v-model="configMapConfig.maps[scope.$index].targetField"
-              popper-class="bs-theme-select"
+              popper-class="bs-el-select"
+              class="bs-el-select"
             >
               <el-option
                 v-for="targetField in targetFieldList"
@@ -108,7 +110,10 @@
       slot="footer"
       class="dialog-footer"
     >
-      <el-button @click="handleClose">
+      <el-button
+        class="bs-el-button-default"
+        @click="handleClose"
+      >
         取消
       </el-button>
       <el-button
@@ -203,40 +208,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import '~packages/assets/style/bsTheme.scss';
-</style>
-
 <style lang="scss" scoped>
-.bs-table-box {
-  border: 1px solid #e6ebf5;
-
-  // border-bottom: 1px solid var(--bs-el-background);
-
-  background:  var(--bs-el-background);
-  background-color: var(--bs-el-background);
-
-  ::v-deep .el-table__cell {
-    background: var(--bs-el-background);
-    background-color: var(--bs-el-background);
-
-    .cell {
-      color: var(--bs-el-title) !important;
-    }
-
-    .el-input__inner {
-      color: var(--bs-el-text);
-      background-color: var(--bs-background-1);
-
-      &::placeholder {
-        color: var(--bs-el-title);
-      }
-    }
-  }
-}
-
-::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: var(--bs-background-1) !important;
-  color: var(--bs-el-text) !important;
-}
+@import '~packages/assets/style/bsTheme.scss';
 </style>

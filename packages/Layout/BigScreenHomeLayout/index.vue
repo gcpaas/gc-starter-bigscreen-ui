@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import Nav from './Nav'
+import Nav from './Nav.vue'
 export default {
   name: 'BigScreenHome',
   components: {
@@ -97,6 +97,7 @@ export default {
     width: 100%;
     height: 150px;
     background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.png');
+    background-size: cover;
 
     .logo-title {
       font-size: 30px;
@@ -106,7 +107,7 @@ export default {
       left: 40px;
       display: flex;
       align-items: center;
-      color: #007aff;
+      color: var(--bs-el-hover);
 
       .logo {
         height: 30px;

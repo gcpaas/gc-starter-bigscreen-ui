@@ -1,5 +1,5 @@
 <template>
-  <div class="bs-padding-setting">
+  <div class="bs-padding-setting bs-theme-wrap">
     <div class="padding-box">
       <el-input
         v-model.number="paddingValue[0]"
@@ -21,7 +21,7 @@
       />
       <el-input
         v-model.number="paddingValue[3]"
-        class="input-left input-item"
+        class="input-left input-item bs-el-input"
         size="mini"
         @change="paddingChange"
       />
@@ -75,8 +75,7 @@ export default {
     transform: translate(-50%,-50%);
     width: 30%;
     height: 30%;
-    background-color: #F6F7FB;
-    border: 1px solid #D0D0D0;
+    background-color: var(--bs-background-1);
   }
   .input-item{
     width: 50px;

@@ -33,16 +33,15 @@ registerConfig({
     baseURL: window.CONFIG?.baseUrl
   },
   customTheme: {
-    '--bs-background-1': '#151a26', // 黑色
-    '--bs-background-2': '#232832', // 灰色
-    '--bs-background-3': '#212326',
-    '--bs-background-design-inner': '#1d1e20',
-    '--bs-el-background': '#151A26',
-    '--bs-el-background-2': '#35393F',
-    '--bs-el-title': '#87888E', // 白色字体
-    '--bs-el-text': '#ffffff', // 激活白色字体
-    '--bs-el-hover': '#007aff',
-    '--bs-el-border-color': 'transparent'
+    '--bs-background-1': '#151a26', // 整体背景色
+    '--bs-background-2': '#232832', // 布局背景色
+    '--bs-el-background-1': '#151A26', // 组件背景色，输入框...
+    '--bs-el-background-2': '#35393F', // 组件背景色，按钮、分页、加载...
+    '--bs-el-background-3': '#303640', // 组件背景色，表格头部、下拉框hover...
+    '--bs-el-title': '#ffffff', // 标题字体颜色
+    '--bs-el-text': '#ffffff', // 一般字体颜色
+    '--bs-el-hover': '#409EFF', // elment-ui主题色，激活
+    '--bs-el-border-color': 'transparent' // 边框颜色
   },
   customPlots: []
 }, router)

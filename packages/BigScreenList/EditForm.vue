@@ -5,8 +5,7 @@
       :title="title ? '编辑' : '新增'"
       :visible.sync="formVisible"
       :append-to-body="true"
-      class="bs-dialog-wrap"
-      custom-class="bs-el-dialog bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
       @close="closeAddDialog"
     >
       <el-form
@@ -81,7 +80,10 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="closeAddDialog">
+        <el-button
+          class="bs-el-button-default"
+          @click="closeAddDialog"
+        >
           取消
         </el-button>
         <el-button
@@ -170,7 +172,7 @@ export default {
       },
       dataFormRules: {
         name: [
-          { required: true, message: '页面名称不能为空', trigger: 'blur' }
+          { required: true, message: '名称不能为空', trigger: 'blur' }
         ]
       },
       sureLoading: false,
@@ -219,6 +221,7 @@ export default {
             this.$set(this.dataForm, 'type', resp.type)
             this.$set(this.dataForm, 'orderNum', nodeData.orderNum)
             this.$set(this.dataForm, 'pageTemplateId', resp?.pageTemplateId)
+            this.$set(this.dataForm, 'pageConfig', resp?.pageConfig)
             if (this.dataForm.type === 'bigScreen') {
               const { w, h } = resp.pageConfig
               this.resolutionRatio.w = w
@@ -239,6 +242,14 @@ export default {
           this.$set(this.dataForm, 'type', this.dataForm.type)
           this.$set(this.dataForm, 'orderNum', 0)
           this.$set(this.dataForm, 'pageTemplateId', '')
+          this.$set(this.dataForm, 'pageConfig', {
+            w: '1920',
+            h: '1080',
+            bgColor: '#0e2a43',
+            opacity: 100,
+            customTheme: 'auto',
+            bg: null
+          })
           if (this.dataForm.type === 'bigScreen') {
             this.resolutionRatio.w = '1920'
             this.resolutionRatio.h = '1080'
@@ -272,13 +283,7 @@ export default {
           style: this.dataForm.style,
           type: 'bigScreen',
           orderNum: this.dataForm.orderNum,
-          pageConfig: {
-            w: this.resolutionRatio.w || '1920',
-            h: this.resolutionRatio.h || '1080',
-            bgColor: '#1d1d1d',
-            opacity: 100,
-            customTheme: 'auto'
-          },
+          pageConfig: this.dataForm.pageConfig,
           pageTemplateId: this.dataForm.pageTemplateId
         }
         if (isToDesign) {
@@ -327,10 +332,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .el-dialog__body {
-  overflow-y: auto;
-}
-
+@import '~packages/assets/style/bsTheme.scss';
 .el-scrollbar {
   height: 300px;
   overflow-x: hidden;

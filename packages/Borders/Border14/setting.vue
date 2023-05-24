@@ -7,52 +7,44 @@
       label-position="left"
       class="setting-body"
     >
-      <el-collapse :value="['1']">
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="lc-field-head">
-              <div class="lc-field-title">
-                自定义属性
-              </div>
-            </div>
-          </template>
-          <div class="lc-field-body">
-            <slot name="top" />
-            <el-form
-              :model="config.customize"
-              label-position="left"
-              class="setting-body"
-              label-width="90px"
-            >
-              <el-form-item label="边框名称">
-                <el-input
-                  v-model="config.title"
-                  clearable
-                />
-              </el-form-item>
-              <el-form-item label="边框线颜色">
-                <ColorPicker
-                  v-model="config.customize.borderColor"
-                  placeholder="请选择边框线颜色"
-                  :predefine-colors="predefineThemeColors"
-                />
-              </el-form-item>
-              <el-form-item label="边框线宽度">
-                <el-input-number v-model="config.customize.borderWidth" />
-              </el-form-item>
-              <el-form-item label="背景色">
-                <ColorPicker
-                  v-model="config.customize.backgroundColor"
-                  placeholder="请选择背景色"
-                  style="width:250px"
-                  :predefine-colors="predefineThemeColors"
-                />
-              </el-form-item>
-              <slot name="bottom" />
-            </el-form>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <div class="lc-field-body">
+        <slot name="top" />
+        <el-form
+          :model="config.customize"
+          label-position="left"
+          class="setting-body"
+          label-width="90px"
+        >
+          <el-form-item label="边框名称">
+            <el-input
+              v-model="config.title"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="边框线颜色">
+            <ColorPicker
+              v-model="config.customize.borderColor"
+              placeholder="请选择边框线颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="边框线宽度">
+            <el-input-number
+              v-model="config.customize.borderWidth"
+              class="bs-el-input-number"
+            />
+          </el-form-item>
+          <el-form-item label="背景色">
+            <ColorPicker
+              v-model="config.customize.backgroundColor"
+              placeholder="请选择背景色"
+              style="width:250px"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <slot name="bottom" />
+        </el-form>
+      </div>
     </el-form>
   </div>
 </template>

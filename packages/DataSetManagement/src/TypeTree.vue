@@ -20,9 +20,7 @@
         </el-button>
       </div>
       <br class="br">
-      <el-tabs
-        v-model="activeName"
-      >
+      <el-tabs v-model="activeName">
         <el-tab-pane
           label="分组"
           name="group"
@@ -36,9 +34,7 @@
         v-show="activeName == 'group'"
         class="left"
       >
-        <div
-          class="ztree ztree-box"
-        >
+        <div class="ztree ztree-box">
           <el-scrollbar class="scroll">
             <el-empty v-show="noData" />
             <div
@@ -69,10 +65,10 @@
         <div
           v-show="rightClickForm.visible"
           class="ztreeNodeMenu"
-          @mouseleave="rightClickForm.visible=false"
-          @mouseenter="rightClickForm.visible=true"
+          @mouseleave="rightClickForm.visible = false"
+          @mouseenter="rightClickForm.visible = true"
         >
-          <div id="orgTreeNodeMenuBottom">
+          <div class="node-bottom-menu">
             <div class="triangle" />
             <ul>
               <li
@@ -87,9 +83,7 @@
               >
                 <span slot="title">删除</span>
               </li>
-              <li
-                @click="menuClick(editTypeConstant.addSiblingOrg)"
-              >
+              <li @click="menuClick(editTypeConstant.addSiblingOrg)">
                 <span slot="title">新增同级</span>
               </li>
               <li
@@ -100,7 +94,7 @@
               </li>
             </ul>
           </div>
-          <div id="orgTreeNodeMenuTop">
+          <div class="node-top-menu">
             <ul>
               <li
                 v-if="!isBoth"
@@ -108,9 +102,7 @@
               >
                 <span slot="title">新增子级</span>
               </li>
-              <li
-                @click="menuClick(editTypeConstant.addSiblingOrg)"
-              >
+              <li @click="menuClick(editTypeConstant.addSiblingOrg)">
                 <span slot="title">新增同级</span>
               </li>
               <li
@@ -139,7 +131,7 @@
             <li
               v-for="_type in typeData"
               :key="_type.name"
-              :class="{'tab-style': true, 'tab-active': _type.datasetType == curType}"
+              :class="{ 'tab-style': true, 'tab-active': _type.datasetType == curType }"
               @click="getTypeData(_type.datasetType)"
             >
               <span>{{ _type.name }}</span>
@@ -285,8 +277,8 @@ export default {
           const clientY = nodeElObj.top + 34
           if (clientHeight - clientY < 200) {
             hieght = clientY - 200
-            document.querySelector('#orgTreeNodeMenuBottom').style.display = 'none'
-            const menu = document.querySelector('#orgTreeNodeMenuTop')
+            document.querySelector('.node-bottom-menu').style.display = 'none'
+            const menu = document.querySelector('.node-top-menu')
             /* 菜单定位基于鼠标点击位置 */
             menu.style.display = ''
             menu.style.left = nodeElObj.right - 92 + 'px'
@@ -295,8 +287,8 @@ export default {
             menu.style.width = 110 + 'px'
           } else {
             hieght = clientY
-            document.querySelector('#orgTreeNodeMenuTop').style.display = 'none'
-            const menu = document.querySelector('#orgTreeNodeMenuBottom')
+            document.querySelector('.node-top-menu').style.display = 'none'
+            const menu = document.querySelector('.node-bottom-menu')
             /* 菜单定位基于鼠标点击位置 */
             menu.style.display = ''
             menu.style.left = nodeElObj.right - 92 + 'px'
@@ -474,65 +466,97 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-  /deep/ .el-tabs {
-    .el-tabs__header {
-      margin: 0;
-      .el-tabs__nav {
-        width: 100%;
-        .el-tabs__item {
-          width: 50%;
-          text-align: center;
-        }
-        .el-tabs__active-bar {
-          display: none;
-        }
+
+/deep/ .el-tabs {
+  .el-tabs__header {
+    margin: 0;
+
+    .el-tabs__nav {
+      width: 100%;
+
+      .el-tabs__item {
+        color: var(--bs-el-text);
+        width: 50%;
+        text-align: center;
+      }
+
+      .el-tabs__active-bar {
+        display: none !important;
+      }
+
+      .el-tabs__item.is-active {
+        color: var(--bs-el-hover) !important;
+        border-bottom-color: var(--bs-el-border-color) !important;
       }
     }
   }
-  /deep/ .el-tabs__nav-wrap::after {
-    display: none !important;
+}
+ ::v-deep .ztree {
+    span {
+      color: var(--bs-el-text);
+    }
+
+    li:hover {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .curSelectedNode {
+      background: var(--bs-el-background-3) !important;
+      background-color: var(--bs-el-background-3) !important;
+    }
+
+    a:hover {
+      background: var(--bs-el-background-3) !important;
+      background-color: var(--bs-el-background-3) !important;
+    }
   }
-  .left-tab-box ul li {
-    font-size: 12px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+/deep/ .el-tabs__nav-wrap::after {
+  display: none !important;
+}
+
+.left-tab-box ul li {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 34px;
+  line-height: 40px;
+  cursor: pointer;
+  padding-left: 20px;
+  margin: 2px 0;
+
+  &:hover,
+  &.tab-active {
+    background-color: #f2f7fe;
+  }
+
+  &.tab-active::before {
+    content: "";
     height: 34px;
     line-height: 40px;
-    cursor: pointer;
-    padding-left: 20px;
-    margin: 2px 0;
-    &:hover, &.tab-active {
-      background-color: #f2f7fe;
-    }
-    &.tab-active::before {
-      content: "";
-      height: 34px;
-      line-height: 40px;
-      position: absolute;
-      left: 0;
-      border-left: 4px solid #007AFF;
-    }
+    position: absolute;
+    left: 0;
+    border-left: 4px solid var(--bs-el-hover);
   }
-  .ztree-input {
-    margin-right: 10px !important;
-  }
-  .ztree {
-    padding-top: 0;
-  }
-  .ztree-box {
-    // max-height: -webkit-calc(100vh - 170px);
-    // max-height: calc(100vh - 170px);
-    height: 100%;
-    overflow: hidden;
-  }
-  .el-textarea__inner{
-      color: var(--bs-el-text) ;
-      background-color: var(--bs-el-background) !important;
+}
+
+.ztree-input {
+  margin-right: 10px !important;
+}
+
+.ztree-box {
+  height: 100%;
+  overflow: hidden;
+}
+
+.el-textarea__inner {
+  color: var(--bs-el-text);
+  background-color: var(--bs-el-background-1) !important;
 }
 </style>

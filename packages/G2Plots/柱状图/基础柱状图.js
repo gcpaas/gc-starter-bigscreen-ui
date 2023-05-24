@@ -69,10 +69,10 @@ const setting = [
   },
   {
     label: '柱子颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'color', // 字段
-    optionField: 'color', // 对应options中的字段
-    value: '',
+    type: 'gradual', // 设置组件类型
+    field: 'columnStyle_fill', // 字段
+    optionField: 'columnStyle.fill', // 对应options中的字段
+    value: 'l(90) 0:#5E8EED 1:#5E8EED',
     tabName: 'custom'
   },
   // {
@@ -173,6 +173,9 @@ const option = {
   xField: 'type',
   yField: 'sales',
   color: '',
+  columnStyle: { // 设置柱子渐变色
+    fill: 'l(90) 0:#5E8EED 1:#5E8EED'
+  },
   label: {
     // 可手动配置 label 数据标签位置
     position: 'middle', // 'top', 'bottom', 'middle',
@@ -182,9 +185,9 @@ const option = {
       opacity: 0.6
     }
   },
-  pattern: {
-    type: ''
-  },
+  // pattern: {
+  //   type: ''
+  // },
   xAxis: {
     label: {
       autoHide: true,

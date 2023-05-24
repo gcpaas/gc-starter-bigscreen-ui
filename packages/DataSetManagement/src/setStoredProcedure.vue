@@ -27,13 +27,13 @@
         保存
       </el-button>
       <el-button
-        class="back"
+        class="back bs-el-button-default"
         @click="goBack"
       >
         返回
       </el-button>
     </div>
-    <el-row style="border: 1px solid #eee;margin: 16px 16px 0;">
+    <el-row style="margin: 16px 16px 0;">
       <el-col :span="isEdit ? 16 : 24">
         <el-form
           ref="form"
@@ -50,6 +50,7 @@
               >
                 <el-input
                   v-model="dataForm.name"
+                  class="bs-el-input"
                   clearable
                   :disabled="!isEdit"
                 />
@@ -63,6 +64,8 @@
                 <el-select
                   ref="selectParentName"
                   v-model="dataForm.typeId"
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   clearable
                   :disabled="!isEdit"
                   @clear="clearType"
@@ -110,6 +113,7 @@
               >
                 <el-input
                   v-model="dataForm.remark"
+                  class="bs-el-input"
                   :disabled="!isEdit"
                 />
               </el-form-item>
@@ -122,6 +126,8 @@
                 <el-select
                   v-model="dataForm.sourceId"
                   clearable
+                  class="bs-el-select"
+                  popper-class="bs-el-select"
                   filterable
                   placeholder="请选择数据源"
                   :disabled="!isEdit"
@@ -146,10 +152,9 @@
               ref="targetInSql"
               v-model="dataForm.sqlProcess"
               :options="cOptions"
-              class="codeStyle"
               style="margin-top: 2px"
             />
-            <div style="background: #f6f7fb;line-height: 32px; padding-left: 10px;">
+            <div class="bs-codemirror-bottom-text">
               示例：
               <strong v-if="dataForm.curingType === '3'">call 存储过程名称(<span style="color: red;">${参数名称}</span>,?)</strong>
               <strong v-else><br>
@@ -192,7 +197,7 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap bs-field-wrap">
+            <div class="field-wrap bs-field-wrap bs-scrollbar bs-scrollbar-bg-1">
               <div
                 v-for="param in dataForm.paramsList"
                 :key="param.name"
@@ -225,7 +230,7 @@
                 配置
               </el-button>
             </div>
-            <div class="field-wrap bs-field-wrap">
+            <div class="field-wrap bs-field-wrap bs-scrollbar bs-scrollbar-bg-1">
               <div
                 v-for="field in structurePreviewList"
                 :key="field.columnName"
@@ -253,19 +258,18 @@
     </el-row>
     <div
       v-if="isEdit"
-      class="dataPreView"
       style="margin-top: 12px;"
     >
       <div class="result-view">
         数据预览
       </div>
-      <div class="bs-table-box is-Edit">
+      <div class="bs-table-box is-Edit bs-scrollbar">
         <el-table
           align="center"
           :data="dataPreviewList"
           max-height="400"
           :border="true"
-          class="bs-el-table"
+          class="bs-el-table bs-scrollbar"
         >
           <el-table-column
             v-for="(value, key) in dataPreviewList[0]"
@@ -285,10 +289,7 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="!isEdit"
-      class="dataPreView"
-    >
+    <div v-if="!isEdit">
       <el-tabs v-model="activeName">
         <el-tab-pane
           v-loading="tableLoading"
@@ -414,14 +415,12 @@
       :visible.sync="fieldsetVisible"
       width="1000px"
       append-to-body
-      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelField"
-      class="bs-dialog-wrap bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
     >
       <div class="bs-table-box">
         <el-table
-          max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
@@ -450,7 +449,7 @@
                 v-if="isEdit"
                 v-model="scope.row.fieldDesc"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.fieldDesc }}</span>
             </template>
@@ -466,7 +465,7 @@
                 v-if="isEdit"
                 v-model="scope.row.orderNum"
                 size="small"
-                class="labeldsc"
+                class="labeldsc bs-el-input"
               />
               <span v-else>{{ scope.row.orderNum }}</span>
             </template>
@@ -477,11 +476,11 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelField">取 消</el-button>
+        <el-button @click="cancelField">取消</el-button>
         <el-button
           type="primary"
           @click="setField"
-        >确 定</el-button>
+        >确定</el-button>
       </span>
     </el-dialog>
     <!-- 参数配置 -->
@@ -490,10 +489,9 @@
       :visible.sync="paramsVisible"
       width="1000px"
       append-to-body
-      custom-class="bs-el-dialog"
       :close-on-click-modal="false"
       :before-close="cancelParam"
-      class="bs-dialog-wrap bs-theme-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
     >
       <div class="bs-table-box">
         <el-table
@@ -519,6 +517,8 @@
             <template slot-scope="scope">
               <el-select
                 v-model="scope.row.type"
+                popper-class="bs-el-select"
+                class="bs-el-select"
                 placeholder="请选择"
               >
                 <el-option
@@ -564,6 +564,7 @@
               <el-input
                 v-else
                 v-model="scope.row.value"
+                class="bs-el-input"
                 clearable
                 placeholder="请输入值"
               />
@@ -578,6 +579,7 @@
               <el-input
                 v-model="scope.row.remark"
                 clearable
+                class="bs-el-input"
                 placeholder="请输入备注"
               />
             </template>
@@ -616,11 +618,18 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="cancelParam">取 消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="cancelParam"
+        >
+          取消
+        </el-button>
         <el-button
           type="primary"
           @click="setParam"
-        >确 定</el-button>
+        >
+          确定
+        </el-button>
       </span>
     </el-dialog>
   </div>
@@ -630,6 +639,8 @@
 import { nameCheckRepeat, sqlTest, datasetAdd, datasetUpdate, getDatasetInfo, getDatasetTypeList } from 'packages/js/utils/datasetConfigService'
 import { datasourcePage } from 'packages/js/utils/dataSourceService'
 import { codemirror } from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/nord.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
 export default {
@@ -709,6 +720,7 @@ export default {
         mode: 'text/x-mysql',
         lineNumbers: true,
         lineWrapping: true,
+        theme: 'nord',
         extraKey: { Ctrl: 'autocomplete' },
         hintOptions: {
           completeSingle: true
@@ -864,11 +876,6 @@ export default {
         this.$message.error('请确保数据集SQL加工脚本不为空且测试通过')
         return
       }
-      // if (this.structurePreviewList.some(item => item.sourceTable == '')) {
-      //   this.$message.warning('字段来源不能为空')
-      //   this.fieldDescEdit()
-      //   return
-      // }
       if (!this.structurePreviewList.length) {
         this.$message.warning('该存储过程未生成输出字段，请重新检查')
         return
@@ -1200,7 +1207,7 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 .tree-box {
-  padding: 5px 0;
+  padding: 0;
   max-height: 270px;
 }
 /deep/ .el-input__inner {
@@ -1216,7 +1223,7 @@ export default {
   }
   .save {
     position: absolute;
-    right: 70px;
+    right: 86px;
     top: 16px;
   }
   .back {
@@ -1235,18 +1242,18 @@ export default {
   }
   display: flex;
 }
-.codeStyle {
-  border: 1px solid #EBEEF5;
-}
+// .codeStyle {
+//   border: 1px solid #EBEEF5;
+// }
 /deep/ .CodeMirror {
   height: 180px !important;
   font-family: Helvetica, Tahoma;
-  .CodeMirror-scroll {
-    background: #fff;
-    .CodeMirror-gutters {
-      background-color: #f6f7fb;
-    }
-  }
+  // .CodeMirror-scroll {
+  //   background: #fff;
+  //   .CodeMirror-gutters {
+  //     background-color: #f6f7fb;
+  //   }
+  // }
 }
 .no-border {
   border: 0;
@@ -1260,7 +1267,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid #007AFF;
+  border-left: 5px solid var(--bs-el-hover);
   margin: 16px 16px 0 0;
 }
 .field-wrap {
@@ -1300,44 +1307,23 @@ export default {
     }
   }
 }
-/deep/ .el-page-header {
-  .el-page-header__left {
-    display: none;
-  }
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-  .el-page-header__content {
-    font-size: 14px;
-    font-weight: 600;
-    position: relative;
-    padding-left: 12px;
-  }
-  .el-page-header__content::before {
-    content: "";
-    height: 24px;
-    line-height: 24px;
-    position: absolute;
-    left: 0;
-    border-left: 4px solid #007AFF;
-  }
-}
+
 .result-view {
-  padding: 8px 12px;
-  margin: 0 16px 0;
+  font-size: 14px;
   font-weight: 600;
+  color: var(--bs-el-text);
   position: relative;
-  line-height: 24px;
+  padding: 16px 0;
+  padding-left: 12px;
+  border-bottom: 1px solid var(--bs-background-1);
   &::before {
     content: "";
-    height: 24px;
-    line-height: 24px;
+    height: 14px;
     position: absolute;
     left: 0;
-    border-left: 4px solid #007AFF;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 4px solid var(--bs-el-hover);
   }
 }
 /deep/ .bs-table-box.is-Edit .el-table {
@@ -1345,5 +1331,9 @@ export default {
   .el-table__body-wrapper {
     max-height: unset !important;
   }
+}
+
+.bs-table-box{
+  height: 100% !important;
 }
 </style>

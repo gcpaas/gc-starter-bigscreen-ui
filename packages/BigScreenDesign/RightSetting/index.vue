@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bs-setting-wrap"
+    class="bs-setting-wrap bs-scrollbar"
     @click.stop
   >
     <el-tabs
@@ -34,7 +34,7 @@
       @closeRightPanel="close"
     />
     <div class="toolbar">
-      <el-button @click="close">
+      <el-button class="bs-el-button-default" @click="close">
         取消
       </el-button>
       <el-button
