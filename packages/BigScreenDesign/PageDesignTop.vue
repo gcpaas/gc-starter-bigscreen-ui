@@ -99,7 +99,7 @@ export default {
       changePageInfo: 'bigScreen/changePageInfo'
     }),
     backManagement () {
-      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/pages' })
+      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/home' })
     },
     // 清空
     empty () {
@@ -134,7 +134,6 @@ export default {
         const node = document.querySelector('.render-theme-wrap')
         toJpeg(node, { quality: 0.2 })
           .then((dataUrl) => {
-            console.log(dataUrl)
             pageInfo.coverPicture = dataUrl
             saveScreen(pageInfo).then(res => {
               this.$message.success('保存成功')
