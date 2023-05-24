@@ -64,6 +64,14 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '水波颜色',
+    type: 'gradual', // 设置组件类型
+    field: 'liquidStyle_fill', // 字段
+    optionField: 'liquidStyle.fill', // 对应options中的字段
+    value: 'l(90) 0:#ffffff 1:#1890ff',
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
@@ -84,11 +92,11 @@ const option = {
     border: 4,
     distance: 8
   },
+  liquidStyle: {
+    fill: 'l(90) 0:#1890ff 1:#ffffff'
+  },
   wave: {
     length: 128
-  },
-  pattern: {
-    type: ''
   },
   statistic: {
     content: {
