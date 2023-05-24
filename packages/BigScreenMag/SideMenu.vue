@@ -122,7 +122,7 @@ export default {
       isAll: true,
       catalogList: [],
       catalogVisible: false,
-      activeCatalog: { // 激活的目录
+      activeCatalog: { // 激活的目录,点击其他非目录按钮时需要保持当前的菜单激活状态
         name: '',
         id: '',
         code: ''
