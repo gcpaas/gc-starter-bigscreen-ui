@@ -1,10 +1,10 @@
 <template>
-  <el-scrollbar class="scrollbar">
-    <div
-      v-loading="saveloading"
-      class="inner-container"
-      :element-loading-text="saveText"
-    >
+  <div
+    v-loading="saveloading"
+    class="inner-container"
+    :element-loading-text="saveText"
+  >
+    <el-scrollbar class="data-set-scrollbar">
       <div class="header">
         <el-page-header class="bs-el-page-header">
           <template slot="content">
@@ -15,20 +15,19 @@
               <div class="page-header-right">
                 <el-button
                   class="bs-el-button-default"
-                  @click="openNewWindow"
+                  @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/original_dataset')"
                 >
                   帮助
                 </el-button>
                 <el-button
                   v-if="isEdit"
                   type="primary"
-                  class="save"
                   @click="save('form')"
                 >
                   保存
                 </el-button>
                 <el-button
-                  class="back bs-el-button-default"
+                  class="bs-el-button-default"
                   @click="goBack"
                 >
                   返回
@@ -560,8 +559,8 @@
           </el-button>
         </span>
       </el-dialog>
-    </div>
-  </el-scrollbar>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -868,18 +867,6 @@ export default {
       }
       datasourcePage(params).then(res => {
         this.sourceList = res.list
-        // this.$nextTick(() => {
-        //   if (!this.dataForm.id) {
-        //     if (this.sourceList && this.sourceList.length === 1) {
-        //       this.dataForm.sourceId = this.sourceList[0].id
-        //       this.$nextTick(() => {
-        //         this.queryAllTable()
-        //       })
-        //     } else {
-        //       this.dataForm.sourceId = ''
-        //     }
-        //   }
-        // })
       })
     },
     // 设置数据源
@@ -1024,6 +1011,9 @@ export default {
       this.structurePreviewList = []
       this.structurePreviewListCopy = []
       this.$refs.form.clearValidate()
+    },
+    openNewWindow (url) {
+      window.open(url, '_blank')
     }
   }
 }
@@ -1034,7 +1024,7 @@ export default {
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
 
-.scrollbar {
+.data-set-scrollbar {
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
@@ -1049,28 +1039,6 @@ export default {
   width: 100% !important;
 }
 
-// .header {
-//   position: relative;
-
-//   // .search {
-//   //   position: absolute;
-//   //   right: 124px;
-//   //   top: 16px;
-//   //   display: none;
-//   // }
-
-//   .save {
-//     position: absolute;
-//     right: 86px;
-//     top: 16px;
-//   }
-
-//   .back {
-//     position: absolute;
-//     right: 16px;
-//     top: 16px;
-//   }
-// }
 .page-header {
   display: flex;
   position: relative;
