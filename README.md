@@ -104,3 +104,17 @@ export default store
 ### 5. 访问大屏
 
 启动项目后，访问前端地址 http://ip:port/management
+
+
+## 演示DEMO
+
+<a href="http://gcpaas.gccloud.com/bigScreen"> http://gcpaas.gccloud.com/bigScreen </a>
+
+## 联系我们
+<img alt="Email" src="https://img.shields.io/badge/Email-tech@ustcinfo.com-blue.svg">
+
+<img alt="QQ群" src="https://img.shields.io/badge/QQ群-322302395-blue.svg">
+
+## License
+
+Apache License 2.0
