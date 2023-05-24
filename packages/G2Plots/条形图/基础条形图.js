@@ -51,11 +51,14 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '柱子颜色',
-    type: 'gradual', // 设置组件类型
-    field: 'barStyle_fill', // 字段
-    optionField: 'barStyle.fill', // 对应options中的字段
-    value: 'l(0) 0:#5E8EED 1:#5E8EED',
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom'
   },
   {
@@ -78,17 +81,15 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = 'option.seriesField = setting.find(settingItem=>settingItem.field === \'yField\').value'
 
 // 图表配置 new Line('domName', option)
 const option = {
   data,
   xField: 'value',
   yField: 'year',
-  color: '',
-  barStyle: { // 设置柱子渐变色
-    fill: 'l(0) 0:#5E8EED 1:#5E8EED'
-  },
+  seriesField: 'year',
+  color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   legend: {
     position: 'top-left'
