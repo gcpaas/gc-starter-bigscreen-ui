@@ -95,7 +95,7 @@ import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
-import {get} from "../js/utils/http";
+import { get } from 'packages/js/utils/http'
 export default {
   name: 'BigScreenDesign',
   components: {

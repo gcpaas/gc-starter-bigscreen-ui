@@ -45,7 +45,8 @@ export default {
   },
   computed: {
     ...mapState('bigScreen', {
-      shiftKeyDown: state => state.shiftKeyDown
+      shiftKeyDown: state => state.shiftKeyDown,
+      scale: state => state.zoom / 100
     }),
     getSelectionBoxStyle () {
       // 计算虚线框的样式
@@ -83,12 +84,11 @@ export default {
           return
         }
         this.isSelectDown = true
-        //  x 697 - 357 = 340
-        //  y 177 - 104 = 73
-        this.startX = event.x - this.offsetX
-        this.startY = event.y - this.offsetY
-        this.endX = event.x - this.offsetX
-        this.endY = event.y - this.offsetY
+
+        this.startX = (event.x - this.offsetX) / this.scale
+        this.startY = (event.y - this.offsetY) / this.scale
+        this.endX = (event.x - this.offsetX) / this.scale
+        this.endY = (event.y - this.offsetY) / this.scale
       }
     },
     handleMouseMove (event) {
@@ -100,8 +100,8 @@ export default {
         this.isSelecting = true
       }
       if (this.isSelecting) {
-        this.endX = event.x - this.offsetX
-        this.endY = event.y - this.offsetY
+        this.endX = (event.x - this.offsetX) / this.scale
+        this.endY = (event.y - this.offsetY) / this.scale
       }
     },
     handleMouseUp (event) {

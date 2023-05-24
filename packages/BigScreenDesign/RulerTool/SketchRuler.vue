@@ -37,7 +37,6 @@
       id="screens"
       ref="screensRef"
       :style="{
-        cursor: isMouseDown ? 'move' : 'default',
         width: innerWidth + 'px',
         height: innerHeight + 'px'
       }"
@@ -60,14 +59,14 @@
 </template>
 <script>
 import SketchRule from 'vue-sketch-ruler'
-import { dragDesignPanelMixin } from './dragDesignPanel'
+// import { dragDesignPanelMixin } from './dragDesignPanel'
 import { mapState, mapMutations } from 'vuex'
 import { debounce } from 'lodash'
 export default {
   components: {
     SketchRule
   },
-  mixins: [dragDesignPanelMixin],
+  // mixins: [dragDesignPanelMixin],
   props: {
     width: {
       type: Number,
@@ -210,8 +209,8 @@ export default {
       this.startY = startY >> 0
 
       this.$emit('changeStart', {
-        x: this.startX + 50 - 20,
-        y: this.startY + 50 - 20
+        x: this.startX * this.scale + 50 - this.thick,
+        y: this.startY * this.scale + 50 - this.thick
       })
     },
     // 保证画布能完整展示大屏
