@@ -68,7 +68,7 @@
           @mouseleave="rightClickForm.visible = false"
           @mouseenter="rightClickForm.visible = true"
         >
-          <div id="node-bottom-menu">
+          <div class="node-bottom-menu">
             <div class="triangle" />
             <ul>
               <li
@@ -94,7 +94,7 @@
               </li>
             </ul>
           </div>
-          <div id="node-top-menu">
+          <div class="node-top-menu">
             <ul>
               <li
                 v-if="!isBoth"

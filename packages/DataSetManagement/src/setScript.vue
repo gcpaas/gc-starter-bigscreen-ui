@@ -361,7 +361,6 @@
     >
       <div class="bs-table-box">
         <el-table
-          max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
           align="center"
@@ -417,7 +416,7 @@
       append-to-body
       :close-on-click-modal="false"
       :before-close="cancelParam"
-      class="bs-dialog-wrap"
+      class="bs-dialog-wrap bs-el-dialog"
     >
       <div class="bs-table-box">
         <el-table

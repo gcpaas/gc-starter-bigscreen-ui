@@ -480,7 +480,6 @@
     >
       <div class="bs-table-box">
         <el-table
-          max-height="350"
           :data="structurePreviewListCopy"
           :border="true"
           align="center"

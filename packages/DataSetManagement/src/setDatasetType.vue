@@ -151,6 +151,9 @@ export default {
     line-height: 16px;
     color: #909399;
   }
+  &:hover{
+      color: var(--bs-el-hover);
+    }
 }
 /deep/ .el-dialog__body {
   min-height: 130px !important;
