@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import Nav from './Nav'
+import Nav from './Nav.vue'
 export default {
   name: 'BigScreenHome',
   components: {

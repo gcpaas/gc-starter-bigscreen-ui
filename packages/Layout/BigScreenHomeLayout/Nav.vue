@@ -15,9 +15,7 @@
         @click="toggleNav(nav)"
       >
         <span class="nav-icon">
-          <i
-            :class="[ 'iconfont-bigscreen', nav.icon]"
-          />
+          <i :class="['iconfont-bigscreen', nav.icon]" />
         </span>
         {{ nav.name }}
       </a>
@@ -43,6 +41,15 @@ export default {
       required: true
     }
   },
+  watch: {
+    $route () {
+      const nav = this.navs.find(m => m.path === this.$route.path)
+      if (nav) {
+        this.activeNav = nav.id
+        this.nc.toggle(nav.id)
+      }
+    }
+  },
   mounted () {
     const nav = this.navs.find(m => m.path === this.$route.path)
     this.activeNav = nav ? nav.id : 0
@@ -54,19 +61,22 @@ export default {
   },
   methods: {
     toggleNav (nav) {
-      if (this.nc) {
+      const nc = this.nc
+      if (nc) {
         this.activeNav = nav.id
-        this.nc.toggle(nav.id)
+        nc.toggle(nav.id)
         this.$emit('change', nav)
       }
     },
     debNavResize () {
-      if (this.nc) {
+      const nc = this.nc
+      if (nc) {
         debounce(() => {
-          this.nc.resize()
+          nc.resize()
         }, 1000)()
       }
     }
+
   }
 
 }
