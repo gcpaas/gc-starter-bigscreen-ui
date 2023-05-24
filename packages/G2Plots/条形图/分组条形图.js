@@ -17,6 +17,19 @@ const name = 'FenZuTiaoXingTu'
 const setting = [
   {
     label: '维度',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'yField',
+    // 对应options中的字段
+    optionField: 'yField',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'data'
+  },
+  {
+    label: '指标',
     // 设置组件类型， select / input / colorPicker
     type: 'select',
     // 字段
@@ -27,20 +40,6 @@ const setting = [
     // 绑定的值
     value: '',
     // tab页。 data: 数据， custom: 自定义
-    tabName: 'data'
-  },
-  {
-
-    label: '指标',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'yField',
-    // 对应options中的字段
-    optionField: 'yField',
-    // 是否多选
-    multiple: false,
-    value: '',
     tabName: 'data'
   },
   {

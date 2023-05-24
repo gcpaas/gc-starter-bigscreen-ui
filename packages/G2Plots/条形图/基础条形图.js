@@ -17,6 +17,19 @@ const name = 'JiChuTiaoXingTu'
 const setting = [
   {
     label: '维度',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'yField',
+    // 对应options中的字段
+    optionField: 'yField',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'data'
+  },
+  {
+    label: '指标',
     // 设置组件类型， select / input / colorPicker
     type: 'select',
     // 字段
@@ -30,20 +43,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
-    label: '指标',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'yField',
-    // 对应options中的字段
-    optionField: 'yField',
-    // 是否多选
-    multiple: false,
-    value: '',
-    tabName: 'data'
-  },
-  {
     label: 'y轴标签',
     type: 'switchNumber', // 设置组件类型
     field: 'yAxis_label_style_opacity', // 字段
@@ -52,19 +51,19 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '柱子颜色',
+    type: 'gradual', // 设置组件类型
+    field: 'barStyle_fill', // 字段
+    optionField: 'barStyle.fill', // 对应options中的字段
+    value: 'l(0) 0:#5E8EED 1:#5E8EED',
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
-  },
-  {
-    label: '柱子颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'color', // 字段
-    optionField: 'color', // 对应options中的字段
-    value: '',
     tabName: 'custom'
   }
 ]
@@ -87,6 +86,9 @@ const option = {
   xField: 'value',
   yField: 'year',
   color: '',
+  barStyle: { // 设置柱子渐变色
+    fill: 'l(0) 0:#5E8EED 1:#5E8EED'
+  },
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   legend: {
     position: 'top-left'
