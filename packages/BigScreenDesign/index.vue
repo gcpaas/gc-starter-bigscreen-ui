@@ -167,7 +167,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    // 判断进入预览页面前是否有访问权限
+    // 判断进入设计页面前是否有访问权限
     const code = to.query.code
     get(`/bigScreen/permission/check/${code}`).then(res => {
       if (res) {
