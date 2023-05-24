@@ -94,18 +94,25 @@ function registerRouters (config, router) {
 
 // 注册配置
 function registerTheme (config) {
+  const defaultTheme = {
+    '--bs-background-1': '#151a26', // 整体背景色
+    '--bs-background-2': '#232832', // 布局背景色
+    '--bs-el-background-1': '#151A26', // 组件背景色，输入框...
+    '--bs-el-background-2': '#35393F', // 组件背景色，按钮、分页、加载...
+    '--bs-el-background-3': '#303640', // 组件背景色，表格头部、下拉框hover...
+    '--bs-el-title': '#ffffff', // 标题字体颜色
+    '--bs-el-text': '#ffffff', // 一般字体颜色
+    '--bs-el-hover': '#409EFF', // elment-ui主题色，激活
+    '--bs-el-border-color': 'transparent' // 边框颜色
+  }
+  const mergedTheme = { ...defaultTheme, ...config?.customTheme }
   const style = document.createElement('style')
   style.type = 'text/css'
-  const theme = config?.customTheme
   let themeStr = ''
-  for (const key in theme) {
-    themeStr += `${key}:${theme[key]};`
+  for (const key in mergedTheme) {
+    themeStr += `${key}:${mergedTheme[key]};`
   }
-  style.innerHTML = `
-  el-color-dropdown, .el-dialog__wrapper, .el-message-box__wrapper, .el-popper, el-color-dropdown, .el-input, .bs-theme-wrap {
-      ${themeStr}
-    }
-  `
+  style.innerHTML = `el-color-dropdown, .el-dialog__wrapper, .el-message-box__wrapper, .el-popper, el-color-dropdown, .el-input, .bs-theme-wrap {${themeStr}}`
   document.getElementsByTagName('head')[0].appendChild(style)
 }
 
