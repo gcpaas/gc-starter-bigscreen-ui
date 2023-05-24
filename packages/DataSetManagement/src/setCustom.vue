@@ -1465,6 +1465,7 @@ export default {
 
 .bs-table-box {
   height: 100% !important;
+  margin-bottom: 0 !important;
 }
 
 /deep/ .bs-table-box.is-Edit .el-table {
