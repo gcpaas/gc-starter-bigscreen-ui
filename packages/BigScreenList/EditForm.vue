@@ -245,7 +245,7 @@ export default {
           this.$set(this.dataForm, 'pageConfig', {
             w: '1920',
             h: '1080',
-            bgColor: '#0e2a43',
+            bgColor: '#151a26',
             opacity: 100,
             customTheme: 'auto',
             bg: null
