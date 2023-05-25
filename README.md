@@ -29,11 +29,13 @@
 * 支持嵌入式集成，与项目无缝融合，减少运维成本
 * 支持自定义接口权限、数据权限，保证大屏数据安全
 
-## 📝 文档
+## 文档
 
-[📘中文文档](https://www.yuque.com/chuinixiongkou/bigscreen/index)
+* [使用手册、二次开发、部署手册、常见问题](https://www.yuque.com/chuinixiongkou/bigscreen/index)
+* [前端代码仓库(GitHub)](https://github.com/gcpaas/gc-starter-bigscreen-ui)、[前端代码仓库(码云)](https://gitee.com/gcpaas/gc-starter-bigscreen-ui)
+* [后端代码仓库(GitHub)](https://github.com/gcpaas/gc-starter-bigscreen)、 [后端代码仓库(码云)](https://gitee.com/gcpaas/gc-starter-bigscreen)
 
-## 📦 如何集成
+## 如何集成
 
 ### 1. 安装依赖
 
@@ -123,6 +125,10 @@ export default store
 <img alt="Email" src="https://img.shields.io/badge/Email-tech@ustcinfo.com-blue.svg">
 
 <img alt="QQ群" src="https://img.shields.io/badge/QQ群-322302395-blue.svg">
+
+<p>
+    <img alt="logo" width="200" src="./doc/images/qq.jpeg">
+</p>
 
 ## License
 

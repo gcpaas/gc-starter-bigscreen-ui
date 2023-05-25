@@ -64,6 +64,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '圆角设置',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'radiusNum',
+    // 对应options中的字段
+    optionField: 'radiusNum',
+    value: 0,
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
@@ -128,7 +139,7 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = 'const radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -140,6 +151,10 @@ const option = {
   /** 自定义颜色 */
   // color: ['#1383ab', '#c52125'],
   seriesField: 'type',
+  barStyle: {
+    radius: [0, 0, 0, 0]// 设置条形图的圆角
+  },
+  radiusNum: 0, // 设置条形图的圆角的中间值
   yAxis: {
     label: {
       style: {

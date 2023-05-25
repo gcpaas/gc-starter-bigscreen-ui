@@ -4272,9 +4272,6 @@ const option = {
   },
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   seriesField: 'category',
-  xAxis: {
-    type: 'time'
-  },
   yAxis: {
     grid: {
       line: {
