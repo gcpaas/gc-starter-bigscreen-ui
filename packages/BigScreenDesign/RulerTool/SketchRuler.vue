@@ -166,7 +166,8 @@ export default {
   },
   methods: {
     ...mapMutations('bigScreen', [
-      'changeZoom'
+      'changeZoom',
+      'changeFitZoom'
     ]),
     initRuleHeight () {
       setTimeout(() => {
@@ -233,6 +234,7 @@ export default {
       // 然后再缩小20%
       if (scale > 30) {
         this.changeZoom(scale - 20)
+        this.changeFitZoom(scale - 20)
       }
     }
   }

@@ -166,6 +166,9 @@ export default {
   },
   changeZoom (state, zoom) {
     state.zoom = zoom
+  },
+  changeFitZoom (state, zoom) {
+    state.fitZoom = zoom
   }
 }
 function changeZIndexFuc (state, list) {

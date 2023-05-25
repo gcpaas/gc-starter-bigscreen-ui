@@ -153,6 +153,11 @@ export default {
       ]
     }
   },
+  watch: {
+    fitZoom (zoom) {
+      this.zoomList[0].value = this.fitZoom
+    }
+  },
   computed: {
     ...mapState({
       pageInfo: state => state.bigScreen.pageInfo,
@@ -163,7 +168,8 @@ export default {
       presetLine: state => state.bigScreen.presetLine,
       updateKey: state => state.bigScreen.updateKey,
       hasGrid: state => state.bigScreen.hasGrid,
-      zoom: state => state.bigScreen.zoom
+      zoom: state => state.bigScreen.zoom,
+      fitZoom: state => state.bigScreen.fitZoom
     }),
     offset () {
       return {
