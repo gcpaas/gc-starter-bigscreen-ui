@@ -418,16 +418,17 @@ export default {
 
                 img {
                   height: 60px;
+                  width: 100%;
                 }
               }
             }
 
             .menu-component {
-              margin: 7px;
 
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
+                margin: 0 auto;
               }
               .img_dispaly {
                 height: 80px;
