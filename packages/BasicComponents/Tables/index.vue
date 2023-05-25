@@ -271,6 +271,12 @@ export default {
 }
 
 ::v-deep .el-table {
+   .el-table__cell{
+    border-bottom: none !important;
+  }
+  &:before{
+    display: none !important;
+  }
     th.gutter, colgroup.gutter {
         width: 0px !important;//此处的宽度值，对应你自定义滚动条的宽度即可
     }
