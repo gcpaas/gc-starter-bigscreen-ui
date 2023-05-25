@@ -1,6 +1,6 @@
 export default function updateTheme (data) {
   const querySelectorName = data === false ? false : data === '' ? '.el-button--primary' : data
-  if (data) {
+  if (querySelectorName) {
     window.requestAnimationFrame(() => {
       const primaryButton = document.querySelector(querySelectorName)
       if (primaryButton) {
