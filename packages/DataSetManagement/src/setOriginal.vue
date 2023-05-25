@@ -90,7 +90,7 @@
                           :default-expand-all="true"
                           :highlight-current="true"
                           :expand-on-click-node="false"
-                          class="bs-theme-wrap bs-el-tree"
+                          class="bs-el-tree"
                           @node-click="selectParentCategory"
                         >
                           <span
@@ -328,7 +328,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            class="bs-theme-wrap bs-el-pagination"
+            class="bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"

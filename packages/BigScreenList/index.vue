@@ -125,7 +125,7 @@
       </div> -->
       <div class="bs-pagination">
         <el-pagination
-          class="bs-theme-wrap bs-el-pagination"
+          class="bs-el-pagination"
           popper-class="bs-el-pagination"
           background
           layout="total, prev, pager, next, sizes"

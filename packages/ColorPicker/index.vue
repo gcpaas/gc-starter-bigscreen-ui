@@ -8,7 +8,7 @@
       <el-color-picker
         slot="append"
         v-model="localValue"
-        popper-class="bs-theme-wrap bs-el-color-picker"
+        popper-class="bs-el-color-picker"
         show-alpha
         :predefine="predefineColors"
       />

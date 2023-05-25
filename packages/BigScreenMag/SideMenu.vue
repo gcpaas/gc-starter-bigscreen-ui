@@ -1,5 +1,5 @@
 <template>
-  <div class="side-catalog-wrap bs-theme-wrap">
+  <div class="side-catalog-wrap">
     <el-scrollbar class="side-catalog-box">
       <div
         class="side-catalog-all side-catalog-item"
@@ -20,7 +20,7 @@
         <span class="catalog-name">{{ catalog.name }}</span>
         <el-dropdown
           :class="{'dropdown-show':(showDropdown && hoverItem === catalog.code) || activeCatalog.code === catalog.code}"
-          class="page-list-dropdown bs-theme-wrap"
+          class="page-list-dropdown"
           placement="bottom-start"
           node-key="id"
           trigger="click"
@@ -59,7 +59,7 @@
     <el-dialog
       :title="currentCatalog.code ? '编辑分组':'新建分组'"
       :visible.sync="catalogVisible"
-      custom-class="bs-el-dialog bs-theme-wrap"
+      custom-class="bs-el-dialog"
       width="30%"
       class="bs-dialog-wrap bs-el-dialog"
       @close="handleClose"
