@@ -95,7 +95,7 @@ export default function getComponentConfig (type) {
         title: '倒计时',
         icon: Icon.getNameList()[7],
         className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenTimeCountDownChart',
-        w: 280,
+        w: 400,
         h: 50,
         x: 0,
         y: 0,
