@@ -89,7 +89,7 @@ const setting = [
     tabName: 'custom',
     options: [
       {
-        label: '正上方',
+        label: '上方',
         value: 'top'
       },
       {
@@ -101,7 +101,7 @@ const setting = [
         value: 'top-right'
       },
       {
-        label: '正左方',
+        label: '左方',
         value: 'left'
       },
       {
@@ -113,7 +113,7 @@ const setting = [
         value: 'left-bottom'
       },
       {
-        label: '正右方',
+        label: '右方',
         value: 'right'
       },
       {
@@ -125,7 +125,7 @@ const setting = [
         value: 'right-bottom'
       },
       {
-        label: '正下方',
+        label: '下方',
         value: 'bottom'
       },
       {

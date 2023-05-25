@@ -57,22 +57,26 @@ export default {
         light: '#ffffff',
         auto: 'transparent'
       }
-
+      console.log(this.config)
+      console.log(this.customTheme)
+      console.log(this.customTheme !== 'custom'
+        ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
+        : this.headerCellStyleObj.backgroundColor)
       if (document.getElementById(this.config.code)?.querySelector('tr')) {
         document
           .getElementById(this.config.code)
           .querySelector('tr').style.backgroundColor =
           this.customTheme !== 'custom'
-            ? headerBackgroundColor[this.customTheme]
-            : this.headerCellStyleObj.backgroundColor || 'transparent'
+            ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
+            : this.headerCellStyleObj.backgroundColor
       }
       const style = {
         height: '48px',
         borderBottom: 'solid 2px #007aff',
         backgroundColor:
-          this.customTheme !== 'custom'
-            ? (this.customTheme === 'auto' ? '#007aff' : headerBackgroundColor[this.customTheme])
-            : this.headerCellStyleObj.backgroundColor || 'transparent',
+        this.customTheme !== 'custom'
+          ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
+          : this.headerCellStyleObj.backgroundColor,
         color:
           this.customTheme === 'light'
             ? '#000000'
@@ -89,9 +93,9 @@ export default {
       }
       const style = {
         backgroundColor:
-          this.customTheme !== 'custom'
-            ? bodyBackgroundColor[this.customTheme]
-            : this.cellStyleObj?.backgroundColor || 'transparent',
+        this.customTheme !== 'custom'
+          ? this.config.customize.bodyBackgroundColor || bodyBackgroundColor[this.customTheme]
+          : this.headerCellStyleObj.backgroundColor,
         color:
           this.customTheme === 'light'
             ? '#000000'
@@ -267,7 +271,19 @@ export default {
   white-space: nowrap;
   position: inherit;
 }
-// ::v-deep td.el-table__cell{
-//   border-bottom: 1px solid #e6ebf5 !important;
-// }
+
+::v-deep .el-table {
+    th.gutter, colgroup.gutter {
+        width: 0px !important;//此处的宽度值，对应你自定义滚动条的宽度即可
+    }
+}
+
+// 关键css代码
+::v-deep .el-table__header colgroup col[name="gutter"] {
+    display: table-cell !important;
+}
+
+::v-deep .el-table__body{
+  width: 100% !important;
+}
 </style>

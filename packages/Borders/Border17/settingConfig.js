@@ -10,14 +10,14 @@ export const settingConfig = {
   }
 }
 const customConfig = {
-  type: 'border14',
+  type: 'border16',
   customize: {
     // 边框线颜色
-    borderColor: '#87888e',
+    borderColor: 'rgba(131, 191, 246, 0)',
     // 边框线宽度
-    borderWidth: 2,
+    borderWidth: 1,
     // 边框背景颜色
-    backgroundColor: '#232832',
+    backgroundColor: '#007aff',
     colorType: 'single',
     // 渐变色0值
     gradientColor0: '#83bff6',
@@ -26,7 +26,9 @@ const customConfig = {
     // 渐变色色值改变方向
     gradientDirection: 'to right',
     // 透明度
-    opacity: 100
+    opacity: 100,
+    // 宽度
+    width: 2
   }
 }
 export const dataConfig = {

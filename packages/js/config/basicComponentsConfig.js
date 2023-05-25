@@ -10,16 +10,27 @@ import _ from 'lodash'
 import getComponentConfig from 'packages/js/utils/getComponentConfig'
 // 批量引入配置文件
 import { setModules, dataModules } from 'packages/js/utils/configImport'
-const typeList = ['texts', 'picture', 'screenScrollBoard', 'screenScrollRanking', 'tables', 'map', 'timeCountDown', 'currentTime', 'iframeChart']
+const typeList = [
+  'texts',
+  'picture',
+  'screenScrollBoard',
+  'screenScrollRanking',
+  'tables',
+  'map',
+  'timeCountDown',
+  'currentTime',
+  'iframeChart',
+  'digitalFlop'
+]
 let basicConfigList = []
-basicConfigList = typeList.map(type => {
+basicConfigList = typeList.map((type) => {
   return getComponentConfig(type)
 })
-basicConfigList = basicConfigList.map(item => {
+basicConfigList = basicConfigList.map((item) => {
   return basicComponentsConfig(item)
 })
 // 生成基本配置
-export function basicComponentsConfig (item) {
+export function basicComponentsConfig(item) {
   return {
     ...item,
     option: _.cloneDeep(setModules[item.type]),

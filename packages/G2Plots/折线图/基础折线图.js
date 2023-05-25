@@ -82,7 +82,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_grid_line_style_lineWidth', // 字段
     optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 1,
+    value: 0,
     tabName: 'custom'
   },
   {

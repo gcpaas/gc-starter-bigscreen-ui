@@ -10,7 +10,7 @@ export const settingConfig = {
   }
 }
 const customConfig = {
-  type: 'border14',
+  type: 'border15',
   customize: {
     // 边框线颜色
     borderColor: '#87888e',
@@ -26,7 +26,15 @@ const customConfig = {
     // 渐变色色值改变方向
     gradientDirection: 'to right',
     // 透明度
-    opacity: 100
+    opacity: 100,
+    // 字体大小
+    fontSize: 40,
+    // 字体颜色
+    fontColor: '#fff',
+    // 字体粗细
+    fontWeight: 500,
+    // 中心文本
+    text: '文本'
   }
 }
 export const dataConfig = {
