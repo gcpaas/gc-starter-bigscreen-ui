@@ -485,8 +485,8 @@ export default {
       }
 
       .el-tabs__item.is-active {
-        color: var(--bs-el-hover) !important;
-        border-bottom-color: var(--bs-el-border-color) !important;
+        color: var(--bs-el-color-primary) !important;
+        border-bottom-color: var(--bs-el-border) !important;
       }
     }
   }
@@ -542,7 +542,7 @@ export default {
     line-height: 40px;
     position: absolute;
     left: 0;
-    border-left: 4px solid var(--bs-el-hover);
+    border-left: 4px solid var(--bs-el-color-primary);
   }
 }
 

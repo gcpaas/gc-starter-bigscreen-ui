@@ -4,7 +4,7 @@ export default function updateTheme (className) {
     const primaryButton = document.querySelector(querySelectorName)
     const backgroundColor = window.getComputedStyle(primaryButton).getPropertyValue('background-color')
     const element = document.querySelector('.bs-body-theme-wrap')
-    element.style.setProperty('--bs-el-hover', backgroundColor)
+    element.style.setProperty('--bs-el-color-primary', backgroundColor)
   } catch (e) {
     console.error(e)
   }

@@ -633,7 +633,7 @@ export default {
   //   }
 
   //   li:hover {
-  //     background-color: var(--bs-el-hover);
+  //     background-color: var(--bs-el-color-primary);
   //   }
 
   //   span {
@@ -690,7 +690,7 @@ export default {
     background-color: var(--bs-el-background-3);
 
     span {
-      color: var(--bs-el-hover);
+      color: var(--bs-el-color-primary);
     }
   }
 

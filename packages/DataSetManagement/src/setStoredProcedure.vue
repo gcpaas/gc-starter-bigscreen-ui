@@ -1288,7 +1288,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid var(--bs-el-hover);
+  border-left: 5px solid var(--bs-el-color-primary);
   margin: 16px 16px 0 0;
 }
 
@@ -1355,7 +1355,7 @@ export default {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    border-left: 4px solid var(--bs-el-hover);
+    border-left: 4px solid var(--bs-el-color-primary);
   }
 }
 

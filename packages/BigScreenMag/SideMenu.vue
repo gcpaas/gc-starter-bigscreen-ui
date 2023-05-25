@@ -288,7 +288,7 @@ export default {
       }
       /*菜单激活时的样式*/
       .active-catalog{
-        background-image: linear-gradient(to right , var(--bs-el-hover), var(--bs-background-2));
+        background-image: linear-gradient(to right , var(--bs-el-color-primary), var(--bs-background-2));
         background-repeat: round;
         color: var(--bs-el-text);
       }
