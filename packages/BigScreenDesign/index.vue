@@ -97,6 +97,7 @@ import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
 import { get } from 'packages/js/utils/http'
+import { isFirefox } from 'packages/js/utils/userAgent'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -187,6 +188,16 @@ export default {
   },
   created () {
     this.init()
+    /**
+     * 以下是为了解决在火狐浏览器上推拽时弹出tab页到搜索问题
+     * @param event
+     */
+    if (isFirefox()) {
+      document.body.ondrop = function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }
   },
   methods: {
     ...mapActions('bigScreen', [
