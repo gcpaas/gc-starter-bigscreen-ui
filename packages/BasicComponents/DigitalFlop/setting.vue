@@ -92,6 +92,25 @@
                   :step="1"
                 />
               </el-form-item>
+              <el-form-item label="数字位数">
+                <el-input-number
+                  v-model="config.customize.numberDigits"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
+                />
+              </el-form-item>
+              <el-form-item label="卡片距离">
+                <el-input-number
+                  v-model="config.customize.marginRight"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
+                />
+              </el-form-item>
+              <el-form-item label="补位值">
+                <el-input v-model="config.customize.placeHolder" clearable />
+              </el-form-item>
               <el-form-item label="头部填充">
                 <el-input v-model="config.customize.slotLeft" clearable />
               </el-form-item>

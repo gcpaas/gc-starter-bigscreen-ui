@@ -1,6 +1,6 @@
 import Icon from 'packages/assets/images/bigScreenIcon/export'
 // import _ from 'lodash'
-export default function getComponentConfig(type) {
+export default function getComponentConfig (type) {
   // const _type = _.upperFirst(type)
   // const className = `com.gccloud.starter.lowcode.page.bigscreen.components.${_type}Chart`
   switch (type) {
@@ -130,7 +130,7 @@ export default function getComponentConfig(type) {
         img: require('packages/BasicComponents/DigitalFlop/images/fanpaiqi.png'),
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenDigitalFlopChart',
-        w: 700,
+        w: 800,
         h: 150,
         x: 0,
         y: 0,

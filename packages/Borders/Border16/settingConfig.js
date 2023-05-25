@@ -28,9 +28,7 @@ const customConfig = {
     // 透明度
     opacity: 100,
     // 长度
-    height: 15,
-    // 宽度
-    width: 40
+    height: 2
   }
 }
 export const dataConfig = {

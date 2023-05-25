@@ -5,9 +5,6 @@
       class="custom-border-box"
       :style="{
         width: width + 'px',
-        height: lineHeight + 'px',
-        'border-color': color,
-        'border-width': borderWidth + 'px',
         'background-color': backgroundColor
       }"
     />
@@ -30,17 +27,8 @@ export default {
     return {}
   },
   computed: {
-    color() {
-      return this.config.customize.borderColor || '#83bff6'
-    },
     width() {
       return this.config.customize.width || 40
-    },
-    lineHeight() {
-      return this.config.customize.height || 15
-    },
-    borderWidth() {
-      return this.config.customize.borderWidth || 1
     },
     backgroundColor() {
       return this.config.customize.backgroundColor || '#007aff'
@@ -57,6 +45,10 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);

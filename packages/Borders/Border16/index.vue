@@ -4,10 +4,7 @@
       :key="updateKey"
       class="custom-border-box"
       :style="{
-        width: width + 'px',
         height: lineHeight + 'px',
-        'border-color': color,
-        'border-width': borderWidth + 'px',
         'background-color': backgroundColor
       }"
     />
@@ -30,17 +27,8 @@ export default {
     return {}
   },
   computed: {
-    color() {
-      return this.config.customize.borderColor || '#83bff6'
-    },
-    width() {
-      return this.config.customize.width || 15
-    },
     lineHeight() {
       return this.config.customize.height || 40
-    },
-    borderWidth() {
-      return this.config.customize.borderWidth || 1
     },
     backgroundColor() {
       return this.config.customize.backgroundColor || '#007aff'
@@ -55,6 +43,10 @@ export default {
 <style lang="scss" scoped>
 .bs-design-wrap {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: transparent;

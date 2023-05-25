@@ -27,10 +27,8 @@ const customConfig = {
     gradientDirection: 'to right',
     // 透明度
     opacity: 100,
-    // 长度
-    height: 40,
     // 宽度
-    width: 15
+    width: 2
   }
 }
 export const dataConfig = {

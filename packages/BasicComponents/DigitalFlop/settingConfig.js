@@ -44,7 +44,10 @@ const customConfig = {
     formatter: 3,
     fontWeight: 500,
     slotLeft: '',
-    slotRight: ''
+    slotRight: '',
+    marginRight: 20,
+    numberDigits: 5,
+    placeHolder: '0'
   }
 }
 export const dataConfig = {

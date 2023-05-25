@@ -13,11 +13,11 @@ const customConfig = {
   type: 'border15',
   customize: {
     // 边框线颜色
-    borderColor: 'rgba(131, 191, 246, 0)',
+    borderColor: '#87888e',
     // 边框线宽度
-    borderWidth: 1,
+    borderWidth: 2,
     // 边框背景颜色
-    backgroundColor: '#232323',
+    backgroundColor: '#232832',
     colorType: 'single',
     // 渐变色0值
     gradientColor0: '#83bff6',
@@ -32,9 +32,9 @@ const customConfig = {
     // 字体颜色
     fontColor: '#fff',
     // 字体粗细
-    fontWeight: 800,
+    fontWeight: 500,
     // 中心文本
-    text: ''
+    text: '文本'
   }
 }
 export const dataConfig = {

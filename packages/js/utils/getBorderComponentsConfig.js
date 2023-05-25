@@ -224,8 +224,8 @@ export default function getComponentConfig(type, classNameType) {
         img: require('packages/Borders/images/hengxian.png'),
         component: null,
         className,
-        w: 40,
-        h: 20,
+        w: 300,
+        h: 40,
         x: 0,
         y: 0,
         type
@@ -238,8 +238,8 @@ export default function getComponentConfig(type, classNameType) {
         img: require('packages/Borders/images/shuxian.png'),
         component: null,
         className,
-        w: 20,
-        h: 40,
+        w: 40,
+        h: 300,
         x: 0,
         y: 0,
         type

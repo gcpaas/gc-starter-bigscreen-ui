@@ -6,14 +6,15 @@
         :key="index"
         class="content_item"
         :style="{
-          'border-color': item !== ',' ? option.borderColor : '',
-          'border-width': item !== ',' ? option.borderWidth + 'px' : '',
-          'background-color': item !== ',' ? option.bgColor : '',
+          'border-color': option.borderColor,
+          'border-width': option.borderWidth + 'px',
+          'background-color': option.bgColor,
           'font-size': option.fontSize + 'px',
-          width: item !== ',' ? option.width + 'px' : '10px',
+          'min-width': option.width + 'px',
           color: option.color,
           'border-radius': option.borderRadius + 'px',
-          'font-weight': option.fontWeight
+          'font-weight': option.fontWeight,
+          'margin-right': option.marginRight + 'px'
         }"
       >
         {{ item }}
@@ -54,16 +55,32 @@ export default {
   },
   computed: {
     option() {
+      if (
+        this.config.option.data.toString().split('').length <
+        this.config.customize.numberDigits
+      ) {
+        const len =
+          this.config.customize.numberDigits -
+          this.config.option.data.toString().split('').length
+        for (let i = 0; i < len; i++) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.config.option.data =
+            (this.config.customize.placeHolder
+              ? this.config.customize.placeHolder
+              : ' ') + this.config.option.data
+        }
+      }
       const a = formatter(
         this.config.option.data,
         this.config.customize.formatter
       )
       const arr = a.toString().split('')
+
       if (this.config.customize.slotRight !== '') {
-        arr.unshift(this.config.customize.slotRight)
+        arr.push(this.config.customize.slotRight)
       }
       if (this.config.customize.slotLeft !== '') {
-        arr.push(this.config.customize.slotLeft)
+        arr.unshift(this.config.customize.slotLeft)
       }
       return {
         ...this.config.customize,
@@ -116,7 +133,7 @@ export default {
   .content {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    // justify-content: space-between;
     width: 100%;
     height: 100%;
     align-items: center;
