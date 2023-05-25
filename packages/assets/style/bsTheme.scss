@@ -8,7 +8,6 @@
     }
   }
 
-
   // 空状态
   .el-empty__image {
     filter: opacity(0.5) !important;
@@ -220,6 +219,11 @@
   }
 
   ::v-deep .el-dialog__body {
+    .el-loading-mask {
+      opacity: 0.9 !important;
+      background-color: var(--bs-el-background-2) !important;
+    }
+
     background: var(--bs-background-2) !important;
     overflow-y: auto !important;
 
