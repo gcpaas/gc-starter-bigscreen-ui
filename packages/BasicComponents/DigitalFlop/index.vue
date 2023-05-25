@@ -1,38 +1,45 @@
 <template>
   <div style="width: 100%; height: 100%" class="bs-design-wrap">
-    <digital-flop
-      :key="updateKey"
-      style="width: 100%; height: 100%"
-      :class="{
-        'light-theme': customTheme === 'light',
-        'auto-theme': customTheme == 'auto',
-        'dark-theme': customTheme == 'dark'
-      }"
-      :config="{ ...option }"
-    />
+    <div class="content">
+      <div
+        v-for="(item, index) in option.data"
+        :key="index"
+        class="content_item"
+        :style="{
+          'border-color': item !== ',' ? option.borderColor : '',
+          'border-width': item !== ',' ? option.borderWidth + 'px' : '',
+          'background-color': item !== ',' ? option.bgColor : '',
+          'font-size': option.fontSize + 'px',
+          width: item !== ',' ? option.width + 'px' : '10px',
+          color: option.color,
+          'border-radius': option.borderRadius + 'px',
+          'font-weight': option.fontWeight
+        }"
+      >
+        {{ item }}
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import DigitalFlop from '@jiaminghi/data-view/lib/components/digitalFlop/src/main.vue'
 import '@jiaminghi/data-view/lib/components/digitalFlop/src/main.css'
 import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 import commonMixins from 'packages/js/mixins/commonMixins'
 import paramsMixins from 'packages/js/mixins/paramsMixins'
 import linkageMixins from 'packages/js/mixins/linkageMixins'
-// import { stringToFunction } from '../../js/utils/evalFunctions'
-function formatter(number) {
+function formatter(number, format) {
   const numbers = number.toString().split('').reverse()
   const segs = []
-
-  while (numbers.length) segs.push(numbers.splice(0, 3).join(''))
-
+  while (numbers.length) {
+    segs.push(numbers.splice(0, format).join(''))
+  }
   return segs.join(',').split('').reverse().join('')
 }
 
 export default {
   name: 'DvDigitalFlop',
   components: {
-    DigitalFlop
+    // DigitalFlop
   },
   mixins: [refreshComponentMixin, paramsMixins, commonMixins, linkageMixins],
   props: {
@@ -47,10 +54,20 @@ export default {
   },
   computed: {
     option() {
+      const a = formatter(
+        this.config.option.data,
+        this.config.customize.formatter
+      )
+      const arr = a.toString().split('')
+      if (this.config.customize.slotRight !== '') {
+        arr.unshift(this.config.customize.slotRight)
+      }
+      if (this.config.customize.slotLeft !== '') {
+        arr.push(this.config.customize.slotLeft)
+      }
       return {
         ...this.config.customize,
-        number: this.config.option.data,
-        formatter
+        data: arr
       }
     }
   },
@@ -58,9 +75,18 @@ export default {
   mounted() {},
   methods: {
     buildOption(config, data) {
+      let dataList = ''
+      console.log(config.dataSource.dimensionField)
+      if (data.data instanceof Array) {
+        dataList = config.dataSource.dimensionField
+          ? data.data[0][config.dataSource.dimensionField]
+          : data.data[0].value
+      } else {
+        dataList = data.data[config.dataSource.dimensionField]
+      }
       config.option = {
         ...config.option,
-        data: data.data
+        data: dataList
       }
       return config
     }
@@ -87,6 +113,21 @@ export default {
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    &_item {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(131, 191, 246, 0);
+    }
+  }
 }
 .title-box {
   height: 40px;

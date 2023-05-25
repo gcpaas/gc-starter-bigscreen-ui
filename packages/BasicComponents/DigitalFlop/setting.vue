@@ -27,54 +27,76 @@
               </el-form-item>
               <el-form-item label="字体颜色">
                 <ColorPicker
-                  v-model="config.customize.style.fill"
+                  v-model="config.customize.color"
                   :predefine="predefineThemeColors"
                 />
               </el-form-item>
-              <el-form-item label="内容模板">
-                <el-input v-model="config.customize.content" clearable />
-              </el-form-item>
-              <el-form-item label="对齐方式">
-                <el-select v-model="config.customize.textAlign" clearable>
-                  <el-option label="居中" value="center" />
-                  <el-option label="右对齐" value="right" />
-                  <el-option label="左对齐" value="left" />
-                </el-select>
-              </el-form-item>
-              <!-- <el-form-item label="偶数行背景色">
+              <el-form-item label="卡片背景颜色">
                 <ColorPicker
-                  v-model="config.customize.oddRowBGC"
+                  v-model="config.customize.bgColor"
                   :predefine="predefineThemeColors"
                 />
               </el-form-item>
-              <el-form-item label="奇数行背景色">
+              <el-form-item label="卡片边框颜色">
                 <ColorPicker
-                  v-model="config.customize.evenRowBGC"
+                  v-model="config.customize.borderColor"
                   :predefine="predefineThemeColors"
                 />
               </el-form-item>
-              <el-form-item label="轮播时间间隔" label-width="100px">
-                <el-input
-                  v-model="config.customize.waitTime"
-                  placeholder="请输入时间间隔"
-                  clearable
-                >
-                  <template slot="append"> ms </template>
-                </el-input>
-              </el-form-item> -->
+              <el-form-item label="卡片边框粗度">
+                <el-input-number
+                  v-model="config.customize.borderWidth"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
+                />
+              </el-form-item>
               <el-form-item label="字体大小">
                 <el-input-number
-                  v-model="config.customize.style.fontSize"
-                  :precision="0"
-                  label="请输入字体大小"
+                  v-model="config.customize.fontSize"
+                  class="bs-el-input-number"
+                  :min="12"
+                  :step="1"
                 />
               </el-form-item>
-              <el-form-item label="小数位数">
+              <el-form-item label="卡片宽度">
                 <el-input-number
-                  v-model="config.customize.toFixed"
-                  :precision="0"
-                  label="请输入位数"
+                  v-model="config.customize.width"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
                 />
+              </el-form-item>
+              <el-form-item label="卡片圆角">
+                <el-input-number
+                  v-model="config.customize.borderRadius"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
+                />
+              </el-form-item>
+              <el-form-item label="逗号分隔位置">
+                <el-input-number
+                  v-model="config.customize.formatter"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :max="100"
+                  :step="1"
+                />
+              </el-form-item>
+              <el-form-item label="字体粗细">
+                <el-input-number
+                  v-model="config.customize.fontWeight"
+                  class="bs-el-input-number"
+                  :min="0"
+                  :step="1"
+                />
+              </el-form-item>
+              <el-form-item label="头部填充">
+                <el-input v-model="config.customize.slotLeft" clearable />
+              </el-form-item>
+              <el-form-item label="尾部填充">
+                <el-input v-model="config.customize.slotRight" clearable />
               </el-form-item>
             </el-form>
           </div>
@@ -123,6 +145,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../~packages/assets/style/settingWrap.scss';
 .lc-field-body {
   padding: 12px;
 }

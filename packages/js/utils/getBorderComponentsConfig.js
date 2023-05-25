@@ -2,8 +2,9 @@
  * @description: 得到边框组件配置
  * @Date: 2023-03-16 10:49:11
  */
-export default function getComponentConfig (type, classNameType) {
-  const className = 'com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart'
+export default function getComponentConfig(type, classNameType) {
+  const className =
+    'com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart'
   switch (type) {
     case 'border1':
       return {
@@ -197,6 +198,48 @@ export default function getComponentConfig (type, classNameType) {
         className,
         w: 450,
         h: 320,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'border15':
+      return {
+        name: '边框十五',
+        title: '边框十五',
+        icon: null,
+        img: require('packages/Borders/images/border-15.png'),
+        component: null,
+        className,
+        w: 450,
+        h: 450,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'border16':
+      return {
+        name: '水平线',
+        title: '水平线',
+        icon: null,
+        img: require('packages/Borders/images/hengxian.png'),
+        component: null,
+        className,
+        w: 40,
+        h: 20,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'border17':
+      return {
+        name: '垂直线',
+        title: '垂直线',
+        icon: null,
+        img: require('packages/Borders/images/shuxian.png'),
+        component: null,
+        className,
+        w: 20,
+        h: 40,
         x: 0,
         y: 0,
         type

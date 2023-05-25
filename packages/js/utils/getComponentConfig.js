@@ -126,10 +126,11 @@ export default function getComponentConfig(type) {
       return {
         name: '翻牌器',
         title: '翻牌器',
-        icon: Icon.getNameList()[9],
+        icon: null,
+        img: require('packages/BasicComponents/DigitalFlop/images/fanpaiqi.png'),
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenDigitalFlopChart',
-        w: 300,
+        w: 700,
         h: 150,
         x: 0,
         y: 0,

@@ -34,15 +34,17 @@ const customConfig = {
     contribution: false
   },
   customize: {
-    content: '',
-    toFixed: 0,
-    textAlign: 'center',
-    rowGap: 0,
-    formatter: '',
-    style: {
-      fontSize: 50,
-      fill: '#7ec699'
-    }
+    color: '#fff',
+    bgColor: '#007aff',
+    fontSize: 100,
+    width: 100,
+    borderRadius: 10,
+    borderColor: '#fff',
+    borderWidth: 1,
+    formatter: 3,
+    fontWeight: 500,
+    slotLeft: '',
+    slotRight: ''
   }
 }
 export const dataConfig = {
