@@ -418,7 +418,6 @@ export default {
 
                 img {
                   height: 60px;
-                  width: 100%;
                 }
               }
             }
