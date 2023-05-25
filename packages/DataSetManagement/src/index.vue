@@ -1,7 +1,7 @@
 <template>
   <div
     id="box"
-    class="bs-container bs-theme-wrap"
+    class="bs-container"
     @mousemove="mousemoveOnBox"
     @mouseup="mouseupOnBox"
   >
@@ -177,7 +177,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            class="bs-theme-wrap bs-el-pagination"
+            class="bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"

@@ -91,7 +91,7 @@
                           :default-expand-all="true"
                           :highlight-current="true"
                           :expand-on-click-node="false"
-                          class="bs-theme-wrap bs-el-tree"
+                          class="bs-el-tree"
                           @node-click="selectParentCategory"
                         >
                           <span

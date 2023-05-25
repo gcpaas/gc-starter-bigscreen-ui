@@ -59,7 +59,7 @@
                     v-for="(colorItem, index) in colors"
                     :key="index"
                     v-model="setting.value[index]"
-                    popper-class="bs-theme-wrap bs-el-color-picker"
+                    popper-class="bs-el-color-picker"
                     show-alpha
                     class="start-color"
                   />

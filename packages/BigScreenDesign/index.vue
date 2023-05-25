@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!pageLoading"
-    class="bs-page-design-wrap bs-theme-wrap"
+    class="bs-page-design-wrap"
   >
     <PageTopSetting
       v-show="headerShow"

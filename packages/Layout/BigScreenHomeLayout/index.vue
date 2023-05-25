@@ -1,5 +1,5 @@
 <template>
-  <div class="big-screen-home-wrap bs-theme-wrap">
+  <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
         <img
