@@ -1,10 +1,13 @@
 .bs-body-theme-wrap {
+  .big-screen-home-wrap {
 
-  // 加载效果
-  .el-loading-mask {
-    opacity: 0.9 !important;
-    background-color: var(--bs-el-background-2);
+    // 加载效果
+    .el-loading-mask {
+      opacity: 0.9 !important;
+      background-color: var(--bs-el-background-2) !important;
+    }
   }
+
 
   // 空状态
   .el-empty__image {
@@ -219,6 +222,7 @@
   ::v-deep .el-dialog__body {
     background: var(--bs-background-2) !important;
     overflow-y: auto !important;
+
     .el-empty__image {
       filter: opacity(0.5) !important;
     }
