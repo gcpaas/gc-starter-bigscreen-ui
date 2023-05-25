@@ -103,9 +103,7 @@ export default {
       }
     }
   },
-  mounted() {
-    this.getCatalogList()
-  },
+  mounted() {},
   methods: {
     mouseenter(code) {
       this.showDropdown = true
@@ -128,45 +126,7 @@ export default {
       this.activeCatalog = _.cloneDeep(catalog)
       this.isAll = false
       this.$emit('getPageInfo', { isAll: false, page: catalog })
-    },
-    // 删除目录
-    catalogDel(catalog) {
-      this.$confirm('确定删除该目录？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-        customClass: 'bs-el-message-box'
-      })
-        .then(async () => {
-          post(`/bigScreen/category/delete/${catalog.code}`)
-            .then(() => {
-              this.$message({
-                type: 'success',
-                message: '删除成功'
-              })
-              this.getCatalogList()
-            })
-            .catch(() => {
-              this.$message({
-                type: 'error',
-                message: '删除失败!'
-              })
-            })
-        })
-        .catch()
     }
-    // 获取目录的列表
-    // getCatalogList() {
-    //   this.pageLoading = true
-    //   post('/bigScreen/category/list', { typeList: ['catalog'] })
-    //     .then((data) => {
-    //       this.catalogList = data
-    //     })
-    //     .catch(() => {})
-    //     .finally(() => {
-    //       this.pageLoading = false
-    //     })
-    // }
   }
 }
 </script>

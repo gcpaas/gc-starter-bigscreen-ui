@@ -14,14 +14,10 @@
     >
       <div class="lc-field-body">
         <div class="">
-          <el-form-item
-            label="链接"
-            label-width="100px"
-            prop="customize.url"
-          >
+          <el-form-item label="链接" label-width="100px" prop="customize.url">
             <el-upload
               class="bs-el-upload"
-              :class="{hide: fileList.length >= 1 }"
+              :class="{ hide: fileList.length >= 1 }"
               :action="upLoadUrl"
               :data="fileUploadParam"
               :headers="headers"
@@ -33,19 +29,13 @@
               :on-success="handleUploadSuccess"
               :before-upload="beforeUpload"
             >
-              <i
-                slot="default"
-                class="el-icon-plus"
-              />
-              <div
-                slot="file"
-                slot-scope="{ file }"
-              >
+              <i slot="default" class="el-icon-plus" />
+              <div slot="file" slot-scope="{ file }">
                 <img
                   class="el-upload-list__item-thumbnail"
                   :src="file.url"
                   alt=""
-                >
+                />
                 <span class="el-upload-list__item-actions">
                   <span
                     class="el-upload-list__item-delete"
@@ -65,10 +55,7 @@
               />
             </el-upload>
           </el-form-item>
-          <el-form-item
-            label="不透明度"
-            label-width="100px"
-          >
+          <el-form-item label="不透明度" label-width="100px">
             <el-slider
               v-model="config.customize.opacity"
               class="bs-slider bs-el-input-number"
@@ -77,10 +64,7 @@
               show-input
             />
           </el-form-item>
-          <el-form-item
-            label="圆角"
-            label-width="100px"
-          >
+          <el-form-item label="圆角" label-width="100px">
             <el-input-number
               v-model="config.customize.radius"
               class="bs-el-input-number"
@@ -96,11 +80,11 @@
 <script>
 export default {
   name: 'PicSetting',
-  components: {
-  },
-  data () {
+  components: {},
+  data() {
     return {
-      upLoadUrl: window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
+      upLoadUrl:
+        window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
       fileUploadParam: {
         module: 'form'
       },
@@ -135,16 +119,16 @@ export default {
   },
   computed: {
     config: {
-      get () {
+      get() {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set (val) {
+      set(val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
     }
   },
   watch: {},
-  mounted () {
+  mounted() {
     if (this.config.customize.url) {
       this.fileList = [
         {
@@ -157,7 +141,7 @@ export default {
     }
   },
   methods: {
-    handleUploadSuccess (res) {
+    handleUploadSuccess(res) {
       if (res.code === 200) {
         this.config.customize.url = res.data.url
         this.fileList = [
@@ -170,18 +154,18 @@ export default {
         this.$message.error(res.msg)
       }
     },
-    handleRemove () {
+    handleRemove() {
       this.fileList = []
       this.config.customize.url = ''
     },
-    beforeUpload (file) {
+    beforeUpload(file) {
       const isLt2M = file.size / 1024 / 1024 < 2
       if (!isLt2M) {
         this.$message.error('上传图片大小不能超过 2MB!')
       }
       return isLt2M
     },
-    handleUrlChange (val) {
+    handleUrlChange(val) {
       this.config.customize.url = val
     }
   }
@@ -189,9 +173,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~packages/assets/style/settingWrap.scss";
-.bs-slider{
- .el-input-number__decrease {
+@import '~packages/assets/style/settingWrap.scss';
+.bs-slider {
+  .el-input-number__decrease {
     background: var(--bs-el-background-1);
     border-right: 1px solid var(--bs-background-1);
   }

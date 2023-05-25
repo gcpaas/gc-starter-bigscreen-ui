@@ -13,14 +13,11 @@
         <el-tabs
           v-model="activeName"
           tab-position="left"
-          style="height: 200px;"
+          style="height: 200px"
           class="left-tabs-box"
           @tab-click="tabClick"
         >
-          <el-tab-pane
-            name="default"
-            @click.native="changeActiveCode('')"
-          >
+          <el-tab-pane name="default" @click.native="changeActiveCode('')">
             <span
               slot="label"
               class="menu-slot"
@@ -34,9 +31,7 @@
               <span class="menu-title-span">{{ foldText }}</span>
             </span>
           </el-tab-pane>
-          <el-tab-pane
-            name="layer"
-          >
+          <el-tab-pane name="layer">
             <div
               slot="label"
               class="menu-slot"
@@ -44,19 +39,14 @@
               @dbclick.native="toggleSidebar"
             >
               <i
-                :class="[
-                  'iconfont-bigscreen',
-                  'icon-layer'
-                ]"
+                :class="['iconfont-bigscreen', 'icon-layer']"
                 class="menu-icon"
               />
               <span class="menu-title-span">图层</span>
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                <div class="page-left-content-title-text">
-                  图层
-                </div>
+                <div class="page-left-content-title-text">图层</div>
               </div>
               <div class="page-left-content-components">
                 <el-scrollbar>
@@ -70,23 +60,13 @@
             :key="menu.id"
             :name="menu.name"
             @click.stop.native="
-              fold = false;
-              activeName = 'chart';
+              fold = false
+              activeName = 'chart'
               changeActiveCode('')
             "
           >
-            <div
-              slot="label"
-              class="menu-slot"
-              @dbclick.native="toggleSidebar"
-            >
-              <i
-                :class="[
-                  'iconfont-bigscreen',
-                  menu.icon
-                ]"
-                class="menu-icon"
-              />
+            <div slot="label" class="menu-slot" @dbclick.native="toggleSidebar">
+              <i :class="['iconfont-bigscreen', menu.icon]" class="menu-icon" />
               <span class="menu-title-span">{{ menu.title }}</span>
             </div>
             <div class="page-left-content">
@@ -101,7 +81,11 @@
                     <div
                       v-for="element in menu.components"
                       :key="element.type + element.name"
-                      :class="element.component ? 'item menu-component drag-node' : 'item drag-node'"
+                      :class="
+                        element.component
+                          ? 'item menu-component drag-node'
+                          : 'item drag-node'
+                      "
                       draggable="true"
                       :data-type="element.type"
                       :data-name="element.name"
@@ -123,7 +107,7 @@
                           :src="element.img"
                           class="page-opt-list-img"
                           alt=""
-                        >
+                        />
                         <component
                           :is="element.component"
                           :key="new Date().getTime() + 1"
@@ -167,62 +151,101 @@ export default {
       default: '100vh'
     }
   },
-  data () {
+  data() {
     return {
       g2PlotComponents,
       activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
       fold: false, // 控制左侧菜单栏伸缩
       currentTab: 'basic',
       menuList: [
-        { id: 1, name: 'chart', title: '基础', icon: 'icon-zujian', components: basicComponents },
-        { id: 2, name: 'g2PlotComponents', title: '图表', icon: 'icon-jichushuju', components: this.g2PlotComponents },
-        { id: 3, name: 'dataV', title: '边框', icon: 'icon-border-outer', components: borderComponents },
-        { id: 4, name: 'decoration', title: '装饰', icon: 'icon-a-1', components: decorationComponents },
-        { id: 5, name: 'svg', title: '图标', icon: 'icon-svg', components: svgComponents }
+        {
+          id: 1,
+          name: 'chart',
+          title: '基础',
+          icon: 'icon-zujian',
+          components: basicComponents
+        },
+        {
+          id: 2,
+          name: 'g2PlotComponents',
+          title: '图表',
+          icon: 'icon-jichushuju',
+          components: this.g2PlotComponents
+        },
+        {
+          id: 3,
+          name: 'dataV',
+          title: '边框',
+          icon: 'icon-border-outer',
+          components: borderComponents
+        },
+        {
+          id: 4,
+          name: 'decoration',
+          title: '装饰',
+          icon: 'icon-a-1',
+          components: decorationComponents
+        },
+        {
+          id: 5,
+          name: 'svg',
+          title: '图标',
+          icon: 'icon-svg',
+          components: svgComponents
+        }
+        // {
+        //   id: 6,
+        //   name: 'svg',
+        //   title: '资源库',
+        //   icon: 'icon-svg',
+        //   components: svgComponents
+        // }
       ],
       currentActive: 'chart'
     }
   },
   computed: {
     // 获取当前类型的组件
-    currentComponentList () {
-      return this.componentList.filter(item => item.type === this.currentTab)
+    currentComponentList() {
+      return this.componentList.filter((item) => item.type === this.currentTab)
     },
-    foldText () {
+    foldText() {
       return this.fold ? '展开' : '收起'
     }
   },
   watch: {
-    fold (isExpand) {
+    fold(isExpand) {
       if (isExpand && this.activeName === 'default') {
         this.activeName = 'chart'
       }
     }
   },
-  created () {
+  created() {
     this.initList()
-    this.g2PlotComponents = [
-      ...this.g2PlotComponents,
-      ...getCustomPlots()
-    ]
+    this.g2PlotComponents = [...this.g2PlotComponents, ...getCustomPlots()]
     this.menuList[1].components = this.g2PlotComponents
   },
-  mounted () {
+  mounted() {
     this.nodeDrag()
   },
   methods: {
     ...mapMutations('bigScreen', ['changeActiveCode']),
-    nodeDrag () {
+    nodeDrag() {
       this.$nextTick(() => {
         const nodes = document.querySelectorAll('.drag-node')
-        nodes.forEach(node => {
-          node.addEventListener('dragstart', event => {
+        nodes.forEach((node) => {
+          node.addEventListener('dragstart', (event) => {
             const type = node.getAttribute('data-type')
             const name = node.getAttribute('data-name')
             // 从menuList中获取当前拖拽的组件
-            const element = this.menuList.find(item => item.name === this.activeName)?.components.find(item => item.type === type && item.name === name)
+            const element = this.menuList
+              .find((item) => item.name === this.activeName)
+              ?.components.find(
+                (item) => item.type === type && item.name === name
+              )
             /* 设置拖拽传输数据 */
-            event.dataTransfer.setData('dragComponent',
+            event.dataTransfer.setData(
+              'dragComponent',
               JSON.stringify({
                 ...element,
                 offsetX: event.offsetX,
@@ -232,43 +255,45 @@ export default {
           })
         })
         // 阻止默认动作
-        document.addEventListener('drop', e => {
-          e.preventDefault()
-        }, false)
+        document.addEventListener(
+          'drop',
+          (e) => {
+            e.preventDefault()
+          },
+          false
+        )
       })
     },
-    onClone (e) {
+    onClone(e) {
       return _.cloneDeep(e)
     },
-    onStart (e) {
+    onStart(e) {
       // this.$emit('onStart', e)
     },
     // 拖拽组件时触发
-    onEnd (e) {
-    },
+    onEnd(e) {},
     // 点击左侧组件时触发
-    addComponent (element) {
+    addComponent(element) {
       this.$store.commit('bigScreen/changeActiveItem', element)
       this.$emit('addComponent', element)
     },
     // 初始化
-    initList () {
-    },
+    initList() {},
     // 点击tab标签
-    tabClick (tab) {
+    tabClick(tab) {
       this.nodeDrag()
       if (tab.index !== '0') {
         this.fold = false
         this.currentActive = this.activeName
       }
     },
-    toggleSidebar () {
+    toggleSidebar() {
       this.fold = !this.fold
       setTimeout(() => {
         this.activeName = this.currentActive
       })
     },
-    openRightPanel (config) {
+    openRightPanel(config) {
       this.$emit('openRightPanel', config)
     }
   }
@@ -297,14 +322,14 @@ export default {
     }
 
     &:hover {
-      background: rgba(143, 225, 255, .1)
+      background: rgba(143, 225, 255, 0.1);
     }
   }
 
   .page-left {
     box-sizing: border-box;
 
-    >* {
+    > * {
       color: #fff;
     }
 
@@ -356,7 +381,7 @@ export default {
             /*border-left: 4px solid #007aff;*/
             position: relative;
             padding-left: 12px;
-            &:after{
+            &:after {
               position: absolute;
               left: 0;
               top: 50%;
@@ -368,7 +393,7 @@ export default {
             }
           }
         }
-        .el-scrollbar__view{
+        .el-scrollbar__view {
           height: calc(100vh - 55px);
         }
         .page-left-content-components {
@@ -424,7 +449,6 @@ export default {
             }
 
             .menu-component {
-
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
@@ -477,20 +501,20 @@ export default {
       border: none;
     }
   }
-  .left-tabs-box{
-    /deep/.el-tabs__item{
-      height: 70px!important;
-      .menu-slot{
+  .left-tabs-box {
+    /deep/.el-tabs__item {
+      height: 70px !important;
+      .menu-slot {
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         color: #bcc9d4;
-        .menu-icon{
+        .menu-icon {
           height: 20px;
         }
-        .menu-title-span{
+        .menu-title-span {
           display: block;
           width: 100%;
           font-size: 12px;
@@ -501,18 +525,17 @@ export default {
 }
 
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter,
 .slide-fade-leave-to
 
-/* .slide-fade-leave-active for below version 2.1.8 */
-  {
+/* .slide-fade-leave-active for below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }

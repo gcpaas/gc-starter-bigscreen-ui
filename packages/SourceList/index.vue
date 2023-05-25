@@ -1,8 +1,19 @@
 <template>
   <div class="big-screen-list-wrap">
     <div class="top-search-wrap">
-      <el-select
+      <el-input
         v-model="searchKey"
+        class="bs-el-input"
+        placeholder="请输入图片名称"
+        prefix-icon="el-icon-search"
+        clearable
+        @clear="reSearch"
+        @keyup.enter.native="reSearch"
+      />
+      <el-select
+        v-model="extend"
+        class="bs-el-select"
+        popper-class="bs-el-select"
         placeholder="请选择图片格式"
         clearable
         @change="reSearch"
@@ -14,9 +25,30 @@
           :value="item.value"
         />
       </el-select>
-      <el-button type="primary"> 上传资源 </el-button>
+      <el-button
+        size="small"
+        style="margin-right: 20px"
+        type="primary"
+        @click="reSearch"
+      >
+        搜索
+      </el-button>
+      <el-upload
+        class="upload-demo"
+        :action="upLoadUrl"
+        :headers="headers"
+        :data="{ module: code }"
+        :on-success="uploadSuccess"
+        :on-error="uploadError"
+        multiple
+        :file-list="fileList"
+        :show-file-list="false"
+      >
+        <el-button size="small" type="primary"> 上传资源 </el-button>
+      </el-upload>
     </div>
     <div
+      v-if="list.length !== 0"
       v-loading="loading"
       class="list-wrap bs-scrollbar"
       element-loading-text="加载中"
@@ -25,25 +57,7 @@
         justifyContent: gridComputed ? 'space-around' : 'flex-start'
       }"
     >
-      <!-- 第一个是新增大屏卡片 -->
-      <!-- <div
-        class="big-screen-card-wrap"
-        :style="{
-          width: gridComputed ? 'auto' : '290px'
-        }"
-        @click="add"
-      >
-        <div class="big-screen-card-inner big-screen-card-inner-add">
-          <div class="add-big-screen-card">
-            <div class="add-big-screen-card-inner">
-              <div class="add-big-screen-card-text">
-                新建{{ type === 'bigScreen' ? '大屏' : '模板' }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- 后面遍历 list -->
+      <!-- <div v-if="list.length !== 0"> -->
       <div
         v-for="screen in list"
         :key="screen.id"
@@ -69,7 +83,7 @@
                   <span>删除</span>
                 </div>
                 <div class="circle" @click="copy(screen)">
-                  <span>复制</span>
+                  <span>链接</span>
                 </div>
               </div>
             </div>
@@ -84,16 +98,14 @@
             </el-image>
           </div>
           <div class="big-screen-bottom">
-            <div class="left-bigscreen-title" :title="screen.name">
-              {{ screen.name }}
+            <div class="left-bigscreen-title" :title="screen.originalName">
+              {{ screen.originalName }}
             </div>
-            <!--            <div class="right-bigscreen-time-title">-->
-            <!--              {{ screen.updateDate || '-' }}-->
-            <!--            </div>-->
           </div>
         </div>
       </div>
     </div>
+    <div v-else class="empty">暂无数据</div>
 
     <div class="footer-pagination-wrap">
       <!-- <div class="footer-pagination-wrap-text">
@@ -141,9 +153,17 @@ export default {
   data() {
     return {
       templateLoading: false,
+      upLoadUrl:
+        window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
       searchKey: '',
+      extend: '',
       options: [],
       list: [],
+      fileUploadParam: {},
+      headers: {
+        ...window.BS_CONFIG?.httpConfigs?.headers
+      },
+      fileList: [],
       defaultImg: require('./images/defaultImg.png'),
       loading: false
     }
@@ -153,7 +173,7 @@ export default {
       return this.catalogInfo?.page?.code
     },
     gridComputed() {
-      return this.list.length > 2
+      return this.list.length > 3
     }
   },
   watch: {
@@ -167,6 +187,29 @@ export default {
     this.getDataList()
   },
   methods: {
+    uploadError(err, file, fileList) {
+      console.log(err)
+    },
+    uploadSuccess(response, file, fileList) {
+      if (response.code === 200) {
+        this.$message({
+          type: 'success',
+          message: '上传成功'
+        })
+        this.getDataList()
+      } else {
+        this.$message({
+          type: 'error',
+          message: response.msg
+        })
+      }
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
     getOptions() {
       get('/bigScreen/file/getAllFileSuffix').then((data) => {
         console.log(data)
@@ -180,7 +223,8 @@ export default {
         module: this.catalogInfo.page.code,
         current: this.current,
         size: this.size,
-        extension: this.searchKey
+        extension: this.extend,
+        searchKey: this.searchKey
       })
         .then((data) => {
           this.list = data.list
@@ -191,13 +235,7 @@ export default {
         })
     },
     preview(screen) {
-      const { href } = this.$router.resolve({
-        path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview', // 这里写的是要跳转的路由地址
-        query: {
-          code: screen.code
-        }
-      })
-      window.open(href, '_blank')
+      window.open(screen.url, '_blank')
     },
     downLoad(screen) {
       download(`/bigScreen/file/download/${screen.id}`)
@@ -228,30 +266,17 @@ export default {
         .catch()
     },
     copy(screen) {
-      this.$confirm('确定复制该页面设计？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(async () => {
-          post(`/bigScreen/design/copy/${screen.code}`)
-            .then(() => {
-              this.$message({
-                type: 'success',
-                message: '复制成功'
-              })
-              this.getDataList()
-            })
-            .catch(() => {
-              this.$message({
-                type: 'error',
-                message: '复制失败!'
-              })
-            })
-        })
-        .catch((e) => {
-          console.error(e)
-        })
+      this.$message.success('复制成功')
+      const transfer = document.createElement('input')
+      document.body.appendChild(transfer)
+      transfer.value = screen.url // 这里表示想要复制的内容
+      transfer.focus()
+      transfer.select()
+      if (document.execCommand('copy')) {
+        document.execCommand('copy')
+      }
+      transfer.blur()
+      transfer.style.display = 'none'
     }
   }
 }
@@ -271,6 +296,14 @@ export default {
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 12px;
+
+    .el-input {
+      width: 200px;
+      margin-right: 20px;
+      /deep/.el-input__inner {
+        background-color: #232832 !important;
+      }
+    }
 
     .el-select {
       margin-right: 20px;
@@ -471,5 +504,12 @@ export default {
     border: none;
     background: var(--bs-el-background-1);
   }
+}
+.empty {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
