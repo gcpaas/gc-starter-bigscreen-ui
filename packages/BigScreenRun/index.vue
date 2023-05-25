@@ -69,7 +69,8 @@ export default {
       const bg = this.fitMode !== 'none'
         ? {
             backgroundColor: this.fitPageConfig.bgColor,
-            backgroundImage: `url(${this.fitPageConfig.bg})`
+            backgroundImage: `url(${this.fitPageConfig.bg})`,
+            backgroundSize: 'cover'
           }
         : {}
 
@@ -90,7 +91,8 @@ export default {
       const bg = this.fitMode === 'none'
         ? {
             backgroundColor: this.fitPageConfig.bgColor,
-            backgroundImage: `url(${this.fitPageConfig.bg})`
+            backgroundImage: `url(${this.fitPageConfig.bg})`,
+            backgroundSize: 'cover'
           }
         : {}
 
