@@ -10,6 +10,14 @@
     >
       <div class="lc-field-body">
         <div>
+          <el-form-item label="表格头部背景颜色">
+            <ColorPicker
+              v-model="config.customize.headerBackgroundColor"
+              style="width:180px"
+              placeholder="请选择表格头部字体颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
           <el-form-item label="表格头部字体颜色">
             <ColorPicker
               v-model="config.customize.headerFontColor"
@@ -25,6 +33,14 @@
               :min="12"
               :max="100"
               :step="1"
+            />
+          </el-form-item>
+          <el-form-item label="表格主体背景颜色">
+            <ColorPicker
+              v-model="config.customize.bodyBackgroundColor"
+              style="width:180px"
+              placeholder="请选择表格主体字体颜色"
+              :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
           <el-form-item label="表格主体字体颜色">

@@ -117,7 +117,11 @@ export default {
       max-height: none !important;
     }
   }
-
+.bs-data-set-management{
+ ::v-deep .bs-table-box {
+      height: auto !important;
+    }
+}
   /deep/.bs-table {
     height: calc(100% - 105px) !important;
 

@@ -24,14 +24,25 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '颜色配置',
+    label: '进度条背景色',
     // 设置组件类型
-    type: 'colorSelect',
+    type: 'colorPicker',
     // 字段
-    field: 'color',
+    field: 'backColor',
     // 对应options中的字段
-    optionField: 'color',
-    value: ['#4a7af4', '#E8EDF3'],
+    optionField: 'backColor',
+    value: '#fff',
+    tabName: 'custom'
+  },
+  {
+    label: '进度条颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'frontColor',
+    // 对应options中的字段
+    optionField: 'frontColor',
+    value: '#4a7af4',
     tabName: 'custom'
   },
   {
@@ -70,7 +81,8 @@ const setting = [
 ]
 
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
+const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]' +
+  '\noption.color = [option.frontColor, option.backColor]'
 
 // 图表配置 new Gauge('domName', option)
 const option = {
@@ -79,13 +91,15 @@ const option = {
   autoFit: true,
   percent: 0.536,
   barWidthRatio: 0.3,
+  backColor: '#E8EDF3',
+  frontColor: '#4a7af4',
   color: ['#4a7af4', '#E8EDF3'],
   progressStyle: {
     r: 10,
     // fill: 'red',
-    fillOpacity: 0.5,
+    fillOpacity: 1,
     stroke: 'white',
-    lineWidth: 1,
+    lineWidth: 0,
     // lineDash: [4, 5],
     // strokeOpacity: 0.7,
     shadowColor: 'black',

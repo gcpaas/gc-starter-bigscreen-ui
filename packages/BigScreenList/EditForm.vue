@@ -248,7 +248,8 @@ export default {
             bgColor: '#151a26',
             opacity: 100,
             customTheme: 'auto',
-            bg: null
+            bg: null,
+            fitMode: 'auto'
           })
           if (this.dataForm.type === 'bigScreen') {
             this.resolutionRatio.w = '1920'
@@ -283,7 +284,7 @@ export default {
           style: this.dataForm.style,
           type: 'bigScreen',
           orderNum: this.dataForm.orderNum,
-          pageConfig: this.dataForm.pageConfig,
+          pageConfig: { ...this.dataForm.pageConfig, w: this.resolutionRatio.w, h: this.resolutionRatio.h },
           pageTemplateId: this.dataForm.pageTemplateId
         }
         if (isToDesign) {

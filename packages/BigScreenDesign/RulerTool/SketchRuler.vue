@@ -166,7 +166,8 @@ export default {
   },
   methods: {
     ...mapMutations('bigScreen', [
-      'changeZoom'
+      'changeZoom',
+      'changeFitZoom'
     ]),
     initRuleHeight () {
       setTimeout(() => {
@@ -230,9 +231,9 @@ export default {
       const yRadio = this.innerHeight / this.pageHeight
       // 取最大比例，尽量大
       const scale = Math.floor(Math.max(xRadio * 100, yRadio * 100))
-      // 然后再缩小20%
-      if (scale > 30) {
-        this.changeZoom(scale - 20)
+      if (scale < 100 && scale > 25) {
+        this.changeZoom(scale - 15)
+        this.changeFitZoom(scale - 15)
       }
     }
   }

@@ -153,6 +153,14 @@ export default {
       ]
     }
   },
+  watch: {
+    fitZoom (zoom) {
+      this.zoomList[0] = {
+        label: `自适应(${zoom}%)`,
+        value: zoom
+      }
+    }
+  },
   computed: {
     ...mapState({
       pageInfo: state => state.bigScreen.pageInfo,
@@ -163,7 +171,8 @@ export default {
       presetLine: state => state.bigScreen.presetLine,
       updateKey: state => state.bigScreen.updateKey,
       hasGrid: state => state.bigScreen.hasGrid,
-      zoom: state => state.bigScreen.zoom
+      zoom: state => state.bigScreen.zoom,
+      fitZoom: state => state.bigScreen.fitZoom
     }),
     offset () {
       return {
@@ -301,6 +310,7 @@ export default {
     showPageInfo () {
       this.pageInfoVisiable = true
       this.rightVisiable = true
+      this.changeActiveCode('')
     }
   }
 }

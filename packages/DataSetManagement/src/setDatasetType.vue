@@ -128,9 +128,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import '~packages/assets/style/bsTheme.scss';
-</style>
+
 
 <style lang="scss" scoped>
 

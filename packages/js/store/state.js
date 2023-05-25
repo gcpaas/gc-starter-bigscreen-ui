@@ -55,7 +55,9 @@ export const defaultData = {
   // false 表示 shift 键没有被按下， true表示 shift 键被按下
   shiftKeyDown: false,
   // 缩放
-  zoom: 100
+  zoom: 100,
+  // 自适应下的缩放比例
+  fitZoom: 100
 }
 
 export default () => ({

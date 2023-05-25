@@ -80,8 +80,12 @@
   &:after {
     display: none !important;
   }
+  .el-radio__input .is-checked{
+    .el-radio__inner{
+      background-color: var(--bs-el-color-primary) !important;
+    }
+  }
   .el-radio__inner{
-    border-color: var(--bs-el-color-primary) !important;
     background-color: var(--bs-background-1) !important;
   }
   .el-radio__label{
