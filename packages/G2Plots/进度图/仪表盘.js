@@ -58,7 +58,40 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '标签字体颜色',
+    label: '指标颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'statistic_title_style_color',
+    // 对应options中的字段
+    optionField: 'statistic.title.style.color',
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: '指标大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'statistic_title_style_fontSize',
+    // 对应options中的字段
+    optionField: 'statistic.title.style.fontSize',
+    value: '36',
+    tabName: 'custom'
+  },
+  {
+    label: '标签内容',
+    // 设置组件类型
+    type: 'input',
+    // 字段
+    field: 'statistic_content_content',
+    // 对应options中的字段
+    optionField: 'statistic.content.content',
+    value: '占比',
+    tabName: 'custom'
+  },
+  {
+    label: '标签颜色',
     // 设置组件类型
     type: 'colorPicker',
     // 字段
@@ -69,14 +102,14 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '标签字体大小',
+    label: '标签大小',
     // 设置组件类型
     type: 'inputNumber',
     // 字段
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '48',
+    value: '24',
     tabName: 'custom'
   },
   {
@@ -122,11 +155,20 @@ const option = {
     }
   },
   statistic: {
-    content: {
-      formatter: ({ percent }) => `Rate: ${(percent * 100).toFixed(0)}%`,
+    title: {
+      offsetY: -36,
       style: {
-        color: '#d0d0d0',
-        fontSize: 48
+        fontSize: 36,
+        color: '#d0d0d0'
+      },
+      formatter: ({ percent }) => `${(percent * 100).toFixed(0)}%`
+    },
+    content: {
+      content: '占比',
+      style: {
+        fontSize: '24px',
+        lineHeight: '44px',
+        color: '#4B535E'
       }
     }
   }
