@@ -49,21 +49,18 @@
               placeholder="请输入标题字体权重"
             />
           </el-form-item>
-          <el-form-item
-            label="标题字体颜色"
-            label-width="100px"
-          >
-            <el-color-picker v-model="config.customize.color" />
-          </el-form-item>
+          <TextGradient v-model="config.customize.color"></TextGradient>
         </div>
       </div>
     </el-form>
   </div>
 </template>
 <script>
+import TextGradient from 'packages/BigScreenDesign/RightSetting/TextGradient/index'
 export default {
   name: 'TextSetting',
   components: {
+    TextGradient
   },
   data () {
     return {

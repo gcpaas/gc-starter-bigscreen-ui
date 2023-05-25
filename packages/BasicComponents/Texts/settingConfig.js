@@ -8,7 +8,7 @@ import { commonConfig, displayOption } from 'packages/js/config'
 
 export const settingConfig = {
   theme: 'dark',
-  text: '文本', // text内容
+  text: '文本标签占位符', // text内容
   // 设置面板属性的显隐
   displayOption: {
     ...displayOption,
@@ -34,7 +34,7 @@ const customConfig = {
   customize: {
     fontSize: 20,
     fontWeight: 700,
-    color: '#ffffff'
+    color: 'left,#ffffff,#ffffff'
   }
 
 }
