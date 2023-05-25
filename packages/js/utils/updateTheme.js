@@ -1,5 +1,5 @@
 export default function updateTheme (className) {
-  document.addEventListener('DOMContentLoaded', () => {
+  window.requestAnimationFrame(() => {
     const querySelectorName = className || '.el-button--primary'
     const primaryButton = document.querySelector(querySelectorName)
     if (primaryButton) {
