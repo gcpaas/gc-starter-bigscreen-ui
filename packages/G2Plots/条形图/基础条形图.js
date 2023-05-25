@@ -155,6 +155,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '圆角设置',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'radiusNum',
+    // 对应options中的字段
+    optionField: 'radiusNum',
+    value: 0,
+    tabName: 'custom'
+  },
+  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -186,7 +197,7 @@ const data = [
 
 // 数据处理脚本
 const dataHandler = 'option.seriesField = setting.find(settingItem=>settingItem.field === \'yField\').value' +
-  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false'
+  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;const radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -200,6 +211,10 @@ const option = {
   legendLayout: 'vertical',
   legendPosition: 'top',
   legend: false,
+  barStyle: {
+    radius: [0, 0, 0, 0]// 设置条形图的圆角
+  },
+  radiusNum: 0, // 设置条形图的圆角的中间值
   yAxis: {
     label: {
       style: {
