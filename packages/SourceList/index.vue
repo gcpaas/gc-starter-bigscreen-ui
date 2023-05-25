@@ -1,16 +1,20 @@
 <template>
   <div class="big-screen-list-wrap">
     <div class="top-search-wrap">
-      <el-input
+      <el-select
         v-model="searchKey"
-        class="bs-el-input"
-        placeholder="请输入大屏名称"
-        prefix-icon="el-icon-search"
+        placeholder="请选择图片格式"
         clearable
-        @clear="reSearch"
-        @keyup.enter.native="reSearch"
-      />
-      <el-button type="primary" @click="reSearch"> 搜索 </el-button>
+        @change="reSearch"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-button type="primary"> 上传资源 </el-button>
     </div>
     <div
       v-loading="loading"
@@ -22,7 +26,7 @@
       }"
     >
       <!-- 第一个是新增大屏卡片 -->
-      <div
+      <!-- <div
         class="big-screen-card-wrap"
         :style="{
           width: gridComputed ? 'auto' : '290px'
@@ -38,7 +42,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- 后面遍历 list -->
       <div
         v-for="screen in list"
@@ -58,24 +62,21 @@
                 >
                   <span>预览</span>
                 </div>
-                <div class="circle" @click="design(screen)">
-                  <span>设计</span>
-                </div>
-                <div class="circle" @click="edit(screen)">
-                  <span>编辑</span>
-                </div>
-                <div class="circle" @click="copy(screen)">
-                  <span>复制</span>
+                <div class="circle" @click="downLoad(screen)">
+                  <span>下载</span>
                 </div>
                 <div class="circle" @click="del(screen)">
                   <span>删除</span>
+                </div>
+                <div class="circle" @click="copy(screen)">
+                  <span>复制</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="big-screen-card-img">
             <el-image
-              :src="screen.coverPicture"
+              :src="screen.url"
               fit="fill"
               style="width: 100%; height: 100%"
             >
@@ -120,7 +121,7 @@
   </div>
 </template>
 <script>
-import { get, post } from 'packages/js/utils/http'
+import { get, post, download } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import EditForm from './EditForm.vue'
 export default {
@@ -141,6 +142,7 @@ export default {
     return {
       templateLoading: false,
       searchKey: '',
+      options: [],
       list: [],
       defaultImg: require('./images/defaultImg.png'),
       loading: false
@@ -161,16 +163,24 @@ export default {
     }
   },
   mounted() {
+    this.getOptions()
     this.getDataList()
   },
   methods: {
+    getOptions() {
+      get('/bigScreen/file/getAllFileSuffix').then((data) => {
+        console.log(data)
+        data.forEach((item) => this.options.push({ label: item, value: item }))
+      })
+    },
     getDataList() {
+      console.log(this.catalogInfo)
       this.loading = true
-      get('/bigScreen/design/page', {
-        parentCode: this.code || null,
+      get('/bigScreen/file', {
+        module: this.catalogInfo.page.code,
         current: this.current,
         size: this.size,
-        searchKey: this.searchKey
+        extension: this.searchKey
       })
         .then((data) => {
           this.list = data.list
@@ -189,35 +199,18 @@ export default {
       })
       window.open(href, '_blank')
     },
-    design(screen) {
-      const path = window.BS_CONFIG?.routers?.designUrl || '/big-screen/design'
-      const { href } = this.$router.resolve({
-        path,
-        query: {
-          code: screen.code
-        }
-      })
-      window.open(href, '_self')
-    },
-    add() {
-      const page = {
-        code: '',
-        type: 'bigScreen'
-      }
-      this.$refs.EditForm.init(page, this.catalogInfo.page)
-    },
-    edit(screen) {
-      this.$refs.EditForm.init(screen, this.catalogInfo.page)
+    downLoad(screen) {
+      download(`/bigScreen/file/download/${screen.id}`)
     },
     del(screen) {
-      this.$confirm('确定删除该大屏？', '提示', {
+      this.$confirm('确定删除该资源？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
         customClass: 'bs-el-message-box'
       })
         .then(async () => {
-          post(`/bigScreen/design/delete/${screen.code}`)
+          post(`/bigScreen/file/delete/${screen.id}`)
             .then(() => {
               this.$message({
                 type: 'success',
@@ -279,8 +272,7 @@ export default {
     justify-content: flex-end;
     margin-bottom: 12px;
 
-    .el-input {
-      width: 200px;
+    .el-select {
       margin-right: 20px;
       /deep/.el-input__inner {
         background-color: #232832 !important;

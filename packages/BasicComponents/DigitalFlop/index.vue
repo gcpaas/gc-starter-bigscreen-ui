@@ -14,7 +14,8 @@
           color: option.color,
           'border-radius': option.borderRadius + 'px',
           'font-weight': option.fontWeight,
-          'margin-right': option.marginRight + 'px'
+          'margin-right':
+            index !== option.data.length - 1 ? option.marginRight + 'px' : ''
         }"
       >
         {{ item }}
@@ -133,7 +134,7 @@ export default {
   .content {
     display: flex;
     flex-direction: row;
-    // justify-content: space-between;
+    justify-content: center;
     width: 100%;
     height: 100%;
     align-items: center;

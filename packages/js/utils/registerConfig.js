@@ -4,11 +4,14 @@
  * @param source
  * @returns {{}}
  */
-function configDeepMerge (target, source) {
+function configDeepMerge(target, source) {
   const merged = {}
   for (const each in source) {
     if (target.hasOwnProperty(each) && source.hasOwnProperty(each)) {
-      if (typeof target[each] === 'object' && typeof source[each] === 'object') {
+      if (
+        typeof target[each] === 'object' &&
+        typeof source[each] === 'object'
+      ) {
         merged[each] = configDeepMerge(target[each], source[each])
       } else {
         merged[each] = source[each]
@@ -25,7 +28,7 @@ function configDeepMerge (target, source) {
   return merged
 }
 // 自动注册路由
-function registerRouters (config, router) {
+function registerRouters(config, router) {
   // 没有router对象不注册路由
   if (!router) {
     return
@@ -40,7 +43,8 @@ function registerRouters (config, router) {
         {
           path: config?.routers?.pageListUrl || '/big-screen-list',
           name: 'BigScreenList',
-          component: () => require.ensure([], () => require('packages/BigScreenMag')),
+          component: () =>
+            require.ensure([], () => require('packages/BigScreenMag')),
           meta: {
             title: '大屏管理'
           }
@@ -48,7 +52,8 @@ function registerRouters (config, router) {
         {
           path: config?.routers?.templateListUrl || '/big-screen-template',
           name: 'Template',
-          component: () => require.ensure([], () => require('packages/BigScreenTempMag')),
+          component: () =>
+            require.ensure([], () => require('packages/BigScreenTempMag')),
           meta: {
             title: '模版管理'
           }
@@ -66,18 +71,27 @@ function registerRouters (config, router) {
           meta: {
             title: '数据集管理'
           }
+        },
+        {
+          path: config?.routers?.SourceUrl || '/big-screen-source',
+          component: () => import('packages/SourceManagement'),
+          meta: {
+            title: '资源管理'
+          }
         }
       ]
     },
     {
       path: config?.routers?.designUrl || '/big-screen/design',
       name: 'Design',
-      component: () => require.ensure([], () => require('packages/BigScreenDesign'))
+      component: () =>
+        require.ensure([], () => require('packages/BigScreenDesign'))
     },
     {
       path: config?.routers?.previewUrl || '/big-screen/preview',
       name: 'Preview',
-      component: () => require.ensure([], () => require('packages/BigScreenRun'))
+      component: () =>
+        require.ensure([], () => require('packages/BigScreenRun'))
     }
   ]
   // 如果router有addRoutes方法
@@ -85,7 +99,7 @@ function registerRouters (config, router) {
     router?.addRoutes(routers)
   } else {
     // eslint-disable-next-line no-unused-expressions
-    routers?.forEach(route => {
+    routers?.forEach((route) => {
       // eslint-disable-next-line no-unused-expressions
       router?.addRoute(route)
     })
@@ -93,7 +107,7 @@ function registerRouters (config, router) {
 }
 
 // 注册配置
-function registerTheme (config) {
+function registerTheme(config) {
   const defaultTheme = {
     '--bs-background-1': '#151a26', // 整体背景色
     '--bs-background-2': '#232832', // 布局背景色

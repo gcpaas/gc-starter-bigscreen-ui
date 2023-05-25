@@ -2,18 +2,12 @@
   <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
-        <img
-          class="logo"
-          :src="logo"
-        >
+        <img class="logo" :src="logo" />
         <span>{{ title || 'GCPAAS大屏设计器' }}</span>
       </div>
 
       <div class="big-screen-nav-container">
-        <Nav
-          :navs="tabList"
-          @change="changeTab"
-        />
+        <Nav :navs="tabList" @change="changeTab" />
       </div>
     </header>
     <div class="big-screen-router-view-wrap">
@@ -29,19 +23,19 @@ export default {
     Nav
   },
   props: [],
-  data () {
+  data() {
     return {
       // 和此处路由保持一致，将会激活tab，请按需更改
     }
   },
   computed: {
-    title () {
+    title() {
       return window?.BS_CONFIG?.starter?.title
     },
-    logo () {
+    logo() {
       return window?.BS_CONFIG?.starter?.logo || require('./images/logo.png')
     },
-    tabList () {
+    tabList() {
       return [
         {
           id: 0,
@@ -58,7 +52,9 @@ export default {
         {
           id: 1,
           name: '数据源管理',
-          path: window?.BS_CONFIG?.routers?.dataSourceUrl || '/big-screen-dataSource',
+          path:
+            window?.BS_CONFIG?.routers?.dataSourceUrl ||
+            '/big-screen-dataSource',
           icon: 'icon-datafull'
         },
         {
@@ -66,14 +62,19 @@ export default {
           name: '数据集管理',
           path: window?.BS_CONFIG?.routers?.dataSetUrl || '/big-screen-dataSet',
           icon: 'icon-data'
+        },
+        {
+          id: 3,
+          name: '资源管理',
+          path: window?.BS_CONFIG?.routers?.sourceUrl || '/big-screen-source',
+          icon: 'icon-data'
         }
       ]
     }
   },
-  created () {
-  },
+  created() {},
   methods: {
-    changeTab (tab) {
+    changeTab(tab) {
       this.$router.push({
         path: tab.path
       })
@@ -83,7 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.big-screen-home-wrap >* {
+.big-screen-home-wrap > * {
   box-sizing: border-box;
 }
 .big-screen-home-wrap {
