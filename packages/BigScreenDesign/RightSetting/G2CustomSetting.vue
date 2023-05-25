@@ -193,7 +193,7 @@ export default {
   }
 }
 ::v-deep .el-color-picker__trigger{
-    border-color: var(--bs-el-border-color);
+    border-color: var(--bs-el-border);
   }
 
 </style>

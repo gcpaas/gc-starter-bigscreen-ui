@@ -230,7 +230,7 @@ export default {
   background-color: transparent;
 }
 ::v-deep .el-table th.gutter {
-  border-bottom: 2px solid var(--bs-el-hover) !important;
+  border-bottom: 2px solid var(--bs-el-color-primary) !important;
 }
 ::v-deep .el-table__body {
   height: 100%;

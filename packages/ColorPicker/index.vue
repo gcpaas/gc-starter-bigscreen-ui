@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
   ::v-deep .el-color-picker__trigger{
-    border-color: var(--bs-el-border-color);
+    border-color: var(--bs-el-border);
   }
 
 .border-color {

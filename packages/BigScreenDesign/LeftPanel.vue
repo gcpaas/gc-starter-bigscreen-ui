@@ -326,10 +326,10 @@ export default {
 
       .is-active {
         .iconfont-bigscreen {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
         .menu-title-span {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
       }
 
@@ -364,7 +364,7 @@ export default {
               content: '';
               width: 4px;
               height: 14px;
-              background-color: var(--bs-el-hover);
+              background-color: var(--bs-el-color-primary);
             }
           }
         }
