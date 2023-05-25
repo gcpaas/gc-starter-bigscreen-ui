@@ -326,10 +326,10 @@ export default {
 
       .is-active {
         .iconfont-bigscreen {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
         .menu-title-span {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
       }
 
@@ -364,7 +364,7 @@ export default {
               content: '';
               width: 4px;
               height: 14px;
-              background-color: var(--bs-el-hover);
+              background-color: var(--bs-el-color-primary);
             }
           }
         }
@@ -418,16 +418,17 @@ export default {
 
                 img {
                   height: 60px;
+                  max-width: 100%;
                 }
               }
             }
 
             .menu-component {
-              margin: 7px;
 
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
+                margin: 0 auto;
               }
               .img_dispaly {
                 height: 80px;

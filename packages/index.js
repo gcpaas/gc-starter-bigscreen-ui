@@ -16,6 +16,8 @@ import DataSetManagement from 'packages/DataSetManagement'
 import bigScreenStore from 'packages/js/store'
 // 注册基础配置
 import registerConfig from 'packages/js/utils/registerConfig'
+// 更新主题
+import updateTheme from 'packages/js/utils/updateTheme'
 
 // 存储组件列表
 const components = [
@@ -47,7 +49,8 @@ export {
   // BigScreenTopLayout,
 
   $bigScreen,
-  registerConfig
+  registerConfig,
+  updateTheme
 }
 
 export default {
@@ -59,5 +62,6 @@ export default {
   DataSourceManagement,
 
   $bigScreen,
-  registerConfig
+  registerConfig,
+  updateTheme
 }

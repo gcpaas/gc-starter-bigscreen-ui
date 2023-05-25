@@ -77,7 +77,7 @@ export default {
     height: 40px;
     display: flex;
     align-items: center;
-    background-color: var(--bs-el-hover) !important;
+    background-color: var(--bs-el-color-primary) !important;
 
     .top-left {
       display: flex;

@@ -1,7 +1,6 @@
 <template>
   <dv-border-box-8
     :dur="0"
-    style="width:100px;height: 75px;"
     :color="['#83bff6', '#00CED1']"
     background-color="transparent"
   />

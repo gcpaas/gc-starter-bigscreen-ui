@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!pageLoading"
-    class="bs-page-design-wrap bs-theme-wrap"
+    class="bs-page-design-wrap"
   >
     <PageTopSetting
       v-show="headerShow"
@@ -27,6 +27,7 @@
         }"
       >
         <SketchDesignRuler
+          ref="Rules"
           :width="3000"
           :height="3000"
           :page-width="pageConfig.w"
@@ -128,6 +129,10 @@ export default {
       ruleStartX: 100,
       ruleStartY: 100,
       zoomList: [
+        {
+          label: '自适应',
+          value: 'auto'
+        },
         {
           label: '100%',
           value: 100
@@ -272,7 +277,12 @@ export default {
       this.$refs.PageTopSetting.save('saveLoading')
     },
     changeScreenZoom (zoom) {
-      this.changeZoom(zoom)
+      // 自适应
+      if (zoom === 'auto') {
+        this.$refs.Rules.initZoom()
+      } else {
+        this.changeZoom(zoom)
+      }
     },
     updateRightVisiable (visiable) {
       this.rightVisiable = visiable
