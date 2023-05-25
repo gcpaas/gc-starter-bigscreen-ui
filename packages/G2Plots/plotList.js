@@ -32,8 +32,8 @@ function getPlotList (files) {
       img: require(`packages/G2Plots/images/componentLogo/${config.title}.png`),
       className:
         'com.gccloud.bigscreen.core.module.chart.components.CustomComponentChart',
-      w: 450,
-      h: 320,
+      w: config?.option?.width || 450,
+      h: config?.option?.height || 320,
       x: 0,
       y: 0,
       type: 'customComponent',
