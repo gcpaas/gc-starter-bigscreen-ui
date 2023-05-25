@@ -1,5 +1,5 @@
 <template>
-  <div class="not-permission-wrap bs-theme-wrap">
+  <div class="not-permission-wrap">
     访问无权限
   </div>
 </template>

@@ -125,7 +125,7 @@
       </div> -->
       <div class="bs-pagination">
         <el-pagination
-          class="bs-theme-wrap bs-el-pagination"
+          class="bs-el-pagination"
           popper-class="bs-el-pagination"
           background
           layout="total, prev, pager, next, sizes"
@@ -365,7 +365,7 @@ export default {
           justify-content: space-evenly;
           width: 100%;
           cursor: pointer;
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
 
           .circle {
             position: relative;
@@ -374,12 +374,12 @@ export default {
             justify-content: center;
             width: 40px;
             height: 40px;
-            border: 1px solid var(--bs-el-hover);
+            border: 1px solid var(--bs-el-color-primary);
             border-radius: 50%;
 
             &:hover {
               color: #fff;
-              background: var(--bs-el-hover);
+              background: var(--bs-el-color-primary);
             }
 
             span {
@@ -400,7 +400,7 @@ export default {
         border: 1px solid var(--bs-background-2);
         &:hover {
           color: var(--bs-el-text);
-          border: 1px solid var(--bs-el-hover);
+          border: 1px solid var(--bs-el-color-primary);
         }
 
         .add-big-screen-card-text {

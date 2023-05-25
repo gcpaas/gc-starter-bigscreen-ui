@@ -63,10 +63,10 @@ const setting = [
   },
   {
     label: '线条颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'color', // 字段
-    optionField: 'color', // 对应options中的字段
-    value: '',
+    type: 'gradual', // 设置组件类型
+    field: 'lineStyle_stroke', // 字段
+    optionField: 'lineStyle.stroke', // 对应options中的字段
+    value: 'l(0) 0:#5F92F9  1:#5F92F9',
     tabName: 'custom'
   },
   {
@@ -147,7 +147,8 @@ const option = {
     }
   },
   lineStyle: {
-    lineWidth: 2
+    lineWidth: 2,
+    stroke: 'l(0) 0:#5F92F9  1:#5F92F9'
   },
   yAxis: {
     grid: {

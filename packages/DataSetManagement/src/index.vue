@@ -1,7 +1,7 @@
 <template>
   <div
     id="box"
-    class="bs-container bs-theme-wrap"
+    class="bs-container"
     @mousemove="mousemoveOnBox"
     @mouseup="mouseupOnBox"
   >
@@ -177,7 +177,7 @@
         </div>
         <div class="bs-pagination">
           <el-pagination
-            class="bs-theme-wrap bs-el-pagination"
+            class="bs-el-pagination"
             popper-class="bs-el-pagination"
             :current-page="current"
             :page-sizes="[10, 20, 50, 100]"
@@ -633,7 +633,7 @@ export default {
   //   }
 
   //   li:hover {
-  //     background-color: var(--bs-el-hover);
+  //     background-color: var(--bs-el-color-primary);
   //   }
 
   //   span {
@@ -690,7 +690,7 @@ export default {
     background-color: var(--bs-el-background-3);
 
     span {
-      color: var(--bs-el-hover);
+      color: var(--bs-el-color-primary);
     }
   }
 

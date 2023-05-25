@@ -60,10 +60,10 @@ const setting = [
   },
   {
     label: '图形的填充色',
-    type: 'colorPicker', // 设置组件类型
+    type: 'gradual', // 设置组件类型
     field: 'areaStyle_fill', // 字段
     optionField: 'areaStyle.fill', // 对应options中的字段
-    value: '#94c6ff',
+    value: 'l(0) 0:#3e5bdb 1:#dd3121',
     tabName: 'custom'
   },
   {
@@ -156,7 +156,7 @@ const option = {
   smooth: false,
   startOnZero: true,
   areaStyle: {
-    fill: '#94c6ff'
+    fill: 'l(0) 0:#3e5bdb 1:#dd3121'
   },
   line: {
     color: ''

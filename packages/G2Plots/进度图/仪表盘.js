@@ -49,12 +49,12 @@ const setting = [
   {
     label: '表盘颜色',
     // 设置组件类型
-    type: 'colorPicker',
+    type: 'gradual',
     // 字段
     field: 'range_color',
     // 对应options中的字段
     optionField: 'range.color',
-    value: '#30BF78',
+    value: 'l(0) 0:#30BF78 1:#ffffff',
     tabName: 'custom'
   },
   {
@@ -97,7 +97,7 @@ const option = {
   percent: 0.75,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   range: {
-    color: '#30BF78'
+    color: 'l(0) 0:#30BF78 1:#ffffff'
   },
   indicator: {
     pointer: {

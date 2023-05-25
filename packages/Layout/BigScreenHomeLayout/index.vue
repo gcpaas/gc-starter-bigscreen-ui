@@ -1,5 +1,5 @@
 <template>
-  <div class="big-screen-home-wrap bs-theme-wrap">
+  <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
       <div class="logo-title">
         <img
@@ -107,7 +107,7 @@ export default {
       left: 40px;
       display: flex;
       align-items: center;
-      color: var(--bs-el-hover);
+      color: var(--bs-el-color-primary);
 
       .logo {
         height: 30px;

@@ -152,7 +152,7 @@ export default {
     color: #909399;
   }
   &:hover{
-      color: var(--bs-el-hover);
+      color: var(--bs-el-color-primary);
     }
 }
 /deep/ .el-dialog__body {

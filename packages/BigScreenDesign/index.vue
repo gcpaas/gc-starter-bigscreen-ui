@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!pageLoading"
-    class="bs-page-design-wrap bs-theme-wrap"
+    class="bs-page-design-wrap"
   >
     <PageTopSetting
       v-show="headerShow"
@@ -27,6 +27,7 @@
         }"
       >
         <SketchDesignRuler
+          ref="Rules"
           :width="3000"
           :height="3000"
           :page-width="pageConfig.w"
@@ -95,7 +96,7 @@ import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
-import { get } from '../js/utils/http'
+import { get } from 'packages/js/utils/http'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -129,6 +130,10 @@ export default {
       ruleStartY: 100,
       zoomList: [
         {
+          label: '自适应',
+          value: 'auto'
+        },
+        {
           label: '100%',
           value: 100
         },
@@ -161,8 +166,8 @@ export default {
     }),
     offset () {
       return {
-        x: 260 + 50 - this.ruleStartX,
-        y: 60 + 50 - this.ruleStartY
+        x: 220 + 50 - this.ruleStartX,
+        y: 55 + 50 - this.ruleStartY
       }
     }
   },
@@ -272,7 +277,12 @@ export default {
       this.$refs.PageTopSetting.save('saveLoading')
     },
     changeScreenZoom (zoom) {
-      this.changeZoom(zoom)
+      // 自适应
+      if (zoom === 'auto') {
+        this.$refs.Rules.initZoom()
+      } else {
+        this.changeZoom(zoom)
+      }
     },
     updateRightVisiable (visiable) {
       this.rightVisiable = visiable

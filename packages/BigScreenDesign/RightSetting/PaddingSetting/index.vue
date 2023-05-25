@@ -1,5 +1,5 @@
 <template>
-  <div class="bs-padding-setting bs-theme-wrap">
+  <div class="bs-padding-setting">
     <div class="padding-box">
       <el-input
         v-model.number="paddingValue[0]"

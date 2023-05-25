@@ -326,10 +326,10 @@ export default {
 
       .is-active {
         .iconfont-bigscreen {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
         .menu-title-span {
-          color: var(--bs-el-hover);
+          color: var(--bs-el-color-primary);
         }
       }
 
@@ -343,7 +343,7 @@ export default {
 
       /deep/.el-tabs__content {
         height: 100%;
-        width: 190px;
+        width: 160px;
 
         .page-left-content-title {
           background-color: var(--bs-background-2);
@@ -364,7 +364,7 @@ export default {
               content: '';
               width: 4px;
               height: 14px;
-              background-color: var(--bs-el-hover);
+              background-color: var(--bs-el-color-primary);
             }
           }
         }
@@ -395,7 +395,7 @@ export default {
                 background: var(--bs-el-background-3);
                 color: var(--bs-el-title);
                 font-size: 12px;
-                padding: 4px 16px;
+                padding: 4px 8px;
                 text-align: left;
               }
               .sampleImg {
@@ -406,25 +406,28 @@ export default {
               }
 
               .img_dispaly {
+                padding: 8px 0;
                 margin: 0 auto;
                 text-align: center;
-                width: 100px;
-                height: 70px;
-                line-height: 70px;
+                width: 120px;
 
                 .icon-svg {
-                  width: 50px !important;
-                  height: 50px !important;
+                  width: 60px !important;
+                  height: 60px !important;
+                }
+
+                img {
+                  height: 60px;
                 }
               }
             }
 
             .menu-component {
-              margin: 7px;
 
               .page-opt-list-component {
                 width: 102px;
                 height: 75px;
+                margin: 0 auto;
               }
               .img_dispaly {
                 height: 80px;
@@ -516,10 +519,5 @@ export default {
 /deep/ .el-tabs__item.is-left {
   text-align: center;
   padding: 0;
-}
-
-.page-opt-list-img {
-  width: 100%;
-  height: 70px;
 }
 </style>

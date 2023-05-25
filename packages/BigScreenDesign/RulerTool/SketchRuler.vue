@@ -37,11 +37,10 @@
       id="screens"
       ref="screensRef"
       :style="{
-        cursor: isMouseDown ? 'move' : 'default',
         width: innerWidth + 'px',
         height: innerHeight + 'px'
       }"
-      @scroll="handleScroll"
+      @scroll="debounceScroll"
     >
       <div
         ref="containerRef"
@@ -60,14 +59,14 @@
 </template>
 <script>
 import SketchRule from 'vue-sketch-ruler'
-import { dragDesignPanelMixin } from './dragDesignPanel'
+// import { dragDesignPanelMixin } from './dragDesignPanel'
 import { mapState, mapMutations } from 'vuex'
 import { debounce } from 'lodash'
 export default {
   components: {
     SketchRule
   },
-  mixins: [dragDesignPanelMixin],
+  // mixins: [dragDesignPanelMixin],
   props: {
     width: {
       type: Number,
@@ -122,9 +121,7 @@ export default {
     // 缩放改变的时候，改变startX，startY
     scale (scale) {
       // 防抖调用方法
-      debounce(() => {
-        this.handleScroll()
-      }, 500)()
+      this.debounceScroll()
     }
   },
   computed: {
@@ -160,9 +157,12 @@ export default {
   },
   mounted () {
     // 监听屏幕改变
-    window.onresize = this.initRuleHeight
+    window.onresize = debounce(() => {
+      this.initRuleHeight()
+    }, 500)
+
     this.initRuleHeight()
-    this.handleScroll()
+    this.debounceScroll()
   },
   methods: {
     ...mapMutations('bigScreen', [
@@ -172,7 +172,10 @@ export default {
       setTimeout(() => {
         const screensRect = document
           .querySelector('.grid-wrap-box')
-          .getBoundingClientRect()
+          ?.getBoundingClientRect()
+        if (!screensRect) {
+          return
+        }
 
         // 30是grid-wrap-box的底部工具栏高度
         this.innerHeight = screensRect.height - 30
@@ -194,6 +197,11 @@ export default {
       this.isShowReferLine = !this.isShowReferLine
       this.cornerActive = !this.cornerActive
     },
+    debounceScroll () {
+      debounce(() => {
+        this.handleScroll()
+      }, 500)()
+    },
     handleScroll () {
       const screensRect = document
         .querySelector('#screens')
@@ -210,8 +218,8 @@ export default {
       this.startY = startY >> 0
 
       this.$emit('changeStart', {
-        x: this.startX + 50 - 20,
-        y: this.startY + 50 - 20
+        x: this.startX * this.scale + 50 - this.thick,
+        y: this.startY * this.scale + 50 - this.thick
       })
     },
     // 保证画布能完整展示大屏
@@ -306,13 +314,13 @@ export default {
 }
 /deep/.action {
   .value {
-    background: var(--bs-el-hover);
+    background: var(--bs-el-color-primary);
     padding: 4px;
     color: #fff;
   }
 
   .del {
-    color: var(--bs-el-hover);
+    color: var(--bs-el-color-primary);
   }
 }
 /deep/ .ruler, /deep/ .corner {

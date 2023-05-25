@@ -1,5 +1,5 @@
 <template>
-  <div class="bs-overall-wrap bs-theme-wrap">
+  <div class="bs-overall-wrap">
     <div class="bs-overall-setting-wrap">
       <el-form
         ref="form"

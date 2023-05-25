@@ -8,7 +8,7 @@
       <el-color-picker
         slot="append"
         v-model="localValue"
-        popper-class="bs-theme-wrap bs-el-color-picker"
+        popper-class="bs-el-color-picker"
         show-alpha
         :predefine="predefineColors"
       />
@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
   ::v-deep .el-color-picker__trigger{
-    border-color: var(--bs-el-border-color);
+    border-color: var(--bs-el-border);
   }
 
 .border-color {

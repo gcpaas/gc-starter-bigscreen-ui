@@ -19,6 +19,7 @@
         :on-success="uploadImg"
         :file-list="fileList"
         :data="fileUploadParam"
+        :headers="headers"
         :on-remove="removeImg"
         :before-upload="beforeUpload"
         :auto-upload="true"
@@ -74,6 +75,9 @@ export default {
       imgUrl: '',
       fileUploadParam: {
         module: 'attachment'
+      },
+      headers: {
+        ...window.BS_CONFIG?.httpConfigs?.headers
       },
       actionUrl: window?.BS_CONFIG.httpConfigs?.baseURL + '/bigScreen/file/upload'
     }

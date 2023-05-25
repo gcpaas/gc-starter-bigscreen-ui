@@ -1,37 +1,41 @@
 <template>
-  <el-scrollbar class="scrollbar">
-    <div
-      v-loading="saveloading"
-      class="inner-container "
-      :element-loading-text="saveText"
-    >
+  <div
+    v-loading="saveloading"
+    class="inner-container "
+    :element-loading-text="saveText"
+  >
+    <el-scrollbar class="data-set-scrollbar">
       <div class="header">
-        <el-page-header
-          class="bs-el-page-header"
-          :content="!isEdit ? 'JSON数据集详情' : dataForm.id ? 'JSON数据集编辑' : 'JSON数据集新增'"
-        />
-        <el-button
-          v-if="isEdit"
-          id="search"
-          type="primary"
-          class="search"
-        >
-          帮助
-        </el-button>
-        <el-button
-          v-if="isEdit"
-          type="primary"
-          class="save"
-          @click="save('form')"
-        >
-          保存
-        </el-button>
-        <el-button
-          class="back bs-el-button-default"
-          @click="goBack"
-        >
-          返回
-        </el-button>
+        <el-page-header class="bs-el-page-header">
+          <template slot="content">
+            <div class="page-header">
+              <div class="page-header-left">
+                {{ !isEdit ? 'JSON数据集详情' : dataForm.id ? 'JSON数据集编辑' : 'JSON数据集新增' }}
+              </div>
+              <div class="page-header-right">
+                <el-button
+                  class="bs-el-button-default"
+                  @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/json_dataset')"
+                >
+                  帮助
+                </el-button>
+                <el-button
+                  v-if="isEdit"
+                  type="primary"
+                  @click="save('form')"
+                >
+                  保存
+                </el-button>
+                <el-button
+                  class="bs-el-button-default"
+                  @click="goBack"
+                >
+                  返回
+                </el-button>
+              </div>
+            </div>
+          </template>
+        </el-page-header>
       </div>
       <el-row style="margin: 16px 16px 0;">
         <el-col :span="isEdit ? 16 : 24">
@@ -86,7 +90,7 @@
                           :default-expand-all="true"
                           :highlight-current="true"
                           :expand-on-click-node="false"
-                          class="bs-theme-wrap bs-el-tree"
+                          class="bs-el-tree"
                           @node-click="selectParentCategory"
                         >
                           <span
@@ -378,8 +382,8 @@
           </el-button>
         </span>
       </el-dialog>
-    </div>
-  </el-scrollbar>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -736,6 +740,9 @@ export default {
       this.dataForm.typeId = value.id
       this.typeName = value.name
       this.$refs.selectParentName.blur()
+    },
+    openNewWindow (url) {
+      window.open(url, '_blank')
     }
   }
 }
@@ -747,35 +754,25 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
-.scrollbar {
+
+.data-set-scrollbar {
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
 }
+
 .tree-box {
-  padding:0;
+  padding: 0;
   max-height: 270px;
 }
-.header {
+
+.page-header {
+  display: flex;
   position: relative;
 
-  .search {
-    position: absolute;
-    right: 124px;
-    top: 16px;
-    display: none;
-  }
-
-  .save {
-    position: absolute;
-    right: 86px;
-    top: 16px;
-  }
-
-  .back {
+  .page-header-right {
     position: absolute;
     right: 16px;
-    top: 16px;
   }
 }
 
@@ -840,7 +837,7 @@ export default {
 .title-style {
   padding: 8px 12px;
   background-color: #f6f7fb;
-  border-left: 5px solid var(--bs-el-hover);
+  border-left: 5px solid var(--bs-el-color-primary);
   margin: 16px 16px 0 0;
 }
 
@@ -883,6 +880,7 @@ export default {
   padding: 16px 0;
   padding-left: 12px;
   border-bottom: 1px solid var(--bs-background-1);
+
   &::before {
     content: "";
     height: 14px;
@@ -890,7 +888,7 @@ export default {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    border-left: 4px solid var(--bs-el-hover);
+    border-left: 4px solid var(--bs-el-color-primary);
   }
 }
 
@@ -899,16 +897,18 @@ export default {
 }
 
 /deep/ .jsoneditor-menu {
-  background: var(--bs-el-hover);
-  border-color: var(--bs-el-hover);
+  background: var(--bs-el-color-primary);
+  border-color: var(--bs-el-color-primary);
 }
 
 /deep/ .jsoneditor-mode-code {
-  border-color: var(--bs-el-hover);
+  border-color: var(--bs-el-color-primary);
 }
-.bs-table-box{
+
+.bs-table-box {
   margin-bottom: 0;
 }
+
 /deep/ .bs-table-box.is-Edit .el-table {
   max-height: unset !important;
 
@@ -916,7 +916,9 @@ export default {
     max-height: unset !important;
   }
 }
-.bs-table-box{
+
+.bs-table-box {
   height: 100% !important;
+  margin-bottom: 0 !important;
 }
 </style>
