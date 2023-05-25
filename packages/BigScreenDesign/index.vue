@@ -155,7 +155,10 @@ export default {
   },
   watch: {
     fitZoom (zoom) {
-      this.zoomList[0].value = this.fitZoom
+      this.zoomList[0] = {
+        label: `自适应(${zoom}%)`,
+        value: zoom
+      }
     }
   },
   computed: {
