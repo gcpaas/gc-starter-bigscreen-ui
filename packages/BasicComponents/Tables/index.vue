@@ -57,11 +57,6 @@ export default {
         light: '#ffffff',
         auto: 'transparent'
       }
-      console.log(this.config)
-      console.log(this.customTheme)
-      console.log(this.customTheme !== 'custom'
-        ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
-        : this.headerCellStyleObj.backgroundColor)
       if (document.getElementById(this.config.code)?.querySelector('tr')) {
         document
           .getElementById(this.config.code)
