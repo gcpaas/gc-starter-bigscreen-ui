@@ -5,7 +5,7 @@
   >
     <div
       class="content-box"
-      :style="{'font-size': config.customize.fontSize +'px','color': config.customize.color ,'font-weight': +config.customize.fontWeight}"
+      :style="{'font-size': config.customize.fontSize +'px','font-weight': +config.customize.fontWeight,'background-image': `-webkit-linear-gradient(${config.customize.color})`}"
     >
       {{ config.option.text }}
     </div>
@@ -58,5 +58,11 @@ export default {
   }
   .content-box{
     text-align: center;
+    /* 将背景设为渐变 */
+    /*background-image: -webkit-linear-gradient(left, #6294F7, #C85D14);*/
+    /* 规定背景绘制区域 */
+    -webkit-background-clip: text;
+    /* 将文字隐藏 */
+    -webkit-text-fill-color: transparent;
   }
 </style>
