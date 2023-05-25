@@ -95,7 +95,10 @@ export default {
           this.customTheme === 'light'
             ? '#000000'
             : this.config.customize.bodyFontColor || '#ffffff',
-        fontSize: this.config.customize.bodyFontSize + 'px' || '14px'
+        fontSize: this.config.customize.bodyFontSize + 'px' || '14px',
+        border: `solid 1px ${this.customTheme !== 'custom'
+          ? this.config.customize.bodyBackgroundColor || bodyBackgroundColor[this.customTheme]
+          : this.headerCellStyleObj.backgroundColor}`
       }
       return style
     }
@@ -228,9 +231,9 @@ export default {
   height: 100%;
   background-color: transparent;
 }
-::v-deep .el-table th.gutter {
-  border-bottom: 2px solid var(--bs-el-color-primary) !important;
-}
+// ::v-deep .el-table th.gutter {
+//   border-bottom: 2px solid var(--bs-el-color-primary) !important;
+// }
 ::v-deep .el-table__body {
   height: 100%;
 }
