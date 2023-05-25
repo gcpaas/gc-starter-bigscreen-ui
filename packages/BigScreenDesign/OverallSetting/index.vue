@@ -426,8 +426,10 @@ export default {
     border-color: var(--bs-el-text) !important;
   }
 
-  /deep/ .el-input__inner::placeholder {
-    color: var(--bs-el-text);
+  /deep/ .el-input__inner{
+    &:placeholder{
+      color: var(--bs-el-text);
+    }
   }
 }
 

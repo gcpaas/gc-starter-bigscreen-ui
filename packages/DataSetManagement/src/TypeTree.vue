@@ -46,7 +46,7 @@
                 icon="el-icon-plus"
                 @click="addRootNode"
               >
-                <span style="color: #3478f6;">新增根节点</span>
+                <span style="color: var(--bs-el-color-primary);">新增根节点</span>
               </el-button>
             </div>
             <ul
