@@ -42,13 +42,13 @@ const customConfig = {
   customize: {
     theme: 'dark', // 'light'、'dark'
     // 表格头部背景颜色
-    // headerBackgroundColor: '#0e2a43',
+    // headerBackgroundColor: '#151a26',
     // 表格头部字体颜色
     headerFontColor: '#ffffff',
     // 表格头部字体大小
     headerFontSize: 14,
     // 表格主体背景颜色
-    // bodyBackgroundColor: '#0e2a43',
+    // bodyBackgroundColor: '#151a26',
     // 表格主体字体颜色
     bodyFontColor: '#ffffff',
     // 表格主体字体大小

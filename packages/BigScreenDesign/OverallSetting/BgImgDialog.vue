@@ -32,6 +32,14 @@
         </el-button>
       </el-upload>
       <div>
+        或链接地址：
+        <el-input
+          v-model="imgUrl"
+          placeholder="请输入链接地址"
+          clearable
+        />
+      </div>
+      <div>
         <el-row
           :gutter="8"
           style="margin-top: 8px;"
@@ -53,6 +61,23 @@
           </el-col>
         </el-row>
       </div>
+    </div>
+    <div
+      slot="footer"
+      class="dialog-footer"
+    >
+      <el-button
+        class="bs-el-button-default"
+        @click="dialogVisible=false"
+      >
+        取消
+      </el-button>
+      <el-button
+        type="primary"
+        @click="confirm"
+      >
+        确定
+      </el-button>
     </div>
   </el-dialog>
 </template>
@@ -128,6 +153,9 @@ export default {
           resolve()
         })
       })
+    },
+    confirm () {
+      this.dialogVisible = false
     }
   }
 }

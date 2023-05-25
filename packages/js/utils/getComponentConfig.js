@@ -1,17 +1,17 @@
 import Icon from 'packages/assets/images/bigScreenIcon/export'
 // import _ from 'lodash'
-export default function getComponentConfig (type) {
+export default function getComponentConfig(type) {
   // const _type = _.upperFirst(type)
   // const className = `com.gccloud.starter.lowcode.page.bigscreen.components.${_type}Chart`
   switch (type) {
     case 'texts':
       return {
         name: '文本',
-        title: '文本',
+        title: '文本标签占位符',
         icon: Icon.getNameList()[0],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenTextChart',
-        w: 60,
+        w: 150,
         h: 30,
         x: 0,
         y: 0,
@@ -103,7 +103,7 @@ export default function getComponentConfig (type) {
         icon: Icon.getNameList()[7],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenTimeCountDownChart',
-        w: 280,
+        w: 400,
         h: 50,
         x: 0,
         y: 0,

@@ -24,7 +24,7 @@
       :min-width="10"
       :min-height="10"
       :draggable="!chart.locked"
-      :resizable="!chart.locked"
+      :resizable="(!chart.locked) && (!['currentTime','timeCountDown'].includes(chart.type))"
       :parent="true"
       :debug="false"
       :is-conflict-check="false"
@@ -170,6 +170,8 @@ export default {
     },
     drop (e) {
       e.preventDefault()
+      // 解决：火狐拖放后，总会默认打开百度搜索，如果是图片，则会打开图片的问题。
+      e.stopPropagation()
       const transferData = e.dataTransfer.getData('dragComponent')
       if (transferData) {
         this.addChart(transferData, { x: e?.x, y: e?.y })
