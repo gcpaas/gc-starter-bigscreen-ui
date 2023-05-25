@@ -15,7 +15,7 @@
         <DataSetting ref="dataSetting" />
       </el-tab-pane>
       <el-tab-pane
-        label="自定义"
+        label="样式"
         name="second"
       >
         <component
