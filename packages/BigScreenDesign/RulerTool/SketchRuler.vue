@@ -231,9 +231,9 @@ export default {
       const yRadio = this.innerHeight / this.pageHeight
       // 取最大比例，尽量大
       const scale = Math.floor(Math.max(xRadio * 100, yRadio * 100))
-      if (scale < 100) {
-        this.changeZoom(scale - 10)
-        this.changeFitZoom(scale - 10)
+      if (scale < 100 && scale > 25) {
+        this.changeZoom(scale - 15)
+        this.changeFitZoom(scale - 15)
       }
     }
   }
