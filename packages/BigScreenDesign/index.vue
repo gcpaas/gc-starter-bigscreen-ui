@@ -310,6 +310,7 @@ export default {
     showPageInfo () {
       this.pageInfoVisiable = true
       this.rightVisiable = true
+      this.changeActiveCode('')
     }
   }
 }
