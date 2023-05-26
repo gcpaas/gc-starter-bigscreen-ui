@@ -17,7 +17,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'bigScreen'
+      default: 'bigScreenCatalog'
     }
   },
   components: { BigScreenList },

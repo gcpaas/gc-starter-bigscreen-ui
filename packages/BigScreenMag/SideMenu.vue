@@ -110,11 +110,17 @@
   </div>
 </template>
 <script>
-import { post } from '../../packages/js/utils/http'
+import { get, post } from '../../packages/js/utils/http'
 import _ from 'lodash'
 
 export default {
   components: { },
+  props: {
+    type: {
+      type: String,
+      default: 'bigScreenCatalog'
+    }
+  },
   data () {
     return {
       showDropdown: false,
@@ -174,9 +180,10 @@ export default {
           return
         }
         if (!this.currentCatalog.id) {
-          post('/bigScreen/category/add',
+          post('/bigScreen/type/add',
             {
-              ...this.currentCatalog
+              ...this.currentCatalog,
+              type: this.type || 'bigScreenCatalog'
             }).then(data => {
             this.catalogVisible = false
             this.getCatalogList()
@@ -186,7 +193,7 @@ export default {
           }).catch(() => {
           })
         } else {
-          post('/bigScreen/category/update', { ...this.currentCatalog, excludeCategory: this.currentCatalog.code }).then(data => {
+          post('/bigScreen/type/update', { ...this.currentCatalog, type: this.type || 'bigScreenCatalog' }).then(data => {
             this.catalogVisible = false
             this.getCatalogList()
           }).catch(() => {
@@ -215,7 +222,7 @@ export default {
         type: 'warning',
         customClass: 'bs-el-message-box'
       }).then(async () => {
-        post(`/bigScreen/category/delete/${catalog.code}`).then(() => {
+        post(`/bigScreen/type/delete/${catalog.id}`).then(() => {
           this.$message({
             type: 'success',
             message: '删除成功'
@@ -232,7 +239,7 @@ export default {
     // 获取目录的列表
     getCatalogList () {
       this.pageLoading = true
-      post('/bigScreen/category/list', { typeList: ['catalog'] }).then(data => {
+      get(`/bigScreen/type/list/${this.type}`).then(data => {
         this.catalogList = data
       }).catch(() => {
       }).finally(() => {
