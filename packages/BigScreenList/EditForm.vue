@@ -116,6 +116,10 @@ export default {
   components: {
   },
   props: {
+    type: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {
@@ -158,7 +162,7 @@ export default {
       title: '', // 弹框标题(新增/编辑)
       dataForm: {
         id: '',
-        type: 'bigScreen',
+        type: '',
         name: '',
         icon: '',
         code: '',
@@ -222,12 +226,10 @@ export default {
             this.$set(this.dataForm, 'orderNum', nodeData.orderNum)
             this.$set(this.dataForm, 'pageTemplateId', resp?.pageTemplateId)
             this.$set(this.dataForm, 'pageConfig', resp?.pageConfig)
-            if (this.dataForm.type === 'bigScreen') {
-              const { w, h } = resp.pageConfig
-              this.resolutionRatio.w = w
-              this.resolutionRatio.h = h
-              this.resolutionRatioValue = `${w}*${h}`
-            }
+            const { w, h } = resp.pageConfig
+            this.resolutionRatio.w = w
+            this.resolutionRatio.h = h
+            this.resolutionRatioValue = `${w}*${h}`
           })
         } else {
           this.$set(this.dataForm, 'name', '')
@@ -239,7 +241,7 @@ export default {
           this.$set(this.dataForm, 'parentCode', parentNode.code)
           this.$set(this.dataForm, 'remark', '')
           this.$set(this.dataForm, 'style', '')
-          this.$set(this.dataForm, 'type', this.dataForm.type)
+          this.$set(this.dataForm, 'type', this.type)
           this.$set(this.dataForm, 'orderNum', 0)
           this.$set(this.dataForm, 'pageTemplateId', '')
           this.$set(this.dataForm, 'pageConfig', {
@@ -251,10 +253,8 @@ export default {
             bg: null,
             fitMode: 'auto'
           })
-          if (this.dataForm.type === 'bigScreen') {
-            this.resolutionRatio.w = '1920'
-            this.resolutionRatio.h = '1080'
-          }
+          this.resolutionRatio.w = '1920'
+          this.resolutionRatio.h = '1080'
         }
       })
     },
@@ -282,10 +282,10 @@ export default {
           parentCode: this.dataForm.parentCode,
           remark: this.dataForm.remark,
           style: this.dataForm.style,
-          type: 'bigScreen',
           orderNum: this.dataForm.orderNum,
           pageConfig: { ...this.dataForm.pageConfig, w: this.resolutionRatio.w, h: this.resolutionRatio.h },
-          pageTemplateId: this.dataForm.pageTemplateId
+          pageTemplateId: this.dataForm.pageTemplateId,
+          type: this.type || 'bigScreen'
         }
         if (isToDesign) {
           this.toDesignLoading = true

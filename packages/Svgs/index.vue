@@ -1,8 +1,5 @@
 <template>
-  <icon-svg
-    :name="config.icon"
-    class="page-opt-list-icon icon-box"
-  />
+  <icon-svg :name="config.icon" class="page-opt-list-icon icon-box" />
 </template>
 
 <script>
@@ -22,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon-box{
+.icon-box {
   width: 100%;
   height: 100%;
 }

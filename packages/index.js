@@ -1,4 +1,5 @@
 import 'packages/assets/style/common/index.scss'
+import 'packages/assets/style/bsTheme.scss'
 // 大屏管理页面
 import BigScreenManagement from 'packages/BigScreenMag'
 // 渲染整个bigScreen的渲染引擎

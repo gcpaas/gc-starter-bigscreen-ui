@@ -128,10 +128,7 @@ export default {
 }
 </script>
 
-
-
 <style lang="scss" scoped>
-
 .type-item {
   height: 104px;
   line-height: 90px;

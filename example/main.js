@@ -30,7 +30,8 @@ registerConfig(
       // 数据集管理
       dataSetUrl: '/big-screen-dataSet',
       // 资源管理
-      sourceUrl: '/big-screen-source'
+      sourceUrl: '/big-screen-source',
+      componentUrl: '/big-screen-components'
     },
     httpConfigs: {
       baseURL: window.CONFIG?.baseUrl

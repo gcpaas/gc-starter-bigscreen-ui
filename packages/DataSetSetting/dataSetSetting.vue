@@ -5,7 +5,6 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
-    top="10vh"
     class="bs-dialog-wrap data-set-wrap bs-el-dialog"
   >
     <DataSetManagement
@@ -94,14 +93,16 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>
 
 <style lang="scss" scoped>
+::v-deep .el-dialog{
+  margin: 0 auto 20px;
+}
+
 @import '~packages/assets/style/bsTheme.scss';
-::v-deep .el-scrollbar{
-    height: 490px !important;
-    overflow-y: auto !important;
-  }
+
 .data-set-wrap {
   /deep/ .el-dialog__body {
     position: relative;
@@ -118,6 +119,19 @@ export default {
     }
   }
 .bs-data-set-management{
+ ::v-deep .el-scrollbar{
+  height: 490px !important;
+    overflow-y: auto !important;
+
+  }
+ ::v-deep .ztree{
+    height: auto !important;
+  }
+ ::v-deep .bs-el-pagination{
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 12px !important;
+  }
  ::v-deep .bs-table-box {
       height: auto !important;
     }

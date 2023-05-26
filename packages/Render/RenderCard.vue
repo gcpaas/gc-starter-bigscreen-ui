@@ -45,17 +45,15 @@ export default {
       default: 0
     }
   },
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
-  computed: {
-  },
-  mounted () {
+  computed: {},
+  mounted() {
     // 调用初始化方法
     dataInit(this)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     destroyedEvent()
   },
   methods: {

@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="!pageLoading"
-    class="bs-page-design-wrap"
-  >
+  <div v-if="!pageLoading" class="bs-page-design-wrap">
     <PageTopSetting
       v-show="headerShow"
       ref="PageTopSetting"
@@ -17,6 +14,7 @@
         :header-show="headerShow"
         :height="height"
         @openRightPanel="openRightPanel"
+        @openResource="initDialog"
       />
       <!-- 中间组件展示面板 -->
       <div
@@ -53,7 +51,7 @@
             class="bs-slider-wrap"
             :value="zoom"
             :min="10"
-            style="width: 200px;margin-right: 20px;"
+            style="width: 200px; margin-right: 20px"
             @input="changeScreenZoom"
           />
           <span class="select-zoom-text">缩放比例</span>
@@ -81,10 +79,17 @@
         @updateSetting="updateSetting"
         @updateDataSetting="updateDataSetting"
       />
+      <!-- 添加资源面板 -->
+      <SourceDialog ref="SourceDialog" @getImg="setImg" />
     </div>
   </div>
 </template>
 <script>
+import SourceDialog from './SourceDialog/index.vue'
+import {
+  dataConfig,
+  settingConfig
+} from 'packages/BasicComponents/Picture/settingConfig'
 import LeftPanel from './LeftPanel.vue'
 import SettingPanel from './SettingPanel.vue'
 import PageTopSetting from './PageDesignTop.vue'
@@ -106,7 +111,8 @@ export default {
     Render,
     SketchDesignRuler,
     MouseSelect,
-    SettingPanel
+    SettingPanel,
+    SourceDialog
   },
   mixins: [multipleSelectMixin],
   props: {
@@ -123,7 +129,7 @@ export default {
       default: 'calc(100vh - 40px)'
     }
   },
-  data () {
+  data() {
     return {
       rightVisiable: false,
       pageInfoVisiable: false,
@@ -154,7 +160,7 @@ export default {
     }
   },
   watch: {
-    fitZoom (zoom) {
+    fitZoom(zoom) {
       this.zoomList[0] = {
         label: `自适应(${zoom}%)`,
         value: zoom
@@ -163,30 +169,30 @@ export default {
   },
   computed: {
     ...mapState({
-      pageInfo: state => state.bigScreen.pageInfo,
-      chartList: state => state.bigScreen.pageInfo.chartList,
-      pageConfig: state => state.bigScreen.pageInfo.pageConfig,
-      pageLoading: state => state.bigScreen.pageLoading,
-      hoverCode: state => state.bigScreen.hoverCode,
-      presetLine: state => state.bigScreen.presetLine,
-      updateKey: state => state.bigScreen.updateKey,
-      hasGrid: state => state.bigScreen.hasGrid,
-      zoom: state => state.bigScreen.zoom,
-      fitZoom: state => state.bigScreen.fitZoom
+      pageInfo: (state) => state.bigScreen.pageInfo,
+      chartList: (state) => state.bigScreen.pageInfo.chartList,
+      pageConfig: (state) => state.bigScreen.pageInfo.pageConfig,
+      pageLoading: (state) => state.bigScreen.pageLoading,
+      hoverCode: (state) => state.bigScreen.hoverCode,
+      presetLine: (state) => state.bigScreen.presetLine,
+      updateKey: (state) => state.bigScreen.updateKey,
+      hasGrid: (state) => state.bigScreen.hasGrid,
+      zoom: (state) => state.bigScreen.zoom,
+      fitZoom: (state) => state.bigScreen.fitZoom
     }),
-    offset () {
+    offset() {
       return {
         x: 220 + 50 - this.ruleStartX,
         y: 55 + 50 - this.ruleStartY
       }
     }
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // 判断进入设计页面前是否有访问权限
     const code = to.query.code
-    get(`/bigScreen/permission/check/${code}`).then(res => {
+    get(`/bigScreen/permission/check/${code}`).then((res) => {
       if (res) {
-        next(vm => {
+        next((vm) => {
           // 重置大屏的vuex store
           vm.$store.commit('bigScreen/resetStoreData')
         })
@@ -195,7 +201,7 @@ export default {
       }
     })
   },
-  created () {
+  created() {
     this.init()
     /**
      * 以下是为了解决在火狐浏览器上推拽时弹出tab页到搜索问题
@@ -209,9 +215,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('bigScreen', [
-      'initLayout'
-    ]),
+    ...mapActions('bigScreen', ['initLayout']),
     ...mapMutations('bigScreen', [
       'changeLayout',
       'changePageLoading',
@@ -223,80 +227,119 @@ export default {
       'changeChartKey',
       'changeZoom'
     ]),
-    init () {
+    // 添加资源弹窗初始化
+    initDialog() {
+      this.$refs.SourceDialog.init()
+    },
+    setImg(val) {
+      this.$refs.Render.addSourceChart(
+        JSON.stringify({
+          title: val.originalName,
+          name: val.originalName,
+          icon: null,
+          className:
+            'com.gccloud.bigscreen.core.module.chart.components.ScreenPictureChart',
+          w: 300,
+          h: 300,
+          x: 0,
+          y: 0,
+          type: 'picture',
+          option: {
+            ..._.cloneDeep(settingConfig)
+          },
+          setting: {}, // 右侧面板自定义配置
+          dataHandler: {}, // 数据自定义处理js脚本
+          ..._.cloneDeep(dataConfig),
+          customize: {
+            url: val.url,
+            radius: 0,
+            opacity: 100
+          }
+        }),
+        { x: 150, y: 100 }
+      )
+    },
+    init() {
       this.changePageLoading(true)
-      this.initLayout(this.$route.query.code || this.code).then(() => {
-        const themeName = this.pageConfig.customTheme
-        if (!['dark', 'light', 'auto'].includes(themeName)) {
-          getThemeConfig().then((res) => {
-            // 初始化时如果就是自定义主题则统一注册
-            const { registerTheme } = G2
-            registerTheme(themeName, { ...res.chart })
-            const pageConfig = this.pageConfig
-            pageConfig.themeJson = res
-            this.changePageConfig(pageConfig)
+      this.initLayout(this.$route.query.code || this.code)
+        .then(() => {
+          const themeName = this.pageConfig.customTheme
+          if (!['dark', 'light', 'auto'].includes(themeName)) {
+            getThemeConfig().then((res) => {
+              // 初始化时如果就是自定义主题则统一注册
+              const { registerTheme } = G2
+              registerTheme(themeName, { ...res.chart })
+              const pageConfig = this.pageConfig
+              pageConfig.themeJson = res
+              this.changePageConfig(pageConfig)
+              this.changePageLoading(false)
+            })
+          } else {
             this.changePageLoading(false)
-          })
-        } else {
-          this.changePageLoading(false)
-        }
-      }).finally(() => {
-        setTimeout(() => {
-          this.resetPresetLine()
-        }, 500)
-      })
+          }
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.resetPresetLine()
+          }, 500)
+        })
     },
     // 点击当前组件时打开右侧面板
-    openRightPanel (card) {
+    openRightPanel(card) {
       this.rightVisiable = true
       this.pageInfoVisiable = false
     },
     /**
      * @description: 清空页面
      */
-    empty () {
+    empty() {
       this.$confirm('确定清空页面吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
         customClass: 'bs-el-message-box'
-      }).then(() => {
-        this.changeLayout([])
-        this.resetPresetLine()
-      }).catch(() => {
       })
+        .then(() => {
+          this.changeLayout([])
+          this.resetPresetLine()
+        })
+        .catch(() => {})
     },
     // 自定义属性更新
-    updateSetting (config) {
+    updateSetting(config) {
       config.key = new Date().getTime()
       this.changeChartConfig(_.cloneDeep(config))
     },
     // 动态属性更新
-    updateDataSetting (config) {
-      this.$refs.Render.$refs['RenderCard' + config.code][0].$refs[config.code].updateChartData(_.cloneDeep(config))
+    updateDataSetting(config) {
+      this.$refs.Render.$refs['RenderCard' + config.code][0].$refs[
+        config.code
+      ].updateChartData(_.cloneDeep(config))
     },
-    onSelectArea (area) {
+    onSelectArea(area) {
       const { startX, startY, endX, endY } = area
       // 计算所有在此区域中的组件，如果在此区域中，将其code添加到activeCodes数组中
-      const activeCodes = this.chartList?.filter(chart => {
-        const { x, y, w, h } = chart
-        return startX <= x && x + w <= endX && startY <= y && y + h <= endY
-      })?.map(chart => chart.code)
+      const activeCodes = this.chartList
+        ?.filter((chart) => {
+          const { x, y, w, h } = chart
+          return startX <= x && x + w <= endX && startY <= y && y + h <= endY
+        })
+        ?.map((chart) => chart.code)
       this.changeActiveCodes(activeCodes)
     },
-    changeStart ({ x, y }) {
+    changeStart({ x, y }) {
       this.ruleStartX = x
       this.ruleStartY = y
     },
     // 保存并预览
-    saveAndPreview () {
+    saveAndPreview() {
       this.$refs.PageTopSetting.execRun()
     },
     // 保存
-    save () {
+    save() {
       this.$refs.PageTopSetting.save('saveLoading')
     },
-    changeScreenZoom (zoom) {
+    changeScreenZoom(zoom) {
       // 自适应
       if (zoom === 'auto') {
         this.$refs.Rules.initZoom()
@@ -304,10 +347,10 @@ export default {
         this.changeZoom(zoom)
       }
     },
-    updateRightVisiable (visiable) {
+    updateRightVisiable(visiable) {
       this.rightVisiable = visiable
     },
-    showPageInfo () {
+    showPageInfo() {
       this.pageInfoVisiable = true
       this.rightVisiable = true
       this.changeActiveCode('')
@@ -352,13 +395,13 @@ export default {
         }
 
         /deep/ .el-select {
-          width: 150px !important
+          width: 150px !important;
         }
       }
     }
 
     /deep/ .el-loading-mask {
-      background-color: transparent !important
+      background-color: transparent !important;
     }
   }
 }
