@@ -24,13 +24,15 @@
       :min-width="10"
       :min-height="10"
       :draggable="!chart.locked"
-      :resizable="(!chart.locked) && (!['currentTime','timeCountDown'].includes(chart.type))"
+      :resizable="
+        !chart.locked && !['currentTime', 'timeCountDown'].includes(chart.type)
+      "
       :parent="true"
       :debug="false"
       :is-conflict-check="false"
       :snap="true"
       :snap-tolerance="2"
-      :style="{zIndex: chart.z || 0}"
+      :style="{ zIndex: chart.z || 0 }"
       @dragging="onDrag(...arguments, chart)"
       @resizing="onResize(...arguments, chart)"
       @resizestop="resizestop(...arguments, chart)"
@@ -43,10 +45,7 @@
         :config="chart"
         @openRightPanel="openRightPanel"
       >
-        <RenderCard
-          :ref="'RenderCard' + chart.code"
-          :config="chart"
-        />
+        <RenderCard :ref="'RenderCard' + chart.code" :config="chart" />
       </Configuration>
     </vdr>
     <span
@@ -87,7 +86,7 @@ export default {
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       vLine: [],
       hLine: [],
@@ -99,22 +98,26 @@ export default {
   },
   computed: {
     ...mapState({
-      pageConfig: state => state.bigScreen.pageInfo.pageConfig,
-      pageInfo: state => state.bigScreen.pageInfo,
-      chartList: state => state.bigScreen.pageInfo.chartList,
-      activeCode: state => state.bigScreen.activeCode,
-      hoverCode: state => state.bigScreen.hoverCode,
-      themeJson: state => state.bigScreen.pageInfo.pageConfig.themeJson,
-      isInit: state => !state.bigScreen.pageLoading,
-      scale: state => state.bigScreen.zoom / 100
+      pageConfig: (state) => state.bigScreen.pageInfo.pageConfig,
+      pageInfo: (state) => state.bigScreen.pageInfo,
+      chartList: (state) => state.bigScreen.pageInfo.chartList,
+      activeCode: (state) => state.bigScreen.activeCode,
+      hoverCode: (state) => state.bigScreen.hoverCode,
+      themeJson: (state) => state.bigScreen.pageInfo.pageConfig.themeJson,
+      isInit: (state) => !state.bigScreen.pageLoading,
+      scale: (state) => state.bigScreen.zoom / 100
     })
   },
   watch: {
     pageConfig: {
-      handler (pageConfig) {
+      handler(pageConfig) {
         this.$nextTick(() => {
           const style = document.createElement('style')
-          if (pageConfig && pageConfig.themeJson && pageConfig.themeJson.themeCss) {
+          if (
+            pageConfig &&
+            pageConfig.themeJson &&
+            pageConfig.themeJson.themeCss
+          ) {
             const themeCss = pageConfig.themeJson.themeCss
             if (themeCss) {
               const themeStr = compile(themeCss).code
@@ -129,25 +132,23 @@ export default {
       immediate: true
     }
   },
-  mounted () {
+  mounted() {
     this.styleSet()
     this.plotList = [...this.plotList, ...getCustomPlots()]
   },
   methods: {
-    ...mapMutations('bigScreen',
-      [
-        'changeLayout',
-        'changeActiveCode',
-        'changeChartConfig',
-        'addItem',
-        'delItem',
-        'resetPresetLine',
-        'changeGridShow',
-        'setPresetLine'
-      ]
-    ),
+    ...mapMutations('bigScreen', [
+      'changeLayout',
+      'changeActiveCode',
+      'changeChartConfig',
+      'addItem',
+      'delItem',
+      'resetPresetLine',
+      'changeGridShow',
+      'setPresetLine'
+    ]),
     // 获取到后端传来的主题样式并进行修改
-    styleSet () {
+    styleSet() {
       const style = document.createElement('style')
       if (this.themeJson && this.themeJson.themeCss) {
         const styleStr = this.themeJson.themeCss
@@ -159,16 +160,16 @@ export default {
         style.remove()
       }
     },
-    resetPresetLineDelay () {
+    resetPresetLineDelay() {
       setTimeout(() => {
         this.resetPresetLine()
       }, 500)
     },
     // 点击当前组件时打开右侧面板
-    openRightPanel (config) {
+    openRightPanel(config) {
       this.$emit('openRightPanel', config)
     },
-    drop (e) {
+    drop(e) {
       e.preventDefault()
       // 解决：火狐拖放后，总会默认打开百度搜索，如果是图片，则会打开图片的问题。
       e.stopPropagation()
@@ -181,9 +182,9 @@ export default {
      * 获取当前鼠标悬浮所得的组件
      * @returns {{}|*} chat | {}
      */
-    getChart () {
+    getChart() {
       const chartList = this.pageInfo.chartList
-      const index = chartList.findIndex(item => item.code === this.activeCode)
+      const index = chartList.findIndex((item) => item.code === this.activeCode)
       if (index > -1) {
         return chartList[index]
       }
@@ -197,7 +198,7 @@ export default {
      * @param height
      * @param chart
      */
-    onResize (x, y, width, height, chart) {
+    onResize(x, y, width, height, chart) {
       chart.x = x
       chart.y = y
       chart.w = width
@@ -213,7 +214,7 @@ export default {
      * @param y
      * @param chart
      */
-    onDrag (x, y, chart) {
+    onDrag(x, y, chart) {
       // 防止事件冒泡
       event.stopPropagation()
       if (chart.group) {
@@ -228,7 +229,7 @@ export default {
         ...chart
       })
     },
-    resizestop (left, top, width, height, chart) {
+    resizestop(left, top, width, height, chart) {
       this.changeChartConfig({
         ...chart,
         w: width,
@@ -238,7 +239,7 @@ export default {
       })
       this.changeGridShow(false)
     },
-    dragstop (left, top, chart) {
+    dragstop(left, top, chart) {
       if (!this.freeze) {
         this.changeChartConfig({
           ...chart,
@@ -246,7 +247,9 @@ export default {
           y: top
         })
       } else {
-        const index = this.chartList.findIndex(_chart => _chart.code === chart.code)
+        const index = this.chartList.findIndex(
+          (_chart) => _chart.code === chart.code
+        )
         this.$set(this.chartList, index, chart)
         this.changeChartConfig({
           ...chart,
@@ -257,23 +260,48 @@ export default {
       this.freeze = false
     },
     // 辅助线
-    getRefLineParams (params) {
+    getRefLineParams(params) {
       const { vLine, hLine } = params
       this.vLine = vLine
       this.hLine = hLine
     },
     // 新增元素
-    addChart (chart, position) {
+    addChart(chart, position) {
       const { left, top } = this.$el.getBoundingClientRect()
       const _chart = JSON.parse(chart)
       let option = _chart.option
       if (_chart.type === 'customComponent') {
-        option = { ...this.plotList?.find(plot => plot.name === _chart.name)?.option, theme: this.pageConfig.customTheme }
+        option = {
+          ...this.plotList?.find((plot) => plot.name === _chart.name)?.option,
+          theme: this.pageConfig.customTheme
+        }
       }
       const config = {
         ..._chart,
         x: (position.x - left - _chart.offsetX) / this.scale,
         y: (position.y - top - _chart.offsetX) / this.scale,
+        width: 200 * this.scale,
+        height: 200 * this.scale,
+        code: randomString(8),
+        option
+      }
+      config.key = config.code
+      this.addItem(config)
+    },
+    addSourceChart(chart, position) {
+      const { left, top } = this.$el.getBoundingClientRect()
+      const _chart = JSON.parse(chart)
+      let option = _chart.option
+      if (_chart.type === 'customComponent') {
+        option = {
+          ...this.plotList?.find((plot) => plot.name === _chart.name)?.option,
+          theme: this.pageConfig.customTheme
+        }
+      }
+      const config = {
+        ..._chart,
+        x: (position.x - left) / this.scale,
+        y: (position.y - top) / this.scale,
         width: 200 * this.scale,
         height: 200 * this.scale,
         code: randomString(8),
@@ -288,37 +316,46 @@ export default {
      * @param y 组合元素当前y
      * @param chart
      */
-    dragGroupChart (x, y, chart) {
+    dragGroupChart(x, y, chart) {
       if (chart.group) {
         const diffX = x - chart.x
         const diffY = y - chart.y
         const group = chart.group
         // 找到相同group的组件，并找到边界
-        const groupChartList = this.chartList.filter(groupChart => groupChart.group === group)
-        const groupMinX = Math.min(...groupChartList?.map(groupChart => groupChart.x + diffX))
-        const groupMinY = Math.min(...groupChartList?.map(groupChart => groupChart.y + diffY))
-        const groupMaxX = Math.max(...groupChartList?.map(groupChart => groupChart.x + diffX + groupChart.w))
-        const groupMaxY = Math.max(...groupChartList?.map(groupChart => groupChart.y + diffY + groupChart.h))
+        const groupChartList = this.chartList.filter(
+          (groupChart) => groupChart.group === group
+        )
+        const groupMinX = Math.min(
+          ...groupChartList?.map((groupChart) => groupChart.x + diffX)
+        )
+        const groupMinY = Math.min(
+          ...groupChartList?.map((groupChart) => groupChart.y + diffY)
+        )
+        const groupMaxX = Math.max(
+          ...groupChartList?.map(
+            (groupChart) => groupChart.x + diffX + groupChart.w
+          )
+        )
+        const groupMaxY = Math.max(
+          ...groupChartList?.map(
+            (groupChart) => groupChart.y + diffY + groupChart.h
+          )
+        )
         // 如果其中某个组件超出画布，则不移动 (此处无法阻止移动，故在拖拽结束后重置位置)
         if (
-          (
-            groupMinX <= 0 ||
+          (groupMinX <= 0 ||
             groupMinY <= 0 ||
             groupMaxX >= this.pageConfig.w ||
-            groupMaxY >= this.pageConfig.h
-          ) &&
-          (
-            // 偏移的绝对值要大于0
-            Math.abs(diffX) > 0 ||
-            Math.abs(diffY) > 0
-          )
+            groupMaxY >= this.pageConfig.h) &&
+          // 偏移的绝对值要大于0
+          (Math.abs(diffX) > 0 || Math.abs(diffY) > 0)
         ) {
           this.freeze = true
           return
         }
 
         // 移动相应的diff距离
-        groupChartList?.map(groupChart => {
+        groupChartList?.map((groupChart) => {
           this.changeChartConfig({
             ...groupChart,
             x: groupChart.x + diffX,
@@ -352,6 +389,6 @@ export default {
   }
 }
 .design-drag-wrap {
-  box-shadow: 0 0 30px 0 rgba(0,0,0,.5);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
 }
 </style>

@@ -192,14 +192,14 @@ export default {
           title: '图标',
           icon: 'icon-svg',
           components: svgComponents
+        },
+        {
+          id: 6,
+          name: 'resource',
+          title: '资源库',
+          icon: 'icon-svg',
+          components: []
         }
-        // {
-        //   id: 6,
-        //   name: 'svg',
-        //   title: '资源库',
-        //   icon: 'icon-svg',
-        //   components: svgComponents
-        // }
       ],
       currentActive: 'chart'
     }
@@ -285,6 +285,10 @@ export default {
       if (tab.index !== '0') {
         this.fold = false
         this.currentActive = this.activeName
+      }
+      if (tab.index === '7') {
+        this.fold = true
+        this.$emit('openResource')
       }
     },
     toggleSidebar() {

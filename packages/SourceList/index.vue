@@ -91,7 +91,7 @@
           <div class="big-screen-card-img">
             <el-image
               :src="screen.url"
-              fit="fill"
+              fit="contain"
               style="width: 100%; height: 100%"
             >
               <div slot="placeholder" class="image-slot">加载中···</div>
@@ -152,7 +152,6 @@ export default {
   components: { EditForm },
   data() {
     return {
-      templateLoading: false,
       upLoadUrl:
         window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
       searchKey: '',
@@ -170,7 +169,7 @@ export default {
   },
   computed: {
     code() {
-      return this.catalogInfo?.page?.code
+      return this.catalogInfo?.page?.id
     },
     gridComputed() {
       return this.list.length > 3
@@ -220,7 +219,7 @@ export default {
       console.log(this.catalogInfo)
       this.loading = true
       get('/bigScreen/file', {
-        module: this.catalogInfo.page.code,
+        module: this.catalogInfo.page.id,
         current: this.current,
         size: this.size,
         extension: this.extend,
@@ -334,12 +333,12 @@ export default {
 
     .big-screen-card-wrap {
       position: relative;
-      height: 180px;
+      height: 230px;
       cursor: pointer;
 
       &:hover {
         .screen-card__hover {
-          height: 180px;
+          height: 230px;
         }
       }
 
@@ -416,7 +415,7 @@ export default {
 
         .big-screen-card-img {
           width: 100%;
-          height: 150px;
+          height: 180px;
 
           img {
             width: 100%;
@@ -446,16 +445,16 @@ export default {
           width: 100%;
           /*height: 26px;*/
           padding: 0 10px;
-          height: calc(100% - 150px);
+          height: calc(100% - 180px);
           color: var(--bs-el-title);
           background-color: var(--bs-background-2);
 
           .left-bigscreen-title {
             font-size: 14px;
-            overflow: hidden;
-            width: 120px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            // overflow: hidden;
+            // width: 120px;
+            // white-space: nowrap;
+            // text-overflow: ellipsis;
           }
 
           .right-bigscreen-time-title {

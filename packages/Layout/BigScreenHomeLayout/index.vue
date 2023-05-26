@@ -65,7 +65,7 @@ export default {
         },
         {
           id: 3,
-          name: '资源管理',
+          name: '资源库',
           path: window?.BS_CONFIG?.routers?.sourceUrl || '/big-screen-source',
           icon: 'icon-data'
         }

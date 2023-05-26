@@ -76,7 +76,7 @@ function registerRouters(config, router) {
           path: config?.routers?.SourceUrl || '/big-screen-source',
           component: () => import('packages/SourceManagement'),
           meta: {
-            title: '资源管理'
+            title: '资源库'
           }
         }
       ]

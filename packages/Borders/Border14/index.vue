@@ -1,12 +1,12 @@
 <template>
-  <div
-    style="width: 100%;height: 100%"
-    class="bs-design-wrap"
-  >
+  <div style="width: 100%; height: 100%" class="bs-design-wrap">
     <div
       :key="updateKey"
       class="custom-border-box"
-      :style="{ 'border-color': color, 'border-width': width,'background-color': backgroundColor}"
+      :style="{
+        border: `${width}px solid ${color} `,
+        'background-color': backgroundColor
+      }"
     />
   </div>
 </template>
@@ -23,22 +23,22 @@ export default {
       default: () => ({})
     }
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
-    color () {
-      return this.config.customize.borderColor || '#83bff6'
+    color() {
+      return this.config.customize.borderColor || ''
     },
-    width () {
-      return this.config.customize.borderWidth || 1
+    width() {
+      return this.config.customize.borderWidth || 0
     },
-    backgroundColor () {
-      return this.config.customize.backgroundColor || '#232323'
+    backgroundColor() {
+      return this.config.customize.backgroundColor || ''
     }
   },
   watch: {},
-  mounted () {},
+  mounted() {},
   methods: {}
 }
 </script>
@@ -53,11 +53,9 @@ export default {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 
-  .custom-border-box{
+  .custom-border-box {
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(131, 191, 246, 0);
-    background-color: #232323;
   }
 }
 

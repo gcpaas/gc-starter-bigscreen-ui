@@ -22,7 +22,7 @@
               class="setting-body"
               label-width="90px"
             >
-              <el-form-item label="轮播表名称">
+              <el-form-item label="翻牌器名称">
                 <el-input v-model="config.title" clearable />
               </el-form-item>
               <el-form-item label="字体颜色">
