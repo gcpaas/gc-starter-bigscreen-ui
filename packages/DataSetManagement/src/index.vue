@@ -194,15 +194,15 @@
       </div>
     </el-row>
     <!-- 新增-类型窗口 -->
-    <set-dataset-type
-      ref="setDatasetType"
+    <DatasetTypeDialog
+      ref="DatasetTypeDialog"
       :ds-type="dsType"
       @setDatasetOfType="setDatasetOfType"
     />
     <!-- 新增/编辑-原始数据集 -->
-    <set-original
+    <OriginalEditForm
       v-if="setType === 'original'"
-      ref="setOriginal"
+      ref="OriginalEditForm"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -211,9 +211,9 @@
       @back="back"
     />
     <!-- 新增/编辑-自助数据集 -->
-    <set-custom
+    <CustomEditForm
       v-if="setType === 'custom'"
-      ref="setCustom"
+      ref="CustomEditForm"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -222,9 +222,9 @@
       @back="back"
     />
     <!-- 新增/编辑-json数据集 -->
-    <set-json
+    <JsonEditForm
       v-if="setType === 'json'"
-      ref="setJson"
+      ref="JsonEditForm"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -233,9 +233,9 @@
       @back="back"
     />
     <!-- 新增/编辑-存储过程数据集 -->
-    <set-stored-procedure
+    <StoredProcedureEditForm
       v-if="setType === 'storedProcedure'"
-      ref="setStoredProcedure"
+      ref="StoredProcedureEditForm"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -244,9 +244,9 @@
       @back="back"
     />
     <!-- 新增/编辑-脚本数据集 -->
-    <set-script
+    <ScriptEditForm
       v-if="setType === 'script'"
-      ref="setScript"
+      ref="ScriptEditForm"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -259,24 +259,24 @@
 
 <script>
 import TypeTree from './TypeTree.vue'
-import setDatasetType from './setDatasetType.vue'
-import setOriginal from './setOriginal.vue'
-import setCustom from './setCustom.vue'
-import setJson from './setJson.vue'
-import setStoredProcedure from './setStoredProcedure.vue'
-import setScript from './setScript.vue'
+import DatasetTypeDialog from './DatasetTypeDialog.vue'
+import OriginalEditForm from './OriginalEditForm.vue'
+import CustomEditForm from './CustomEditForm.vue'
+import JsonEditForm from './JsonEditForm.vue'
+import StoredProcedureEditForm from './StoredProcedureEditForm.vue'
+import ScriptEditForm from './ScriptEditForm.vue'
 import { datasetPage, datasetRemove } from 'packages/js/utils/datasetConfigService'
 import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'DataSetManagement',
   components: {
     TypeTree,
-    setDatasetType,
-    setOriginal,
-    setCustom,
-    setJson,
-    setStoredProcedure,
-    setScript
+    DatasetTypeDialog,
+    OriginalEditForm,
+    CustomEditForm,
+    JsonEditForm,
+    StoredProcedureEditForm,
+    ScriptEditForm
   },
   mixins: [pageMixins],
   props: {
@@ -476,7 +476,7 @@ export default {
     },
     // 新增数据集
     addDataset () {
-      this.$refs.setDatasetType.setTypeVisible = true
+      this.$refs.DatasetTypeDialog.setTypeVisible = true
     },
     selectChange () {
       this.getDataList()

@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.icon-tupian:before {
+  content: "\e8ba";
+}
+
 .icon-shouqicaidan:before {
   content: "\e622";
 }

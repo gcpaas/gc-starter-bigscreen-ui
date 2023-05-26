@@ -36,11 +36,11 @@ export default {
   display: flex;
   background-color: #303640;
   cursor: pointer;
-  width: 60px;
+  width: auto;
   justify-content: center;
   align-items: center;
   margin-right: 4px;
-  padding: 4px 0;
+  padding: 4px 10px;
   font-size: 12px;
 
   &:hover {

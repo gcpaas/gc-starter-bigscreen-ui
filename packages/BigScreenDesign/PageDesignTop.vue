@@ -12,6 +12,12 @@
     <div class="head-btn-group">
       <CusBtn
         :loading="saveAndPreviewLoading"
+        @click.native="createdImg()"
+      >
+        生成图片
+      </CusBtn>
+      <CusBtn
+        :loading="saveAndPreviewLoading"
         @click.native="execRun()"
       >
         预览
@@ -50,7 +56,7 @@
   </div>
 </template>
 <script>
-import { toJpeg } from 'html-to-image'
+import { toJpeg, toPng } from 'html-to-image'
 import { mapMutations, mapActions, mapState } from 'vuex'
 import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
@@ -196,6 +202,25 @@ export default {
     },
     showPageInfo () {
       this.$emit('showPageInfo')
+    },
+    createdImg () {
+      this.saveAndPreviewLoading = true
+      const node = document.querySelector('.render-theme-wrap')
+      toPng(node)
+        .then((dataUrl) => {
+          const link = document.createElement('a')
+          link.download = `${this.pageInfo.name}.png`
+          link.href = dataUrl
+          link.click()
+          link.addEventListener('click', () => {
+            link.remove()
+          })
+          this.saveAndPreviewLoading = false
+        })
+        .catch(() => {
+          this.$message.warning('出现未知错误，请重试')
+          this.saveAndPreviewLoading = false
+        })
     }
   }
 }

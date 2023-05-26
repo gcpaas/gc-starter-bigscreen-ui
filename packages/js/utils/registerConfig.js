@@ -78,6 +78,13 @@ function registerRouters(config, router) {
           meta: {
             title: '资源库'
           }
+        },
+        {
+          path: config?.routers?.componentUrl || '/big-screen-components',
+          component: () => import('packages/BigScreenComponentMag'),
+          meta: {
+            title: '资源管理'
+          }
         }
       ]
     },
