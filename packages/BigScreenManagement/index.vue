@@ -140,7 +140,7 @@
       :title="catalogData.id ? '编辑目录':'新增目录'"
       :visible.sync="catalogVisible"
       width="30%"
-      class="bs-dialog-wrap catalog-dialog"
+      class="bs-dialog-wrap catalog-dialog bs-el-dialog"
       @close="handleClose"
     >
       <el-form
@@ -206,7 +206,10 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="catalogVisible = false">取消</el-button>
+        <el-button
+          class="bs-el-button-default"
+          @click="catalogVisible = false"
+        >取消</el-button>
         <el-button
           type="primary"
           @click="addCatalog"

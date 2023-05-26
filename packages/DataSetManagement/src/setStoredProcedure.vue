@@ -402,20 +402,31 @@
         append-to-body
         :close-on-click-modal="false"
         custom-class="fieldDescCheck"
-        class="bs-dialog-wrap"
+        class="bs-dialog-wrap bs-el-dialog"
       >
-        <p style="line-height: 24px;padding-left: 10px;display: flex;">
+        <p style="color:var(--bs-el-text);line-height: 24px;padding-left: 10px;display: flex;">
           <i
             class="el-icon-warning"
             style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
-          />存在字段描述信息为空，请确认
+          />
+          存在字段描述信息为空，请确认
         </p>
         <span
           slot="footer"
           class="dialog-footer"
         >
-          <el-button @click="fieldDescFill">使用字段名填充</el-button>
-          <el-button @click="fieldDescEdit">进入编辑</el-button>
+          <el-button
+            class="bs-el-button-default"
+            @click="fieldDescFill"
+          >
+            使用字段名填充
+          </el-button>
+          <el-button
+            class="bs-el-button-default"
+            @click="fieldDescEdit"
+          >
+            进入编辑
+          </el-button>
           <el-button
             type="primary"
             @click="toSave"

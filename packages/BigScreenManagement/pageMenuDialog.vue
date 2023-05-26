@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    class="bs-dialog-wrap bs-page-menu-wrap"
+    class="bs-dialog-wrap bs-page-menu-wrap bs-el-dialog"
     title="新建页面"
     :visible.sync="dialogVisible"
     width="800px"

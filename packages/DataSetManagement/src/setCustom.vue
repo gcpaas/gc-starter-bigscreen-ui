@@ -7,9 +7,7 @@
   >
     <el-scrollbar class="data-set-scrollbar">
       <div class="header">
-        <el-page-header
-          class="bs-el-page-header"
-        >
+        <el-page-header class="bs-el-page-header">
           <template slot="content">
             <div class="page-header">
               <div class="page-header-left">
@@ -456,20 +454,27 @@
         append-to-body
         :close-on-click-modal="false"
         custom-class="fieldDescCheck"
-        class="bs-dialog-wrap"
+        class="bs-dialog-wrap bs-el-dialog"
       >
-        <p style="line-height: 24px;padding-left: 10px;display: flex;">
+        <p style="color:var(--bs-el-text);line-height: 24px;padding-left: 10px;display: flex;">
           <i
             class="el-icon-warning"
             style="color: #E6A23C;font-size: 24px;margin-right: 5px;"
-          />存在字段描述信息为空，请确认
+          />
+          存在字段描述信息为空，请确认
         </p>
         <span
           slot="footer"
           class="dialog-footer"
         >
-          <el-button @click="fieldDescFill">使用字段名填充</el-button>
-          <el-button @click="fieldDescEdit">进入编辑</el-button>
+          <el-button
+            class="bs-el-button-default"
+            @click="fieldDescFill"
+          >使用字段名填充</el-button>
+          <el-button
+            class="bs-el-button-default"
+            @click="fieldDescEdit"
+          >进入编辑</el-button>
           <el-button
             type="primary"
             @click="toSave"
@@ -1331,7 +1336,7 @@ export default {
 }
 
 .tree-box {
-  padding:0;
+  padding: 0;
   max-height: 270px;
 }
 
@@ -1446,6 +1451,7 @@ export default {
   padding: 16px 0;
   padding-left: 12px;
   border-bottom: 1px solid var(--bs-background-1);
+
   &::before {
     content: "";
     height: 14px;
@@ -1473,7 +1479,7 @@ export default {
 .bs-pagination {
   ::v-deep .el-input__inner {
     width: 110px !important;
-    border:none;
+    border: none;
     background: var(--bs-el-background-1);
   }
 }
