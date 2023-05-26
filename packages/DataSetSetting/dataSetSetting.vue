@@ -5,7 +5,6 @@
     title="数据集设置"
     :visible.sync="dataSetVisible"
     width="80%"
-    top="10vh"
     class="bs-dialog-wrap data-set-wrap bs-el-dialog"
   >
     <DataSetManagement
