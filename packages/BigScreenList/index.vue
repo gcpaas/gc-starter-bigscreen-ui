@@ -4,7 +4,7 @@
       <el-input
         v-model="searchKey"
         class="bs-el-input"
-        placeholder="请输入大屏名称"
+        :placeholder="type === 'bigScreenCatalog' ?'请输入大屏名称':'请输入组件名称'"
         prefix-icon="el-icon-search"
         clearable
         @clear="reSearch"
@@ -38,7 +38,7 @@
           <div class="add-big-screen-card">
             <div class="add-big-screen-card-inner">
               <div class="add-big-screen-card-text">
-                新建{{ type === 'bigScreen' ? '大屏' : '模板' }}
+                新建{{ type === 'bigScreenCatalog' ? '大屏' : '组件' }}
               </div>
             </div>
           </div>
@@ -143,6 +143,7 @@
     <!-- 新增或编辑弹窗 -->
     <EditForm
       ref="EditForm"
+      :type="pageType"
       @refreshData="reSearch"
     />
   </div>
@@ -157,7 +158,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'bigScreen' // bigScreen | template
+      default: 'bigScreenCatalog'
     },
     catalogInfo: {
       type: Object,
@@ -180,6 +181,9 @@ export default {
     },
     gridComputed () {
       return this.list.length > 2
+    },
+    pageType () {
+      return this.type === 'bigScreenCatalog' ? 'bigScreen' : 'component'
     }
   },
   watch: {
@@ -198,7 +202,8 @@ export default {
         parentCode: this.code || null,
         current: this.current,
         size: this.size,
-        searchKey: this.searchKey
+        searchKey: this.searchKey,
+        type: this.pageType
       })
         .then((data) => {
           this.list = data.list

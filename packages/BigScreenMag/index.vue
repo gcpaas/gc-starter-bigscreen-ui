@@ -1,6 +1,6 @@
 <template>
   <div class="bs-manage-main-wrap">
-    <side-menu @getPageInfo="getPageInfo" />
+    <side-menu @getPageInfo="getPageInfo" :type="type"/>
     <menu-content :catalog-info="catalogInfo" :type="type"/>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'bigScreen'
+      default: 'bigScreenCatalog'
     }
   },
   components: { SideMenu, MenuContent },

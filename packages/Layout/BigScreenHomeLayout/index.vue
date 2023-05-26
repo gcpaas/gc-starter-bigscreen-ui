@@ -74,6 +74,12 @@ export default {
           name: '资源管理',
           path: window?.BS_CONFIG?.routers?.sourceUrl || '/big-screen-source',
           icon: 'icon-tupian'
+        },
+        {
+          id: 4,
+          name: '组件库',
+          path: window?.BS_CONFIG?.routers?.componentUrl || '/big-screen-components',
+          icon: 'icon-tupian'
         }
       ]
     }
