@@ -102,10 +102,7 @@ export default {
 }
 
 @import '~packages/assets/style/bsTheme.scss';
-::v-deep .el-scrollbar{
-    height: 490px !important;
-    overflow-y: auto !important;
-  }
+
 .data-set-wrap {
   /deep/ .el-dialog__body {
     position: relative;
@@ -122,6 +119,14 @@ export default {
     }
   }
 .bs-data-set-management{
+ ::v-deep .el-scrollbar{
+  height: 490px !important;
+    overflow-y: auto !important;
+
+  }
+ ::v-deep .ztree{
+    height: auto !important;
+  }
  ::v-deep .bs-el-pagination{
     position: absolute !important;
     bottom: 0 !important;
