@@ -1,6 +1,7 @@
 <template>
   <div
     ref="bs-render-wrap"
+    :key="`${pageInfo.pageConfig.w}${pageInfo.pageConfig.h}`"
     class="bs-render-wrap design-drag-wrap render-theme-wrap"
     :style="{
       width: pageInfo.pageConfig.w + 'px',
@@ -45,7 +46,10 @@
         :config="chart"
         @openRightPanel="openRightPanel"
       >
-        <RenderCard :ref="'RenderCard' + chart.code" :config="chart" />
+        <RenderCard
+          :ref="'RenderCard' + chart.code"
+          :config="chart"
+        />
       </Configuration>
     </vdr>
     <span
@@ -86,7 +90,7 @@ export default {
       default: 0
     }
   },
-  data() {
+  data () {
     return {
       vLine: [],
       hLine: [],
@@ -110,7 +114,7 @@ export default {
   },
   watch: {
     pageConfig: {
-      handler(pageConfig) {
+      handler (pageConfig) {
         this.$nextTick(() => {
           const style = document.createElement('style')
           if (
@@ -132,7 +136,7 @@ export default {
       immediate: true
     }
   },
-  mounted() {
+  mounted () {
     this.styleSet()
     this.plotList = [...this.plotList, ...getCustomPlots()]
   },
@@ -148,7 +152,7 @@ export default {
       'setPresetLine'
     ]),
     // 获取到后端传来的主题样式并进行修改
-    styleSet() {
+    styleSet () {
       const style = document.createElement('style')
       if (this.themeJson && this.themeJson.themeCss) {
         const styleStr = this.themeJson.themeCss
@@ -160,16 +164,16 @@ export default {
         style.remove()
       }
     },
-    resetPresetLineDelay() {
+    resetPresetLineDelay () {
       setTimeout(() => {
         this.resetPresetLine()
       }, 500)
     },
     // 点击当前组件时打开右侧面板
-    openRightPanel(config) {
+    openRightPanel (config) {
       this.$emit('openRightPanel', config)
     },
-    drop(e) {
+    drop (e) {
       e.preventDefault()
       // 解决：火狐拖放后，总会默认打开百度搜索，如果是图片，则会打开图片的问题。
       e.stopPropagation()
@@ -182,7 +186,7 @@ export default {
      * 获取当前鼠标悬浮所得的组件
      * @returns {{}|*} chat | {}
      */
-    getChart() {
+    getChart () {
       const chartList = this.pageInfo.chartList
       const index = chartList.findIndex((item) => item.code === this.activeCode)
       if (index > -1) {
@@ -198,7 +202,7 @@ export default {
      * @param height
      * @param chart
      */
-    onResize(x, y, width, height, chart) {
+    onResize (x, y, width, height, chart) {
       chart.x = x
       chart.y = y
       chart.w = width
@@ -214,7 +218,7 @@ export default {
      * @param y
      * @param chart
      */
-    onDrag(x, y, chart) {
+    onDrag (x, y, chart) {
       // 防止事件冒泡
       event.stopPropagation()
       if (chart.group) {
@@ -229,7 +233,7 @@ export default {
         ...chart
       })
     },
-    resizestop(left, top, width, height, chart) {
+    resizestop (left, top, width, height, chart) {
       this.changeChartConfig({
         ...chart,
         w: width,
@@ -239,7 +243,7 @@ export default {
       })
       this.changeGridShow(false)
     },
-    dragstop(left, top, chart) {
+    dragstop (left, top, chart) {
       if (!this.freeze) {
         this.changeChartConfig({
           ...chart,
@@ -260,13 +264,13 @@ export default {
       this.freeze = false
     },
     // 辅助线
-    getRefLineParams(params) {
+    getRefLineParams (params) {
       const { vLine, hLine } = params
       this.vLine = vLine
       this.hLine = hLine
     },
     // 新增元素
-    addChart(chart, position) {
+    addChart (chart, position) {
       const { left, top } = this.$el.getBoundingClientRect()
       const _chart = JSON.parse(chart)
       let option = _chart.option
@@ -288,7 +292,7 @@ export default {
       config.key = config.code
       this.addItem(config)
     },
-    addSourceChart(chart, position) {
+    addSourceChart (chart, position) {
       const { left, top } = this.$el.getBoundingClientRect()
       const _chart = JSON.parse(chart)
       let option = _chart.option
@@ -316,7 +320,7 @@ export default {
      * @param y 组合元素当前y
      * @param chart
      */
-    dragGroupChart(x, y, chart) {
+    dragGroupChart (x, y, chart) {
       if (chart.group) {
         const diffX = x - chart.x
         const diffY = y - chart.y

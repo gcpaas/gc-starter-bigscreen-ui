@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!pageLoading" class="bs-page-design-wrap">
+  <div
+    v-if="!pageLoading"
+    class="bs-page-design-wrap"
+  >
     <PageTopSetting
       v-show="headerShow"
       ref="PageTopSetting"
@@ -78,9 +81,13 @@
         :page-info-visiable="pageInfoVisiable"
         @updateSetting="updateSetting"
         @updateDataSetting="updateDataSetting"
+        @updatePage="updatePage"
       />
       <!-- 添加资源面板 -->
-      <SourceDialog ref="SourceDialog" @getImg="setImg" />
+      <SourceDialog
+        ref="SourceDialog"
+        @getImg="setImg"
+      />
     </div>
   </div>
 </template>
@@ -129,7 +136,7 @@ export default {
       default: 'calc(100vh - 40px)'
     }
   },
-  data() {
+  data () {
     return {
       rightVisiable: false,
       pageInfoVisiable: false,
@@ -160,7 +167,7 @@ export default {
     }
   },
   watch: {
-    fitZoom(zoom) {
+    fitZoom (zoom) {
       this.zoomList[0] = {
         label: `自适应(${zoom}%)`,
         value: zoom
@@ -180,14 +187,14 @@ export default {
       zoom: (state) => state.bigScreen.zoom,
       fitZoom: (state) => state.bigScreen.fitZoom
     }),
-    offset() {
+    offset () {
       return {
         x: 220 + 50 - this.ruleStartX,
         y: 55 + 50 - this.ruleStartY
       }
     }
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     // 判断进入设计页面前是否有访问权限
     const code = to.query.code
     get(`/bigScreen/permission/check/${code}`).then((res) => {
@@ -201,7 +208,7 @@ export default {
       }
     })
   },
-  created() {
+  created () {
     this.init()
     /**
      * 以下是为了解决在火狐浏览器上推拽时弹出tab页到搜索问题
@@ -228,10 +235,10 @@ export default {
       'changeZoom'
     ]),
     // 添加资源弹窗初始化
-    initDialog() {
+    initDialog () {
       this.$refs.SourceDialog.init()
     },
-    setImg(val) {
+    setImg (val) {
       this.$refs.Render.addSourceChart(
         JSON.stringify({
           title: val.originalName,
@@ -259,7 +266,7 @@ export default {
         { x: 150, y: 100 }
       )
     },
-    init() {
+    init () {
       this.changePageLoading(true)
       this.initLayout(this.$route.query.code || this.code)
         .then(() => {
@@ -285,14 +292,14 @@ export default {
         })
     },
     // 点击当前组件时打开右侧面板
-    openRightPanel(card) {
+    openRightPanel (card) {
       this.rightVisiable = true
       this.pageInfoVisiable = false
     },
     /**
      * @description: 清空页面
      */
-    empty() {
+    empty () {
       this.$confirm('确定清空页面吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -306,17 +313,17 @@ export default {
         .catch(() => {})
     },
     // 自定义属性更新
-    updateSetting(config) {
+    updateSetting (config) {
       config.key = new Date().getTime()
       this.changeChartConfig(_.cloneDeep(config))
     },
     // 动态属性更新
-    updateDataSetting(config) {
+    updateDataSetting (config) {
       this.$refs.Render.$refs['RenderCard' + config.code][0].$refs[
         config.code
       ].updateChartData(_.cloneDeep(config))
     },
-    onSelectArea(area) {
+    onSelectArea (area) {
       const { startX, startY, endX, endY } = area
       // 计算所有在此区域中的组件，如果在此区域中，将其code添加到activeCodes数组中
       const activeCodes = this.chartList
@@ -327,19 +334,19 @@ export default {
         ?.map((chart) => chart.code)
       this.changeActiveCodes(activeCodes)
     },
-    changeStart({ x, y }) {
+    changeStart ({ x, y }) {
       this.ruleStartX = x
       this.ruleStartY = y
     },
     // 保存并预览
-    saveAndPreview() {
+    saveAndPreview () {
       this.$refs.PageTopSetting.execRun()
     },
     // 保存
-    save() {
+    save () {
       this.$refs.PageTopSetting.save('saveLoading')
     },
-    changeScreenZoom(zoom) {
+    changeScreenZoom (zoom) {
       // 自适应
       if (zoom === 'auto') {
         this.$refs.Rules.initZoom()
@@ -347,13 +354,17 @@ export default {
         this.changeZoom(zoom)
       }
     },
-    updateRightVisiable(visiable) {
+    updateRightVisiable (visiable) {
       this.rightVisiable = visiable
     },
-    showPageInfo() {
+    showPageInfo () {
       this.pageInfoVisiable = true
       this.rightVisiable = true
       this.changeActiveCode('')
+    },
+    // 页面信息更改
+    updatePage () {
+      this.$refs.Rules.initZoom()
     }
   }
 }

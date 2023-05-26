@@ -40,7 +40,7 @@
         width: innerWidth + 'px',
         height: innerHeight + 'px'
       }"
-      @scroll="debounceScroll"
+      @scroll="throttleScroll"
     >
       <div
         ref="containerRef"
@@ -59,14 +59,12 @@
 </template>
 <script>
 import SketchRule from 'vue-sketch-ruler'
-// import { dragDesignPanelMixin } from './dragDesignPanel'
 import { mapState, mapMutations } from 'vuex'
-import { debounce } from 'lodash'
+import { throttle } from 'lodash'
 export default {
   components: {
     SketchRule
   },
-  // mixins: [dragDesignPanelMixin],
   props: {
     width: {
       type: Number,
@@ -121,7 +119,13 @@ export default {
     // 缩放改变的时候，改变startX，startY
     scale (scale) {
       // 防抖调用方法
-      this.debounceScroll()
+      this.throttleScroll()
+    },
+    pageWidth (pageWidth) {
+      this.initZoom()
+    },
+    pageHeight (pageHeight) {
+      this.initZoom()
     }
   },
   computed: {
@@ -157,18 +161,20 @@ export default {
   },
   mounted () {
     // 监听屏幕改变
-    window.onresize = debounce(() => {
-      this.initRuleHeight()
-    }, 500)
-
+    this.listenSize()
     this.initRuleHeight()
-    this.debounceScroll()
+    this.throttleScroll()
   },
   methods: {
     ...mapMutations('bigScreen', [
       'changeZoom',
       'changeFitZoom'
     ]),
+    listenSize () {
+      window.onresize = throttle(() => {
+        this.initRuleHeight()
+      }, 100)
+    },
     initRuleHeight () {
       setTimeout(() => {
         const screensRect = document
@@ -189,7 +195,7 @@ export default {
           height: this.diffY > 0 ? ((this.height + this.diffY + this.thick + 30) + 'px') : (this.height + 'px')
         }
         this.initZoom()
-      }, 1000)
+      })
     },
     handleLine (lines) {
       this.lines = lines
@@ -198,10 +204,10 @@ export default {
       this.isShowReferLine = !this.isShowReferLine
       this.cornerActive = !this.cornerActive
     },
-    debounceScroll () {
-      debounce(() => {
+    throttleScroll () {
+      throttle(() => {
         this.handleScroll()
-      }, 500)()
+      }, 100)()
     },
     handleScroll () {
       const screensRect = document
@@ -229,11 +235,14 @@ export default {
       const xRadio = this.innerWidth / this.pageWidth
       // 纵向比例
       const yRadio = this.innerHeight / this.pageHeight
-      // 取最大比例，尽量大
-      const scale = Math.floor(Math.max(xRadio * 100, yRadio * 100))
-      if (scale < 100 && scale > 25) {
-        this.changeZoom(scale - 15)
-        this.changeFitZoom(scale - 15)
+      // 取最小的适应比例
+      const scale = Math.floor(Math.min(xRadio * 100, yRadio * 100))
+      if (scale < 100) {
+        this.changeZoom(scale - 10)
+        this.changeFitZoom(scale - 10)
+      } else {
+        this.changeZoom(100)
+        this.changeFitZoom(100)
       }
     }
   }
