@@ -97,6 +97,10 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+::v-deep .el-dialog{
+  margin: 0 auto 20px;
+}
+
 @import '~packages/assets/style/bsTheme.scss';
 ::v-deep .el-scrollbar{
     height: 490px !important;
