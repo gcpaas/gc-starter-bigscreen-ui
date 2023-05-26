@@ -59,14 +59,12 @@
 </template>
 <script>
 import SketchRule from 'vue-sketch-ruler'
-// import { dragDesignPanelMixin } from './dragDesignPanel'
 import { mapState, mapMutations } from 'vuex'
-import { debounce } from 'lodash'
+import { throttle } from 'lodash'
 export default {
   components: {
     SketchRule
   },
-  // mixins: [dragDesignPanelMixin],
   props: {
     width: {
       type: Number,
@@ -157,9 +155,9 @@ export default {
   },
   mounted () {
     // 监听屏幕改变
-    window.onresize = debounce(() => {
+    window.onresize = throttle(() => {
       this.initRuleHeight()
-    }, 500)
+    }, 100)
 
     this.initRuleHeight()
     this.debounceScroll()
@@ -189,7 +187,7 @@ export default {
           height: this.diffY > 0 ? ((this.height + this.diffY + this.thick + 30) + 'px') : (this.height + 'px')
         }
         this.initZoom()
-      }, 1000)
+      })
     },
     handleLine (lines) {
       this.lines = lines
@@ -199,9 +197,9 @@ export default {
       this.cornerActive = !this.cornerActive
     },
     debounceScroll () {
-      debounce(() => {
+      throttle(() => {
         this.handleScroll()
-      }, 500)()
+      }, 100)()
     },
     handleScroll () {
       const screensRect = document

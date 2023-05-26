@@ -353,7 +353,6 @@ export default {
         }
       })
       this.$message.success('更新成功')
-      // this.drawerVisible = false
     },
     // 新增数据集
     addCacheDataSet () {
