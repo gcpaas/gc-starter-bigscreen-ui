@@ -2,11 +2,11 @@
 // 分类
 const category = 'Progress'
 // 标题
-const title = '进度条'
+const title = '圆角进度条'
 // 类别， new Gauge()
 const chartType = 'Progress'
 // 用于标识，唯一，和文件夹名称一致
-const name = 'JinDuTiao'
+const name = 'YuanJiaoJinDuTiao'
 
 // 右侧配置项
 const setting = [
@@ -24,25 +24,14 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '进度条背景色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'backColor',
-    // 对应options中的字段
-    optionField: 'backColor',
-    value: '#fff',
-    tabName: 'custom'
-  },
-  {
     label: '进度条颜色',
     // 设置组件类型
-    type: 'colorPicker',
+    type: 'gradual',
     // 字段
     field: 'frontColor',
     // 对应options中的字段
     optionField: 'frontColor',
-    value: '#4a7af4',
+    value: 'l(0) 0:#5F92F9  1:#5F92F9',
     tabName: 'custom'
   },
   {
@@ -57,48 +46,46 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '边框颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'progressStyle_stroke',
-    // 对应options中的字段
-    optionField: 'progressStyle.stroke',
-    value: '#fff',
-    tabName: 'custom'
-  },
-  {
-    label: '边框宽度',
+    label: '圆角',
     // 设置组件类型
     type: 'inputNumber',
     // 字段
-    field: 'progressStyle_lineWidth',
+    field: 'progressStyle_radius',
     // 对应options中的字段
-    optionField: 'progressStyle.lineWidth',
-    value: 0,
+    optionField: 'progressStyle.radius',
+    value: 20,
     tabName: 'custom'
+  },
+]
+
+const data = [
+  {
+    percent: 0.536
   }
 ]
 
 // 数据处理脚本
 const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]' +
+  '\n\n' +
   '\noption.color = [option.frontColor, option.backColor]'
 
 // 图表配置 new Gauge('domName', option)
 const option = {
+  data,
   height: 50,
   width: 400,
   autoFit: true,
   percent: 0.8,
   barWidthRatio: 0.3,
-  backColor: '#E8EDF3',
+  backColor: 'rgba(255, 255, 255, 0)',
   frontColor: '#4a7af4',
-  color: ['#4a7af4', '#E8EDF3'],
+  color: ['#4a7af4', 'rgba(255, 255, 255, 0)'],
   progressStyle: {
     r: 10,
     // fill: 'red',
     fillOpacity: 1,
-    stroke: 'white',
+    radius: 20,
+    stroke: 'rgba(255, 255, 255, 0)',
     lineWidth: 0,
     // lineDash: [4, 5],
     // strokeOpacity: 0.7,
@@ -107,7 +94,7 @@ const option = {
     // shadowOffsetX: 5,
     // shadowOffsetY: 5,
     // cursor: 'pointer'
-  }
+  },
 }
 export default {
   category,
