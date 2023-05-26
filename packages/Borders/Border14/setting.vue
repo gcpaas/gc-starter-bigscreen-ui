@@ -38,7 +38,6 @@
             <ColorPicker
               v-model="config.customize.backgroundColor"
               placeholder="请选择背景色"
-              style="width:250px"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
