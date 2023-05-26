@@ -195,9 +195,9 @@ export default {
         },
         {
           id: 6,
-          name: 'resource',
-          title: '资源库',
-          icon: 'icon-svg',
+          name: 'source',
+          title: '资源',
+          icon: 'icon-tupian',
           components: []
         }
       ],
