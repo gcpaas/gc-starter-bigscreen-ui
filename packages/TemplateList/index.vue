@@ -121,7 +121,8 @@ export default {
         this.$confirm('使用该模板将会覆盖当前页面的所有内容，是否继续？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           const className = this.type === 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO'
           this.innerLoading = true

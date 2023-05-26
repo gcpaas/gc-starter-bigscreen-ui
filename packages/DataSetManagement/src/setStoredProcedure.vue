@@ -852,7 +852,8 @@ export default {
         this.$confirm('结果固化形式切换，表和视图处理情况不同，建议清空sql加工配置数据，是否清空数据？', '提示', {
           confirmButtonText: '是',
           cancelButtonText: '否',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           this.curingTypeChooseClear(value)
         }).catch(() => {

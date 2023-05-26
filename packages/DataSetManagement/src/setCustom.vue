@@ -933,7 +933,8 @@ export default {
         this.$confirm('结果固化形式切换，表和视图处理情况不同，建议清空sql加工配置数据，是否清空数据？', '提示', {
           confirmButtonText: '是',
           cancelButtonText: '否',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           this.curingTypeChooseClear(value)
         }).catch(() => {
@@ -996,7 +997,8 @@ export default {
         this.$confirm(`[${ChineseCode}]字段中包含汉字, 是否保继续保存？`, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           this.saveFun(formName)
         }).catch(() => {
@@ -1318,7 +1320,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
