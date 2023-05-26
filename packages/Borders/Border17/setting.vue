@@ -16,14 +16,18 @@
           label-width="90px"
         >
           <el-form-item label="边框名称">
-            <el-input
-              v-model="config.title"
-              clearable
+            <el-input v-model="config.title" clearable />
+          </el-form-item>
+          <el-form-item label="背景色一">
+            <ColorPicker
+              v-model="config.customize.gradientColor0"
+              placeholder="请选择背景色"
+              :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="背景色">
+          <el-form-item label="背景色二">
             <ColorPicker
-              v-model="config.customize.backgroundColor"
+              v-model="config.customize.gradientColor1"
               placeholder="请选择背景色"
               :predefine-colors="predefineThemeColors"
             />
@@ -71,11 +75,11 @@ export default {
       }
     }
   },
-  data () {
+  data() {
     return {}
   },
   watch: {},
-  mounted () {},
+  mounted() {},
   methods: {}
 }
 </script>

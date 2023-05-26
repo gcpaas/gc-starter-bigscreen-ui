@@ -5,7 +5,7 @@
       class="custom-border-box"
       :style="{
         height: lineHeight + 'px',
-        'background-color': backgroundColor
+        'background-image': `linear-gradient(to right, ${gradientColor0} , ${gradientColor1})`
       }"
     />
   </div>
@@ -30,8 +30,11 @@ export default {
     lineHeight() {
       return this.config.customize.height || 40
     },
-    backgroundColor() {
-      return this.config.customize.backgroundColor || '#007aff'
+    gradientColor0() {
+      return this.config.customize.gradientColor0 || ''
+    },
+    gradientColor1() {
+      return this.config.customize.gradientColor1 || ''
     }
   },
   watch: {},
@@ -57,8 +60,6 @@ export default {
   .custom-border-box {
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(131, 191, 246, 0);
-    background-color: #007aff;
     display: flex;
     justify-content: center;
     align-items: center;
