@@ -122,6 +122,11 @@ export default {
     }
   }
 .bs-data-set-management{
+ ::v-deep .bs-el-pagination{
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 12px !important;
+  }
  ::v-deep .bs-table-box {
       height: auto !important;
     }
