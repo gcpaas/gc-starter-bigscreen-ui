@@ -28,6 +28,8 @@
         :style="{
           height: 'calc(100vh - 48px)'
         }"
+        tabindex="1000"
+        @keydown="designKeydown"
       >
         <SketchDesignRuler
           ref="Rules"

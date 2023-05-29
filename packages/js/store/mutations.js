@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-29 15:51:39
+ * @LastEditTime: 2023-05-29 16:49:29
  */
 
 import Vue from 'vue'
@@ -171,7 +171,6 @@ export default {
     state.fitZoom = zoom
   },
   changeActivePos (state, { diffX, diffY }) {
-    console.log('changeActivePos', diffX, diffY)
     const activeCodes = state.activeCodes
     activeCodes?.forEach(code => {
       const chart = state.pageInfo.chartList.find(item => item.code === code)

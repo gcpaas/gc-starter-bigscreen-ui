@@ -47,25 +47,6 @@ export default {
         // 下箭头键被按下
         this.changeActivePos({ diffX: 0, diffY: 1 })
       }
-      // 删除
-      // if (event.keyCode === 8 || event.keyCode === 46) {
-      //   // 关闭默认事件
-      //   event.preventDefault()
-      //   this.$confirm('确定删除该组件吗？', '提示', {
-      //     confirmButtonText: '确定',
-      //     cancelButtonText: '取消',
-      //     type: 'warning'
-      //   }).then(() => {
-      //     // 批量删除
-      //     if (Array.isArray(this.activeCodes) && this.activeCodes.length > 0) {
-      //       this.deleteItem(this.activeCodes)
-      //     } else {
-      //       // 单个删除
-      //       this.deleteItem(this.activeChart)
-      //     }
-      //   }).catch(() => {})
-      // }
-
       // ctrl/command + s保存
       if ((event.ctrlKey || event.metaKey) && event.keyCode === 83) {
         // 关闭默认事件
@@ -82,6 +63,26 @@ export default {
       if (!event.shiftKey) {
         // 当释放 shift 键时，重置状态，表示 shift 键没有被按下
         this.changeShiftDown(false)
+      }
+    },
+    designKeydown (event) {
+      debugger
+      if (event.keyCode === 8 || event.keyCode === 46) {
+        // 关闭默认事件
+        event.preventDefault()
+        this.$confirm('确定删除该组件吗？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          // 批量删除
+          if (Array.isArray(this.activeCodes) && this.activeCodes.length > 0) {
+            this.deleteItem(this.activeCodes)
+          } else {
+            // 单个删除
+            this.deleteItem(this.activeChart)
+          }
+        }).catch(() => {})
       }
     }
   }
