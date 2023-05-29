@@ -16,6 +16,7 @@
           'dark-theme': customTheme == 'dark'
         }
       ]"
+      class="time-text-box"
       :style="
         'font-size:' +
           config.customize.fontSize +
@@ -160,5 +161,14 @@ export default {
 .auto-theme {
   background-color: transparent;
   color: #000000;
+}
+.time-text-box{
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space:nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 </style>
