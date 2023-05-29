@@ -66,7 +66,6 @@ export default {
       }
     },
     designKeydown (event) {
-      debugger
       if (event.keyCode === 8 || event.keyCode === 46) {
         // 关闭默认事件
         event.preventDefault()

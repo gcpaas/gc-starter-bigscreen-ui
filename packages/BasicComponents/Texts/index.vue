@@ -40,7 +40,7 @@ export default {
       if (data.success) {
         text = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
       } else {
-        text = config.title
+        text = '文本标签占位符'
       }
       config.option = {
         ...config.option,
