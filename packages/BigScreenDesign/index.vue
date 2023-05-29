@@ -259,7 +259,6 @@ export default {
             ...chart,
             offsetX: 0,
             group: '123'
-            // code: chart.code + randomString(8)
           }
           this.$refs.Render.addChart(newChart, { x: chart.x, y: chart.y }, true)
         })

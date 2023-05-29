@@ -271,6 +271,7 @@ export default {
     },
     // 新增元素
     addChart (chart, position) {
+      debugger
       const { left, top } = this.$el.getBoundingClientRect()
       const _chart = !chart.code ? JSON.parse(chart) : chart
       let option = _chart.option
@@ -282,8 +283,8 @@ export default {
       }
       const config = {
         ..._chart,
-        x: (position.x - left - _chart.offsetX) / this.scale,
-        y: (position.y - top - _chart.offsetX) / this.scale,
+        x: !chart.code ? (position.x - left - _chart.offsetX) / this.scale : position.x,
+        y: !chart.code ? (position.y - top - _chart.offsetX) / this.scale : position.y,
         width: 200 * this.scale,
         height: 200 * this.scale,
         code: randomString(8),
