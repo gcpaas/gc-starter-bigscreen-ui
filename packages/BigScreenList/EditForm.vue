@@ -123,11 +123,6 @@ export default {
   },
   data () {
     return {
-      resolutionRatioValue: '1920*1080',
-      resolutionRatio: {
-        w: 1920,
-        h: 1080
-      },
       resolutionRatioOptions: [
         {
           value: '1024*768',
@@ -185,15 +180,32 @@ export default {
       toDesignDisabled: false
     }
   },
-  computed: {},
+  computed: {
+    resolutionRatioValue () {
+      return this.type === 'component' ? '1024*768' : '1920*1080'
+    },
+    resolutionRatio () {
+      if (this.type === 'component') {
+        return {
+          w: 1024,
+          h: 768
+        }
+      } else {
+        return {
+          w: 1920,
+          h: 1080
+        }
+      }
+    }
+  },
   watch: {
     resolutionRatioValue (val) {
       if (val) {
         this.resolutionRatio.w = val.split('*')[0]
         this.resolutionRatio.h = val.split('*')[1]
       } else {
-        this.resolutionRatio.w = 1920
-        this.resolutionRatio.h = 1080
+        this.resolutionRatio.w = this.type === 'component' ? 1024 : 1920
+        this.resolutionRatio.h = this.type === 'component' ? 768 : 1080
       }
     }
   },
@@ -245,16 +257,16 @@ export default {
           this.$set(this.dataForm, 'orderNum', 0)
           this.$set(this.dataForm, 'pageTemplateId', '')
           this.$set(this.dataForm, 'pageConfig', {
-            w: '1920',
-            h: '1080',
+            w: this.type === 'component' ? 1024 : 1920,
+            h: this.type === 'component' ? 768 : 1080,
             bgColor: '#151a26',
             opacity: 100,
             customTheme: 'auto',
             bg: null,
             fitMode: 'auto'
           })
-          this.resolutionRatio.w = '1920'
-          this.resolutionRatio.h = '1080'
+          this.resolutionRatio.w = this.type === 'component' ? 1024 : 1920
+          this.resolutionRatio.h = this.type === 'component' ? 768 : 1080
         }
       })
     },

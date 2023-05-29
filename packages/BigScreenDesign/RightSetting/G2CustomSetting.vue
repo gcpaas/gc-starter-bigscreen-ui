@@ -10,10 +10,7 @@
     >
       <div class="lc-field-body">
         <div class="">
-          <el-form-item
-            label="标题"
-            label-width="100px"
-          >
+          <el-form-item label="标题" label-width="100px">
             <el-input
               v-model="config.title"
               placeholder="请输入标题"
@@ -22,7 +19,9 @@
           </el-form-item>
           <PosWhSetting :config="config" />
           <template
-            v-for="(setting, index) in config.setting.filter(item => item.tabName === 'custom')"
+            v-for="(setting, index) in config.setting.filter(
+              (item) => item.tabName === 'custom'
+            )"
           >
             <el-form-item
               :key="index"
@@ -55,7 +54,14 @@
                   v-model="colorScheme"
                   @update="updateColorScheme"
                 />
-                <div style="display: flex;align-items: center;height: 42px;flex-wrap: wrap">
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    height: 42px;
+                    flex-wrap: wrap;
+                  "
+                >
                   <el-color-picker
                     v-for="(colorItem, index) in colors"
                     :key="index"
@@ -66,22 +72,22 @@
                   />
                   <span
                     class="el-icon-circle-plus-outline"
-                    style="color: #007AFF;font-size: 20px"
+                    style="color: #007aff; font-size: 20px"
                     @click="addColor"
                   />
                   <span
                     v-if="colors.length"
                     class="el-icon-remove-outline"
-                    style="color: #ea0b30;font-size: 20px"
+                    style="color: #ea0b30; font-size: 20px"
                     @click="delColor()"
                   />
                 </div>
               </template>
-<!--              <color-picker-->
-<!--                v-else-if="setting.type === 'colorPicker'"-->
-<!--                v-model="setting.value"-->
-<!--                style="width: 100%;display: grid;"-->
-<!--              />-->
+              <!--              <color-picker-->
+              <!--                v-else-if="setting.type === 'colorPicker'"-->
+              <!--                v-model="setting.value"-->
+              <!--                style="width: 100%;display: grid;"-->
+              <!--              />-->
               <el-color-picker
                 v-else-if="setting.type === 'colorPicker'"
                 v-model="setting.value"
@@ -104,10 +110,7 @@
                 v-model="setting.value"
               >
                 <template v-for="(opt, optIndex) in setting.options">
-                  <el-radio-button
-                    :key="optIndex"
-                    :label="opt.value"
-                  >
+                  <el-radio-button :key="optIndex" :label="opt.value">
                     {{ opt.label }}
                   </el-radio-button>
                 </template>
@@ -143,7 +146,7 @@
 <script>
 import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
-import ColorPicker from 'packages/ColorPicker/index.vue'
+// import ColorPicker from 'packages/ColorPicker/index.vue'
 import PaddingSetting from 'packages/BigScreenDesign/RightSetting/PaddingSetting/index.vue'
 import GradualSetting from 'packages/BigScreenDesign/RightSetting/GradualSetting/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
@@ -151,45 +154,41 @@ export default {
   name: 'CustomComponentSetting',
   components: {
     ColorSelect,
-    ColorPicker,
+    // ColorPicker,
     PaddingSetting,
     GradualSetting,
     PosWhSetting
   },
   mixins: [chartSettingMixins],
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
   computed: {
     config: {
-      get () {
+      get() {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set (val) {
+      set(val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
     },
     appCode: {
-      get () {
+      get() {
         return this.$store.state.bigScreen.pageInfo.appCode
       }
     },
-    pageCode () {
+    pageCode() {
       return this.$route.query.code
     }
   },
   watch: {},
-  mounted () {
-
-  },
-  methods: {
-  }
+  mounted() {},
+  methods: {}
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~packages/assets/style/settingWrap.scss";
+@import '~packages/assets/style/settingWrap.scss';
 // 筛选条件的按钮样式
 .add-filter-box {
   position: relative;
@@ -202,8 +201,7 @@ export default {
     top: 0;
   }
 }
-::v-deep .el-color-picker__trigger{
-    border-color: var(--bs-el-border);
-  }
-
+::v-deep .el-color-picker__trigger {
+  border-color: var(--bs-el-border);
+}
 </style>
