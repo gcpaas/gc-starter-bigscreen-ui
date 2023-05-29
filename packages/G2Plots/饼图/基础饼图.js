@@ -146,13 +146,14 @@ const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.
 const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   data,
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
+  angle: 0.5,
   angleField: 'value',
   colorField: 'type',
   radius: 0.9,
-  legend: {
-    // 图例
-    position: 'right'
-  },
+  legend: false,
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   label: {
     type: 'inner',
