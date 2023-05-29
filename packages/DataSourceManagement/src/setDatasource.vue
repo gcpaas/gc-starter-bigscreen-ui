@@ -224,8 +224,7 @@ export default {
       sourceTypeList: [
         { name: 'Mysql', code: 'mysql' },
         { name: 'ClickHouse', code: 'clickhouse' },
-        { name: 'TeleDB', code: 'teledb' },
-        { name: 'TelePG', code: 'telepg' },
+        { name: 'PostgreSQL', code: 'postgresql' },
         { name: 'Oracle', code: 'oracle' }
       ],
       driverCLassList: [
@@ -235,7 +234,7 @@ export default {
         { code: 'hsqlDriver', name: 'org.hsqldb.jdbc.JDBCDriver' },
         { code: 'ibmdb2Driver', name: 'com.ibm.db2.jcc.DB2Driver' },
         { code: 'sqlserverDriver', name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver' },
-        { code: 'telepgDriver', name: 'org.postgresql.Driver' },
+        { code: 'postgresqlDriver', name: 'org.postgresql.Driver' },
         { code: 'hiveDriver', name: 'org.apache.hive.jdbc.HiveDriver' }
       ],
       dataForm: {
@@ -377,12 +376,7 @@ export default {
       this.dataForm.coding = '自动'
       if (!this.dataForm.id && name) {
         let type = ''
-        if (name === 'TeleDB') {
-          // TeleDB和Mysql驱动一致
-          type = 'Mysql'
-        } else {
-          type = name
-        }
+        type = name
         this.sourceTypeList.forEach(r => {
           if (type === r.name) {
             const code = r.code + 'Driver'
@@ -461,9 +455,6 @@ export default {
     },
     // 保存
     submitForm () {
-      if (this.dataForm.sourceType === 'TeleDB') {
-        this.dataForm.sourceType = 'Mysql'
-      }
       // mysql 需要包含useOldAliasMetadataBehavior
       // if (this.dataForm.sourceType == 'Mysql') {
       //   if (this.dataForm.url.indexOf('useOldAliasMetadataBehavior') == -1) {
