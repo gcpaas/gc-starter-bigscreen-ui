@@ -29,18 +29,38 @@
             :predefine-colors="predefineThemeColors"
           />
         </el-form-item>
-        <el-form-item label="背景色">
+        <el-form-item label="背景色一">
           <ColorPicker
-            v-model="config.customize.backgroundColor"
+            v-model="config.customize.gradientColor0"
             placeholder="请选择背景色"
             :predefine-colors="predefineThemeColors"
           />
+        </el-form-item>
+        <el-form-item label="背景色二">
+          <ColorPicker
+            v-model="config.customize.gradientColor1"
+            placeholder="请选择背景色"
+            :predefine-colors="predefineThemeColors"
+          />
+        </el-form-item>
+        <el-form-item label="渐变色方向">
+          <el-select
+            v-model="config.customize.gradientDirection"
+            popper-class="bs-el-select"
+            class="bs-el-select"
+          >
+            <el-option
+              v-for="item in gradientDirection"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="字体颜色">
           <ColorPicker
             v-model="config.customize.fontColor"
             placeholder="请选择背景色"
-
             :predefine-colors="predefineThemeColors"
           />
         </el-form-item>
@@ -64,6 +84,15 @@
             class="bs-el-input-number"
             :min="400"
             :step="1"
+          />
+        </el-form-item>
+        <el-form-item label="不透明度" label-width="100px">
+          <el-slider
+            v-model="config.customize.opacity"
+            class="bs-slider bs-el-input-number"
+            :min="0"
+            :max="100"
+            show-input
           />
         </el-form-item>
       </div>
@@ -100,7 +129,42 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      gradientDirection: [
+        {
+          label: '从左到右',
+          value: 'to right'
+        },
+        {
+          label: '从右到左',
+          value: 'to left'
+        },
+        {
+          label: '从上到下',
+          value: 'to bottom'
+        },
+        {
+          label: '从下到上',
+          value: 'to top'
+        },
+        {
+          label: '从左上到右下',
+          value: 'to bottom right'
+        },
+        {
+          label: '从右上到左下',
+          value: 'to bottom left'
+        },
+        {
+          label: '从左下到右上',
+          value: 'to top right'
+        },
+        {
+          label: '从右下到左上',
+          value: 'to top left'
+        }
+      ]
+    }
   },
   watch: {},
   mounted() {},

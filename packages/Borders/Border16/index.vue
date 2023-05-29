@@ -5,7 +5,10 @@
       class="custom-border-box"
       :style="{
         height: lineHeight + 'px',
-        'background-image': `linear-gradient(to right, ${gradientColor0} , ${gradientColor1})`
+        opacity: opacity / 100,
+        'background-image': `linear-gradient(to right, ${
+          gradientColor0 ? gradientColor0 : gradientColor1
+        } , ${gradientColor1 ? gradientColor1 : gradientColor0})`
       }"
     />
   </div>
@@ -35,6 +38,9 @@ export default {
     },
     gradientColor1() {
       return this.config.customize.gradientColor1 || ''
+    },
+    opacity() {
+      return this.config.customize.opacity || 100
     }
   },
   watch: {},

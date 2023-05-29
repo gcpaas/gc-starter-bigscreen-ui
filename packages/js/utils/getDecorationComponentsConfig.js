@@ -1,8 +1,9 @@
 /*
  * @description: 得到装饰组件配置
  */
-export default function getComponentConfig (type, classNameType) {
-  const className = 'com.gccloud.bigscreen.core.module.chart.components.ScreenDecorationChart'
+export default function getComponentConfig(type, classNameType) {
+  const className =
+    'com.gccloud.bigscreen.core.module.chart.components.ScreenDecorationChart'
   switch (type) {
     case 'decoration1':
       return {
@@ -75,6 +76,7 @@ export default function getComponentConfig (type, classNameType) {
         title: '装饰四(旋转)',
         img: require('packages/Decorations/images/04_reverse.png'),
         component: null,
+        className,
         w: 320,
         h: 30,
         x: 0,
@@ -139,6 +141,7 @@ export default function getComponentConfig (type, classNameType) {
         title: '装饰八',
         img: require('packages/Decorations/images/08.png'),
         component: null,
+        className,
         w: 150,
         h: 150,
         x: 0,

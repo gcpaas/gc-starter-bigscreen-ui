@@ -32,6 +32,7 @@
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
+          
           <el-form-item label="宽度">
             <el-input-number
               v-model="config.customize.width"
@@ -39,6 +40,15 @@
               :min="0"
               :max="30"
               :step="1"
+            />
+          </el-form-item>
+          <el-form-item label="不透明度" label-width="100px">
+            <el-slider
+              v-model="config.customize.opacity"
+              class="bs-slider bs-el-input-number"
+              :min="0"
+              :max="100"
+              show-input
             />
           </el-form-item>
         </el-form>
@@ -76,7 +86,9 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+
+    }
   },
   watch: {},
   mounted() {},
