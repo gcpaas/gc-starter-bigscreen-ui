@@ -58,9 +58,12 @@ const setting = [
   }
 ]
 
+// 配置处理脚本
+const optionHandler = 'option.color = [option.frontColor, option.backColor]'
+
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]' +
-  '\noption.color = [option.frontColor, option.backColor]'
+const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
+
 // 图表配置 new Gauge('domName', option)
 const option = {
   height: 50,
@@ -88,5 +91,6 @@ export default {
   name,
   option,
   setting,
-  dataHandler
+  dataHandler,
+  optionHandler
 }

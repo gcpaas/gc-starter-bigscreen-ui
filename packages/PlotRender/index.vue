@@ -164,6 +164,18 @@ export default {
           })
         }
       })
+      if (this.config.optionHandler) {
+        try {
+          // eslint-disable-next-line no-unused-vars
+          const option = config.option
+          // eslint-disable-next-line no-unused-vars
+          const setting = config.setting
+          // 此处函数处理config
+          eval(this.config.optionHandler)
+        } catch (e) {
+          console.error(e)
+        }
+      }
       if (data.success) {
         data = data.data
         const option = config.option
