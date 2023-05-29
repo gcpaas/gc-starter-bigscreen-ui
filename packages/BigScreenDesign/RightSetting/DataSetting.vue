@@ -654,7 +654,7 @@ export default {
         this.config.paramsList = this.params
         if (type === 'treeTable') {
           const enumeration = {
-            dataSetType: '', // 数据集类型
+            dataSetType: '1', // 数据集类型
             dataSetKey: '', // 数据集
             itemKeyName: '', // 选项显示字段
             itemValueName: '', // 选项value字段

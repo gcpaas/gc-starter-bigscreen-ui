@@ -46,30 +46,43 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
     label: '图例位置',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'legend_position',
-    // 对应options中的字段
-    optionField: 'legend.position',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
     // 是否多选
     multiple: false,
     value: 'top',
     tabName: 'custom',
     options: [
       { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
       { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
       { label: '右侧', value: 'right' },
-      { label: '底部', value: 'bottom' }
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
     ]
   },
   {
-    label: '数据标签显隐',
+    label: '显示数据标签',
     type: 'switchNumber', // 设置组件类型
     field: 'label_style_opacity', // 字段
     optionField: 'label.style.opacity', // 对应options中的字段
-    value: 1,
+    value: 0,
     tabName: 'custom'
   },
   {
@@ -138,7 +151,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_grid_line_style_lineWidth', // 字段
     optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 1,
+    value: 0,
     tabName: 'custom'
   },
   {
@@ -244,16 +257,16 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
 // 图表配置 new Line('domName', option)
 const option = {
   data,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
-  legend: {
-    // 图例
-    position: 'top'
-  },
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
+  legend: false,
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   isGroup: true,
   xField: '月份',
@@ -271,7 +284,7 @@ const option = {
       line: {
         style: {
           stroke: '#d0d0d0',
-          lineWidth: 1,
+          lineWidth: 0,
           strokeOpacity: 0.7
         }
       }
