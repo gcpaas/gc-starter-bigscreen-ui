@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     option () {
-      return { ...this.config.customize, data: this.config.option.data, header: this.config.option.header, columnWidth: this.config.option.columnWidth, align: this.config.option.align }
+      return { ...this.config.customize, data: this.config.option?.data, header: this.config.option?.header, columnWidth: this.config.option?.columnWidth, align: this.config.option?.align }
     }
   },
   watch: {

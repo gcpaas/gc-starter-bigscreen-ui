@@ -44,7 +44,7 @@ export default {
 }
 
 // 处理后端返回的数据
-function handleResData (data) {
+export function handleResData (data) {
   let pageInfo = {}
   if (data.pageConfig) {
     pageInfo = data
