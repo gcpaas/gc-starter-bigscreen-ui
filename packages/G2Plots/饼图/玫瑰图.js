@@ -55,14 +55,18 @@ const setting = [
     value: 'top',
     tabName: 'custom',
     options: [
-      { label: '左上', value: 'top-left' },
-      { label: '顶部居中', value: 'top' },
-      { label: '右上', value: 'top-right' },
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
       { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
       { label: '右侧', value: 'right' },
-      { label: '左下', value: 'bottom-left' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
       { label: '底部', value: 'bottom' },
-      { label: '左下', value: 'bottom-right' }
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
     ]
   },
   {
@@ -74,6 +78,17 @@ const setting = [
     // 对应options中的字段
     optionField: 'color',
     value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom'
+  },
+  {
+    label: '半径',
+    // 设置组件类型
+    type: 'slider',
+    // 字段
+    field: 'radius',
+    // 对应options中的字段
+    optionField: 'radius',
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -107,7 +122,7 @@ const option = {  data,
   xField: 'type',
   yField: 'value',
   seriesField: 'type',
-  radius: 0.9,
+  radius: 1,
   color: ['#5B8FF9', '#61DDAA', '#65789B', '#F6BD16', '#7262fd', '#78d9eb', '#9661bc', '#f6903d', '#2f9e9a', '#f08aac'],
   label: {
     offset: -15,
