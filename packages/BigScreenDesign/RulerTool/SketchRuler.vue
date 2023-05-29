@@ -232,14 +232,14 @@ export default {
     // 保证画布能完整展示大屏
     initZoom () {
       // 横向比例
-      const xRadio = this.innerWidth / this.pageWidth
+      const xRadio = this.innerWidth / (this.pageWidth + 120)
       // 纵向比例
-      const yRadio = this.innerHeight / this.pageHeight
+      const yRadio = this.innerHeight / (this.pageHeight + 120)
       // 取最小的适应比例
       const scale = Math.floor(Math.min(xRadio * 100, yRadio * 100))
       if (scale < 100) {
-        this.changeZoom(scale - 10)
-        this.changeFitZoom(scale - 10)
+        this.changeZoom(scale)
+        this.changeFitZoom(scale)
       } else {
         this.changeZoom(100)
         this.changeFitZoom(100)

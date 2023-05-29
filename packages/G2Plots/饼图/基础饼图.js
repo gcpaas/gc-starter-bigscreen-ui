@@ -96,7 +96,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'label.labelLine.style.opacity',
     value: '0.6',
-    tabName: 'custom'
+    tabName: 'custom',
+    step: 1
   },
   {
     label: '颜色配置',

@@ -18,7 +18,10 @@ export default {
   computed: {
     ...mapState({
       pageCode: state => state.bigScreen.pageInfo.code
-    })
+    }),
+    isPreview () {
+      return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
+    }
   },
   mounted () {
     this.chartInit()
@@ -43,11 +46,15 @@ export default {
           this.newChart(this.config.option)
         } else {
           // 根据数据集初始化的组件
-          this.getCurrentOption().then(({ config, data }) => {
-            config = this.buildOption(config, data)
-            this.changeChartConfig(config)
-            this.newChart(config.option)
-          })
+          if (this.isPreview) {
+            this.getCurrentOption().then(({ config, data }) => {
+              config = this.buildOption(config, data)
+              this.changeChartConfig(config)
+              this.newChart(config.option)
+            })
+          } else {
+            this.updateChartData(this.config)
+          }
         }
       } else {
         this.newChart(this.config.option)
@@ -128,10 +135,10 @@ export default {
         config = this.buildOption(config, res)
         config.key = new Date().getTime()
         this.changeChartConfig(config)
-        this.$message.success('更新成功')
+        // this.$message.success('更新成功')
       }).catch((err) => {
         console.error(err)
-        this.$message.error('更新失败')
+        // this.$message.error('更新失败')
       })
     },
     newChart () {

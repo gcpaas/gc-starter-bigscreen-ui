@@ -90,6 +90,7 @@
                 v-else-if="setting.type === 'inputNumber'"
                 v-model="setting.value"
                 class="bs-el-input-number"
+                :step="setting.step"
               />
               <el-radio-group
                 v-else-if="setting.type === 'radio'"

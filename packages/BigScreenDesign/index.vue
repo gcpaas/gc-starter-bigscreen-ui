@@ -18,6 +18,7 @@
         :height="height"
         @openRightPanel="openRightPanel"
         @openResource="initDialog"
+        @openComponent="openComponent"
       />
       <!-- 中间组件展示面板 -->
       <div
@@ -88,11 +89,16 @@
         ref="SourceDialog"
         @getImg="setImg"
       />
+      <ComponentDialog
+        ref="componentDialog"
+        @setComponent="setComponent"
+      />
     </div>
   </div>
 </template>
 <script>
 import SourceDialog from './SourceDialog/index.vue'
+import ComponentDialog from './ComponentDialog/index.vue'
 import {
   dataConfig,
   settingConfig
@@ -105,11 +111,12 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 import SketchDesignRuler from 'packages/BigScreenDesign/RulerTool/SketchRuler.vue'
 import { G2 } from '@antv/g2plot'
 import multipleSelectMixin from 'packages/js/mixins/multipleSelectMixin'
-import { getThemeConfig } from 'packages/js/api/bigScreenApi'
+import { getThemeConfig, getScreenInfo } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
 import { get } from 'packages/js/utils/http'
 import { isFirefox } from 'packages/js/utils/userAgent'
+import { handleResData } from 'packages/js/store/actions.js'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -119,7 +126,8 @@ export default {
     SketchDesignRuler,
     MouseSelect,
     SettingPanel,
-    SourceDialog
+    SourceDialog,
+    ComponentDialog
   },
   mixins: [multipleSelectMixin],
   props: {
@@ -237,6 +245,24 @@ export default {
     // 添加资源弹窗初始化
     initDialog () {
       this.$refs.SourceDialog.init()
+    },
+    openComponent () {
+      this.$refs.componentDialog.init()
+    },
+    // 从组件库添加组件模板到当前画布
+    setComponent (component) {
+      // 根据component获取页面详情
+      getScreenInfo(component.code).then(res => {
+        const pageInfo = handleResData(res)
+        pageInfo.chartList.forEach((chart) => {
+          const newChart = {
+            ...chart,
+            offsetX: 0,
+            group: '123'
+          }
+          this.$refs.Render.addChart(newChart, { x: chart.x, y: chart.y }, true)
+        })
+      })
     },
     setImg (val) {
       this.$refs.Render.addSourceChart(

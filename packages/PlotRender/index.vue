@@ -53,6 +53,9 @@ export default {
         prefix = 'management_chart_'
       }
       return prefix + this.config.code
+    },
+    isPreview () {
+      return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
     }
   },
   created () {
@@ -105,17 +108,21 @@ export default {
         this.chart.update(config.option)
       } else {
         // 非缓存数据集，从list接口初始化的组件
-        this.getCurrentOption().then(({ data, config }) => {
-          if (data.success) {
-            // 成功后更新数据
-            config = this.buildOption(config, data)
-            this.changeChartConfig(config)
-            this.chart.update(config.option)
-          } else {
-            config.option.data = this.plotList.find(plot => plot.name === config.name)?.option.data
-            this.chart.update(config.option)
-          }
-        })
+        if (this.isPreview) {
+          this.getCurrentOption().then(({ data, config }) => {
+            if (data.success) {
+              // 成功后更新数据
+              config = this.buildOption(config, data)
+              this.changeChartConfig(config)
+              this.chart.update(config.option)
+            } else {
+              config.option.data = this.plotList.find(plot => plot.name === config.name)?.option.data
+              this.chart.update(config.option)
+            }
+          })
+        } else {
+          this.updateChartData(this.config)
+        }
       }
     },
     /**
