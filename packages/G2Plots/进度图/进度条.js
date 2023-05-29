@@ -23,28 +23,28 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  {
-    label: '进度条背景色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'targetFill',
-    // 对应options中的字段
-    optionField: 'targetFill',
-    value: '#fff',
-    tabName: 'custom'
-  },
-  {
-    label: '进度条颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'currentFill',
-    // 对应options中的字段
-    optionField: 'currentFill',
-    value: '#4a7af4',
-    tabName: 'custom'
-  },
+  // {
+  //   label: '进度条背景色',
+  //   // 设置组件类型
+  //   type: 'colorPicker',
+  //   // 字段
+  //   field: 'backColor',
+  //   // 对应options中的字段
+  //   optionField: 'backColor',
+  //   value: '#fff',
+  //   tabName: 'custom'
+  // },
+  // {
+  //   label: '进度条颜色',
+  //   // 设置组件类型
+  //   type: 'colorPicker',
+  //   // 字段
+  //   field: 'frontColor',
+  //   // 对应options中的字段
+  //   optionField: 'frontColor',
+  //   value: '#4a7af4',
+  //   tabName: 'custom'
+  // },
   {
     label: '不透明度',
     // 设置组件类型
@@ -82,30 +82,7 @@ const setting = [
 
 // 数据处理脚本
 const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]' +
-  '\noption.color = [option.frontColor, option.backColor];const currentFill = setting.find(settingItem=>settingItem.field === \'currentFill\').value;const targetFill = setting.find(settingItem=>settingItem.field === \'targetFill\').value;' +
-  `option.progressStyle = ({ percent, type }) => {
-    if (type === 'current') {
-      return {
-        // 进度条百分比部分样式
-        fill:currentFill,
-        radius: [0, 0, 30, 30],
-        fillOpacity: 1,
-        stroke: 'white',
-        lineWidth: 0,
-        shadowColor: 'black'
-      }
-    }
-    return {
-      // 进度条背景部分样式
-      fill: targetFill,
-      radius: [30, 30, 0, 0],
-      fillOpacity: 1,
-      stroke: 'white',
-      lineWidth: 0,
-      shadowColor: 'black'
-    }
-  }`
-
+  '\noption.color = [option.frontColor, option.backColor]'
 // 图表配置 new Gauge('domName', option)
 const option = {
   height: 50,
@@ -113,24 +90,18 @@ const option = {
   autoFit: true,
   percent: 0.8,
   barWidthRatio: 0.3,
-  backColor: '#E8EDF3',
+  backColor: '#fff',
   frontColor: '#4a7af4',
-  color: ['#4a7af4', '#E8EDF3'],
+  color: ['#4a7af4', '#fff'],
   progressStyle: {
     current: {
       style: {
-        radius: [0, 0, 30, 30],
         fillOpacity: 1,
-        stroke: 'white',
         lineWidth: 0,
         shadowColor: 'black'
       }
     }
-  },
-  currentRadius: '30',
-  targetRadius: '30',
-  currentFill: '#4775E9', // 占比颜色
-  targetFill: '#ffffff'// 背景色
+  }
 }
 export default {
   category,
