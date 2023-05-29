@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-23 19:08:38
+ * @LastEditTime: 2023-05-29 15:51:39
  */
 
 import Vue from 'vue'
@@ -169,6 +169,28 @@ export default {
   },
   changeFitZoom (state, zoom) {
     state.fitZoom = zoom
+  },
+  changeActivePos (state, { diffX, diffY }) {
+    console.log('changeActivePos', diffX, diffY)
+    const activeCodes = state.activeCodes
+    activeCodes?.forEach(code => {
+      const chart = state.pageInfo.chartList.find(item => item.code === code)
+      if (chart) {
+        chart.x += diffX
+        chart.y += diffY
+      }
+      const index = state.pageInfo.chartList.findIndex(
+        item => item.code === chart.code
+      )
+      if (index < 0) {
+        return
+      }
+      Vue.set(state.pageInfo.chartList, index, {
+        ...state.pageInfo.chartList[index],
+        ...chart
+      })
+      changePresetLine(state, chart)
+    })
   }
 }
 function changeZIndexFuc (state, list) {

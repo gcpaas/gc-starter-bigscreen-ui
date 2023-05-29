@@ -15,9 +15,25 @@ export default {
   },
   methods: {
     ...mapMutations('bigScreen', {
-      changeShiftDown: 'changeShiftDown'
+      changeShiftDown: 'changeShiftDown',
+      changeActivePos: 'changeActivePos'
     }),
     keydown (event) {
+      // 关闭默认事件
+      event.preventDefault()
+      if (event.keyCode === 37) {
+        // 左箭头键被按下
+        this.changeActivePos({ diffX: -1, diffY: 0 })
+      } else if (event.keyCode === 38) {
+        // 上箭头键被按下
+        this.changeActivePos({ diffX: 0, diffY: 1 })
+      } else if (event.keyCode === 39) {
+        // 右箭头键被按下
+        this.changeActivePos({ diffX: 1, diffY: 0 })
+      } else if (event.keyCode === 40) {
+        // 下箭头键被按下
+        this.changeActivePos({ diffX: 0, diffY: -1 })
+      }
       if (event.shiftKey) {
         // 当按下 shift 键时，设置状态，表示 shiftKey 键被按下
         this.changeShiftDown(true)
