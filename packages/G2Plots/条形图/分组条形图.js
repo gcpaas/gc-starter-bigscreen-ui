@@ -64,6 +64,65 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '上方', value: 'top' },
+      { label: '左上方', value: 'top-left' },
+      { label: '右上方', value: 'top-right' },
+      { label: '左方', value: 'left' },
+      { label: '左上方', value: 'left-top' },
+      { label: '左下方', value: 'left-bottom' },
+      { label: '右方', value: 'right' },
+      { label: '右上方', value: 'right-top' },
+      { label: '右下方', value: 'right-bottom' },
+      { label: '下方', value: 'bottom' },
+      { label: '左下方', value: 'bottom-left' },
+      { label: '右下方', value: 'bottom-right' }
+    ]
+  },
+  {
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_grid_line_style_stroke', // 字段
+    optionField: 'xAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'xAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
+    tabName: 'custom'
+  },
+  {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom'
+  },
+  {
     label: '圆角设置',
     // 设置组件类型
     type: 'inputNumber',
@@ -71,7 +130,7 @@ const setting = [
     field: 'radiusNum',
     // 对应options中的字段
     optionField: 'radiusNum',
-    value: 0,
+    value: 10,
     tabName: 'custom'
   },
   {
@@ -139,7 +198,8 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = 'const radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
+const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
+  '\nconst radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -148,17 +208,31 @@ const option = {
   isGroup: true,
   xField: 'value',
   yField: 'label',
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
   /** 自定义颜色 */
-  // color: ['#1383ab', '#c52125'],
+  color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   seriesField: 'type',
+  legend: false,
   barStyle: {
-    radius: [0, 0, 0, 0]// 设置条形图的圆角
+    radius: [10, 10, 0, 0]// 设置条形图的圆角
   },
   radiusNum: 0, // 设置条形图的圆角的中间值
   yAxis: {
     label: {
       style: {
         opacity: 1
+      }
+    }
+  },
+  xAxis: {
+    grid: {
+      line: {
+        style: {
+          stroke: '#d0d0d0',
+          lineWidth: 0
+        }
       }
     }
   }

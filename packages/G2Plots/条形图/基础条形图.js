@@ -88,54 +88,18 @@ const setting = [
     value: 'top',
     tabName: 'custom',
     options: [
-      {
-        label: '上方',
-        value: 'top'
-      },
-      {
-        label: '左上方',
-        value: 'top-left'
-      },
-      {
-        label: '右上方',
-        value: 'top-right'
-      },
-      {
-        label: '左方',
-        value: 'left'
-      },
-      {
-        label: '左上方',
-        value: 'left-top'
-      },
-      {
-        label: '左下方',
-        value: 'left-bottom'
-      },
-      {
-        label: '右方',
-        value: 'right'
-      },
-      {
-        label: '右上方',
-        value: 'right-top'
-      },
-      {
-        label: '右下方',
-        value: 'right-bottom'
-      },
-      {
-        label: '下方',
-        value: 'bottom'
-      },
-      {
-        label: '左下方',
-        value: 'bottom-left'
-      },
-      {
-        label: '右下方',
-        value: 'bottom-right'
-      }
+      { label: '上方', value: 'top' },
+      { label: '左上方', value: 'top-left' },
+      { label: '右上方', value: 'top-right' },
+      { label: '左方', value: 'left' },
+      { label: '左上方', value: 'left-top' },
+      { label: '左下方', value: 'left-bottom' },
+      { label: '右方', value: 'right' },
+      { label: '右上方', value: 'right-top' },
+      { label: '右下方', value: 'right-bottom' },
+      { label: '下方', value: 'bottom' },
+      { label: '左下方', value: 'bottom-left' },
+      { label: '右下方', value: 'bottom-right' }
     ]
   },
   {
@@ -162,7 +126,7 @@ const setting = [
     field: 'radiusNum',
     // 对应options中的字段
     optionField: 'radiusNum',
-    value: 0,
+    value: 10,
     tabName: 'custom'
   },
   {
@@ -197,7 +161,8 @@ const data = [
 
 // 数据处理脚本
 const dataHandler = 'option.seriesField = setting.find(settingItem=>settingItem.field === \'yField\').value' +
-  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;const radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
+  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
+  '\nconst radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -212,7 +177,7 @@ const option = {
   legendPosition: 'top',
   legend: false,
   barStyle: {
-    radius: [0, 0, 0, 0]// 设置条形图的圆角
+    radius: [10, 10, 0, 0]// 设置条形图的圆角
   },
   radiusNum: 0, // 设置条形图的圆角的中间值
   yAxis: {
