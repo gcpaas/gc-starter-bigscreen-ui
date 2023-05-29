@@ -6,41 +6,22 @@
         src="~packages/BigScreenDesign/images/app.png"
         alt="返回"
         @click="backManagement"
-      >
+      />
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
-      <CusBtn
-        :loading="saveAndPreviewLoading"
-        @click.native="createdImg()"
-      >
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="createdImg()">
         生成图片
       </CusBtn>
-      <CusBtn
-        :loading="saveAndPreviewLoading"
-        @click.native="execRun()"
-      >
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="execRun()">
         预览
       </CusBtn>
-      <CusBtn
-        :loading="saveLoading"
-        @click="save('saveLoading')"
-      >
+      <CusBtn :loading="saveLoading" @click="save('saveLoading')">
         保存
       </CusBtn>
-      <CusBtn
-        @click="empty"
-      >
-        清空
-      </CusBtn>
-      <CusBtn
-        @click="showPageInfo"
-      >
-        设置
-      </CusBtn>
-      <CusBtn
-        @click="updateRightVisiable"
-      >
+      <CusBtn @click="empty"> 清空 </CusBtn>
+      <CusBtn @click="showPageInfo"> 设置 </CusBtn>
+      <CusBtn @click="updateRightVisiable">
         <i
           class="iconfont-bigscreen"
           :class="rightFold ? 'icon-zhankaicaidan' : 'icon-shouqicaidan'"
@@ -63,6 +44,12 @@ import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDia
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
 import CusBtn from './BtnLoading'
+import {
+  showSize,
+  dataURLtoBlob,
+  translateBlobToBase64
+} from 'packages/js/utils/compressImg'
+import * as imageConversion from 'image-conversion'
 export default {
   name: 'PageTopSetting',
   components: {
@@ -79,7 +66,7 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       appInfo: '',
       saveLoading: false,
@@ -89,9 +76,9 @@ export default {
   },
   computed: {
     ...mapState({
-      pageInfo: state => state.bigScreen.pageInfo
+      pageInfo: (state) => state.bigScreen.pageInfo
     }),
-    pageCode () {
+    pageCode() {
       return this.$route.query.code || this.code
     }
   },
@@ -104,22 +91,24 @@ export default {
       changeActiveItem: 'bigScreen/changeActiveItem',
       changePageInfo: 'bigScreen/changePageInfo'
     }),
-    backManagement () {
-      this.$router.push({ path: window.BS_CONFIG?.routers?.pageManagementUrl || '/home' })
+    backManagement() {
+      this.$router.push({
+        path: window.BS_CONFIG?.routers?.pageManagementUrl || '/home'
+      })
     },
     // 清空
-    empty () {
+    empty() {
       this.changeActiveCode('')
       this.$emit('empty')
     },
     // 预览
-    async execRun () {
-      this.save('saveAndPreviewLoading').then(res => {
+    async execRun() {
+      this.save('saveAndPreviewLoading').then((res) => {
         this.preview()
       })
     },
     // 预览
-    preview () {
+    preview() {
       const { href } = this.$router.resolve({
         path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview',
         query: {
@@ -129,7 +118,7 @@ export default {
       window.open(href, '_blank')
     },
     // 保存
-    save (loadingType = 'saveLoading', hasPageTemplateId = false) {
+    save(loadingType = 'saveLoading', hasPageTemplateId = false) {
       const pageInfo = _.cloneDeep(this.handleSaveData())
       // 保存页面
       this[loadingType] = true
@@ -140,51 +129,79 @@ export default {
         const node = document.querySelector('.render-theme-wrap')
         toJpeg(node, { quality: 0.2 })
           .then((dataUrl) => {
-            pageInfo.coverPicture = dataUrl
-            saveScreen(pageInfo).then(res => {
-              this.$message.success('保存成功')
-              resolve(res)
-            }).finally(() => {
-              this[loadingType] = false
-            })
+            const that = this
+            if (showSize(dataUrl) > 200) {
+              const url = dataURLtoBlob(dataUrl)
+              // 压缩到500KB,这里的500就是要压缩的大小,可自定义
+              imageConversion
+                .compressAccurately(url, {
+                  size: 200, // 图片大小压缩到100kb
+                  width: 1280, // 宽度压缩到1280
+                  height: 720 // 高度压缩到720
+                })
+                .then((res) => {
+                  translateBlobToBase64(res, function (e) {
+                    pageInfo.coverPicture = e.result
+                    saveScreen(pageInfo)
+                      .then((res) => {
+                        that.$message.success('保存成功')
+                        resolve(res)
+                      })
+                      .finally(() => {
+                        that[loadingType] = false
+                      })
+                  })
+                })
+            } else {
+              pageInfo.coverPicture = dataUrl
+              saveScreen(pageInfo)
+                .then((res) => {
+                  this.$message.success('保存成功')
+                  resolve(res)
+                })
+                .finally(() => {
+                  this[loadingType] = false
+                })
+            }
           })
           .catch(() => {
             this[loadingType] = false
           })
       })
     },
-    goBack (path) {
+    goBack(path) {
       this.$router.push({
         path: `/${path}`
       })
     },
     // 得到模板列表
-    getTemplateList (type) {
+    getTemplateList(type) {
       this.$nextTick(() => {
         this.$refs.ChooseTemplateDialog.init(undefined, type)
       })
     },
     // 选择模版后覆盖配置
-    selectTemplate (template) {
+    selectTemplate(template) {
       this.pageInfo.pageTemplateId = template.id
       this.save('saveLoading', true).then(() => {
         this.initLayout(this.pageCode)
       })
     },
-    replaceItByTemplate (config) {
+    replaceItByTemplate(config) {
       this.changePageInfo(config)
     },
     // 处理保存数据
-    handleSaveData () {
+    handleSaveData() {
       const pageInfo = _.cloneDeep(this.pageInfo)
       const chartList = _.cloneDeep(this.pageInfo.chartList)
 
-      pageInfo.pageConfig.cacheDataSets = pageInfo.pageConfig.cacheDataSets?.map(cache => ({
-        name: cache.name,
-        dataSetId: cache.dataSetId
-      })) || []
+      pageInfo.pageConfig.cacheDataSets =
+        pageInfo.pageConfig.cacheDataSets?.map((cache) => ({
+          name: cache.name,
+          dataSetId: cache.dataSetId
+        })) || []
 
-      const newChartList = chartList?.map(chart => {
+      const newChartList = chartList?.map((chart) => {
         // 如果是自定义组件，需要将option转换为json字符串，因为其中可能有函数
         if (chart.type === 'customComponent') {
           chart.option.data = []
@@ -197,13 +214,13 @@ export default {
         chartList: newChartList
       })
     },
-    updateRightVisiable () {
+    updateRightVisiable() {
       this.$emit('updateRightVisiable', !this.rightFold)
     },
-    showPageInfo () {
+    showPageInfo() {
       this.$emit('showPageInfo')
     },
-    createdImg () {
+    createdImg() {
       this.saveAndPreviewLoading = true
       const node = document.querySelector('.render-theme-wrap')
       toPng(node)
@@ -256,7 +273,7 @@ export default {
       width: 100px;
       height: 70px;
       line-height: 70px;
-      background-color: #D7D7D7;
+      background-color: #d7d7d7;
       color: #999;
     }
 

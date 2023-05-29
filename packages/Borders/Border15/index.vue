@@ -6,9 +6,12 @@
       :style="{
         'border-color': color,
         'border-width': width + 'px',
-        'background-color': backgroundColor,
+        'background-image': `linear-gradient(${gradientDirection}, ${
+          gradientColor0 ? gradientColor0 : gradientColor1
+        } , ${gradientColor1 ? gradientColor1 : gradientColor0})`,
         'font-size': fontSize + 'px',
         'font-weight': fontWeight,
+        opacity: opacity / 100,
         color: fontColor
       }"
     >
@@ -45,15 +48,23 @@ export default {
     width() {
       return this.config.customize.borderWidth || 1
     },
-    backgroundColor() {
-      return this.config.customize.backgroundColor || '#232323'
+    gradientColor0() {
+      return this.config.customize.gradientColor0 || ''
     },
-
+    gradientColor1() {
+      return this.config.customize.gradientColor1 || ''
+    },
+    gradientDirection() {
+      return this.config.customize.gradientDirection
+    },
     fontSize() {
       return this.config.customize.fontSize || 16
     },
     fontColor() {
       return this.config.customize.fontColor || '#fff'
+    },
+    opacity() {
+      return this.config.customize.opacity || 100
     }
   },
   watch: {},
@@ -77,7 +88,6 @@ export default {
     height: 100%;
     border: 1px solid rgba(131, 191, 246, 0);
     border-radius: 50% 50% 50% 50%;
-    background-color: #232323;
     display: flex;
     justify-content: center;
     align-items: center;

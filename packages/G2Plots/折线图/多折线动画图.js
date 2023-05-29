@@ -83,6 +83,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom'
+  },
+  {
     label: '网格线颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'yAxis_grid_line_style_stroke', // 字段
@@ -634,6 +645,7 @@ const dataHandler = ''
 // 图表配置 new Line('domName', option)
 const option = {
   data,
+  color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   xField: 'year',
   yField: 'gdp',
   seriesField: 'name',
