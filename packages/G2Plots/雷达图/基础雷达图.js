@@ -39,6 +39,22 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '是否平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: '颜色',
+    type: 'gradual', // 设置组件类型
+    field: 'color', // 字段
+    optionField: 'color', // 对应options中的字段
+    value: 'l(0) 0:#648ff7 1:#648ff7',
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
@@ -67,6 +83,8 @@ const option = {
   data,
   xField: 'name',
   yField: 'star',
+  smooth: false,
+  color: 'l(90) 0:#648ff7 1:#648ff7',
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   meta: {
     star: {

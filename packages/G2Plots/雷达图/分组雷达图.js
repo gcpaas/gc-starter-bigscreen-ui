@@ -1,12 +1,12 @@
 
 // 分类
-const category = 'Treemap'
+const category = 'Radar'
 // 标题
-const title = '基础矩形树图'
+const title = '分组雷达图'
 // 类别， new Line()
-const chartType = 'Treemap'
+const chartType = 'Radar'
 // 用于标识，唯一，title的中文转拼音
-const name = 'JiChuJuXingShuTu'
+const name = 'FenZuLeiDaTu'
 
 // 右侧配置项
 const setting = [
@@ -15,8 +15,8 @@ const setting = [
     // 设置组件类型， select / input / colorPicker
     type: 'select',
     // 字段
-    field: 'colorField',
-    optionField: 'colorField', // 对应options中的字段
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
@@ -29,13 +29,34 @@ const setting = [
     // 设置组件类型
     type: 'select',
     // 字段
-    field: 'valueField',
+    field: 'yField',
     // 对应options中的字段
-    optionField: 'valueField',
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
     tabName: 'data'
+  },
+  {
+    label: '分组',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'seriesField',
+    // 对应options中的字段
+    optionField: 'seriesField',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'data'
+  },
+  {
+    label: '是否平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
   },
   {
     label: '显示图例',
@@ -91,54 +112,74 @@ const setting = [
 ]
 
 // 模拟数据
-const data = {
-  name: 'root',
-  children: [
-    { name: '分类 1', value: 560 },
-    { name: '分类 2', value: 500 },
-    { name: '分类 3', value: 150 },
-    { name: '分类 4', value: 140 },
-    { name: '分类 5', value: 115 },
-    { name: '分类 6', value: 95 },
-    { name: '分类 7', value: 90 },
-    { name: '分类 8', value: 75 },
-    { name: '分类 9', value: 98 },
-    { name: '分类 10', value: 60 },
-    { name: '分类 11', value: 45 },
-    { name: '分类 12', value: 40 },
-    { name: '分类 13', value: 40 },
-    { name: '分类 14', value: 35 },
-    { name: '分类 15', value: 40 },
-    { name: '分类 16', value: 40 },
-    { name: '分类 17', value: 40 },
-    { name: '分类 18', value: 30 },
-    { name: '分类 19', value: 28 },
-    { name: '分类 20', value: 16 }
-  ]
-}
+const data = [
+  { "item": "Design", "user": "a", "score": 70 },
+  { "item": "Design", "user": "b", "score": 30 },
+  { "item": "Development", "user": "a", "score": 60 },
+  { "item": "Development", "user": "b", "score": 70 },
+  { "item": "Marketing", "user": "a", "score": 50 },
+  { "item": "Marketing", "user": "b", "score": 60 },
+  { "item": "Users", "user": "a", "score": 40 },
+  { "item": "Users", "user": "b", "score": 50 },
+  { "item": "Test", "user": "a", "score": 60 },
+  { "item": "Test", "user": "b", "score": 70 },
+  { "item": "Language", "user": "a", "score": 70 },
+  { "item": "Language", "user": "b", "score": 50 },
+  { "item": "Technology", "user": "a", "score": 50 },
+  { "item": "Technology", "user": "b", "score": 40 },
+  { "item": "Support", "user": "a", "score": 30 },
+  { "item": "Support", "user": "b", "score": 40 },
+  { "item": "Sales", "user": "a", "score": 60 },
+  { "item": "Sales", "user": "b", "score": 40 },
+  { "item": "UX", "user": "a", "score": 50 },
+  { "item": "UX", "user": "b", "score": 60 }
+]
 
 // 数据处理脚本
-const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
-  `data = {
-  name: 'root',
-  children: data?.map(d => ({
-    ...d,
-    name: d[option.colorField],
-    value: d[option.valueField]
-  }))
-};`
+const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
 // 图表配置 new Line('domName', option)
 const option = {
   data,
-  color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-  appendPadding: [20, 20, 20, 20], // 设置图标的边距
-  colorField: 'name',
-  valueField: 'value',
+  xField: 'item',
+  yField: 'score',
+  seriesField: 'user',
   legendEnable: false,
   legendLayout: 'vertical',
   legendPosition: 'top',
+  smooth: false,
   legend: false,
+  color: 'l(90) 0:#648ff7 1:#648ff7',
+  appendPadding: [20, 20, 20, 20], // 设置图标的边距
+  meta: {
+    score: {
+      alias: '分数',
+      min: 0,
+      max: 80,
+    },
+  },
+  xAxis: {
+    line: null,
+    tickLine: null,
+    grid: {
+      line: {
+        style: {
+          lineDash: null,
+        },
+      },
+    },
+  },
+  // 开启辅助点
+  point: {
+    size: 2,
+  },
+  yAxis: {
+    label: false,
+    grid: {
+      alternateColor: 'rgba(0, 0, 0, 0.04)'
+    }
+  },
+  area: {}
 }
 
 export default {

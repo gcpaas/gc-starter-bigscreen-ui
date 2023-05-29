@@ -41,7 +41,7 @@ const chartSettingMixins = {
     updateColorScheme (colors) {
       this.colors = [...colors]
       this.config.setting.forEach((set) => {
-        if (set && set.type === 'colorSelect' && set.value && set.value.length) {
+        if (set && set.type === 'colorSelect') {
           set.value = [...colors]
         }
       })

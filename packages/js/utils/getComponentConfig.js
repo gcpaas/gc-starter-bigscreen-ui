@@ -90,8 +90,8 @@ export default function getComponentConfig(type) {
         icon: Icon.getNameList()[6],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenCurrentTimeChart',
-        w: 280,
-        h: 50,
+        w: 380,
+        h: 130,
         x: 0,
         y: 0,
         type
@@ -103,8 +103,8 @@ export default function getComponentConfig(type) {
         icon: Icon.getNameList()[7],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenTimeCountDownChart',
-        w: 400,
-        h: 50,
+        w: 500,
+        h: 130,
         x: 0,
         y: 0,
         type
