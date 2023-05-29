@@ -83,15 +83,15 @@ const setting = [
     tabName: 'custom',
     options: [
       {
-        label: 'top',
+        label: '顶部',
         value: 'top'
       },
       {
-        label: 'bottom',
+        label: '底部',
         value: 'bottom'
       },
       {
-        label: 'middle',
+        label: '居中',
         value: 'middle'
       }
     ]

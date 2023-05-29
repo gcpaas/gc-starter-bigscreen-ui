@@ -23,28 +23,28 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  // {
-  //   label: '进度条背景色',
-  //   // 设置组件类型
-  //   type: 'colorPicker',
-  //   // 字段
-  //   field: 'backColor',
-  //   // 对应options中的字段
-  //   optionField: 'backColor',
-  //   value: '#fff',
-  //   tabName: 'custom'
-  // },
-  // {
-  //   label: '进度条颜色',
-  //   // 设置组件类型
-  //   type: 'colorPicker',
-  //   // 字段
-  //   field: 'frontColor',
-  //   // 对应options中的字段
-  //   optionField: 'frontColor',
-  //   value: '#4a7af4',
-  //   tabName: 'custom'
-  // },
+  {
+    label: '进度条背景色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'backColor',
+    // 对应options中的字段
+    optionField: 'backColor',
+    value: '#fff',
+    tabName: 'custom'
+  },
+  {
+    label: '进度条颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'frontColor',
+    // 对应options中的字段
+    optionField: 'frontColor',
+    value: '#4a7af4',
+    tabName: 'custom'
+  },
   {
     label: '不透明度',
     // 设置组件类型
@@ -54,28 +54,6 @@ const setting = [
     // 对应options中的字段
     optionField: 'progressStyle.fillOpacity',
     value: 1,
-    tabName: 'custom'
-  },
-  {
-    label: '边框颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'progressStyle_stroke',
-    // 对应options中的字段
-    optionField: 'progressStyle.stroke',
-    value: '#fff',
-    tabName: 'custom'
-  },
-  {
-    label: '边框宽度',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'progressStyle_lineWidth',
-    // 对应options中的字段
-    optionField: 'progressStyle.lineWidth',
-    value: 0,
     tabName: 'custom'
   }
 ]
