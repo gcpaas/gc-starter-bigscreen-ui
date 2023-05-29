@@ -38,9 +38,13 @@ export default {
     RenderCard
   },
   props: {
-    code: {
-      type: String,
-      default: ''
+    config: {
+      type: Object,
+      default: () => ({
+        code: '',
+        fitSelector: '.inner-preview-wrap',
+        fitMode: 'auto'
+      })
     }
   },
   data () {
@@ -54,10 +58,16 @@ export default {
       pageInfo: state => state.bigScreen.pageInfo,
       pageConfig: state => state.bigScreen.pageInfo.pageConfig,
       chartList: state => state.bigScreen.pageInfo.chartList,
-      fitMode: state => state.bigScreen.pageInfo.pageConfig.fitMode
+      stateFitMode: state => state.bigScreen.pageInfo.pageConfig.fitMode
     }),
     pageCode () {
-      return this.$route.query.code || this.code
+      return this.$route.query.code || this.config.code
+    },
+    fitMode () {
+      return this.config.fitMode || this.stateFitMode
+    },
+    fitSelector () {
+      return this.config.fitSelector
     },
     pageLoading () {
       return this.$store.state.bigScreen.pageLoading
@@ -161,6 +171,7 @@ export default {
         } else {
           this.changePageLoading(false)
         }
+        this.getParentWH()
       })
     },
     windowSize () {
@@ -169,15 +180,23 @@ export default {
       }
     },
     getParentWH () {
-      const parent = document.querySelector('.inner-preview-wrap')
-      // 如果有嵌套
-      if (parent) {
-        this.innerHeight = parent.offsetHeight
-        this.innerWidth = parent.offsetWidth
-      } else {
-        this.innerHeight = window.innerHeight
-        this.innerWidth = window.innerWidth
-      }
+      this.$nextTick(() => {
+        const parent = document.querySelector(this.fitSelector)
+        // 如果设置了自适应的选择器
+        if (parent) {
+          this.innerHeight = parent.offsetHeight
+          this.innerWidth = parent.offsetWidth
+        } else {
+          this.innerHeight = window.innerHeight
+          this.innerWidth = window.innerWidth
+        }
+        // 设置bs-preview-wrap的高度为父元素的高度
+        const previewWrap = document.querySelector('.bs-preview-wrap')
+        if (previewWrap) {
+          previewWrap.style.height = this.innerHeight + 'px'
+          previewWrap.style.width = this.innerWidth + 'px'
+        }
+      })
     },
     // 获取到后端传来的主题样式并进行修改
     styleSet () {
