@@ -18,6 +18,7 @@
           <el-form-item label="边框名称">
             <el-input v-model="config.title" clearable />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item label="背景色一">
             <ColorPicker
               v-model="config.customize.gradientColor0"
@@ -48,10 +49,12 @@
 </template>
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'Border14Setting',
   components: {
-    ColorPicker
+    ColorPicker,
+    PosWhSetting
   },
   props: {
     config: {

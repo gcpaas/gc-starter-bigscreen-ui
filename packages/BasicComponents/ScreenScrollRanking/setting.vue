@@ -20,6 +20,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item
             label="轮播时间间隔"
             label-width="100px"
@@ -61,9 +62,11 @@
   </div>
 </template>
 <script>
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
+    PosWhSetting
   },
   data () {
     return {

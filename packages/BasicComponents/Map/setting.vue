@@ -20,6 +20,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item
             label="是否显示地名"
             label-width="100px"
@@ -196,10 +197,11 @@ import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import { get } from 'packages/js/utils/http'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
-    ColorSelect, ColorPicker
+    ColorSelect, ColorPicker, PosWhSetting
   },
   mixins: [chartSettingMixins],
   props: {

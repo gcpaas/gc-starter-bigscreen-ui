@@ -25,6 +25,7 @@
               <el-form-item label="翻牌器名称">
                 <el-input v-model="config.title" clearable />
               </el-form-item>
+              <PosWhSetting :config="config" />
               <el-form-item label="字体颜色">
                 <ColorPicker
                   v-model="config.customize.color"
@@ -126,10 +127,12 @@
 </template>
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
-    ColorPicker
+    ColorPicker,
+    PosWhSetting
   },
   data() {
     return {

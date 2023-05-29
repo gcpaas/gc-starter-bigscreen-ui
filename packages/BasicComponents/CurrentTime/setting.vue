@@ -20,6 +20,7 @@
           placeholder="请输入标题"
         />
       </el-form-item>
+      <PosWhSetting :config="config" />
       <el-form-item
         label="时间字体大小"
         label-width="100px"
@@ -70,8 +71,12 @@
   </div>
 </template>
 <script>
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'CurrentTimeSetting',
+  components: {
+    PosWhSetting
+  },
   data () {
     return {
       activeName: 'data',

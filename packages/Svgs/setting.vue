@@ -1,8 +1,3 @@
-<!--
- * @description: 指标组件案例设计面板
- * @Date: 2022-08-17 16:53:28
- * @Author: xingheng
--->
 <template>
   <div class="setting-wrap">
     <el-form
@@ -20,12 +15,17 @@
           placeholder="请输入标题"
         />
       </el-form-item>
+      <PosWhSetting :config="config" />
     </el-form>
   </div>
 </template>
 <script>
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'CurrentTimeSetting',
+  components: {
+    PosWhSetting
+  },
   data () {
     return {
       activeName: 'data'

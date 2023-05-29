@@ -20,6 +20,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item label="装饰主颜色">
             <ColorPicker
               v-model="config.customize.decorationColor1"
@@ -53,10 +54,12 @@
 </template>
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
-    ColorPicker
+    ColorPicker,
+    PosWhSetting
   },
   data () {
     return {

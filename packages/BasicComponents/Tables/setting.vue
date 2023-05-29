@@ -10,6 +10,10 @@
     >
       <div class="lc-field-body">
         <div>
+          <el-form-item label="表格名称">
+            <el-input v-model="config.title" clearable />
+          </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item label="表格头部背景颜色">
             <ColorPicker
               v-model="config.customize.headerBackgroundColor"
@@ -75,9 +79,11 @@
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   components: {
-    ColorPicker
+    ColorPicker,
+    PosWhSetting
   },
   mixins: [chartSettingMixins],
   data () {

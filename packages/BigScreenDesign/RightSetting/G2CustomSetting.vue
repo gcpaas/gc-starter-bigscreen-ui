@@ -20,6 +20,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <template
             v-for="(setting, index) in config.setting.filter(item => item.tabName === 'custom')"
           >
@@ -90,7 +91,7 @@
                 v-else-if="setting.type === 'inputNumber'"
                 v-model="setting.value"
                 class="bs-el-input-number"
-                :step="setting.step"
+                :step="setting.step || 1"
               />
               <el-radio-group
                 v-else-if="setting.type === 'radio'"
@@ -139,13 +140,15 @@ import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PaddingSetting from 'packages/BigScreenDesign/RightSetting/PaddingSetting/index.vue'
 import GradualSetting from 'packages/BigScreenDesign/RightSetting/GradualSetting/index.vue'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'CustomComponentSetting',
   components: {
     ColorSelect,
     ColorPicker,
     PaddingSetting,
-    GradualSetting
+    GradualSetting,
+    PosWhSetting
   },
   mixins: [chartSettingMixins],
   data () {
