@@ -65,14 +65,6 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '曲线平滑',
-    type: 'switch', // 设置组件类型
-    field: 'smooth', // 字段
-    optionField: 'smooth', // 对应options中的字段
-    value: false,
-    tabName: 'custom'
-  },
-  {
     label: '从0基准线填充',
     type: 'switch', // 设置组件类型
     field: 'startOnZero', // 字段

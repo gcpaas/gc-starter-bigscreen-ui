@@ -63,7 +63,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'areaStyle_fill', // 字段
     optionField: 'areaStyle.fill', // 对应options中的字段
-    value: 'l(0) 0:#3e5bdb 1:#dd3121',
+    value: 'l(0) 0:#3e5bdb 1:#3e5bdb',
     tabName: 'custom'
   },
   {
@@ -164,7 +164,7 @@ const option = {
   smooth: false,
   startOnZero: true,
   areaStyle: {
-    fill: 'l(0) 0:#3e5bdb 1:#dd3121'
+    fill: 'l(0) 0:#3e5bdb 1:#3e5bdb'
   },
   line: {
     color: '',
