@@ -10,6 +10,9 @@
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="designAssign()">
+        设计分工
+      </CusBtn>
       <CusBtn :loading="saveAndPreviewLoading" @click.native="createdImg()">
         生成图片
       </CusBtn>
@@ -34,6 +37,7 @@
       :page-info="pageInfo"
       @replaceItByTemplate="replaceItByTemplate"
     />
+    <AssignDialog ref="AssignDialog" />
   </div>
 </template>
 <script>
@@ -43,6 +47,7 @@ import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
+import AssignDialog from 'packages/BigScreenDesign/AssignDialog/index.vue'
 import CusBtn from './BtnLoading'
 import {
   showSize,
@@ -54,6 +59,7 @@ export default {
   name: 'PageTopSetting',
   components: {
     ChooseTemplateDialog,
+    AssignDialog,
     CusBtn
   },
   props: {
@@ -219,6 +225,9 @@ export default {
     },
     showPageInfo() {
       this.$emit('showPageInfo')
+    },
+    designAssign() {
+      this.$refs.AssignDialog.init()
     },
     createdImg() {
       this.saveAndPreviewLoading = true

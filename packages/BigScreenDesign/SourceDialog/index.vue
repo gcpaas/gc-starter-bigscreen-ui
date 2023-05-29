@@ -156,7 +156,9 @@ export default {
     },
     confirm() {
       this.dialogVisible = false
-      this.$emit('getImg', this.focus)
+      if (this.focus !== -1) {
+        this.$emit('getImg', this.focus)
+      }
     },
     getDataList() {
       this.loading = true
