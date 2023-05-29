@@ -66,6 +66,13 @@ export default {
         }).catch(() => {})
       }
 
+      // ctrl/command + s保存
+      if ((event.ctrlKey || event.metaKey) && event.keyCode === 83) {
+        // 关闭默认事件
+        event.preventDefault()
+        this.$refs.PageTopSetting.save('saveLoading')
+      }
+
       if (event.shiftKey) {
         // 当按下 shift 键时，设置状态，表示 shiftKey 键被按下
         this.changeShiftDown(true)
