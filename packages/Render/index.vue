@@ -25,9 +25,7 @@
       :min-width="10"
       :min-height="10"
       :draggable="!chart.locked"
-      :resizable="
-        !chart.locked && !['currentTime', 'timeCountDown'].includes(chart.type)
-      "
+      :resizable="!chart.locked"
       :parent="true"
       :debug="false"
       :is-conflict-check="false"

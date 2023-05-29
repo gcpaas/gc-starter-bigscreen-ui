@@ -1,12 +1,12 @@
 
 // 分类
-const category = 'Pie'
+const category = 'Radar'
 // 标题
-const title = '基础饼图'
+const title = '分组雷达图'
 // 类别， new Line()
-const chartType = 'Pie'
-// 用于标识，唯一，和文件夹名称一致
-const name = 'JiChuBinTu'
+const chartType = 'Radar'
+// 用于标识，唯一，title的中文转拼音
+const name = 'FenZuLeiDaTu'
 
 // 右侧配置项
 const setting = [
@@ -15,11 +15,11 @@ const setting = [
     // 设置组件类型， select / input / colorPicker
     type: 'select',
     // 字段
-    field: 'colorField',
-    // 对应options中的字段
-    optionField: 'colorField',
+    field: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
+    // 绑定的值
     value: '',
     // tab页。 data: 数据， custom: 自定义
     tabName: 'data'
@@ -29,13 +29,34 @@ const setting = [
     // 设置组件类型
     type: 'select',
     // 字段
-    field: 'angleField',
+    field: 'yField',
     // 对应options中的字段
-    optionField: 'angleField',
+    optionField: 'yField',
     // 是否多选
     multiple: false,
     value: '',
     tabName: 'data'
+  },
+  {
+    label: '分组',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'seriesField',
+    // 对应options中的字段
+    optionField: 'seriesField',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'data'
+  },
+  {
+    label: '是否平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
   },
   {
     label: '显示图例',
@@ -70,45 +91,6 @@ const setting = [
     ]
   },
   {
-    label: '标签位置',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'label_type',
-    // 对应options中的字段
-    optionField: 'label.type',
-    value: 'inner',
-    tabName: 'custom',
-    options: [
-      { label: '外部', value: 'outer' },
-      { label: '内部', value: 'inner' },
-      { label: '蜘蛛布局', value: 'spider' }
-    ]
-  },
-  {
-    label: '标签连线颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'label_labelLine_style_stroke',
-    // 对应options中的字段
-    optionField: 'label.labelLine.style.stroke',
-    value: '#5B8FF9',
-    tabName: 'custom'
-  },
-  {
-    label: '标签连线透明度',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'label_labelLine_style_opacity',
-    // 对应options中的字段
-    optionField: 'label.labelLine.style.opacity',
-    value: '0.6',
-    tabName: 'custom',
-    step: 0.1
-  },
-  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -131,46 +113,75 @@ const setting = [
 
 // 模拟数据
 const data = [
-  { type: '分类一', value: 27 },
-  { type: '分类二', value: 25 },
-  { type: '分类三', value: 18 },
-  { type: '分类四', value: 15 },
-  { type: '分类五', value: 10 },
-  { type: '其他', value: 5 }
+  { "item": "Design", "user": "a", "score": 70 },
+  { "item": "Design", "user": "b", "score": 30 },
+  { "item": "Development", "user": "a", "score": 60 },
+  { "item": "Development", "user": "b", "score": 70 },
+  { "item": "Marketing", "user": "a", "score": 50 },
+  { "item": "Marketing", "user": "b", "score": 60 },
+  { "item": "Users", "user": "a", "score": 40 },
+  { "item": "Users", "user": "b", "score": 50 },
+  { "item": "Test", "user": "a", "score": 60 },
+  { "item": "Test", "user": "b", "score": 70 },
+  { "item": "Language", "user": "a", "score": 70 },
+  { "item": "Language", "user": "b", "score": 50 },
+  { "item": "Technology", "user": "a", "score": 50 },
+  { "item": "Technology", "user": "b", "score": 40 },
+  { "item": "Support", "user": "a", "score": 30 },
+  { "item": "Support", "user": "b", "score": 40 },
+  { "item": "Sales", "user": "a", "score": 60 },
+  { "item": "Sales", "user": "b", "score": 40 },
+  { "item": "UX", "user": "a", "score": 50 },
+  { "item": "UX", "user": "b", "score": 60 }
 ]
 
 // 数据处理脚本
 const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
-// 图表配置 new Pie('domName', option)
+// 图表配置 new Line('domName', option)
 const option = {
-  appendPadding: [20, 20, 20, 20], // 设置图标的边距
   data,
+  xField: 'item',
+  yField: 'score',
+  seriesField: 'user',
   legendEnable: false,
   legendLayout: 'vertical',
   legendPosition: 'top',
-  angle: 0.5,
-  angleField: 'value',
-  colorField: 'type',
-  radius: 0.9,
+  smooth: false,
   legend: false,
-  color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-  label: {
-    type: 'inner',
-    labelHeight: 50,
-    labelLine: {
-      style: {
-        stroke: '#5B8FF9',
-        opacity: 0.6
-      }
+  color: 'l(90) 0:#648ff7 1:#648ff7',
+  appendPadding: [20, 20, 20, 20], // 设置图标的边距
+  meta: {
+    score: {
+      alias: '分数',
+      min: 0,
+      max: 80,
     },
-    style: {
-      fontSize: 14,
-      textAlign: 'center'
+  },
+  xAxis: {
+    line: null,
+    tickLine: null,
+    grid: {
+      line: {
+        style: {
+          lineDash: null,
+        },
+      },
+    },
+  },
+  // 开启辅助点
+  point: {
+    size: 2,
+  },
+  yAxis: {
+    label: false,
+    grid: {
+      alternateColor: 'rgba(0, 0, 0, 0.04)'
     }
   },
-  interactions: [{ type: 'element-active' }]
+  area: {}
 }
+
 export default {
   category,
   title,

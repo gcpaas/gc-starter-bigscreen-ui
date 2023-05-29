@@ -44,6 +44,16 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_style_fill', // 字段
+    optionField: 'point.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
     label: '数据点样式',
     type: 'select', // 设置组件类型
     field: 'point_shape', // 字段
@@ -71,7 +81,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'lineStyle_stroke', // 字段
     optionField: 'lineStyle.stroke', // 对应options中的字段
-    value: 'l(0) 0:#5F92F9  1:#5F92F9',
+    value: 'l(0) 0:#5F92F9 1:#62FF00',
     tabName: 'custom'
   },
   {
@@ -160,7 +170,7 @@ const option = {
   },
   lineStyle: {
     lineWidth: 2,
-    stroke: 'l(0) 0:#5F92F9  1:#5F92F9'
+    stroke: 'l(0) 0:#5F92F9 1:#62FF00'
   },
   yAxis: {
     grid: {

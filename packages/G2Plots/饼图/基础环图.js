@@ -38,28 +38,41 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
     label: '图例位置',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'legend_position',
-    // 对应options中的字段
-    optionField: 'legend.position',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
     // 是否多选
     multiple: false,
-    value: 'right',
+    value: 'top',
     tabName: 'custom',
     options: [
       { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
       { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
       { label: '右侧', value: 'right' },
-      { label: '底部', value: 'bottom' }
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
     ]
   },
   {
     label: '标签位置',
     // 设置组件类型
-    type: 'radio',
+    type: 'select',
     // 字段
     field: 'label_type',
     // 对应options中的字段
@@ -91,8 +104,9 @@ const setting = [
     field: 'label_labelLine_style_opacity',
     // 对应options中的字段
     optionField: 'label.labelLine.style.opacity',
-    value: '0.6',
-    tabName: 'custom'
+    value: 0.6,
+    tabName: 'custom',
+    step: 0.1
   },
   {
     label: '颜色配置',
@@ -116,17 +130,17 @@ const setting = [
     value: '总计',
     tabName: 'custom'
   },
-  {
-    label: '统计正文',
-    // 设置组件类型
-    type: 'input',
-    // 字段
-    field: 'statistic_content_content',
-    // 对应options中的字段
-    optionField: 'statistic.content.content',
-    value: '100',
-    tabName: 'custom'
-  },
+  // {
+  //   label: '统计正文',
+  //   // 设置组件类型
+  //   type: 'input',
+  //   // 字段
+  //   field: 'statistic_content_content',
+  //   // 对应options中的字段
+  //   optionField: 'statistic.content.content',
+  //   value: '100',
+  //   tabName: 'custom'
+  // },
   {
     label: '统计标题颜色',
     // 设置组件类型
@@ -214,7 +228,7 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
 // 图表配置 new Pie('domName', option)
 const option = {
@@ -224,10 +238,10 @@ const option = {
   colorField: 'type',
   radius: 1,
   innerRadius: 0.6,
-  legend: {
-    // 图例
-    position: 'right'
-  },
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
+  legend: false,
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   label: {
     type: 'inner',
@@ -262,7 +276,7 @@ const option = {
         color: '#d0d0d0',
         fontSize: 30
       },
-      content: '100'
+      // content: '100'
     }
   },
   // 添加 中心统计文本 交互

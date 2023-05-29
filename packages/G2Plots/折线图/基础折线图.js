@@ -44,14 +44,29 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '数据点样式',
+    label: '数据点颜色',
     type: 'colorPicker', // 设置组件类型
-    field: 'point_style_stroke', // 字段
-    optionField: 'point.style.stroke', // 对应options中的字段
+    field: 'point_style_fill', // 字段
+    optionField: 'point.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据点样式',
+    type: 'select', // 设置组件类型
+    field: 'point_shape', // 字段
+    optionField: 'point.shape', // 对应options中的字段
     // 是否多选
     multiple: false,
     value: '',
-    tabName: 'custom'
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ]
   },
   {
     label: '线条宽度',
@@ -66,7 +81,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'lineStyle_stroke', // 字段
     optionField: 'lineStyle.stroke', // 对应options中的字段
-    value: 'l(0) 0:#5F92F9  1:#5F92F9',
+    value: 'l(0) 0:#5F92F9 1:#62FF00',
     tabName: 'custom'
   },
   {
@@ -148,7 +163,7 @@ const option = {
   },
   lineStyle: {
     lineWidth: 2,
-    stroke: 'l(0) 0:#5F92F9  1:#5F92F9'
+    stroke: 'l(0) 0:#5F92F9 1:#62FF00'
   },
   yAxis: {
     grid: {

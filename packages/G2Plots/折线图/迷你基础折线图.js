@@ -56,7 +56,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'lineStyle_stroke', // 字段
     optionField: 'lineStyle.stroke', // 对应options中的字段
-    value: 'l(0) 0:#648ff7 1:#648ff7',
+    value: 'l(0) 0:#648ff7 1:#62FF00',
     tabName: 'custom'
   },
   {
@@ -79,8 +79,8 @@ const option = {
   autoFit: true,
   smooth: true,
   lineStyle: {
-    stroke: 'l(0) 0:#648ff7 1:#648ff7',
-    lineWidth: 2,
+    stroke: 'l(0) 0:#648ff7 1:#62FF00',
+    lineWidth: 2
   }
 }
 

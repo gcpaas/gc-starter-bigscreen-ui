@@ -19,6 +19,7 @@
         @openRightPanel="openRightPanel"
         @openResource="initDialog"
         @openComponent="openComponent"
+        @toggleLeftSidebar="toggleLeftSidebar"
       />
       <!-- 中间组件展示面板 -->
       <div
@@ -382,6 +383,10 @@ export default {
     },
     updateRightVisiable (visiable) {
       this.rightVisiable = visiable
+      this.$refs.Rules.initRuleHeight()
+    },
+    toggleLeftSidebar () {
+      this.$refs.Rules.initRuleHeight()
     },
     showPageInfo () {
       this.pageInfoVisiable = true

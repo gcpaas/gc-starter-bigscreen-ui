@@ -75,7 +75,7 @@ const setting = [
     field: 'statistic_title_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
-    value: '22',
+    value: '14',
     tabName: 'custom'
   },
   {
@@ -108,7 +108,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '22',
+    value: '14',
     tabName: 'custom'
   },
   {
@@ -140,11 +140,11 @@ const option = {
   radius: 0.98,
   statistic: {
     title: {
-      style: { color: '#fafafa', fontSize: '22px', lineHeight: '22px' },
+      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' },
       content: '进度',
     },
     content: {
-      style: { color: '#fafafa', fontSize: '22px', lineHeight: '22px' },
+      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' },
     }
   },
 }
