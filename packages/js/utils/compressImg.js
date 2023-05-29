@@ -15,7 +15,7 @@ export function showSize(base64url) {
   const sizeStr = size + '' // 转成字符串
   const index = sizeStr.indexOf('.') // 获取小数点处的索引
   const dou = sizeStr.substr(index + 1, 2) // 获取小数点后两位的值
-  if (dou == '00') {
+  if (dou === '00') {
     // 判断后两位是否为00，如果是则删除00
     return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
   }

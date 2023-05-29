@@ -47,9 +47,7 @@
   </el-dialog>
 </template>
 <script>
-import { get } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
-import _ from 'lodash'
 export default {
   name: 'ComponentDialog',
   mixins: [pageMixins],
