@@ -39,6 +39,42 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '数据体现方式',
+    type: 'select', // 设置组件类型
+    field: 'dynamicHeight', // 字段
+    optionField: 'dynamicHeight', // 对应options中的字段
+    value: false,
+    tabName: 'custom',
+    options: [
+      {
+        label: '通过宽度',
+        value: false
+      },
+      {
+        label: '通过高度',
+        value: true
+      }
+      ]
+  },
+  {
+    label: '方向',
+    type: 'select', // 设置组件类型
+    field: 'isTransposed', // 字段
+    optionField: 'isTransposed', // 对应options中的字段
+    value: false,
+    tabName: 'custom',
+    options: [
+      {
+        label: '竖向',
+        value: false
+      },
+      {
+        label: '横向',
+        value: true
+      }
+      ]
+  },
+  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -78,6 +114,8 @@ const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   xField: 'stage',
   yField: 'number',
+  dynamicHeight: false,
+  isTransposed: false,
   legend: false
 }
 
