@@ -55,7 +55,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'line_size', // 字段
     optionField: 'line.size', // 对应options中的字段
-    value: '2',
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -63,7 +63,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'line_color', // 字段
     optionField: 'line.color', // 对应options中的字段
-    value: 'l(0) 0:#648ff7 1:#648ff7',
+    value: 'l(0) 0:#648ff7 1:#62FF00',
     tabName: 'custom'
   },
   {
@@ -71,7 +71,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'areaStyle_fill', // 字段
     optionField: 'areaStyle.fill', // 对应options中的字段
-    value: 'l(0) 0:#648ff7 1:#648ff7',
+    value: 'l(0) 0:#648ff7 1:#62FF00',
     tabName: 'custom'
   },
   {
@@ -94,12 +94,12 @@ const option = {
   autoFit: true,
   smooth: true,
   areaStyle: {
-    fill: 'l(0) 0:#648ff7 1:#648ff7',
+    fill: 'l(0) 0:#648ff7 1:#62FF00',
     fillOpacity: 0.3
   },
   line: {
-    color: '#648ff7',
-    size: 2
+    color: 'l(0) 0:#648ff7 1:#62FF00',
+    size: 1
   }
 }
 
