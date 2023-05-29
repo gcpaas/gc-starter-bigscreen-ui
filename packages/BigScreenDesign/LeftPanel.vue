@@ -315,6 +315,7 @@ export default {
     },
     toggleSidebar () {
       this.fold = !this.fold
+      this.$emit('toggleLeftSidebar')
       setTimeout(() => {
         this.activeName = this.currentActive
       })
