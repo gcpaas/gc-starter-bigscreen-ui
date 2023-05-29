@@ -26,7 +26,15 @@ const customConfig = {
     // 渐变色色值改变方向
     gradientDirection: 'to right',
     // 透明度
-    opacity: 100
+    opacity: 100,
+    // 左上圆角
+    radiusLeftTop: 2,
+    // 右上圆角
+    radiusRightTop: 2,
+    // 左下圆角
+    radiusLeftBottom: 2,
+    // 右下圆角
+    radiusRightBottom: 2
   }
 }
 export const dataConfig = {

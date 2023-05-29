@@ -1,62 +1,51 @@
-/**
- * 压缩图片到指定大小
- * @param baseImg base64图片
- * @param maxSize 单位kb
- */
-export function compressImgBySize(baseImg, maxSize = 200) {
-  return new Promise((resolve) => {
-    // 计算图片大小
-    const strLength = baseImg.length
-    const fileLength = parseInt(strLength - (strLength / 8) * 2)
-    let size = parseInt((fileLength / 1024).toFixed(2))
+export function showSize(base64url) {
+  let str = base64url.replace('data:image/png;base64,', '')
+  // 找到等号，把等号也去掉
+  const equalIndex = str.indexOf('=')
+  if (str.indexOf('=') > 0) {
+    str = str.substring(0, equalIndex)
+  }
+  // 原来的字符流大小，单位为字节
+  const strLength = base64url.length
+  // 计算后得到的文件流大小，单位为字节
+  const fileLength = parseInt(strLength - (strLength / 8) * 2)
+  // 由字节转换为kb
+  let size = ''
+  size = (fileLength / 1024).toFixed(2)
+  const sizeStr = size + '' // 转成字符串
+  const index = sizeStr.indexOf('.') // 获取小数点处的索引
+  const dou = sizeStr.substr(index + 1, 2) // 获取小数点后两位的值
+  if (dou == '00') {
+    // 判断后两位是否为00，如果是则删除00
+    return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
+  }
+  return size
+}
 
-    // 判断图片是否符合指定大小要求
-    if (size <= maxSize) {
-      resolve(baseImg)
-      return
-    }
-
-    // 创建image对象
-    const img = new Image()
-    if (baseImg.indexOf('data:image/') !== -1) {
-      img.src = baseImg
-    } else {
-      img.src = 'data:image/jpeg;base64,' + baseImg
-    }
-
-    img.onload = () => {
-      // 把image对象 转换为 canvas对象
-      const canvas = imgToCanvas(img)
-      let resUrl = ''
-      // 图片质量，范围：0 ~ 1
-      let quality = 0.9
-
-      // 当图片大小大于指定maxSize，图片质量大于0时继续通过降低图片资料来压缩
-      while (size > maxSize && quality > 0) {
-        // 在canvas上绘制该HTMLImageElement，得到图片base64
-        resUrl = canvas
-          .toDataURL('image/jpeg', quality)
-          .replace(/^data:image\/\w+;base64,/, '')
-        const resLength = resUrl.length
-        // 计算绘制出的base64图片大小
-        const resFileLength = parseInt(resLength - (resLength / 8) * 2)
-        size = parseInt((resFileLength / 1024).toFixed(2))
-        // 降低图片质量
-        quality = (quality - 0.1).toFixed(1)
-      }
-      resolve(resUrl)
-    }
-    img.onerror = () => {
-      resolve(baseImg)
-    }
+export function dataURLtoBlob(dataurl) {
+  const arr = dataurl.split(',')
+  const _arr = arr[1].substring(0, arr[1].length - 2)
+  const mime = arr[0].match(/:(.*?);/)[1]
+  const bstr = atob(_arr)
+  let n = bstr.length
+  const u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], {
+    type: mime
   })
 }
 
-// 把image 转换为 canvas对象
-export function imgToCanvas(image) {
-  const canvas = document.createElement('canvas')
-  canvas.width = image.width
-  canvas.height = image.height
-  canvas.getContext('2d').drawImage(image, 0, 0)
-  return canvas
+export function getBase64(img, callback) {
+  const reader = new FileReader()
+  reader.addEventListener('load', () => callback(reader.result.toString()))
+  reader.readAsDataURL(img)
+}
+export function formatBlobs(blobs) {
+  return new Promise((resolve) => {
+    getBase64(blobs, (url) => {
+      resolve(url)
+    })
+  })
 }

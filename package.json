@@ -61,6 +61,7 @@
     "element-ui": "2.15.6",
     "es6-promise": "4.2.8",
     "html-to-image": "1.11.11",
+    "image-conversion": "^2.1.1",
     "increase-memory-limit": "^1.0.7",
     "insert-css": "^2.0.0",
     "jquery": "^3.6.4",

@@ -324,10 +324,10 @@ export default {
 
           .left-bigscreen-title {
             font-size: 14px;
-            // overflow: hidden;
-            // width: 120px;
-            // white-space: nowrap;
-            // text-overflow: ellipsis;
+            overflow: hidden;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
 
           .right-bigscreen-time-title {
