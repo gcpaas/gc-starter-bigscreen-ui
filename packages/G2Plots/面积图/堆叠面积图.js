@@ -57,11 +57,51 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '曲线平滑',
+    label: '显示图例',
     type: 'switch', // 设置组件类型
-    field: 'smooth', // 字段
-    optionField: 'smooth', // 对应options中的字段
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
     value: false,
+    tabName: 'custom'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ]
+  },
+  {
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_grid_line_style_stroke', // 字段
+    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
     tabName: 'custom'
   },
   {
@@ -264,7 +304,7 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -274,8 +314,21 @@ const option = {
   yField: 'value',
   seriesField: 'country',
   smooth: false,
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
+  legend: false,
   startOnZero: true,
   yAxis: {
+    grid: {
+      line: {
+        style: {
+          stroke: '#d0d0d0',
+          lineWidth: 0,
+          strokeOpacity: 0.7
+        }
+      }
+    },
     label: {
       style: {
         opacity: 1

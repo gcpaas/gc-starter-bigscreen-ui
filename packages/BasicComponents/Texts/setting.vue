@@ -25,6 +25,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item
             label="标题字体大小"
             label-width="100px"
@@ -57,10 +58,12 @@
 </template>
 <script>
 import TextGradient from 'packages/BigScreenDesign/RightSetting/TextGradient/index'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'TextSetting',
   components: {
-    TextGradient
+    TextGradient,
+    PosWhSetting
   },
   data () {
     return {

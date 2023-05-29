@@ -2,11 +2,11 @@
 // 分类
 const category = 'Funnel'
 // 标题
-const title = '基础漏斗图'
+const title = '对比漏斗图'
 // 类别， new Line()
 const chartType = 'Funnel'
 // 用于标识，唯一，title的中文转拼音
-const name = 'JiChuLouDouTu'
+const name = 'DuiBiLouDouTu'
 
 // 右侧配置项
 const setting = [
@@ -38,22 +38,18 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '数据体现方式',
-    type: 'select', // 设置组件类型
-    field: 'dynamicHeight', // 字段
-    optionField: 'dynamicHeight', // 对应options中的字段
-    value: false,
-    tabName: 'custom',
-    options: [
-      {
-        label: '通过宽度',
-        value: false
-      },
-      {
-        label: '通过高度',
-        value: true
-      }
-      ]
+
+    label: '分组',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'seriesField',
+    // 对应options中的字段
+    optionField: 'compareField',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'data'
   },
   {
     label: '方向',
@@ -94,6 +90,38 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ]
+  },
+  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -116,11 +144,16 @@ const setting = [
 
 // 模拟数据
 const data = [
-  { stage: '简历筛选', number: 253 },
-  { stage: '初试人数', number: 151 },
-  { stage: '复试人数', number: 113 },
-  { stage: '录取人数', number: 87 },
-  { stage: '入职人数', number: 59 }
+  { stage: '简历筛选', number: 253, company: 'A公司' },
+  { stage: '初试人数', number: 151, company: 'A公司' },
+  { stage: '复试人数', number: 113, company: 'A公司' },
+  { stage: '录取人数', number: 87, company: 'A公司' },
+  { stage: '入职人数', number: 59, company: 'A公司' },
+  { stage: '简历筛选', number: 303, company: 'B公司' },
+  { stage: '初试人数', number: 251, company: 'B公司' },
+  { stage: '复试人数', number: 153, company: 'B公司' },
+  { stage: '录取人数', number: 117, company: 'B公司' },
+  { stage: '入职人数', number: 79, company: 'B公司' },
 ]
 
 // 数据处理脚本
@@ -138,10 +171,13 @@ const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   xField: 'stage',
   yField: 'number',
-  dynamicHeight: false,
+  compareField: 'company',
   isTransposed: false,
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
   legend: false,
-  conversionTagName: '转化率',
+  conversionTagName: '转化率 ',
   conversionTag: {
     offsetX: 10,
     offsetY: 0,

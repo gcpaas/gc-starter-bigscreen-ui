@@ -59,19 +59,27 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '图形的填充色',
+    label: '颜色配置',
     type: 'gradual', // 设置组件类型
     field: 'areaStyle_fill', // 字段
     optionField: 'areaStyle.fill', // 对应options中的字段
-    value: 'l(0) 0:#3e5bdb 1:#dd3121',
+    value: 'l(0) 0:#3e5bdb 1:#3e5bdb',
     tabName: 'custom'
   },
   {
-    label: '折线的颜色',
+    label: '边框颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'line_color', // 字段
     optionField: 'line.color', // 对应options中的字段
     value: '',
+    tabName: 'custom'
+  },
+  {
+    label: '边框宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'line_size', // 字段
+    optionField: 'line.size', // 对应options中的字段
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -156,13 +164,15 @@ const option = {
   smooth: false,
   startOnZero: true,
   areaStyle: {
-    fill: 'l(0) 0:#3e5bdb 1:#dd3121'
+    fill: 'l(0) 0:#3e5bdb 1:#3e5bdb'
   },
   line: {
-    color: ''
+    color: '',
+    size: 1
   },
   point: {
     color: ''
+
   },
   yAxis: {
     label: {

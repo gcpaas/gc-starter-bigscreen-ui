@@ -81,7 +81,11 @@ export default {
       }).then(() => {
         // 找到和本组件group相同的组件 删除
         const codes = this.chartList.filter(_chart => _chart.group === config.group && config.group).map(_chart => _chart.code)
-        this.delItem(codes)
+        if (!_.isEmpty(codes)) {
+          this.delItem(codes)
+        } else {
+          this.delItem(config.code)
+        }
       })
     },
     // 获取组件的坐标字符串，取整 （100， 100）

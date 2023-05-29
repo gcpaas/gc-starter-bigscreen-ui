@@ -21,6 +21,7 @@
               clearable
             />
           </el-form-item>
+          <PosWhSetting :config="config" />
           <el-form-item label="边框主颜色">
             <ColorPicker
               v-model="config.customize.borderMainColor"
@@ -111,10 +112,12 @@
 </template>
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
+import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BorderSetting',
   components: {
-    ColorPicker
+    ColorPicker,
+    PosWhSetting
   },
   props: {
     config: {
