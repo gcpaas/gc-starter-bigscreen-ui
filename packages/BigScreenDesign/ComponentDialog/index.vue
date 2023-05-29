@@ -71,7 +71,7 @@
             >
               <div class="big-screen-card-img">
                 <el-image
-                  :src="screen.url"
+                  :src="screen.coverPicture"
                   fit="contain"
                   style="width: 100%; height: 100%"
                 >
