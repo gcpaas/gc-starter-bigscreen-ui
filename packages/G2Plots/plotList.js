@@ -44,6 +44,7 @@ function getPlotList (files) {
       },
       setting: config.setting, // 右侧面板自定义配置
       dataHandler: config.dataHandler, // 数据自定义处理js脚本
+      optionHandler: config.optionHandler, // 配置自定义处理js脚本
       ..._.cloneDeep(dataConfig)
     }
   }
@@ -74,6 +75,7 @@ export function getCustomPlots () {
       },
       setting: config.setting, // 右侧面板自定义配置
       dataHandler: config.dataHandler, // 数据自定义处理js脚本
+      optionHandler: config.optionHandler, // 配置自定义处理js脚本
       ..._.cloneDeep(dataConfig)
     })
   })

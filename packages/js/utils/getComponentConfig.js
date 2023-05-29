@@ -7,7 +7,7 @@ export default function getComponentConfig(type) {
     case 'texts':
       return {
         name: '文本',
-        title: '文本标签占位符',
+        title: '文本',
         icon: Icon.getNameList()[0],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenTextChart',

@@ -176,6 +176,9 @@ export default {
     }
   },
   computed: {
+    hint () {
+      return this.pageType === 'bigScreen' ? '大屏' : '组件'
+    },
     code () {
       return this.catalogInfo?.page?.code
     },
@@ -243,7 +246,7 @@ export default {
       this.$refs.EditForm.init(screen, this.catalogInfo.page)
     },
     del (screen) {
-      this.$confirm('确定删除该大屏？', '提示', {
+      this.$confirm(`确定删除该${this.hint}？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -268,7 +271,7 @@ export default {
         .catch()
     },
     copy (screen) {
-      this.$confirm('确定复制该页面设计？', '提示', {
+      this.$confirm(`确定复制该${this.hint}？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',

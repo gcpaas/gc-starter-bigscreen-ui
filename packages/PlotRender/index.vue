@@ -164,11 +164,20 @@ export default {
           })
         }
       })
+      // eslint-disable-next-line no-unused-vars
+      var option = config.option
+      // eslint-disable-next-line no-unused-vars
+      var setting = config.setting
+      if (this.config.optionHandler) {
+        try {
+          // 此处函数处理config
+          eval(this.config.optionHandler)
+        } catch (e) {
+          console.error(e)
+        }
+      }
       if (data.success) {
         data = data.data
-        const option = config.option
-        // eslint-disable-next-line no-unused-vars
-        const setting = config.setting
         if (this.config.dataHandler) {
           try {
             // 此处函数处理data
