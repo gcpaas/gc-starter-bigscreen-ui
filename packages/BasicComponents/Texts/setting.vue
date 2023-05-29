@@ -20,7 +20,7 @@
             prop="title"
           >
             <el-input
-              v-model="config.title"
+              v-model="config.option.text"
               placeholder="请输入标题"
               clearable
             />
