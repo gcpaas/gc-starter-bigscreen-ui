@@ -1,6 +1,9 @@
 <template>
   <div
     class="head-btn"
+    :class="{
+      'head-btn-disabled': disabled
+    }"
     @click="$emit('click')"
   >
     <slot />
@@ -16,6 +19,10 @@
 export default {
   props: {
     loading: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -45,6 +52,15 @@ export default {
 
   &:hover {
     background-color: #414750;
+  }
+
+  &-disabled {
+    cursor: not-allowed;
+    background-color: #303640;
+    color: #999;
+    &:hover {
+      background-color: #303640;
+    }
   }
 }
 </style>

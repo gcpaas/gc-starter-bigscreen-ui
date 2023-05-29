@@ -17,6 +17,18 @@
         设计分工
       </CusBtn>
       <CusBtn
+        :disabled="undoDisabled"
+        @click.native="undo(true)"
+      >
+        <i class="iconfont-bigscreen icon-jiantouqianjin icon-reverse" />
+      </CusBtn>
+      <CusBtn
+        :disabled="redoDisabled"
+        @click.native="undo(false)"
+      >
+        <i class="iconfont-bigscreen icon-jiantouqianjin" />
+      </CusBtn>
+      <CusBtn
         :loading="saveAndPreviewLoading"
         @click.native="createdImg()"
       >
@@ -98,10 +110,18 @@ export default {
   },
   computed: {
     ...mapState({
-      pageInfo: (state) => state.bigScreen.pageInfo
+      pageInfo: (state) => state.bigScreen.pageInfo,
+      timelineStore: (state) => state.bigScreen.timelineStore,
+      currentTimeLine: (state) => state.bigScreen.currentTimeLine
     }),
     pageCode () {
       return this.$route.query.code || this.code
+    },
+    undoDisabled () {
+      return Boolean(this.currentTimeLine === 1)
+    },
+    redoDisabled () {
+      return Boolean(this.currentTimeLine && this.currentTimeLine === this.timelineStore?.length)
     }
   },
   methods: {
@@ -111,17 +131,23 @@ export default {
     ...mapMutations({
       changeActiveCode: 'bigScreen/changeActiveCode',
       changeActiveItem: 'bigScreen/changeActiveItem',
-      changePageInfo: 'bigScreen/changePageInfo'
+      changePageInfo: 'bigScreen/changePageInfo',
+      undoTimeLine: 'bigScreen/undoTimeLine',
+      saveTimeLine: 'bigScreen/saveTimeLine'
     }),
     backManagement () {
       this.$router.push({
         path: this.pageInfo.type === 'component' ? (window.BS_CONFIG?.routers?.componentUrl || '/big-screen-components') : (window.BS_CONFIG?.routers?.pageManagementUrl || '/home')
       })
     },
+    undo (isUndo) {
+      this.undoTimeLine(isUndo)
+    },
     // 清空
     empty () {
       this.changeActiveCode('')
       this.$emit('empty')
+      this.saveTimeLine()
     },
     // 预览
     async execRun () {
@@ -333,6 +359,14 @@ export default {
   .head-btn-group {
     display: flex;
     margin-left: 50px;
+
+    i {
+      font-size: 14px;
+    }
+
+    .icon-reverse {
+      transform: rotate(180deg);
+    }
   }
 
   .item-wrap {

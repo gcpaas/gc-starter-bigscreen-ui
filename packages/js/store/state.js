@@ -61,5 +61,10 @@ export const defaultData = {
 }
 
 export default () => ({
+  // 存储的大屏timeline信息
+  timelineStore: [],
+  // 当前的timeline 的index
+  currentTimeLine: 0,
+  // 具体信息
   ..._.cloneDeep(defaultData)
 })

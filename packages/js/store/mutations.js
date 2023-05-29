@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-29 16:49:29
+ * @LastEditTime: 2023-05-29 21:46:15
  */
 
 import Vue from 'vue'
@@ -80,6 +80,7 @@ export default {
     // 放到第一项
     state.pageInfo.chartList.unshift(itemConfig)
     changeZIndexFuc(state, state.pageInfo.chartList)
+    saveTimeLineFunc(state)
   },
   // 删除组件/批量删除组件
   delItem (state, codes) {
@@ -88,6 +89,8 @@ export default {
     } else {
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => codes !== chart.code)
     }
+    // 存储删除后的状态
+    saveTimeLineFunc(state)
   },
   changePageConfig (state, pageConfig) {
     Vue.set(state.pageInfo, 'pageConfig', _.cloneDeep(pageConfig))
@@ -190,6 +193,40 @@ export default {
       })
       changePresetLine(state, chart)
     })
+  },
+  // 保存当前状态
+  saveTimeLine (state) {
+    saveTimeLineFunc(state)
+  },
+  // 撤回/反撤回当前事件线 （undo和redo放到一个函数中，用isUndo区分）
+  undoTimeLine (state, isUndo = true) {
+    let currentStore = {}
+    // 撤回
+    if (isUndo) {
+      if (state.timelineStore.length > 0 && state.currentTimeLine > 1) {
+        // 时间线往前推一个
+        state.currentTimeLine = state.currentTimeLine - 1
+        currentStore = state.timelineStore[state.currentTimeLine - 1]
+        if (currentStore?.chartList) {
+          state.pageInfo.chartList = _.cloneDeep(currentStore?.chartList)
+        }
+      }
+    }
+    // 反撤回 redo
+    if (!isUndo) {
+      console.log('1', state.currentTimeLine)
+      if (state.currentTimeLine < state.timelineStore.length) {
+        console.log('2', state.currentTimeLine)
+        // 时间线往后推一个
+        state.currentTimeLine = state.currentTimeLine + 1
+        currentStore = state.timelineStore[state.currentTimeLine - 1]
+        state.pageInfo.chartList = _.cloneDeep(currentStore?.chartList || [])
+      }
+    }
+  },
+  clearTimeline (state) {
+    state.timelineStore = []
+    state.currentTimeLine = 0
   }
 }
 function changeZIndexFuc (state, list) {
@@ -237,4 +274,23 @@ function changeGroup (code, state) {
       group: chart.group === 'tempGroup' ? '' : chart.group
     }))
   }
+}
+
+function saveTimeLineFunc (state) {
+  // 最多保存5个状态
+  const MAX_TIME_LINE = 5
+  const stateCopy = _.cloneDeep(state.pageInfo)
+
+  if (!Array.isArray(state.timelineStore)) {
+    state.timelineStore = []
+  }
+  if (!Number.isInteger(state.currentTimeLine)) {
+    state.currentTimeLine = 0
+  }
+  if (state.timelineStore.length >= MAX_TIME_LINE) {
+    // 去掉最早的一个
+    state.timelineStore.shift()
+  }
+  state.timelineStore?.push(stateCopy)
+  state.currentTimeLine = state.timelineStore?.length
 }

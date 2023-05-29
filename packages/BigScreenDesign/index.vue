@@ -232,6 +232,9 @@ export default {
       }
     }
   },
+  beforeDestroy () {
+    this.clearTimeline()
+  },
   methods: {
     ...mapActions('bigScreen', ['initLayout']),
     ...mapMutations('bigScreen', [
@@ -243,7 +246,8 @@ export default {
       'changePageConfig',
       'changeChartConfig',
       'changeChartKey',
-      'changeZoom'
+      'changeZoom',
+      'clearTimeline'
     ]),
     // 添加资源弹窗初始化
     initDialog () {

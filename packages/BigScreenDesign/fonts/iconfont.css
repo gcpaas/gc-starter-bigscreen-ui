@@ -14,6 +14,14 @@
 }
 
 
+.icon-chehui:before {
+  content: "\e643";
+}
+
+.icon-jiantouqianjin:before {
+  content: "\e85e";
+}
+
 .icon-tupian:before {
   content: "\e8ba";
 }
@@ -97,3 +105,4 @@
 .icon-border-outer:before {
   content: "\eb01";
 }
+
