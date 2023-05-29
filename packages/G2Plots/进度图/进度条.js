@@ -44,40 +44,40 @@ const setting = [
     optionField: 'currentFill',
     value: '#4a7af4',
     tabName: 'custom'
+  },
+  {
+    label: '不透明度',
+    // 设置组件类型
+    type: 'slider',
+    // 字段
+    field: 'progressStyle_fillOpacity',
+    // 对应options中的字段
+    optionField: 'progressStyle.fillOpacity',
+    value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: '边框颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'progressStyle_stroke',
+    // 对应options中的字段
+    optionField: 'progressStyle.stroke',
+    value: '#fff',
+    tabName: 'custom'
+  },
+  {
+    label: '边框宽度',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'progressStyle_lineWidth',
+    // 对应options中的字段
+    optionField: 'progressStyle.lineWidth',
+    value: 0,
+    tabName: 'custom'
   }
-  // {
-  //   label: '不透明度',
-  //   // 设置组件类型
-  //   type: 'slider',
-  //   // 字段
-  //   field: 'progressStyle_fillOpacity',
-  //   // 对应options中的字段
-  //   optionField: 'progressStyle.fillOpacity',
-  //   value: 1,
-  //   tabName: 'custom'
-  // },
-  // {
-  //   label: '边框颜色',
-  //   // 设置组件类型
-  //   type: 'colorPicker',
-  //   // 字段
-  //   field: 'progressStyle_stroke',
-  //   // 对应options中的字段
-  //   optionField: 'progressStyle.stroke',
-  //   value: '#fff',
-  //   tabName: 'custom'
-  // },
-  // {
-  //   label: '边框宽度',
-  //   // 设置组件类型
-  //   type: 'inputNumber',
-  //   // 字段
-  //   field: 'progressStyle_lineWidth',
-  //   // 对应options中的字段
-  //   optionField: 'progressStyle.lineWidth',
-  //   value: 0,
-  //   tabName: 'custom'
-  // }
 ]
 
 // 数据处理脚本
@@ -116,37 +116,15 @@ const option = {
   backColor: '#E8EDF3',
   frontColor: '#4a7af4',
   color: ['#4a7af4', '#E8EDF3'],
-  // progressStyle: {
-  //   current: {
-  //     style: {
-  //       radius: [0, 0, 30, 30],
-  //       fillOpacity: 1,
-  //       stroke: 'white',
-  //       lineWidth: 0,
-  //       shadowColor: 'black'
-  //     }
-  //   }
-  // }
-  progressStyle: ({ percent, type }) => {
-    if (type === 'current') {
-      return {
-        // 进度条百分比部分样式
-        fill: '#4775E9',
+  progressStyle: {
+    current: {
+      style: {
         radius: [0, 0, 30, 30],
         fillOpacity: 1,
         stroke: 'white',
         lineWidth: 0,
         shadowColor: 'black'
       }
-    }
-    return {
-      // 进度条背景部分样式
-      fill: '#ffffff',
-      radius: [30, 30, 0, 0],
-      fillOpacity: 1,
-      stroke: 'white',
-      lineWidth: 0,
-      shadowColor: 'black'
     }
   },
   currentRadius: '30',

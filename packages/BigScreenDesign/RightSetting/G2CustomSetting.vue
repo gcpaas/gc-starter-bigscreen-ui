@@ -77,10 +77,16 @@
                   />
                 </div>
               </template>
-              <color-picker
+<!--              <color-picker-->
+<!--                v-else-if="setting.type === 'colorPicker'"-->
+<!--                v-model="setting.value"-->
+<!--                style="width: 100%;display: grid;"-->
+<!--              />-->
+              <el-color-picker
                 v-else-if="setting.type === 'colorPicker'"
                 v-model="setting.value"
-                style="width: 100%;display: grid;"
+                popper-class="bs-el-color-picker"
+                show-alpha
               />
               <!-- 渐变色设置 -->
               <GradualSetting
