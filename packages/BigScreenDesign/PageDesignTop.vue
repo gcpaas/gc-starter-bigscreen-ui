@@ -115,7 +115,7 @@ export default {
     }),
     backManagement () {
       this.$router.push({
-        path: this.pageInfo.type === 'component' ? window.BS_CONFIG?.routers?.componentUrl || '/big-screen-components' : window.BS_CONFIG?.routers?.pageManagementUrl || '/home'
+        path: this.pageInfo.type === 'component' ? (window.BS_CONFIG?.routers?.componentUrl || '/big-screen-components') : (window.BS_CONFIG?.routers?.pageManagementUrl || '/home')
       })
     },
     // 清空

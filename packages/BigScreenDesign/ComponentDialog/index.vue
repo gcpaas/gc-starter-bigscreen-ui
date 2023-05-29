@@ -181,7 +181,9 @@ export default {
     // 点击确定
     confirm () {
       this.dialogVisible = false
-      this.$emit('setComponent', this.focus)
+      if (Object.keys(this.focus).length) {
+        this.$emit('setComponent', this.focus)
+      }
     },
     getDataList () {
       this.loading = true
