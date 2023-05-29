@@ -54,15 +54,15 @@ const setting = [
     tabName: 'custom',
     options: [
       {
-        label: 'top',
+        label: '顶部',
         value: 'top'
       },
       {
-        label: 'bottom',
+        label: '底部',
         value: 'bottom'
       },
       {
-        label: 'middle',
+        label: '居中',
         value: 'middle'
       }
     ]
@@ -182,7 +182,7 @@ const option = {
     // 配置样式
     style: {
       fill: '#FFFFFF',
-      opacity: 0.6
+      opacity: 0
     }
   },
   // pattern: {
