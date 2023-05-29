@@ -88,18 +88,18 @@ const setting = [
     value: 'top',
     tabName: 'custom',
     options: [
-      { label: '上方', value: 'top' },
-      { label: '左上方', value: 'top-left' },
-      { label: '右上方', value: 'top-right' },
-      { label: '左方', value: 'left' },
-      { label: '左上方', value: 'left-top' },
-      { label: '左下方', value: 'left-bottom' },
-      { label: '右方', value: 'right' },
-      { label: '右上方', value: 'right-top' },
-      { label: '右下方', value: 'right-bottom' },
-      { label: '下方', value: 'bottom' },
-      { label: '左下方', value: 'bottom-left' },
-      { label: '右下方', value: 'bottom-right' }
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
     ]
   },
   {

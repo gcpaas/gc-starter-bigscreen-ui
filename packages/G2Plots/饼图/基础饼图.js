@@ -38,32 +38,41 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
     label: '图例位置',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'legend_position',
-    // 对应options中的字段
-    optionField: 'legend.position',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
     // 是否多选
     multiple: false,
-    value: 'right',
+    value: 'top',
     tabName: 'custom',
     options: [
-      { label: '左上', value: 'top-left' },
-      { label: '顶部居中', value: 'top' },
-      { label: '右上', value: 'top-right' },
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
       { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
       { label: '右侧', value: 'right' },
-      { label: '左下', value: 'bottom-left' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
       { label: '底部', value: 'bottom' },
-      { label: '左下', value: 'bottom-right' }
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
     ]
   },
   {
     label: '标签位置',
     // 设置组件类型
-    type: 'radio',
+    type: 'select',
     // 字段
     field: 'label_type',
     // 对应options中的字段
@@ -97,7 +106,7 @@ const setting = [
     optionField: 'label.labelLine.style.opacity',
     value: '0.6',
     tabName: 'custom',
-    step: 1
+    step: 0.1
   },
   {
     label: '颜色配置',
@@ -131,19 +140,20 @@ const data = [
 ]
 
 // 数据处理脚本
-const dataHandler = ''
+const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
 // 图表配置 new Pie('domName', option)
 const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   data,
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
+  angle: 0.5,
   angleField: 'value',
   colorField: 'type',
   radius: 0.9,
-  legend: {
-    // 图例
-    position: 'right'
-  },
+  legend: false,
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   label: {
     type: 'inner',

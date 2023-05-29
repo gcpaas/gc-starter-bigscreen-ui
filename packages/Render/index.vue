@@ -271,7 +271,6 @@ export default {
     },
     // 新增元素
     addChart (chart, position) {
-      debugger
       const { left, top } = this.$el.getBoundingClientRect()
       const _chart = !chart.code ? JSON.parse(chart) : chart
       let option = _chart.option

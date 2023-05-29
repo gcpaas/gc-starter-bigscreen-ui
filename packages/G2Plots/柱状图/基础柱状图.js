@@ -72,7 +72,7 @@ const setting = [
     type: 'gradual', // 设置组件类型
     field: 'columnStyle_fill', // 字段
     optionField: 'columnStyle.fill', // 对应options中的字段
-    value: 'l(90) 0:#5E8EED 1:#5E8EED',
+    value: 'l(90) 0:#5AA6AB 1:#217AB1',
     tabName: 'custom'
   },
   // {
@@ -174,7 +174,7 @@ const option = {
   yField: 'sales',
   color: '',
   columnStyle: { // 设置柱子渐变色
-    fill: 'l(90) 0:#5E8EED 1:#5E8EED'
+    fill: 'l(90) 0:#5AA6AB 1:#217AB1'
   },
   label: {
     // 可手动配置 label 数据标签位置
