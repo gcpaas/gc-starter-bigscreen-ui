@@ -6,34 +6,24 @@
         src="~packages/BigScreenDesign/images/app.png"
         alt="返回"
         @click="backManagement"
-      >
+      />
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
-      <CusBtn
-        :loading="saveAndPreviewLoading"
-        @click.native="createdImg()"
-      >
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="designAssign()">
+        设计分工
+      </CusBtn>
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="createdImg()">
         生成图片
       </CusBtn>
-      <CusBtn
-        :loading="saveAndPreviewLoading"
-        @click.native="execRun()"
-      >
+      <CusBtn :loading="saveAndPreviewLoading" @click.native="execRun()">
         预览
       </CusBtn>
-      <CusBtn
-        :loading="saveLoading"
-        @click="save('saveLoading')"
-      >
+      <CusBtn :loading="saveLoading" @click="save('saveLoading')">
         保存
       </CusBtn>
-      <CusBtn @click="empty">
-        清空
-      </CusBtn>
-      <CusBtn @click="showPageInfo">
-        设置
-      </CusBtn>
+      <CusBtn @click="empty"> 清空 </CusBtn>
+      <CusBtn @click="showPageInfo"> 设置 </CusBtn>
       <CusBtn @click="updateRightVisiable">
         <i
           class="iconfont-bigscreen"
@@ -47,6 +37,7 @@
       :page-info="pageInfo"
       @replaceItByTemplate="replaceItByTemplate"
     />
+    <AssignDialog ref="AssignDialog" />
   </div>
 </template>
 <script>
@@ -56,6 +47,7 @@ import { saveScreen } from 'packages/js/api/bigScreenApi'
 import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDialog.vue'
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
+import AssignDialog from 'packages/BigScreenDesign/AssignDialog/index.vue'
 import CusBtn from './BtnLoading'
 import {
   showSize,
@@ -67,6 +59,7 @@ export default {
   name: 'PageTopSetting',
   components: {
     ChooseTemplateDialog,
+    AssignDialog,
     CusBtn
   },
   props: {
@@ -79,7 +72,7 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       appInfo: '',
       saveLoading: false,
@@ -91,7 +84,7 @@ export default {
     ...mapState({
       pageInfo: (state) => state.bigScreen.pageInfo
     }),
-    pageCode () {
+    pageCode() {
       return this.$route.query.code || this.code
     }
   },
@@ -104,24 +97,24 @@ export default {
       changeActiveItem: 'bigScreen/changeActiveItem',
       changePageInfo: 'bigScreen/changePageInfo'
     }),
-    backManagement () {
+    backManagement() {
       this.$router.push({
         path: window.BS_CONFIG?.routers?.pageManagementUrl || '/home'
       })
     },
     // 清空
-    empty () {
+    empty() {
       this.changeActiveCode('')
       this.$emit('empty')
     },
     // 预览
-    async execRun () {
+    async execRun() {
       this.save('saveAndPreviewLoading').then((res) => {
         this.preview()
       })
     },
     // 预览
-    preview () {
+    preview() {
       const { href } = this.$router.resolve({
         path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview',
         query: {
@@ -131,7 +124,7 @@ export default {
       window.open(href, '_blank')
     },
     // 保存
-    save (loadingType = 'saveLoading', hasPageTemplateId = false) {
+    save(loadingType = 'saveLoading', hasPageTemplateId = false) {
       const pageInfo = _.cloneDeep(this.handleSaveData())
       // 保存页面
       this[loadingType] = true
@@ -182,29 +175,29 @@ export default {
           })
       })
     },
-    goBack (path) {
+    goBack(path) {
       this.$router.push({
         path: `/${path}`
       })
     },
     // 得到模板列表
-    getTemplateList (type) {
+    getTemplateList(type) {
       this.$nextTick(() => {
         this.$refs.ChooseTemplateDialog.init(undefined, type)
       })
     },
     // 选择模版后覆盖配置
-    selectTemplate (template) {
+    selectTemplate(template) {
       this.pageInfo.pageTemplateId = template.id
       this.save('saveLoading', true).then(() => {
         this.initLayout(this.pageCode)
       })
     },
-    replaceItByTemplate (config) {
+    replaceItByTemplate(config) {
       this.changePageInfo(config)
     },
     // 处理保存数据
-    handleSaveData () {
+    handleSaveData() {
       const pageInfo = _.cloneDeep(this.pageInfo)
       const chartList = _.cloneDeep(this.pageInfo.chartList)
 
@@ -227,13 +220,16 @@ export default {
         chartList: newChartList
       })
     },
-    updateRightVisiable () {
+    updateRightVisiable() {
       this.$emit('updateRightVisiable', !this.rightFold)
     },
-    showPageInfo () {
+    showPageInfo() {
       this.$emit('showPageInfo')
     },
-    createdImg () {
+    designAssign() {
+      this.$refs.AssignDialog.init()
+    },
+    createdImg() {
       this.saveAndPreviewLoading = true
       const node = document.querySelector('.render-theme-wrap')
       toPng(node)
