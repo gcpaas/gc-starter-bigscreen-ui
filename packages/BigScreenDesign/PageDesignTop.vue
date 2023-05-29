@@ -44,12 +44,12 @@ import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDia
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
 import CusBtn from './BtnLoading'
-// import {
-//   showSize,
-//   dataURLtoBlob,
-//   formatBlobs
-// } from 'packages/js/utils/compressImg'
-// import * as imageConversion from 'image-conversion'
+import {
+  showSize,
+  dataURLtoBlob,
+  translateBlobToBase64
+} from 'packages/js/utils/compressImg'
+import * as imageConversion from 'image-conversion'
 export default {
   name: 'PageTopSetting',
   components: {
@@ -129,29 +129,40 @@ export default {
         const node = document.querySelector('.render-theme-wrap')
         toJpeg(node, { quality: 0.2 })
           .then((dataUrl) => {
-            // console.log(showSize(dataUrl))
-            // if (showSize(dataUrl) > 187) {
-            //   console.log('11111')
-            //   // 压缩到500KB,这里的500就是要压缩的大小,可自定义
-            //   imageConversion
-            //     .compressAccurately(dataURLtoBlob(dataUrl), 180)
-            //     .then((res) => {
-            //       console.log(res)
-            //       formatBlobs(res).then((data) => {
-            //         pageInfo.coverPicture = data
-            //       })
-            //     })
-            // } else {
-            pageInfo.coverPicture = dataUrl
-            // }
-            saveScreen(pageInfo)
-              .then((res) => {
-                this.$message.success('保存成功')
-                resolve(res)
-              })
-              .finally(() => {
-                this[loadingType] = false
-              })
+            const that = this
+            if (showSize(dataUrl) > 200) {
+              const url = dataURLtoBlob(dataUrl)
+              // 压缩到500KB,这里的500就是要压缩的大小,可自定义
+              imageConversion
+                .compressAccurately(url, {
+                  size: 200, // 图片大小压缩到100kb
+                  width: 1280, // 宽度压缩到1280
+                  height: 720 // 高度压缩到720
+                })
+                .then((res) => {
+                  translateBlobToBase64(res, function (e) {
+                    pageInfo.coverPicture = e.result
+                    saveScreen(pageInfo)
+                      .then((res) => {
+                        that.$message.success('保存成功')
+                        resolve(res)
+                      })
+                      .finally(() => {
+                        that[loadingType] = false
+                      })
+                  })
+                })
+            } else {
+              pageInfo.coverPicture = dataUrl
+              saveScreen(pageInfo)
+                .then((res) => {
+                  this.$message.success('保存成功')
+                  resolve(res)
+                })
+                .finally(() => {
+                  this[loadingType] = false
+                })
+            }
           })
           .catch(() => {
             this[loadingType] = false
