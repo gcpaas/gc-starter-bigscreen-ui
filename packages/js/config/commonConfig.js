@@ -77,7 +77,7 @@ export default function (customConfig) {
       serverPagination: false, // 服务端分页
       pageSize: 10,
       params: {},
-      dataSetType: '', // 数据集类型,
+      dataSetType: '1', // 数据集类型,
       formCode: '',
       ...customConfig.dataSource // 非通用数据配置
     },
