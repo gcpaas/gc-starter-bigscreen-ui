@@ -185,7 +185,6 @@ export default {
         }
       ],
       drawerVisible: false,
-      resolutionRatioValue: '1920*1080',
       resolutionRatioOptions: [
         {
           value: '1024*768',
@@ -269,6 +268,9 @@ export default {
         id: dSet.dataSetId,
         name: dSet.name
       })) || []
+    },
+    resolutionRatioValue () {
+      return this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
     }
   },
   watch: {
@@ -277,8 +279,8 @@ export default {
         this.form.w = val.split('*')[0]
         this.form.h = val.split('*')[1]
       } else {
-        this.form.w = 1920
-        this.form.h = 1080
+        this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
+        this.form.h = this.pageInfo.type === 'component' ? 768 : 1080
       }
     }
   },
