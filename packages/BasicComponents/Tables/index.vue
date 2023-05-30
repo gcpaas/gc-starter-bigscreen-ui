@@ -152,10 +152,9 @@ export default {
       this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
     } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
       this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
-    } else {
+    } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
       this.config.customize.bodyBackgroundColor = 'transparent'
     }
-
     this.$nextTick(() => {
       document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
         node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
