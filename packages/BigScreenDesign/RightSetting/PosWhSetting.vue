@@ -6,7 +6,7 @@
 <template>
   <div>
     <el-form-item
-      label-width="100px"
+      :label-width="labelWidth"
       label="宽度"
     >
       <el-input-number
@@ -17,7 +17,7 @@
       />
     </el-form-item>
     <el-form-item
-      label-width="100px"
+      :label-width="labelWidth"
       label="高度"
     >
       <el-input-number
@@ -28,7 +28,7 @@
       />
     </el-form-item>
     <el-form-item
-      label-width="100px"
+      :label-width="labelWidth"
       label="x坐标"
     >
       <el-input-number
@@ -39,7 +39,7 @@
       />
     </el-form-item>
     <el-form-item
-      label-width="100px"
+      :label-width="labelWidth"
       label="y坐标"
     >
       <el-input-number
@@ -63,6 +63,10 @@ export default {
         w: 0,
         h: 0
       })
+    },
+    labelWidth: {
+      type: String,
+      default: '100px'
     }
   },
   data () {
