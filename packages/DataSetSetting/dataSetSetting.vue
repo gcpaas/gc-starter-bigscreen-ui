@@ -95,12 +95,7 @@ export default {
 <style lang="scss"></style>
 
 <style lang="scss" scoped>
-// ::v-deep .el-dialog{
-//   margin: 0 auto 20px;
-// }
-
 @import '~packages/assets/style/bsTheme.scss';
-
 .data-set-wrap {
   /deep/ .el-dialog__body {
     position: relative;
@@ -125,33 +120,11 @@ export default {
   }
 
   .bs-data-set-management {
-    ::v-deep .el-scrollbar {
-      height: 440px !important;
-      overflow-y: auto !important;
-
-    }
-
     ::v-deep .ztree {
       height: auto !important;
     }
-
-    ::v-deep .bs-el-pagination {
-      position: absolute !important;
-      bottom: 0 !important;
-      right: 12px !important;
-    }
-
     ::v-deep .bs-table-box {
       height: auto !important;
-    }
-  }
-
-  /deep/.bs-table {
-    height: calc(100% - 105px) !important;
-
-    .el-table {
-      height: 100% !important;
-      max-height: unset !important;
     }
   }
 }

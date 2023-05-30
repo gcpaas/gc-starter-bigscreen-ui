@@ -395,7 +395,7 @@ export default {
   background: var(--bs-background-2);
 
   .bs-overall-setting-wrap {
-    padding: 8px;
+    padding: 16px;
   }
 
   /deep/ .el-input__inner,
