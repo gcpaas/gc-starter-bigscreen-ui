@@ -17,6 +17,11 @@
         设计分工
       </CusBtn>
       <CusBtn
+        @click.native="showHostory"
+      >
+        历史操作
+      </CusBtn>
+      <CusBtn
         :disabled="undoDisabled"
         @click.native="undo(true)"
       >
@@ -66,6 +71,7 @@
       @replaceItByTemplate="replaceItByTemplate"
     />
     <AssignDialog ref="AssignDialog" />
+    <HistoryList ref="HistoryList" />
   </div>
 </template>
 <script>
@@ -76,6 +82,7 @@ import ChooseTemplateDialog from 'packages/BigScreenManagement/ChooseTemplateDia
 import _ from 'lodash'
 import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
 import AssignDialog from 'packages/BigScreenDesign/AssignDialog/index.vue'
+import HistoryList from 'packages/BigScreenDesign/HistoryList/index.vue'
 import CusBtn from './BtnLoading'
 import {
   showSize,
@@ -88,7 +95,8 @@ export default {
   components: {
     ChooseTemplateDialog,
     AssignDialog,
-    CusBtn
+    CusBtn,
+    HistoryList
   },
   props: {
     code: {
@@ -147,7 +155,7 @@ export default {
     empty () {
       this.changeActiveCode('')
       this.$emit('empty')
-      this.saveTimeLine()
+      this.saveTimeLine('清空画布')
     },
     // 预览
     async execRun () {
@@ -270,6 +278,9 @@ export default {
     },
     designAssign () {
       this.$refs.AssignDialog.init()
+    },
+    showHostory () {
+      this.$refs.HistoryList.init()
     },
     createdImg () {
       this.saveAndPreviewLoading = true

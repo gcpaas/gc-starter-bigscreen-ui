@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-30 11:08:00
+ * @LastEditTime: 2023-05-30 15:04:00
  */
 
 import Vue from 'vue'
@@ -80,7 +80,7 @@ export default {
     // 放到第一项
     state.pageInfo.chartList.unshift(itemConfig)
     changeZIndexFuc(state, state.pageInfo.chartList)
-    saveTimeLineFunc(state)
+    saveTimeLineFunc(state, '新增组件' + itemConfig?.title)
   },
   // 删除组件/批量删除组件
   delItem (state, codes) {
@@ -90,7 +90,7 @@ export default {
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => codes !== chart.code)
     }
     // 存储删除后的状态
-    saveTimeLineFunc(state)
+    saveTimeLineFunc(state, '删除组件')
   },
   changePageConfig (state, pageConfig) {
     Vue.set(state.pageInfo, 'pageConfig', _.cloneDeep(pageConfig))
@@ -195,8 +195,15 @@ export default {
     })
   },
   // 保存当前状态
-  saveTimeLine (state) {
-    saveTimeLineFunc(state)
+  saveTimeLine (state, title) {
+    const date = new Date()
+    const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    // title默认获取当前时间，时分秒
+    if (!title) {
+      const date = new Date()
+      title = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    }
+    saveTimeLineFunc(state, title, time)
   },
   // 撤回/反撤回当前事件线 （undo和redo放到一个函数中，用isUndo区分）
   undoTimeLine (state, isUndo = true) {
@@ -225,6 +232,11 @@ export default {
   clearTimeline (state) {
     state.timelineStore = []
     state.currentTimeLine = 0
+  },
+  // 回退到指定时间线
+  rollbackTimeline (state, index) {
+    state.pageInfo.chartList = _.cloneDeep(state.timelineStore[index]?.chartList || [])
+    state.currentTimeLine = index
   }
 }
 function changeZIndexFuc (state, list) {
@@ -274,10 +286,14 @@ function changeGroup (code, state) {
   }
 }
 
-function saveTimeLineFunc (state) {
-  // 最多保存5个状态
-  const MAX_TIME_LINE = 5
+function saveTimeLineFunc (state, title, time) {
+  // 最多保存10个状态
+  const MAX_TIME_LINE = 10
   const stateCopy = _.cloneDeep(state.pageInfo)
+  const date = new Date()
+  time = time || `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+  stateCopy.timelineTitle = title
+  stateCopy.updateTime = time
 
   if (!Array.isArray(state.timelineStore)) {
     state.timelineStore = []
