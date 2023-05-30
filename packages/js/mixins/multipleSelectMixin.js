@@ -23,7 +23,8 @@ export default {
     ...mapMutations('bigScreen', {
       changeShiftDown: 'changeShiftDown',
       changeActivePos: 'changeActivePos',
-      deleteItem: 'delItem'
+      deleteItem: 'delItem',
+      undoTimeLine: 'undoTimeLine'
     }),
     keydown (event) {
       if (event.keyCode === 37) {
@@ -52,6 +53,17 @@ export default {
         // 关闭默认事件
         event.preventDefault()
         this.$refs.PageTopSetting.save('saveLoading')
+      }
+      // ctrl/command + z撤销
+      if ((event.ctrlKey || event.metaKey) && event.keyCode === 90) {
+        event.preventDefault()
+        this.undoTimeLine(true)
+      }
+
+      // ctrl/command + shift + z 反撤销
+      if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 90) {
+        event.preventDefault()
+        this.undoTimeLine(false)
       }
 
       if (event.shiftKey) {
