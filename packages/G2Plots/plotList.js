@@ -4,6 +4,7 @@
  * @Author: xing.heng
  */
 import { dataConfig, settingConfig } from '../PlotRender/settingConfig'
+import { mapData } from 'packages/BasicComponents/Map/settingConfig'
 import _ from 'lodash'
 import sortList from './plotListSort'
 // 遍历 当前文件夹下的所有文件，找到中文.js文件，然后导出
@@ -11,7 +12,7 @@ const files = require.context('./', true, /[\u4e00-\u9fa5]+.js$/)
 const plotList = getPlotList(files)
 const customPlots = getCustomPlots()
 // 获取plot配置
-function getPlotList (files) {
+function getPlotList(files) {
   const configMapList = {}
   files.keys().forEach((key) => {
     // ./折线图/基础折线图.js
@@ -50,7 +51,7 @@ function getPlotList (files) {
   }
   return plotList
 }
-export function getCustomPlots () {
+export function getCustomPlots() {
   const customList = window.BS_CONFIG?.customPlots || []
 
   const list = []
@@ -81,5 +82,6 @@ export function getCustomPlots () {
   })
   return list
 }
-const plots = [...plotList, ...customPlots]
+
+const plots = [...plotList, ...customPlots, mapData]
 export default plots

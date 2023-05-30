@@ -17,6 +17,34 @@ export default function getComponentConfig(type) {
         y: 0,
         type
       }
+    case 'horizontalLine':
+      return {
+        name: '水平线',
+        title: '水平线',
+        icon: Icon.getNameList()[10],
+        component: null,
+        className:
+          'com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart',
+        w: 300,
+        h: 40,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'verticalLine':
+      return {
+        name: '垂直线',
+        title: '垂直线',
+        icon: Icon.getNameList()[11],
+        component: null,
+        className:
+          'com.gccloud.bigscreen.core.module.chart.components.ScreenBorderChart',
+        w: 40,
+        h: 300,
+        x: 0,
+        y: 0,
+        type
+      }
 
     case 'picture':
       return {
@@ -46,8 +74,8 @@ export default function getComponentConfig(type) {
       }
     case 'screenScrollRanking':
       return {
-        name: '排名轮播表',
-        title: '排名轮播表',
+        name: '排名表',
+        title: '排名表',
         icon: Icon.getNameList()[3],
         className:
           'com.gccloud.bigscreen.core.module.chart.components.ScreenScrollRankingChart',
@@ -66,19 +94,6 @@ export default function getComponentConfig(type) {
           'com.gccloud.bigscreen.core.module.chart.components.ScreenTablesChart',
         w: 600,
         h: 400,
-        x: 0,
-        y: 0,
-        type
-      }
-    case 'map':
-      return {
-        name: '地图',
-        title: '地图',
-        icon: Icon.getNameList()[5],
-        className:
-          'com.gccloud.bigscreen.core.module.chart.components.ScreenMapChart',
-        w: 800,
-        h: 700,
         x: 0,
         y: 0,
         type
@@ -132,6 +147,19 @@ export default function getComponentConfig(type) {
           'com.gccloud.bigscreen.core.module.chart.components.ScreenDigitalFlopChart',
         w: 800,
         h: 150,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'video':
+      return {
+        name: '播放器',
+        title: '播放器',
+        icon: Icon.getNameList()[12],
+        className:
+          'com.gccloud.bigscreen.core.module.chart.components.ScreenVideoChart',
+        w: 800,
+        h: 500,
         x: 0,
         y: 0,
         type

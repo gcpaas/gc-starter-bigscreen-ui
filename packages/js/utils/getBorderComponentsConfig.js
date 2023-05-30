@@ -216,34 +216,7 @@ export default function getComponentConfig(type, classNameType) {
         y: 0,
         type
       }
-    case 'border16':
-      return {
-        name: '水平线',
-        title: '水平线',
-        icon: null,
-        img: require('packages/Borders/images/hengxian.png'),
-        component: null,
-        className,
-        w: 300,
-        h: 40,
-        x: 0,
-        y: 0,
-        type
-      }
-    case 'border17':
-      return {
-        name: '垂直线',
-        title: '垂直线',
-        icon: null,
-        img: require('packages/Borders/images/shuxian.png'),
-        component: null,
-        className,
-        w: 40,
-        h: 300,
-        x: 0,
-        y: 0,
-        type
-      }
+
     default:
       return {}
   }

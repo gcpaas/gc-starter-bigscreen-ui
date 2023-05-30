@@ -153,7 +153,6 @@ export default {
           const optionField = set.optionField.split('.')
           let option = config.option
           optionField.forEach((field, index) => {
-            debugger
             if (index === optionField.length - 1) {
               // 数据配置时，必须有值才更新
               if ((set.tabName === 'data' && set.value) || set.tabName === 'custom') {

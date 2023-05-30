@@ -2,7 +2,7 @@
   <el-dialog
     title="设计分工"
     :visible.sync="dialogVisible"
-    width="50%"
+    width="80%"
     :modal="true"
     :modal-append-to-body="false"
     :appen-to-body="true"

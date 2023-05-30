@@ -4,9 +4,9 @@
       :key="updateKey"
       class="custom-border-box"
       :style="{
-        height: lineHeight + 'px',
+        width: width + 'px',
         opacity: opacity / 100,
-        'background-image': `linear-gradient(to right, ${
+        'background-image': `linear-gradient(to bottom, ${
           gradientColor0 ? gradientColor0 : gradientColor1
         } , ${gradientColor1 ? gradientColor1 : gradientColor0})`
       }"
@@ -16,7 +16,7 @@
 <script>
 import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 export default {
-  name: 'Border16',
+  name: 'VerticalLine',
   components: {},
   mixins: [refreshComponentMixin],
   props: {
@@ -30,8 +30,8 @@ export default {
     return {}
   },
   computed: {
-    lineHeight() {
-      return this.config.customize.height || 40
+    width() {
+      return this.config.customize.width || 40
     },
     gradientColor0() {
       return this.config.customize.gradientColor0 || ''
@@ -52,12 +52,12 @@ export default {
 <style lang="scss" scoped>
 .bs-design-wrap {
   position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
   background-color: transparent;
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -66,6 +66,8 @@ export default {
   .custom-border-box {
     width: 100%;
     height: 100%;
+    // border: 1px solid rgba(131, 191, 246, 0);
+    // background-color: #007aff;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -47,8 +47,8 @@ const setting = [
     label: 'x轴线宽度',
     type: 'inputNumber', // 设置组件类型
     field: 'xAxis_line_style_lineWidth', // 字段
-    optionField: 'xAxis.line1.style.lineWidth', // 对应options中的字段
-    value: '1',
+    optionField: 'xAxis.line.style.lineWidth', // 对应options中的字段
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -66,7 +66,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'xAxis_label_style_fontSize', // 字段
     optionField: 'xAxis.label.style.fontSize', // 对应options中的字段
-    value: '12',
+    value: 12,
     tabName: 'custom'
   },
   {
@@ -84,7 +84,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_line_lineWidth', // 字段
     optionField: 'yAxis.line.style.lineWidth', // 对应options中的字段
-    value: 0,
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -153,7 +153,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'lineStyle_lineWidth', // 字段
     optionField: 'lineStyle.lineWidth', // 对应options中的字段
-    value: '2',
+    value: 2,
     tabName: 'custom'
   },
   {
@@ -177,7 +177,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_grid_line_style_lineWidth', // 字段
     optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -241,7 +241,7 @@ const option = {
     label: {
       style: {
         fill: '#8C8C8C',
-        fontSize: 12,
+        fontSize: 12
       }
     },
     line: {
@@ -269,7 +269,7 @@ const option = {
       }
     },
     line: {
-      style : {
+      style: {
         stroke: 'rgba(255,255,255,0)',
         lineWidth: 1
       },

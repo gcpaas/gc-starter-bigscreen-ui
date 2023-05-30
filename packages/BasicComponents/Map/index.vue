@@ -1,12 +1,6 @@
 <template>
-  <div
-    style="width: 100%;height: 100%"
-    class="bs-design-wrap bs-bar"
-  >
-    <div
-      :id="`chart${config.code}`"
-      style="width: 100%;height: 100%"
-    />
+  <div style="width: 100%; height: 100%" class="bs-design-wrap bs-bar">
+    <div :id="`chart${config.code}`" style="width: 100%; height: 100%" />
   </div>
 </template>
 <script>
@@ -14,10 +8,11 @@ import 'insert-css'
 import * as echarts from 'echarts'
 import commonMixins from 'packages/js/mixins/commonMixins.js'
 import paramsMixins from 'packages/js/mixins/paramsMixins'
+import linkageMixins from 'packages/js/mixins/linkageMixins'
 import { get } from 'packages/js/utils/http'
 export default {
   name: 'MapCharts',
-  mixins: [paramsMixins, commonMixins],
+  mixins: [paramsMixins, commonMixins, linkageMixins],
   props: {
     id: {
       type: String,
@@ -28,21 +23,21 @@ export default {
       default: () => ({})
     }
   },
-  data () {
+  data() {
     return {
       charts: null,
       hasData: false
     }
   },
   computed: {
-    Data () {
+    Data() {
       return JSON.parse(JSON.stringify(this.config))
     }
   },
   watch: {
     Data: {
-      handler (newVal, oldVal) {
-        if ((newVal.w !== oldVal.w) || (newVal.h !== oldVal.h)) {
+      handler(newVal, oldVal) {
+        if (newVal.w !== oldVal.w || newVal.h !== oldVal.h) {
           this.$nextTick(() => {
             this.charts.resize()
           })
@@ -51,15 +46,33 @@ export default {
       deep: true
     }
   },
-  mounted () {
+  mounted() {
     // this.chartInit()
   },
-  beforeDestroy () {
-    this.charts.clear()
+  beforeDestroy() {
+    this.charts?.clear()
   },
   methods: {
-    async newChart () {
-      this.charts = echarts.init(document.getElementById(`chart${this.config.code}`))
+    buildOption(config, data) {
+      // let dataList = ''
+      // console.log(config.dataSource.dimensionField)
+      // if (data.data instanceof Array) {
+      //   dataList = config.dataSource.dimensionField
+      //     ? data.data[0][config.dataSource.dimensionField]
+      //     : data.data[0].value
+      // } else {
+      //   dataList = data.data[config.dataSource.dimensionField]
+      // }
+      // config.option = {
+      //   ...config.option,
+      //   data: dataList
+      // }
+      return config
+    },
+    async newChart() {
+      this.charts = echarts.init(
+        document.getElementById(`chart${this.config.code}`)
+      )
       const option = {
         // 背景颜色
         backgroundColor: this.config.customize.backgroundColor,
@@ -117,65 +130,70 @@ export default {
           },
           showDelay: 100
         },
-        series: this.config.customize.scatter ? [
-          {
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            symbol: 'pin',
-            legendHoverLink: true,
-            symbolSize: [60, 60],
-            showEffectOn: 'render',
-            rippleEffect: {
-              brushType: 'stroke'
-            },
-            hoverAnimation: true,
-            zlevel: 1,
-            // 这里渲染标志里的内容以及样式
-            label: {
-              show: true,
-              formatter (value) {
-                return value.data.value[2]
-              },
-              color: this.config.customize.scatterColor
-            },
-            // 标志的样式
-            itemStyle: {
-              normal: {
-                color: this.config.customize.scatterBackgroundColor,
-                shadowBlur: 2,
-                shadowColor: 'D8BC37'
+        series: this.config.customize.scatter
+          ? [
+              {
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                symbol: 'pin',
+                legendHoverLink: true,
+                symbolSize: [60, 60],
+                showEffectOn: 'render',
+                rippleEffect: {
+                  brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                zlevel: 1,
+                // 这里渲染标志里的内容以及样式
+                label: {
+                  show: true,
+                  formatter(value) {
+                    return value.data.value[2]
+                  },
+                  color: this.config.customize.scatterColor
+                },
+                // 标志的样式
+                itemStyle: {
+                  normal: {
+                    color: this.config.customize.scatterBackgroundColor,
+                    shadowBlur: 2,
+                    shadowColor: 'D8BC37'
+                  }
+                },
+                data: [
+                  { name: '西藏自治区', value: [91.23, 29.5, 1] },
+                  { name: '黑龙江省', value: [128.03, 47.01, 1007] },
+                  { name: '北京市', value: [116.4551, 40.2539, 5007] }
+                ]
               }
-            },
-            data: [
-              { name: '西藏自治区', value: [91.23, 29.5, 1] },
-              { name: '黑龙江省', value: [128.03, 47.01, 1007] },
-              { name: '北京市', value: [116.4551, 40.2539, 5007] }
             ]
-
-          }
-        ] : [
-          {
-            type: 'map',
-            map: this.config.customize.scope,
-            geoIndex: 0,
-            roam: false,
-            zoom: 1.50,
-            center: [105, 36],
-            showLegendSymbol: false, // 存在legend时显示
-            data: [
-              { name: '西藏自治区', value: [91.23, 29.5, 2333] },
-              { name: '黑龙江省', value: [128.03, 47.01, 1007] },
-              { name: '北京市', value: [116.4551, 40.2539, 1007] }
-            ],
-            tooltip: {
-              formatter (params) {
-                return `<p style="text-align:center;line-height: 30px;height:30px;font-size: 14px;border-bottom: 1px solid #7A8698;">${params.name}</p>
-                <div style="line-height:22px;margin-top:5px">GDP<span style="margin-left:12px;color:#fff;float:right">${params.data?.value[2] || '--'}</span></div>`
-              },
-              show: true
-            }
-          }
-        ]
+          : [
+              {
+                type: 'map',
+                map: this.config.customize.scope,
+                geoIndex: 0,
+                roam: false,
+                zoom: 1.5,
+                center: [105, 36],
+                showLegendSymbol: false, // 存在legend时显示
+                data: [
+                  { name: '西藏自治区', value: [91.23, 29.5, 2333] },
+                  { name: '黑龙江省', value: [128.03, 47.01, 1007] },
+                  { name: '北京市', value: [116.4551, 40.2539, 1007] }
+                ],
+                tooltip: {
+                  formatter(params) {
+                    return `<p style="text-align:center;line-height: 30px;height:30px;font-size: 14px;border-bottom: 1px solid #7A8698;">${
+                      params.name
+                    }</p>
+                <div style="line-height:22px;margin-top:5px">GDP<span style="margin-left:12px;color:#fff;float:right">${
+                  params.data?.value[2] || '--'
+                }</span></div>`
+                  },
+                  show: true
+                }
+              }
+            ]
       }
       if (this.config.customize.visual) {
         option.visualMap = {
@@ -192,27 +210,29 @@ export default {
       const map = await get(decodeURI(mapUrl), {}, true)
       echarts.registerMap(this.config.customize.scope, map)
       this.charts.setOption(option)
-      this.charts.on('click', (params) => {
-        get(`${window.BS_CONFIG?.httpConfigs?.baseURL}/static/chinaMap/province/${params.name}.json`, {}, true).then((res) => {
-          option.geo.map = params.name
-          echarts.registerMap(params.name, res)
-          this.charts.setOption(option, true)
-        })
-      })
+      // this.charts.on('click', (params) => {
+      //   get(
+      //     `${window.BS_CONFIG?.httpConfigs?.baseURL}/static/chinaMap/province/${params.name}.json`,
+      //     {},
+      //     true
+      //   ).then((res) => {
+      //     option.geo.map = params.name
+      //     echarts.registerMap(params.name, res)
+      //     this.charts.setOption(option, true)
+      //   })
+      // })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '~packages/assets/style/echartStyle';
-    .light-theme{
-      background-color: #FFFFFF;
-      color: #000000;
-    }
-    .auto-theme{
-      background-color: rgba(0,0,0,0);
-
-    }
-
+@import '~packages/assets/style/echartStyle';
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+.auto-theme {
+  background-color: rgba(0, 0, 0, 0);
+}
 </style>
