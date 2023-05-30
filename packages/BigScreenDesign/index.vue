@@ -261,7 +261,8 @@ export default {
       // 根据component获取页面详情
       getScreenInfo(component.code).then(res => {
         const pageInfo = handleResData(res)
-        pageInfo.chartList.forEach((chart) => {
+        const chartList = pageInfo.chartList.reverse()
+        chartList.forEach((chart) => {
           const newChart = {
             ...chart,
             offsetX: 0,
