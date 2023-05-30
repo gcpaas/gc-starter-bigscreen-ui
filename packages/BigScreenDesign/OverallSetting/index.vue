@@ -15,6 +15,7 @@
             popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
+            @change="resolutionRatioValueHandel"
           >
             <el-option
               v-for="resolutionRatio in resolutionRatioOptions"
@@ -269,24 +270,15 @@ export default {
         id: dSet.dataSetId,
         name: dSet.name
       })) || []
-    },
+    }
   },
   watch: {
-    resolutionRatioValue (val) {
-      if (val) {
-        this.form.w = val.split('*')[0]
-        this.form.h = val.split('*')[1]
-      } else {
-        this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
-        this.form.h = this.pageInfo.type === 'component' ? 768 : 1080
-      }
-    }
   },
 
   created () { },
   mounted () {
-    this.init()
     this.initResolution()
+    this.init()
   },
   methods: {
     ...mapMutations('bigScreen', [
@@ -295,6 +287,15 @@ export default {
       'changeLayout',
       'changeChartKey'
     ]),
+    resolutionRatioValueHandel (val) {
+      if (val) {
+        this.form.w = val.split('*')[0]
+        this.form.h = val.split('*')[1]
+      } else {
+        this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
+        this.form.h = this.pageInfo.type === 'component' ? 768 : 1080
+      }
+    },
     initResolution () {
       this.resolutionRatioValue = this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
     },
