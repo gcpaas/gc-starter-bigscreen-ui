@@ -45,6 +45,8 @@ export default {
     }
   },
   mounted () {
+    const nav = this.navs.find(m => m.path === this.$route.path)
+    this.activeNav = nav ? nav.id : 0
   },
   beforeDestroy () {
   },
