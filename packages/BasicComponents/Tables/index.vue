@@ -153,7 +153,7 @@ export default {
     } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
       this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
     } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
-      this.config.customize.bodyBackgroundColor = 'transparent'
+      this.config.customize.bodyBackgroundColor = ''
     }
     this.$nextTick(() => {
       document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
@@ -331,7 +331,6 @@ export default {
 /deep/ .el-table__body-wrapper::-webkit-scrollbar {
   width: 10px; // 横向滚动条
   height: 10px; // 纵向滚动条 必写
-  margin: 0 2px;
   background-color: transparent;
 }
 

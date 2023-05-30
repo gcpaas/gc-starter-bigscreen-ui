@@ -96,6 +96,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';
+
 .data-set-wrap {
   /deep/ .el-dialog__body {
     position: relative;
@@ -111,9 +112,11 @@ export default {
     .el-table {
       max-height: calc(90vh - 350px);
     }
-    .bs-table-box{
+
+    .bs-table-box {
       margin-bottom: 0px;
     }
+
     .ztree {
       max-height: none !important;
     }
@@ -123,8 +126,13 @@ export default {
     ::v-deep .ztree {
       height: auto !important;
     }
+
     ::v-deep .bs-table-box {
       height: auto !important;
+    }
+
+    ::v-deep .bs-el-pagination {
+      right: 6px !important;
     }
   }
 }
