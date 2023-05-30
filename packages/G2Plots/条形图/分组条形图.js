@@ -197,9 +197,12 @@ const data = [
   }
 ]
 
-// 数据处理脚本
-const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
+// 配置处理脚本
+const optionHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
   '\nconst radiusNum = setting.find(settingItem=>settingItem.field === \'radiusNum\').value; option.barStyle.radius = [radiusNum,radiusNum,0,0]'
+
+// 数据处理脚本
+const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -245,5 +248,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }

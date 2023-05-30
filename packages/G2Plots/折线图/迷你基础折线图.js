@@ -69,8 +69,8 @@ const setting = [
   }
 ]
 
-// 数据处理脚本,取出所有value
-const dataHandler = 'data = data.map(item => item.value)'
+// 数据处理脚本,取出所有指标的值
+const dataHandler = '// 取出所有指标的值 \ndata = data.map(item => item[setting.filter(i => i.field === "yField")[0].value])'
 
 // 图表配置 new Line('domName', option)
 const option = {

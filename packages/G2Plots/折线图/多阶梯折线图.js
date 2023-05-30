@@ -164,8 +164,11 @@ const data = [
   { month: 'Dec', key: 'series2', value: 56 }
 ]
 
+// 配置处理脚本
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
+
 // 数据处理脚本
-const dataHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
+const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -210,5 +213,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }
