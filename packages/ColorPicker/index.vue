@@ -4,15 +4,14 @@
       v-model="localValue"
       :placeholder="placeholder"
       clearable
-    >
-      <el-color-picker
-        slot="append"
-        v-model="localValue"
-        popper-class="bs-el-color-picker"
-        show-alpha
-        :predefine="predefineColors"
-      />
-    </el-input>
+    />
+    <el-color-picker
+      slot="append"
+      v-model="localValue"
+      popper-class="bs-el-color-picker"
+      show-alpha
+      :predefine="predefineColors"
+    />
   </div>
 </template>
 
@@ -59,37 +58,39 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <style lang="scss" scoped>
-  ::v-deep .el-color-picker__trigger{
-    border-color: var(--bs-el-border);
-  }
-
 .border-color {
   display: flex;
 
   ::v-deep .el-input {
     width: auto;
-    min-width: 150px;
-    margin-right: 10px;
     position: relative;
+    margin-right: 5px;
 
     .el-input__inner {
       height: 32.5px;
     }
+  }
 
-    .el-input-group__append {
-      background-color: var(--bs-background-1);
+  .el-input-group__append {
+    width: 32.5px;
+    height: 32.5px;
+    background-color: var(--bs-background-1);
 
-      .el-color-picker--mini {
-        position: absolute;
-        top: 1px;
-        left: 7px;
-      }
+    .el-color-picker--mini {
+      position: absolute;
+      top: 1px;
+      left: 7px;
     }
+  }
+
+  ::v-deep .el-color-picker__trigger {
+    width: 32.5px;
+    height: 32.5px;
+    border-color: var(--bs-el-border);
+    background-color: var(--bs-background-1);
   }
 }
 </style>

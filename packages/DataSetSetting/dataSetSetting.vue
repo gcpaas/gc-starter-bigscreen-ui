@@ -92,14 +92,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <style lang="scss" scoped>
-::v-deep .el-dialog{
-  margin: 0 auto 20px;
-}
+// ::v-deep .el-dialog{
+//   margin: 0 auto 20px;
+// }
 
 @import '~packages/assets/style/bsTheme.scss';
 
@@ -107,35 +105,47 @@ export default {
   /deep/ .el-dialog__body {
     position: relative;
     padding: 0 !important;
-    min-height: 600px;
+    min-height: 535px;
     overflow: hidden;
   }
 
- ::v-deep .bs-container {
+  ::v-deep .bs-container {
     padding: 0;
-    min-height: 590px;
+    min-height: 535px;
+
+    .el-table {
+      max-height: calc(90vh - 350px);
+    }
+    .bs-table-box{
+      margin-bottom: 0px;
+    }
     .ztree {
       max-height: none !important;
     }
   }
-.bs-data-set-management{
- ::v-deep .el-scrollbar{
-  height: 490px !important;
-    overflow-y: auto !important;
 
-  }
- ::v-deep .ztree{
-    height: auto !important;
-  }
- ::v-deep .bs-el-pagination{
-    position: absolute !important;
-    bottom: 0 !important;
-    right: 12px !important;
-  }
- ::v-deep .bs-table-box {
+  .bs-data-set-management {
+    ::v-deep .el-scrollbar {
+      height: 440px !important;
+      overflow-y: auto !important;
+
+    }
+
+    ::v-deep .ztree {
       height: auto !important;
     }
-}
+
+    ::v-deep .bs-el-pagination {
+      position: absolute !important;
+      bottom: 0 !important;
+      right: 12px !important;
+    }
+
+    ::v-deep .bs-table-box {
+      height: auto !important;
+    }
+  }
+
   /deep/.bs-table {
     height: calc(100% - 105px) !important;
 
