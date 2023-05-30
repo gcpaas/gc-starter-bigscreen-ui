@@ -111,11 +111,13 @@ const data = [
   { type: '其他', value: 5 }
 ]
 
-// 数据处理脚本
-const dataHandler = '\n\n\n\n\n\n' +
-  'option.seriesField = option.xField;' +
-  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false'
+// 配置处理脚本
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
+  'option.seriesField = option.xField;'
 
+
+// 数据处理脚本
+const dataHandler = ''
 
 // 图表配置 new Pie('domName', option)
 const option = {  data,
@@ -140,5 +142,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }

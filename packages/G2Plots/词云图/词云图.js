@@ -50,6 +50,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '遮罩图片url',
+    // 设置组件类型
+    type: 'input',
+    // 字段
+    field: 'imageMask',
+    // 对应options中的字段
+    optionField: 'imageMask',
+    value: '',
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
@@ -558,9 +569,16 @@ const data = [
   }
 ]
 
+// 配置处理脚本
+const optionHandler = 'let wordFieldValue = setting.find(settingItem=>settingItem.field === \'wordField\').value\n' +
+  'if (wordFieldValue) {\n' +
+  '  option.colorField = wordFieldValue\n' +
+  '}'
+
 // 数据处理脚本
-const dataHandler = 'option.colorField = setting.find(settingItem=>settingItem.field === \'wordField\').value'
-// const dataHandler = ''
+const dataHandler = ''
+
+
 // 图表配置 new Line('domName', option)
 const option = {
   data,
@@ -573,6 +591,7 @@ const option = {
     fontFamily: 'Verdana',
     fontSize: [24, 80]
   },
+  imageMask: '',
   // 设置交互类型
   interactions: [{ type: 'element-active' }],
   state: {
@@ -592,5 +611,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }

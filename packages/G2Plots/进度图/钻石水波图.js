@@ -46,9 +46,9 @@ const setting = [
     // 设置组件类型
     type: 'colorPicker',
     // 字段
-    field: 'statistic_content_style_color',
+    field: 'statistic_content_style_fill',
     // 对应options中的字段
-    optionField: 'statistic.content.style.color',
+    optionField: 'statistic.content.style.fill',
     value: '#d0d0d0',
     tabName: 'custom'
   },
@@ -60,7 +60,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '35',
+    value: 35,
     tabName: 'custom'
   },
   {
@@ -115,7 +115,7 @@ const setting = [
 ]
 
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
+const dataHandler = '// 取返回数据列表的第一项指标值\noption.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
 
 // 图表配置 new Liquid('domName', option)
 const option = {
@@ -138,8 +138,9 @@ const option = {
   statistic: {
     content: {
       style: {
-        color: '#d0d0d0',
-        fontSize: 35
+        fontSize: 35,
+        lineHeight: 1,
+        fill: '#d0d0d0'
       }
     }
   },

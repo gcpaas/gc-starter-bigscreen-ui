@@ -22,7 +22,7 @@ export default {
         })
         // 页面加载成功
         resolve(true)
-        commit('saveTimeLine')
+        commit('saveTimeLine', '初始化')
       })
     })
   },

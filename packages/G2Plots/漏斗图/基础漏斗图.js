@@ -94,6 +94,38 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ]
+  },
+  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -123,13 +155,16 @@ const data = [
   { stage: '入职人数', number: 59 }
 ]
 
-// 数据处理脚本
-const dataHandler = 'let valueField = setting.find(item => item.field === "yField").value\n' +
-  'data = data.sort((a, b) => b[valueField] - a[valueField])\n' +
-  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
+// 配置处理脚本
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
   '\noption.conversionTag.formatter = (datum) => {\n' +
   '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
   '}'
+
+// 数据处理脚本
+const dataHandler = '// 将数据排序\nlet valueField = setting.find(item => item.field === "yField").value\n' +
+  'data = data.sort((a, b) => b[valueField] - a[valueField])\n'
+
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -140,6 +175,9 @@ const option = {
   yField: 'number',
   dynamicHeight: false,
   isTransposed: false,
+  legendEnable: false,
+  legendLayout: 'vertical',
+  legendPosition: 'top',
   legend: false,
   conversionTagName: '转化率',
   conversionTag: {
@@ -161,5 +199,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }

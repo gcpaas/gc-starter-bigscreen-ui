@@ -11,14 +11,19 @@
       <div class="lc-field-body">
         <div>
           <el-form-item label="表格名称">
-            <el-input v-model="config.title" clearable />
+            <el-input
+              v-model="config.title"
+              clearable
+            />
           </el-form-item>
-          <PosWhSetting :config="config" />
+          <PosWhSetting
+            :config="config"
+            label-width="120px"
+          />
           <el-form-item label="表格头部背景颜色">
             <ColorPicker
               v-model="config.customize.headerBackgroundColor"
-              style="width:180px"
-              placeholder="请选择表格头部字体颜色"
+              placeholder="请选择表格头部背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
@@ -42,15 +47,13 @@
           <el-form-item label="表格主体背景颜色">
             <ColorPicker
               v-model="config.customize.bodyBackgroundColor"
-              style="width:180px"
-              placeholder="请选择表格主体字体颜色"
+              placeholder="请选择表格主体背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
           <el-form-item label="表格主体字体颜色">
             <ColorPicker
               v-model="config.customize.bodyFontColor"
-              style="width:180px"
               placeholder="请选择表格主体字体颜色"
               :predefine-colors="predefineThemeColors"
             />
@@ -64,11 +67,18 @@
               :step="1"
             />
           </el-form-item>
-          <el-form-item label="表格斑马线">
-            <el-switch
-              v-model="config.customize.stripe"
-              class="bs-switch"
-              active-color="#007aff"
+          <el-form-item label="表格奇数行背景颜色">
+            <ColorPicker
+              v-model="config.customize.evenRowBackgroundColor"
+              placeholder="请选择表格奇数行背景颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="表格偶数行背景颜色">
+            <ColorPicker
+              v-model="config.customize.oddRowBackgroundColor"
+              placeholder="请选择表格偶数行背景颜色"
+              :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
         </div>

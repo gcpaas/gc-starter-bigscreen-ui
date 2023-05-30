@@ -44,6 +44,86 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: 'x轴线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_line_style_lineWidth', // 字段
+    optionField: 'xAxis.line.style.lineWidth', // 对应options中的字段
+    value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_line_style_stroke', // 字段
+    optionField: 'xAxis.line.style.stroke', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标签字体大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_label_style_fontSize', // 字段
+    optionField: 'xAxis.label.style.fontSize', // 对应options中的字段
+    value: 12,
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标签字体颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_label_style_fill', // 字段
+    optionField: 'xAxis.label.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_line_lineWidth', // 字段
+    optionField: 'yAxis.line.style.lineWidth', // 对应options中的字段
+    value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_line_stroke', // 字段
+    optionField: 'yAxis.line.style.stroke', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'rgba(255,255,255,0)',
+    tabName: 'custom'
+  },
+  {
+    label: '显示y轴标签',
+    type: 'switchNumber', // 设置组件类型
+    field: 'yAxis_label_style_opacity', // 字段
+    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
+    value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴标签字体大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_label_style_fontSize', // 字段
+    optionField: 'yAxis.label.style.fontSize', // 对应options中的字段
+    value: 12,
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴标签字体颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_label_style_fill', // 字段
+    optionField: 'yAxis.label.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom'
+  },
+  {
     label: '数据点颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'point_style_fill', // 字段
@@ -73,7 +153,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'lineStyle_lineWidth', // 字段
     optionField: 'lineStyle.lineWidth', // 对应options中的字段
-    value: '2',
+    value: 2,
     tabName: 'custom'
   },
   {
@@ -97,14 +177,6 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_grid_line_style_lineWidth', // 字段
     optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
-    tabName: 'custom'
-  },
-  {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
     value: 1,
     tabName: 'custom'
   },
@@ -165,6 +237,20 @@ const option = {
     lineWidth: 2,
     stroke: 'l(0) 0:#5F92F9 1:#62FF00'
   },
+  xAxis: {
+    label: {
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    line: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 1
+      }
+    }
+  },
   yAxis: {
     grid: {
       line: {
@@ -177,8 +263,18 @@ const option = {
     },
     label: {
       style: {
+        fill: '#8C8C8C',
+        fontSize: 12,
         opacity: 1
       }
+    },
+    line: {
+      style: {
+        stroke: 'rgba(255,255,255,0)',
+        lineWidth: 1
+      },
+      stroke: 'rgba(255,255,255,0)',
+      lineWidth: 1
     }
   },
   interactions: [{ type: 'marker-active' }]

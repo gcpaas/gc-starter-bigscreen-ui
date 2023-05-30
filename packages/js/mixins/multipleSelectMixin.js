@@ -23,7 +23,8 @@ export default {
     ...mapMutations('bigScreen', {
       changeShiftDown: 'changeShiftDown',
       changeActivePos: 'changeActivePos',
-      deleteItem: 'delItem'
+      deleteItem: 'delItem',
+      undoTimeLine: 'undoTimeLine'
     }),
     keydown (event) {
       if (event.keyCode === 37) {
@@ -53,6 +54,17 @@ export default {
         event.preventDefault()
         this.$refs.PageTopSetting.save('saveLoading')
       }
+      // ctrl/command + z撤销
+      if ((event.ctrlKey || event.metaKey) && event.keyCode === 90) {
+        event.preventDefault()
+        this.undoTimeLine(true)
+      }
+
+      // ctrl/command + shift + z 反撤销
+      if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 90) {
+        event.preventDefault()
+        this.undoTimeLine(false)
+      }
 
       if (event.shiftKey) {
         // 当按下 shift 键时，设置状态，表示 shiftKey 键被按下
@@ -72,7 +84,8 @@ export default {
         this.$confirm('确定删除该组件吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           // 批量删除
           if (Array.isArray(this.activeCodes) && this.activeCodes.length > 0) {

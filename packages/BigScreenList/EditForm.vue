@@ -123,6 +123,8 @@ export default {
   },
   data () {
     return {
+      resolutionRatioValue: '',
+      resolutionRatio: {},
       resolutionRatioOptions: [
         {
           value: '1024*768',
@@ -181,22 +183,6 @@ export default {
     }
   },
   computed: {
-    resolutionRatioValue () {
-      return this.type === 'component' ? '1024*768' : '1920*1080'
-    },
-    resolutionRatio () {
-      if (this.type === 'component') {
-        return {
-          w: 1024,
-          h: 768
-        }
-      } else {
-        return {
-          w: 1920,
-          h: 1080
-        }
-      }
-    }
   },
   watch: {
     resolutionRatioValue (val) {
@@ -209,8 +195,24 @@ export default {
       }
     }
   },
-  mounted () {},
+  mounted () {
+    this.initResolution()
+  },
   methods: {
+    initResolution () {
+      this.resolutionRatioValue = this.type === 'component' ? '1024*768' : '1920*1080'
+      if (this.type === 'component') {
+        this.resolutionRatio = {
+          w: 1024,
+          h: 768
+        }
+      } else {
+        this.resolutionRatio = {
+          w: 1920,
+          h: 1080
+        }
+      }
+    },
     // 关闭弹窗时
     closeAddDialog () {
       this.formVisible = false

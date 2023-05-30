@@ -7,7 +7,7 @@
       class="content-box"
       :style="{'font-size': config.customize.fontSize +'px','font-weight': +config.customize.fontWeight,'background-image': `-webkit-linear-gradient(${config.customize.color})`}"
     >
-      {{ config.option.text }}
+      {{ config.customize.title }}
     </div>
   </div>
 </template>
@@ -36,15 +36,9 @@ export default {
   },
   methods: {
     buildOption (config, data) {
-      let text = ''
-      if (data.success) {
-        text = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
-      } else {
-        text = '文本标签占位符'
-      }
-      config.option = {
-        ...config.option,
-        text
+      // 文本数据配置原则：选择数据集则以后端返回的数据为主，否则以设置面板中标题设置为准
+      if (config.dataSource.businessKey) {
+        config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
       }
       return config
     }

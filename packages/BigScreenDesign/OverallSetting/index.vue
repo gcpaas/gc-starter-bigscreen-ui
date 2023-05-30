@@ -15,6 +15,7 @@
             popper-class="bs-el-select"
             placeholder="请选择分辨率"
             clearable
+            @change="resolutionRatioValueHandel"
           >
             <el-option
               v-for="resolutionRatio in resolutionRatioOptions"
@@ -119,21 +120,6 @@
         </el-form-item>
       </el-form>
     </div>
-
-    <div class="toolbar">
-      <el-button
-        class="bs-el-button-default"
-        @click="close"
-      >
-        取消
-      </el-button>
-      <el-button
-        type="primary"
-        @click="saveOverallSetting"
-      >
-        更新
-      </el-button>
-    </div>
   </div>
 </template>
 
@@ -161,6 +147,7 @@ export default {
   },
   data () {
     return {
+      resolutionRatioValue: '',
       // 自适应模式  无(none) 、自动(auto)、宽度铺满(fitWidth)、高度铺满(fitHeight)和 双向铺满（cover） 5 种自适应模式
       autoModeOptions: [
         {
@@ -268,25 +255,20 @@ export default {
         id: dSet.dataSetId,
         name: dSet.name
       })) || []
-    },
-    resolutionRatioValue () {
-      return this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
     }
   },
   watch: {
-    resolutionRatioValue (val) {
-      if (val) {
-        this.form.w = val.split('*')[0]
-        this.form.h = val.split('*')[1]
-      } else {
-        this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
-        this.form.h = this.pageInfo.type === 'component' ? 768 : 1080
-      }
+    form: {
+      handler (val) {
+        this.changePageConfig(val)
+      },
+      deep: true
     }
   },
 
   created () { },
   mounted () {
+    this.initResolution()
     this.init()
   },
   methods: {
@@ -296,6 +278,18 @@ export default {
       'changeLayout',
       'changeChartKey'
     ]),
+    resolutionRatioValueHandel (val) {
+      if (val) {
+        this.form.w = Number(val.split('*')[0])
+        this.form.h = Number(val.split('*')[1])
+      } else {
+        this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
+        this.form.h = this.pageInfo.type === 'component' ? 768 : 1080
+      }
+    },
+    initResolution () {
+      this.resolutionRatioValue = this.pageInfo.pageConfig.w + '*' + this.pageInfo.pageConfig.h
+    },
     getThemeConfig (themeName) {
       // this.changePageLoading(true)
       if (!['dark', 'light', 'auto'].includes(themeName)) {
@@ -392,7 +386,7 @@ export default {
   background: var(--bs-background-2);
 
   .bs-overall-setting-wrap {
-    padding: 8px;
+    padding: 16px;
   }
 
   /deep/ .el-input__inner,

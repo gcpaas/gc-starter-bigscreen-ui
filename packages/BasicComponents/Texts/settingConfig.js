@@ -32,6 +32,7 @@ const customConfig = {
     url: 'https://www.runoob.com/'
   },
   customize: {
+    title: '文本标签占位符',
     fontSize: 20,
     fontWeight: 700,
     color: 'left,#ffffff,#ffffff'
