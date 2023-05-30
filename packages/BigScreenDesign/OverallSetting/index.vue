@@ -161,6 +161,7 @@ export default {
   },
   data () {
     return {
+      resolutionRatioValue: '',
       // 自适应模式  无(none) 、自动(auto)、宽度铺满(fitWidth)、高度铺满(fitHeight)和 双向铺满（cover） 5 种自适应模式
       autoModeOptions: [
         {
@@ -269,9 +270,6 @@ export default {
         name: dSet.name
       })) || []
     },
-    resolutionRatioValue () {
-      return this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
-    }
   },
   watch: {
     resolutionRatioValue (val) {
@@ -288,6 +286,7 @@ export default {
   created () { },
   mounted () {
     this.init()
+    this.initResolution()
   },
   methods: {
     ...mapMutations('bigScreen', [
@@ -296,6 +295,9 @@ export default {
       'changeLayout',
       'changeChartKey'
     ]),
+    initResolution () {
+      this.resolutionRatioValue = this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
+    },
     getThemeConfig (themeName) {
       // this.changePageLoading(true)
       if (!['dark', 'light', 'auto'].includes(themeName)) {
