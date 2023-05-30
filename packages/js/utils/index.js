@@ -11,9 +11,9 @@ export const randomString = e => {
 export const resolveComponentType = type => {
   return `${_.upperFirst(type)}`
 }
-export function deepCompare (obj1, obj2) {
-  // 如果两个对象都是 null 或者 undefined，则它们是相等的
-  if (obj1 === obj2) {
+export function deepCompare (obj1, obj2, excludeKeys = []) {
+  // eslint-disable-next-line eqeqeq
+  if (obj1 == obj2) {
     return false
   }
 
@@ -30,6 +30,10 @@ export function deepCompare (obj1, obj2) {
 
   // 递归地比较对象的属性
   for (const prop in obj1) {
+    // 如果prop是要排除的key，则跳过
+    if (excludeKeys.includes(prop)) {
+      continue
+    }
     if (obj1.hasOwnProperty(prop)) {
       if (!obj2.hasOwnProperty(prop)) {
         return true

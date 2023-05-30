@@ -36,7 +36,9 @@
       </el-form>
       <div class="bs-table-box">
         <el-table
+          v-table
           v-loading="searchLoading"
+          height="0"
           class="bs-el-table bs-scrollbar"
           :element-loading-text="loadingText"
           :data="dataSourceList"
@@ -130,6 +132,7 @@
 </template>
 
 <script>
+import table from 'packages/js/utils/table.js'
 import '../style/index.scss'
 import { sourceLinkTest, datasourcePage, sourceRemove } from 'packages/js/utils/dataSourceService'
 import setDatasource from './setDatasource.vue'
@@ -137,6 +140,9 @@ import _ from 'lodash'
 import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'DataSource',
+  directives: {
+    table // 注册自定义指令
+  },
   components: {
     setDatasource
   },
@@ -272,8 +278,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style lang="scss" scoped>
 @import '~packages/assets/style/bsTheme.scss';

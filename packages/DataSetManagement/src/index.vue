@@ -95,7 +95,9 @@
         <div class="bs-table-box">
           <el-table
             ref="userTable"
+            v-table
             v-loading="dataListLoading"
+            height="100%"
             class="bs-el-table bs-scrollbar"
             :element-loading-text="loadingText"
             :data="tableData"
@@ -258,6 +260,7 @@
 </template>
 
 <script>
+import table from 'packages/js/utils/table.js'
 import TypeTree from './TypeTree.vue'
 import DatasetTypeDialog from './DatasetTypeDialog.vue'
 import OriginalEditForm from './OriginalEditForm.vue'
@@ -269,6 +272,9 @@ import { datasetPage, datasetRemove } from 'packages/js/utils/datasetConfigServi
 import { pageMixins } from 'packages/js/mixins/page'
 export default {
   name: 'DataSetManagement',
+  directives: {
+    table // 注册自定义指令
+  },
   components: {
     TypeTree,
     DatasetTypeDialog,

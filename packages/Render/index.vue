@@ -240,7 +240,7 @@ export default {
         x: left,
         y: top
       })
-      this.saveTimeLine()
+      this.saveTimeLine(`改变${chart?.title}大小`)
       this.changeGridShow(false)
     },
     dragstop (left, top, chart) {
@@ -262,7 +262,7 @@ export default {
       }
       this.changeGridShow(false)
       this.freeze = false
-      this.saveTimeLine()
+      this.saveTimeLine(`拖拽${chart?.title}`)
     },
     // 辅助线
     getRefLineParams (params) {
