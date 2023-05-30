@@ -67,7 +67,7 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '边框颜色',
+    label: '线条颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'line_color', // 字段
     optionField: 'line.color', // 对应options中的字段
@@ -75,11 +75,27 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '边框宽度',
+    label: '线条宽度',
     type: 'inputNumber', // 设置组件类型
     field: 'line_size', // 字段
     optionField: 'line.size', // 对应options中的字段
     value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_grid_line_style_stroke', // 字段
+    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
     tabName: 'custom'
   },
   {
@@ -175,6 +191,15 @@ const option = {
 
   },
   yAxis: {
+    grid: {
+      line: {
+        style: {
+          stroke: '#d0d0d0',
+          lineWidth: 0,
+          strokeOpacity: 0.7
+        }
+      }
+    },
     label: {
       style: {
         opacity: 1
