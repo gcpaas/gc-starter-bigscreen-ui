@@ -17,13 +17,15 @@
         />
       </el-tab-pane>
     </el-tabs>
-    <component
-      :is="resolveComponentType(config.type)"
-      v-else
-      ref="customSetting"
-      :config="config"
-      @closeRightPanel="close"
-    />
+    <el-scrollbar class="bs-scrollbar" v-else>
+      <component
+        :is="resolveComponentType(config.type)"
+        ref="customSetting"
+        :config="config"
+        @closeRightPanel="close"
+      />
+    </el-scrollbar>
+
     <div class="toolbar">
       <el-button class="bs-el-button-default" @click="close"> 取消 </el-button>
       <el-button type="primary" @click="update"> 更新 </el-button>
