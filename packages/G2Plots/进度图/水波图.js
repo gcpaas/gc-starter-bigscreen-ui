@@ -126,6 +126,7 @@ const dataHandler = '// 取返回数据列表的第一项指标值\noption.perce
 // 图表配置 new Liquid('domName', option)
 const option = {
   data,
+  renderer: 'canvas',
   percent: 0.25,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   outline: {
