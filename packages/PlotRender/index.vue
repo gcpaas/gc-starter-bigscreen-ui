@@ -92,8 +92,8 @@ export default {
      */
     newChart (option) {
       this.chart = new g2Plot[this.config.chartType](this.chatId, {
-        ...option || this.config.option,
-        renderer: 'svg'
+        renderer: 'svg',
+        ...option || this.config.option
       })
       this.chart.render()
       this.registerEvent()
@@ -153,6 +153,7 @@ export default {
           const optionField = set.optionField.split('.')
           let option = config.option
           optionField.forEach((field, index) => {
+            debugger
             if (index === optionField.length - 1) {
               // 数据配置时，必须有值才更新
               if ((set.tabName === 'data' && set.value) || set.tabName === 'custom') {
@@ -165,9 +166,9 @@ export default {
         }
       })
       // eslint-disable-next-line no-unused-vars
-      var option = config.option
+      const option = config.option
       // eslint-disable-next-line no-unused-vars
-      var setting = config.setting
+      const setting = config.setting
       if (this.config.optionHandler) {
         try {
           // 此处函数处理config
