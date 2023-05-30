@@ -17,9 +17,7 @@ const typeLIst = [
   'border12',
   'border13',
   'border14',
-  'border15',
-  'border16',
-  'border17'
+  'border15'
 ]
 let basicConfigList = []
 basicConfigList = typeLIst.map((type) => {

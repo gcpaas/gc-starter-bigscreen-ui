@@ -10,7 +10,7 @@ export const settingConfig = {
   }
 }
 const customConfig = {
-  type: 'border16',
+  type: 'horizontalLine',
   customize: {
     // 边框线颜色
     borderColor: 'rgba(131, 191, 246, 0)',

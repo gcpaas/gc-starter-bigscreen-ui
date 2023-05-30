@@ -71,10 +71,10 @@ export default {
               : ' ') + this.config.option.data
         }
       }
-      const a = formatter(
-        this.config.option.data,
-        this.config.customize.formatter
-      )
+      const a =
+        this.config.customize.formatter === 0
+          ? this.config.option.data
+          : formatter(this.config.option.data, this.config.customize.formatter)
       const arr = a.toString().split('')
 
       if (this.config.customize.slotRight !== '') {
