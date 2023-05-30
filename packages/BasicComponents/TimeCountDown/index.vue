@@ -163,7 +163,7 @@ export default {
   color: #000000;
 }
 .time-text-box{
-  padding: 50px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
