@@ -120,21 +120,6 @@
         </el-form-item>
       </el-form>
     </div>
-
-    <div class="toolbar">
-      <el-button
-        class="bs-el-button-default"
-        @click="close"
-      >
-        取消
-      </el-button>
-      <el-button
-        type="primary"
-        @click="saveOverallSetting"
-      >
-        更新
-      </el-button>
-    </div>
   </div>
 </template>
 
@@ -273,6 +258,12 @@ export default {
     }
   },
   watch: {
+    form: {
+      handler (val) {
+        this.changePageConfig(val)
+      },
+      deep: true
+    }
   },
 
   created () { },
@@ -289,8 +280,8 @@ export default {
     ]),
     resolutionRatioValueHandel (val) {
       if (val) {
-        this.form.w = val.split('*')[0]
-        this.form.h = val.split('*')[1]
+        this.form.w = Number(val.split('*')[0])
+        this.form.h = Number(val.split('*')[1])
       } else {
         this.form.w = this.pageInfo.type === 'component' ? 1024 : 1920
         this.form.h = this.pageInfo.type === 'component' ? 768 : 1080

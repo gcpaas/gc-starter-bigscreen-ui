@@ -3,7 +3,7 @@
 -->
 <template>
   <el-dialog
-    title="历史记录"
+    title="历史操作"
     :visible.sync="dialogVisible"
     width="50%"
     :modal="true"
