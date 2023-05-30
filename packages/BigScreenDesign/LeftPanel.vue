@@ -311,6 +311,8 @@ export default {
         this.$emit('toggleLeftSidebar')
       }
       if (tab.name === 'component') {
+        this.fold = true
+        this.$emit('toggleLeftSidebar')
         this.$emit('openComponent')
       }
     },
