@@ -200,20 +200,13 @@ export default {
         },
         {
           id: 5,
-          name: 'svg',
-          title: '图标',
-          icon: 'icon-svg',
-          components: svgComponents
-        },
-        {
-          id: 6,
           name: 'source',
           title: '资源',
           icon: 'icon-tupian',
           components: []
         },
         {
-          id: 7,
+          id: 6,
           name: 'component',
           title: '组件',
           icon: 'icon-svg',
@@ -305,7 +298,7 @@ export default {
         this.fold = false
         this.currentActive = this.activeName
       }
-      if (tab.index === '7') {
+      if (tab.name === 'source') {
         this.fold = true
         this.$emit('openResource')
         this.$emit('toggleLeftSidebar')
