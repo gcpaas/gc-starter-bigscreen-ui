@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-29 21:46:15
+ * @LastEditTime: 2023-05-30 11:08:00
  */
 
 import Vue from 'vue'
@@ -214,9 +214,7 @@ export default {
     }
     // 反撤回 redo
     if (!isUndo) {
-      console.log('1', state.currentTimeLine)
       if (state.currentTimeLine < state.timelineStore.length) {
-        console.log('2', state.currentTimeLine)
         // 时间线往后推一个
         state.currentTimeLine = state.currentTimeLine + 1
         currentStore = state.timelineStore[state.currentTimeLine - 1]

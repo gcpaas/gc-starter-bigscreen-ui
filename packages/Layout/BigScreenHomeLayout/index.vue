@@ -114,7 +114,6 @@ export default {
     height: 150px;
     background-image: url('~packages/Layout/BigScreenHomeLayout/images/nav-img.jpg');
     background-size: cover;
-    border-bottom: 1px solid #144aa1;
 
     .logo-title {
       font-size: 30px;

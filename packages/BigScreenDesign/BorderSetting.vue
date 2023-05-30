@@ -13,7 +13,7 @@
           :model="config.customize"
           label-position="left"
           class="setting-body"
-          label-width="90px"
+          label-width="100px"
         >
           <el-form-item label="边框名称">
             <el-input

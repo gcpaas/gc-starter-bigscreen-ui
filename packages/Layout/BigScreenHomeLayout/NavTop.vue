@@ -16,6 +16,7 @@
         {{ nav.name }}
       </a>
     </span>
+    <span class="nav-span nav-span-last" />
   </div>
 </template>
 
@@ -69,6 +70,12 @@ export default {
   user-select: none;
 
   .nav-span {
+    position: relative;
+    top: 3px;
+    background-image: url('./images/line.png');
+    background-repeat: repeat-x;
+    background-position: 0 34px;
+
     .nav-link {
       display: flex;
       align-items: center;
@@ -94,22 +101,18 @@ export default {
     }
 
     &.nav-active {
-      background-image: url('./images/tab_bg.png');
+      background-image: url('./images/tab.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
+      background-position: center bottom;
       /* border-bottom: 1px solid var(--bs-background-1); */
       /* background-color: var(--bs-background-1) */
     }
 
-    &.nav-active::after {
-      position: absolute;
-      content: '';
-      width: auto;
-      min-width: 140px;
-      cursor: pointer;
-      padding: 0 40px;
-      /* background: #f00; */
-    }
+  }
+
+  .nav-span-last {
+    flex: 1;
   }
 }
 </style>

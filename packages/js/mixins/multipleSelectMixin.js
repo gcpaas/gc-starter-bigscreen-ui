@@ -84,7 +84,8 @@ export default {
         this.$confirm('确定删除该组件吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass: 'bs-el-message-box'
         }).then(() => {
           // 批量删除
           if (Array.isArray(this.activeCodes) && this.activeCodes.length > 0) {
