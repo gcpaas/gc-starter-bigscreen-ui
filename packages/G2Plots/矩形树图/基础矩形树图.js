@@ -117,8 +117,11 @@ const data = {
   ]
 }
 
+// 配置处理脚本
+const optionHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
+
 // 数据处理脚本
-const dataHandler = '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
+const dataHandler = '// 转换数据格式\n' +
   `data = {
   name: 'root',
   children: data?.map(d => ({
@@ -148,5 +151,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }
