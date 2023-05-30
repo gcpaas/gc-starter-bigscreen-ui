@@ -156,13 +156,15 @@ const data = [
   { stage: '入职人数', number: 79, company: 'B公司' },
 ]
 
-// 数据处理脚本
-const dataHandler = 'let valueField = setting.find(item => item.field === "yField").value\n' +
-  'data = data.sort((a, b) => b[valueField] - a[valueField])\n' +
-  '\noption.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
+// 配置处理脚本
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
   '\noption.conversionTag.formatter = (datum) => {\n' +
   '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
   '}'
+
+// 数据处理脚本
+const dataHandler = '// 将数据排序\nlet valueField = setting.find(item => item.field === "yField").value\n' +
+  'data = data.sort((a, b) => b[valueField] - a[valueField])\n'
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -197,5 +199,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }
