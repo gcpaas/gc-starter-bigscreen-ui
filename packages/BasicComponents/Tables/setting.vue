@@ -23,7 +23,7 @@
           <el-form-item label="表格头部背景颜色">
             <ColorPicker
               v-model="config.customize.headerBackgroundColor"
-              placeholder="请选择表格头部字体颜色"
+              placeholder="请选择表格头部背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
@@ -47,7 +47,7 @@
           <el-form-item label="表格主体背景颜色">
             <ColorPicker
               v-model="config.customize.bodyBackgroundColor"
-              placeholder="请选择表格主体字体颜色"
+              placeholder="请选择表格主体背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
@@ -67,11 +67,18 @@
               :step="1"
             />
           </el-form-item>
-          <el-form-item label="表格斑马线">
-            <el-switch
-              v-model="config.customize.stripe"
-              class="bs-switch"
-              active-color="#007aff"
+          <el-form-item label="表格奇数行背景颜色">
+            <ColorPicker
+              v-model="config.customize.evenRowBackgroundColor"
+              placeholder="请选择表格奇数行背景颜色"
+              :predefine-colors="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="表格偶数行背景颜色">
+            <ColorPicker
+              v-model="config.customize.oddRowBackgroundColor"
+              placeholder="请选择表格偶数行背景颜色"
+              :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
         </div>

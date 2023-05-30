@@ -1,16 +1,18 @@
 <template>
   <div
     style="width: 100%;height: 100%"
-    class="bs-design-wrap"
+    class="bs-design-wrap "
   >
     <!-- :border="this.config.customize.border" -->
     <el-table
       :id="config.code"
+      class="custom-table"
       height="100%"
       :stripe="config.customize.stripe"
       :data="config.option.tableData"
       :header-cell-style="headerCellStyle"
       :cell-style="cellStyle"
+      :row-class-name="tableRowClassName"
     >
       <el-table-column
         v-for="(col, index) in config.option.columnData"
@@ -69,9 +71,9 @@ export default {
         height: '48px',
         borderBottom: 'solid 2px #007aff',
         backgroundColor:
-        this.customTheme !== 'custom'
-          ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
-          : this.headerCellStyleObj.backgroundColor,
+          this.customTheme !== 'custom'
+            ? this.config.customize.headerBackgroundColor || headerBackgroundColor[this.customTheme]
+            : this.headerCellStyleObj.backgroundColor,
         color:
           this.customTheme === 'light'
             ? '#000000'
@@ -88,9 +90,9 @@ export default {
       }
       const style = {
         backgroundColor:
-        this.customTheme !== 'custom'
-          ? this.config.customize.bodyBackgroundColor || bodyBackgroundColor[this.customTheme]
-          : this.headerCellStyleObj.backgroundColor,
+          this.customTheme !== 'custom'
+            ? this.config.customize.bodyBackgroundColor || bodyBackgroundColor[this.customTheme]
+            : this.headerCellStyleObj.backgroundColor,
         color:
           this.customTheme === 'light'
             ? '#000000'
@@ -103,7 +105,7 @@ export default {
       return style
     }
   },
-  created () {},
+  created () { },
   mounted () {
     if (this.customTheme === 'custom') {
       this.headerCellStyleToObj()
@@ -146,8 +148,28 @@ export default {
       // });
     }
     // this.chartInit();
+    if (this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor) {
+      this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
+    } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
+      this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
+    } else {
+      this.config.customize.bodyBackgroundColor = 'transparent'
+    }
+
+    this.$nextTick(() => {
+      document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
+        node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
+      })
+      document.querySelectorAll(`.odd-row${this.config.code}`).forEach(node => {
+        node.style.backgroundColor = this.config.customize.oddRowBackgroundColor
+      })
+    })
   },
   methods: {
+    // 表格行样式
+    tableRowClassName ({ row, rowIndex }) {
+      return rowIndex % 2 === 0 ? `even-row${this.config.code}` : `odd-row${this.config.code}`
+    },
     buildOption (config, data) {
       config.option.tableData = data.data
       const filteredData = {}
@@ -231,38 +253,55 @@ export default {
   height: 100%;
   background-color: transparent;
 }
+::v-deep .el-table tr {
+  background-color: transparent;
+}
+
 // ::v-deep .el-table th.gutter {
 //   border-bottom: 2px solid var(--bs-el-color-primary) !important;
 // }
 ::v-deep .el-table__body {
   height: 100%;
 }
-::v-deep .el-table tr {
+
+::v-deep .el-table .el-table__header tr {
   background-color: transparent;
 }
+
 ::v-deep tr.el-table__row--striped {
-  z-index: 1; /*将容器的 z-index 设为 1，以便其在蒙版之上*/
-  position: relative; /*设置容器为相对定位*/
+  z-index: 1;
+  /*将容器的 z-index 设为 1，以便其在蒙版之上*/
+  position: relative;
+  /*设置容器为相对定位*/
   opacity: 0.9;
 }
+
 ::v-deep tr.el-table__row--striped::before {
-  position: absolute; /*设置蒙版为绝对定位*/
+  position: absolute;
+  /*设置蒙版为绝对定位*/
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); /*设置半透明的灰色背景色*/
-  z-index: 2; /*将蒙版的 z-index 设为 2，以便其覆盖在容器之上*/
+  background-color: rgba(0, 0, 0, 0.2);
+  /*设置半透明的灰色背景色*/
+  z-index: 2;
+  /*将蒙版的 z-index 设为 2，以便其覆盖在容器之上*/
 }
+
 ::v-deep .overlay {
-  position: absolute; /*设置蒙版为绝对定位*/
+  position: absolute;
+  /*设置蒙版为绝对定位*/
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2) !important; /*设置半透明的灰色背景色*/
-  z-index: 2; /*将蒙版的 z-index 设为 2，以便其覆盖在容器之上*/
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  /*设置半透明的灰色背景色*/
+  z-index: 2;
+  /*将蒙版的 z-index 设为 2，以便其覆盖在容器之上*/
 }
+
 ::v-deep .cell.el-tooltip {
   z-index: 3;
   min-width: 50px;
@@ -271,23 +310,39 @@ export default {
 }
 
 ::v-deep .el-table {
-   .el-table__cell{
+  .el-table__cell {
     border-bottom: none !important;
   }
-  &:before{
+
+  &:before {
     display: none !important;
   }
-    th.gutter, colgroup.gutter {
-        width: 0px !important;//此处的宽度值，对应你自定义滚动条的宽度即可
-    }
+
+  th.gutter,
+  colgroup.gutter {
+    width: 0px !important; //此处的宽度值，对应你自定义滚动条的宽度即可
+  }
 }
 
 // 关键css代码
 ::v-deep .el-table__header colgroup col[name="gutter"] {
-    display: table-cell !important;
+  display: table-cell !important;
 }
 
-::v-deep .el-table__body{
-  width: 100% !important;
+/deep/ .el-table__body-wrapper::-webkit-scrollbar {
+  width: 10px; // 横向滚动条
+  height: 10px; // 纵向滚动条 必写
+  margin: 0 2px;
+  background-color: transparent;
+}
+
+// 滚动条的滑块
+/deep/ .el-table__body-wrapper::-webkit-scrollbar-thumb {
+  background-color: #9093994D;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #90939980;
+  }
 }
 </style>

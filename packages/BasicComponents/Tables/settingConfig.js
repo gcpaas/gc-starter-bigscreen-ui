@@ -53,10 +53,14 @@ const customConfig = {
     bodyFontColor: '#ffffff',
     // 表格主体字体大小
     bodyFontSize: 14,
+    // 表格是否需要斑马纹
+    stripe: false,
+    // 表格奇数行背景颜色
+    oddRowBackgroundColor: '',
+    // 表格偶数行背景颜色‘
+    evenRowBackgroundColor: ''
     // 表格是否需要边框
     // border: false,
-    // 表格是否需要斑马纹
-    stripe: false
   }
 }
 export const dataConfig = {
