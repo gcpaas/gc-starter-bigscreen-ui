@@ -46,9 +46,9 @@ const setting = [
     // 设置组件类型
     type: 'colorPicker',
     // 字段
-    field: 'statistic_content_style_color',
+    field: 'statistic_content_style_fill',
     // 对应options中的字段
-    optionField: 'statistic.content.style.color',
+    optionField: 'statistic.content.style.fill',
     value: '#d0d0d0',
     tabName: 'custom'
   },
