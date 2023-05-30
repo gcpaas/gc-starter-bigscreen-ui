@@ -11,9 +11,15 @@
       <div class="lc-field-body">
         <div>
           <el-form-item label="表格名称">
-            <el-input v-model="config.title" clearable />
+            <el-input
+              v-model="config.title"
+              clearable
+            />
           </el-form-item>
-          <PosWhSetting :config="config" />
+          <PosWhSetting
+            :config="config"
+            label-width="120px"
+          />
           <el-form-item label="表格头部背景颜色">
             <ColorPicker
               v-model="config.customize.headerBackgroundColor"
