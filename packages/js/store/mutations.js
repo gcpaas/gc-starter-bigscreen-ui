@@ -3,12 +3,13 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-30 15:04:00
+ * @LastEditTime: 2023-05-30 15:08:33
  */
 
 import Vue from 'vue'
 import _ from 'lodash'
 import { defaultData } from './state'
+import moment from 'moment'
 export default {
   // 改变页面基本信息，后端请求的页面信息存储到此处
   changePageInfo (state, pageInfo) {
@@ -197,7 +198,7 @@ export default {
   // 保存当前状态
   saveTimeLine (state, title) {
     const date = new Date()
-    const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    const time = moment(date).format('HH:mm:ss')
     // title默认获取当前时间，时分秒
     if (!title) {
       const date = new Date()
@@ -291,7 +292,7 @@ function saveTimeLineFunc (state, title, time) {
   const MAX_TIME_LINE = 10
   const stateCopy = _.cloneDeep(state.pageInfo)
   const date = new Date()
-  time = time || `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+  time = time || moment(date).format('HH:mm:ss')
   stateCopy.timelineTitle = title
   stateCopy.updateTime = time
 
