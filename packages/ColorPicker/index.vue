@@ -74,7 +74,6 @@ export default {
   ::v-deep .el-input {
     width: auto;
     min-width: 150px;
-    margin-right: 10px;
     position: relative;
 
     .el-input__inner {

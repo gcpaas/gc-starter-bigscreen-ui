@@ -63,7 +63,6 @@
             <ColorPicker
               v-model="config.customize.gradientColor0"
               placeholder="请选择渐变色开始色值"
-              style="width:250px"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
@@ -74,7 +73,6 @@
             <ColorPicker
               v-model="config.customize.gradientColor1"
               placeholder="请选择渐变色结束色值"
-              style="width:250px"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
