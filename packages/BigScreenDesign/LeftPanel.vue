@@ -308,6 +308,7 @@ export default {
       if (tab.index === '7') {
         this.fold = true
         this.$emit('openResource')
+        this.$emit('toggleLeftSidebar')
       }
       if (tab.name === 'component') {
         this.$emit('openComponent')
