@@ -297,7 +297,7 @@ export default {
       }
     },
     initResolution () {
-      this.resolutionRatioValue = this.pageInfo.type === 'component' ? '1024*768' : '1920*1080'
+      this.resolutionRatioValue = this.pageInfo.pageConfig.w + '*' + this.pageInfo.pageConfig.h
     },
     getThemeConfig (themeName) {
       // this.changePageLoading(true)
