@@ -60,7 +60,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '35',
+    value: 35,
     tabName: 'custom'
   },
   {
@@ -138,8 +138,9 @@ const option = {
   statistic: {
     content: {
       style: {
-        color: '#d0d0d0',
-        fontSize: 35
+        fontSize: 35,
+        lineHeight: 1,
+        fill: '#d0d0d0'
       }
     }
   },

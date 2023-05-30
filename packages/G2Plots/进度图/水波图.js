@@ -60,7 +60,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '35',
+    value: 35,
     tabName: 'custom'
   },
   {
@@ -118,7 +118,7 @@ const data = [
   {
     percent: 0.25
   }
-  ]
+]
 
 // 数据处理脚本
 const dataHandler = '// 取返回数据列表的第一项指标值\noption.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
@@ -132,7 +132,7 @@ const option = {
     border: 2, // 边框宽度
     distance: 0, // 边框距离
     style: {
-      stroke: '#ffffff', // 边框颜色
+      stroke: '#ffffff' // 边框颜色
     }
   },
   liquidStyle: {
@@ -147,8 +147,9 @@ const option = {
   statistic: {
     content: {
       style: {
-        color: '#d0d0d0',
-        fontSize: 35
+        fontSize: 35,
+        lineHeight: 1,
+        fill: '#d0d0d0'
       }
     }
   }
