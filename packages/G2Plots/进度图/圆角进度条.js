@@ -64,10 +64,11 @@ const data = [
   }
 ]
 
+// 配置处理脚本
+const optionHandler = 'option.color = [option.frontColor, option.backColor]'
+
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]' +
-  '\n\n' +
-  '\noption.color = [option.frontColor, option.backColor]'
+const dataHandler = '// 取返回数据列表的第一项指标值\noption.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
 
 // 图表配置 new Gauge('domName', option)
 const option = {
@@ -103,5 +104,6 @@ export default {
   name,
   option,
   setting,
+  optionHandler,
   dataHandler
 }
