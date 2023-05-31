@@ -19,8 +19,11 @@
 </template>
 
 <script>
+import commonMixins from 'packages/js/mixins/commonMixins'
+import linkageMixins from 'packages/js/mixins/linkageMixins'
 export default {
   name: 'BasicComponentButton',
+  mixins: [commonMixins, linkageMixins],
   props: {
     // 卡片的属性
     config: {
