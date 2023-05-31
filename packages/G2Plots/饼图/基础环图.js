@@ -160,7 +160,7 @@ const setting = [
     field: 'statistic_title_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
-    value: '30',
+    value: 20,
     tabName: 'custom'
   },
   {
@@ -182,7 +182,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '30',
+    value: 30,
     tabName: 'custom'
   },
   {
@@ -264,6 +264,7 @@ const option = {
     title: {
       style: {
         whiteSpace: 'pre-wrap',
+        lineHeight: 2,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         color: '#d0d0d0',
@@ -274,6 +275,7 @@ const option = {
     content: {
       style: {
         whiteSpace: 'pre-wrap',
+        lineHeight: 2,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         color: '#d0d0d0',
