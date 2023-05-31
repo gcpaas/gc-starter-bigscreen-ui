@@ -130,15 +130,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-// Element-UI Switch 组件样式覆盖
-.bs-switch {
-   .el-switch__core {
-    background: var(--bs-el-background-1);
-  }
-}
-</style>
-
 <style lang="scss" scoped>
 @import "../~packages/assets/style/settingWrap.scss";
 </style>

@@ -2,8 +2,8 @@
  * @description: 基础的bigScreen展示组件
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
- * @LastEditors: xing.heng
- * @LastEditTime: 2023-04-18 17:16:50
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-05-31 14:30:22
  */
 
 import _ from 'lodash'
@@ -22,7 +22,9 @@ const typeList = [
   'tables',
   'screenScrollRanking',
   'screenScrollBoard',
-  'video'
+  'video',
+  'input',
+  'button'
 ]
 let basicConfigList = []
 basicConfigList = typeList.map((type) => {
