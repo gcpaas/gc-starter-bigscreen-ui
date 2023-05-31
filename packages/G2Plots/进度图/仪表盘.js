@@ -76,7 +76,7 @@ const setting = [
     field: 'statistic_title_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
-    value: '36',
+    value: 36,
     tabName: 'custom'
   },
   {
@@ -109,7 +109,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '24',
+    value: 24,
     tabName: 'custom'
   },
   {
@@ -159,6 +159,7 @@ const option = {
       offsetY: -36,
       style: {
         fontSize: 36,
+        lineHeight: 2,
         color: '#d0d0d0'
       },
       formatter: ({ percent }) => `${(percent * 100).toFixed(0)}%`
@@ -166,9 +167,9 @@ const option = {
     content: {
       content: '占比',
       style: {
-        fontSize: '24px',
-        lineHeight: '44px',
-        color: '#4B535E'
+        fontSize: 24,
+        lineHeight: 2,
+        color: '#d0d0d0'
       }
     }
   }
