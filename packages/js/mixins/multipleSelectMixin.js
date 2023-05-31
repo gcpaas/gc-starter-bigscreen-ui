@@ -55,7 +55,7 @@ export default {
         this.$refs.PageTopSetting.save('saveLoading')
       }
       // ctrl/command + z撤销
-      if ((event.ctrlKey || event.metaKey) && event.keyCode === 90) {
+      if ((event.ctrlKey || event.metaKey) && !event.shiftKey && event.keyCode === 90) {
         event.preventDefault()
         this.undoTimeLine(true)
       }

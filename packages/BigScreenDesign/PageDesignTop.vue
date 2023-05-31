@@ -126,7 +126,7 @@ export default {
       return this.$route.query.code || this.code
     },
     undoDisabled () {
-      return Boolean(this.currentTimeLine < 1)
+      return Boolean(this.currentTimeLine <= 1)
     },
     redoDisabled () {
       return Boolean(
