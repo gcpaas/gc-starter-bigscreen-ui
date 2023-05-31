@@ -171,7 +171,7 @@ export default function getComponentConfig (type) {
         icon: Icon.getNameList()[12],
         className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenInputChart',
         w: 170,
-        h: 32,
+        h: 80,
         x: 0,
         y: 0,
         type

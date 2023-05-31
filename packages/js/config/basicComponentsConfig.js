@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-05-31 14:30:22
+ * @LastEditTime: 2023-05-31 14:32:10
  */
 
 import _ from 'lodash'
@@ -11,6 +11,8 @@ import getComponentConfig from 'packages/js/utils/getComponentConfig'
 // 批量引入配置文件
 import { setModules, dataModules } from 'packages/js/utils/configImport'
 const typeList = [
+  'input',
+  'button',
   'texts',
   'horizontalLine', // 横线
   'verticalLine', // 竖线
@@ -22,9 +24,7 @@ const typeList = [
   'tables',
   'screenScrollRanking',
   'screenScrollBoard',
-  'video',
-  'input',
-  'button'
+  'video'
 ]
 let basicConfigList = []
 basicConfigList = typeList.map((type) => {

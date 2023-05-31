@@ -78,7 +78,11 @@ export default {
       }
     },
     designKeydown (event) {
-      if (event.keyCode === 8 || event.keyCode === 46) {
+      // 删除键被按下且鼠标没有在输入框中
+      if (
+        (event.keyCode === 8 || event.keyCode === 46) &&
+        !event.target.classList.contains('el-input__inner')
+      ) {
         // 关闭默认事件
         event.preventDefault()
         this.$confirm('确定删除该组件吗？', '提示', {

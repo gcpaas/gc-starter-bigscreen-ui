@@ -989,10 +989,10 @@ export default {
   }
 }
 
-.tree-box {
-  padding: 0;
-  max-height: 270px;
-}
+// .tree-box {
+//   padding: 0;
+//   max-height: 270px;
+// }
 
 /deep/ .el-input__inner {
   width: 100% !important;

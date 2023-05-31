@@ -3,7 +3,7 @@
     <el-form
       ref="form"
       :model="config"
-      label-width="90px"
+      label-width="100px"
       label-position="left"
       class="setting-body"
     >
@@ -16,7 +16,7 @@
           label-width="100px"
         >
           <PosWhSetting :config="config" />
-          <el-form-item label="输入框类型">
+          <!-- <el-form-item label="输入框类型">
             <el-select
               v-model="config.customize.type"
               popper-class="bs-el-select"
@@ -29,7 +29,7 @@
                 :value="typeItem.value"
               />
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="是否显示标题">
             <el-switch
               v-model="config.customize.showTitle"
@@ -47,7 +47,7 @@
               clearable
             />
           </el-form-item>
-          <el-form-item
+          <!-- <el-form-item
             v-if="config.customize.showTitle"
             label="标题位置"
           >
@@ -63,7 +63,7 @@
                 :value="titlePosition.value"
               />
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item
             v-if="config.customize.showTitle"
             label="标题大小"
@@ -87,10 +87,34 @@
           </el-form-item>
           <el-form-item
             v-if="config.customize.showTitle"
-            label="标题间距"
+            label="标题右间距"
           >
             <el-input-number
-              v-model="config.customize.titleStyle.margin"
+              v-model="config.customize.titleStyle.marginRight"
+              class="bs-el-input-number"
+              controls-position="right"
+              :min="0"
+              :max="100"
+            />
+          </el-form-item>
+          <el-form-item label="输入值字体大小">
+            <el-input-number
+              v-model="config.customize.inputStyle.fontSize"
+              class="bs-el-input-number"
+              controls-position="right"
+              :min="12"
+              :max="100"
+            />
+          </el-form-item>
+          <el-form-item label="输入值字体颜色">
+            <ColorPicker
+              v-model="config.customize.inputStyle.color"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
+          <el-form-item label="输入值左间距">
+            <el-input-number
+              v-model="config.customize.inputStyle.paddingLeft"
               class="bs-el-input-number"
               controls-position="right"
               :min="0"
@@ -99,20 +123,20 @@
           </el-form-item>
           <el-form-item label="背景颜色">
             <ColorPicker
-              v-model="config.customize.backgroundColor"
+              v-model="config.customize.backgroundStyle.backgroundColor"
               :predefine="predefineThemeColors"
             />
           </el-form-item>
           <el-form-item label="占位符">
             <el-input
-              v-model="config.customize.placeholder"
+              v-model="config.customize.placeholderStyle.placeholder"
               class="bs-el-input"
               clearable
             />
           </el-form-item>
           <el-form-item label="占位符字体颜色">
             <ColorPicker
-              v-model="config.customize.placeholderColor"
+              v-model="config.customize.placeholderStyle.placeholderColor"
               :predefine="predefineThemeColors"
             />
           </el-form-item>
@@ -136,6 +160,7 @@
               v-model="config.customize.borderStyle.borderStyle"
               popper-class="bs-el-select"
               class="bs-el-select"
+              clearable
             >
               <el-option
                 v-for="borderStyle in borderStyleOptions"
@@ -193,16 +218,16 @@ export default {
   data () {
     return {
       // 输入框类型
-      typeOptions: [
-        {
-          label: '单行文本',
-          value: 'text'
-        },
-        {
-          label: '多行文本',
-          value: 'textarea'
-        }
-      ],
+      // typeOptions: [
+      //   {
+      //     label: '单行文本',
+      //     value: 'text'
+      //   },
+      //   {
+      //     label: '多行文本',
+      //     value: 'textarea'
+      //   }
+      // ],
       // 标题位置
       titlePositionOptions: [
         {
