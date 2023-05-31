@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-31 11:35:10
+ * @LastEditTime: 2023-05-31 16:27:12
  */
 
 import Vue from 'vue'
@@ -116,6 +116,7 @@ export default {
       item => item.code === config.code
     )
     Vue.set(state.pageInfo.chartList[index], 'locked', !config.locked)
+    saveTimeLineFunc(state, !config.locked ? `解锁${config?.title}` : `锁定${config?.title}`)
   },
   // 改变网格显示状态
   changeGridShow (state, isShow) {
