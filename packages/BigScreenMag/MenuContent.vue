@@ -1,6 +1,9 @@
 <template>
   <div class="right-screen-list-wrap">
-    <BigScreenList :catalog-info="catalogInfo" :type="type"/>
+    <BigScreenList
+      :catalog-info="catalogInfo"
+      :type="type"
+    />
   </div>
 </template>
 <script>

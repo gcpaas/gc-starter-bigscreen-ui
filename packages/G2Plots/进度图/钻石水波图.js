@@ -146,7 +146,7 @@ const option = {
     border: 2, // 边框宽度
     distance: 0, // 边框距离
     style: {
-      stroke: '#ffffff', // 边框颜色
+      stroke: '#ffffff' // 边框颜色
     }
   },
   liquidStyle: {

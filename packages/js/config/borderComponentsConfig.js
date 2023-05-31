@@ -28,7 +28,7 @@ basicConfigList = basicConfigList.map((item) => {
   return basicComponentsConfig(item)
 })
 // 生成基本配置
-export function basicComponentsConfig(item) {
+export function basicComponentsConfig (item) {
   // let type = `${_.upperFirst(item.type)}`
   return {
     ...item,

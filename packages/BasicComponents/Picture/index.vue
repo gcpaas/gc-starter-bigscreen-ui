@@ -12,7 +12,12 @@
         }"
         draggable="false"
       >
-        <div slot="placeholder" class="image-slot">加载中···</div>
+        <div
+          slot="placeholder"
+          class="image-slot"
+        >
+          加载中···
+        </div>
       </el-image>
       <!-- <img
         :src="config.customize.url || noImageUrl"
@@ -37,14 +42,14 @@ export default {
       default: () => ({})
     }
   },
-  data() {
+  data () {
     return {
       noImageUrl: require('packages/BasicComponents/Picture/images/noImage.png')
     }
   },
   computed: {},
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

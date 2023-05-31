@@ -118,7 +118,7 @@ const option = {
   percent: 0.75,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   range: {
-    color: 'l(0) 0:#badffd 1:#5480de',
+    color: 'l(0) 0:#badffd 1:#5480de'
   },
   startAngle: Math.PI,
   endAngle: 2 * Math.PI,
@@ -128,7 +128,7 @@ const option = {
       offsetY: -36,
       style: {
         fontSize: '36px',
-        color: '#4B535E',
+        color: '#4B535E'
       },
       // 取percent的值乘上100，加上%号
       formatter: ({ percent }) => `${(percent * 100).toFixed(0)}%`
@@ -137,11 +137,11 @@ const option = {
       style: {
         fontSize: '24px',
         lineHeight: '44px',
-        color: '#4B535E',
+        color: '#4B535E'
       },
-      content: '加载进度',
-    },
-  },
+      content: '加载进度'
+    }
+  }
 }
 export default {
   category,

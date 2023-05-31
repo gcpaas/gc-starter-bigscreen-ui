@@ -67,7 +67,7 @@ const setting = [
         label: '横向',
         value: true
       }
-      ]
+    ]
   },
   {
     label: '标签',
@@ -153,11 +153,11 @@ const data = [
   { stage: '初试人数', number: 251, company: 'B公司' },
   { stage: '复试人数', number: 153, company: 'B公司' },
   { stage: '录取人数', number: 117, company: 'B公司' },
-  { stage: '入职人数', number: 79, company: 'B公司' },
+  { stage: '入职人数', number: 79, company: 'B公司' }
 ]
 
 // 配置处理脚本
-const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
   '\noption.conversionTag.formatter = (datum) => {\n' +
   '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
   '}'
@@ -184,12 +184,12 @@ const option = {
     offsetX: 10,
     offsetY: 0,
     style: {
-      fill: '#8c8c8c',
+      fill: '#8c8c8c'
     },
     formatter: (datum) => {
-      return option.conversionTagName + datum['$$percentage$$'].toFixed(2) * 100 + '%'
+      return option.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
     }
-  },
+  }
 }
 
 export default {

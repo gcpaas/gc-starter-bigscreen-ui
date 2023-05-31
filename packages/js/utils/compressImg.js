@@ -1,4 +1,4 @@
-export function showSize(base64url) {
+export function showSize (base64url) {
   let str = base64url.replace('data:image/png;base64,', '')
   // 找到等号，把等号也去掉
   const equalIndex = str.indexOf('=')
@@ -22,7 +22,7 @@ export function showSize(base64url) {
   return size
 }
 
-export function dataURLtoFile(dataurl, filename) {
+export function dataURLtoFile (dataurl, filename) {
   // 将base64转换为文件，dataurl为base64字符串，filename为文件名（必须带后缀名，如.jpg,.png）
   const arr = dataurl.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -35,7 +35,7 @@ export function dataURLtoFile(dataurl, filename) {
   return new File([u8arr], filename, { type: mime })
 }
 
-export function dataURLtoBlob(dataurl) {
+export function dataURLtoBlob (dataurl) {
   const arr = dataurl.split(',')
   const _arr = arr[1].substring(0, arr[1].length - 2)
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -50,7 +50,7 @@ export function dataURLtoBlob(dataurl) {
   })
 }
 
-export function translateBlobToBase64(blob, callback) {
+export function translateBlobToBase64 (blob, callback) {
   const reader = new FileReader()
   reader.onload = function (e) {
     callback(e.target)

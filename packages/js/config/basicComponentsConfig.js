@@ -32,7 +32,7 @@ basicConfigList = basicConfigList.map((item) => {
   return basicComponentsConfig(item)
 })
 // 生成基本配置
-export function basicComponentsConfig(item) {
+export function basicComponentsConfig (item) {
   return {
     ...item,
     option: _.cloneDeep(setModules[item.type]),

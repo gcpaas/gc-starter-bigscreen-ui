@@ -1,5 +1,8 @@
 <template>
-  <div style="width: 100%; height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%; height: 100%"
+    class="bs-design-wrap"
+  >
     <video-player
       ref="videoPlayer1"
       :options="videoOptions"
@@ -25,7 +28,10 @@ export default {
     }
   },
   computed: {},
-  data() {
+  beforeDestroy () {
+    this.$refs.videoPlayer1.dispose()
+  },
+  data () {
     return {
       // TODO 这里介绍各个参数的意义
       videoOptions: {
@@ -70,7 +76,7 @@ export default {
   },
 
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>
@@ -84,6 +90,7 @@ export default {
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+
   .videoPlayer {
     width: 100%;
     height: 100%;
@@ -102,5 +109,12 @@ export default {
 /deep/::-webkit-scrollbar-thumb {
   background: #dddddd !important;
   border-radius: 10px;
+}
+/deep/ .video-js .vjs-big-play-button {
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
 }
 </style>

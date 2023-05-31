@@ -4,7 +4,7 @@
  * @param source
  * @returns {{}}
  */
-function configDeepMerge(target, source) {
+function configDeepMerge (target, source) {
   const merged = {}
   for (const each in source) {
     if (target.hasOwnProperty(each) && source.hasOwnProperty(each)) {
@@ -28,7 +28,7 @@ function configDeepMerge(target, source) {
   return merged
 }
 // 自动注册路由
-function registerRouters(config, router) {
+function registerRouters (config, router) {
   // 没有router对象不注册路由
   if (!router) {
     return
@@ -114,7 +114,7 @@ function registerRouters(config, router) {
 }
 
 // 注册配置
-function registerTheme(config) {
+function registerTheme (config) {
   const defaultTheme = {
     '--bs-el-color-primary': '#409EFF', // elment-ui主题色，激活
     '--bs-background-1': '#151a26', // 整体背景色

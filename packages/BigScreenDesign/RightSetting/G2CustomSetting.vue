@@ -10,7 +10,10 @@
     >
       <div class="lc-field-body">
         <div class="">
-          <el-form-item label="标题" label-width="100px">
+          <el-form-item
+            label="标题"
+            label-width="100px"
+          >
             <el-input
               v-model="config.title"
               placeholder="请输入标题"
@@ -39,7 +42,7 @@
                 v-model="setting.value"
                 popper-class="bs-el-select"
                 class="bs-el-select"
-                :placeholder="`请输入${setting.label}`"
+                :placeholder="`请选择${setting.label}`"
                 clearable
               >
                 <el-option
@@ -110,7 +113,10 @@
                 v-model="setting.value"
               >
                 <template v-for="(opt, optIndex) in setting.options">
-                  <el-radio-button :key="optIndex" :label="opt.value">
+                  <el-radio-button
+                    :key="optIndex"
+                    :label="opt.value"
+                  >
                     {{ opt.label }}
                   </el-radio-button>
                 </template>
@@ -160,29 +166,29 @@ export default {
     PosWhSetting
   },
   mixins: [chartSettingMixins],
-  data() {
+  data () {
     return {}
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
     },
     appCode: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.pageInfo.appCode
       }
     },
-    pageCode() {
+    pageCode () {
       return this.$route.query.code
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

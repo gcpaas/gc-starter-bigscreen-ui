@@ -9,7 +9,10 @@
     >
       <div class="lc-field-body">
         <div class="">
-          <el-form-item label="标题" label-width="100px">
+          <el-form-item
+            label="标题"
+            label-width="100px"
+          >
             <el-input
               v-model="config.title"
               placeholder="请输入标题"
@@ -17,22 +20,34 @@
             />
           </el-form-item>
           <PosWhSetting :config="config" />
-          <el-form-item label="是否显示地名" label-width="100px">
+          <el-form-item
+            label="是否显示地名"
+            label-width="100px"
+          >
             <el-switch
               v-model="config.customize.mapName"
               class="bs-switch"
               active-color="#007aff"
             />
           </el-form-item>
-          <el-form-item label="地图级别" label-width="100px">
+          <el-form-item
+            label="地图级别"
+            label-width="100px"
+          >
             <el-select
               v-model="config.customize.level"
               popper-class="bs-el-select"
               class="bs-el-select"
               @change="changeLevel()"
             >
-              <el-option label="国家" value="country" />
-              <el-option label="省份" value="province" />
+              <el-option
+                label="国家"
+                value="country"
+              />
+              <el-option
+                label="省份"
+                value="province"
+              />
             </el-select>
           </el-form-item>
           <el-form-item
@@ -53,25 +68,37 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="地图背景色" label-width="100px">
+          <el-form-item
+            label="地图背景色"
+            label-width="100px"
+          >
             <ColorPicker
               v-model="config.customize.backgroundColor"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="地图分割线颜色" label-width="100px">
+          <el-form-item
+            label="地图分割线颜色"
+            label-width="100px"
+          >
             <ColorPicker
               v-model="config.customize.mapLineColor"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="地图分割块颜色" label-width="100px">
+          <el-form-item
+            label="地图分割块颜色"
+            label-width="100px"
+          >
             <ColorPicker
               v-model="config.customize.areaColor"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="是否打点" label-width="100px">
+          <el-form-item
+            label="是否打点"
+            label-width="100px"
+          >
             <el-switch
               v-model="config.customize.scatter"
               class="bs-switch"
@@ -118,7 +145,10 @@
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="是否开启筛选" label-width="100px">
+          <el-form-item
+            label="是否开启筛选"
+            label-width="100px"
+          >
             <el-switch
               v-model="config.customize.visual"
               class="bs-switch"
@@ -201,7 +231,7 @@ export default {
   },
   // mixins: [chartSettingMixins],
   props: {},
-  data() {
+  data () {
     return {
       mapList: [],
       predefineThemeColors: [
@@ -219,27 +249,27 @@ export default {
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
     }
   },
   watch: {},
-  mounted() {
+  mounted () {
     this.getMapList()
   },
   methods: {
-    getMapList() {
+    getMapList () {
       get(
         `${window.BS_CONFIG?.httpConfigs?.baseURL}/bigScreen/design/map/list/${this.config.customize.level}`
       ).then((res) => {
         this.mapList = res
       })
     },
-    changeLevel() {
+    changeLevel () {
       this.getMapList()
       if (this.config.customize.level === 'country') {
         this.config.customize.dataMap = '中华人民共和国.json'
@@ -247,13 +277,13 @@ export default {
         this.config.customize.dataMap = '安徽省.json'
       }
     },
-    delColor() {
+    delColor () {
       this.config.customize.rangeColor = []
     },
-    addColor() {
+    addColor () {
       this.colors.push('')
     },
-    updateColorScheme(colors) {
+    updateColorScheme (colors) {
       this.colors = [...colors]
       this.config.customize.rangeColor = [...colors]
     }

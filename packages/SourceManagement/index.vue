@@ -11,10 +11,10 @@ export default {
   components: {
     SourceMag
   },
-  data() {
+  data () {
     return {}
   },
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>
