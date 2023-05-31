@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-30 15:08:33
+ * @LastEditTime: 2023-05-31 09:08:16
  */
 
 import Vue from 'vue'
@@ -237,7 +237,7 @@ export default {
   // 回退到指定时间线
   rollbackTimeline (state, index) {
     state.pageInfo.chartList = _.cloneDeep(state.timelineStore[index]?.chartList || [])
-    state.currentTimeLine = index
+    state.currentTimeLine = index + 1
   }
 }
 function changeZIndexFuc (state, list) {

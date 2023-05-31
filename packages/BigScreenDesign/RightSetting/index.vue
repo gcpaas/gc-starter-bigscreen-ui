@@ -37,21 +37,6 @@
         @closeRightPanel="close"
       />
     </el-scrollbar>
-
-    <div class="toolbar">
-      <el-button
-        class="bs-el-button-default"
-        @click="close"
-      >
-        取消
-      </el-button>
-      <el-button
-        type="primary"
-        @click="update"
-      >
-        更新
-      </el-button>
-    </div>
   </div>
 </template>
 <script>
@@ -60,7 +45,7 @@ import DataSetting from './DataSetting.vue'
 import rightSetting from 'packages/js/utils/rightSettingImport'
 import CustomComponent from './G2CustomSetting.vue'
 import Svgs from 'packages/Svgs/setting.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 // 整体动态导入右侧设置组件，不用手动注册
 const components = {}
 for (const key in rightSetting) {
@@ -81,15 +66,51 @@ export default {
     ...mapState({
       activeCode: (state) => state.bigScreen.activeCode,
       hoverCode: (state) => state.bigScreen.hoverCode,
-      config: (state) => state.bigScreen.activeItemConfig
+      config: (state) => state.bigScreen.activeItemConfig,
+      chartList: (state) => state.bigScreen.pageInfo.chartList
     }),
     pageCode () {
       return this.$route.query.code
+    },
+    configStyle () {
+      return {
+        dataSource: this.config.dataSource,
+        showTitle: this.config.showTitle,
+        title: this.config?.title,
+        w: this.config?.w,
+        h: this.config?.h,
+        x: this.config?.x,
+        y: this.config?.y,
+        z: this.config?.z,
+        linkage: this.config?.linkage,
+        setting: this.config?.setting,
+        customize: this.config?.customize,
+        url: this.config?.url,
+        dateFormat: this.config?.dateFormat,
+        endTime: this.config?.endTime
+      }
     }
   },
-  watch: {},
+  watch: {
+    configStyle: {
+      handler (val) {
+        if (val) {
+          if (this.config.option.displayOption.dataAllocation.enable) {
+            this.$emit('updateDataSetting', this.config)
+          } else {
+            this.$emit('updateSetting', this.config)
+          }
+          this.saveTimeLine(`更新${val?.title}组件属性`)
+        }
+      },
+      deep: true
+    }
+  },
   mounted () {},
   methods: {
+    ...mapMutations('bigScreen', [
+      'saveTimeLine'
+    ]),
     close () {
       this.$emit('closeRightPanel')
     },

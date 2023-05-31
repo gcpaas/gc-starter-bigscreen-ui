@@ -1,4 +1,3 @@
-
 // 分类
 const category = 'RingProgress'
 // 标题
@@ -61,9 +60,9 @@ const setting = [
     // 设置组件类型
     type: 'colorPicker',
     // 字段
-    field: 'statistic_title_style_color',
+    field: 'statistic_title_style_fill',
     // 对应options中的字段
-    optionField: 'statistic.title.style.color',
+    optionField: 'statistic.title.style.fill',
     value: '#fafafa',
     tabName: 'custom'
   },
@@ -75,7 +74,7 @@ const setting = [
     field: 'statistic_title_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
-    value: '14',
+    value: 28,
     tabName: 'custom'
   },
   {
@@ -86,7 +85,7 @@ const setting = [
     field: 'statistic_title_style_lineHeight',
     // 对应options中的字段
     optionField: 'statistic.title.style.lineHeight',
-    value: '2',
+    value: 2,
     tabName: 'custom'
   },
   {
@@ -94,9 +93,9 @@ const setting = [
     // 设置组件类型
     type: 'colorPicker',
     // 字段
-    field: 'statistic_content_style_color',
+    field: 'statistic_content_style_fill',
     // 对应options中的字段
-    optionField: 'statistic.content.style.color',
+    optionField: 'statistic.content.style.fill',
     value: '#fafafa',
     tabName: 'custom'
   },
@@ -108,7 +107,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '14',
+    value: 28,
     tabName: 'custom'
   },
   {
@@ -119,7 +118,7 @@ const setting = [
     field: 'statistic_content_style_lineHeight',
     // 对应options中的字段
     optionField: 'statistic.content.style.lineHeight',
-    value: '2',
+    value: 2,
     tabName: 'custom'
   }
 ]
@@ -128,7 +127,8 @@ const setting = [
 const optionHandler = 'option.color = [option.color1, option.color2]'
 
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
+const dataHandler =
+  "option.percent = data[0][setting.filter(settingItem=>settingItem.field === 'percent')[0].value]"
 
 // 图表配置 new Gauge('domName', option)
 const option = {
@@ -141,11 +141,11 @@ const option = {
   radius: 0.98,
   statistic: {
     title: {
-      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' },
+      style: { fill: '#fafafa', fontSize: 28, lineHeight: 2 },
       content: '进度'
     },
     content: {
-      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' }
+      style: { fill: '#fafafa', fontSize: 28, lineHeight: 2 }
     }
   }
 }
