@@ -93,6 +93,8 @@ export default {
     newChart (option) {
       this.chart = new g2Plot[this.config.chartType](this.chatId, {
         renderer: 'svg',
+        // 大屏缩放状态下，点击准确
+        supportCSSTransform: true,
         ...option || this.config.option
       })
       this.chart.render()
