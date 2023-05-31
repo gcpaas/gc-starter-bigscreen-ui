@@ -13,7 +13,22 @@ export const settingConfig = {
   },
   seriesField: '', // 分组
   displayOption: {
-    ...displayOption
+    ...displayOption,
+    dataAllocation: { enable: true },
+    dataSourceType: { enable: false },
+    params: { enable: false },
+    metricField: {
+      // 指标
+      label: '指标',
+      enable: false,
+      multiple: false // 是否多选
+    },
+    dimensionField: {
+      // 表格列
+      label: '表格列', // 维度/查询字段
+      enable: false,
+      multiple: true // 是否多选
+    }
   }
 }
 
@@ -25,12 +40,6 @@ const customConfig = {
   customize: {
     // 类型
     type: 'primary',
-    // // 是否是圆角按钮
-    // isRound: false,
-    // // 是否是朴素按钮
-    // isPlain: false,
-    // 是否需要加载中效果
-    // isLoading: false,
     // 背景颜色
     backgroundColor: '#409EFF',
     // 字体颜色
@@ -47,9 +56,7 @@ const customConfig = {
       // 边框圆角
       borderRadius: 16
     }
-
   }
-
 }
 export const dataConfig = {
   ...commonConfig(customConfig)

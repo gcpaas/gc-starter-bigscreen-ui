@@ -56,7 +56,7 @@ const customConfig = {
       // 输入值字体大小
       fontSize: 20,
       // 输入值字体颜色
-      color: 'red',
+      color: '#fff',
       // 输入值左间距
       paddingLeft: 10
     },
@@ -64,7 +64,7 @@ const customConfig = {
     // 占位符
       placeholder: '请输入',
       // 占位符字体颜色
-      placeholderColor: '#ffffff'
+      placeholderColor: 'red'
     },
     // 边框样式
     borderStyle: {
