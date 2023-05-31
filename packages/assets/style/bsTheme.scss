@@ -575,3 +575,10 @@
     color: var(--bs-el-title);
   }
 }
+
+// switch
+.bs-el-switch {
+  .el-switch__core {
+   background: var(--bs-el-background-1);
+ }
+}

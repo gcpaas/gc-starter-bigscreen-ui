@@ -167,7 +167,7 @@ export default {
   data () {
     return {
       g2PlotComponents,
-      activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
+      activeName: 'chart', // 设置左侧tab栏的默认值
       fold: false, // 控制左侧菜单栏伸缩
       currentTab: 'basic',
       menuList: [
