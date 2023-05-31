@@ -633,7 +633,6 @@ const data = [
 // 配置处理脚本
 const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'
 
-
 // 数据处理脚本
 const dataHandler = ''
 

@@ -50,7 +50,7 @@
               placeholder="请输入标题字体权重"
             />
           </el-form-item>
-          <TextGradient v-model="config.customize.color"></TextGradient>
+          <TextGradient v-model="config.customize.color" />
         </div>
       </div>
     </el-form>

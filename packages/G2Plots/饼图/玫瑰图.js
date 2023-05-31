@@ -115,25 +115,25 @@ const data = [
 const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
   'option.seriesField = option.xField;'
 
-
 // 数据处理脚本
 const dataHandler = ''
 
 // 图表配置 new Pie('domName', option)
-const option = {  data,
+const option = {
+  data,
   xField: 'type',
   yField: 'value',
   seriesField: 'type',
   radius: 1,
   color: ['#5B8FF9', '#61DDAA', '#65789B', '#F6BD16', '#7262fd', '#78d9eb', '#9661bc', '#f6903d', '#2f9e9a', '#f08aac'],
   label: {
-    offset: -15,
+    offset: -15
   },
   legendEnable: true,
   legendLayout: 'vertical',
   legendPosition: 'top',
   legend: false,
-  appendPadding: [20, 20, 20, 20], // 设置图标的边距
+  appendPadding: [20, 20, 20, 20] // 设置图标的边距
 }
 export default {
   category,

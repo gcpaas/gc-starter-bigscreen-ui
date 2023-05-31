@@ -578,7 +578,6 @@ const optionHandler = 'let wordFieldValue = setting.find(settingItem=>settingIte
 // 数据处理脚本
 const dataHandler = ''
 
-
 // 图表配置 new Line('domName', option)
 const option = {
   data,

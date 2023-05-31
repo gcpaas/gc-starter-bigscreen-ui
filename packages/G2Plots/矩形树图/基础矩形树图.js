@@ -141,7 +141,7 @@ const option = {
   legendEnable: false,
   legendLayout: 'vertical',
   legendPosition: 'top',
-  legend: false,
+  legend: false
 }
 
 export default {

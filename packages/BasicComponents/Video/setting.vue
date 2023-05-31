@@ -16,14 +16,23 @@
           label-width="90px"
         >
           <el-form-item label="播放器名称">
-            <el-input v-model="config.title" clearable />
+            <el-input
+              v-model="config.title"
+              clearable
+            />
           </el-form-item>
           <PosWhSetting :config="config" />
           <el-form-item label="视频链接">
-            <el-input v-model="config.customize.videoUrl" clearable />
+            <el-input
+              v-model="config.customize.videoUrl"
+              clearable
+            />
           </el-form-item>
           <el-form-item label="视频封面">
-            <el-input v-model="config.customize.posterUrl" clearable />
+            <el-input
+              v-model="config.customize.posterUrl"
+              clearable
+            />
           </el-form-item>
           <el-form-item label="视频格式">
             <el-select
@@ -73,7 +82,7 @@ export default {
       }
     }
   },
-  data() {
+  data () {
     return {
       videoTypeList: [
         {
@@ -96,7 +105,7 @@ export default {
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

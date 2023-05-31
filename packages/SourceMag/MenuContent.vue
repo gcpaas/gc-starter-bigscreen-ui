@@ -1,6 +1,9 @@
 <template>
   <div class="right-screen-list-wrap">
-    <SourceList :catalog-info="catalogInfo" :type="type" />
+    <SourceList
+      :catalog-info="catalogInfo"
+      :type="type"
+    />
   </div>
 </template>
 <script>
@@ -21,7 +24,7 @@ export default {
     }
   },
   components: { SourceList },
-  data() {
+  data () {
     return {}
   }
 }

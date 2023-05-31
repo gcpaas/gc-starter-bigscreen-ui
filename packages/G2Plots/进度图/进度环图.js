@@ -142,12 +142,12 @@ const option = {
   statistic: {
     title: {
       style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' },
-      content: '进度',
+      content: '进度'
     },
     content: {
-      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' },
+      style: { color: '#fafafa', fontSize: '15px', lineHeight: '22px' }
     }
-  },
+  }
 }
 export default {
   category,

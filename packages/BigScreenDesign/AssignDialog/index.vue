@@ -21,22 +21,40 @@
       <div class="bottomContent">
         <div class="bottom">
           <div class="bottom-item">
-            <img class="imgItem" src="./image/card1.png" alt="" />
-            <div class="bottom-item_title">项目经理</div>
+            <img
+              class="imgItem"
+              src="./image/card1.png"
+              alt=""
+            >
+            <div class="bottom-item_title">
+              项目经理
+            </div>
             <div class="bottom-item_content">
               与客户沟通大屏需求、确定设备分辨率、确定大屏展示内容
             </div>
           </div>
           <div class="bottom-item">
-            <img class="imgItem" src="./image/card2.png" alt="" />
-            <div class="bottom-item_title">设计师</div>
+            <img
+              class="imgItem"
+              src="./image/card2.png"
+              alt=""
+            >
+            <div class="bottom-item_title">
+              设计师
+            </div>
             <div class="bottom-item_content">
               设计视觉元素、图片、排版布局、配色方案、确保整个屏幕外观美观、易读和引人注目
             </div>
           </div>
           <div class="bottom-item">
-            <img class="imgItem" src="./image/card3.png" alt="" />
-            <div class="bottom-item_title">开发者</div>
+            <img
+              class="imgItem"
+              src="./image/card3.png"
+              alt=""
+            >
+            <div class="bottom-item_title">
+              开发者
+            </div>
             <div class="bottom-item_content">
               收集数据，格式化数据、开发数据集、联调大屏测试
             </div>
@@ -52,19 +70,19 @@ export default {
   name: 'ComponentDialog',
   mixins: [pageMixins],
   props: {},
-  data() {
+  data () {
     return {
       dialogVisible: false
     }
   },
   computed: {},
-  mounted() {},
+  mounted () {},
   methods: {
-    init() {
+    init () {
       this.dialogVisible = true
     },
     // 点击确定
-    confirm() {
+    confirm () {
       this.dialogVisible = false
     }
   }

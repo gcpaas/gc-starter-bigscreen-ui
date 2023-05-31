@@ -75,18 +75,31 @@
                   fit="contain"
                   style="width: 100%; height: 100%"
                 >
-                  <div slot="placeholder" class="image-slot">加载中···</div>
+                  <div
+                    slot="placeholder"
+                    class="image-slot"
+                  >
+                    加载中···
+                  </div>
                 </el-image>
               </div>
               <div class="big-screen-bottom">
-                <div class="left-bigscreen-title" :title="screen.originalName">
+                <div
+                  class="left-bigscreen-title"
+                  :title="screen.originalName"
+                >
                   {{ screen.originalName }}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div v-else class="empty">暂无数据</div>
+        <div
+          v-else
+          class="empty"
+        >
+          暂无数据
+        </div>
         <div class="footer-pagination-wrap">
           <div class="bs-pagination">
             <el-pagination
@@ -107,11 +120,22 @@
         </div>
       </div>
     </div>
-    <div slot="footer" class="dialog-footer">
-      <el-button class="bs-el-button-default" @click="dialogVisible = false">
+    <div
+      slot="footer"
+      class="dialog-footer"
+    >
+      <el-button
+        class="bs-el-button-default"
+        @click="dialogVisible = false"
+      >
         取消
       </el-button>
-      <el-button type="primary" @click="confirm"> 确定 </el-button>
+      <el-button
+        type="primary"
+        @click="confirm"
+      >
+        确定
+      </el-button>
     </div>
   </el-dialog>
 </template>
@@ -123,7 +147,7 @@ export default {
   name: 'SourceDialog',
   mixins: [pageMixins],
   props: {},
-  data() {
+  data () {
     return {
       dialogVisible: false,
       loading: false,
@@ -135,17 +159,17 @@ export default {
     }
   },
   computed: {
-    gridComputed() {
+    gridComputed () {
       return this.list.length > 3
     }
   },
-  mounted() {},
+  mounted () {},
   methods: {
-    chooseImg(img) {
+    chooseImg (img) {
       this.focus = _.cloneDeep(img)
     },
-    close() {},
-    init() {
+    close () {},
+    init () {
       this.dialogVisible = true
       this.current = 1
       this.searchKey = ''
@@ -154,13 +178,13 @@ export default {
       this.getDataList()
       this.getCatalogList()
     },
-    confirm() {
+    confirm () {
       this.dialogVisible = false
       if (this.focus !== -1) {
         this.$emit('getImg', this.focus)
       }
     },
-    getDataList() {
+    getDataList () {
       this.loading = true
       get('/bigScreen/file', {
         module: this.code,
@@ -178,7 +202,7 @@ export default {
         })
     },
     // 获取目录的列表
-    getCatalogList() {
+    getCatalogList () {
       get('/bigScreen/type/list/resourceCatalog')
         .then((data) => {
           this.options = data

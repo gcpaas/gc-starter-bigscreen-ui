@@ -17,7 +17,10 @@
           class="left-tabs-box"
           @tab-click="tabClick"
         >
-          <el-tab-pane name="default" @click.native="changeActiveCode('')">
+          <el-tab-pane
+            name="default"
+            @click.native="changeActiveCode('')"
+          >
             <span
               slot="label"
               class="menu-slot"
@@ -46,7 +49,9 @@
             </div>
             <div class="page-left-content">
               <div class="page-left-content-title">
-                <div class="page-left-content-title-text">图层</div>
+                <div class="page-left-content-title-text">
+                  图层
+                </div>
               </div>
               <div class="page-left-content-components">
                 <el-scrollbar>
@@ -65,8 +70,15 @@
               changeActiveCode('')
             "
           >
-            <div slot="label" class="menu-slot" @dbclick.native="toggleSidebar">
-              <i :class="['iconfont-bigscreen', menu.icon]" class="menu-icon" />
+            <div
+              slot="label"
+              class="menu-slot"
+              @dbclick.native="toggleSidebar"
+            >
+              <i
+                :class="['iconfont-bigscreen', menu.icon]"
+                class="menu-icon"
+              />
               <span class="menu-title-span">{{ menu.title }}</span>
             </div>
             <div class="page-left-content">
@@ -107,7 +119,7 @@
                           :src="element.img"
                           class="page-opt-list-img"
                           alt=""
-                        />
+                        >
                         <component
                           :is="element.component"
                           :key="new Date().getTime() + 1"
@@ -151,7 +163,7 @@ export default {
       default: '100vh'
     }
   },
-  data() {
+  data () {
     return {
       g2PlotComponents,
       activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
@@ -206,31 +218,31 @@ export default {
   },
   computed: {
     // 获取当前类型的组件
-    currentComponentList() {
+    currentComponentList () {
       return this.componentList.filter((item) => item.type === this.currentTab)
     },
-    foldText() {
+    foldText () {
       return this.fold ? '展开' : '收起'
     }
   },
   watch: {
-    fold(isExpand) {
+    fold (isExpand) {
       if (isExpand && this.activeName === 'default') {
         this.activeName = 'chart'
       }
     }
   },
-  created() {
+  created () {
     this.initList()
     this.g2PlotComponents = [...this.g2PlotComponents, ...getCustomPlots()]
     this.menuList[1].components = this.g2PlotComponents
   },
-  mounted() {
+  mounted () {
     this.nodeDrag()
   },
   methods: {
     ...mapMutations('bigScreen', ['changeActiveCode']),
-    nodeDrag() {
+    nodeDrag () {
       this.$nextTick(() => {
         const nodes = document.querySelectorAll('.drag-node')
         nodes.forEach((node) => {
@@ -264,23 +276,23 @@ export default {
         )
       })
     },
-    onClone(e) {
+    onClone (e) {
       return _.cloneDeep(e)
     },
-    onStart(e) {
+    onStart (e) {
       // this.$emit('onStart', e)
     },
     // 拖拽组件时触发
-    onEnd(e) {},
+    onEnd (e) {},
     // 点击左侧组件时触发
-    addComponent(element) {
+    addComponent (element) {
       this.$store.commit('bigScreen/changeActiveItem', element)
       this.$emit('addComponent', element)
     },
     // 初始化
-    initList() {},
+    initList () {},
     // 点击tab标签
-    tabClick(tab) {
+    tabClick (tab) {
       this.nodeDrag()
       if (tab.index !== '0') {
         this.fold = false
@@ -298,14 +310,14 @@ export default {
         this.$emit('openComponent')
       }
     },
-    toggleSidebar() {
+    toggleSidebar () {
       this.fold = !this.fold
       this.$emit('toggleLeftSidebar')
       setTimeout(() => {
         this.activeName = this.currentActive
       })
     },
-    openRightPanel(config) {
+    openRightPanel (config) {
       this.$emit('openRightPanel', config)
     }
   }

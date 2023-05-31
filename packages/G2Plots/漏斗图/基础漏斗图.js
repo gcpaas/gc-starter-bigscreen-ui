@@ -53,7 +53,7 @@ const setting = [
         label: '通过高度',
         value: true
       }
-      ]
+    ]
   },
   {
     label: '方向',
@@ -71,7 +71,7 @@ const setting = [
         label: '横向',
         value: true
       }
-      ]
+    ]
   },
   {
     label: '标签',
@@ -156,7 +156,7 @@ const data = [
 ]
 
 // 配置处理脚本
-const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;'  +
+const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
   '\noption.conversionTag.formatter = (datum) => {\n' +
   '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
   '}'
@@ -164,7 +164,6 @@ const optionHandler = 'option.legend = option.legendEnable ? {position: setting.
 // 数据处理脚本
 const dataHandler = '// 将数据排序\nlet valueField = setting.find(item => item.field === "yField").value\n' +
   'data = data.sort((a, b) => b[valueField] - a[valueField])\n'
-
 
 // 图表配置 new Line('domName', option)
 const option = {
@@ -184,12 +183,12 @@ const option = {
     offsetX: 10,
     offsetY: 0,
     style: {
-      fill: '#8c8c8c',
+      fill: '#8c8c8c'
     },
     formatter: (datum) => {
-      return option.conversionTagName + datum['$$percentage$$'].toFixed(2) * 100 + '%'
+      return option.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
     }
-  },
+  }
 }
 
 export default {

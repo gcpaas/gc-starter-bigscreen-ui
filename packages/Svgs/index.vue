@@ -1,5 +1,8 @@
 <template>
-  <icon-svg :name="config.icon" class="page-opt-list-icon icon-box" />
+  <icon-svg
+    :name="config.icon"
+    class="page-opt-list-icon icon-box"
+  />
 </template>
 
 <script>

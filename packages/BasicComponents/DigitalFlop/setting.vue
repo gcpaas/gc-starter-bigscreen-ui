@@ -11,7 +11,9 @@
         <el-collapse-item name="1">
           <template slot="title">
             <div class="lc-field-head">
-              <div class="lc-field-title">自定义属性</div>
+              <div class="lc-field-title">
+                自定义属性
+              </div>
             </div>
           </template>
 
@@ -23,7 +25,10 @@
               label-width="90px"
             >
               <el-form-item label="翻牌器名称">
-                <el-input v-model="config.title" clearable />
+                <el-input
+                  v-model="config.title"
+                  clearable
+                />
               </el-form-item>
               <PosWhSetting :config="config" />
               <el-form-item label="字体颜色">
@@ -110,13 +115,22 @@
                 />
               </el-form-item>
               <el-form-item label="补位值">
-                <el-input v-model="config.customize.placeHolder" clearable />
+                <el-input
+                  v-model="config.customize.placeHolder"
+                  clearable
+                />
               </el-form-item>
               <el-form-item label="头部填充">
-                <el-input v-model="config.customize.slotLeft" clearable />
+                <el-input
+                  v-model="config.customize.slotLeft"
+                  clearable
+                />
               </el-form-item>
               <el-form-item label="尾部填充">
-                <el-input v-model="config.customize.slotRight" clearable />
+                <el-input
+                  v-model="config.customize.slotRight"
+                  clearable
+                />
               </el-form-item>
             </el-form>
           </div>
@@ -134,7 +148,7 @@ export default {
     ColorPicker,
     PosWhSetting
   },
-  data() {
+  data () {
     return {
       // 预设主题色
       predefineThemeColors: [
@@ -152,16 +166,16 @@ export default {
   },
   computed: {
     config: {
-      get() {
+      get () {
         return this.$store.state.bigScreen.activeItemConfig
       },
-      set(val) {
+      set (val) {
         this.$store.state.bigScreen.activeItemConfig = val
       }
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

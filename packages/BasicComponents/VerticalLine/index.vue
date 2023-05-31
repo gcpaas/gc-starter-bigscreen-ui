@@ -1,5 +1,8 @@
 <template>
-  <div style="width: 100%; height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%; height: 100%"
+    class="bs-design-wrap"
+  >
     <div
       :key="updateKey"
       class="custom-border-box"
@@ -26,25 +29,25 @@ export default {
       default: () => ({})
     }
   },
-  data() {
+  data () {
     return {}
   },
   computed: {
-    width() {
+    width () {
       return this.config.customize.width || 40
     },
-    gradientColor0() {
+    gradientColor0 () {
       return this.config.customize.gradientColor0 || ''
     },
-    gradientColor1() {
+    gradientColor1 () {
       return this.config.customize.gradientColor1 || ''
     },
-    opacity() {
+    opacity () {
       return this.config.customize.opacity || 100
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>
