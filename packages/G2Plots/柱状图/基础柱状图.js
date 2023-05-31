@@ -68,6 +68,14 @@ const setting = [
     ]
   },
   {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
     label: '柱子颜色',
     type: 'gradual', // 设置组件类型
     field: 'columnStyle_fill', // 字段
@@ -75,24 +83,6 @@ const setting = [
     value: 'l(90) 0:#5AA6AB 1:#217AB1',
     tabName: 'custom'
   },
-  // {
-  //   label: '贴图类型',
-  //   // 设置组件类型
-  //   type: 'select',
-  //   // 字段
-  //   field: 'pattern_type',
-  //   // 对应options中的字段
-  //   optionField: 'pattern.type',
-  //   // 是否多选
-  //   multiple: false,
-  //   value: '',
-  //   tabName: 'custom',
-  //   options: [
-  //     { label: '圆点', value: 'dot' },
-  //     { label: '条形', value: 'line' },
-  //     { label: '矩形', value: 'square' }
-  //   ]
-  // },
   {
     label: '网格线颜色',
     type: 'colorPicker', // 设置组件类型
@@ -181,7 +171,7 @@ const option = {
     position: 'middle', // 'top', 'bottom', 'middle',
     // 配置样式
     style: {
-      fill: '#FFFFFF',
+      fill: '#59F25F',
       opacity: 0
     }
   },
