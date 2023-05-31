@@ -110,6 +110,25 @@ const setting = [
     ]
   },
   {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom'
+  },
+  {
     label: '颜色配置',
     // 设置组件类型
     type: 'colorSelect',
@@ -151,7 +170,7 @@ const setting = [
     type: 'inputNumber', // 设置组件类型
     field: 'yAxis_grid_line_style_lineWidth', // 字段
     optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
+    value: 1,
     tabName: 'custom'
   },
   {
@@ -287,7 +306,7 @@ const option = {
       line: {
         style: {
           stroke: '#d0d0d0',
-          lineWidth: 0,
+          lineWidth: 1,
           strokeOpacity: 0.7
         }
       }
@@ -303,15 +322,10 @@ const option = {
     position: 'middle', // 'top', 'middle', 'bottom'
     // 配置样式
     style: {
-      opacity: 1
-    },
-    // 可配置附加的布局方法
-    layout: [
-      // 数据标签防遮挡
-      { type: 'interval-hide-overlap' },
-      // 数据标签文颜色自动调整
-      { type: 'adjust-color' }
-    ]
+      fill: '#59F25F',
+      opacity: 0,
+      fontSize: 12
+    }
   }
 }
 export default {
