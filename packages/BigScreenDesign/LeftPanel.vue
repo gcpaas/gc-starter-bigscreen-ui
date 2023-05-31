@@ -5,7 +5,10 @@
 -->
 <template>
   <transition name="slide-fade">
-    <div class="bs-left-panel">
+    <div
+      class="bs-left-panel"
+      @click.stop
+    >
       <div
         :class="fold ? 'page-left page-left-fold' : 'page-left'"
         :style="{ height }"
@@ -66,7 +69,6 @@
             :name="menu.name"
             @click.stop.native="
               fold = false
-              activeName = 'chart'
               changeActiveCode('')
             "
           >
@@ -143,7 +145,6 @@ import basicComponents from 'packages/js/config/basicComponentsConfig'
 import g2PlotComponents, { getCustomPlots } from '../G2Plots/plotList'
 import borderComponents from 'packages/js/config/borderComponentsConfig'
 import decorationComponents from 'packages/js/config/decorationComponentsConfig'
-import svgComponents from 'packages/Svgs/svgConfigList'
 import LayerList from './LayerList/index.vue'
 import { mapMutations } from 'vuex'
 import IconSvg from 'packages/SvgIcon'
