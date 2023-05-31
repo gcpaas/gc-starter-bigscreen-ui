@@ -82,7 +82,7 @@ export default {
           id: 4,
           name: '组件库',
           path: window?.BS_CONFIG?.routers?.componentUrl || '/big-screen-components',
-          icon: 'icon-zujian'
+          icon: 'icon-zujian1'
         }
       ]
     }
