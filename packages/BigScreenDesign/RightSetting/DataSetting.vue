@@ -581,12 +581,14 @@ export default {
     // 参数改变时
     params: {
       handler (val) {
-        const params = _.cloneDeep(val)
-        const paramsMap = params.reduce((obj, param) => {
-          obj[param.name] = param.value
-          return obj
-        }, {})
-        this.config.dataSource.params = paramsMap
+        if (!_.isEmpty(val)) {
+          const params = _.cloneDeep(val)
+          const paramsMap = params.reduce((obj, param) => {
+            obj[param.name] = param.value
+            return obj
+          }, {})
+          this.config.dataSource.params = paramsMap
+        }
       },
       deep: true
     }
