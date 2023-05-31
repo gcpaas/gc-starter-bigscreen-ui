@@ -51,14 +51,6 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '面积填充',
-    type: 'switchNumber', // 设置组件类型
-    field: 'area', // 字段
-    optionField: 'area', // 对应options中的字段
-    value: 1,
-    tabName: 'custom'
-  },
-  {
     label: '是否平滑',
     type: 'switch', // 设置组件类型
     field: 'smooth', // 字段

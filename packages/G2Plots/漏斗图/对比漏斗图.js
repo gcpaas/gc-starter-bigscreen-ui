@@ -90,6 +90,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'conversionTag_style_fontSize',
+    // 对应options中的字段
+    optionField: 'conversionTag.style.fontSize',
+    value: 12,
+    tabName: 'custom'
+  },
+  {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
@@ -184,7 +195,8 @@ const option = {
     offsetX: 10,
     offsetY: 0,
     style: {
-      fill: '#8c8c8c'
+      fill: '#8c8c8c',
+      fontSize: 12
     },
     formatter: (datum) => {
       return option.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
