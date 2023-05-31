@@ -30,7 +30,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '指标',
     // 设置组件类型
     type: 'select',
@@ -43,6 +42,7 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  // x轴
   {
     label: 'x轴线宽度',
     type: 'inputNumber', // 设置组件类型
@@ -62,7 +62,25 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: 'x轴标签字体大小',
+    label: 'x刻度线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_tickLine_style_lineWidth', // 字段
+    optionField: 'xAxis.tickLine.style.lineWidth', // 对应options中的字段
+    value: 1,
+    tabName: 'custom'
+  },
+  {
+    label: 'x刻度线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_tickLine_style_stroke', // 字段
+    optionField: 'xAxis.tickLine.style.stroke', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标签大小',
     type: 'inputNumber', // 设置组件类型
     field: 'xAxis_label_style_fontSize', // 字段
     optionField: 'xAxis.label.style.fontSize', // 对应options中的字段
@@ -70,7 +88,7 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: 'x轴标签字体颜色',
+    label: 'x轴标签颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'xAxis_label_style_fill', // 字段
     optionField: 'xAxis.label.style.fill', // 对应options中的字段
@@ -79,6 +97,71 @@ const setting = [
     value: '#8C8C8C',
     tabName: 'custom'
   },
+  {
+    label: 'x轴标签过多时旋转',
+    type: 'switch', // 设置组件类型
+    field: 'xAxis_label_autoRotate', // 字段
+    optionField: 'xAxis.label.autoRotate', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标签过多时隐藏',
+    type: 'switch', // 设置组件类型
+    field: 'xAxis_label_autoHide', // 字段
+    optionField: 'xAxis.label.autoHide', // 对应options中的字段
+    value: false,
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标题',
+    type: 'input', // 设置组件类型
+    field: 'xAxis_title_text', // 字段
+    optionField: 'xAxis.title.text', // 对应options中的字段
+    value: '',
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标题位置',
+    type: 'select', // 设置组件类型
+    field: 'xAxis_title_position', // 字段
+    optionField: 'xAxis.title.position', // 对应options中的字段
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '左',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '右',
+        value: 'end'
+      }]
+  },
+  {
+    label: 'x轴标题字体大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_title_style_fontSize', // 字段
+    optionField: 'xAxis.title.style.fontSize', // 对应options中的字段
+    value: 12,
+    tabName: 'custom'
+  },
+  {
+    label: 'x轴标题颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_title_style_fill', // 字段
+    optionField: 'xAxis.title.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom'
+  },
+
+  // y轴
   {
     label: 'y轴线宽度',
     type: 'inputNumber', // 设置组件类型
@@ -124,6 +207,55 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: 'y轴标题',
+    type: 'input', // 设置组件类型
+    field: 'yAxis_title_text', // 字段
+    optionField: 'yAxis.title.text', // 对应options中的字段
+    value: '',
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴标题位置',
+    type: 'select', // 设置组件类型
+    field: 'yAxis_title_position', // 字段
+    optionField: 'yAxis.title.position', // 对应options中的字段
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '下',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '上',
+        value: 'end'
+      }]
+  },
+  {
+    label: 'y轴标题字体大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_title_style_fontSize', // 字段
+    optionField: 'yAxis.title.style.fontSize', // 对应options中的字段
+    value: 12,
+    tabName: 'custom'
+  },
+  {
+    label: 'y轴标题颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_title_style_fill', // 字段
+    optionField: 'yAxis.title.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom'
+  },
+
+
+  {
     label: '数据点颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'point_style_fill', // 字段
@@ -147,6 +279,22 @@ const setting = [
       { label: '三角形', value: 'triangle' },
       { label: '菱形', value: 'diamond' }
     ]
+  },
+  {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据标签字体大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'label_style_fontSize', // 字段
+    optionField: 'label.style.fontSize', // 对应options中的字段
+    value: 12,
+    tabName: 'custom'
   },
   {
     label: '线条宽度',
@@ -212,7 +360,12 @@ const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   xField: 'year',
   yField: 'value',
-  label: {},
+  label: {
+    style: {
+      fill: '#fff',
+      fontSize: 12
+    }
+  },
   color: '',
   point: {
     size: 5,
@@ -237,8 +390,21 @@ const option = {
     lineWidth: 2,
     stroke: 'l(0) 0:#5F92F9 1:#62FF00'
   },
+  // q: g2plot中xAxis.label.autoHide和autoEllipsis的区别?
+
   xAxis: {
+    title: {
+      text: '',
+      position: 'end',
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
     label: {
+      autoRotate: false,
+      autoHide: false,
+      autoEllipsis: true,
       style: {
         fill: '#8C8C8C',
         fontSize: 12
@@ -249,9 +415,23 @@ const option = {
         stroke: '#d0d0d0',
         lineWidth: 1
       }
+    },
+    tickLine: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 1
+      }
     }
   },
   yAxis: {
+    title: {
+      text: '',
+      position: 'end',
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
     grid: {
       line: {
         style: {
