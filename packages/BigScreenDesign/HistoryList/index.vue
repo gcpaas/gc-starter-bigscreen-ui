@@ -18,6 +18,7 @@
         border
         style="width: 100%"
         class="bs-el-table"
+        :row-class-name="tableRowClassName"
       >
         <el-table-column
           prop="timelineTitle"
@@ -33,7 +34,7 @@
         <el-table-column
           prop="operation"
           label="操作"
-          width="180"
+          width="100"
           class-name="bs-el-table-column"
         >
           <template slot-scope="scope">
@@ -44,18 +45,6 @@
             >
               回退
             </el-button>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="operation"
-          label="当前节点"
-          width="80"
-          class-name="bs-el-table-column"
-        >
-          <template slot-scope="scope">
-            <div v-if="scope.$index === currentTimeLine - 1">
-              &lt;----
-            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -106,6 +95,12 @@ export default {
     rollback (index) {
       this.rollbackTimeline(index)
       this.dialogVisible = false
+    },
+    tableRowClassName ({ row, rowIndex }) {
+      if (rowIndex === this.currentTimeLine - 1) {
+        return 'choosed-row'
+      }
+      return ''
     }
   }
 }
@@ -115,6 +110,13 @@ export default {
 @import '~packages/BigScreenDesign/fonts/iconfont.css';
 @import '~packages/assets/style/bsTheme.scss';
 .layer-list-wrap {
-
+  /deep/ .choosed-row {
+    .bs-el-table-column {
+      border-color: var(--bs-el-border) !important;
+      background: var(--bs-background-2) !important;
+      background-color: var(--bs-background-2) !important;
+      opacity: 0.7;
+    }
+  }
 }
 </style>
