@@ -76,6 +76,17 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom'
+  },
+  {
     label: '柱子颜色',
     type: 'gradual', // 设置组件类型
     field: 'columnStyle_fill', // 字段
@@ -172,12 +183,10 @@ const option = {
     // 配置样式
     style: {
       fill: '#59F25F',
-      opacity: 0
+      opacity: 0,
+      fontSize: 12
     }
   },
-  // pattern: {
-  //   type: ''
-  // },
   xAxis: {
     label: {
       autoHide: true,
@@ -200,6 +209,13 @@ const option = {
       }
     }
   },
+  // 背景图设置
+  // columnBackground: {
+  //   style: {
+  //     fill: '#569EA4',
+  //     fillOpacity: 0.1
+  //   }
+  // },
   meta: {
     type: {
       alias: '类别'
