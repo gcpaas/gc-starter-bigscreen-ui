@@ -45,7 +45,7 @@ import DataSetting from './DataSetting.vue'
 import rightSetting from 'packages/js/utils/rightSettingImport'
 import CustomComponent from './G2CustomSetting.vue'
 import Svgs from 'packages/Svgs/setting.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 // 整体动态导入右侧设置组件，不用手动注册
 const components = {}
 for (const key in rightSetting) {
@@ -71,9 +71,6 @@ export default {
     }),
     pageCode () {
       return this.$route.query.code
-    },
-    configSetting () {
-      return this.config?.setting
     },
     configStyle () {
       return {
@@ -103,6 +100,7 @@ export default {
           } else {
             this.$emit('updateSetting', this.config)
           }
+          this.saveTimeLine(`更新${val?.title}组件属性`)
         }
       },
       deep: true
@@ -110,6 +108,9 @@ export default {
   },
   mounted () {},
   methods: {
+    ...mapMutations('bigScreen', [
+      'saveTimeLine'
+    ]),
     close () {
       this.$emit('closeRightPanel')
     },
