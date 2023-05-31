@@ -54,6 +54,7 @@
       class="dialog-footer"
     >
       <el-button
+        class="bs-el-button-default"
         @click="dialogVisible = false"
       >
         取消
