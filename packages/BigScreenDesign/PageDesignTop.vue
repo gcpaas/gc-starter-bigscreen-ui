@@ -161,7 +161,6 @@ export default {
     empty () {
       this.changeActiveCode('')
       this.$emit('empty')
-      this.saveTimeLine('清空画布')
     },
     // 预览
     async execRun () {

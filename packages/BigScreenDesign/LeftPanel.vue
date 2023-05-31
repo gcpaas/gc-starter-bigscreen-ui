@@ -210,7 +210,7 @@ export default {
           id: 6,
           name: 'component',
           title: '组件',
-          icon: 'icon-svg',
+          icon: 'icon-zujian1',
           components: ''
         }
       ],

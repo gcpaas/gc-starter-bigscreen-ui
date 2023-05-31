@@ -247,7 +247,8 @@ export default {
       'changeChartConfig',
       'changeChartKey',
       'changeZoom',
-      'clearTimeline'
+      'clearTimeline',
+      'saveTimeLine'
     ]),
     // 添加资源弹窗初始化
     initDialog () {
@@ -343,6 +344,7 @@ export default {
         .then(() => {
           this.changeLayout([])
           this.resetPresetLine()
+          this.saveTimeLine('清空画布')
         })
         .catch(() => {})
     },
