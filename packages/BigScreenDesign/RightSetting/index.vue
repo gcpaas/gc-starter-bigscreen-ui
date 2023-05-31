@@ -1,14 +1,23 @@
 <template>
-  <div class="bs-setting-wrap bs-scrollbar" @click.stop>
+  <div
+    class="bs-setting-wrap bs-scrollbar"
+    @click.stop
+  >
     <el-tabs
       v-if="config.option.displayOption.dataAllocation.enable"
       v-model="activeName"
       @tab-click="handleClick"
     >
-      <el-tab-pane label="数据" name="data">
+      <el-tab-pane
+        label="数据"
+        name="data"
+      >
         <DataSetting ref="dataSetting" />
       </el-tab-pane>
-      <el-tab-pane label="样式" name="second">
+      <el-tab-pane
+        label="样式"
+        name="second"
+      >
         <component
           :is="resolveComponentType(config.type)"
           ref="customSetting"
@@ -17,7 +26,10 @@
         />
       </el-tab-pane>
     </el-tabs>
-    <el-scrollbar class="bs-scrollbar" v-else>
+    <el-scrollbar
+      v-else
+      class="bs-scrollbar"
+    >
       <component
         :is="resolveComponentType(config.type)"
         ref="customSetting"
@@ -25,11 +37,6 @@
         @closeRightPanel="close"
       />
     </el-scrollbar>
-
-    <div class="toolbar">
-      <el-button class="bs-el-button-default" @click="close"> 取消 </el-button>
-      <el-button type="primary" @click="update"> 更新 </el-button>
-    </div>
   </div>
 </template>
 <script>
@@ -50,7 +57,7 @@ for (const key in rightSetting) {
 export default {
   name: 'RightSetting',
   components: { ...components, DataSetting, CustomComponent, Svgs },
-  data() {
+  data () {
     return {
       activeName: 'data'
     }
@@ -59,24 +66,59 @@ export default {
     ...mapState({
       activeCode: (state) => state.bigScreen.activeCode,
       hoverCode: (state) => state.bigScreen.hoverCode,
-      config: (state) => state.bigScreen.activeItemConfig
+      config: (state) => state.bigScreen.activeItemConfig,
+      chartList: (state) => state.bigScreen.pageInfo.chartList
     }),
-    pageCode() {
+    pageCode () {
       return this.$route.query.code
+    },
+    configSetting () {
+      return this.config?.setting
+    },
+    configStyle () {
+      return {
+        dataSource: this.config.dataSource,
+        showTitle: this.config.showTitle,
+        title: this.config?.title,
+        w: this.config?.w,
+        h: this.config?.h,
+        x: this.config?.x,
+        y: this.config?.y,
+        z: this.config?.z,
+        linkage: this.config?.linkage,
+        setting: this.config?.setting,
+        customize: this.config?.customize,
+        url: this.config?.url,
+        dateFormat: this.config?.dateFormat,
+        endTime: this.config?.endTime
+      }
     }
   },
-  watch: {},
-  mounted() {},
+  watch: {
+    configStyle: {
+      handler (val) {
+        if (val) {
+          if (this.config.option.displayOption.dataAllocation.enable) {
+            this.$emit('updateDataSetting', this.config)
+          } else {
+            this.$emit('updateSetting', this.config)
+          }
+        }
+      },
+      deep: true
+    }
+  },
+  mounted () {},
   methods: {
-    close() {
+    close () {
       this.$emit('closeRightPanel')
     },
-    handleClick(val) {
+    handleClick (val) {
       this.$set(this, 'activeName', val.name)
     },
     resolveComponentType,
     // 多个表单校验
-    getFormPromise(form) {
+    getFormPromise (form) {
       return new Promise((resolve) => {
         form.validate((res) => {
           resolve(res)
@@ -84,7 +126,7 @@ export default {
       })
     },
     // 更新
-    update() {
+    update () {
       // 有数据配置也有自定义配置的组件
       if (this.config.option.displayOption.dataAllocation.enable) {
         // 获取子组件的表单元素

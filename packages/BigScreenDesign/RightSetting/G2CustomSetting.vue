@@ -39,7 +39,7 @@
                 v-model="setting.value"
                 popper-class="bs-el-select"
                 class="bs-el-select"
-                :placeholder="`请输入${setting.label}`"
+                :placeholder="`请选择${setting.label}`"
                 clearable
               >
                 <el-option
