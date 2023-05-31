@@ -493,15 +493,15 @@ export default {
       headerList: [],
       pageSizeList: [10, 20, 50, 100],
       rules: {
-        'dataSource.businessKey': [
-          { required: true, message: '请选择数据集', trigger: 'change' }
-        ],
-        'dataSource.dimensionField': [
-          { required: true, message: '请选择维度', trigger: 'change' }
-        ],
-        'dataSource.dimensionFieldList': [
-          { required: true, message: '请选择维度', trigger: 'change' }
-        ],
+        // 'dataSource.businessKey': [
+        //   { required: true, message: '请选择数据集', trigger: 'change' }
+        // ],
+        // 'dataSource.dimensionField': [
+        //   { required: true, message: '请选择维度', trigger: 'change' }
+        // ],
+        // 'dataSource.dimensionFieldList': [
+        //   { required: true, message: '请选择维度', trigger: 'change' }
+        // ],
         // 'dataSource.metricField': [
         //   { required: true, message: '请选择指标', trigger: 'change' }
         // ],
