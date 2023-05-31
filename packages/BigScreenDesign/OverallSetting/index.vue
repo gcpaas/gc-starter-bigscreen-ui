@@ -369,6 +369,12 @@ export default {
         name: ds.name,
         dataSetId: ds.id
       }))
+      // 获取缓存数据集数据和配置
+      // eslint-disable-next-line no-unused-expressions
+      this.form.cacheDataSets?.map((cacheDataSet) => {
+        this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
+        this.$store.dispatch('bigScreen/getCacheDataFields', { dataSetId: cacheDataSet.dataSetId })
+      })
     },
     close () {
       this.drawerVisible = false
