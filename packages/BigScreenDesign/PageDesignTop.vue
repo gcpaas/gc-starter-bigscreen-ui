@@ -126,10 +126,16 @@ export default {
       return this.$route.query.code || this.code
     },
     undoDisabled () {
-      return Boolean(this.currentTimeLine === 1)
+      return Boolean(this.currentTimeLine < 1)
     },
     redoDisabled () {
-      return Boolean(this.currentTimeLine && this.currentTimeLine === this.timelineStore?.length)
+      return Boolean(
+        !this.timelineStore?.length ||
+        (
+          this.currentTimeLine &&
+          this.currentTimeLine === this.timelineStore?.length
+        )
+      )
     }
   },
   methods: {
