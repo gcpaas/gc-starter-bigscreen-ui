@@ -261,6 +261,15 @@ export default {
     form: {
       handler (val) {
         this.changePageConfig(val)
+        // 改变大屏的整体配置后，需要判断元素是否在大屏内，如果不在大屏内，需要将元素尽量往内部靠拢
+        this.pageInfo.chartList.forEach(item => {
+          if (item.x + item.w > this.form.w) {
+            item.x = this.form.w - item.w
+          }
+          if (item.y + item.h > this.form.h) {
+            item.y = this.form.h - item.h
+          }
+        })
       },
       deep: true
     }
@@ -329,26 +338,6 @@ export default {
     init () {
       this.form = { ...this.pageInfo.pageConfig }
       this.drawerVisible = true
-    },
-    saveOverallSetting () {
-      this.form.bgColor =
-        this.form.bgColor === null
-          ? (this.form.bgColor = '#151a26')
-          : this.form.bgColor
-      // 如果主题的值被清空了，那么就默认为auto
-      this.form.customTheme = this.form.customTheme || 'auto'
-      // 获取模拟的主题样式json
-      this.getThemeConfig(this.form.customTheme)
-      // 改变大屏的整体配置后，需要判断元素是否在大屏内，如果不在大屏内，需要将元素尽量往内部靠拢
-      this.pageInfo.chartList.forEach(item => {
-        if (item.x + item.w > this.form.w) {
-          item.x = this.form.w - item.w
-        }
-        if (item.y + item.h > this.form.h) {
-          item.y = this.form.h - item.h
-        }
-      })
-      this.$message.success('更新成功')
     },
     // 新增数据集
     addCacheDataSet () {
