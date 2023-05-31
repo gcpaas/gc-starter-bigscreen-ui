@@ -1,7 +1,10 @@
 <template>
   <div class="bs-manage-main-wrap">
     <side-menu @getPageInfo="getPageInfo" />
-    <menu-content :catalog-info="catalogInfo" :type="type"/>
+    <menu-content
+      :catalog-info="catalogInfo"
+      :type="type"
+    />
   </div>
 </template>
 <script>

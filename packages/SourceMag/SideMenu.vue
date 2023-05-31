@@ -57,7 +57,10 @@
         </el-dropdown>
       </div>
     </el-scrollbar>
-    <div class="add-catalog-box" @click="catalogAdd">
+    <div
+      class="add-catalog-box"
+      @click="catalogAdd"
+    >
       <i class="el-icon-plus" />
       <div>新建分组</div>
     </div>
@@ -76,8 +79,14 @@
         label-width="80px"
         :rules="formRules"
       >
-        <el-form-item label="分组名称" prop="name">
-          <el-input v-model="currentCatalog.name" class="bs-el-input" />
+        <el-form-item
+          label="分组名称"
+          prop="name"
+        >
+          <el-input
+            v-model="currentCatalog.name"
+            class="bs-el-input"
+          />
         </el-form-item>
         <el-form-item label="排序">
           <el-input-number
@@ -89,11 +98,20 @@
           />
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button class="bs-el-button-default" @click="catalogVisible = false">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button
+          class="bs-el-button-default"
+          @click="catalogVisible = false"
+        >
           取消
         </el-button>
-        <el-button type="primary" @click="addOrEditCatalog">确定</el-button>
+        <el-button
+          type="primary"
+          @click="addOrEditCatalog"
+        >确定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -104,7 +122,7 @@ import _ from 'lodash'
 
 export default {
   components: {},
-  data() {
+  data () {
     return {
       showDropdown: false,
       hoverItem: null,
@@ -149,11 +167,11 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.getCatalogList()
   },
   methods: {
-    catalogAdd() {
+    catalogAdd () {
       this.catalogVisible = true
       this.currentCatalog = {
         // 选中目录
@@ -162,15 +180,15 @@ export default {
         code: ''
       }
     },
-    mouseenter(code) {
+    mouseenter (code) {
       this.showDropdown = true
       this.hoverItem = code
     },
-    mouseleave() {
+    mouseleave () {
       this.showDropdown = false
     },
     // 点击全部
-    clickAllCatalog() {
+    clickAllCatalog () {
       this.isAll = true
       this.$emit('getPageInfo', {
         isAll: true,
@@ -178,12 +196,12 @@ export default {
       })
     },
     // 关闭目录弹窗
-    handleClose() {
+    handleClose () {
       this.catalogVisible = false
       this.$refs.form.clearValidate()
     },
     // 新增编辑目录（点击确定）
-    addOrEditCatalog() {
+    addOrEditCatalog () {
       this.$refs.form.validate(async (valid) => {
         if (!valid) {
           return
@@ -215,7 +233,7 @@ export default {
       })
     },
     // 点击目录
-    clickCatalog(catalog) {
+    clickCatalog (catalog) {
       this.currentCatalog = _.cloneDeep(catalog)
       this.activeCatalog = _.cloneDeep(catalog)
       this.isAll = false
@@ -223,11 +241,11 @@ export default {
       console.log(catalog)
     },
     // 编辑目录
-    catalogEdit() {
+    catalogEdit () {
       this.catalogVisible = true
     },
     // 删除目录
-    catalogDel(catalog) {
+    catalogDel (catalog) {
       this.$confirm('确定删除该目录？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -253,7 +271,7 @@ export default {
         .catch()
     },
     // 获取目录的列表
-    getCatalogList() {
+    getCatalogList () {
       this.pageLoading = true
       get('/bigScreen/type/list/resourceCatalog')
         .then((data) => {

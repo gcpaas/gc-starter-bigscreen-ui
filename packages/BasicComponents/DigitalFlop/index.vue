@@ -1,5 +1,8 @@
 <template>
-  <div style="width: 100%; height: 100%" class="bs-design-wrap">
+  <div
+    style="width: 100%; height: 100%"
+    class="bs-design-wrap"
+  >
     <div class="content">
       <div
         v-for="(item, index) in option.data"
@@ -29,7 +32,7 @@ import { refreshComponentMixin } from 'packages/js/mixins/refreshComponent'
 import commonMixins from 'packages/js/mixins/commonMixins'
 import paramsMixins from 'packages/js/mixins/paramsMixins'
 import linkageMixins from 'packages/js/mixins/linkageMixins'
-function formatter(number, format) {
+function formatter (number, format) {
   const numbers = number.toString().split('').reverse()
   const segs = []
   while (numbers.length) {
@@ -51,11 +54,11 @@ export default {
       default: () => ({})
     }
   },
-  data() {
+  data () {
     return {}
   },
   computed: {
-    option() {
+    option () {
       if (
         this.config.option.data.toString().split('').length <
         this.config.customize.numberDigits
@@ -90,9 +93,9 @@ export default {
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {
-    buildOption(config, data) {
+    buildOption (config, data) {
       let dataList = ''
       console.log(config.dataSource.dimensionField)
       if (data.data instanceof Array) {

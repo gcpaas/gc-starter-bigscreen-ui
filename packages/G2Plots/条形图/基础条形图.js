@@ -159,8 +159,6 @@ const data = [
   { year: '1958 年', value: 48 }
 ]
 
-
-
 // 配置处理脚本
 const optionHandler = 'const yFieldValue = setting.find(settingItem=>settingItem.field === \'yField\').value\n' +
   'if (yFieldValue) {\n' +

@@ -32,8 +32,8 @@
       </div>
     </draggable>
     <el-empty
-      :image-size="90"
       v-if="!chartList.length"
+      :image-size="90"
       description="未拖拽任何组件"
     />
   </div>

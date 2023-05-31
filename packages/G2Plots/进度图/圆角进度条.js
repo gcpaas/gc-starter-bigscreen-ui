@@ -55,7 +55,7 @@ const setting = [
     optionField: 'progressStyle.radius',
     value: 20,
     tabName: 'custom'
-  },
+  }
 ]
 
 const data = [
@@ -90,12 +90,12 @@ const option = {
     lineWidth: 0,
     // lineDash: [4, 5],
     // strokeOpacity: 0.7,
-    shadowColor: 'black',
+    shadowColor: 'black'
     // shadowBlur: 10,
     // shadowOffsetX: 5,
     // shadowOffsetY: 5,
     // cursor: 'pointer'
-  },
+  }
 }
 export default {
   category,

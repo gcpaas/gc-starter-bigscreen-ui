@@ -278,7 +278,7 @@ const option = {
         textOverflow: 'ellipsis',
         color: '#d0d0d0',
         fontSize: 30
-      },
+      }
       // content: '100'
     }
   },

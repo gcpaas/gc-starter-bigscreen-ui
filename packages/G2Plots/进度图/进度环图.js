@@ -1,4 +1,3 @@
-
 // 分类
 const category = 'RingProgress'
 // 标题
@@ -128,7 +127,8 @@ const setting = [
 const optionHandler = 'option.color = [option.color1, option.color2]'
 
 // 数据处理脚本
-const dataHandler = 'option.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
+const dataHandler =
+  "option.percent = data[0][setting.filter(settingItem=>settingItem.field === 'percent')[0].value]"
 
 // 图表配置 new Gauge('domName', option)
 const option = {
@@ -145,7 +145,7 @@ const option = {
       content: '进度'
     },
     content: {
-      style: { fill: '#fafafa', fontSize: 28, lineHeight: 2}
+      style: { fill: '#fafafa', fontSize: 28, lineHeight: 2 }
     }
   }
 }

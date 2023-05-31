@@ -342,7 +342,6 @@ const optionHandler = 'option.legend = option.legendEnable ? {position: setting.
 // 数据处理脚本
 const dataHandler = ''
 
-
 // 图表配置 new Line('domName', option)
 const option = {
   data,

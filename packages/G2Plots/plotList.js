@@ -12,7 +12,7 @@ const files = require.context('./', true, /[\u4e00-\u9fa5]+.js$/)
 const plotList = getPlotList(files)
 const customPlots = getCustomPlots()
 // 获取plot配置
-function getPlotList(files) {
+function getPlotList (files) {
   const configMapList = {}
   files.keys().forEach((key) => {
     // ./折线图/基础折线图.js
@@ -51,7 +51,7 @@ function getPlotList(files) {
   }
   return plotList
 }
-export function getCustomPlots() {
+export function getCustomPlots () {
   const customList = window.BS_CONFIG?.customPlots || []
 
   const list = []

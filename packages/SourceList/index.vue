@@ -44,7 +44,12 @@
         :file-list="fileList"
         :show-file-list="false"
       >
-        <el-button size="small" type="primary"> 上传资源 </el-button>
+        <el-button
+          size="small"
+          type="primary"
+        >
+          上传资源
+        </el-button>
       </el-upload>
     </div>
     <div
@@ -76,13 +81,22 @@
                 >
                   <span>预览</span>
                 </div>
-                <div class="circle" @click="downLoad(screen)">
+                <div
+                  class="circle"
+                  @click="downLoad(screen)"
+                >
                   <span>下载</span>
                 </div>
-                <div class="circle" @click="del(screen)">
+                <div
+                  class="circle"
+                  @click="del(screen)"
+                >
                   <span>删除</span>
                 </div>
-                <div class="circle" @click="copy(screen)">
+                <div
+                  class="circle"
+                  @click="copy(screen)"
+                >
                   <span>链接</span>
                 </div>
               </div>
@@ -94,18 +108,31 @@
               fit="contain"
               style="width: 100%; height: 100%"
             >
-              <div slot="placeholder" class="image-slot">加载中···</div>
+              <div
+                slot="placeholder"
+                class="image-slot"
+              >
+                加载中···
+              </div>
             </el-image>
           </div>
           <div class="big-screen-bottom">
-            <div class="left-bigscreen-title" :title="screen.originalName">
+            <div
+              class="left-bigscreen-title"
+              :title="screen.originalName"
+            >
               {{ screen.originalName }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div v-else class="empty">暂无数据</div>
+    <div
+      v-else
+      class="empty"
+    >
+      暂无数据
+    </div>
 
     <div class="footer-pagination-wrap">
       <!-- <div class="footer-pagination-wrap-text">
@@ -129,7 +156,10 @@
       </div>
     </div>
     <!-- 新增或编辑弹窗 -->
-    <EditForm ref="EditForm" @refreshData="reSearch" />
+    <EditForm
+      ref="EditForm"
+      @refreshData="reSearch"
+    />
   </div>
 </template>
 <script>
@@ -150,7 +180,7 @@ export default {
     }
   },
   components: { EditForm },
-  data() {
+  data () {
     return {
       upLoadUrl:
         window.BS_CONFIG?.httpConfigs?.baseURL + '/bigScreen/file/upload',
@@ -168,28 +198,28 @@ export default {
     }
   },
   computed: {
-    code() {
+    code () {
       return this.catalogInfo?.page?.id
     },
-    gridComputed() {
+    gridComputed () {
       return this.list.length > 3
     }
   },
   watch: {
-    code(value) {
+    code (value) {
       this.current = 1
       this.getDataList()
     }
   },
-  mounted() {
+  mounted () {
     this.getOptions()
     this.getDataList()
   },
   methods: {
-    uploadError(err, file, fileList) {
+    uploadError (err, file, fileList) {
       console.log(err)
     },
-    uploadSuccess(response, file, fileList) {
+    uploadSuccess (response, file, fileList) {
       if (response.code === 200) {
         this.$message({
           type: 'success',
@@ -203,19 +233,19 @@ export default {
         })
       }
     },
-    handleRemove(file, fileList) {
+    handleRemove (file, fileList) {
       console.log(file, fileList)
     },
-    handlePreview(file) {
+    handlePreview (file) {
       console.log(file)
     },
-    getOptions() {
+    getOptions () {
       get('/bigScreen/file/getAllFileSuffix').then((data) => {
         console.log(data)
         data.forEach((item) => this.options.push({ label: item, value: item }))
       })
     },
-    getDataList() {
+    getDataList () {
       console.log(this.catalogInfo)
       this.loading = true
       get('/bigScreen/file', {
@@ -233,13 +263,13 @@ export default {
           this.loading = false
         })
     },
-    preview(screen) {
+    preview (screen) {
       window.open(screen.url, '_blank')
     },
-    downLoad(screen) {
+    downLoad (screen) {
       download(`/bigScreen/file/download/${screen.id}`)
     },
-    del(screen) {
+    del (screen) {
       this.$confirm('确定删除该资源？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -264,7 +294,7 @@ export default {
         })
         .catch()
     },
-    copy(screen) {
+    copy (screen) {
       this.$message.success('复制成功')
       const transfer = document.createElement('input')
       document.body.appendChild(transfer)

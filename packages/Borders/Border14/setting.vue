@@ -16,7 +16,10 @@
           label-width="90px"
         >
           <el-form-item label="边框名称">
-            <el-input v-model="config.title" clearable />
+            <el-input
+              v-model="config.title"
+              clearable
+            />
           </el-form-item>
           <PosWhSetting :config="config" />
           <el-form-item label="边框线颜色">
@@ -60,7 +63,10 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="不透明度" label-width="100px">
+          <el-form-item
+            label="不透明度"
+            label-width="100px"
+          >
             <el-slider
               v-model="config.customize.opacity"
               class="bs-slider bs-el-input-number"
@@ -130,7 +136,7 @@ export default {
       }
     }
   },
-  data() {
+  data () {
     return {
       gradientDirection: [
         {
@@ -169,7 +175,7 @@ export default {
     }
   },
   watch: {},
-  mounted() {},
+  mounted () {},
   methods: {}
 }
 </script>

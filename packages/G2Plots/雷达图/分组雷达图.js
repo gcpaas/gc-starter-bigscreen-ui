@@ -113,26 +113,26 @@ const setting = [
 
 // 模拟数据
 const data = [
-  { "item": "Design", "user": "a", "score": 70 },
-  { "item": "Design", "user": "b", "score": 30 },
-  { "item": "Development", "user": "a", "score": 60 },
-  { "item": "Development", "user": "b", "score": 70 },
-  { "item": "Marketing", "user": "a", "score": 50 },
-  { "item": "Marketing", "user": "b", "score": 60 },
-  { "item": "Users", "user": "a", "score": 40 },
-  { "item": "Users", "user": "b", "score": 50 },
-  { "item": "Test", "user": "a", "score": 60 },
-  { "item": "Test", "user": "b", "score": 70 },
-  { "item": "Language", "user": "a", "score": 70 },
-  { "item": "Language", "user": "b", "score": 50 },
-  { "item": "Technology", "user": "a", "score": 50 },
-  { "item": "Technology", "user": "b", "score": 40 },
-  { "item": "Support", "user": "a", "score": 30 },
-  { "item": "Support", "user": "b", "score": 40 },
-  { "item": "Sales", "user": "a", "score": 60 },
-  { "item": "Sales", "user": "b", "score": 40 },
-  { "item": "UX", "user": "a", "score": 50 },
-  { "item": "UX", "user": "b", "score": 60 }
+  { item: 'Design', user: 'a', score: 70 },
+  { item: 'Design', user: 'b', score: 30 },
+  { item: 'Development', user: 'a', score: 60 },
+  { item: 'Development', user: 'b', score: 70 },
+  { item: 'Marketing', user: 'a', score: 50 },
+  { item: 'Marketing', user: 'b', score: 60 },
+  { item: 'Users', user: 'a', score: 40 },
+  { item: 'Users', user: 'b', score: 50 },
+  { item: 'Test', user: 'a', score: 60 },
+  { item: 'Test', user: 'b', score: 70 },
+  { item: 'Language', user: 'a', score: 70 },
+  { item: 'Language', user: 'b', score: 50 },
+  { item: 'Technology', user: 'a', score: 50 },
+  { item: 'Technology', user: 'b', score: 40 },
+  { item: 'Support', user: 'a', score: 30 },
+  { item: 'Support', user: 'b', score: 40 },
+  { item: 'Sales', user: 'a', score: 60 },
+  { item: 'Sales', user: 'b', score: 40 },
+  { item: 'UX', user: 'a', score: 50 },
+  { item: 'UX', user: 'b', score: 60 }
 ]
 
 // 配置处理脚本
@@ -158,8 +158,8 @@ const option = {
     score: {
       alias: '分数',
       min: 0,
-      max: 80,
-    },
+      max: 80
+    }
   },
   xAxis: {
     line: null,
@@ -167,14 +167,14 @@ const option = {
     grid: {
       line: {
         style: {
-          lineDash: null,
-        },
-      },
-    },
+          lineDash: null
+        }
+      }
+    }
   },
   // 开启辅助点
   point: {
-    size: 2,
+    size: 2
   },
   yAxis: {
     label: false,
