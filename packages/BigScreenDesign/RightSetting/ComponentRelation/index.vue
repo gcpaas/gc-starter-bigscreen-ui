@@ -2,8 +2,8 @@
  * @description: 设置组件关联的公共组件
  * @Date: 2023-01-04 14:42:51
  * @Author: xing.heng
- * @LastEditors: wujian
- * @LastEditTime: 2023-05-23 15:50:38
+ * @LastEditors: xing.heng
+ * @LastEditTime: 2023-05-31 10:03:49
 -->
 <template>
   <div>
@@ -275,7 +275,7 @@ export default {
   height: 100%;
 }
 /deep/ .el-tabs__content {
-  height: calc(100% - 95px);
+  height: calc(100% - 40px);
   overflow-y: auto;
 }
 .setting-body {
