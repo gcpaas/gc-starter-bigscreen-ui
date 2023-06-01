@@ -272,6 +272,8 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
+  width: 97%;
   padding: 16px;
+  padding-bottom: 70px;
 }
 </style>

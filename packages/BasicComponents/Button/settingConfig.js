@@ -35,7 +35,7 @@ export const settingConfig = {
 const customConfig = {
   type: 'button',
   // 名称
-  name: '查询',
+  title: '查询',
   // 自定义属性
   customize: {
     // 类型

@@ -14,7 +14,7 @@
       }"
       @click="handleClick"
     >
-      <span :style="{ color: config.customize.fontColor,fontSize: config.customize.fontSize + 'px', }"> {{ config.name }}</span>
+      <span :style="{ color: config.customize.fontColor,fontSize: config.customize.fontSize + 'px', }"> {{ config.title }}</span>
     </el-button>
   </div>
 </template>
@@ -64,7 +64,6 @@ export default {
           }
         })
       })
-      console.log('bindComponentData', bindComponentData)
       this.linkage(bindComponentData)
     }
   }

@@ -28,7 +28,9 @@
       >
         <el-input
           v-model="config.url"
-          type="text"
+          type="textarea"
+          rows="4"
+          placeholder="请输入链接"
         />
       </el-form-item>
     </el-form>

@@ -61,13 +61,8 @@ export default {
      * @param {*} formData
      * */
     linkage (formData) {
-      console.log('linkage', formData)
-      console.log(this.config.linkage.components)
       EventBus.$emit('dataInit', formData, this.config.linkage.components)
     },
-    // {
-    //   "code":"inputValue"
-    // }
     /**
      * 绑定数据
      * @param {*} formData

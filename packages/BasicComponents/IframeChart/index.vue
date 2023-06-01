@@ -17,7 +17,7 @@
           transform: 'scale(.5, .5) translate(-50%, -50%)',
           border: 'none'
         }"
-        :src="config.url"
+        :src="newUrl"
       />
     </div>
   </div>
@@ -33,7 +33,9 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      newUrl: ''
+    }
   },
   computed: {
     isDesign () {
@@ -41,8 +43,29 @@ export default {
     }
   },
   watch: {},
-  mounted () {},
-  methods: {}
+  mounted () {
+    this.newUrl = this.replaceUrlVariables(this.config.url)
+  },
+  methods: {
+    replaceUrlVariables (url) {
+      const variableRegex = /\${([A-Za-z0-9_.]+)}/g
+      const variables = {}
+      let match
+      while ((match = variableRegex.exec(url))) {
+        const variable = match[1]
+        try {
+          const value = eval(variable)
+          variables[variable] = value !== undefined ? value : ''
+        } catch (e) {
+          variables[variable] = ''
+        }
+      }
+      const replacedUrl = url.replace(variableRegex, (match, variable) => {
+        return variables[variable] || match
+      })
+      return replacedUrl
+    }
+  }
 }
 </script>
 

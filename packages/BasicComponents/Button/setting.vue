@@ -18,7 +18,7 @@
           <PosWhSetting :config="config" />
           <el-form-item label="按钮名称">
             <el-input
-              v-model="config.name"
+              v-model="config.title"
               class="bs-el-input"
               clearable
             />
@@ -53,32 +53,16 @@
               />
             </el-select>
           </el-form-item>
-          <!-- <el-form-item label="是否是圆角按钮">
-            <el-switch
-              v-model="config.customize.isRound"
-              class="bs-el-switch"
-              active-color="#007aff"
-            />
-          </el-form-item>
-          <el-form-item label="是否是朴素按钮">
-            <el-switch
-              v-model="config.customize.isPlain"
-              class="bs-el-switch"
-              active-color="#007aff"
-            />
-          </el-form-item> -->
-          <!-- <el-form-item label="是否需要加载中效果">
-            <el-switch
-              v-model="config.customize.isLoading"
-              class="bs-el-switch"
-              active-color="#007aff"
-            />
-          </el-form-item> -->
           <el-form-item label="背景颜色">
-            <ColorPicker
-              v-model="config.customize.backgroundColor"
-              :predefine="predefineThemeColors"
-            />
+            <template>
+              <div>
+                {{ scope }}
+                <ColorPicker
+                  v-model="config.customize.backgroundColor"
+                  :predefine="predefineThemeColors"
+                />
+              </div>
+            </template>
           </el-form-item>
           <el-form-item label="边框颜色">
             <ColorPicker
@@ -211,6 +195,8 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
+  width: 97%;
   padding: 16px;
+  padding-bottom: 70px;
 }
 </style>

@@ -38,18 +38,6 @@
           </el-form-item>
         </div>
         <div class="input-wrap">
-          <!-- <div
-            class="select-line-icon option-add"
-            @click="setRelation(field)"
-          >
-            <el-tooltip
-              effect="dark"
-              content="组件联动设置"
-              placement="top"
-            >
-              <i class="el-icon-setting" />
-            </el-tooltip>
-          </div> -->
           <div
             class="select-line-icon option-delete"
             @click="deleteLinkComponents(index)"
@@ -167,47 +155,6 @@ export default {
         }
       )
     },
-    /**
-     * @description: 设置关联弹窗打开
-     */
-    // setRelation (configMap) {
-    //   this.settingVisible = true
-    //   // 如果是tab页内部组件，先平铺
-    //   let layouts = _.cloneDeep(this.chartList)
-    //   const tabComponents = []
-    //   layouts?.map((ly) => {
-    //     if (ly.type === 'Tabs') {
-    //       ly?.tabList?.map(com => {
-    //         tabComponents.push(com.chart)
-    //       })
-    //     }
-    //   })
-    //   layouts = layouts?.filter(item => !['Tabs', 'titles', 'currentTime', 'timeCountDown', 'iframeChart', 'linkChart', 'carousel'].includes(item.type))
-    //   layouts = [...layouts, ...tabComponents]
-    //   this.targetFieldList = layouts.find(
-    //     item => item.code === configMap.componentKey
-    //   )?.inParams?.map(item => ({
-    //     label: item.name,
-    //     value: item.code
-    //   }))
-    //   this.configMap = _.cloneDeep(configMap)
-    // },
-    /**
-     * @description: 更新关联配置
-     */
-    // updateConfig (configMapConfig) {
-    //   const index = this.config.dataSource.dimensionFieldList?.findIndex(
-    //     item => item.componentKey === configMapConfig.componentKey
-    //   )
-    //   this.$set(
-    //     this.config.dataSource.dimensionFieldList,
-    //     index,
-    //     configMapConfig
-    //   )
-    // },
-    /**
-     * @description: 选择组件
-     */
     chooseComponent (field) {
       this.activeCode = field?.componentKey
     }
