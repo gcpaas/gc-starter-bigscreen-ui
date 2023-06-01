@@ -144,6 +144,25 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom'
+  },
+  {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
@@ -192,6 +211,14 @@ const option = {
   legendPosition: 'top',
   legend: false,
   conversionTagName: '转化率 ',
+  label: { // 图表内的数据标签
+    // 配置样式
+    style: {
+      fill: '#ffffff',
+      opacity: 1,
+      fontSize: 12
+    }
+  },
   conversionTag: {
     offsetX: 10,
     offsetY: 0,
