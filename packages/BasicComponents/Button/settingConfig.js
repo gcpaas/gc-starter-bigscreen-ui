@@ -38,6 +38,7 @@ const customConfig = {
   title: '查询',
   // 自定义属性
   customize: {
+    bindComponents: [],
     // 类型
     type: 'primary',
     // 背景颜色
@@ -56,9 +57,6 @@ const customConfig = {
       // 边框圆角
       borderRadius: 16
     }
-  },
-  dataSource: {
-    bindComponents: []
   }
 }
 export const dataConfig = {

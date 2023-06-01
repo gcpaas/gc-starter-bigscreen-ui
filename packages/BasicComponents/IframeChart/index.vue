@@ -33,9 +33,7 @@ export default {
     }
   },
   data () {
-    return {
-      newUrl: ''
-    }
+    return { newUrl: '' }
   },
   computed: {
     isDesign () {

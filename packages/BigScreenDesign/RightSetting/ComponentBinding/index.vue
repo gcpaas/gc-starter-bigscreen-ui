@@ -11,7 +11,7 @@
         <span class="input-wrap">操作</span>
       </div>
       <div
-        v-for="(field, index) in config.dataSource.bindComponents"
+        v-for="(field, index) in config.customize.bindComponents"
         :key="index"
         class="select-item"
         :class="{ 'select-item-active': field.name === activeCode }"
@@ -126,7 +126,7 @@ export default {
      * @description: 添加关联组件
      */
     addBindComponents () {
-      this.config.dataSource.bindComponents.push({
+      this.config.customize.bindComponents.push({
         name: '',
         comment: ''
       })
@@ -135,7 +135,7 @@ export default {
      * @description: 删除关联组件
      */
     deleteLinkComponents (index) {
-      this.config.dataSource.bindComponents.splice(index, 1)
+      this.config.customize.bindComponents.splice(index, 1)
     },
     /**
      * @description: 改变关联组件
@@ -147,10 +147,10 @@ export default {
         data
       )
       this.$set(
-        this.config.dataSource.bindComponents,
+        this.config.customize.bindComponents,
         index,
         {
-          name: this.config.dataSource.bindComponents[index].name,
+          name: this.config.customize.bindComponents[index].name,
           comment: this.allComponentsExpectSelf(this.config.code).find(item => item.name === data).comment
         }
       )

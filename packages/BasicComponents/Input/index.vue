@@ -16,7 +16,7 @@
     </span> -->
     <el-input
       :id="`el-input-${config.code}`"
-      v-model="config.customize.value"
+      v-model="config.value"
       type="text"
       resize="both"
       class="input"

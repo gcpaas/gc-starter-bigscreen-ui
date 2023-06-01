@@ -12,13 +12,14 @@ export const settingConfig = {
 const customConfig = {
   type: 'input',
   // 自定义属性
+  // 输入框的值
   customize: {
+    value: '',
     // 是否显示标题
     showTitle: true,
     // 标题
     title: '输入框',
-    // 输入框的值
-    value: '',
+
     titleStyle: {
       // 标题大小
       fontSize: 14,

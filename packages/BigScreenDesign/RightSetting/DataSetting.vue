@@ -685,7 +685,7 @@ export default {
     },
     // 映射字段
     sourceFieldList () {
-      const list = this?.config?.dataSource?.bindComponents || this.fieldsList
+      const list = this?.config?.customize?.bindComponents || this.fieldsList
       return (
         list?.map(field => {
           return {
