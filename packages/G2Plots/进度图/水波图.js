@@ -23,24 +23,42 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  // {
-  //   label: '贴图类型',
-  //   // 设置组件类型
-  //   type: 'select',
-  //   // 字段
-  //   field: 'pattern_type',
-  //   // 对应options中的字段
-  //   optionField: 'pattern.type',
-  //   // 是否多选
-  //   multiple: false,
-  //   value: '',
-  //   tabName: 'custom',
-  //   options: [
-  //     { label: '圆点', value: 'dot' },
-  //     { label: '条形', value: 'line' },
-  //     { label: '矩形', value: 'square' }
-  //   ]
-  // },
+  {
+    label: '贴图',
+    type: 'switchNumber', // 设置组件类型
+    field: 'pattern_cfg_fillOpacity', // 字段
+    optionField: 'pattern.cfg.fillOpacity', // 对应options中的字段
+    value: 0,
+    tabName: 'custom'
+  },
+  {
+    label: '贴图类型',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'pattern_type',
+    // 对应options中的字段
+    optionField: 'pattern.type',
+    // 是否多选
+    multiple: false,
+    value: 'dot',
+    tabName: 'custom',
+    options: [
+      { label: '圆点', value: 'dot' },
+      { label: '矩形', value: 'square' }
+    ]
+  },
+  {
+    label: '贴图颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'pattern_cfg_fill',
+    // 对应options中的字段
+    optionField: 'pattern.cfg.fill',
+    value: '#ffffff',
+    tabName: 'custom'
+  },
   {
     label: '标签字体颜色',
     // 设置组件类型
@@ -98,10 +116,10 @@ const setting = [
   },
   {
     label: '水波颜色',
-    type: 'gradual', // 设置组件类型
-    field: 'liquidStyle_fill', // 字段
-    optionField: 'liquidStyle.fill', // 对应options中的字段
-    value: 'l(90) 0:#6591F7 1:#1890ff',
+    type: 'colorPicker', // 设置组件类型
+    field: 'color', // 字段
+    optionField: 'color', // 对应options中的字段
+    value: '#598BF2',
     tabName: 'custom'
   },
   {
@@ -126,6 +144,7 @@ const dataHandler = '// 取返回数据列表的第一项指标值\noption.perce
 // 图表配置 new Liquid('domName', option)
 const option = {
   data,
+  color: '#598BF2',
   renderer: 'canvas',
   percent: 0.25,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
@@ -137,13 +156,23 @@ const option = {
     }
   },
   liquidStyle: {
-    fill: 'l(90) 0:#1890ff 1:#ffffff',
     stroke: 'black',
     lineWidth: 0,
     strokeOpacity: 0
   },
   wave: {
     length: 128
+  },
+  pattern: {
+    type: 'dot',
+    cfg: {
+      size: 4,
+      fillOpacity: 0,
+      padding: 4,
+      rotation: 0,
+      fill: '#FFF',
+      isStagger: true
+    }
   },
   statistic: {
     content: {

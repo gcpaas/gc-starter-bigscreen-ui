@@ -1,6 +1,12 @@
 <template>
-  <div style="width: 100%; height: 100%" class="bs-design-wrap bs-bar">
-    <div :id="`chart${config.code}`" style="width: 100%; height: 100%" />
+  <div
+    style="width: 100%; height: 100%"
+    class="bs-design-wrap bs-bar"
+  >
+    <div
+      :id="`chart${config.code}`"
+      style="width: 100%; height: 100%"
+    />
   </div>
 </template>
 <script>
@@ -23,20 +29,20 @@ export default {
       default: () => ({})
     }
   },
-  data() {
+  data () {
     return {
       charts: null,
       hasData: false
     }
   },
   computed: {
-    Data() {
+    Data () {
       return JSON.parse(JSON.stringify(this.config))
     }
   },
   watch: {
     Data: {
-      handler(newVal, oldVal) {
+      handler (newVal, oldVal) {
         if (newVal.w !== oldVal.w || newVal.h !== oldVal.h) {
           this.$nextTick(() => {
             this.charts.resize()
@@ -46,14 +52,14 @@ export default {
       deep: true
     }
   },
-  mounted() {
+  mounted () {
     // this.chartInit()
   },
-  beforeDestroy() {
+  beforeDestroy () {
     this.charts?.clear()
   },
   methods: {
-    buildOption(config, data) {
+    buildOption (config, data) {
       const dataList = []
       data?.data?.forEach(item => {
         dataList.push({ name: item[config.customize.name], value: [item[config.customize.xaxis], item[config.customize.yaxis], item[config.customize.value]] })
@@ -64,7 +70,7 @@ export default {
       }
       return config
     },
-    async newChart(options) {
+    async newChart (options) {
       this.charts = echarts.init(
         document.getElementById(`chart${this.config.code}`)
       )
@@ -179,7 +185,7 @@ export default {
                 // 这里渲染标志里的内容以及样式
                 label: {
                   show: true,
-                  formatter(value) {
+                  formatter (value) {
                     return value.data.value[2]
                   },
                   color: this.config.customize.scatterColor
@@ -206,7 +212,7 @@ export default {
                 showLegendSymbol: false, // 存在legend时显示
                 data: options.data,
                 tooltip: {
-                  formatter(params) {
+                  formatter (params) {
                     return `<p style="text-align:center;line-height: 30px;height:30px;font-size: 14px;border-bottom: 1px solid #7A8698;">${
                       params.name
                     }</p>

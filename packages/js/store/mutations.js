@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-31 09:08:16
+ * @LastEditTime: 2023-05-31 16:27:12
  */
 
 import Vue from 'vue'
@@ -116,6 +116,7 @@ export default {
       item => item.code === config.code
     )
     Vue.set(state.pageInfo.chartList[index], 'locked', !config.locked)
+    saveTimeLineFunc(state, !config.locked ? `解锁${config?.title}` : `锁定${config?.title}`)
   },
   // 改变网格显示状态
   changeGridShow (state, isShow) {
@@ -231,8 +232,17 @@ export default {
     }
   },
   clearTimeline (state) {
-    state.timelineStore = []
-    state.currentTimeLine = 0
+    // 最后一个状态
+    const lastStore = state.timelineStore[state.timelineStore.length - 1]
+    // 将最后一个状态作为初始状态，否则下次拖拽后无法回到之前
+    state.timelineStore = [
+      {
+        ...lastStore,
+        timelineTitle: '初始状态',
+        updateTime: moment(new Date()).format('HH:mm:ss')
+      }
+    ]
+    state.currentTimeLine = 1
   },
   // 回退到指定时间线
   rollbackTimeline (state, index) {

@@ -10,7 +10,7 @@
     >
       <div class="lc-field-body">
         <div>
-          <el-form-item label="表格名称">
+          <el-form-item label="名称">
             <el-input
               v-model="config.title"
               clearable
@@ -20,22 +20,22 @@
             :config="config"
             label-width="120px"
           />
-          <el-form-item label="表格头部背景颜色">
+          <el-form-item label="头部背景颜色">
             <ColorPicker
               v-model="config.customize.headerBackgroundColor"
-              placeholder="请选择表格头部背景颜色"
+              placeholder="请选择头部背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="表格头部字体颜色">
+          <el-form-item label="头部字体颜色">
             <ColorPicker
               v-model="config.customize.headerFontColor"
               style="width:180px"
-              placeholder="请选择表格头部字体颜色"
+              placeholder="请选择头部字体颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="表格头部字体大小">
+          <el-form-item label="头部字体大小">
             <el-input-number
               v-model="config.customize.headerFontSize"
               class="bs-el-input-number"
@@ -44,21 +44,21 @@
               :step="1"
             />
           </el-form-item>
-          <el-form-item label="表格主体背景颜色">
+          <el-form-item label="主体背景颜色">
             <ColorPicker
               v-model="config.customize.bodyBackgroundColor"
-              placeholder="请选择表格主体背景颜色"
+              placeholder="请选择主体背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="表格主体字体颜色">
+          <el-form-item label="主体字体颜色">
             <ColorPicker
               v-model="config.customize.bodyFontColor"
-              placeholder="请选择表格主体字体颜色"
+              placeholder="请选择主体字体颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="表格主体字体大小">
+          <el-form-item label="主体字体大小">
             <el-input-number
               v-model="config.customize.bodyFontSize"
               class="bs-el-input-number"
@@ -67,17 +67,17 @@
               :step="1"
             />
           </el-form-item>
-          <el-form-item label="表格奇数行背景颜色">
+          <el-form-item label="奇数行背景颜色">
             <ColorPicker
               v-model="config.customize.evenRowBackgroundColor"
-              placeholder="请选择表格奇数行背景颜色"
+              placeholder="请选择奇数行背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="表格偶数行背景颜色">
+          <el-form-item label="偶数行背景颜色">
             <ColorPicker
               v-model="config.customize.oddRowBackgroundColor"
-              placeholder="请选择表格偶数行背景颜色"
+              placeholder="请选择偶数行背景颜色"
               :predefine-colors="predefineThemeColors"
             />
           </el-form-item>
@@ -129,15 +129,6 @@ export default {
   methods: {}
 }
 </script>
-
-<style lang="scss">
-// Element-UI Switch 组件样式覆盖
-.bs-switch {
-   .el-switch__core {
-    background: var(--bs-el-background-1);
-  }
-}
-</style>
 
 <style lang="scss" scoped>
 @import "../~packages/assets/style/settingWrap.scss";

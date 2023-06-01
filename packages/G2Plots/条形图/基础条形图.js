@@ -51,6 +51,34 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '条形图形状',
+    type: 'select', // 设置组件类型
+    field: 'shape', // 字段
+    optionField: 'shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'default',
+    tabName: 'custom',
+    options: [
+      {
+        label: '实心条形',
+        value: 'default'
+      },
+      {
+        label: '线性',
+        value: 'line'
+      },
+      // {
+      //   label: '空心条形',
+      //   value: 'hollow-rect'
+      // },
+      {
+        label: '钉形',
+        value: 'tick'
+      }
+    ]
+  },
+  {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
@@ -101,6 +129,33 @@ const setting = [
       { label: '左下角', value: 'bottom-left' },
       { label: '右下角', value: 'bottom-right' }
     ]
+  },
+  {
+    label: '数据标签显隐',
+    type: 'switchNumber', // 设置组件类型
+    field: 'label_style_opacity', // 字段
+    optionField: 'label.style.opacity', // 对应options中的字段
+    value: 0,
+    tabName: 'custom'
+  },
+  {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom'
   },
   {
     label: '网格线颜色',
@@ -175,6 +230,7 @@ const option = {
   data,
   xField: 'value',
   yField: 'year',
+  shape: ' ', // 条形图形状
   seriesField: 'year',
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
@@ -184,6 +240,14 @@ const option = {
   legend: false,
   barStyle: {
     radius: [10, 10, 0, 0]// 设置条形图的圆角
+  },
+  label: {
+    position: 'middle',
+    style: {
+      fill: '#59F25F',
+      opacity: 0,
+      fontSize: 12
+    }
   },
   radiusNum: 0, // 设置条形图的圆角的中间值
   yAxis: {

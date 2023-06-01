@@ -86,6 +86,28 @@ const setting = [
     ]
   },
   {
+    label: '标签颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'label_style_fill',
+    // 对应options中的字段
+    optionField: 'label.style.fill',
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom'
+  },
+  {
     label: '标签连线颜色',
     // 设置组件类型
     type: 'colorPicker',
@@ -160,7 +182,7 @@ const setting = [
     field: 'statistic_title_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
-    value: '30',
+    value: 20,
     tabName: 'custom'
   },
   {
@@ -182,7 +204,7 @@ const setting = [
     field: 'statistic_content_style_fontSize',
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
-    value: '30',
+    value: 30,
     tabName: 'custom'
   },
   {
@@ -256,14 +278,16 @@ const option = {
     },
     content: '{value}',
     style: {
-      textAlign: 'center',
-      fontSize: 14
+      fill: '#ffffff',
+      fontSize: 14,
+      textAlign: 'center'
     }
   },
   statistic: {
     title: {
       style: {
         whiteSpace: 'pre-wrap',
+        lineHeight: 2,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         color: '#d0d0d0',
@@ -274,6 +298,7 @@ const option = {
     content: {
       style: {
         whiteSpace: 'pre-wrap',
+        lineHeight: 2,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         color: '#d0d0d0',

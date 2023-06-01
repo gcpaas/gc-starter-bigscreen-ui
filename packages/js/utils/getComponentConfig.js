@@ -164,6 +164,30 @@ export default function getComponentConfig (type) {
         y: 0,
         type
       }
+    case 'input':
+      return {
+        name: '输入框',
+        title: '输入框',
+        icon: Icon.getNameList()[12],
+        className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenInputChart',
+        w: 170,
+        h: 80,
+        x: 0,
+        y: 0,
+        type
+      }
+    case 'button':
+      return {
+        name: '按钮',
+        title: '按钮',
+        icon: Icon.getNameList()[12],
+        className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenButtonChart',
+        w: 64,
+        h: 32,
+        x: 0,
+        y: 0,
+        type
+      }
     default:
       return {}
   }

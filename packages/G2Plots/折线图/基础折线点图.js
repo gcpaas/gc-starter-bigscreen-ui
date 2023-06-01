@@ -85,14 +85,6 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '数据点颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'point_style_stroke', // 字段
-    optionField: 'point.style.stroke', // 对应options中的字段
-    value: '',
-    tabName: 'custom'
-  },
-  {
     label: '网格线颜色',
     type: 'colorPicker', // 设置组件类型
     field: 'yAxis_grid_line_style_stroke', // 字段

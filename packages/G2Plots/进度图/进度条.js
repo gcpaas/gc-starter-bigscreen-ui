@@ -57,7 +57,11 @@ const setting = [
     tabName: 'custom'
   }
 ]
-
+const data = [
+  {
+    percent: 0.536
+  }
+]
 // 配置处理脚本
 const optionHandler = 'option.color = [option.frontColor, option.backColor]'
 
@@ -66,6 +70,7 @@ const dataHandler = '// 取返回数据列表的第一项指标值\noption.perce
 
 // 图表配置 new Gauge('domName', option)
 const option = {
+  data,
   height: 50,
   width: 400,
   autoFit: true,

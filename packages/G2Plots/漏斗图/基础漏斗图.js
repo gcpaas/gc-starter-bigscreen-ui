@@ -38,6 +38,24 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '漏斗形状',
+    type: 'select', // 设置组件类型
+    field: 'shape', // 字段
+    optionField: 'shape', // 对应options中的字段
+    value: 'funnel',
+    tabName: 'custom',
+    options: [
+      {
+        label: '默认',
+        value: 'funnel'
+      },
+      {
+        label: '金字塔',
+        value: 'pyramid'
+      }
+    ]
+  },
+  {
     label: '数据体现方式',
     type: 'select', // 设置组件类型
     field: 'dynamicHeight', // 字段
@@ -91,6 +109,17 @@ const setting = [
     optionField: 'conversionTag.style.fill',
     // 绑定的值
     value: '#8c8c8c',
+    tabName: 'custom'
+  },
+  {
+    label: '标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'conversionTag_style_fontSize',
+    // 对应options中的字段
+    optionField: 'conversionTag.style.fontSize',
+    value: 12,
     tabName: 'custom'
   },
   {
@@ -179,11 +208,13 @@ const option = {
   legendPosition: 'top',
   legend: false,
   conversionTagName: '转化率',
+  shape: 'funnel', // 漏斗的底部形状
   conversionTag: {
     offsetX: 10,
     offsetY: 0,
     style: {
-      fill: '#8c8c8c'
+      fill: '#8c8c8c',
+      fontSize: 12
     },
     formatter: (datum) => {
       return option.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'

@@ -31,7 +31,8 @@ export default {
       'resetPresetLine',
       'changeLayout',
       'changeZIndex',
-      'changeLocked'
+      'changeLocked',
+      'saveTimeLine'
     ]),
     // 改变hover的组件
     changeHover (code) {
@@ -104,6 +105,7 @@ export default {
             group: `group_${chart.code}`
           })
         })
+        this.saveTimeLine('组合图表')
       } else {
         // 取消组合
         // 找到和本组件group相同的组件 取消group
@@ -115,6 +117,7 @@ export default {
             })
           }
         })
+        this.saveTimeLine('取消组合图表')
       }
     },
     // 右键菜单

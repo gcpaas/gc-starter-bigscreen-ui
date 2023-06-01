@@ -342,7 +342,7 @@
           </template>
           <div class="lc-field-body">
             <el-form-item
-             label="展示字段"
+              label="展示字段"
               class="data-form-item"
             >
               <el-select
@@ -369,7 +369,7 @@
               </el-select>
             </el-form-item>
             <el-form-item
-             label="地名字段"
+              label="地名字段"
               class="data-form-item"
             >
               <el-select
@@ -396,7 +396,7 @@
               </el-select>
             </el-form-item>
             <el-form-item
-             label="x坐标"
+              label="x坐标"
               class="data-form-item"
             >
               <el-select
@@ -423,7 +423,7 @@
               </el-select>
             </el-form-item>
             <el-form-item
-             label="y坐标"
+              label="y坐标"
               class="data-form-item"
             >
               <el-select
@@ -699,6 +699,20 @@ export default {
       this.config.dataSource.businessKey = ''
       this.clearCustomVerify()
       this.clearVerify()
+    },
+    // 参数改变时
+    params: {
+      handler (val) {
+        if (!_.isEmpty(val)) {
+          const params = _.cloneDeep(val)
+          const paramsMap = params.reduce((obj, param) => {
+            obj[param.name] = param.value
+            return obj
+          }, {})
+          this.config.dataSource.params = paramsMap
+        }
+      },
+      deep: true
     }
   },
   mounted () {
@@ -737,9 +751,12 @@ export default {
         // 初始化时以组件本来的参数设置为主
         if (type === 'initial') {
           for (const key in this.config.dataSource.params) {
+            const param = res?.params?.find(field => field.name === key)
             this.params.push({
               name: key,
-              value: this.config.dataSource.params[key]
+              value: this.config.dataSource.params[key],
+              type: param?.type,
+              remark: param?.remark
             })
           }
         } else {
@@ -749,10 +766,6 @@ export default {
         this.datasetName = res.name
         // 选择数据集的时候，如果数据集类型是dataModel,则不显示参数配置
         this.config.option.displayOption.params.enable = res.type !== 'dataModel'
-        // let params = [];
-        // for (const key in this.config.dataSource.params) {
-        //   params.push({ name: key, value: this.config.dataSource.params[key] });
-        // }
         // 根据数据集初始化组件的入参：inparams
         if (res.type !== 'dataModel') {
           this.config.inParams =

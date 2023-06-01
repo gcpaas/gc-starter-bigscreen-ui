@@ -5,7 +5,10 @@
 -->
 <template>
   <transition name="slide-fade">
-    <div class="bs-left-panel">
+    <div
+      class="bs-left-panel"
+      @click.stop
+    >
       <div
         :class="fold ? 'page-left page-left-fold' : 'page-left'"
         :style="{ height }"
@@ -66,7 +69,6 @@
             :name="menu.name"
             @click.stop.native="
               fold = false
-              activeName = 'chart'
               changeActiveCode('')
             "
           >
@@ -143,7 +145,6 @@ import basicComponents from 'packages/js/config/basicComponentsConfig'
 import g2PlotComponents, { getCustomPlots } from '../G2Plots/plotList'
 import borderComponents from 'packages/js/config/borderComponentsConfig'
 import decorationComponents from 'packages/js/config/decorationComponentsConfig'
-// import svgComponents from 'packages/Svgs/svgConfigList'
 import LayerList from './LayerList/index.vue'
 import { mapMutations } from 'vuex'
 import IconSvg from 'packages/SvgIcon'
@@ -166,7 +167,7 @@ export default {
   data () {
     return {
       g2PlotComponents,
-      activeName: 'g2PlotComponents', // 设置左侧tab栏的默认值
+      activeName: 'chart', // 设置左侧tab栏的默认值
       fold: false, // 控制左侧菜单栏伸缩
       currentTab: 'basic',
       menuList: [
@@ -209,7 +210,7 @@ export default {
           id: 6,
           name: 'component',
           title: '组件',
-          icon: 'icon-svg',
+          icon: 'icon-zujian1',
           components: ''
         }
       ],

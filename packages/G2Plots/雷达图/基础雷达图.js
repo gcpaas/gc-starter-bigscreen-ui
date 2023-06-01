@@ -39,6 +39,14 @@ const setting = [
     tabName: 'data'
   },
   {
+    label: '面积填充',
+    type: 'switchNumber', // 设置组件类型
+    field: 'area', // 字段
+    optionField: 'area', // 对应options中的字段
+    value: 1,
+    tabName: 'custom'
+  },
+  {
     label: '是否平滑',
     type: 'switch', // 设置组件类型
     field: 'smooth', // 字段
@@ -52,6 +60,37 @@ const setting = [
     field: 'color', // 字段
     optionField: 'color', // 对应options中的字段
     value: 'l(0) 0:#648ff7 1:#648ff7',
+    tabName: 'custom'
+  },
+  {
+    label: '数据点形状',
+    type: 'select', // 设置组件类型
+    field: 'point_shape', // 字段
+    optionField: 'point.shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'circle',
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ]
+  },
+  {
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_color', // 字段
+    optionField: 'point.color', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom'
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'point_size', // 字段
+    optionField: 'point.size', // 对应options中的字段
+    value: 2,
     tabName: 'custom'
   },
   {
@@ -105,9 +144,11 @@ const option = {
   },
   // 开启辅助点
   point: {
+    color: '',
+    shape: '',
     size: 2
   },
-  area: {}
+  area: 1
 }
 
 export default {

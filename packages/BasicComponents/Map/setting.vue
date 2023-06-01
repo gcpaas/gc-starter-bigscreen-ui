@@ -26,7 +26,7 @@
           >
             <el-switch
               v-model="config.customize.mapName"
-              class="bs-switch"
+              class="bs-el-switch"
               active-color="#007aff"
             />
           </el-form-item>
@@ -101,7 +101,7 @@
           >
             <el-switch
               v-model="config.customize.scatter"
-              class="bs-switch"
+              class="bs-el-switch"
               active-color="#007aff"
             />
           </el-form-item>
@@ -151,7 +151,7 @@
           >
             <el-switch
               v-model="config.customize.visual"
-              class="bs-switch"
+              class="bs-el-switch"
               active-color="#007aff"
             />
           </el-form-item>
