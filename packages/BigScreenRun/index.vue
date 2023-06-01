@@ -61,7 +61,12 @@ export default {
       stateFitMode: state => state.bigScreen.pageInfo.pageConfig.fitMode
     }),
     pageCode () {
-      return this.$route.query.code || this.config.code
+      // 内部系统取到外部iframe上src链接的code参数
+      const iframeCode = this.getIframeCode()
+      // 兼容外部网页上的code,iframe上的code以及传入的code
+      return this.$route.query.code ||
+             iframeCode ||
+             this.config.code
     },
     fitMode () {
       return this.config.fitMode || this.stateFitMode
@@ -173,6 +178,26 @@ export default {
         }
         this.getParentWH()
       })
+    },
+    getIframeCode () {
+      // 获取当前页面的URL
+      const url = window.location.href
+
+      // 解析URL的参数
+      let code = null
+      // 检查URL中是否包含哈希值
+      if (url.indexOf('#') !== -1) {
+        // 获取哈希部分的URL
+        const hashUrl = url.split('#')[1]
+        // 解析哈希部分URL的参数
+        const hashParams = new URLSearchParams(hashUrl)
+        code = hashParams.get('code')
+      } else {
+        // 获取URL的查询字符串部分
+        const searchParams = new URLSearchParams(url.split('?')[1])
+        code = searchParams.get('code')
+      }
+      return code
     },
     windowSize () {
       window.onresize = () => {
