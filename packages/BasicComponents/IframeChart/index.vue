@@ -8,14 +8,12 @@
         mozallowfullscreen="true"
         oallowfullscreen="true"
         msallowfullscreen="true"
-        scrolling="no"
         :style="{
           width: '200%',
           height: '200%',
           transform: 'scale(.5, .5) translate(-50%, -50%)',
           border: 'none'
         }"
-        frameborder="0"
         :src="config.url"
       />
     </div>
