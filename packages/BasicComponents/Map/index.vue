@@ -54,22 +54,17 @@ export default {
   },
   methods: {
     buildOption(config, data) {
-      // let dataList = ''
-      // console.log(config.dataSource.dimensionField)
-      // if (data.data instanceof Array) {
-      //   dataList = config.dataSource.dimensionField
-      //     ? data.data[0][config.dataSource.dimensionField]
-      //     : data.data[0].value
-      // } else {
-      //   dataList = data.data[config.dataSource.dimensionField]
-      // }
-      // config.option = {
-      //   ...config.option,
-      //   data: dataList
-      // }
+      const dataList = []
+      data?.data?.forEach(item => {
+        dataList.push({ name: item[config.customize.name], value: [item[config.customize.xaxis], item[config.customize.yaxis], item[config.customize.value]] })
+      })
+      config.option = {
+        ...config.option,
+        data: dataList
+      }
       return config
     },
-    async newChart() {
+    async newChart(options) {
       this.charts = echarts.init(
         document.getElementById(`chart${this.config.code}`)
       )
@@ -132,6 +127,43 @@ export default {
         },
         series: this.config.customize.scatter
           ? [
+              // {
+              //   type: 'effectScatter',
+              //   coordinateSystem: 'geo',
+              //   effectType: 'ripple',
+              //   showEffectOn: 'render',
+              //   rippleEffect: {
+              //     period: 10,
+              //     scale: 10,
+              //     brushType: 'fill'
+              //   },
+
+              //   hoverAnimation: true,
+              //   itemStyle: {
+              //     normal: {
+              //       color: 'rgba(255, 235, 59, .7)',
+              //       shadowBlur: 10,
+              //       shadowColor: '#333'
+              //     }
+              //   },
+              //   tooltip: {
+              //     formatter(params) {
+              //       return `<p style="text-align:center;line-height: 30px;height:30px;font-size: 14px;border-bottom: 1px solid #7A8698;">${
+              //         params.name
+              //       }</p>
+              //   <div style="line-height:22px;margin-top:5px">GDP<span style="margin-left:12px;color:#fff;float:right">${
+              //     params.data?.value[2] || '--'
+              //   }</span></div>`
+              //     },
+              //     show: true
+              //   },
+              //   zlevel: 1,
+              //   data: [
+              //     { name: '西藏自治区', value: [91.23, 29.5, 1] },
+              //     { name: '黑龙江省', value: [128.03, 47.01, 1007] },
+              //     { name: '北京市', value: [116.4551, 40.2539, 5007] }
+              //   ]
+              // }
               {
                 type: 'scatter',
                 coordinateSystem: 'geo',
@@ -160,11 +192,7 @@ export default {
                     shadowColor: 'D8BC37'
                   }
                 },
-                data: [
-                  { name: '西藏自治区', value: [91.23, 29.5, 1] },
-                  { name: '黑龙江省', value: [128.03, 47.01, 1007] },
-                  { name: '北京市', value: [116.4551, 40.2539, 5007] }
-                ]
+                data: options.data
               }
             ]
           : [
@@ -176,11 +204,7 @@ export default {
                 zoom: 1.5,
                 center: [105, 36],
                 showLegendSymbol: false, // 存在legend时显示
-                data: [
-                  { name: '西藏自治区', value: [91.23, 29.5, 2333] },
-                  { name: '黑龙江省', value: [128.03, 47.01, 1007] },
-                  { name: '北京市', value: [116.4551, 40.2539, 1007] }
-                ],
+                data: options.data,
                 tooltip: {
                   formatter(params) {
                     return `<p style="text-align:center;line-height: 30px;height:30px;font-size: 14px;border-bottom: 1px solid #7A8698;">${
@@ -197,7 +221,7 @@ export default {
       }
       if (this.config.customize.visual) {
         option.visualMap = {
-          show: false,
+          show: true,
           min: this.config.customize.range[0],
           max: this.config.customize.range[1],
           seriesIndex: [0],

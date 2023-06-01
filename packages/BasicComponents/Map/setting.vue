@@ -217,7 +217,7 @@
   </div>
 </template>
 <script>
-// import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
+import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import { get } from 'packages/js/utils/http'
@@ -229,7 +229,7 @@ export default {
     ColorPicker,
     PosWhSetting
   },
-  // mixins: [chartSettingMixins],
+  mixins: [chartSettingMixins],
   props: {},
   data () {
     return {

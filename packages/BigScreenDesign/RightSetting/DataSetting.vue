@@ -330,6 +330,128 @@
           </div>
         </div>
         <div
+          v-if="config.option.displayOption.mapField && config.option.displayOption.mapField.enable"
+          name="地图数据配置"
+        >
+          <template slot="title">
+            <div class="lc-field-head">
+              <div class="lc-field-title">
+                地图数据配置
+              </div>
+            </div>
+          </template>
+          <div class="lc-field-body">
+            <el-form-item
+             label="展示字段"
+              class="data-form-item"
+            >
+              <el-select
+                v-model="config.customize.value"
+                class="bs-el-select"
+                popper-class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="(field, index) in dataSourceDataList"
+                  :key="index"
+                  :label="field.comment"
+                  :value="field.name"
+                >
+                  <div class="source-key-option">
+                    <div>
+                      {{ field.comment !== "" ? field.comment : field.name }}
+                    </div>
+                    <div class="option-txt">
+                      {{ field.name }}
+                    </div>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item
+             label="地名字段"
+              class="data-form-item"
+            >
+              <el-select
+                v-model="config.customize.name"
+                class="bs-el-select"
+                popper-class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="(field, index) in dataSourceDataList"
+                  :key="index"
+                  :label="field.comment"
+                  :value="field.name"
+                >
+                  <div class="source-key-option">
+                    <div>
+                      {{ field.comment !== "" ? field.comment : field.name }}
+                    </div>
+                    <div class="option-txt">
+                      {{ field.name }}
+                    </div>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item
+             label="x坐标"
+              class="data-form-item"
+            >
+              <el-select
+                v-model="config.customize.xaxis"
+                class="bs-el-select"
+                popper-class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="(field, index) in dataSourceDataList"
+                  :key="index"
+                  :label="field.comment"
+                  :value="field.name"
+                >
+                  <div class="source-key-option">
+                    <div>
+                      {{ field.comment !== "" ? field.comment : field.name }}
+                    </div>
+                    <div class="option-txt">
+                      {{ field.name }}
+                    </div>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item
+             label="y坐标"
+              class="data-form-item"
+            >
+              <el-select
+                v-model="config.customize.yaxis"
+                class="bs-el-select"
+                popper-class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="(field, index) in dataSourceDataList"
+                  :key="index"
+                  :label="field.comment"
+                  :value="field.name"
+                >
+                  <div class="source-key-option">
+                    <div>
+                      {{ field.comment !== "" ? field.comment : field.name }}
+                    </div>
+                    <div class="option-txt">
+                      {{ field.name }}
+                    </div>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+        </div>
+        <div
           v-if="config.option.displayOption.params.enable"
           class="data-setting-data-box"
         >

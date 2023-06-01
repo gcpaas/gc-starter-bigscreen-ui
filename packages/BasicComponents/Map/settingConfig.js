@@ -12,21 +12,24 @@ export const settingConfig = {
   displayOption: {
     ...displayOption,
     params: {
-      enable: false
+      enable: true
     },
     headerField: {
       enable: false
     },
+    mapField: {
+      enable: true
+    },
     metricField: {
       // 指标
       label: '维度',
-      enable: true,
+      enable: false,
       multiple: false // 是否多选
     },
     dimensionField: {
       // 表格列
       label: '展示字段', // 维度/查询字段
-      enable: true,
+      enable: false,
       multiple: false // 是否多选
     }
   }
@@ -42,7 +45,7 @@ const customConfig = {
     // 地图背景色
     backgroundColor: '#404a59',
     // 是否打点
-    scatter: false,
+    scatter: true,
     // 悬浮框背景色
     tooltipBackgroundColor: '#0C121C',
     // 悬浮框边框色
@@ -66,7 +69,16 @@ const customConfig = {
     // 从上到下的颜色
     rangeColor: ['#007aff', '#A5CC82'],
     // 地图数据
-    dataMap: '中华人民共和国.json'
+    dataMap: '中华人民共和国.json',
+    // 展示字段
+    value: '',
+    // 横坐标
+    xaxis: '',
+    // 纵坐标
+    yaxis: '',
+    // 名称
+    name: ''
+
   }
 }
 
