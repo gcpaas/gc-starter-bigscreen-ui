@@ -8,7 +8,6 @@
         mozallowfullscreen="true"
         oallowfullscreen="true"
         msallowfullscreen="true"
-        sandbox="allow-same-origin"
         scrolling="no"
         :style="{
           width: '200%',
