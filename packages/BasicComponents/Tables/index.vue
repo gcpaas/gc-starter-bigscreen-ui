@@ -176,11 +176,11 @@ export default {
       return rowIndex % 2 === 0 ? `even-row${this.config.code}` : `odd-row${this.config.code}`
     },
     buildOption (config, data) {
-      config.option.tableData = data.data
+      config.option.tableData = data?.data
       const filteredData = {}
-      const columnData = data.columnData
+      const columnData = data?.columnData || {}
       if (config.dataSource.dimensionFieldList && config.dataSource.dimensionFieldList.length > 0) {
-        Object.keys(columnData).forEach(key => {
+        Object?.keys(columnData).forEach(key => {
           if (
             config.dataSource.dimensionFieldList.includes(columnData[key].alias)
           ) {
