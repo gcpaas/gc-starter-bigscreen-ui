@@ -56,6 +56,9 @@ const customConfig = {
       // 边框圆角
       borderRadius: 16
     }
+  },
+  dataSource: {
+    bindComponents: []
   }
 }
 export const dataConfig = {

@@ -584,6 +584,11 @@
             </el-form-item>
           </div>
         </div>
+        <ComponentBinding
+          v-if="['button'].includes(config.type)"
+          :config="config"
+          :source-field-list="sourceFieldList"
+        />
         <ComponentRelation
           v-if="!['carousel','gauge','liquid'].includes(config.type)"
           :config="config"
@@ -595,8 +600,9 @@
 </template>
 <script>
 import ElDragSelect from './ElDragSelect.vue'
-import _ from 'lodash'
+import { isEmpty, cloneDeep } from 'lodash'
 import ComponentRelation from 'packages/BigScreenDesign/RightSetting/ComponentRelation/index.vue'
+import ComponentBinding from 'packages/BigScreenDesign/RightSetting/ComponentBinding/index.vue'
 import dataSetSelect from 'packages/DataSetSetting/index.vue'
 import { mapState } from 'vuex'
 import { getDataSetDetails } from 'packages/js/api/bigScreenApi'
@@ -604,6 +610,7 @@ export default {
   name: 'DataSetting',
   components: {
     ComponentRelation,
+    ComponentBinding,
     dataSetSelect,
     ElDragSelect
   },
@@ -678,8 +685,9 @@ export default {
     },
     // 映射字段
     sourceFieldList () {
+      const list = this?.config?.dataSource?.bindComponents || this.fieldsList
       return (
-        this.fieldsList?.map(field => {
+        list?.map(field => {
           return {
             label: field.comment,
             value: field.name
@@ -703,8 +711,8 @@ export default {
     // 参数改变时
     params: {
       handler (val) {
-        if (!_.isEmpty(val)) {
-          const params = _.cloneDeep(val)
+        if (!isEmpty(val)) {
+          const params = cloneDeep(val)
           const paramsMap = params.reduce((obj, param) => {
             obj[param.name] = param.value
             return obj
@@ -825,7 +833,7 @@ export default {
       colFieldList.forEach(item => {
         this.headerList.push({ name: item.comment, code: item.name, width: '150', align: 'left' })
       })
-      this.config.customize.columnConfig = _.cloneDeep(this.headerList)
+      this.config.customize.columnConfig = cloneDeep(this.headerList)
       this.$store.commit('bigScreen/changeActiveItemConfig', this.config)
     },
     changeCustomProps (value, index) {

@@ -149,21 +149,21 @@ export default {
     }
     // this.chartInit();
     if (this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor) {
-      console.log(1)
+      // console.log(1)
       this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
     } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
-      console.log(2)
+      // console.log(2)
       this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
     } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
-      console.log(3)
+      // console.log(3)
       this.config.customize.bodyBackgroundColor = ''
     }
     window.requestAnimationFrame(() => {
-      console.log(4, this.config.customize.evenRowBackgroundColor)
+      // console.log(4, this.config.customize.evenRowBackgroundColor)
       document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
         node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
       })
-      console.log(5, this.config.customize.oddRowBackgroundColor)
+      // console.log(5, this.config.customize.oddRowBackgroundColor)
       document.querySelectorAll(`.odd-row${this.config.code}`).forEach(node => {
         node.style.backgroundColor = this.config.customize.oddRowBackgroundColor
       })
@@ -172,7 +172,7 @@ export default {
   methods: {
     // 表格行样式
     tableRowClassName ({ row, rowIndex }) {
-      console.log(6)
+      // console.log(6)
       return rowIndex % 2 === 0 ? `even-row${this.config.code}` : `odd-row${this.config.code}`
     },
     buildOption (config, data) {

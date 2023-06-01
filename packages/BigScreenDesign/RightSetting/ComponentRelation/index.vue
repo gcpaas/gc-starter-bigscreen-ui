@@ -2,8 +2,8 @@
  * @description: 设置组件关联的公共组件
  * @Date: 2023-01-04 14:42:51
  * @Author: xing.heng
- * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-31 10:03:49
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-06-01 09:48:03
 -->
 <template>
   <div>
@@ -87,7 +87,7 @@
 </template>
 <script>
 import RelationSetting from './RelationSetting.vue'
-import _ from 'lodash'
+import { cloneDeep } from 'lodash'
 import { mapState } from 'vuex'
 export default {
   name: 'ComponentRelation',
@@ -121,6 +121,7 @@ export default {
     return {
       // 关联设置弹窗
       settingVisible: false,
+      cloneDeepConfig: cloneDeep(this.config),
       configMap: {},
       targetFieldList: [],
       activeCode: null
@@ -135,7 +136,9 @@ export default {
       return this.config.linkage.components?.map(item => item.componentKey) || []
     }
   },
-  mounted () {},
+  mounted () {
+    console.log(this.config)
+  },
   beforeDestroy () {
   },
   methods: {
@@ -143,7 +146,7 @@ export default {
      * @description: 获取除自己之外的所有组件
      */
     allComponentsExpectSelf (code) {
-      let layouts = _.cloneDeep(this.chartList)
+      let layouts = cloneDeep(this.chartList)
       const tabComponents = []
       layouts?.map((ly) => {
         if (ly.type === 'Tabs') {
@@ -193,7 +196,7 @@ export default {
     setRelation (configMap) {
       this.settingVisible = true
       // 如果是tab页内部组件，先平铺
-      let layouts = _.cloneDeep(this.chartList)
+      let layouts = cloneDeep(this.chartList)
       const tabComponents = []
       layouts?.map((ly) => {
         if (ly.type === 'Tabs') {
@@ -210,7 +213,7 @@ export default {
         label: item.name,
         value: item.code
       }))
-      this.configMap = _.cloneDeep(configMap)
+      this.configMap = cloneDeep(configMap)
     },
     /**
      * @description: 更新关联配置
@@ -335,7 +338,7 @@ export default {
 }
 .select-item-active {
   border: 1px solid var(--bs-el-color-primary);
-  background: var(--bs-el-color-primary);
+  background: var(--bs-el-background-3);
 }
 // 修改设置面板样式
 .data-setting-box{

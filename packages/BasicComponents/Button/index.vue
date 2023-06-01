@@ -12,6 +12,7 @@
         borderStyle: config.customize.borderStyle.borderStyle,
         borderRadius: config.customize.borderStyle.borderRadius + 'px'
       }"
+      @click="handleClick"
     >
       <span :style="{ color: config.customize.fontColor,fontSize: config.customize.fontSize + 'px', }"> {{ config.name }}</span>
     </el-button>
@@ -21,9 +22,15 @@
 <script>
 import commonMixins from 'packages/js/mixins/commonMixins'
 import linkageMixins from 'packages/js/mixins/linkageMixins'
+import { mapState } from 'vuex'
 export default {
   name: 'BasicComponentButton',
   mixins: [commonMixins, linkageMixins],
+  computed: {
+    ...mapState({
+      chartList: state => state.bigScreen.pageInfo.chartList
+    })
+  },
   props: {
     // 卡片的属性
     config: {
@@ -45,6 +52,20 @@ export default {
           '#ED7D32'
         ]
       }
+    }
+  },
+  methods: {
+    handleClick () {
+      const bindComponentData = {}
+      this.chartList.forEach(chart => {
+        this.config.dataSource.dimensionFieldList.forEach(code => {
+          if (chart.code === code) {
+            bindComponentData[chart.code] = chart.customize.value
+          }
+        })
+      })
+      console.log('bindComponentData', bindComponentData)
+      this.linkage(bindComponentData)
     }
   }
 }

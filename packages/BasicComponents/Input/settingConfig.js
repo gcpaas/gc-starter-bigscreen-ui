@@ -1,8 +1,6 @@
 
 import { commonConfig, displayOption } from 'packages/js/config'
 
-console.log(displayOption)
-
 export const settingConfig = {
   padding: [30, 30, 50, 80],
   legend: false,
@@ -44,6 +42,8 @@ const customConfig = {
     showTitle: true,
     // 标题
     title: '输入框',
+    // 输入框的值
+    value: '',
     titleStyle: {
       // 标题大小
       fontSize: 14,

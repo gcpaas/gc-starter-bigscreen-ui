@@ -61,8 +61,20 @@ export default {
      * @param {*} formData
      * */
     linkage (formData) {
+      console.log('linkage', formData)
+      console.log(this.config.linkage.components)
       EventBus.$emit('dataInit', formData, this.config.linkage.components)
     },
+    // {
+    //   "code":"inputValue"
+    // }
+    /**
+     * 绑定数据
+     * @param {*} formData
+     * */
+    // binding (formData) {
+    //   EventBus.$emit('dataInit', formData, this.config.binding.components)
+    // },
     /**
      * 处理外部联动数据和内部联动数据，合并，如果内部搜索区的参数在外部联动，则赋值上
      * @param {Boolean} isInner 是否是内部组件

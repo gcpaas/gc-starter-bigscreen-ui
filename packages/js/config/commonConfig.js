@@ -2,8 +2,8 @@
  * @description: 大屏组件通用属性
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-14 15:57:06
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-06-01 10:23:13
  */
 
 import getComponentConfig from 'packages/js/utils/getComponentConfig'

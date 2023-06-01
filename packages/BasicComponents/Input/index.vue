@@ -16,7 +16,7 @@
     </span> -->
     <el-input
       :id="`el-input-${config.code}`"
-      v-model="inputValue"
+      v-model="config.customize.value"
       type="text"
       resize="both"
       class="input"
@@ -40,17 +40,15 @@ export default {
     }
   },
   data () {
-    return {
-      inputValue: ''
-    }
+    return { }
   },
   mounted () {
     this.updateComponent()
   },
   methods: {
     updateComponent () {
-      console.log(document.querySelector(`#el-input-${this.config.code}`))
-      console.log(this.config.customize)
+      // console.log(document.querySelector(`#el-input-${this.config.code}`))
+      // console.log(this.config.customize)
       const input = document.querySelector(`#el-input-${this.config.code}`)
       input.style.backgroundColor = this.config.customize.backgroundStyle.backgroundColor
       input.style.setProperty('color', this.config.customize.placeholderStyle.placeholderColor, 'placeholder')
