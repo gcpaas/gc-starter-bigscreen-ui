@@ -1,5 +1,8 @@
 <template>
-  <div class="bs-design-wrap">
+  <div
+    class="bs-design-wrap"
+    :class="{ 'no-pointer': isDesign }"
+  >
     <div class="iframe-wrap">
       <iframe
         class="iframe"
@@ -32,7 +35,11 @@ export default {
   data () {
     return {}
   },
-  computed: {},
+  computed: {
+    isDesign () {
+      return (window?.BS_CONFIG?.routers?.designUrl || '/big-screen/design') === this.$route.path
+    }
+  },
   watch: {},
   mounted () {},
   methods: {}
@@ -46,9 +53,11 @@ export default {
   background: #fff;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   .iframe-wrap {
     height: 100%;
   }
+}
+.no-pointer {
+  pointer-events: none;
 }
 </style>
