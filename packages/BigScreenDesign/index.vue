@@ -118,6 +118,7 @@ import { getThemeConfig, getScreenInfo } from 'packages/js/api/bigScreenApi'
 import MouseSelect from './MouseSelect/index.vue'
 import _ from 'lodash'
 import { get } from 'packages/js/utils/http'
+import { randomString } from '../js/utils'
 import { isFirefox } from 'packages/js/utils/userAgent'
 import { handleResData } from 'packages/js/store/actions.js'
 export default {
@@ -261,13 +262,19 @@ export default {
     setComponent (component) {
       // 根据component获取页面详情
       getScreenInfo(component.code).then(res => {
+        // 给组件库导入的组件加入统一的前缀
+        const randomStr = randomString(8)
         const pageInfo = handleResData(res)
         const chartList = pageInfo.chartList.reverse()
         chartList.forEach((chart) => {
+          if (chart.linkage && chart.linkage.components && chart.linkage.components.length) {
+            chart.linkage.components.forEach((com) => { com.componentKey = randomStr + com.componentKey })
+          }
           const newChart = {
             ...chart,
             offsetX: 0,
-            group: '123'
+            group: randomStr,
+            code: randomStr + chart.code
           }
           this.$refs.Render.addChart(newChart, { x: chart.x, y: chart.y }, true)
         })

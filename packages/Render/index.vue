@@ -291,7 +291,7 @@ export default {
           : position.y,
         width: 200 * this.scale,
         height: 200 * this.scale,
-        code: randomString(8),
+        code: !chart.code ? randomString(8) : chart.code,
         option
       }
       config.key = config.code
