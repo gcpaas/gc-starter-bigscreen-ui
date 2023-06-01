@@ -44,16 +44,6 @@ const setting = [
     tabName: 'data'
   },
   {
-    label: '数据点颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'point_style_fill', // 字段
-    optionField: 'point.style.fill', // 对应options中的字段
-    // 是否多选
-    multiple: false,
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
     label: '数据点样式',
     type: 'select', // 设置组件类型
     field: 'point_shape', // 字段
@@ -67,6 +57,24 @@ const setting = [
       { label: '三角形', value: 'triangle' },
       { label: '菱形', value: 'diamond' }
     ]
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'point_size', // 字段
+    optionField: 'point.size', // 对应options中的字段
+    value: 2,
+    tabName: 'custom'
+  },
+  {
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_style_fill', // 字段
+    optionField: 'point.style.fill', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: '#ffffff',
+    tabName: 'custom'
   },
   {
     label: '线条宽度',

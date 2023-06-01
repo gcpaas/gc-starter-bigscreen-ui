@@ -253,7 +253,29 @@ const setting = [
     value: '#8C8C8C',
     tabName: 'custom'
   },
-
+  {
+    label: '数据点形状',
+    type: 'select', // 设置组件类型
+    field: 'point_shape', // 字段
+    optionField: 'point.shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'circle',
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ]
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'point_size', // 字段
+    optionField: 'point.size', // 对应options中的字段
+    value: 2,
+    tabName: 'custom'
+  },
   {
     label: '数据点颜色',
     type: 'colorPicker', // 设置组件类型
@@ -263,21 +285,6 @@ const setting = [
     multiple: false,
     value: '#ffffff',
     tabName: 'custom'
-  },
-  {
-    label: '数据点样式',
-    type: 'select', // 设置组件类型
-    field: 'point_shape', // 字段
-    optionField: 'point.shape', // 对应options中的字段
-    // 是否多选
-    multiple: false,
-    value: '',
-    tabName: 'custom',
-    options: [
-      { label: '圆形', value: 'circle' },
-      { label: '三角形', value: 'triangle' },
-      { label: '菱形', value: 'diamond' }
-    ]
   },
   {
     label: '数据标签颜色',
@@ -367,10 +374,10 @@ const option = {
   },
   color: '',
   point: {
-    size: 5,
+    size: 2,
     shape: 'diamond',
     style: {
-      fill: 'white',
+      fill: 'red',
       stroke: '#5B8FF9',
       lineWidth: 2
     }
