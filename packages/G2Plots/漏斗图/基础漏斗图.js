@@ -37,24 +37,24 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  {
-    label: '漏斗形状',
-    type: 'select', // 设置组件类型
-    field: 'shape', // 字段
-    optionField: 'shape', // 对应options中的字段
-    value: 'funnel',
-    tabName: 'custom',
-    options: [
-      {
-        label: '默认',
-        value: 'funnel'
-      },
-      {
-        label: '金字塔',
-        value: 'pyramid'
-      }
-    ]
-  },
+  // {
+  //   label: '漏斗形状',
+  //   type: 'select', // 设置组件类型
+  //   field: 'shape', // 字段
+  //   optionField: 'shape', // 对应options中的字段
+  //   value: 'funnel',
+  //   tabName: 'custom',
+  //   options: [
+  //     {
+  //       label: '默认',
+  //       value: 'funnel'
+  //     },
+  //     {
+  //       label: '金字塔',
+  //       value: 'pyramid'
+  //     }
+  //   ]
+  // },
   {
     label: '数据体现方式',
     type: 'select', // 设置组件类型
@@ -111,17 +111,17 @@ const setting = [
     value: '#8c8c8c',
     tabName: 'custom'
   },
-  {
-    label: '标签大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'conversionTag_style_fontSize',
-    // 对应options中的字段
-    optionField: 'conversionTag.style.fontSize',
-    value: 12,
-    tabName: 'custom'
-  },
+  // {
+  //   label: '标签大小',
+  //   // 设置组件类型
+  //   type: 'inputNumber',
+  //   // 字段
+  //   field: 'conversionTag_style_fontSize',
+  //   // 对应options中的字段
+  //   optionField: 'conversionTag.style.fontSize',
+  //   value: 12,
+  //   tabName: 'custom'
+  // },
   {
     label: '显示图例',
     type: 'switch', // 设置组件类型
@@ -185,15 +185,14 @@ const data = [
 ]
 
 // 配置处理脚本
-const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
-  '\noption.conversionTag.formatter = (datum) => {\n' +
-  '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
-  '}'
-
+const optionHandler = `option.legend = option.legendEnable ? option.legendPosition: false;
+window.conversionTagName = option.conversionTagName
+option.conversionTag.formatter = (datum) => {
+  return window.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
+}
+`
 // 数据处理脚本
-const dataHandler = '// 将数据排序\nlet valueField = setting.find(item => item.field === "yField").value\n' +
-  'data = data.sort((a, b) => b[valueField] - a[valueField])\n'
-
+const dataHandler = 'data = data.sort((a, b) => b[option.yField] - a[option.yField])'
 // 图表配置 new Line('domName', option)
 const option = {
   data,
@@ -217,7 +216,7 @@ const option = {
       fontSize: 12
     },
     formatter: (datum) => {
-      return option.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
+      return '转化率' + datum.$$percentage$$.toFixed(2) * 100 + '%'
     }
   }
 }

@@ -168,14 +168,16 @@ const data = [
 ]
 
 // 配置处理脚本
-const optionHandler = 'option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === \'legendPosition\').value} : false;' +
-  '\noption.conversionTag.formatter = (datum) => {\n' +
-  '  return option.conversionTagName + datum[\'$$percentage$$\'].toFixed(2) * 100 + \'%\'\n' +
-  '}'
+const optionHandler = `option.legend = option.legendEnable ? option.legendPosition: false;
+window.conversionTagName = option.conversionTagName
+option.conversionTag.formatter = (datum) => {
+  return window.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
+}
+`
 
 // 数据处理脚本
-const dataHandler = '// 将数据排序\nlet valueField = setting.find(item => item.field === "yField").value\n' +
-  'data = data.sort((a, b) => b[valueField] - a[valueField])\n'
+// 数据处理脚本
+const dataHandler = 'data = data.sort((a, b) => b[option.yField] - a[option.yField])'
 
 // 图表配置 new Line('domName', option)
 const option = {
