@@ -69,8 +69,8 @@
             @change="changeScreenZoom"
           >
             <el-option
-              v-for="zoom in zoomList"
-              :key="zoom.value"
+              v-for="(zoom,index) in zoomList"
+              :key="index"
               :label="zoom.label"
               :value="zoom.value"
             />
@@ -267,9 +267,18 @@ export default {
         const pageInfo = handleResData(res)
         const chartList = pageInfo.chartList.reverse()
         chartList.forEach((chart) => {
+          // 如果组件存在数据联动，则将数据联动的code也加上相同的前缀
           if (chart.linkage && chart.linkage.components && chart.linkage.components.length) {
             chart.linkage.components.forEach((com) => { com.componentKey = randomStr + com.componentKey })
           }
+          // TODO 如果组件是缓存数据集
+          // if (chart.dataSource.dataSetType === '2') {
+          //   this.changePageConfig({ ...this.pageConfig, ...pageInfo.pageConfig })
+          //   pageInfo.pageConfig.cacheDataSets?.map((cacheDataSet) => {
+          //     this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
+          //     this.$store.dispatch('bigScreen/getCacheDataFields', { dataSetId: cacheDataSet.dataSetId })
+          //   })
+          // }
           const newChart = {
             ...chart,
             offsetX: 0,
