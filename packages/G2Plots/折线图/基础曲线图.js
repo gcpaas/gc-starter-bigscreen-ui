@@ -46,12 +46,12 @@ const setting = [
   // 图表 graph
   {
     label: '线条宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'lineStyle_lineWidth', // 字段
-    optionField: 'lineStyle.lineWidth', // 对应options中的字段
-    value: '2',
+    type: 'inputNumber',
+    field: 'lineStyle_lineWidth',
+    optionField: 'lineStyle.lineWidth',
+    value: 2,
     tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'graph'
   },
   {
     label: '线条颜色',
@@ -81,23 +81,47 @@ const setting = [
     tabName: 'custom',
     groupName: 'grid'
   },
+  // 图例 legend
+  // X轴 xAxis
   {
-    label: '网格线宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'yAxis_grid_line_style_lineWidth', // 字段
-    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 1,
+    label: 'x轴标题',
+    type: 'input',
+    field: 'xAxis_title_text',
+    optionField: 'xAxis.title.text',
+    value: '',
     tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'xAxis'
   },
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
-    value: 1,
+    label: 'x轴标题位置',
+    type: 'select',
+    field: 'xAxis_title_position',
+    optionField: 'xAxis.title.position',
+    value: 'end',
     tabName: 'custom',
-    groupName: 'yAxis'
+    options: [
+      {
+        label: '左',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '右',
+        value: 'end'
+      }],
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标题字体大小',
+    type: 'inputNumber',
+    field: 'xAxis_title_style_fontSize',
+    optionField: 'xAxis.title.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'xAxis'
   },
   {
     label: 'x轴标题颜色',
@@ -312,20 +336,20 @@ const setting = [
 
 // 模拟数据
 const data = [
-  { Date: '2010-01', scales: 1998 },
-  { Date: '2010-02', scales: 1850 },
-  { Date: '2010-03', scales: 1720 },
-  { Date: '2010-04', scales: 1818 },
-  { Date: '2010-05', scales: 1920 },
-  { Date: '2010-06', scales: 1802 },
-  { Date: '2010-07', scales: 1945 },
-  { Date: '2010-08', scales: 1856 },
-  { Date: '2010-09', scales: 2107 },
-  { Date: '2010-10', scales: 2140 }
+  {"Date": "2010-01", "scales": 1998},
+  {"Date": "2010-02", "scales": 1850},
+  {"Date": "2010-03", "scales": 1720},
+  {"Date": "2010-04", "scales": 1818},
+  {"Date": "2010-05", "scales": 1920},
+  {"Date": "2010-06", "scales": 1802},
+  {"Date": "2010-07", "scales": 1945},
+  {"Date": "2010-08", "scales": 1856},
+  {"Date": "2010-09", "scales": 2107},
+  {"Date": "2010-10", "scales": 2140}
 ]
 
 // 配置处理脚本
-// const optionHandler = ''
+const optionHandler = ''
 
 // 数据处理脚本
 const dataHandler = ''

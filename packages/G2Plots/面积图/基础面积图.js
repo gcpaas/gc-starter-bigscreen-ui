@@ -81,39 +81,13 @@ const setting = [
     groupName: 'graph'
   },
   {
-    label: '线条颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'line_color', // 字段
-    optionField: 'line.color', // 对应options中的字段
-    value: '',
-    tabName: 'custom'
-  },
-  {
     label: '线条宽度',
     type: 'inputNumber', // 设置组件类型
     field: 'line_size', // 字段
     optionField: 'line.size', // 对应options中的字段
     value: 1,
     tabName: 'custom',
-    groupName: 'grid'
-  },
-  {
-    label: '网格线颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'yAxis_grid_line_style_stroke', // 字段
-    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
-    value: '#d0d0d0',
-    tabName: 'custom',
-    groupName: 'grid'
-  },
-  {
-    label: '网格线宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'yAxis_grid_line_style_lineWidth', // 字段
-    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
-    tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'graph'
   },
   {
     label: '数据点颜色',
@@ -125,13 +99,13 @@ const setting = [
     groupName: 'graph'
   },
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
-    value: 1,
+    label: '数据标签字体大小',
+    type: 'inputNumber',
+    field: 'label_style_fontSize',
+    optionField: 'label.style.fontSize',
+    value: 12,
     tabName: 'custom',
-    groupName: 'yAxis'
+    groupName: 'graph'
   },
   {
     label: '数据标签颜色',
@@ -522,7 +496,7 @@ const option = {
       stroke: 'rgba(255,255,255,0)',
       lineWidth: 1
     }
-  }
+  },
 }
 export default {
   category,

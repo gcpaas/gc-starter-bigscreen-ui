@@ -51,7 +51,7 @@ const setting = [
     type: 'switchNumber', // 设置组件类型
     field: 'label_style_opacity', // 字段
     optionField: 'label.style.opacity', // 对应options中的字段
-    value: 1,
+    value: 0,
     tabName: 'custom',
     groupName: 'graph'
   },
@@ -102,13 +102,26 @@ const setting = [
     groupName: 'graph'
   },
   {
-    label: '柱子颜色',
-    type: 'gradual', // 设置组件类型
-    field: 'columnStyle_fill', // 字段
-    optionField: 'columnStyle.fill', // 对应options中的字段
-    value: 'l(90) 0:#5AA6AB 1:#217AB1',
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom',
     groupName: 'graph'
+  },
+  // 网格线 grid
+  {
+    label: '网格线宽度',
+    type: 'inputNumber',
+    field: 'yAxis_grid_line_style_lineWidth',
+    optionField: 'yAxis.grid.line.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'grid'
   },
   {
     label: '网格线颜色',
@@ -119,23 +132,72 @@ const setting = [
     tabName: 'custom',
     groupName: 'grid'
   },
+  // 图例 legend
   {
-    label: '网格线宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'yAxis_grid_line_style_lineWidth', // 字段
-    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 1,
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
     tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'legend'
   },
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
-    value: 1,
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
     tabName: 'custom',
-    groupName: 'yAxis'
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ],
+    groupName: 'legend'
+  },
+  // X轴 xAxis
+  {
+    label: 'x轴标题',
+    type: 'input',
+    field: 'xAxis_title_text',
+    optionField: 'xAxis.title.text',
+    value: '',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标题位置',
+    type: 'select',
+    field: 'xAxis_title_position',
+    optionField: 'xAxis.title.position',
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '左',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '右',
+        value: 'end'
+      }],
+    groupName: 'xAxis'
   },
   {
     label: 'x轴标题字体大小',

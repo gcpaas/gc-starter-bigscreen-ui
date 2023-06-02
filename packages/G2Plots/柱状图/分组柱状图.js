@@ -45,40 +45,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  {
-    label: '显示图例',
-    type: 'switch', // 设置组件类型
-    field: 'legendEnable', // 字段
-    optionField: 'legendEnable', // 对应options中的字段
-    value: false,
-    tabName: 'custom',
-    groupName: 'legend'
-  },
-  {
-    label: '图例位置',
-    type: 'select', // 设置组件类型
-    field: 'legendPosition', // 字段
-    optionField: 'legendPosition', // 对应options中的字段
-    // 是否多选
-    multiple: false,
-    value: 'top',
-    tabName: 'custom',
-    options: [
-      { label: '顶部', value: 'top' },
-      { label: '左上角', value: 'top-left' },
-      { label: '右上角', value: 'top-right' },
-      { label: '左侧', value: 'left' },
-      // { label: '左上方', value: 'left-top' },
-      // { label: '左下方', value: 'left-bottom' },
-      { label: '右侧', value: 'right' },
-      // { label: '右上方', value: 'right-top' },
-      // { label: '右下方', value: 'right-bottom' },
-      { label: '底部', value: 'bottom' },
-      { label: '左下角', value: 'bottom-left' },
-      { label: '右下角', value: 'bottom-right' }
-    ],
-    groupName: 'legend'
-  },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '显示数据标签',
     type: 'switchNumber', // 设置组件类型
@@ -146,33 +114,6 @@ const setting = [
     tabName: 'custom',
     groupName: 'graph'
   },
-  // {
-  //   label: '贴图类型',
-  //   // 设置组件类型
-  //   type: 'select',
-  //   // 字段
-  //   field: 'pattern_type',
-  //   // 对应options中的字段
-  //   optionField: 'pattern.type',
-  //   // 是否多选
-  //   multiple: false,
-  //   value: '',
-  //   tabName: 'custom',
-  //   options: [
-  //     { label: '圆点', value: 'dot' },
-  //     { label: '条形', value: 'line' },
-  //     { label: '矩形', value: 'square' }
-  //   ]
-  // },
-  {
-    label: '网格线颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'yAxis_grid_line_style_stroke', // 字段
-    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
-    value: '#d0d0d0',
-    tabName: 'custom',
-    groupName: 'grid'
-  },
   // 网格线 grid
   {
     label: '网格线宽度',
@@ -184,13 +125,13 @@ const setting = [
     groupName: 'grid'
   },
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
-    value: 1,
+    label: '网格线颜色',
+    type: 'colorPicker',
+    field: 'yAxis_grid_line_style_stroke',
+    optionField: 'yAxis.grid.line.style.stroke',
+    value: '#d0d0d0',
     tabName: 'custom',
-    groupName: 'yAxis'
+    groupName: 'grid'
   },
   // 图例 legend
   {

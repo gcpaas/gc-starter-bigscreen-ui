@@ -122,51 +122,6 @@ const setting = [
     ],
     groupName: 'legend'
   },
-  {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom',
-    groupName: 'graph'
-  },
-  {
-    label: '半径',
-    // 设置组件类型
-    type: 'slider',
-    // 字段
-    field: 'radius',
-    // 对应options中的字段
-    optionField: 'radius',
-    value: 1,
-    tabName: 'custom'
-  },
-  {
-    label: '标签颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'label_style_fill',
-    // 对应options中的字段
-    optionField: 'label.style.fill',
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
-    label: '标签大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'label_style_fontSize',
-    // 对应options中的字段
-    optionField: 'label.style.fontSize',
-    value: 12,
-    tabName: 'custom'
-  },
   // 边距 padding
   {
     label: '图表边距',

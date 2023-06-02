@@ -51,7 +51,7 @@ const setting = [
     optionField: 'lineStyle.lineWidth', // 对应options中的字段
     value: '2',
     tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'graph'
   },
   {
     label: '线条颜色',
