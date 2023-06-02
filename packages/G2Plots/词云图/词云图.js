@@ -25,7 +25,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '指标',
     // 设置组件类型
     type: 'select',
@@ -38,6 +37,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '颜色配置',
     // 设置组件类型
@@ -47,7 +48,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'color',
     value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '遮罩图片url',
@@ -58,15 +60,19 @@ const setting = [
     // 对应options中的字段
     optionField: 'imageMask',
     value: '',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  // 图例 legend
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
