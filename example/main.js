@@ -10,6 +10,7 @@ import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/styles/index.scss'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+import remoteComponents from '@/remoteComponents/exports.js'
 Vue.use(ElementUI, { size: 'mini' })
 
 registerConfig(
@@ -47,7 +48,9 @@ registerConfig(
       '--bs-el-color-primary': '#409EFF', // elment-ui主题色，激活
       '--bs-el-border': 'transparent' // 边框颜色
     },
-    customPlots: []
+    customPlots: [],
+    // 远程组件列表
+    remoteComponents
   },
   router
 )

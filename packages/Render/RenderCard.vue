@@ -21,6 +21,7 @@ import pcComponent from 'packages/js/utils/componentImport'
 import { dataInit, destroyedEvent } from 'packages/js/utils/eventBus'
 import CustomComponent from '../PlotRender/index.vue'
 import Svgs from '../Svgs/index.vue'
+import RemoteComponent from 'packages/RemoteComponents/index.vue'
 const components = {}
 for (const key in pcComponent) {
   if (Object.hasOwnProperty.call(pcComponent, key)) {
@@ -32,7 +33,8 @@ export default {
   components: {
     ...components,
     CustomComponent,
-    Svgs
+    Svgs,
+    RemoteComponent
   },
   props: {
     // 卡片的属性

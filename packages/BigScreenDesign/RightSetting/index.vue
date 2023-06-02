@@ -56,7 +56,14 @@ for (const key in rightSetting) {
 }
 export default {
   name: 'RightSetting',
-  components: { ...components, DataSetting, CustomComponent, Svgs },
+  components: {
+    ...components,
+    DataSetting,
+    CustomComponent,
+    Svgs,
+    // 远程组件的样式配置也和g2Plot的样式配置一样，采用属性配置, 故使用一个组件
+    RemoteComponent: CustomComponent
+  },
   data () {
     return {
       activeName: 'data'

@@ -65,7 +65,7 @@ export function handleResData (data) {
   // 如果pageConfig中的cacheDataSets为null，赋值[]
   pageInfo.pageConfig.cacheDataSets = pageInfo.pageConfig.cacheDataSets || []
   pageInfo.chartList.forEach((chart) => {
-    if (chart.type !== 'customComponent') {
+    if (!['customComponent', 'remoteComponent'].includes(chart.type)) {
       chart.option = _.cloneDeep(setModules[chart.type])
     } else {
       chart.option = stringToFunction(chart.option)

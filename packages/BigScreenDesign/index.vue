@@ -95,6 +95,7 @@
       <ComponentDialog
         ref="componentDialog"
         @setComponent="setComponent"
+        @setRemoteComponent="setRemoteComponent"
       />
     </div>
   </div>
@@ -288,6 +289,16 @@ export default {
           this.$refs.Render.addChart(newChart, { x: chart.x, y: chart.y }, true)
         })
       })
+    },
+    // 添加远程组件
+    setRemoteComponent (component) {
+      const newChart = {
+        ...component,
+        offsetX: 0,
+        offsetY: 0,
+        code: randomString(8)
+      }
+      this.$refs.Render.addChart(newChart, { x: 0, y: 0 })
     },
     setImg (val) {
       this.$refs.Render.addSourceChart(
