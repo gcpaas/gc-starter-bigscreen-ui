@@ -54,15 +54,12 @@
             </el-select>
           </el-form-item>
           <el-form-item label="背景颜色">
-            <template>
-              <div>
-                {{ scope }}
-                <ColorPicker
-                  v-model="config.customize.backgroundColor"
-                  :predefine="predefineThemeColors"
-                />
-              </div>
-            </template>
+            <div>
+              <ColorPicker
+                v-model="config.customize.backgroundColor"
+                :predefine="predefineThemeColors"
+              />
+            </div>
           </el-form-item>
           <el-form-item label="边框颜色">
             <ColorPicker

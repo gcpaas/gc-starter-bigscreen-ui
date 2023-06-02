@@ -171,8 +171,8 @@ export default function getComponentConfig (type) {
         title: '输入框',
         icon: Icon.getNameList()[13],
         className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenInputChart',
-        w: 170,
-        h: 80,
+        w: 180,
+        h: 40,
         x: 0,
         y: 0,
         type
@@ -184,7 +184,7 @@ export default function getComponentConfig (type) {
         icon: Icon.getNameList()[14],
         className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenButtonChart',
         w: 64,
-        h: 32,
+        h: 40,
         x: 0,
         y: 0,
         type

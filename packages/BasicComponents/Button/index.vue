@@ -64,6 +64,7 @@ export default {
           }
         })
       })
+      console.log('bindComponentData', bindComponentData)
       this.linkage(bindComponentData)
     }
   }

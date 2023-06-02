@@ -7,16 +7,9 @@
     >
       {{ config.customize.title }}
     </span>
-    <!-- <span
-      v-if="config.customize.showTitle"
-      class="title-top"
-      :style="{ marginRight: config.customize.titleStyle.marginRight + 'px', fontSize: config.customize.titleStyle.fontSize + 'px', color: config.customize.titleStyle.color }"
-    >
-      {{ config.customize.title }}
-    </span> -->
     <el-input
       :id="`el-input-${config.code}`"
-      v-model="config.value"
+      v-model="config.customize.value"
       type="text"
       resize="both"
       class="input"

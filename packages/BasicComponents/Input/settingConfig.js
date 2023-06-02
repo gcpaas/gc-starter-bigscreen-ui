@@ -45,13 +45,13 @@ const customConfig = {
     // 边框样式
     borderStyle: {
       // 边框颜色
-      borderColor: '#ffffff',
+      borderColor: '#dcdfe6',
       // 边框宽度
       borderWidth: 1,
       // 边框样式
       borderStyle: 'solid',
       // 边框圆角
-      borderRadius: 0
+      borderRadius: 4
     },
     backgroundStyle: {
       // 背景颜色
