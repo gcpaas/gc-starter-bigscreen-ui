@@ -30,7 +30,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '指标',
     // 设置组件类型
     type: 'select',
