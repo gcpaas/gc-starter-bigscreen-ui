@@ -23,13 +23,16 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '贴图',
     type: 'switchNumber', // 设置组件类型
     field: 'pattern_cfg_fillOpacity', // 字段
     optionField: 'pattern.cfg.fillOpacity', // 对应options中的字段
     value: 0,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '贴图类型',
@@ -46,7 +49,8 @@ const setting = [
     options: [
       { label: '圆点', value: 'dot' },
       { label: '矩形', value: 'square' }
-    ]
+    ],
+    groupName: 'graph'
   },
   {
     label: '贴图颜色',
@@ -57,7 +61,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'pattern.cfg.fill',
     value: '#ffffff',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签字体颜色',
@@ -68,7 +73,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.fill',
     value: '#d0d0d0',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签字体大小',
@@ -79,7 +85,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
     value: 35,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '边框宽度',
@@ -90,7 +97,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'outline.border',
     value: 2,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '边框距离',
@@ -101,7 +109,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'outline.distance',
     value: 0,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '边框颜色',
@@ -112,7 +121,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'outline.style.stroke',
     value: '#ffffff',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '水波颜色',
@@ -120,15 +130,18 @@ const setting = [
     field: 'color', // 字段
     optionField: 'color', // 对应options中的字段
     value: '#598BF2',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 

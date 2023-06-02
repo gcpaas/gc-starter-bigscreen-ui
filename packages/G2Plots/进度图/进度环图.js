@@ -22,6 +22,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '进度条背景色',
     // 设置组件类型
@@ -31,7 +33,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'color2',
     value: '#d0d0d0',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '进度条颜色',
@@ -42,7 +45,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'color1',
     value: '#F4664A',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签',
@@ -53,7 +57,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.content',
     value: '进度',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签字体颜色',
@@ -64,7 +69,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.style.fill',
     value: '#fafafa',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签字体大小',
@@ -75,7 +81,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
     value: 28,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签高度',
@@ -86,7 +93,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.style.lineHeight',
     value: 2,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标字体颜色',
@@ -97,7 +105,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.fill',
     value: '#fafafa',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标字体大小',
@@ -108,7 +117,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
     value: 28,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标高度',
@@ -119,7 +129,18 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.lineHeight',
     value: 2,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 边距 padding
+  {
+    label: '图表边距',
+    type: 'padding', // 设置组件类型
+    field: 'appendPadding', // 字段
+    optionField: 'appendPadding', // 对应options中的字段
+    value: [0, 0, 0, 0],
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
@@ -132,6 +153,7 @@ const dataHandler =
 
 // 图表配置 new Gauge('domName', option)
 const option = {
+  appendPadding: [0, 0, 0, 0], // 设置图标的边距
   color1: '#F4664A',
   color2: '#d0d0d0',
   autoFit: true,

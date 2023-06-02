@@ -23,6 +23,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '进度条颜色',
     // 设置组件类型
@@ -32,7 +34,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'frontColor',
     value: 'l(0) 0:#5F92F9  1:#5F92F9',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '不透明度',
@@ -43,7 +46,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'progressStyle.fillOpacity',
     value: 1,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '圆角',
@@ -54,7 +58,18 @@ const setting = [
     // 对应options中的字段
     optionField: 'progressStyle.radius',
     value: 20,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 边距 padding
+  {
+    label: '图表边距',
+    type: 'padding', // 设置组件类型
+    field: 'appendPadding', // 字段
+    optionField: 'appendPadding', // 对应options中的字段
+    value: [0, 0, 0, 0],
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
@@ -73,6 +88,7 @@ const dataHandler = '// 取返回数据列表的第一项指标值\noption.perce
 // 图表配置 new Gauge('domName', option)
 const option = {
   data,
+  appendPadding: [0, 0, 0, 0], // 设置图标的边距
   height: 50,
   width: 400,
   autoFit: true,

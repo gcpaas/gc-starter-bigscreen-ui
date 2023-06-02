@@ -23,6 +23,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '表盘颜色',
     // 设置组件类型
@@ -32,7 +34,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'range.color',
     value: 'l(0) 0:#badffd 1:#5480de',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标颜色',
@@ -43,7 +46,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.style.color',
     value: '#d0d0d0',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标大小',
@@ -54,7 +58,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.style.fontSize',
     value: 36,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '指标位置',
@@ -65,7 +70,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.title.offsetY',
     value: -36,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签内容',
@@ -76,7 +82,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.content',
     value: '加载进度',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签颜色',
@@ -87,7 +94,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.color',
     value: '#d0d0d0',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签大小',
@@ -98,15 +106,18 @@ const setting = [
     // 对应options中的字段
     optionField: 'statistic.content.style.fontSize',
     value: 24,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
