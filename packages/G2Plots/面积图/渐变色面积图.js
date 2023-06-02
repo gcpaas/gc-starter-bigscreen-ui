@@ -87,16 +87,6 @@ const setting = [
     optionField: 'line.size', // 对应options中的字段
     value: 1,
     tabName: 'custom',
-    groupName: 'graph'
-  },
-  // 网格线 grid
-  {
-    label: '网格线宽度',
-    type: 'inputNumber',
-    field: 'yAxis_grid_line_style_lineWidth',
-    optionField: 'yAxis.grid.line.style.lineWidth',
-    value: 1,
-    tabName: 'custom',
     groupName: 'grid'
   },
   {
@@ -108,38 +98,14 @@ const setting = [
     tabName: 'custom',
     groupName: 'grid'
   },
-  // 图例 legend
-  // X轴 xAxis
   {
-    label: 'x轴标题',
-    type: 'input',
-    field: 'xAxis_title_text',
-    optionField: 'xAxis.title.text',
-    value: '',
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
     tabName: 'custom',
-    groupName: 'xAxis'
-  },
-  {
-    label: 'x轴标题位置',
-    type: 'select',
-    field: 'xAxis_title_position',
-    optionField: 'xAxis.title.position',
-    value: 'end',
-    tabName: 'custom',
-    options: [
-      {
-        label: '左',
-        value: 'start'
-      },
-      {
-        label: '中',
-        value: 'center'
-      },
-      {
-        label: '右',
-        value: 'end'
-      }],
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
     label: 'x轴标题字体大小',
@@ -188,7 +154,7 @@ const setting = [
     optionField: 'xAxis.line.style.lineWidth',
     value: 1,
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'yAxis'
   },
   {
     label: 'x轴线颜色',

@@ -142,6 +142,51 @@ const setting = [
     ],
     groupName: 'legend'
   },
+  {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据点形状',
+    type: 'select', // 设置组件类型
+    field: 'point_shape', // 字段
+    optionField: 'point.shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'circle',
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ]
+  },
+  {
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_color', // 字段
+    optionField: 'point.color', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'point_size', // 字段
+    optionField: 'point.size', // 对应options中的字段
+    value: 2,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
   // 边距 padding
   {
     label: '图表边距',

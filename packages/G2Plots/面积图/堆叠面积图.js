@@ -141,57 +141,32 @@ const setting = [
     ],
     groupName: 'legend'
   },
-  // X轴 xAxis
   {
-    label: 'x轴标题',
-    type: 'input',
-    field: 'xAxis_title_text',
-    optionField: 'xAxis.title.text',
-    value: '',
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_grid_line_style_stroke', // 字段
+    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标题位置',
-    type: 'select',
-    field: 'xAxis_title_position',
-    optionField: 'xAxis.title.position',
-    value: 'end',
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
     tabName: 'custom',
-    options: [
-      {
-        label: '左',
-        value: 'start'
-      },
-      {
-        label: '中',
-        value: 'center'
-      },
-      {
-        label: '右',
-        value: 'end'
-      }],
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标题字体大小',
-    type: 'inputNumber',
-    field: 'xAxis_title_style_fontSize',
-    optionField: 'xAxis.title.style.fontSize',
-    value: 12,
+    label: '曲线平滑',
+    type: 'switch', // 设置组件类型
+    field: 'smooth', // 字段
+    optionField: 'smooth', // 对应options中的字段
+    value: false,
     tabName: 'custom',
-    groupName: 'xAxis'
-  },
-  {
-    label: 'x轴标题颜色',
-    type: 'colorPicker',
-    field: 'xAxis_title_style_fill',
-    optionField: 'xAxis.title.style.fill',
-    // 是否多选
-    multiple: false,
-    value: '#8C8C8C',
-    tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'graph'
   },
   {
     label: 'x轴标签大小',
@@ -220,18 +195,19 @@ const setting = [
     optionField: 'xAxis.line.style.lineWidth',
     value: 1,
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'yAxis'
   },
   {
-    label: 'x轴线颜色',
-    type: 'colorPicker',
-    field: 'xAxis_line_style_stroke',
-    optionField: 'xAxis.line.style.stroke',
-    // 是否多选
-    multiple: false,
-    value: '#d0d0d0',
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'graph'
   },
   {
     label: 'x刻度线宽度',

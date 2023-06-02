@@ -3,7 +3,7 @@
  * @Date: 2023-01-04 14:42:51
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-06-01 09:48:03
+ * @LastEditTime: 2023-06-02 15:35:43
 -->
 <template>
   <div>
@@ -137,7 +137,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.config)
+    // console.log(this.config)
   },
   beforeDestroy () {
   },

@@ -55,16 +55,48 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  /** 样式配置 **/
-  // 图表 graph
+  {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom',
+    groupName: 'legend'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ],
+    groupName: 'legend'
+  },
   {
     label: '线条宽度',
-    type: 'inputNumber',
-    field: 'lineStyle_lineWidth',
-    optionField: 'lineStyle.lineWidth',
-    value: 2,
+    type: 'inputNumber', // 设置组件类型
+    field: 'lineStyle_lineWidth', // 字段
+    optionField: 'lineStyle.lineWidth', // 对应options中的字段
+    value: '2',
     tabName: 'custom',
-    groupName: 'graph'
+    groupName: 'grid'
   },
   {
     label: '颜色配置',
@@ -77,6 +109,24 @@ const setting = [
     value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom',
     groupName: 'graph'
+  },
+  {
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_grid_line_style_stroke', // 字段
+    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'grid'
+  },
+  {
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
+    tabName: 'custom',
+    groupName: 'grid'
   },
   {
     label: '动画效果',
@@ -98,7 +148,8 @@ const setting = [
       { label: '沿着图形中心点的放大动画', value: 'zoom-in' },
       { label: '沿着图形中心点的缩小动画', value: 'zoom-out' },
       { label: 'path 路径入场动画', value: 'path-in' }
-    ]
+    ],
+    groupName: 'graph'
   },
   {
     label: '动画执行时间',
@@ -119,7 +170,7 @@ const setting = [
     optionField: 'yAxis.grid.line.style.lineWidth',
     value: 1,
     tabName: 'custom',
-    groupName: 'grid'
+    groupName: 'yAxis'
   },
   {
     label: '网格线颜色',

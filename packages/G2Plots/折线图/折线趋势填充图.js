@@ -188,55 +188,43 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标题位置',
-    type: 'select',
-    field: 'xAxis_title_position',
-    optionField: 'xAxis.title.position',
-    value: 'end',
+    label: '线条宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'lineStyle_lineWidth', // 字段
+    optionField: 'lineStyle.lineWidth', // 对应options中的字段
+    value: '2',
     tabName: 'custom',
-    options: [
-      {
-        label: '左',
-        value: 'start'
-      },
-      {
-        label: '中',
-        value: 'center'
-      },
-      {
-        label: '右',
-        value: 'end'
-      }],
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标题字体大小',
-    type: 'inputNumber',
-    field: 'xAxis_title_style_fontSize',
-    optionField: 'xAxis.title.style.fontSize',
-    value: 12,
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'yAxis_grid_line_style_stroke', // 字段
+    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标题颜色',
-    type: 'colorPicker',
-    field: 'xAxis_title_style_fill',
-    optionField: 'xAxis.title.style.fill',
-    // 是否多选
-    multiple: false,
-    value: '#8C8C8C',
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'yAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标签大小',
-    type: 'inputNumber',
-    field: 'xAxis_label_style_fontSize',
-    optionField: 'xAxis.label.style.fontSize',
-    value: 12,
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'graph'
   },
   {
     label: 'x轴标签颜色',
@@ -256,7 +244,7 @@ const setting = [
     optionField: 'xAxis.line.style.lineWidth',
     value: 1,
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'yAxis'
   },
   {
     label: 'x轴线颜色',

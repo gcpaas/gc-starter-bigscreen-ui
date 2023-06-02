@@ -45,16 +45,13 @@ const setting = [
   /** 样式配置 **/
   // 图表 graph
   {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    label: 'y轴标签',
+    type: 'switchNumber', // 设置组件类型
+    field: 'yAxis_label_style_opacity', // 字段
+    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
+    value: 1,
     tabName: 'custom',
-    groupName: 'graph'
+    groupName: 'yAxis'
   },
   {
     label: '条形图形状',
@@ -180,16 +177,6 @@ const setting = [
     ],
     groupName: 'legend'
   },
-  // X轴 xAxis
-  {
-    label: 'x轴标题',
-    type: 'input',
-    field: 'xAxis_title_text',
-    optionField: 'xAxis.title.text',
-    value: '',
-    tabName: 'custom',
-    groupName: 'xAxis'
-  },
   {
     label: 'x轴标题位置',
     type: 'select',
@@ -213,27 +200,45 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标题字体大小',
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
     type: 'inputNumber',
     field: 'xAxis_title_style_fontSize',
     optionField: 'xAxis.title.style.fontSize',
     value: 12,
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'graph'
   },
   {
-    label: 'x轴标题颜色',
-    type: 'colorPicker',
-    field: 'xAxis_title_style_fill',
-    optionField: 'xAxis.title.style.fill',
-    // 是否多选
-    multiple: false,
-    value: '#8C8C8C',
+    label: '网格线颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'xAxis_grid_line_style_stroke', // 字段
+    optionField: 'xAxis.grid.line.style.stroke', // 对应options中的字段
+    value: '#d0d0d0',
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'grid'
   },
   {
-    label: 'x轴标签大小',
+    label: '网格线宽度',
+    type: 'inputNumber', // 设置组件类型
+    field: 'xAxis_grid_line_style_lineWidth', // 字段
+    optionField: 'xAxis.grid.line.style.lineWidth', // 对应options中的字段
+    value: 0,
+    tabName: 'custom',
+    groupName: 'grid'
+  },
+  {
+    label: '圆角设置',
+    // 设置组件类型
     type: 'inputNumber',
     field: 'xAxis_label_style_fontSize',
     optionField: 'xAxis.label.style.fontSize',
@@ -242,15 +247,16 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签颜色',
-    type: 'colorPicker',
-    field: 'xAxis_label_style_fill',
-    optionField: 'xAxis.label.style.fill',
-    // 是否多选
-    multiple: false,
-    value: '#8C8C8C',
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
     tabName: 'custom',
-    groupName: 'xAxis'
+    groupName: 'graph'
   },
   {
     label: 'x轴线宽度',
@@ -557,7 +563,7 @@ const option = {
         lineWidth: 1
       }
     }
-  },
+  }
 }
 
 export default {
