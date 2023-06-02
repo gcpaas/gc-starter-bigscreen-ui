@@ -193,15 +193,15 @@ export default {
   filters: {
     filterGroupName (val) {
       const settingGroup = {
-        basic: '基础设置',
-        position: '位置设置',
-        graph: '图表设置',
-        grid: '网格线设置',
-        legend: '图例设置',
-        xAxis: 'X轴设置',
-        yAxis: 'Y轴设置',
-        padding: '边距设置',
-        other: '其他设置'
+        basic: '基础',
+        position: '位置',
+        graph: '图表',
+        grid: '网格线',
+        legend: '图例',
+        xAxis: 'X轴',
+        yAxis: 'Y轴',
+        padding: '边距',
+        other: '其他'
 
       }
       return settingGroup[val]
@@ -242,14 +242,23 @@ export default {
           this.groupList.find(group => group.groupName === item.groupName).list.push(item)
         }
       } else {
-        this.groupList.push({
-          groupName: 'other',
-          list: [item]
-        })
-        this.groupList.other.list.push(item)
-      } // 没有分组的放到other里面
+        if (this.groupList.find(group => group.groupName === 'other')) {
+          this.groupList.find(group => group.groupName === 'other').list.push(item)
+        } else {
+          this.groupList.push({
+            groupName: 'other',
+            list: [item]
+          })
+        }
+      }
     })
-    console.log(this.config.setting)
+    for (let i = 0; i < this.groupList.length; i++) {
+      if (this.groupList[i].groupName === 'other') {
+        const otherObject = this.groupList.splice(i, 1)[0]
+        this.groupList.push(otherObject)
+        break
+      }
+    }
   },
   methods: {}
 }
@@ -276,13 +285,15 @@ export default {
 .lc-field-body {
   padding: 0 16px;
 }
-
+.el-form-item{
+  margin-bottom: 6px !important;
+}
 .lc-field-title {
   position: relative;
   padding-left: 12px;
   line-height: 30px;
   height: 30px;
-
+  margin-bottom: 12px;
   &:after {
     position: absolute;
     left: 0;
