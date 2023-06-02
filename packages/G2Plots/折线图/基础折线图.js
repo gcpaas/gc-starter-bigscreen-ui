@@ -48,7 +48,7 @@ const setting = [
     optionField: 'point.shape',
     // 是否多选
     multiple: false,
-    value: 'circle',
+    value: '',
     tabName: 'custom',
     options: [
       { label: '圆形', value: 'circle' },
@@ -62,7 +62,7 @@ const setting = [
     type: 'inputNumber',
     field: 'point_size',
     optionField: 'point.size',
-    value: 2,
+    value: 0,
     tabName: 'custom',
     groupName: 'graph'
   },
@@ -91,7 +91,7 @@ const setting = [
     type: 'colorPicker',
     field: 'label_style_fill',
     optionField: 'label.style.fill',
-    value: '#ffffff',
+    value: 'rgba(255,255,255,0)',
     tabName: 'custom',
     groupName: 'graph'
   },

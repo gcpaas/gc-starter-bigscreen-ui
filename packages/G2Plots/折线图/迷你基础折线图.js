@@ -30,7 +30,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '指标',
     // 设置组件类型
     type: 'select',
@@ -43,13 +42,16 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '线条宽度',
     type: 'inputNumber', // 设置组件类型
     field: 'lineStyle_lineWidth', // 字段
     optionField: 'lineStyle.lineWidth', // 对应options中的字段
     value: '2',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '线条颜色',
@@ -57,7 +59,8 @@ const setting = [
     field: 'lineStyle_stroke', // 字段
     optionField: 'lineStyle.stroke', // 对应options中的字段
     value: 'l(0) 0:#648ff7 1:#62FF00',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '是否平滑',
@@ -65,7 +68,8 @@ const setting = [
     field: 'smooth', // 字段
     optionField: 'smooth', // 对应options中的字段
     value: true,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   }
 ]
 
