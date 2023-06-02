@@ -10,6 +10,29 @@
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
+      <el-dropdown
+        node-key="value"
+        @command="setAlign"
+      >
+        <CusBtn
+          style="color: #ffffff"
+          :loading="saveAndPreviewLoading"
+        >
+          对齐
+        </CusBtn>
+        <el-dropdown-menu
+          slot="dropdown"
+          class="bs-el-dropdown-menu"
+        >
+          <el-dropdown-item
+            v-for="mode in alignList"
+            :key="mode.value"
+            :command="mode.value"
+          >
+            {{ mode.label }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <CusBtn
         :loading="saveAndPreviewLoading"
         @click.native="designAssign()"
@@ -110,6 +133,40 @@ export default {
   },
   data () {
     return {
+      alignList: [
+        {
+          label: '左侧对齐',
+          value: 'left'
+        },
+        {
+          label: '居中对齐',
+          value: 'center'
+        },
+        {
+          label: '右侧对齐',
+          value: 'right'
+        },
+        {
+          label: '顶部对齐',
+          value: 'top'
+        },
+        {
+          label: '中部对齐',
+          value: 'middle'
+        },
+        {
+          label: '底部对齐',
+          value: 'bottom'
+        },
+        {
+          label: '水平均分',
+          value: 'levelAround'
+        },
+        {
+          label: '垂直均分',
+          value: 'verticalAround'
+        }
+      ],
       appInfo: '',
       saveLoading: false,
       createdImgLoading: false,
@@ -149,6 +206,74 @@ export default {
       undoTimeLine: 'bigScreen/undoTimeLine',
       saveTimeLine: 'bigScreen/saveTimeLine'
     }),
+    setAlign (command) {
+      const pageInfo = _.cloneDeep(this.pageInfo)
+      const w = pageInfo.pageConfig.w
+      const h = pageInfo.pageConfig.h
+      switch (command) {
+        case 'left':
+          pageInfo.chartList.forEach((chart) => {
+            chart.x = 0
+          })
+          break
+        case 'center':
+          pageInfo.chartList.forEach((chart) => {
+            chart.x = (w - chart.w) / 2
+          })
+          break
+        case 'right':
+          pageInfo.chartList.forEach((chart) => {
+            chart.x = w - chart.w
+          })
+          break
+        case 'top':
+          pageInfo.chartList.forEach((chart) => {
+            chart.y = 0
+          })
+          break
+        case 'middle':
+          pageInfo.chartList.forEach((chart) => {
+            chart.y = (h - chart.h) / 2
+          })
+          break
+        case 'bottom':
+          pageInfo.chartList.forEach((chart) => {
+            chart.y = h - chart.h
+          })
+          break
+        case 'levelAround':
+          // eslint-disable-next-line no-case-declarations
+          let allW = 0
+          pageInfo.chartList.forEach((chart) => {
+            allW = allW + chart.w
+          })
+          // eslint-disable-next-line no-case-declarations
+          const padding = (w - allW) / (pageInfo.chartList.length + 1)
+          // eslint-disable-next-line no-case-declarations
+          let usedW = 0
+          pageInfo.chartList.forEach((chart) => {
+            chart.x = usedW + padding
+            usedW = chart.x + chart.w
+          })
+          break
+        case 'verticalAround':
+          // eslint-disable-next-line no-case-declarations
+          let allH = 0
+          pageInfo.chartList.forEach((chart) => {
+            allH = allH + chart.h
+          })
+          // eslint-disable-next-line no-case-declarations
+          const paddingBottom = (h - allH) / (pageInfo.chartList.length + 1)
+          // eslint-disable-next-line no-case-declarations
+          let usedH = 0
+          pageInfo.chartList.forEach((chart) => {
+            chart.y = usedH + paddingBottom
+            usedH = chart.y + chart.h
+          })
+          break
+      }
+      this.changePageInfo(pageInfo)
+    },
     backManagement () {
       this.$router.push({
         path: this.pageInfo.type === 'component' ? (window.BS_CONFIG?.routers?.componentUrl || '/big-screen-components') : (window.BS_CONFIG?.routers?.pageManagementUrl || '/home')
@@ -264,7 +389,7 @@ export default {
 
       const newChartList = chartList?.map((chart) => {
         // 如果是自定义组件，需要将option转换为json字符串，因为其中可能有函数
-        if (chart.type === 'customComponent') {
+        if (['customComponent', 'remoteComponent'].includes(chart.type)) {
           chart.option.data = []
           chart.option = stringifyObjectFunctions(chart.option)
         }

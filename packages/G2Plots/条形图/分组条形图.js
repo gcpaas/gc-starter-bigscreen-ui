@@ -55,21 +55,118 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
-    value: 1,
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '条形图形状',
+    type: 'select', // 设置组件类型
+    field: 'shape', // 字段
+    optionField: 'shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'default',
+    tabName: 'custom',
+    options: [
+      {
+        label: '实心条形',
+        value: 'default'
+      },
+      {
+        label: '线性',
+        value: 'line'
+      },
+      // {
+      //   label: '空心条形',
+      //   value: 'hollow-rect'
+      // },
+      {
+        label: '钉形',
+        value: 'tick'
+      }
+    ],
+    groupName: 'graph'
+  },
+  {
+    label: '圆角设置',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'radiusNum',
+    // 对应options中的字段
+    optionField: 'radiusNum',
+    value: 10,
     tabName: 'custom'
   },
+  {
+    label: '数据标签显隐',
+    type: 'switchNumber', // 设置组件类型
+    field: 'label_style_opacity', // 字段
+    optionField: 'label.style.opacity', // 对应options中的字段
+    value: 0,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 网格线 grid
+  {
+    label: '网格线宽度',
+    type: 'inputNumber',
+    field: 'xAxis_grid_line_style_lineWidth',
+    optionField: 'xAxis.grid.line.style.lineWidth',
+    value: 0,
+    tabName: 'custom',
+    groupName: 'grid'
+  },
+  {
+    label: '网格线颜色',
+    type: 'colorPicker',
+    field: 'xAxis_grid_line_style_stroke',
+    optionField: 'xAxis.grid.line.style.stroke',
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'grid'
+  },
+  // 图例 legend
   {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'legend'
   },
   {
     label: '图例位置',
@@ -93,80 +190,258 @@ const setting = [
       { label: '底部', value: 'bottom' },
       { label: '左下角', value: 'bottom-left' },
       { label: '右下角', value: 'bottom-right' }
-    ]
+    ],
+    groupName: 'legend'
+  },
+  // X轴 xAxis
+  {
+    label: 'x轴标题',
+    type: 'input',
+    field: 'xAxis_title_text',
+    optionField: 'xAxis.title.text',
+    value: '',
+    tabName: 'custom',
+    groupName: 'xAxis'
   },
   {
-    label: '数据标签显隐',
-    type: 'switchNumber', // 设置组件类型
-    field: 'label_style_opacity', // 字段
-    optionField: 'label.style.opacity', // 对应options中的字段
-    value: 0,
-    tabName: 'custom'
+    label: 'x轴标题位置',
+    type: 'select',
+    field: 'xAxis_title_position',
+    optionField: 'xAxis.title.position',
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '左',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '右',
+        value: 'end'
+      }],
+    groupName: 'xAxis'
   },
   {
-    label: '数据标签颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'label_style_fill', // 字段
-    optionField: 'label.style.fill', // 对应options中的字段
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
-    label: '数据标签大小',
-    // 设置组件类型
+    label: 'x轴标题字体大小',
     type: 'inputNumber',
-    // 字段
-    field: 'label_style_fontSize',
-    // 对应options中的字段
-    optionField: 'label.style.fontSize',
+    field: 'xAxis_title_style_fontSize',
+    optionField: 'xAxis.title.style.fontSize',
     value: 12,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'xAxis'
   },
   {
-    label: '网格线颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'xAxis_grid_line_style_stroke', // 字段
-    optionField: 'xAxis.grid.line.style.stroke', // 对应options中的字段
-    value: '#d0d0d0',
-    tabName: 'custom'
+    label: 'x轴标题颜色',
+    type: 'colorPicker',
+    field: 'xAxis_title_style_fill',
+    optionField: 'xAxis.title.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'xAxis'
   },
   {
-    label: '网格线宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'xAxis_grid_line_style_lineWidth', // 字段
-    optionField: 'xAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
-    tabName: 'custom'
-  },
-  {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
-  },
-  {
-    label: '圆角设置',
-    // 设置组件类型
+    label: 'x轴标签大小',
     type: 'inputNumber',
-    // 字段
-    field: 'radiusNum',
-    // 对应options中的字段
-    optionField: 'radiusNum',
-    value: 10,
-    tabName: 'custom'
+    field: 'xAxis_label_style_fontSize',
+    optionField: 'xAxis.label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'xAxis'
   },
+  {
+    label: 'x轴标签颜色',
+    type: 'colorPicker',
+    field: 'xAxis_label_style_fill',
+    optionField: 'xAxis.label.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴线宽度',
+    type: 'inputNumber',
+    field: 'xAxis_line_style_lineWidth',
+    optionField: 'xAxis.line.style.lineWidth',
+    value: 0,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴线颜色',
+    type: 'colorPicker',
+    field: 'xAxis_line_style_stroke',
+    optionField: 'xAxis.line.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  // Y轴 yAxis
+  {
+    label: 'y轴标题',
+    type: 'input',
+    field: 'yAxis_title_text',
+    optionField: 'yAxis.title.text',
+    value: '',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题位置',
+    type: 'select',
+    field: 'yAxis_title_position',
+    optionField: 'yAxis.title.position',
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '下',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '上',
+        value: 'end'
+      }],
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题字体大小',
+    type: 'inputNumber',
+    field: 'yAxis_title_style_fontSize',
+    optionField: 'yAxis.title.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题颜色',
+    type: 'colorPicker',
+    field: 'yAxis_title_style_fill',
+    optionField: 'yAxis.title.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: '显示y轴标签',
+    type: 'switchNumber',
+    field: 'yAxis_label_style_opacity',
+    optionField: 'yAxis.label.style.opacity',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签字体大小',
+    type: 'inputNumber',
+    field: 'yAxis_label_style_fontSize',
+    optionField: 'yAxis.label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签字体颜色',
+    type: 'colorPicker',
+    field: 'yAxis_label_style_fill',
+    optionField: 'yAxis.label.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴线宽度',
+    type: 'inputNumber',
+    field: 'yAxis_line_lineWidth',
+    optionField: 'yAxis.line.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴线颜色',
+    type: 'colorPicker',
+    field: 'yAxis_line_stroke',
+    optionField: 'yAxis.line.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: 'rgba(255,255,255,1)',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y刻度线宽度',
+    type: 'inputNumber',
+    field: 'yAxis_tickLine_style_lineWidth',
+    optionField: 'yAxis.tickLine.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y刻度线颜色',
+    type: 'colorPicker',
+    field: 'yAxis_tickLine_style_stroke',
+    optionField: 'yAxis.tickLine.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签过多时旋转',
+    type: 'switch',
+    field: 'yAxis_label_autoRotate',
+    optionField: 'yAxis.label.autoRotate',
+    value: false,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签过多时隐藏',
+    type: 'switch',
+    field: 'yAxis_label_autoHide',
+    optionField: 'yAxis.label.autoHide',
+    value: true,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签过长时省略',
+    type: 'switch',
+    field: 'yAxis_label_autoEllipsis',
+    optionField: 'yAxis.label.autoEllipsis',
+    value: true,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  // 边距 padding
   {
     label: '图表边距',
-    type: 'padding', // 设置组件类型
-    field: 'appendPadding', // 字段
-    optionField: 'appendPadding', // 对应options中的字段
+    type: 'padding',
+    field: 'appendPadding',
+    optionField: 'appendPadding',
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
@@ -236,6 +511,7 @@ const option = {
   data,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   isGroup: true,
+  shape: ' ',
   xField: 'value',
   yField: 'label',
   legendEnable: false,
@@ -257,13 +533,6 @@ const option = {
     }
   },
   radiusNum: 0, // 设置条形图的圆角的中间值
-  yAxis: {
-    label: {
-      style: {
-        opacity: 1
-      }
-    }
-  },
   xAxis: {
     grid: {
       line: {
@@ -271,6 +540,77 @@ const option = {
           stroke: '#d0d0d0',
           lineWidth: 0
         }
+      }
+    },
+    title: {
+      text: '',
+      position: 'end',
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    label: {
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    line: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 0
+      }
+    },
+    tickLine: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 0
+      }
+    }
+  },
+  yAxis: {
+    title: {
+      text: '',
+      position: 'end',
+      autoRotate: false,
+      // rotation: Math.PI / 2,
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    grid: {
+      line: {
+        style: {
+          stroke: '#d0d0d0',
+          lineWidth: 0,
+          strokeOpacity: 0.7
+        }
+      }
+    },
+    label: {
+      autoRotate: false,
+      autoHide: true,
+      autoEllipsis: true,
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12,
+        opacity: 1
+      }
+    },
+    line: {
+      style: {
+        stroke: 'rgba(255,255,255,0)',
+        lineWidth: 1
+      },
+      stroke: 'rgba(255,255,255,0)',
+      lineWidth: 1
+    },
+    tickLine: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 1
       }
     }
   }

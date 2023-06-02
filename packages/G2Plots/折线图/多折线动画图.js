@@ -55,45 +55,16 @@ const setting = [
     value: '',
     tabName: 'data'
   },
-  {
-    label: '显示图例',
-    type: 'switch', // 设置组件类型
-    field: 'legendEnable', // 字段
-    optionField: 'legendEnable', // 对应options中的字段
-    value: false,
-    tabName: 'custom'
-  },
-  {
-    label: '图例位置',
-    type: 'select', // 设置组件类型
-    field: 'legendPosition', // 字段
-    optionField: 'legendPosition', // 对应options中的字段
-    // 是否多选
-    multiple: false,
-    value: 'top',
-    tabName: 'custom',
-    options: [
-      { label: '顶部', value: 'top' },
-      { label: '左上角', value: 'top-left' },
-      { label: '右上角', value: 'top-right' },
-      { label: '左侧', value: 'left' },
-      // { label: '左上方', value: 'left-top' },
-      // { label: '左下方', value: 'left-bottom' },
-      { label: '右侧', value: 'right' },
-      // { label: '右上方', value: 'right-top' },
-      // { label: '右下方', value: 'right-bottom' },
-      { label: '底部', value: 'bottom' },
-      { label: '左下角', value: 'bottom-left' },
-      { label: '右下角', value: 'bottom-right' }
-    ]
-  },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '线条宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'lineStyle_lineWidth', // 字段
-    optionField: 'lineStyle.lineWidth', // 对应options中的字段
-    value: '2',
-    tabName: 'custom'
+    type: 'inputNumber',
+    field: 'lineStyle_lineWidth',
+    optionField: 'lineStyle.lineWidth',
+    value: 2,
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '颜色配置',
@@ -104,23 +75,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'color',
     value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
-  },
-  {
-    label: '网格线颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'yAxis_grid_line_style_stroke', // 字段
-    optionField: 'yAxis.grid.line.style.stroke', // 对应options中的字段
-    value: '#d0d0d0',
-    tabName: 'custom'
-  },
-  {
-    label: '网格线宽度',
-    type: 'inputNumber', // 设置组件类型
-    field: 'yAxis_grid_line_style_lineWidth', // 字段
-    optionField: 'yAxis.grid.line.style.lineWidth', // 对应options中的字段
-    value: 0,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '动画效果',
@@ -155,501 +111,409 @@ const setting = [
     value: '5000',
     tabName: 'custom'
   },
+  // 网格线 grid
   {
-    label: 'y轴标签',
-    type: 'switchNumber', // 设置组件类型
-    field: 'yAxis_label_style_opacity', // 字段
-    optionField: 'yAxis.label.style.opacity', // 对应options中的字段
+    label: '网格线宽度',
+    type: 'inputNumber',
+    field: 'yAxis_grid_line_style_lineWidth',
+    optionField: 'yAxis.grid.line.style.lineWidth',
     value: 1,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'grid'
   },
   {
+    label: '网格线颜色',
+    type: 'colorPicker',
+    field: 'yAxis_grid_line_style_stroke',
+    optionField: 'yAxis.grid.line.style.stroke',
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'grid'
+  },
+  // 图例 legend
+  {
+    label: '显示图例',
+    type: 'switch', // 设置组件类型
+    field: 'legendEnable', // 字段
+    optionField: 'legendEnable', // 对应options中的字段
+    value: false,
+    tabName: 'custom',
+    groupName: 'legend'
+  },
+  {
+    label: '图例位置',
+    type: 'select', // 设置组件类型
+    field: 'legendPosition', // 字段
+    optionField: 'legendPosition', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'top',
+    tabName: 'custom',
+    options: [
+      { label: '顶部', value: 'top' },
+      { label: '左上角', value: 'top-left' },
+      { label: '右上角', value: 'top-right' },
+      { label: '左侧', value: 'left' },
+      // { label: '左上方', value: 'left-top' },
+      // { label: '左下方', value: 'left-bottom' },
+      { label: '右侧', value: 'right' },
+      // { label: '右上方', value: 'right-top' },
+      // { label: '右下方', value: 'right-bottom' },
+      { label: '底部', value: 'bottom' },
+      { label: '左下角', value: 'bottom-left' },
+      { label: '右下角', value: 'bottom-right' }
+    ],
+    groupName: 'legend'
+  },
+  // X轴 xAxis
+  {
+    label: 'x轴标题',
+    type: 'input',
+    field: 'xAxis_title_text',
+    optionField: 'xAxis.title.text',
+    value: '',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标题位置',
+    type: 'select',
+    field: 'xAxis_title_position',
+    optionField: 'xAxis.title.position',
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '左',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '右',
+        value: 'end'
+      }],
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标题字体大小',
+    type: 'inputNumber',
+    field: 'xAxis_title_style_fontSize',
+    optionField: 'xAxis.title.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标题颜色',
+    type: 'colorPicker',
+    field: 'xAxis_title_style_fill',
+    optionField: 'xAxis.title.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标签大小',
+    type: 'inputNumber',
+    field: 'xAxis_label_style_fontSize',
+    optionField: 'xAxis.label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标签颜色',
+    type: 'colorPicker',
+    field: 'xAxis_label_style_fill',
+    optionField: 'xAxis.label.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴线宽度',
+    type: 'inputNumber',
+    field: 'xAxis_line_style_lineWidth',
+    optionField: 'xAxis.line.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴线颜色',
+    type: 'colorPicker',
+    field: 'xAxis_line_style_stroke',
+    optionField: 'xAxis.line.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x刻度线宽度',
+    type: 'inputNumber',
+    field: 'xAxis_tickLine_style_lineWidth',
+    optionField: 'xAxis.tickLine.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x刻度线颜色',
+    type: 'colorPicker',
+    field: 'xAxis_tickLine_style_stroke',
+    optionField: 'xAxis.tickLine.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标签过多时旋转',
+    type: 'switch',
+    field: 'xAxis_label_autoRotate',
+    optionField: 'xAxis.label.autoRotate',
+    value: true,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标签过多时隐藏',
+    type: 'switch',
+    field: 'xAxis_label_autoHide',
+    optionField: 'xAxis.label.autoHide',
+    value: false,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  {
+    label: 'x轴标签过长时省略',
+    type: 'switch',
+    field: 'xAxis_label_autoEllipsis',
+    optionField: 'xAxis.label.autoEllipsis',
+    value: false,
+    tabName: 'custom',
+    groupName: 'xAxis'
+  },
+  // Y轴 yAxis
+  {
+    label: 'y轴标题',
+    type: 'input',
+    field: 'yAxis_title_text',
+    optionField: 'yAxis.title.text',
+    value: '',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题位置',
+    type: 'select',
+    field: 'yAxis_title_position',
+    optionField: 'yAxis.title.position',
+    value: 'end',
+    tabName: 'custom',
+    options: [
+      {
+        label: '下',
+        value: 'start'
+      },
+      {
+        label: '中',
+        value: 'center'
+      },
+      {
+        label: '上',
+        value: 'end'
+      }],
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题字体大小',
+    type: 'inputNumber',
+    field: 'yAxis_title_style_fontSize',
+    optionField: 'yAxis.title.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标题颜色',
+    type: 'colorPicker',
+    field: 'yAxis_title_style_fill',
+    optionField: 'yAxis.title.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: '显示y轴标签',
+    type: 'switchNumber',
+    field: 'yAxis_label_style_opacity',
+    optionField: 'yAxis.label.style.opacity',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签字体大小',
+    type: 'inputNumber',
+    field: 'yAxis_label_style_fontSize',
+    optionField: 'yAxis.label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴标签字体颜色',
+    type: 'colorPicker',
+    field: 'yAxis_label_style_fill',
+    optionField: 'yAxis.label.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#8C8C8C',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴线宽度',
+    type: 'inputNumber',
+    field: 'yAxis_line_lineWidth',
+    optionField: 'yAxis.line.style.lineWidth',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  {
+    label: 'y轴线颜色',
+    type: 'colorPicker',
+    field: 'yAxis_line_stroke',
+    optionField: 'yAxis.line.style.stroke',
+    // 是否多选
+    multiple: false,
+    value: 'rgba(255,255,255,0)',
+    tabName: 'custom',
+    groupName: 'yAxis'
+  },
+  // 边距 padding
+  {
     label: '图表边距',
-    type: 'padding', // 设置组件类型
-    field: 'appendPadding', // 字段
-    optionField: 'appendPadding', // 对应options中的字段
+    type: 'padding',
+    field: 'appendPadding',
+    optionField: 'appendPadding',
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
 // 模拟数据
 const data = [
-  {
-    name: 'China',
-    year: '2000',
-    gdp: 1211346869605.24
-  },
-  {
-    name: 'China',
-    year: '2001',
-    gdp: 1339395718865.3
-  },
-  {
-    name: 'China',
-    year: '2002',
-    gdp: 1470550015081.55
-  },
-  {
-    name: 'China',
-    year: '2003',
-    gdp: 1660287965662.68
-  },
-  {
-    name: 'China',
-    year: '2004',
-    gdp: 1955347004963.27
-  },
-  {
-    name: 'China',
-    year: '2005',
-    gdp: 2285965892360.54
-  },
-  {
-    name: 'China',
-    year: '2006',
-    gdp: 2752131773355.16
-  },
-  {
-    name: 'China',
-    year: '2007',
-    gdp: 3550342425238.25
-  },
-  {
-    name: 'China',
-    year: '2008',
-    gdp: 4594306848763.08
-  },
-  {
-    name: 'China',
-    year: '2009',
-    gdp: 5101702432883.45
-  },
-  {
-    name: 'China',
-    year: '2010',
-    gdp: 6087164527421.24
-  },
-  {
-    name: 'China',
-    year: '2011',
-    gdp: 7551500425597.77
-  },
-  {
-    name: 'China',
-    year: '2012',
-    gdp: 8532230724141.76
-  },
-  {
-    name: 'China',
-    year: '2013',
-    gdp: 9570405758739.79
-  },
-  {
-    name: 'China',
-    year: '2014',
-    gdp: 10438529153237.6
-  },
-  {
-    name: 'China',
-    year: '2015',
-    gdp: 11015542352468.9
-  },
-  {
-    name: 'China',
-    year: '2016',
-    gdp: 11137945669350.6
-  },
-  {
-    name: 'China',
-    year: '2017',
-    gdp: 12143491448186.1
-  },
-  {
-    name: 'China',
-    year: '2018',
-    gdp: 13608151864637.9
-  },
-  {
-    name: 'United States',
-    year: '2000',
-    gdp: 10252345464000
-  },
-  {
-    name: 'United States',
-    year: '2001',
-    gdp: 10581821399000
-  },
-  {
-    name: 'United States',
-    year: '2002',
-    gdp: 10936419054000
-  },
-  {
-    name: 'United States',
-    year: '2003',
-    gdp: 11458243878000
-  },
-  {
-    name: 'United States',
-    year: '2004',
-    gdp: 12213729147000
-  },
-  {
-    name: 'United States',
-    year: '2005',
-    gdp: 13036640229000
-  },
-  {
-    name: 'United States',
-    year: '2006',
-    gdp: 13814611414000
-  },
-  {
-    name: 'United States',
-    year: '2007',
-    gdp: 14451858650000
-  },
-  {
-    name: 'United States',
-    year: '2008',
-    gdp: 14712844084000
-  },
-  {
-    name: 'United States',
-    year: '2009',
-    gdp: 14448933025000
-  },
-  {
-    name: 'United States',
-    year: '2010',
-    gdp: 14992052727000
-  },
-  {
-    name: 'United States',
-    year: '2011',
-    gdp: 15542581104000
-  },
-  {
-    name: 'United States',
-    year: '2012',
-    gdp: 16197007349000
-  },
-  {
-    name: 'United States',
-    year: '2013',
-    gdp: 16784849190000
-  },
-  {
-    name: 'United States',
-    year: '2014',
-    gdp: 17521746534000
-  },
-  {
-    name: 'United States',
-    year: '2015',
-    gdp: 18219297584000
-  },
-  {
-    name: 'United States',
-    year: '2016',
-    gdp: 18707188235000
-  },
-  {
-    name: 'United States',
-    year: '2017',
-    gdp: 19485393853000
-  },
-  {
-    name: 'United States',
-    year: '2018',
-    gdp: 20544343456936.5
-  },
-  {
-    name: 'United Kingdom',
-    year: '2000',
-    gdp: 1657816613708.58
-  },
-  {
-    name: 'United Kingdom',
-    year: '2001',
-    gdp: 1640246149417.01
-  },
-  {
-    name: 'United Kingdom',
-    year: '2002',
-    gdp: 1784473920863.31
-  },
-  {
-    name: 'United Kingdom',
-    year: '2003',
-    gdp: 2053018775510.2
-  },
-  {
-    name: 'United Kingdom',
-    year: '2004',
-    gdp: 2416931526913.22
-  },
-  {
-    name: 'United Kingdom',
-    year: '2005',
-    gdp: 2538680000000
-  },
-  {
-    name: 'United Kingdom',
-    year: '2006',
-    gdp: 2713749770009.2
-  },
-  {
-    name: 'United Kingdom',
-    year: '2007',
-    gdp: 3100882352941.18
-  },
-  {
-    name: 'United Kingdom',
-    year: '2008',
-    gdp: 2922667279411.76
-  },
-  {
-    name: 'United Kingdom',
-    year: '2009',
-    gdp: 2410909799034.12
-  },
-  {
-    name: 'United Kingdom',
-    year: '2010',
-    gdp: 2475244321361.11
-  },
-  {
-    name: 'United Kingdom',
-    year: '2011',
-    gdp: 2659310054646.23
-  },
-  {
-    name: 'United Kingdom',
-    year: '2012',
-    gdp: 2704887678386.72
-  },
-  {
-    name: 'United Kingdom',
-    year: '2013',
-    gdp: 2786022872706.81
-  },
-  {
-    name: 'United Kingdom',
-    year: '2014',
-    gdp: 3063803240208.01
-  },
-  {
-    name: 'United Kingdom',
-    year: '2015',
-    gdp: 2928591002002.51
-  },
-  {
-    name: 'United Kingdom',
-    year: '2016',
-    gdp: 2694283209613.29
-  },
-  {
-    name: 'United Kingdom',
-    year: '2017',
-    gdp: 2666229179958.01
-  },
-  {
-    name: 'United Kingdom',
-    year: '2018',
-    gdp: 2855296731521.96
-  },
-  {
-    name: 'Russian',
-    year: '2000',
-    gdp: 259710142196.94
-  },
-  {
-    name: 'Russian',
-    year: '2001',
-    gdp: 306602070620.5
-  },
-  {
-    name: 'Russian',
-    year: '2002',
-    gdp: 345470494417.86
-  },
-  {
-    name: 'Russian',
-    year: '2003',
-    gdp: 430347770731.79
-  },
-  {
-    name: 'Russian',
-    year: '2004',
-    gdp: 591016690742.8
-  },
-  {
-    name: 'Russian',
-    year: '2005',
-    gdp: 764017107992.39
-  },
-  {
-    name: 'Russian',
-    year: '2006',
-    gdp: 989930542278.7
-  },
-  {
-    name: 'Russian',
-    year: '2007',
-    gdp: 1299705764823.62
-  },
-  {
-    name: 'Russian',
-    year: '2008',
-    gdp: 1660846387624.78
-  },
-  {
-    name: 'Russian',
-    year: '2009',
-    gdp: 1222644282201.86
-  },
-  {
-    name: 'Russian',
-    year: '2010',
-    gdp: 1524917468442.01
-  },
-  {
-    name: 'Russian',
-    year: '2011',
-    gdp: 2051661732059.78
-  },
-  {
-    name: 'Russian',
-    year: '2012',
-    gdp: 2210256976945.38
-  },
-  {
-    name: 'Russian',
-    year: '2013',
-    gdp: 2297128039058.21
-  },
-  {
-    name: 'Russian',
-    year: '2014',
-    gdp: 2059984158438.46
-  },
-  {
-    name: 'Russian',
-    year: '2015',
-    gdp: 1363594369577.82
-  },
-  {
-    name: 'Russian',
-    year: '2016',
-    gdp: 1282723881134.01
-  },
-  {
-    name: 'Russian',
-    year: '2017',
-    gdp: 1578624060588.26
-  },
-  {
-    name: 'Russian',
-    year: '2018',
-    gdp: 1657554647149.87
-  },
-  {
-    name: 'Japan',
-    year: '2000',
-    gdp: 4887519660744.86
-  },
-  {
-    name: 'Japan',
-    year: '2001',
-    gdp: 4303544259842.72
-  },
-  {
-    name: 'Japan',
-    year: '2002',
-    gdp: 4115116279069.77
-  },
-  {
-    name: 'Japan',
-    year: '2003',
-    gdp: 4445658071221.86
-  },
-  {
-    name: 'Japan',
-    year: '2004',
-    gdp: 4815148854362.11
-  },
-  {
-    name: 'Japan',
-    year: '2005',
-    gdp: 4755410630912.14
-  },
-  {
-    name: 'Japan',
-    year: '2006',
-    gdp: 4530377224970.4
-  },
-  {
-    name: 'Japan',
-    year: '2007',
-    gdp: 4515264514430.57
-  },
-  {
-    name: 'Japan',
-    year: '2008',
-    gdp: 5037908465114.48
-  },
-  {
-    name: 'Japan',
-    year: '2009',
-    gdp: 5231382674593.7
-  },
-  {
-    name: 'Japan',
-    year: '2010',
-    gdp: 5700098114744.41
-  },
-  {
-    name: 'Japan',
-    year: '2011',
-    gdp: 6157459594823.72
-  },
-  {
-    name: 'Japan',
-    year: '2012',
-    gdp: 6203213121334.12
-  },
-  {
-    name: 'Japan',
-    year: '2013',
-    gdp: 5155717056270.83
-  },
-  {
-    name: 'Japan',
-    year: '2014',
-    gdp: 4850413536037.84
-  },
-  {
-    name: 'Japan',
-    year: '2015',
-    gdp: 4389475622588.97
-  },
-  {
-    name: 'Japan',
-    year: '2016',
-    gdp: 4926667087367.51
-  },
-  {
-    name: 'Japan',
-    year: '2017',
-    gdp: 4859950558538.97
-  },
-  {
-    name: 'Japan',
-    year: '2018',
-    gdp: 4971323079771.87
-  }
+  { name: 'China', year: '2000', gdp: 1211346869605.24 },
+  { name: 'China', year: '2001', gdp: 1339395718865.3 },
+  { name: 'China', year: '2002', gdp: 1470550015081.55 },
+  { name: 'China', year: '2003', gdp: 1660287965662.68 },
+  { name: 'China', year: '2004', gdp: 1955347004963.27 },
+  { name: 'China', year: '2005', gdp: 2285965892360.54 },
+  { name: 'China', year: '2006', gdp: 2752131773355.16 },
+  { name: 'China', year: '2007', gdp: 3550342425238.25 },
+  { name: 'China', year: '2008', gdp: 4594306848763.08 },
+  { name: 'China', year: '2009', gdp: 5101702432883.45 },
+  { name: 'China', year: '2010', gdp: 6087164527421.24 },
+  { name: 'China', year: '2011', gdp: 7551500425597.77 },
+  { name: 'China', year: '2012', gdp: 8532230724141.76 },
+  { name: 'China', year: '2013', gdp: 9570405758739.79 },
+  { name: 'China', year: '2014', gdp: 10438529153237.6 },
+  { name: 'China', year: '2015', gdp: 11015542352468.9 },
+  { name: 'China', year: '2016', gdp: 11137945669350.6 },
+  { name: 'China', year: '2017', gdp: 12143491448186.1 },
+  { name: 'China', year: '2018', gdp: 13608151864637.9 },
+  { name: 'United States', year: '2000', gdp: 10252345464000 },
+  { name: 'United States', year: '2001', gdp: 10581821399000 },
+  { name: 'United States', year: '2002', gdp: 10936419054000 },
+  { name: 'United States', year: '2003', gdp: 11458243878000 },
+  { name: 'United States', year: '2004', gdp: 12213729147000 },
+  { name: 'United States', year: '2005', gdp: 13036640229000 },
+  { name: 'United States', year: '2006', gdp: 13814611414000 },
+  { name: 'United States', year: '2007', gdp: 14451858650000 },
+  { name: 'United States', year: '2008', gdp: 14712844084000 },
+  { name: 'United States', year: '2009', gdp: 14448933025000 },
+  { name: 'United States', year: '2010', gdp: 14992052727000 },
+  { name: 'United States', year: '2011', gdp: 15542581104000 },
+  { name: 'United States', year: '2012', gdp: 16197007349000 },
+  { name: 'United States', year: '2013', gdp: 16784849190000 },
+  { name: 'United States', year: '2014', gdp: 17521746534000 },
+  { name: 'United States', year: '2015', gdp: 18219297584000 },
+  { name: 'United States', year: '2016', gdp: 18707188235000 },
+  { name: 'United States', year: '2017', gdp: 19485393853000 },
+  { name: 'United States', year: '2018', gdp: 20544343456936.5 },
+  { name: 'United Kingdom', year: '2000', gdp: 1657816613708.58 },
+  { name: 'United Kingdom', year: '2001', gdp: 1640246149417.01 },
+  { name: 'United Kingdom', year: '2002', gdp: 1784473920863.31 },
+  { name: 'United Kingdom', year: '2003', gdp: 2053018775510.2 },
+  { name: 'United Kingdom', year: '2004', gdp: 2416931526913.22 },
+  { name: 'United Kingdom', year: '2005', gdp: 2538680000000 },
+  { name: 'United Kingdom', year: '2006', gdp: 2713749770009.2 },
+  { name: 'United Kingdom', year: '2007', gdp: 3100882352941.18 },
+  { name: 'United Kingdom', year: '2008', gdp: 2922667279411.76 },
+  { name: 'United Kingdom', year: '2009', gdp: 2410909799034.12 },
+  { name: 'United Kingdom', year: '2010', gdp: 2475244321361.11 },
+  { name: 'United Kingdom', year: '2011', gdp: 2659310054646.23 },
+  { name: 'United Kingdom', year: '2012', gdp: 2704887678386.72 },
+  { name: 'United Kingdom', year: '2013', gdp: 2786022872706.81 },
+  { name: 'United Kingdom', year: '2014', gdp: 3063803240208.01 },
+  { name: 'United Kingdom', year: '2015', gdp: 2928591002002.51 },
+  { name: 'United Kingdom', year: '2016', gdp: 2694283209613.29 },
+  { name: 'United Kingdom', year: '2017', gdp: 2666229179958.01 },
+  { name: 'United Kingdom', year: '2018', gdp: 2855296731521.96 },
+  { name: 'Russian', year: '2000', gdp: 259710142196.94 },
+  { name: 'Russian', year: '2001', gdp: 306602070620.5 },
+  { name: 'Russian', year: '2002', gdp: 345470494417.86 },
+  { name: 'Russian', year: '2003', gdp: 430347770731.79 },
+  { name: 'Russian', year: '2004', gdp: 591016690742.8 },
+  { name: 'Russian', year: '2005', gdp: 764017107992.39 },
+  { name: 'Russian', year: '2006', gdp: 989930542278.7 },
+  { name: 'Russian', year: '2007', gdp: 1299705764823.62 },
+  { name: 'Russian', year: '2008', gdp: 1660846387624.78 },
+  { name: 'Russian', year: '2009', gdp: 1222644282201.86 },
+  { name: 'Russian', year: '2010', gdp: 1524917468442.01 },
+  { name: 'Russian', year: '2011', gdp: 2051661732059.78 },
+  { name: 'Russian', year: '2012', gdp: 2210256976945.38 },
+  { name: 'Russian', year: '2013', gdp: 2297128039058.21 },
+  { name: 'Russian', year: '2014', gdp: 2059984158438.46 },
+  { name: 'Russian', year: '2015', gdp: 1363594369577.82 },
+  { name: 'Russian', year: '2016', gdp: 1282723881134.01 },
+  { name: 'Russian', year: '2017', gdp: 1578624060588.26 },
+  { name: 'Russian', year: '2018', gdp: 1657554647149.87 },
+  { name: 'Japan', year: '2000', gdp: 4887519660744.86 },
+  { name: 'Japan', year: '2001', gdp: 4303544259842.72 },
+  { name: 'Japan', year: '2002', gdp: 4115116279069.77 },
+  { name: 'Japan', year: '2003', gdp: 4445658071221.86 },
+  { name: 'Japan', year: '2004', gdp: 4815148854362.11 },
+  { name: 'Japan', year: '2005', gdp: 4755410630912.14 },
+  { name: 'Japan', year: '2006', gdp: 4530377224970.4 },
+  { name: 'Japan', year: '2007', gdp: 4515264514430.57 },
+  { name: 'Japan', year: '2008', gdp: 5037908465114.48 },
+  { name: 'Japan', year: '2009', gdp: 5231382674593.7 },
+  { name: 'Japan', year: '2010', gdp: 5700098114744.41 },
+  { name: 'Japan', year: '2011', gdp: 6157459594823.72 },
+  { name: 'Japan', year: '2012', gdp: 6203213121334.12 },
+  { name: 'Japan', year: '2013', gdp: 5155717056270.83 },
+  { name: 'Japan', year: '2014', gdp: 4850413536037.84 },
+  { name: 'Japan', year: '2015', gdp: 4389475622588.97 },
+  { name: 'Japan', year: '2016', gdp: 4926667087367.51 },
+  { name: 'Japan', year: '2017', gdp: 4859950558538.97 },
+  { name: 'Japan', year: '2018', gdp: 4971323079771.87 }
 ]
 
 // 配置处理脚本
@@ -666,21 +530,78 @@ const option = {
   yField: 'gdp',
   seriesField: 'name',
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
-  yAxis: {
-    label: {
-      formatter: (v) => `${(v / 10e8).toFixed(1)} B`,
+  xAxis: {
+    title: {
+      text: '',
+      position: 'end',
       style: {
-        opacity: 1
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    label: {
+      autoRotate: true,
+      autoHide: false,
+      autoEllipsis: true,
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
+      }
+    },
+    line: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 1
+      }
+    },
+    tickLine: {
+      style: {
+        stroke: '#d0d0d0',
+        lineWidth: 1
+      }
+    }
+  },
+  yAxis: {
+    title: {
+      text: '',
+      position: 'end',
+      autoRotate: false,
+      // rotation: Math.PI / 2,
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12
       }
     },
     grid: {
       line: {
         style: {
           stroke: '#d0d0d0',
-          lineWidth: 0,
+          lineWidth: 1,
           strokeOpacity: 0.7
         }
       }
+    },
+    label: {
+      formatter: (v) => {
+        if (v < 1e3) return v
+        if (v >= 1e3 && v < 1e6) return `${(v / 1e3).toFixed(1)} K`
+        if (v >= 1e6 && v < 1e9) return `${(v / 1e6).toFixed(1)} M`
+        if (v >= 1e9 && v < 1e12) return `${(v / 1e9).toFixed(1)} B`
+        return `${(v / 10e8).toFixed(1)} B`
+      },
+      style: {
+        fill: '#8C8C8C',
+        fontSize: 12,
+        opacity: 1
+      }
+    },
+    line: {
+      style: {
+        stroke: 'rgba(255,255,255,0)',
+        lineWidth: 1
+      },
+      stroke: 'rgba(255,255,255,0)',
+      lineWidth: 1
     }
   },
   legendEnable: false,

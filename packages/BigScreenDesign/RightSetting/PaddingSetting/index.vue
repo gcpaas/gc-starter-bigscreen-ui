@@ -64,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 .bs-padding-setting{
   .padding-box{
-    width: 190px;
+    width: 160px;
     height: 190px;
     position: relative;
   }

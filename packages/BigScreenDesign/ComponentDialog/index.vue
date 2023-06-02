@@ -10,115 +10,184 @@
     @closed="close"
   >
     <div class="content">
-      <div class="big-screen-list-wrap">
-        <div class="top-search-wrap">
-          <el-input
-            v-model="searchKey"
-            class="bs-el-input"
-            placeholder="请输入组件名称"
-            prefix-icon="el-icon-search"
-            clearable
-            @clear="reSearch"
-            @keyup.enter.native="reSearch"
-          />
-          <el-select
-            v-model="code"
-            class="bs-el-select"
-            popper-class="bs-el-select"
-            placeholder="请选择分组"
-            clearable
-            @change="reSearch"
-          >
-            <el-option
-              v-for="item in options"
-              :key="item.code"
-              :label="item.name"
-              :value="item.code"
-            />
-          </el-select>
-          <el-button
-            size="small"
-            style="margin-right: 20px"
-            type="primary"
-            @click="reSearch"
-          >
-            搜索
-          </el-button>
-        </div>
-        <div
-          v-if="list.length !== 0"
-          v-loading="loading"
-          class="list-wrap bs-scrollbar"
-          element-loading-text="加载中"
-          :style="{
-            display: gridComputed ? 'grid' : 'flex',
-            justifyContent: gridComputed ? 'space-around' : 'flex-start'
-          }"
+      <!-- 添加一个el-tabs, 分成组合组件和远程组件 -->
+      <el-tabs v-model="activeName">
+        <el-tab-pane
+          label="组合组件"
+          name="combination"
         >
-          <!-- <div v-if="list.length !== 0"> -->
-          <div
-            v-for="screen in list"
-            :key="screen.id"
-            class="big-screen-card-wrap"
-            :style="{
-              width: gridComputed ? 'auto' : '290px'
-            }"
-            @click="chooseComponent(screen)"
-          >
+          <div class="big-screen-list-wrap">
+            <div class="top-search-wrap">
+              <el-input
+                v-model="searchKey"
+                class="bs-el-input"
+                placeholder="请输入组件名称"
+                prefix-icon="el-icon-search"
+                clearable
+                @clear="reSearch"
+                @keyup.enter.native="reSearch"
+              />
+              <el-select
+                v-model="code"
+                class="bs-el-select"
+                popper-class="bs-el-select"
+                placeholder="请选择分组"
+                clearable
+                @change="reSearch"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.code"
+                  :label="item.name"
+                  :value="item.code"
+                />
+              </el-select>
+              <el-button
+                size="small"
+                style="margin-right: 20px"
+                type="primary"
+                @click="reSearch"
+              >
+                搜索
+              </el-button>
+            </div>
             <div
-              :class="focus.id == screen.id ? 'focus' : ''"
-              class="big-screen-card-inner"
+              v-if="list.length !== 0"
+              v-loading="loading"
+              class="list-wrap bs-scrollbar"
+              element-loading-text="加载中"
+              :style="{
+                display: gridComputed ? 'grid' : 'flex',
+                justifyContent: gridComputed ? 'space-around' : 'flex-start'
+              }"
             >
-              <div class="big-screen-card-img">
-                <el-image
-                  :src="screen.coverPicture"
-                  fit="contain"
-                  style="width: 100%; height: 100%"
-                >
-                  <div
-                    slot="placeholder"
-                    class="image-slot"
-                  >
-                    加载中···
-                  </div>
-                </el-image>
-              </div>
-              <div class="big-screen-bottom">
+              <!-- <div v-if="list.length !== 0"> -->
+              <div
+                v-for="screen in list"
+                :key="screen.id"
+                class="big-screen-card-wrap"
+                :style="{
+                  width: gridComputed ? 'auto' : '290px'
+                }"
+                @click="chooseComponent(screen)"
+              >
                 <div
-                  class="left-bigscreen-title"
-                  :title="screen.name"
+                  :class="focus.id == screen.id ? 'focus' : ''"
+                  class="big-screen-card-inner"
                 >
-                  {{ screen.name }}
+                  <div class="big-screen-card-img">
+                    <el-image
+                      :src="screen.coverPicture"
+                      fit="contain"
+                      style="width: 100%; height: 100%"
+                    >
+                      <div
+                        slot="placeholder"
+                        class="image-slot"
+                      >
+                        加载中···
+                      </div>
+                    </el-image>
+                  </div>
+                  <div class="big-screen-bottom">
+                    <div
+                      class="left-bigscreen-title"
+                      :title="screen.name"
+                    >
+                      {{ screen.name }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div
+              v-else
+              class="empty"
+            >
+              暂无数据
+            </div>
+            <div class="footer-pagination-wrap">
+              <div class="bs-pagination">
+                <el-pagination
+                  class="bs-el-pagination"
+                  popper-class="bs-el-pagination"
+                  background
+                  layout="total, prev, pager, next, sizes"
+                  :page-size="size"
+                  prev-text="上一页"
+                  next-text="下一页"
+                  :total="totalCount"
+                  :page-sizes="[10, 20, 50, 100]"
+                  :current-page="current"
+                  @current-change="currentChangeHandle"
+                  @size-change="sizeChangeHandle"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div
-          v-else
-          class="empty"
+        </el-tab-pane>
+        <el-tab-pane
+          label="远程组件"
+          name="remote"
         >
-          暂无数据
-        </div>
-        <div class="footer-pagination-wrap">
-          <div class="bs-pagination">
-            <el-pagination
-              class="bs-el-pagination"
-              popper-class="bs-el-pagination"
-              background
-              layout="total, prev, pager, next, sizes"
-              :page-size="size"
-              prev-text="上一页"
-              next-text="下一页"
-              :total="totalCount"
-              :page-sizes="[10, 20, 50, 100]"
-              :current-page="current"
-              @current-change="currentChangeHandle"
-              @size-change="sizeChangeHandle"
-            />
+          <div class="big-screen-list-wrap">
+            <div
+              v-if="remoteComponentlist.length !== 0"
+              v-loading="loading"
+              class="list-wrap bs-scrollbar"
+              element-loading-text="加载中"
+              :style="{
+                display: remoteComponentsGridComputed ? 'grid' : 'flex',
+                justifyContent: remoteComponentsGridComputed ? 'space-around' : 'flex-start'
+              }"
+            >
+              <div
+                v-for="component in remoteComponentlist"
+                :key="component.title"
+                class="big-screen-card-wrap"
+                :style="{
+                  width: remoteComponentsGridComputed ? 'auto' : '290px'
+                }"
+                @click="chooseComponent(component)"
+              >
+                <div
+                  :class="component.title == focus.title ? 'focus' : ''"
+                  class="big-screen-card-inner"
+                >
+                  <div class="big-screen-card-img">
+                    <el-image
+                      :src="component.img"
+                      fit="contain"
+                      style="width: 100%; height: 100%"
+                    >
+                      <div
+                        slot="placeholder"
+                        class="image-slot"
+                      >
+                        加载中···
+                      </div>
+                    </el-image>
+                  </div>
+                  <div class="big-screen-bottom">
+                    <div
+                      class="left-bigscreen-title"
+                      :title="component.title"
+                    >
+                      {{ component.title }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              v-else
+              class="empty"
+            >
+              暂无数据
+            </div>
           </div>
-        </div>
-      </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
     <div
       slot="footer"
@@ -143,6 +212,7 @@
 import { get } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import _ from 'lodash'
+import { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
 export default {
   name: 'ComponentDialog',
   mixins: [pageMixins],
@@ -155,15 +225,22 @@ export default {
       code: '',
       focus: -1,
       list: [],
-      searchKey: ''
+      searchKey: '',
+      activeName: 'combination',
+      remoteComponentlist: []
     }
   },
   computed: {
     gridComputed () {
       return this.list.length > 3
+    },
+    remoteComponentsGridComputed () {
+      return this.remoteComponentlist.length > 3
     }
   },
-  mounted () {},
+  mounted () {
+    this.remoteComponentlist = getRemoteComponents()
+  },
   methods: {
     chooseComponent (component) {
       this.focus = _.cloneDeep(component)
@@ -181,8 +258,15 @@ export default {
     // 点击确定
     confirm () {
       this.dialogVisible = false
-      if (Object.keys(this.focus).length) {
-        this.$emit('setComponent', this.focus)
+      if (this.activeName === 'combination') {
+        if (Object.keys(this.focus).length) {
+          this.$emit('setComponent', this.focus)
+        }
+      } else if (this.activeName === 'remote') {
+        if (_.isEmpty(this.focus)) {
+          return
+        }
+        this.$emit('setRemoteComponent', this.focus)
       }
     },
     getDataList () {
@@ -263,7 +347,6 @@ export default {
         z-index: 999;
         top: 50px;
       }
-
       .big-screen-card-wrap {
         position: relative;
         height: 230px;
@@ -409,5 +492,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  /deep/ .el-tabs__item {
+    color: var(--bs-el-text);
   }
 </style>

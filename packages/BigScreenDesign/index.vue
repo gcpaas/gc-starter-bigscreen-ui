@@ -95,6 +95,7 @@
       <ComponentDialog
         ref="componentDialog"
         @setComponent="setComponent"
+        @setRemoteComponent="setRemoteComponent"
       />
     </div>
   </div>
@@ -271,10 +272,11 @@ export default {
           if (chart.linkage && chart.linkage.components && chart.linkage.components.length) {
             chart.linkage.components.forEach((com) => { com.componentKey = randomStr + com.componentKey })
           }
-          // TODO 如果组件是缓存数据集
+          // 如果组件是缓存数据集
           if (chart.dataSource.dataSetType === '2') {
             const newPageConfig = _.cloneDeep(this.pageConfig)
             newPageConfig.cacheDataSets.push(pageInfo.pageConfig.cacheDataSets.find((cacheDataSet) => cacheDataSet.dataSetId === chart.dataSource.businessKey))
+            newPageConfig.cacheDataSets = _.uniqBy(newPageConfig.cacheDataSets, 'dataSetId')
             this.changePageConfig({ ...this.pageConfig, ...newPageConfig })
             pageInfo.pageConfig.cacheDataSets?.map((cacheDataSet) => {
               this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
@@ -291,6 +293,16 @@ export default {
           this.updateRightVisiable(false)
         })
       })
+    },
+    // 添加远程组件
+    setRemoteComponent (component) {
+      const newChart = {
+        ...component,
+        offsetX: 0,
+        offsetY: 0,
+        code: randomString(8)
+      }
+      this.$refs.Render.addChart(newChart, { x: 0, y: 0 })
     },
     setImg (val) {
       this.$refs.Render.addSourceChart(

@@ -38,7 +38,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '分组',
     // 设置组件类型
     type: 'select',
@@ -51,6 +50,8 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '方向',
     type: 'select', // 设置组件类型
@@ -67,7 +68,8 @@ const setting = [
         label: '横向',
         value: true
       }
-    ]
+    ],
+    groupName: 'graph'
   },
   {
     label: '标签',
@@ -75,7 +77,8 @@ const setting = [
     field: 'conversionTagName', // 字段
     optionField: 'conversionTagName', // 对应options中的字段
     value: '转化率',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签颜色',
@@ -87,7 +90,8 @@ const setting = [
     optionField: 'conversionTag.style.fill',
     // 绑定的值
     value: '#8c8c8c',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '标签大小',
@@ -98,15 +102,51 @@ const setting = [
     // 对应options中的字段
     optionField: 'conversionTag.style.fontSize',
     value: 12,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'label_style_fill', // 字段
+    optionField: 'label.style.fill', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 图例 legend
   {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'legend'
   },
   {
     label: '图例位置',
@@ -130,45 +170,18 @@ const setting = [
       { label: '底部', value: 'bottom' },
       { label: '左下角', value: 'bottom-left' },
       { label: '右下角', value: 'bottom-right' }
-    ]
+    ],
+    groupName: 'legend'
   },
-  {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
-  },
-  {
-    label: '数据标签颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'label_style_fill', // 字段
-    optionField: 'label.style.fill', // 对应options中的字段
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
-    label: '数据标签大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'label_style_fontSize',
-    // 对应options中的字段
-    optionField: 'label.style.fontSize',
-    value: 12,
-    tabName: 'custom'
-  },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 

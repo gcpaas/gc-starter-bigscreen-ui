@@ -130,6 +130,12 @@ export default {
         type: config.type,
         filterList
       }
+      // if (config.type === 'remoteComponent') {
+      //   config = this.buildOption(config, { success: false })
+      //   config.key = new Date().getTime()
+      //   this.changeChartConfig(config)
+      //   return
+      // }
       getUpdateChartInfo(params).then((res) => {
         // 获取数据后更新组件配置
         config = this.buildOption(config, res)

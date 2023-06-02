@@ -50,21 +50,72 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '是否平滑',
     type: 'switch', // 设置组件类型
     field: 'smooth', // 字段
     optionField: 'smooth', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据点形状',
+    type: 'select', // 设置组件类型
+    field: 'point_shape', // 字段
+    optionField: 'point.shape', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    value: 'circle',
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ],
+    groupName: 'graph'
+  },
+  {
+    label: '数据点颜色',
+    type: 'colorPicker', // 设置组件类型
+    field: 'point_color', // 字段
+    optionField: 'point.color', // 对应options中的字段
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber', // 设置组件类型
+    field: 'point_size', // 字段
+    optionField: 'point.size', // 对应options中的字段
+    value: 2,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 图例 legend
   {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'legend'
   },
   {
     label: '图例位置',
@@ -88,57 +139,18 @@ const setting = [
       { label: '底部', value: 'bottom' },
       { label: '左下角', value: 'bottom-left' },
       { label: '右下角', value: 'bottom-right' }
-    ]
+    ],
+    groupName: 'legend'
   },
-  {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
-  },
-  {
-    label: '数据点形状',
-    type: 'select', // 设置组件类型
-    field: 'point_shape', // 字段
-    optionField: 'point.shape', // 对应options中的字段
-    // 是否多选
-    multiple: false,
-    value: 'circle',
-    tabName: 'custom',
-    options: [
-      { label: '圆形', value: 'circle' },
-      { label: '三角形', value: 'triangle' },
-      { label: '菱形', value: 'diamond' }
-    ]
-  },
-  {
-    label: '数据点颜色',
-    type: 'colorPicker', // 设置组件类型
-    field: 'point_color', // 字段
-    optionField: 'point.color', // 对应options中的字段
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
-    label: '数据点大小',
-    type: 'inputNumber', // 设置组件类型
-    field: 'point_size', // 字段
-    optionField: 'point.size', // 对应options中的字段
-    value: 2,
-    tabName: 'custom'
-  },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 

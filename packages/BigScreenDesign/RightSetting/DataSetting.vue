@@ -108,7 +108,7 @@
               数据配置
             </div>
           </div>
-          <template v-if="config.type !== 'customComponent'">
+          <template v-if="!['customComponent', 'remoteComponent'].includes(config.type)">
             <!--维度多选-->
             <el-form-item
               v-if="config.option.displayOption.dimensionField.enable"
