@@ -47,6 +47,13 @@ const customConfig = {
     fontColor: '#fff',
     // 字体大小
     fontSize: 14,
+    // 图标
+    icon: {
+      // 图标名称
+      name: '',
+      // 位置
+      position: ''
+    },
     borderStyle: {
       // 边框颜色
       borderColor: '#409EFF',

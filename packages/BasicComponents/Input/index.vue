@@ -15,7 +15,20 @@
       class="input"
       :placeholder="config.customize.placeholderStyle.placeholder"
       :style="{ backgroundColor: config.customize.backgroundStyle.backgroundColor }"
-    />
+    >
+      <i
+        v-if="config.customize.icon.position === 'left' && config.customize.icon.name"
+        slot="prefix"
+        class="el-input__icon"
+        :class="config.customize.icon.position === 'left' ? config.customize.icon.name : ''"
+      />
+      <i
+        v-if="config.customize.icon.position === 'right' && config.customize.icon.name"
+        slot="suffix"
+        class="el-input__icon"
+        :class="config.customize.icon.position === 'right' ? config.customize.icon.name : ''"
+      />
+    </el-input>
   </div>
 </template>
 
@@ -43,15 +56,20 @@ export default {
       // console.log(document.querySelector(`#el-input-${this.config.code}`))
       // console.log(this.config.customize)
       const input = document.querySelector(`#el-input-${this.config.code}`)
+
+      // const inputIcon = input.querySelector(`.${this.config.customize.icon.name}`)
       input.style.backgroundColor = this.config.customize.backgroundStyle.backgroundColor
-      input.style.setProperty('color', this.config.customize.placeholderStyle.placeholderColor, 'placeholder')
       input.style.fontSize = this.config.customize.inputStyle.fontSize + 'px'
-      input.style.paddingLeft = this.config.customize.inputStyle.paddingLeft + 'px'
       input.style.color = this.config.customize.inputStyle.color
       input.style.borderColor = this.config.customize.borderStyle.borderColor
       input.style.borderWidth = this.config.customize.borderStyle.borderWidth + 'px'
       input.style.borderStyle = this.config.customize.borderStyle.borderStyle
       input.style.borderRadius = this.config.customize.borderStyle.borderRadius + 'px'
+      // inputIcon.style.fontSize = this.config.customize.inputStyle.fontSize + 'px'
+      if (this.config.customize.icon.name) {
+        const inputIcon = document.querySelector(`.${this.config.customize.icon.name}`)
+        inputIcon.style.fontSize = this.config.customize.inputStyle.fontSize + 'px'
+      }
     }
   }
 }

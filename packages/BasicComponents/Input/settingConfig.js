@@ -36,6 +36,13 @@ const customConfig = {
       // 输入值左间距
       paddingLeft: 10
     },
+    // 图标
+    icon: {
+      // 图标名称
+      name: '',
+      // 位置
+      position: ''
+    },
     placeholderStyle: {
     // 占位符
       placeholder: '请输入',

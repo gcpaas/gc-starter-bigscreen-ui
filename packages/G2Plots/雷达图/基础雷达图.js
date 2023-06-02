@@ -25,7 +25,6 @@ const setting = [
     tabName: 'data'
   },
   {
-
     label: '指标',
     // 设置组件类型
     type: 'select',
@@ -38,13 +37,16 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
   {
     label: '面积填充',
     type: 'switchNumber', // 设置组件类型
     field: 'area', // 字段
     optionField: 'area', // 对应options中的字段
     value: 1,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '是否平滑',
@@ -52,7 +54,8 @@ const setting = [
     field: 'smooth', // 字段
     optionField: 'smooth', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '颜色',
@@ -60,7 +63,8 @@ const setting = [
     field: 'color', // 字段
     optionField: 'color', // 对应options中的字段
     value: 'l(0) 0:#648ff7 1:#648ff7',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '数据点形状',
@@ -75,7 +79,8 @@ const setting = [
       { label: '圆形', value: 'circle' },
       { label: '三角形', value: 'triangle' },
       { label: '菱形', value: 'diamond' }
-    ]
+    ],
+    groupName: 'graph'
   },
   {
     label: '数据点颜色',
@@ -83,7 +88,8 @@ const setting = [
     field: 'point_color', // 字段
     optionField: 'point.color', // 对应options中的字段
     value: '#ffffff',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   {
     label: '数据点大小',
@@ -91,15 +97,18 @@ const setting = [
     field: 'point_size', // 字段
     optionField: 'point.size', // 对应options中的字段
     value: 2,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 

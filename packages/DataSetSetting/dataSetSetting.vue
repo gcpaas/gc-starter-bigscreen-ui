@@ -134,6 +134,10 @@ export default {
     ::v-deep .bs-el-pagination {
       right: 6px !important;
     }
+
+    ::v-deep .data-set-scrollbar {
+        height: 515px !important;
+    }
   }
 }
 </style>
