@@ -288,6 +288,7 @@ export default {
             code: randomStr + chart.code
           }
           this.$refs.Render.addChart(newChart, { x: chart.x, y: chart.y }, true)
+          this.updateRightVisiable(false)
         })
       })
     },
