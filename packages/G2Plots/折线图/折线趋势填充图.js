@@ -110,7 +110,8 @@ const setting = [
       { label: '沿着图形中心点的放大动画', value: 'zoom-in' },
       { label: '沿着图形中心点的缩小动画', value: 'zoom-out' },
       { label: 'path 路径入场动画', value: 'path-in' }
-    ]
+    ],
+    groupName: 'graph'
   },
   {
     label: '动画执行时间',
@@ -121,7 +122,8 @@ const setting = [
     // 对应options中的字段
     optionField: 'animation.appear.duration',
     value: '5000',
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'graph'
   },
   // 网格线 grid
   {
