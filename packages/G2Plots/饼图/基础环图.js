@@ -37,13 +37,190 @@ const setting = [
     value: '',
     tabName: 'data'
   },
+  /** 样式配置 **/
+  // 图表 graph
+  {
+    label: '标签位置',
+    // 设置组件类型
+    type: 'select',
+    // 字段
+    field: 'label_type',
+    // 对应options中的字段
+    optionField: 'label.type',
+    value: 'inner',
+    tabName: 'custom',
+    options: [
+      { label: '外部', value: 'outer' },
+      { label: '内部', value: 'inner' },
+      { label: '蜘蛛布局', value: 'spider' }
+    ],
+    groupName: 'graph'
+  },
+  {
+    label: '标签颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'label_style_fill',
+    // 对应options中的字段
+    optionField: 'label.style.fill',
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '标签大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_style_fontSize',
+    // 对应options中的字段
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '标签连线颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'label_labelLine_style_stroke',
+    // 对应options中的字段
+    optionField: 'label.labelLine.style.stroke',
+    value: '#5B8FF9',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '标签连线透明度',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'label_labelLine_style_opacity',
+    // 对应options中的字段
+    optionField: 'label.labelLine.style.opacity',
+    value: 0.6,
+    tabName: 'custom',
+    step: 0.1,
+    groupName: 'graph'
+  },
+  {
+    label: '颜色配置',
+    // 设置组件类型
+    type: 'colorSelect',
+    // 字段
+    field: 'color',
+    // 对应options中的字段
+    optionField: 'color',
+    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '统计标题',
+    // 设置组件类型
+    type: 'input',
+    // 字段
+    field: 'statistic_title_content',
+    // 对应options中的字段
+    optionField: 'statistic.title.content',
+    value: '总计',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // {
+  //   label: '统计正文',
+  //   // 设置组件类型
+  //   type: 'input',
+  //   // 字段
+  //   field: 'statistic_content_content',
+  //   // 对应options中的字段
+  //   optionField: 'statistic.content.content',
+  //   value: '100',
+  //   tabName: 'custom'
+  // },
+  {
+    label: '统计标题颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'statistic_title_style_color',
+    // 对应options中的字段
+    optionField: 'statistic.title.style.color',
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '统计标题大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'statistic_title_style_fontSize',
+    // 对应options中的字段
+    optionField: 'statistic.title.style.fontSize',
+    value: 20,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '统计正文颜色',
+    // 设置组件类型
+    type: 'colorPicker',
+    // 字段
+    field: 'statistic_content_style_color',
+    // 对应options中的字段
+    optionField: 'statistic.content.style.color',
+    value: '#d0d0d0',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '统计正文大小',
+    // 设置组件类型
+    type: 'inputNumber',
+    // 字段
+    field: 'statistic_content_style_fontSize',
+    // 对应options中的字段
+    optionField: 'statistic.content.style.fontSize',
+    value: 30,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '外环半径',
+    // 设置组件类型
+    type: 'slider',
+    // 字段
+    field: 'radius',
+    // 对应options中的字段
+    optionField: 'radius',
+    value: 1,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '内环半径',
+    // 设置组件类型
+    type: 'slider',
+    // 字段
+    field: 'innerRadius',
+    // 对应options中的字段
+    optionField: 'innerRadius',
+    value: 0.6,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  // 图例 legend
   {
     label: '显示图例',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
     value: false,
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'legend'
   },
   {
     label: '图例位置',
@@ -67,175 +244,18 @@ const setting = [
       { label: '底部', value: 'bottom' },
       { label: '左下角', value: 'bottom-left' },
       { label: '右下角', value: 'bottom-right' }
-    ]
+    ],
+    groupName: 'legend'
   },
-  {
-    label: '标签位置',
-    // 设置组件类型
-    type: 'select',
-    // 字段
-    field: 'label_type',
-    // 对应options中的字段
-    optionField: 'label.type',
-    value: 'inner',
-    tabName: 'custom',
-    options: [
-      { label: '外部', value: 'outer' },
-      { label: '内部', value: 'inner' },
-      { label: '蜘蛛布局', value: 'spider' }
-    ]
-  },
-  {
-    label: '标签颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'label_style_fill',
-    // 对应options中的字段
-    optionField: 'label.style.fill',
-    value: '#ffffff',
-    tabName: 'custom'
-  },
-  {
-    label: '标签大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'label_style_fontSize',
-    // 对应options中的字段
-    optionField: 'label.style.fontSize',
-    value: 12,
-    tabName: 'custom'
-  },
-  {
-    label: '标签连线颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'label_labelLine_style_stroke',
-    // 对应options中的字段
-    optionField: 'label.labelLine.style.stroke',
-    value: '#5B8FF9',
-    tabName: 'custom'
-  },
-  {
-    label: '标签连线透明度',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'label_labelLine_style_opacity',
-    // 对应options中的字段
-    optionField: 'label.labelLine.style.opacity',
-    value: 0.6,
-    tabName: 'custom',
-    step: 0.1
-  },
-  {
-    label: '颜色配置',
-    // 设置组件类型
-    type: 'colorSelect',
-    // 字段
-    field: 'color',
-    // 对应options中的字段
-    optionField: 'color',
-    value: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
-    tabName: 'custom'
-  },
-  {
-    label: '统计标题',
-    // 设置组件类型
-    type: 'input',
-    // 字段
-    field: 'statistic_title_content',
-    // 对应options中的字段
-    optionField: 'statistic.title.content',
-    value: '总计',
-    tabName: 'custom'
-  },
-  // {
-  //   label: '统计正文',
-  //   // 设置组件类型
-  //   type: 'input',
-  //   // 字段
-  //   field: 'statistic_content_content',
-  //   // 对应options中的字段
-  //   optionField: 'statistic.content.content',
-  //   value: '100',
-  //   tabName: 'custom'
-  // },
-  {
-    label: '统计标题颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'statistic_title_style_color',
-    // 对应options中的字段
-    optionField: 'statistic.title.style.color',
-    value: '#d0d0d0',
-    tabName: 'custom'
-  },
-  {
-    label: '统计标题大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'statistic_title_style_fontSize',
-    // 对应options中的字段
-    optionField: 'statistic.title.style.fontSize',
-    value: 20,
-    tabName: 'custom'
-  },
-  {
-    label: '统计正文颜色',
-    // 设置组件类型
-    type: 'colorPicker',
-    // 字段
-    field: 'statistic_content_style_color',
-    // 对应options中的字段
-    optionField: 'statistic.content.style.color',
-    value: '#d0d0d0',
-    tabName: 'custom'
-  },
-  {
-    label: '统计正文大小',
-    // 设置组件类型
-    type: 'inputNumber',
-    // 字段
-    field: 'statistic_content_style_fontSize',
-    // 对应options中的字段
-    optionField: 'statistic.content.style.fontSize',
-    value: 30,
-    tabName: 'custom'
-  },
-  {
-    label: '外环半径',
-    // 设置组件类型
-    type: 'slider',
-    // 字段
-    field: 'radius',
-    // 对应options中的字段
-    optionField: 'radius',
-    value: 1,
-    tabName: 'custom'
-  },
-  {
-    label: '内环半径',
-    // 设置组件类型
-    type: 'slider',
-    // 字段
-    field: 'innerRadius',
-    // 对应options中的字段
-    optionField: 'innerRadius',
-    value: 0.6,
-    tabName: 'custom'
-  },
+  // 边距 padding
   {
     label: '图表边距',
     type: 'padding', // 设置组件类型
     field: 'appendPadding', // 字段
     optionField: 'appendPadding', // 对应options中的字段
     value: [20, 20, 20, 20],
-    tabName: 'custom'
+    tabName: 'custom',
+    groupName: 'padding'
   }
 ]
 
