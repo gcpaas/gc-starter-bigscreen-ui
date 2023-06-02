@@ -12,9 +12,16 @@
         borderStyle: config.customize.borderStyle.borderStyle,
         borderRadius: config.customize.borderStyle.borderRadius + 'px'
       }"
+      :icon="config.customize.icon.position === 'left' ? config.customize.icon.name : ''"
       @click="handleClick"
     >
-      <span :style="{ color: config.customize.fontColor,fontSize: config.customize.fontSize + 'px', }"> {{ config.title }}</span>
+      <span :style="{ color: config.customize.fontColor, fontSize: config.customize.fontSize + 'px', }">
+        {{ config.title }}
+        <i
+          v-if="config.customize.icon.position === 'right' && config.customize.icon.name"
+          :class="config.customize.icon.name"
+        />
+      </span>
     </el-button>
   </div>
 </template>
@@ -72,10 +79,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.basic-component-button{
+.basic-component-button {
   width: 100%;
   height: 100%;
-  .el-button{
+
+  .el-button {
     width: 100%;
     height: 100%;
   }

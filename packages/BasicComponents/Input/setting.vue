@@ -112,7 +112,7 @@
               :predefine="predefineThemeColors"
             />
           </el-form-item>
-          <el-form-item label="输入值左间距">
+          <!-- <el-form-item label="输入值左间距">
             <el-input-number
               v-model="config.customize.inputStyle.paddingLeft"
               class="bs-el-input-number"
@@ -120,7 +120,7 @@
               :min="0"
               :max="100"
             />
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="背景颜色">
             <ColorPicker
               v-model="config.customize.backgroundStyle.backgroundColor"
@@ -134,12 +134,29 @@
               clearable
             />
           </el-form-item>
-          <el-form-item label="占位符字体颜色">
+          <el-form-item label="图标选择">
+            <IconPicker v-model="config.customize.icon.name" />
+          </el-form-item>
+          <el-form-item label="图标位置">
+            <el-select
+              v-model="config.customize.icon.position"
+              popper-class="bs-el-select"
+              class="bs-el-select"
+            >
+              <el-option
+                v-for="iconPosition in iconPositionOptions"
+                :key="iconPosition.value"
+                :label="iconPosition.label"
+                :value="iconPosition.value"
+              />
+            </el-select>
+          </el-form-item>
+          <!-- <el-form-item label="占位符字体颜色">
             <ColorPicker
               v-model="config.customize.placeholderStyle.placeholderColor"
               :predefine="predefineThemeColors"
             />
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="边框颜色">
             <ColorPicker
               v-model="config.customize.borderStyle.borderColor"
@@ -185,12 +202,14 @@
   </div>
 </template>
 <script>
+import IconPicker from 'packages/IconPicker/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'InputSetting',
   components: {
     ColorPicker,
+    IconPicker,
     PosWhSetting
   },
   props: {
@@ -261,6 +280,16 @@ export default {
           label: '点线',
           value: 'dotted'
         }
+      ],
+      iconPositionOptions: [
+        {
+          label: '左',
+          value: 'left'
+        },
+        {
+          label: '右',
+          value: 'right'
+        }
       ]
     }
   },
@@ -274,6 +303,6 @@ export default {
 .lc-field-body {
   width: 97%;
   padding: 16px;
-  padding-bottom: 70px;
+  padding-bottom: 65px;
 }
 </style>
