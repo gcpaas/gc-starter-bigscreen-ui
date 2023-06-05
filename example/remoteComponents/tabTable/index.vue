@@ -11,43 +11,42 @@
         <el-table
           :data="tableData"
           style="width: 100%"
-          @row-click="linkage"
         >
           <el-table-column
             prop="name"
             label="城市"
+            width="180"
           />
           <el-table-column
             prop="number"
             label="数量"
-            width="180"
           />
-        </el-table>
-      </el-tab-pane>
-      <el-tab-pane
-        label="用户信息"
-        name="second"
-      >
-        <el-descriptions title="用户信息">
-          <el-descriptions-item label="用户名">
-            {{ customize.username }}
-          </el-descriptions-item>
-          <el-descriptions-item label="手机号">
-            {{ customize.phone }}
-          </el-descriptions-item>
-        </el-descriptions>
-      </el-tab-pane>
-      <el-tab-pane
-        label="角色管理"
-        name="third"
-      >
-        角色管理
-      </el-tab-pane>
-      <el-tab-pane
-        label="定时任务补偿"
-        name="fourth"
-      >
-        定时任务补偿
+        </el-table>/el-tab-pane>
+        <el-tab-pane
+          label="用户信息"
+          name="second"
+        >
+          <el-descriptions title="用户信息">
+            <el-descriptions-item label="用户名">
+              {{ customize.username }}
+            </el-descriptions-item>
+            <el-descriptions-item label="手机号">
+              {{ customize.phone }}
+            </el-descriptions-item>
+          </el-descriptions>
+        </el-tab-pane>
+        <el-tab-pane
+          label="角色管理"
+          name="third"
+        >
+          角色管理
+        </el-tab-pane>
+        <el-tab-pane
+          label="定时任务补偿"
+          name="fourth"
+        >
+          定时任务补偿
+        </el-tab-pane>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -77,7 +76,7 @@ export default {
       return this.option.customize
     },
     tableData () {
-      return this.optionData?.map((item) => ({
+      return this.optionData.map((item) => ({
         name: item[this.option.xField],
         number: item[this.option.yField]
       }))
