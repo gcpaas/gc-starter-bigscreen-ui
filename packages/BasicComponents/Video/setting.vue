@@ -7,21 +7,26 @@
       label-position="left"
       class="setting-body"
     >
-      <div class="lc-field-body">
-        <slot name="top" />
-        <el-form
-          :model="config.customize"
-          label-position="left"
-          class="setting-body"
-          label-width="90px"
-        >
-          <el-form-item label="播放器名称">
-            <el-input
-              v-model="config.title"
-              clearable
-            />
-          </el-form-item>
+      <slot name="top" />
+      <el-form
+        :model="config.customize"
+        label-position="left"
+        class="setting-body"
+        label-width="90px"
+      >
+        <SettingTitle>标题</SettingTitle>
+        <el-form-item label="播放器名称" class="lc-field-body">
+          <el-input
+            v-model="config.title"
+            clearable
+          />
+        </el-form-item>
+        <SettingTitle>位置</SettingTitle>
+        <div class="lc-field-body">
           <PosWhSetting :config="config" />
+        </div>
+        <SettingTitle>基础</SettingTitle>
+        <div class="lc-field-body">
           <el-form-item label="视频链接">
             <el-input
               v-model="config.customize.videoUrl"
@@ -48,17 +53,19 @@
               />
             </el-select>
           </el-form-item>
-        </el-form>
-      </div>
+        </div>
+      </el-form>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'Border14Setting',
   components: {
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   props: {
     config: {
@@ -112,6 +119,6 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
-  padding: 16px;
+  padding: 12px 16px;
 }
 </style>

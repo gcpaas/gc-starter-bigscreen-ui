@@ -7,7 +7,7 @@
       label-position="left"
       class="setting-body"
     >
-      <div class="lc-field-body">
+      <div>
         <slot name="top" />
         <el-form
           :model="config.customize"
@@ -15,114 +15,121 @@
           class="setting-body"
           label-width="100px"
         >
-          <PosWhSetting :config="config" />
-          <el-form-item label="按钮名称">
-            <el-input
-              v-model="config.title"
-              class="bs-el-input"
-              clearable
-            />
-          </el-form-item>
-          <el-form-item label="字体颜色">
-            <ColorPicker
-              v-model="config.customize.fontColor"
-              :predefine="predefineThemeColors"
-            />
-          </el-form-item>
-          <el-form-item label="字体大小">
-            <el-input-number
-              v-model="config.customize.fontSize"
-              class="bs-el-input-number"
-              controls-position="right"
-              :min="12"
-              :max="100"
-            />
-          </el-form-item>
-          <el-form-item label="类型">
-            <el-select
-              v-model="config.customize.type"
-              popper-class="bs-el-select"
-              class="bs-el-select"
-              clearable
-            >
-              <el-option
-                v-for="typeItem in typeOptions"
-                :key="typeItem.value"
-                :label="typeItem.label"
-                :value="typeItem.value"
+          <SettingTitle>位置</SettingTitle>
+          <div class="lc-field-body">
+            <PosWhSetting :config="config" />
+          </div>
+          <SettingTitle>基础</SettingTitle>
+          <div class="lc-field-body">
+            <el-form-item label="按钮名称">
+              <el-input
+                v-model="config.title"
+                class="bs-el-input"
+                clearable
               />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="背景颜色">
-            <div>
+            </el-form-item>
+            <el-form-item label="字体颜色">
               <ColorPicker
-                v-model="config.customize.backgroundColor"
+                v-model="config.customize.fontColor"
                 :predefine="predefineThemeColors"
               />
-            </div>
-          </el-form-item>
-          <el-form-item label="图标选择">
-            <IconPicker v-model="config.customize.icon.name" />
-          </el-form-item>
-          <el-form-item label="图标位置">
-            <el-select
-              v-model="config.customize.icon.position"
-              popper-class="bs-el-select"
-              class="bs-el-select"
-            >
-              <el-option
-                v-for="iconPosition in iconPositionOptions"
-                :key="iconPosition.value"
-                :label="iconPosition.label"
-                :value="iconPosition.value"
+            </el-form-item>
+            <el-form-item label="字体大小">
+              <el-input-number
+                v-model="config.customize.fontSize"
+                class="bs-el-input-number"
+                controls-position="right"
+                :min="12"
+                :max="100"
               />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="边框颜色">
-            <ColorPicker
-              v-model="config.customize.borderStyle.borderColor"
-              :predefine="predefineThemeColors"
-            />
-          </el-form-item>
-          <el-form-item label="边框宽度">
-            <el-input-number
-              v-model="config.customize.borderStyle.borderWidth"
-              class="bs-el-input-number"
-              controls-position="right"
-              :min="0"
-              :max="10"
-            />
-          </el-form-item>
-          <el-form-item label="边框样式">
-            <el-select
-              v-model="config.customize.borderStyle.borderStyle"
-              popper-class="bs-el-select"
-              class="bs-el-select"
-              clearable
-            >
-              <el-option
-                v-for="borderStyleItem in borderStyleOptions"
-                :key="borderStyleItem.value"
-                :label="borderStyleItem.label"
-                :value="borderStyleItem.value"
+            </el-form-item>
+            <el-form-item label="类型">
+              <el-select
+                v-model="config.customize.type"
+                popper-class="bs-el-select"
+                class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="typeItem in typeOptions"
+                  :key="typeItem.value"
+                  :label="typeItem.label"
+                  :value="typeItem.value"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="背景颜色">
+              <div>
+                <ColorPicker
+                  v-model="config.customize.backgroundColor"
+                  :predefine="predefineThemeColors"
+                />
+              </div>
+            </el-form-item>
+            <el-form-item label="图标选择">
+              <IconPicker v-model="config.customize.icon.name" />
+            </el-form-item>
+            <el-form-item label="图标位置">
+              <el-select
+                v-model="config.customize.icon.position"
+                popper-class="bs-el-select"
+                class="bs-el-select"
+              >
+                <el-option
+                  v-for="iconPosition in iconPositionOptions"
+                  :key="iconPosition.value"
+                  :label="iconPosition.label"
+                  :value="iconPosition.value"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="边框颜色">
+              <ColorPicker
+                v-model="config.customize.borderStyle.borderColor"
+                :predefine="predefineThemeColors"
               />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="边框圆角">
-            <el-input-number
-              v-model="config.customize.borderStyle.borderRadius"
-              class="bs-el-input-number"
-              controls-position="right"
-              :min="0"
-              :max="100"
-            />
-          </el-form-item>
+            </el-form-item>
+            <el-form-item label="边框宽度">
+              <el-input-number
+                v-model="config.customize.borderStyle.borderWidth"
+                class="bs-el-input-number"
+                controls-position="right"
+                :min="0"
+                :max="10"
+              />
+            </el-form-item>
+            <el-form-item label="边框样式">
+              <el-select
+                v-model="config.customize.borderStyle.borderStyle"
+                popper-class="bs-el-select"
+                class="bs-el-select"
+                clearable
+              >
+                <el-option
+                  v-for="borderStyleItem in borderStyleOptions"
+                  :key="borderStyleItem.value"
+                  :label="borderStyleItem.label"
+                  :value="borderStyleItem.value"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="边框圆角">
+              <el-input-number
+                v-model="config.customize.borderStyle.borderRadius"
+                class="bs-el-input-number"
+                controls-position="right"
+                :min="0"
+                :max="100"
+              />
+            </el-form-item>
+          </div>
         </el-form>
       </div>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import IconPicker from 'packages/IconPicker/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
@@ -131,7 +138,8 @@ export default {
   components: {
     IconPicker,
     ColorPicker,
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   props: {
     config: {
@@ -223,6 +231,6 @@ export default {
 .lc-field-body {
   width: 97%;
   padding: 16px;
-  padding-bottom: 70px;
+  //padding-bottom: 70px;
 }
 </style>
