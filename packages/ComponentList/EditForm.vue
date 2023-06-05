@@ -223,7 +223,7 @@ export default {
     },
     // 初始化
     init (nodeData, parentCode) {
-      if (nodeData === 'component') {
+      if (this.type === 'component') {
         this.comInit(nodeData, parentCode)
       } else {
         this.bizInit(nodeData, parentCode)
@@ -236,6 +236,7 @@ export default {
       this.$nextTick(() => {
         if (code) {
           get(`/bigScreen/bizComponent/info/${code}`).then((resp) => {
+            this.$set(this, 'title', resp.name)
             this.$set(this.dataForm, 'name', resp.name)
             this.$set(this.dataForm, 'code', resp.code)
             this.$set(this.dataForm, 'orderNum', nodeData.orderNum)
@@ -244,7 +245,6 @@ export default {
         } else {
           this.$set(this.dataForm, 'name', '')
           this.$set(this.dataForm, 'code', '')
-          debugger
           this.$set(this.dataForm, 'type', parentCode)
           this.$set(this.dataForm, 'orderNum', 0)
         }

@@ -305,7 +305,7 @@ export default {
       window.open(href, '_blank')
     },
     design (screen) {
-      const path = window.BS_CONFIG?.routers?.designUrl || '/big-screen/design'
+      const path = this.type === 'component' ? (window.BS_CONFIG?.routers?.designUrl || '/big-screen/design') : 'big-screen-biz-component-design'
       const { href } = this.$router.resolve({
         path,
         query: {
@@ -322,7 +322,7 @@ export default {
       this.$refs.EditForm.init(page, this.catalogCode)
     },
     edit (screen) {
-      this.$refs.EditForm.init(screen, this.catalogInfo.page)
+      this.$refs.EditForm.init(screen, this.catalogCode)
     },
     del (screen) {
       this.$confirm(`确定删除该${this.hint}？`, '提示', {
@@ -332,7 +332,8 @@ export default {
         customClass: 'bs-el-message-box'
       })
         .then(async () => {
-          post(`/bigScreen/design/delete/${screen.code}`)
+          const url = this.catalogInfo === 'component' ? `/bigScreen/design/delete/${screen.code}` : `/bigScreen/bizComponent/delete/${screen.id}`
+          post(url)
             .then(() => {
               this.$message({
                 type: 'success',

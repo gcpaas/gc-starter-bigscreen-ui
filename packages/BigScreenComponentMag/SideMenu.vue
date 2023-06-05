@@ -156,7 +156,7 @@ export default {
         id: '',
         code: ''
       },
-      activeType: 'design',
+      activeType: 'component',
       currentCatalog: { // 选中目录
         name: '',
         id: '',
