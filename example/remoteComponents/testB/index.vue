@@ -1,31 +1,25 @@
 <template>
   <div class="test">
-    <el-descriptions title="用户信息">
-      <el-descriptions-item label="用户名">
-        {{ customize.username }}
-      </el-descriptions-item>
-      <el-descriptions-item label="手机号">
-        18100000000
-      </el-descriptions-item>
-      <el-descriptions-item label="居住地">
-        苏州市
-      </el-descriptions-item>
-      <el-descriptions-item label="备注">
-        <el-tag size="small">
-          学校
-        </el-tag>
-      </el-descriptions-item>
-      <el-descriptions-item label="联系地址">
-        江苏省苏州市吴中区吴中大道 1188 号
-      </el-descriptions-item>
-    </el-descriptions>
+    <Child />
+    <h1>用户名: {{ customize.username }}</h1>
+    <br>
+    <div
+      v-for="(row, key) in optionData"
+      :key="key"
+      class="item"
+      @click="linkage(row)"
+    >
+      <span> {{ row[option.xField] }}</span>  -
+      <span> {{ row[option.yField] }}</span>
+    </div>
   </div>
 </template>
 <script>
-
+import Child from './Child.vue'
 export default {
-  name: 'TestA',
+  name: 'TestB',
   components: {
+    Child
   },
   props: {
     config: {
@@ -62,7 +56,7 @@ export default {
   position: absolute;
   color: #fff;
   font-size: 20px;
-  background: #fff;
+  background: #ccc;
 
   .item {
     width: 100%;

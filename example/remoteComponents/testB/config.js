@@ -1,4 +1,5 @@
-const title = '测试组件A'
+const title = '测试组件B'
+
 // 右侧配置项
 const setting = [
   {

@@ -1,4 +1,4 @@
-const title = '测试组件A'
+const title = '测试组件C'
 // 右侧配置项
 const setting = [
   {
@@ -41,6 +41,20 @@ const setting = [
     value: '',
     // tab页。 data: 数据， custom: 自定义
     tabName: 'custom'
+  },
+  {
+    label: '手机号',
+    // 设置组件类型， select / input / colorPicker
+    type: 'input',
+    // 字段
+    field: 'customize_phone',
+    optionField: 'customize.phone', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    // 绑定的值
+    value: '',
+    // tab页。 data: 数据， custom: 自定义
+    tabName: 'custom'
   }
 ]
 
@@ -60,7 +74,8 @@ const option = {
   seriesField: '',
   // 自定义组件其他属性
   customize: {
-    username: '张三'
+    username: '张三',
+    phone: '123456789'
   }
 }
 

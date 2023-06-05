@@ -5,7 +5,7 @@
         {{ customize.username }}
       </el-descriptions-item>
       <el-descriptions-item label="手机号">
-        18100000000
+        {{ customize.phone}}
       </el-descriptions-item>
       <el-descriptions-item label="居住地">
         苏州市
