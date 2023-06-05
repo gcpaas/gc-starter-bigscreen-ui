@@ -3,25 +3,30 @@
     <el-form
       ref="form"
       :model="config"
-      label-width="90px"
+      label-width="100px"
       label-position="left"
       class="setting-body"
     >
-      <div class="lc-field-body">
-        <slot name="top" />
-        <el-form
-          :model="config.customize"
-          label-position="left"
-          class="setting-body"
-          label-width="100px"
-        >
-          <el-form-item label="边框名称">
-            <el-input
-              v-model="config.title"
-              clearable
-            />
-          </el-form-item>
+      <el-form
+        :model="config.customize"
+        label-position="left"
+        class="setting-body"
+        label-width="100px"
+      >
+        <SettingTitle>标题</SettingTitle>
+        <el-form-item label="边框名称" class="lc-field-body">
+          <el-input
+            v-model="config.title"
+            clearable
+          />
+        </el-form-item>
+        <SettingTitle>位置</SettingTitle>
+        <div class="lc-field-body">
           <PosWhSetting :config="config" />
+        </div>
+        <SettingTitle>基础</SettingTitle>
+        <div class="lc-field-body">
+          <slot name="top" />
           <el-form-item label="边框主颜色">
             <ColorPicker
               v-model="config.customize.borderMainColor"
@@ -103,19 +108,21 @@
             />
           </el-form-item>
           <slot name="bottom" />
-        </el-form>
-      </div>
+        </div>
+      </el-form>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BorderSetting',
   components: {
     ColorPicker,
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   props: {
     config: {
@@ -185,7 +192,7 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
-  padding: 16px;
+  padding: 12px 16px;
 }
 .padding {
   padding: 10px 0;
