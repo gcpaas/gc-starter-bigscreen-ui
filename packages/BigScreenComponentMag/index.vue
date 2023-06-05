@@ -1,30 +1,44 @@
 <template>
-  <div class="bs-component-mag-wrap">
-    <BigScreenMag type="componentCatalog" />
+  <div class="bs-manage-main-wrap">
+    <side-menu
+      :type="type"
+      @getPageInfo="getPageInfo"
+    />
+    <menu-content
+      :catalog-info="catalogInfo"
+      :type="type"
+    />
   </div>
 </template>
 <script>
-import BigScreenMag from 'packages/BigScreenMag'
+import SideMenu from './SideMenu'
+import MenuContent from './MenuContent'
 export default {
-  name: 'BigScreenTempMag',
-  props: {},
-  components: {
-    BigScreenMag
+  name: '',
+  props: {
+    type: {
+      type: String,
+      default: 'bigScreenCatalog'
+    }
   },
+  components: { SideMenu, MenuContent },
   data () {
     return {
-
+      catalogInfo: 'design'
     }
   },
   mounted () {},
   methods: {
-
+    getPageInfo (type) {
+      this.catalogInfo = type
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .bs-component-mag-wrap{
-    height: 100%;
-  }
+.bs-manage-main-wrap {
+  display: flex;
+  height: 100%;
+}
 </style>
