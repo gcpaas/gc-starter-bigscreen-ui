@@ -8,12 +8,7 @@
       label-position="left"
       class="setting-body"
     >
-      <!-- <div class="lc-field-body"> -->
-      <div class="lc-field-head">
-        <div class="lc-field-title">
-          基础设置
-        </div>
-      </div>
+      <SettingTitle>基础</SettingTitle>
       <div class="lc-field-body">
         <el-form-item
           label="标题"
@@ -26,11 +21,7 @@
           />
         </el-form-item>
       </div>
-      <div class="lc-field-head">
-        <div class="lc-field-title">
-          位置设置
-        </div>
-      </div>
+      <SettingTitle>位置</SettingTitle>
       <div class="lc-field-body">
         <PosWhSetting
           label-width="120px"
@@ -39,11 +30,7 @@
       </div>
       <template v-for="group in groupList">
         <div :key="group.groupName">
-          <div class="lc-field-head">
-            <div class="lc-field-title">
-              {{ group.groupName | filterGroupName }}
-            </div>
-          </div>
+          <SettingTitle>   {{ group.groupName | filterGroupName }}</SettingTitle>
           <div class="lc-field-body">
             <div
               v-for="(setting, settingIndex) in group.list"
@@ -169,6 +156,7 @@
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
 // import ColorPicker from 'packages/ColorPicker/index.vue'
@@ -182,7 +170,8 @@ export default {
     // ColorPicker,
     PaddingSetting,
     GradualSetting,
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   mixins: [chartSettingMixins],
   data () {
@@ -283,7 +272,7 @@ export default {
 }
 
 .lc-field-body {
-  padding: 0 16px;
+  padding:12px 16px;
 }
 .el-form-item{
   margin-bottom: 6px !important;
