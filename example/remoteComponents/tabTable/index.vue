@@ -21,7 +21,7 @@
             prop="number"
             label="数量"
           />
-        </el-table>/el-tab-pane>
+        </el-table>
         <el-tab-pane
           label="用户信息"
           name="second"

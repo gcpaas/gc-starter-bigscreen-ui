@@ -7,12 +7,10 @@ const customConfig = {
     contribution: false
   },
   customize: {
-    // 用户从外部传入的自定义的vue文件
-    vueFile: null,
     // 文件路径
-    vueFilePath: null,
+    vueSysComponentDirName: null,
     // 用户上传的vue文件编码，根据此编码获取文件内容
-    vueFileCode: null,
+    vueBizComponentCode: null,
     // vue文本内容
     vueFileContent: null
   }

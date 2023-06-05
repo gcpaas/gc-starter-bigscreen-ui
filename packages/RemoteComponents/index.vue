@@ -15,11 +15,10 @@
 import linkageMixins from 'packages/js/mixins/linkageMixins'
 import commonMixins from 'packages/js/mixins/commonMixins'
 import remoteVueLoader from 'remote-vue2-loader'
-import { get } from 'packages/js/utils/http'
 import { mapMutations, mapState } from 'vuex'
 import _ from 'lodash'
 import { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
-
+import { getBizComponentInfo } from 'packages/js/api/bigScreenApi'
 export default {
   name: 'LcdpRemoteComponent',
   mixins: [linkageMixins, commonMixins],
@@ -53,19 +52,25 @@ export default {
     getRemoteComponent () {
       this.loading = true
       // 1. 如果是组件
-      if (this.config.customize.vueFilePath) {
+      if (this.config.customize.vueSysComponentDirName) {
         const remoteComponentList = getRemoteComponents()
-        const vueFile = remoteComponentList?.find(item => item.customize.vueFilePath === this.config.customize.vueFilePath)?.customize?.vueFile
+        const vueFile = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === this.config.customize.vueSysComponentDirName)?.customize?.vueFile
         this.remoteComponent = vueFile
         this.loading = false
         return
       }
       // 2. 通过请求获取
-      if (this.config.customize.vueFileCode) {
-        get('/getComponentById', {
-          code: this.config.customize.vueFileCode
-        }).then(res => {
-          this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(res.data))
+      if (this.config.customize.vueBizComponentCode) {
+        getBizComponentInfo(this.config.customize.vueBizComponentCode).then(data => {
+          const vueContent = data.vueContent
+          const settingContent = data.settingContent
+          if (!this.config?.option?.data) {
+            this.resolveStrSetting(settingContent)
+            this.config = this.buildOption(this.config, { success: false })
+          }
+
+          this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(vueContent))
+        }).finally(() => {
           this.loading = false
         })
       }
@@ -79,6 +84,33 @@ export default {
     },
     linkEvent (formData) {
       this.linkage(formData)
+    },
+    /**
+     * 处理当前组件的字符串配置
+     */
+    resolveStrSetting (settingContent) {
+      // eslint-disable-next-line prefer-const
+      let option = {}
+      // eslint-disable-next-line prefer-const
+      let setting = []
+      // eslint-disable-next-line prefer-const, no-unused-vars
+      let title = []
+      // eslint-disable-next-line prefer-const, no-unused-vars
+      let data = []
+      // eslint-disable-next-line prefer-const
+      settingContent = settingContent.replaceAll('const ', '')
+      // 去掉 export default及后面代码
+      settingContent = settingContent.replace(/export default[\s\S]*/, '')
+      eval(settingContent)
+      this.config.option = {
+        ...this.config.option,
+        ...option
+      }
+      this.config.setting = setting
+      return {
+        option,
+        setting
+      }
     },
     /**
      * 更新组件
@@ -130,7 +162,7 @@ export default {
       // eslint-disable-next-line no-unused-vars
       const setting = config.setting
 
-      if (data.success) {
+      if (data?.success) {
         data = data.data
         config.option = option
         config.option.data = data
@@ -143,6 +175,6 @@ export default {
 
 <style lang="scss" scoped>
 .bs-remote-wrap {
-
+  width: 100%;
 }
 </style>
