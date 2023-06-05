@@ -25,10 +25,17 @@
         </el-table>
       </el-tab-pane>
       <el-tab-pane
-        label="配置管理"
+        label="用户信息"
         name="second"
       >
-        配置管理
+        <el-descriptions title="用户信息">
+          <el-descriptions-item label="用户名">
+            {{ customize.username }}
+          </el-descriptions-item>
+          <el-descriptions-item label="手机号">
+            {{ customize.phone }}
+          </el-descriptions-item>
+        </el-descriptions>
       </el-tab-pane>
       <el-tab-pane
         label="角色管理"
