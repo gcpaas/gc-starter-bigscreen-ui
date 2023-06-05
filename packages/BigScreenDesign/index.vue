@@ -97,12 +97,17 @@
         @setComponent="setComponent"
         @setRemoteComponent="setRemoteComponent"
       />
+      <iframe-dialog
+        v-if="iframeDialog"
+        ref="iframeDialog"
+      />
     </div>
   </div>
 </template>
 <script>
 import SourceDialog from './SourceDialog/index.vue'
 import ComponentDialog from './ComponentDialog/index.vue'
+import iframeDialog from 'packages/BasicComponents/LinkChart/iframeDialog'
 import {
   dataConfig,
   settingConfig
@@ -132,7 +137,8 @@ export default {
     MouseSelect,
     SettingPanel,
     SourceDialog,
-    ComponentDialog
+    ComponentDialog,
+    iframeDialog
   },
   mixins: [multipleSelectMixin],
   props: {
@@ -198,7 +204,8 @@ export default {
       updateKey: (state) => state.bigScreen.updateKey,
       hasGrid: (state) => state.bigScreen.hasGrid,
       zoom: (state) => state.bigScreen.zoom,
-      fitZoom: (state) => state.bigScreen.fitZoom
+      fitZoom: (state) => state.bigScreen.fitZoom,
+      iframeDialog: (state) => state.bigScreen.iframeDialog
     }),
     offset () {
       return {
@@ -250,7 +257,8 @@ export default {
       'changeChartKey',
       'changeZoom',
       'clearTimeline',
-      'saveTimeLine'
+      'saveTimeLine',
+      'changeIframeDialog'
     ]),
     // 添加资源弹窗初始化
     initDialog () {

@@ -57,7 +57,8 @@ export const defaultData = {
   // 缩放
   zoom: 100,
   // 自适应下的缩放比例
-  fitZoom: 100
+  fitZoom: 100,
+  iframeDialog: false
 }
 
 export default () => ({

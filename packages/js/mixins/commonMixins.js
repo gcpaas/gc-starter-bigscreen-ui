@@ -66,7 +66,7 @@ export default {
      * @returns {Promise<unknown>}
      */
     getCurrentOption (settingConfig) {
-      const pageCode = this.pageInfo.code
+      const pageCode = this.pageCode
       const chartCode = this.config.code
       const type = this.config.type
       const config = _.cloneDeep(settingConfig || this.config)

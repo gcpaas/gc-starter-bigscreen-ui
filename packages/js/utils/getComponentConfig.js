@@ -17,6 +17,19 @@ export default function getComponentConfig (type) {
         y: 0,
         type
       }
+    case 'linkChart':
+      return {
+        name: '超链接',
+        title: '超链接',
+        icon: Icon.getNameList()[15],
+        className:
+          'com.gccloud.bigscreen.core.module.chart.components.ScreenLinkChart',
+        w: 150,
+        h: 30,
+        x: 0,
+        y: 0,
+        type
+      }
     case 'horizontalLine':
       return {
         name: '水平线',

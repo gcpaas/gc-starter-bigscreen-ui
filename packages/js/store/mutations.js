@@ -19,6 +19,10 @@ export default {
   changeLayout (state, layout) {
     state.pageInfo.chartList = layout
   },
+  //
+  changeIframeDialog  (state, dialogVisible) {
+    state.iframeDialog = dialogVisible
+  },
   // 改变当前选择组件id
   changeActiveCode (state, code) {
     state.activeCode = code

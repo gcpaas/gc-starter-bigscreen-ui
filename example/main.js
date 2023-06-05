@@ -32,6 +32,7 @@ registerConfig(
       dataSetUrl: '/big-screen-dataSet',
       // 资源管理
       sourceUrl: '/big-screen-source',
+      // 组件库
       componentUrl: '/big-screen-components'
     },
     httpConfigs: {
