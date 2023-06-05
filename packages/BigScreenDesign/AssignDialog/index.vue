@@ -2,7 +2,7 @@
   <el-dialog
     title="设计分工"
     :visible.sync="dialogVisible"
-    width="80%"
+    width="65%"
     :modal="true"
     :modal-append-to-body="false"
     :appen-to-body="true"
@@ -114,7 +114,7 @@ export default {
     flex-direction: row;
     justify-content: space-evenly;
     &-item {
-      width: 27%;
+      width: 25%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -136,11 +136,12 @@ export default {
   }
 }
 .bottomContent {
-  min-height: 280px;
+  min-height: 250px;
   background-color: #3f3f3f;
 }
 
 /deep/ .el-dialog__body {
   padding: 0 !important;
+  max-height: 100vh !important;
 }
 </style>
