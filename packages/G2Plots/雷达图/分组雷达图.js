@@ -109,7 +109,7 @@ const setting = [
   },
   // 图例 legend
   {
-    label: '显示图例',
+    label: '显示',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
@@ -118,7 +118,7 @@ const setting = [
     groupName: 'legend'
   },
   {
-    label: '图例位置',
+    label: '位置',
     type: 'select', // 设置组件类型
     field: 'legendPosition', // 字段
     optionField: 'legendPosition', // 对应options中的字段

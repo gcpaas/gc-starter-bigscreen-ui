@@ -89,7 +89,7 @@ const setting = [
   },
   // 网格线 grid
   {
-    label: '网格线宽度',
+    label: '宽度',
     type: 'inputNumber',
     field: 'yAxis_grid_line_style_lineWidth',
     optionField: 'yAxis.grid.line.style.lineWidth',
@@ -98,7 +98,7 @@ const setting = [
     groupName: 'grid'
   },
   {
-    label: '网格线颜色',
+    label: '颜色',
     type: 'colorPicker',
     field: 'yAxis_grid_line_style_stroke',
     optionField: 'yAxis.grid.line.style.stroke',
@@ -108,7 +108,7 @@ const setting = [
   },
   // 图例 legend
   {
-    label: '显示图例',
+    label: '显示',
     type: 'switch', // 设置组件类型
     field: 'legendEnable', // 字段
     optionField: 'legendEnable', // 对应options中的字段
@@ -117,7 +117,7 @@ const setting = [
     groupName: 'legend'
   },
   {
-    label: '图例位置',
+    label: '位置',
     type: 'select', // 设置组件类型
     field: 'legendPosition', // 字段
     optionField: 'legendPosition', // 对应options中的字段
@@ -143,7 +143,7 @@ const setting = [
   },
   // X轴 xAxis
   {
-    label: 'x轴标题',
+    label: '标题',
     type: 'input',
     field: 'xAxis_title_text',
     optionField: 'xAxis.title.text',
@@ -152,7 +152,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标题位置',
+    label: '标题位置',
     type: 'select',
     field: 'xAxis_title_position',
     optionField: 'xAxis.title.position',
@@ -174,7 +174,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标题字体大小',
+    label: '标题字体大小',
     type: 'inputNumber',
     field: 'xAxis_title_style_fontSize',
     optionField: 'xAxis.title.style.fontSize',
@@ -183,7 +183,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标题颜色',
+    label: '标题颜色',
     type: 'colorPicker',
     field: 'xAxis_title_style_fill',
     optionField: 'xAxis.title.style.fill',
@@ -194,7 +194,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签大小',
+    label: '标签大小',
     type: 'inputNumber',
     field: 'xAxis_label_style_fontSize',
     optionField: 'xAxis.label.style.fontSize',
@@ -203,7 +203,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签颜色',
+    label: '标签颜色',
     type: 'colorPicker',
     field: 'xAxis_label_style_fill',
     optionField: 'xAxis.label.style.fill',
@@ -214,7 +214,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴线宽度',
+    label: '轴线宽度',
     type: 'inputNumber',
     field: 'xAxis_line_style_lineWidth',
     optionField: 'xAxis.line.style.lineWidth',
@@ -223,7 +223,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴线颜色',
+    label: '轴线颜色',
     type: 'colorPicker',
     field: 'xAxis_line_style_stroke',
     optionField: 'xAxis.line.style.stroke',
@@ -234,7 +234,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x刻度线宽度',
+    label: '刻度线宽度',
     type: 'inputNumber',
     field: 'xAxis_tickLine_style_lineWidth',
     optionField: 'xAxis.tickLine.style.lineWidth',
@@ -243,7 +243,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x刻度线颜色',
+    label: '刻度线颜色',
     type: 'colorPicker',
     field: 'xAxis_tickLine_style_stroke',
     optionField: 'xAxis.tickLine.style.stroke',
@@ -254,7 +254,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签过多时旋转',
+    label: '标签过多时旋转',
     type: 'switch',
     field: 'xAxis_label_autoRotate',
     optionField: 'xAxis.label.autoRotate',
@@ -263,7 +263,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签过多时隐藏',
+    label: '标签过多时隐藏',
     type: 'switch',
     field: 'xAxis_label_autoHide',
     optionField: 'xAxis.label.autoHide',
@@ -272,7 +272,7 @@ const setting = [
     groupName: 'xAxis'
   },
   {
-    label: 'x轴标签过长时省略',
+    label: '标签过长时省略',
     type: 'switch',
     field: 'xAxis_label_autoEllipsis',
     optionField: 'xAxis.label.autoEllipsis',
@@ -282,7 +282,7 @@ const setting = [
   },
   // Y轴 yAxis
   {
-    label: 'y轴标题',
+    label: '标题',
     type: 'input',
     field: 'yAxis_title_text',
     optionField: 'yAxis.title.text',
@@ -291,7 +291,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴标题位置',
+    label: '标题位置',
     type: 'select',
     field: 'yAxis_title_position',
     optionField: 'yAxis.title.position',
@@ -313,7 +313,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴标题字体大小',
+    label: '标题字体大小',
     type: 'inputNumber',
     field: 'yAxis_title_style_fontSize',
     optionField: 'yAxis.title.style.fontSize',
@@ -322,7 +322,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴标题颜色',
+    label: '标题颜色',
     type: 'colorPicker',
     field: 'yAxis_title_style_fill',
     optionField: 'yAxis.title.style.fill',
@@ -333,7 +333,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: '显示y轴标签',
+    label: '显示标签',
     type: 'switchNumber',
     field: 'yAxis_label_style_opacity',
     optionField: 'yAxis.label.style.opacity',
@@ -342,7 +342,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴标签字体大小',
+    label: '标签字体大小',
     type: 'inputNumber',
     field: 'yAxis_label_style_fontSize',
     optionField: 'yAxis.label.style.fontSize',
@@ -351,7 +351,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴标签字体颜色',
+    label: '标签字体颜色',
     type: 'colorPicker',
     field: 'yAxis_label_style_fill',
     optionField: 'yAxis.label.style.fill',
@@ -362,7 +362,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴线宽度',
+    label: '轴线宽度',
     type: 'inputNumber',
     field: 'yAxis_line_lineWidth',
     optionField: 'yAxis.line.style.lineWidth',
@@ -371,7 +371,7 @@ const setting = [
     groupName: 'yAxis'
   },
   {
-    label: 'y轴线颜色',
+    label: '轴线颜色',
     type: 'colorPicker',
     field: 'yAxis_line_stroke',
     optionField: 'yAxis.line.style.stroke',
