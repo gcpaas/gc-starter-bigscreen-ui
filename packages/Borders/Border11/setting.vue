@@ -15,6 +15,7 @@
         </el-form-item>
         <el-form-item label="标题宽度">
           <el-input-number
+            class="bs-el-input-number"
             v-model="config.customize.titleWidth"
             :max="8000"
             :min="50"

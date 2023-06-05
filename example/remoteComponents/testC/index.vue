@@ -1,31 +1,24 @@
 <template>
   <div class="test">
-    <el-descriptions title="用户信息">
-      <el-descriptions-item label="用户名">
-        {{ customize.username }}
-      </el-descriptions-item>
-      <el-descriptions-item label="手机号">
-        {{ customize.phone}}
-      </el-descriptions-item>
-      <el-descriptions-item label="居住地">
-        苏州市
-      </el-descriptions-item>
-      <el-descriptions-item label="备注">
-        <el-tag size="small">
-          学校
-        </el-tag>
-      </el-descriptions-item>
-      <el-descriptions-item label="联系地址">
-        江苏省苏州市吴中区吴中大道 1188 号
-      </el-descriptions-item>
-    </el-descriptions>
+    <h1>用户名: {{ customize.username }}</h1>
+    <br>
+    <div
+      v-for="(row, key) in optionData"
+      :key="key"
+      class="item"
+      @click="linkage(row)"
+    >
+      <span> {{ row[option.xField] }}</span>  -
+      <span> {{ row[option.yField] }}</span>
+    </div>
   </div>
 </template>
 <script>
 
 export default {
-  name: 'TestA',
+  name: 'TestC',
   components: {
+
   },
   props: {
     config: {
@@ -57,17 +50,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .test {
+  font-size: 20px;
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
   color: #fff;
-  font-size: 20px;
-  background: #fff;
 
   .item {
+    line-height: 50px;
     width: 100%;
     height: 50px;
-    line-height: 50px;
     text-align: center;
   }
 }

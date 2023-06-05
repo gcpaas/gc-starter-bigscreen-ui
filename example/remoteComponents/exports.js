@@ -3,7 +3,7 @@
  * @Date: 2023-06-02 10:18:46
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-06-05 09:13:48
+ * @LastEditTime: 2023-06-05 18:39:21
  */
 
 const files = require.context('./', true, /index.vue$/)
@@ -15,7 +15,7 @@ files.keys().forEach(key => {
   const config = require(`./${title}/config.js`).default
   remoteComponents.push({
     title: config.title || title,
-    vueFilePath: title,
+    vueSysComponentDirName: title,
     vueFile: files(key).default,
     ...config,
     img

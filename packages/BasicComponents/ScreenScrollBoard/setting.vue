@@ -3,24 +3,29 @@
     <el-form
       ref="form"
       :model="config"
-      label-width="90px"
-      label-position="left"
       class="setting-body"
+      label-position="left"
+      label-width="90px"
     >
-      <div class="lc-field-body">
-        <el-form
+      <el-form
           :model="config.customize"
-          label-position="left"
           class="setting-body"
+          label-position="left"
           label-width="90px"
         >
-          <el-form-item label="轮播表名称">
+        <SettingTitle>标题</SettingTitle>
+          <el-form-item class="lc-field-body" label="轮播表名称">
             <el-input
               v-model="config.title"
               clearable
             />
           </el-form-item>
+          <SettingTitle>位置</SettingTitle>
+        <div class="lc-field-body">
           <PosWhSetting :config="config" />
+        </div>
+        <SettingTitle>基础</SettingTitle>
+        <div class="lc-field-body">
           <el-form-item label="表头背景色">
             <ColorPicker
               v-model="config.customize.headerBGC"
@@ -45,8 +50,8 @@
           >
             <el-input
               v-model="config.customize.waitTime"
-              placeholder="请输入时间间隔"
               clearable
+              placeholder="请输入时间间隔"
             >
               <template slot="append">
                 ms
@@ -56,8 +61,8 @@
           <el-form-item label="显示行数">
             <el-input-number
               v-model="config.customize.rowNum"
-              class="bs-el-input-number"
               :precision="0"
+              class="bs-el-input-number"
               label="请输入行数"
             />
           </el-form-item>
@@ -67,8 +72,8 @@
           >
             <el-input
               v-model="config.customize.headerHeight"
-              placeholder="请输入表头高度"
               clearable
+              placeholder="请输入表头高度"
             />
           </el-form-item>
           <el-form-item
@@ -77,8 +82,8 @@
           >
             <el-input
               v-model="config.customize.indexHeader"
-              placeholder="请输入行号表头"
               clearable
+              placeholder="请输入行号表头"
             />
           </el-form-item>
           <el-form-item label="是否显示行号">
@@ -95,19 +100,22 @@
               :inactive-value="false"
             />
           </el-form-item>
+        </div>
+
         </el-form>
-      </div>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
     ColorPicker,
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   data () {
     return {
@@ -145,6 +153,6 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
-  padding: 12px;
+  padding: 12px 16px;
 }
 </style>

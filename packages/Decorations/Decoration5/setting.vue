@@ -3,24 +3,29 @@
     <el-form
       ref="form"
       :model="config"
-      label-width="90px"
-      label-position="left"
       class="setting-body"
+      label-position="left"
+      label-width="90px"
     >
-      <div class="lc-field-body">
-        <el-form
-          :model="config.customize"
-          label-position="left"
-          class="setting-body"
-          label-width="90px"
-        >
-          <el-form-item label="装饰名称">
-            <el-input
-              v-model="config.title"
-              clearable
-            />
-          </el-form-item>
+      <el-form
+      :model="config.customize"
+      class="setting-body"
+      label-position="left"
+      label-width="90px"
+    >
+      <SettingTitle>标题</SettingTitle>
+      <el-form-item class="lc-field-body" label="装饰名称">
+        <el-input
+          v-model="config.title"
+          clearable
+        />
+      </el-form-item>
+      <SettingTitle>位置</SettingTitle>
+        <div class="lc-field-body">
           <PosWhSetting :config="config" />
+        </div>
+      <SettingTitle>基础</SettingTitle>
+        <div class="lc-field-body">
           <el-form-item label="装饰主颜色">
             <ColorPicker
               v-model="config.customize.decorationColor1"
@@ -36,24 +41,27 @@
           <el-form-item label="单次动画时长">
             <el-input-number
               v-model="config.customize.dur"
-              class="bs-el-input-number"
               :precision="0"
+              class="bs-el-input-number"
               label="请输入时长(s)"
             />
           </el-form-item>
-        </el-form>
-      </div>
+        </div>
+
+    </el-form>
     </el-form>
   </div>
 </template>
 <script>
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
+import SettingTitle from 'packages/SettingTitle/index.vue'
 export default {
   name: 'BarSetting',
   components: {
     ColorPicker,
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   data () {
     return {
@@ -91,6 +99,6 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
-  padding: 12px;
+  padding: 12px 16px;
 }
 </style>

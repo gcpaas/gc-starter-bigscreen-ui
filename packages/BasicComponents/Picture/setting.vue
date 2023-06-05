@@ -12,53 +12,60 @@
       :model="config"
       :rules="rules"
     >
+      <SettingTitle>标题</SettingTitle>
       <div class="lc-field-body">
-        <div class="">
-          <el-form-item
-            label="标题"
-            label-width="100px"
-            prop="title"
+        <el-form-item
+
+          label="标题"
+          label-width="100px"
+          prop="title"
+        >
+          <el-input
+            v-model="config.title"
+            placeholder="请输入标题"
+            clearable
+          />
+        </el-form-item>
+      </div>
+      <SettingTitle>位置</SettingTitle>
+      <div class="lc-field-body">
+        <PosWhSetting :config="config" />
+      </div>
+      <SettingTitle>基础</SettingTitle>
+      <div class="lc-field-body">
+        <el-form-item
+          label="链接"
+          label-width="100px"
+          prop="customize.url"
+        >
+          <el-upload
+            class="bs-el-upload"
+            :class="{ hide: fileList.length >= 1 }"
+            :action="upLoadUrl"
+            :data="fileUploadParam"
+            :headers="headers"
+            :accept="accept"
+            :file-list="fileList"
+            :auto-upload="true"
+            :limit="1"
+            list-type="picture-card"
+            :on-success="handleUploadSuccess"
+            :before-upload="beforeUpload"
           >
-            <el-input
-              v-model="config.title"
-              placeholder="请输入标题"
-              clearable
+            <i
+              slot="default"
+              class="el-icon-plus"
             />
-          </el-form-item>
-          <PosWhSetting :config="config" />
-          <el-form-item
-            label="链接"
-            label-width="100px"
-            prop="customize.url"
-          >
-            <el-upload
-              class="bs-el-upload"
-              :class="{ hide: fileList.length >= 1 }"
-              :action="upLoadUrl"
-              :data="fileUploadParam"
-              :headers="headers"
-              :accept="accept"
-              :file-list="fileList"
-              :auto-upload="true"
-              :limit="1"
-              list-type="picture-card"
-              :on-success="handleUploadSuccess"
-              :before-upload="beforeUpload"
+            <div
+              slot="file"
+              slot-scope="{ file }"
             >
-              <i
-                slot="default"
-                class="el-icon-plus"
-              />
-              <div
-                slot="file"
-                slot-scope="{ file }"
+              <img
+                class="el-upload-list__item-thumbnail"
+                :src="file.url"
+                alt=""
               >
-                <img
-                  class="el-upload-list__item-thumbnail"
-                  :src="file.url"
-                  alt=""
-                >
-                <span class="el-upload-list__item-actions">
+              <span class="el-upload-list__item-actions">
                   <span
                     class="el-upload-list__item-delete"
                     @click="handleRemove(file)"
@@ -66,51 +73,52 @@
                     <i class="el-icon-delete" />
                   </span>
                 </span>
-              </div>
-              <el-input
-                slot="tip"
-                v-model="config.customize.url"
-                class="upload-tip"
-                placeholder="或输入链接地址"
-                clearable
-                @change="handleUrlChange"
-              />
-            </el-upload>
-          </el-form-item>
-          <el-form-item
-            label="不透明度"
-            label-width="100px"
-          >
-            <el-slider
-              v-model="config.customize.opacity"
-              class="bs-slider bs-el-input-number"
-              :min="0"
-              :max="100"
-              show-input
+            </div>
+            <el-input
+              slot="tip"
+              v-model="config.customize.url"
+              class="upload-tip"
+              placeholder="或输入链接地址"
+              clearable
+              @change="handleUrlChange"
             />
-          </el-form-item>
-          <el-form-item
-            label="圆角"
-            label-width="100px"
-          >
-            <el-input-number
-              v-model="config.customize.radius"
-              class="bs-el-input-number"
-              placeholder="请输入圆角大小"
-              :min="0"
-            />
-          </el-form-item>
-        </div>
+          </el-upload>
+        </el-form-item>
+        <el-form-item
+          label="不透明度"
+          label-width="100px"
+        >
+          <el-slider
+            v-model="config.customize.opacity"
+            class="bs-slider bs-el-input-number"
+            :min="0"
+            :max="100"
+            show-input
+          />
+        </el-form-item>
+        <el-form-item
+          label="圆角"
+          label-width="100px"
+        >
+          <el-input-number
+            v-model="config.customize.radius"
+            class="bs-el-input-number"
+            placeholder="请输入圆角大小"
+            :min="0"
+          />
+        </el-form-item>
       </div>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'PicSetting',
   components: {
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   data () {
     return {
@@ -228,5 +236,8 @@ export default {
   /deep/ .el-upload--picture-card {
     margin-bottom: 12px;
   }
+}
+.lc-field-body {
+  padding: 12px 16px;
 }
 </style>

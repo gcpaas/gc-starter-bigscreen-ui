@@ -38,3 +38,18 @@ export function getChatInfo (params) {
 export function getUpdateChartInfo (params) {
   return post('/bigScreen/chart/data/chart', params)
 }
+
+// 业务组件列表
+export function getBizComponentPage (params) {
+  return get('/bigScreen/bizComponent/page', params)
+}
+
+// 根据code获得业务组件的信息
+export function getBizComponentInfo (code) {
+  return get(`/bigScreen/bizComponent/info/${code}`)
+}
+
+// 更新业务组件
+export function updateBizComponent (params) {
+  return post('/bigScreen/bizComponent/update', params)
+}

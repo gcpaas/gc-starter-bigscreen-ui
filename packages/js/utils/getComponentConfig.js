@@ -196,7 +196,7 @@ export default function getComponentConfig (type) {
         title: '按钮',
         icon: Icon.getNameList()[14],
         className: 'com.gccloud.bigscreen.core.module.chart.components.ScreenButtonChart',
-        w: 64,
+        w: 80,
         h: 40,
         x: 0,
         y: 0,

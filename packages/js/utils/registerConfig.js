@@ -99,6 +99,13 @@ function registerRouters (config, router) {
       name: 'Preview',
       component: () =>
         require.ensure([], () => require('packages/BigScreenRun'))
+    },
+    {
+      path: config?.routers?.bizComponentDesignUrl || '/big-screen-biz-component-design',
+      component: () => import('packages/BizComponent'),
+      meta: {
+        title: '业务组件'
+      }
     }
   ]
   // 如果router有addRoutes方法

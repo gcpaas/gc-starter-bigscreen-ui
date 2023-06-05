@@ -5,7 +5,7 @@
         {{ customize.username }}
       </el-descriptions-item>
       <el-descriptions-item label="手机号">
-        18100000000
+        {{ customize.phone }}
       </el-descriptions-item>
       <el-descriptions-item label="居住地">
         苏州市
@@ -57,12 +57,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .test {
-  width: 100%;
   height: 100%;
   position: absolute;
   color: #fff;
   font-size: 20px;
   background: #fff;
+  padding: 16px;
 
   .item {
     width: 100%;

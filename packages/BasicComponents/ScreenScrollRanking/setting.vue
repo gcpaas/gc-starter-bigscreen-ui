@@ -7,28 +7,35 @@
       label-position="left"
       class="setting-body"
     >
-      <div class="lc-field-body">
-        <el-form
+      <el-form
           :model="config.customize"
           label-position="left"
           class="setting-body"
           label-width="100px"
         >
+        <SettingTitle>标题</SettingTitle>
+        <div class="lc-field-body">
           <el-form-item label="排名轮播表名称">
             <el-input
               v-model="config.title"
               clearable
             />
           </el-form-item>
+        </div>
+        <SettingTitle>位置</SettingTitle>
+        <div class="lc-field-body">
           <PosWhSetting :config="config" />
+        </div>
+        <SettingTitle>基础</SettingTitle>
+        <div class="lc-field-body">
           <el-form-item
             label="轮播时间间隔"
             label-width="100px"
           >
             <el-input
               v-model="config.customize.waitTime"
-              placeholder="请输入时间间隔"
               clearable
+              placeholder="请输入时间间隔"
             >
               <template slot="append">
                 ms
@@ -38,8 +45,8 @@
           <el-form-item label="显示行数">
             <el-input-number
               v-model="config.customize.rowNum"
-              class="bs-el-input-number"
               :precision="0"
+              class="bs-el-input-number"
               label="请输入行数"
             />
           </el-form-item>
@@ -56,17 +63,20 @@
               :inactive-value="false"
             />
           </el-form-item>
+        </div>
+
         </el-form>
-      </div>
     </el-form>
   </div>
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import PosWhSetting from 'packages/BigScreenDesign/RightSetting/PosWhSetting.vue'
 export default {
   name: 'BarSetting',
   components: {
-    PosWhSetting
+    PosWhSetting,
+    SettingTitle
   },
   data () {
     return {
@@ -104,6 +114,6 @@ export default {
 
 <style lang="scss" scoped>
 .lc-field-body {
-  padding: 12px;
+  padding: 12px 16px;
 }
 </style>
