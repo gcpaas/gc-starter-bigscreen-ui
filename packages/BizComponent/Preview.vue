@@ -13,7 +13,8 @@
 <script>
 import remoteVueLoader from 'remote-vue2-loader'
 import _ from 'lodash'
-
+import { getBizComponentInfo } from 'packages/js/api/bigScreenApi'
+import { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
 export default {
   name: 'BsComponentPreview',
   props: {
@@ -63,8 +64,33 @@ export default {
     }
   },
   created () {
+    this.viewComponent()
   },
   methods: {
+    viewComponent () {
+      // 如果有编码，则获取组件信息
+      if (this.$route.query?.code) {
+        getBizComponentInfo(this.$route.query?.code).then(data => {
+          this.vueContent = data.vueContent
+          this.settingContent = data.settingContent
+          this.buildOption(this.config)
+          this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(this.vueContent))
+        }).finally(() => {
+          this.loading = false
+        })
+      }
+
+      // 如果有组件的dirName，则获取系统组件信息
+      if (this.$route.query?.dirName) {
+        const dirName = this.$route.query?.dirName
+        const remoteComponentList = getRemoteComponents()
+        const config = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === dirName)
+        this.config.option = config?.option
+        const vueFile = config.customize?.vueFile
+        this.remoteComponent = vueFile
+        this.loading = false
+      }
+    },
     // 尝试渲染远程文件或远程字符串
     getRemoteComponent () {
       this.loading = true
