@@ -5,7 +5,6 @@
 const path = require('path')
 const { ProvidePlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -62,10 +61,6 @@ module.exports = {
         jQuery: 'jquery',
         $: 'jquery',
         'window.jQuery': 'jquery'
-      }),
-      new MonacoWebpackPlugin({
-        // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-        languages: ['javascript', 'css', 'html', 'typescript', 'json']
       })
     ]
   },
