@@ -17,7 +17,7 @@
         />
       </el-select>
       <el-input
-        v-model="searchKey"
+        v-model="name"
         class="bs-el-input"
         :placeholder="type === 'bigScreenCatalog' ?'请输入大屏名称':'请输入组件名称'"
         prefix-icon="el-icon-search"
@@ -196,6 +196,7 @@ export default {
   components: { EditForm, CatalogEditForm },
   data () {
     return {
+      name: '',
       catalogVisible: false,
       templateLoading: false,
       searchKey: '',
@@ -284,6 +285,7 @@ export default {
           current: this.current,
           size: this.size,
           searchKey: this.searchKey,
+          name: this.name,
           type: this.catalogCode || null
         })
           .then((data) => {
@@ -305,7 +307,7 @@ export default {
       window.open(href, '_blank')
     },
     design (screen) {
-      const path = this.type === 'component' ? (window.BS_CONFIG?.routers?.designUrl || '/big-screen/design') : 'big-screen-biz-component-design'
+      const path = this.catalogInfo === 'component' ? (window.BS_CONFIG?.routers?.designUrl || '/big-screen/design') : 'big-screen-biz-component-design'
       const { href } = this.$router.resolve({
         path,
         query: {
