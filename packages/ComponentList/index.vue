@@ -49,6 +49,7 @@
     >
       <!-- 第一个是新增大屏卡片 -->
       <div
+        v-if="catalogInfo !== 'system'"
         class="big-screen-card-wrap"
         :style="{
           width: gridComputed ? 'auto' : '290px'

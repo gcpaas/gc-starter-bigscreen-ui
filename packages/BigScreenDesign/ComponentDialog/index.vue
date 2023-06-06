@@ -132,7 +132,7 @@
           <div class="big-screen-list-wrap">
             <div class="top-search-wrap">
               <el-input
-                v-model="searchKey"
+                v-model="name"
                 class="bs-el-input"
                 placeholder="请输入组件名称"
                 prefix-icon="el-icon-search"
@@ -335,11 +335,12 @@ export default {
     return {
       dialogVisible: false,
       loading: false,
-      options: [],
+      options: [], // 分组列表
       code: '',
       focus: -1,
       list: [],
       searchKey: '',
+      name: '', // 业务组件搜索关键字
       activeName: 'combination',
       remoteComponentlist: [],
       // 业务组件列表
@@ -355,6 +356,11 @@ export default {
     },
     bizFridComputed () {
       return this.bizComponentList.length > 3
+    }
+  },
+  watch: {
+    activeName () {
+      this.getCatalogList()
     }
   },
   mounted () {
@@ -418,7 +424,8 @@ export default {
         parentCode: this.code || null,
         current: this.current,
         size: this.size,
-        searchKey: this.searchKey
+        searchKey: this.searchKey,
+        name: this.name
       }).then((data) => {
         this.bizComponentList = data.list
         this.totalCount = data.totalCount
@@ -427,7 +434,8 @@ export default {
     },
     // 获取目录的列表
     getCatalogList () {
-      get('/bigScreen/type/list/componentCatalog')
+      const url = this.activeName === 'combination' ? '/bigScreen/type/list/componentCatalog' : '/bigScreen/type/list/bizComponentCatalog'
+      get(url)
         .then((data) => {
           this.options = data
         })
