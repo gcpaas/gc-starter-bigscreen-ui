@@ -14,27 +14,29 @@
         label-position="right"
         label-width="100px"
       >
-        <el-input
-          v-model="searchKey"
-          class="bs-el-input"
-          placeholder="'请输入分组名称'"
-          prefix-icon="el-icon-search"
-          clearable
-          @clear="reSearch"
-          @keyup.enter.native="reSearch"
-        />
-        <el-button
-          type="primary"
-          @click="reSearch"
-        >
-          搜索
-        </el-button>
-        <el-button
-          type="primary"
-          @click="addCatalog"
-        >
-          新增
-        </el-button>
+        <div class="top-search-wrap">
+          <el-input
+            v-model="searchKey"
+            class="bs-el-input"
+            placeholder="'请输入分组名称'"
+            prefix-icon="el-icon-search"
+            clearable
+            @clear="reSearch"
+            @keyup.enter.native="reSearch"
+          />
+          <el-button
+            type="primary"
+            @click="reSearch"
+          >
+            搜索
+          </el-button>
+          <el-button
+            type="primary"
+            @click="addCatalog"
+          >
+            新增
+          </el-button>
+        </div>
         <el-table
           :key="randomKey"
           class="bs-el-table"
@@ -232,7 +234,7 @@ export default {
     },
     // 删除目录
     catalogDel (catalog) {
-      this.$confirm('确定删除该目录？', '提示', {
+      this.$confirm('确定删除该分组？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -252,7 +254,7 @@ export default {
         })
       }).catch()
     },
-    // 关闭目录弹窗
+    // 关闭分组弹窗
     handleClose () {
       this.catalogVisible = false
       this.$refs.form.clearValidate()
@@ -269,6 +271,20 @@ export default {
     margin-right: 20px;
     /deep/.el-input__inner {
       /*background-color: #232832 !important;*/
+    }
+  }
+  .top-search-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+
+    .el-input {
+      width: 200px;
+      margin-right: 20px;
+      /deep/.el-input__inner {
+        background-color: #151A26 !important;
+      }
     }
   }
 }

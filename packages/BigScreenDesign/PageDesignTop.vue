@@ -177,7 +177,8 @@ export default {
     ...mapState({
       pageInfo: (state) => state.bigScreen.pageInfo,
       timelineStore: (state) => state.bigScreen.timelineStore,
-      currentTimeLine: (state) => state.bigScreen.currentTimeLine
+      currentTimeLine: (state) => state.bigScreen.currentTimeLine,
+      activeCodes: state => state.bigScreen.activeCodes
     }),
     pageCode () {
       return this.$route.query.code || this.code
@@ -208,50 +209,57 @@ export default {
     }),
     setAlign (command) {
       const pageInfo = _.cloneDeep(this.pageInfo)
+      debugger
+      const activeChartList = pageInfo.chartList.filter((chart) => {
+        return this.activeCodes.some(code => (code === chart.code))
+      })
       const w = pageInfo.pageConfig.w
       const h = pageInfo.pageConfig.h
+      let arr = []
       switch (command) {
         case 'left':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.x = 0
           })
           break
         case 'center':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.x = (w - chart.w) / 2
           })
           break
         case 'right':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.x = w - chart.w
           })
           break
         case 'top':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.y = 0
           })
           break
         case 'middle':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.y = (h - chart.h) / 2
           })
           break
         case 'bottom':
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.y = h - chart.h
           })
           break
         case 'levelAround':
           // eslint-disable-next-line no-case-declarations
           let allW = 0
-          pageInfo.chartList.forEach((chart) => {
+          // 先让数组根据x的属性进行排序
+          arr = activeChartList.sort(this.compare('x'))
+          arr.forEach((chart) => {
             allW = allW + chart.w
           })
           // eslint-disable-next-line no-case-declarations
-          const padding = (w - allW) / (pageInfo.chartList.length + 1)
+          const padding = (w - allW) / (activeChartList.length + 1)
           // eslint-disable-next-line no-case-declarations
           let usedW = 0
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.x = usedW + padding
             usedW = chart.x + chart.w
           })
@@ -259,20 +267,31 @@ export default {
         case 'verticalAround':
           // eslint-disable-next-line no-case-declarations
           let allH = 0
-          pageInfo.chartList.forEach((chart) => {
+          // 先让数组根据y的属性进行排序
+          arr = activeChartList.sort(this.compare('y'))
+          arr.forEach((chart) => {
             allH = allH + chart.h
           })
           // eslint-disable-next-line no-case-declarations
-          const paddingBottom = (h - allH) / (pageInfo.chartList.length + 1)
+          const paddingBottom = (h - allH) / (activeChartList.length + 1)
           // eslint-disable-next-line no-case-declarations
           let usedH = 0
-          pageInfo.chartList.forEach((chart) => {
+          activeChartList.forEach((chart) => {
             chart.y = usedH + paddingBottom
             usedH = chart.y + chart.h
           })
           break
       }
+      pageInfo.chartList = [...pageInfo.chartList, ...activeChartList]
+      pageInfo.chartList = _.uniqBy(pageInfo.chartList, 'code')
       this.changePageInfo(pageInfo)
+    },
+    compare (property) {
+      return function (obj1, obj2) {
+        const value1 = obj1[property]
+        const value2 = obj2[property]
+        return value1 - value2 // 升序
+      }
     },
     backManagement () {
       this.$router.push({
