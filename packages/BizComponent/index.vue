@@ -132,6 +132,7 @@ export default {
       if (code) {
         getBizComponentInfo(code).then(data => {
           this.form = {
+            ...data,
             name: data.name,
             coverPicture: data.coverPicture,
             settingContent: data.settingContent || defaultSettingContent,
