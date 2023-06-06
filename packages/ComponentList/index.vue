@@ -419,6 +419,13 @@ export default {
         background-color: #232832 !important;
       }
     }
+
+    .el-select {
+      margin-right: 20px;
+      /deep/.el-input__inner {
+        background-color: #232832 !important;
+      }
+    }
   }
 
   .list-wrap {
