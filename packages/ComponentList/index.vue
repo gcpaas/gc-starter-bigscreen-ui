@@ -129,7 +129,7 @@
                 加载中···
               </div>
               <div slot="error" class="image-slot" style="font-size: 20px">
-                {{ catalogInfo !== 'system'? screen.name : screen.title }}
+                <div class="error-img-text">{{ catalogInfo !== 'system'? screen.name : screen.title }}</div>
               </div>
             </el-image>
           </div>
@@ -614,6 +614,13 @@ export default {
     width: 100%;
     margin-top: 20px;
     padding: 0 20px;
+  }
+  .error-img-text{
+    overflow:hidden;
+    padding:0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow:ellipsis;
   }
 }
 .bs-pagination {

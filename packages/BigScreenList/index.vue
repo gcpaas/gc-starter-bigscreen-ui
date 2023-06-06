@@ -103,7 +103,7 @@
                 加载中···
               </div>
               <div slot="error" class="image-slot" style="font-size: 20px">
-                {{ screen.name }}
+                <div class="error-img-text"> {{ screen.name }}</div>
               </div>
             </el-image>
           </div>
@@ -495,6 +495,13 @@ export default {
         align-items: center;
         justify-content: center;
       }
+    }
+    .error-img-text{
+      overflow:hidden;
+      padding:0 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow:ellipsis;
     }
   }
 
