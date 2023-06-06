@@ -168,7 +168,7 @@
               </el-button>
             </div>
             <div
-              v-if="list.length !== 0"
+              v-if="bizComponentList.length !== 0"
               v-loading="loading"
               class="list-wrap bs-scrollbar"
               element-loading-text="加载中"
