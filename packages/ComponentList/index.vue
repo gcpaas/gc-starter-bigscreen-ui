@@ -299,7 +299,9 @@ export default {
     },
     preview (screen) {
       const { href } = this.$router.resolve({
-        path: window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview', // 这里写的是要跳转的路由地址
+        path: this.catalogInfo === 'component'
+          ? (window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview')
+          : (window.BS_CONFIG?.routers?.bizComponentPreviewUrl || 'big-screen-biz-component-preview'), // 这里写的是要跳转的路由地址
         query: {
           code: screen.code
         }
@@ -307,7 +309,7 @@ export default {
       window.open(href, '_blank')
     },
     design (screen) {
-      const path = this.catalogInfo === 'component' ? (window.BS_CONFIG?.routers?.designUrl || '/big-screen/design') : 'big-screen-biz-component-design'
+      const path = this.catalogInfo === 'component' ? (window.BS_CONFIG?.routers?.designUrl || '/big-screen/design') : (window.BS_CONFIG?.routers?.bizComponentDesignUrl || 'big-screen-biz-component-design')
       const { href } = this.$router.resolve({
         path,
         query: {

@@ -106,6 +106,13 @@ function registerRouters (config, router) {
       meta: {
         title: '业务组件'
       }
+    },
+    {
+      path: config?.routers?.bizComponentPreviewUrl || '/big-screen-biz-component-preview',
+      component: () => import('packages/BizComponent/Preview.vue'),
+      meta: {
+        title: '业务组件预览'
+      }
     }
   ]
   // 如果router有addRoutes方法
