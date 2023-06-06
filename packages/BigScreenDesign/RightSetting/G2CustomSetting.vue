@@ -111,6 +111,8 @@
                   v-model="setting.value"
                   class="bs-el-input-number"
                   :step="setting.step || 1"
+                  :min="setting.min || 0"
+                  :max="setting.max || 100000"
                 />
                 <el-radio-group
                   v-else-if="setting.type === 'radio'"
