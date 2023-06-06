@@ -1,6 +1,6 @@
 <template>
   <div class="big-screen-list-wrap">
-    <div class="top-search-wrap">
+    <div class="top-search-wrap" v-if="catalogInfo !== 'system'">
       <el-select
         v-model="catalogCode"
         class="bs-el-select"
@@ -85,24 +85,28 @@
                   <span>预览</span>
                 </div>
                 <div
+                  v-if="catalogInfo !== 'system'"
                   class="circle"
                   @click="design(screen)"
                 >
                   <span>设计</span>
                 </div>
                 <div
+                  v-if="catalogInfo !== 'system'"
                   class="circle"
                   @click="edit(screen)"
                 >
                   <span>编辑</span>
                 </div>
                 <div
+                  v-if="catalogInfo !== 'system'"
                   class="circle"
                   @click="copy(screen)"
                 >
                   <span>复制</span>
                 </div>
                 <div
+                  v-if="catalogInfo !== 'system'"
                   class="circle"
                   @click="del(screen)"
                 >
@@ -113,7 +117,7 @@
           </div>
           <div class="big-screen-card-img">
             <el-image
-              :src="screen.coverPicture"
+              :src="catalogInfo !== 'system'?screen.coverPicture:screen.img"
               fit="fill"
               style="width: 100%; height: 100%"
             >
@@ -128,13 +132,10 @@
           <div class="big-screen-bottom">
             <div
               class="left-bigscreen-title"
-              :title="screen.name"
+              :title="catalogInfo !== 'system'? screen.name : screen.title"
             >
-              {{ screen.name }}
+              {{ catalogInfo !== 'system'? screen.name : screen.title }}
             </div>
-            <!--            <div class="right-bigscreen-time-title">-->
-            <!--              {{ screen.updateDate || '-' }}-->
-            <!--            </div>-->
           </div>
         </div>
       </div>
@@ -163,11 +164,13 @@
     </div>
     <!-- 新增或编辑弹窗 -->
     <EditForm
+      v-if="catalogInfo !== 'system'"
       ref="EditForm"
       :type="catalogInfo"
       @refreshData="reSearch"
     />
     <CatalogEditForm
+      v-if="catalogInfo !== 'system'"
       ref="CatalogEditForm"
       :catalog-type="catalogType"
       :catalog-list="catalogList"
@@ -180,6 +183,7 @@ import { get, post } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import EditForm from './EditForm.vue'
 import CatalogEditForm from './CatalogEditForm'
+import { getRemoteComponents, getRemoteComponentConfig } from 'packages/RemoteComponents/remoteComponentsList'
 export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
@@ -221,18 +225,25 @@ export default {
   },
   watch: {
     catalogInfo () {
-      this.getCatalogList()
-      this.reSearch()
+      this.init()
     },
     catalogCode (value) {
       this.reSearch()
     }
   },
   mounted () {
-    this.getDataList()
-    this.getCatalogList()
+    this.init()
   },
   methods: {
+    init () {
+      if (this.catalogInfo !== 'system') {
+        this.getDataList()
+        this.getCatalogList()
+      } else {
+        this.list = []
+        this.list = getRemoteComponents()
+      }
+    },
     updateCatalogList (list) {
       this.catalogList = list
     },
@@ -287,13 +298,23 @@ export default {
       }
     },
     preview (screen) {
-      const { href } = this.$router.resolve({
-        path: this.catalogInfo === 'component'
-          ? (window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview')
-          : (window.BS_CONFIG?.routers?.bizComponentPreviewUrl || 'big-screen-biz-component-preview'), // 这里写的是要跳转的路由地址
-        query: {
-          code: screen.code
+      let path = ''
+      let query = {
+        code: screen.code
+      }
+      if (this.catalogInfo === 'component') {
+        path = (window.BS_CONFIG?.routers?.previewUrl || '/big-screen/preview')
+      } else {
+        path = (window.BS_CONFIG?.routers?.bizComponentPreviewUrl || 'big-screen-biz-component-preview')
+      }
+      if (this.catalogInfo === 'system') {
+        query = {
+          dirName: screen.customize.vueSysComponentDirName
         }
+      }
+      const { href } = this.$router.resolve({
+        path, // 这里写的是要跳转的路由地址
+        query
       })
       window.open(href, '_blank')
     },
