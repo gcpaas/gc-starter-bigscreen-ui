@@ -128,6 +128,9 @@
               >
                 加载中···
               </div>
+              <div slot="error" class="image-slot" style="font-size: 20px">
+                {{ catalogInfo !== 'system'? screen.name : screen.title }}
+              </div>
             </el-image>
           </div>
           <div class="big-screen-bottom">

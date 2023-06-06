@@ -102,6 +102,9 @@
               >
                 加载中···
               </div>
+              <div slot="error" class="image-slot" style="font-size: 20px">
+                {{ screen.name }}
+              </div>
             </el-image>
           </div>
           <div class="big-screen-bottom">
