@@ -241,12 +241,14 @@ export default {
             this.$set(this.dataForm, 'code', resp.code)
             this.$set(this.dataForm, 'orderNum', nodeData.orderNum)
             this.$set(this.dataForm, 'type', resp.type)
+            this.$set(this.dataForm, 'id', resp.id)
           })
         } else {
           this.$set(this.dataForm, 'name', '')
           this.$set(this.dataForm, 'code', '')
           this.$set(this.dataForm, 'type', parentCode)
           this.$set(this.dataForm, 'orderNum', 0)
+          this.$set(this.dataForm, 'id', '')
         }
       })
     },
@@ -323,6 +325,7 @@ export default {
         console.log(this.dataForm.parentCode)
         const form = {
           className: 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO',
+          id: this.dataForm.id,
           code: this.dataForm.code,
           name: this.dataForm.name,
           type: this.dataForm.type,
