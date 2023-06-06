@@ -209,7 +209,6 @@ export default {
     }),
     setAlign (command) {
       const pageInfo = _.cloneDeep(this.pageInfo)
-      debugger
       const activeChartList = pageInfo.chartList.filter((chart) => {
         return this.activeCodes.some(code => (code === chart.code))
       })

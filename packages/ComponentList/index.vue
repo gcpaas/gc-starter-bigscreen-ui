@@ -1,7 +1,8 @@
 <template>
   <div class="big-screen-list-wrap">
-    <div class="top-search-wrap" v-if="catalogInfo !== 'system'">
+    <div class="top-search-wrap">
       <el-select
+        v-if="catalogInfo !== 'system'"
         v-model="catalogCode"
         class="bs-el-select"
         popper-class="bs-el-select"
@@ -32,6 +33,7 @@
         搜索
       </el-button>
       <el-button
+        v-if="catalogInfo !== 'system'"
         type="primary"
         @click="catalogManage"
       >
@@ -128,8 +130,14 @@
               >
                 加载中···
               </div>
-              <div slot="error" class="image-slot" style="font-size: 20px">
-                <div class="error-img-text">{{ catalogInfo !== 'system'? screen.name : screen.title }}</div>
+              <div
+                slot="error"
+                class="image-slot"
+                style="font-size: 20px"
+              >
+                <div class="error-img-text">
+                  {{ catalogInfo !== 'system'? screen.name : screen.title }}
+                </div>
               </div>
             </el-image>
           </div>
@@ -145,7 +153,10 @@
       </div>
     </div>
 
-    <div class="footer-pagination-wrap">
+    <div
+      v-if="catalogInfo !== 'system'"
+      class="footer-pagination-wrap"
+    >
       <!-- <div class="footer-pagination-wrap-text">
         总共 {{ totalCount }} 个项目
       </div> -->
@@ -177,7 +188,6 @@
       v-if="catalogInfo !== 'system'"
       ref="CatalogEditForm"
       :catalog-type="catalogType"
-      :catalog-list="catalogList"
       @updateCatalogList="updateCatalogList"
     />
   </div>
@@ -229,6 +239,7 @@ export default {
   },
   watch: {
     catalogInfo () {
+      this.reset()
       this.init()
     },
     catalogCode (value) {
@@ -239,6 +250,9 @@ export default {
     this.init()
   },
   methods: {
+    reset () {
+      this.name = ''
+    },
     init () {
       if (this.catalogInfo !== 'system') {
         this.getDataList()
@@ -252,8 +266,13 @@ export default {
       this.catalogList = list
     },
     reSearch () {
-      this.current = 1
-      this.getDataList()
+      if (this.catalogInfo !== 'system') {
+        this.current = 1
+        this.getDataList()
+      } else {
+        const arr = getRemoteComponents()
+        this.list = arr?.filter((item) => item.title.indexOf(this.name) !== -1)
+      }
     },
     // 分组管理
     catalogManage () {
