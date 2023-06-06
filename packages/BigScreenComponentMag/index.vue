@@ -1,12 +1,10 @@
 <template>
   <div class="bs-manage-main-wrap">
     <side-menu
-      :type="type"
       @getPageInfo="getPageInfo"
     />
     <menu-content
       :catalog-info="catalogInfo"
-      :type="type"
     />
   </div>
 </template>
@@ -16,15 +14,11 @@ import MenuContent from './MenuContent'
 export default {
   name: '',
   props: {
-    type: {
-      type: String,
-      default: 'bigScreenCatalog'
-    }
   },
   components: { SideMenu, MenuContent },
   data () {
     return {
-      catalogInfo: 'design'
+      catalogInfo: 'component'
     }
   },
   mounted () {},
