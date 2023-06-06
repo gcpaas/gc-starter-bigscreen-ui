@@ -5,19 +5,13 @@
 
 // vue 组件片段
 export const defaultVueContent = `
+
 <!-- 这是一个代码案例 -->
 <template>
-  <div class="test">
-    <el-descriptions title="用户信息">
-      <el-descriptions-item label="用户名">
-        {{ customize.username }}
-      </el-descriptions-item>
-      <el-descriptions-item label="手机号">
-        {{ customize.phone }}
-      </el-descriptions-item>
-    </el-descriptions>
-    <el-button @click="add">点击按扭 + 1</el-button>
-    <p>{{ num }}</p>
+  <div class="div-test-container" @click="testClick">
+    <p>点击测试下点击事件</p>
+    <br />
+    {{ customize.text }}
   </div>
 </template>
 <script>
@@ -35,7 +29,6 @@ export default {
   },
   data () {
     return {
-      num: 0
     }
   },
   // 计算属性
@@ -56,21 +49,23 @@ export default {
       this.$emit('linkage', row)
     },
     // 自己随便写的方法
-    add () {
-      this.num += 1
+    testClick () {
+      this.$message.success('点击了边框')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 // 此处书写样式，支持scss
-.test {
-  height: 100%;
-  position: absolute;
-  color: #000;
-  font-size: 20px;
-  background: #fff;
-  padding: 16px;
+.div-test-container {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #f00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  flex-direction: column;
 
   .item {
     width: 100%;
@@ -80,14 +75,13 @@ export default {
   }
 }
 </style>
-
 `
 
 // 配置 片段
 export const defaultSettingContent = `
 // 这是一个配置案例
 //  组件备注名称
-const title = '测试组件A'
+const title = '边框案例'
 // 右侧配置项
 const setting = [
   {
@@ -159,8 +153,7 @@ const option = {
   seriesField: '',
   // 自定义组件其他属性
   customize: {
-    username: '张三',
-    phone: '15555306266'
+    text: '这是一个边框'
   }
 }
 
