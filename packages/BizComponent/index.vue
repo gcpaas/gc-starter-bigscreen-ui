@@ -32,12 +32,9 @@
               VUE组件
             </div>
             <div class="upload-btn">
-              <el-button
-                class="bs-el-button-default"
-                @click="upload('vueContent')"
-              >
+              <CusBtn @click="upload('vueContent')">
                 上传
-              </el-button>
+              </CusBtn>
             </div>
           </div>
           <div class="code-tab-content">
@@ -55,12 +52,9 @@
               组件配置
             </div>
             <div class="upload-btn">
-              <el-button
-                class="bs-el-button-default"
-                @click="upload('settingContent')"
-              >
+              <CusBtn @click="upload('settingContent')">
                 上传
-              </el-button>
+              </CusBtn>
             </div>
           </div>
           <div class="code-tab-content">
@@ -81,11 +75,21 @@
           />
         </div>
       </div>
+      <!-- 通过计算属性发现accept有问题 -->
       <input
-        ref="fileId"
+        ref="vueContentFile"
         style="display: none"
         type="file"
         name="file"
+        accept=".vue"
+        @change="handleBatchUpload"
+      >
+      <input
+        ref="settingContentFile"
+        style="display: none"
+        type="file"
+        name="file"
+        accept=".js"
         @change="handleBatchUpload"
       >
     </div>
@@ -134,7 +138,7 @@ export default {
     },
     upload (type) {
       this.currentContentType = type
-      this.$refs.fileId.click()
+      this.$refs[`${this.currentContentType}File`].click()
     },
     handleBatchUpload (source) {
       const file = source.target.files
@@ -145,6 +149,8 @@ export default {
         const sileString = event.target.result // 读取文件内容
         this.$refs[this.currentContentType].editor.setValue(sileString)
         this.form[this.currentContentType] = sileString
+        // input通过onchange事件来触发js代码的，由于两次文件是重复的，所以这个时候onchange事件是没有触发到的，所以需要手动清空input的值
+        source.target.value = ''
       }
     },
     backManagement () {
@@ -211,10 +217,6 @@ export default {
       display: flex;
       align-items: center;
       height: 100%;
-
-      /deep/ .head-btn {
-        font-size: 14px;
-      }
     }
   }
 
