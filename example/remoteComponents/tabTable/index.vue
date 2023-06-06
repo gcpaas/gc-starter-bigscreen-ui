@@ -76,10 +76,13 @@ export default {
       return this.option.customize
     },
     tableData () {
-      return this.optionData.map((item) => ({
-        name: item[this.option.xField],
-        number: item[this.option.yField]
-      }))
+      if (this.optionData && this.optionData.length) {
+        return this.optionData.map((item) => ({
+          name: item[this.option.xField],
+          number: item[this.option.yField]
+        }))
+      }
+      return []
     }
   },
   methods: {
