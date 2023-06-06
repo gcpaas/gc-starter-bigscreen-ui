@@ -30,7 +30,7 @@ export default {
         },
         {
           name: '系统组件',
-          type: 'system '
+          type: 'system'
         }
       ],
       activeType: 'component'
