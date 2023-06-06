@@ -2,7 +2,6 @@
   <div class="right-screen-list-wrap">
     <ComponentList
       :catalog-info="catalogInfo"
-      :type="type"
     />
   </div>
 </template>
@@ -14,10 +13,6 @@ export default {
     catalogInfo: {
       type: String,
       default: ''
-    },
-    type: {
-      type: String,
-      default: 'componentCatalog'
     }
   },
   components: { ComponentList },

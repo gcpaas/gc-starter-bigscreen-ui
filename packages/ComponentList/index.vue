@@ -19,7 +19,7 @@
       <el-input
         v-model="name"
         class="bs-el-input"
-        :placeholder="type === 'bigScreenCatalog' ?'请输入大屏名称':'请输入组件名称'"
+        placeholder="请输入组件名称"
         prefix-icon="el-icon-search"
         clearable
         @clear="reSearch"
@@ -184,10 +184,6 @@ export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
   props: {
-    type: {
-      type: String,
-      default: 'componentCatalog'
-    },
     catalogInfo: {
       type: String,
       default: ''
@@ -208,7 +204,6 @@ export default {
     }
   },
   computed: {
-
     catalogType () {
       if (this.catalogInfo === 'component') {
         return 'componentCatalog'
@@ -216,18 +211,12 @@ export default {
         return 'bizComponentCatalog'
       }
     },
-    hint () {
-      return this.pageType === 'bigScreen' ? '大屏' : '组件'
-    },
     code () {
       // return this.catalogInfo?.page?.code
       return ''
     },
     gridComputed () {
       return this.list.length > 2
-    },
-    pageType () {
-      return this.type === 'bigScreenCatalog' ? 'bigScreen' : 'component'
     }
   },
   watch: {
@@ -327,7 +316,7 @@ export default {
       this.$refs.EditForm.init(screen, this.catalogCode)
     },
     del (screen) {
-      this.$confirm(`确定删除该${this.hint}？`, '提示', {
+      this.$confirm('确定删除该组件', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -353,7 +342,7 @@ export default {
         .catch()
     },
     copy (screen) {
-      this.$confirm(`确定复制该${this.hint}？`, '提示', {
+      this.$confirm('确定复制该组件', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
