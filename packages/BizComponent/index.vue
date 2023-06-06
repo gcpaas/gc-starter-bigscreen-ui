@@ -45,7 +45,7 @@
               ref="vueContent"
               v-model="form.vueContent"
               class="editor"
-              language="vue"
+              language="html"
             />
           </div>
         </div>
