@@ -136,8 +136,6 @@
 
 <script>
 import { get, post } from 'packages/js/utils/http'
-import { randomString } from '../js/utils'
-import _ from 'lodash'
 export default {
   name: 'CatalogEditForm',
   components: {
@@ -146,15 +144,12 @@ export default {
     catalogType: {
       type: String,
       default: ''
-    },
-    catalogList: {
-      type: Array,
-      default: () => {}
     }
   },
   data () {
     return {
-      // tableList: [],
+      dataList: [], // 模糊查询时用来给数据备份
+      tableList: [],
       randomKey: '',
       searchKey: '', // 分组查询
       catalogVisible: false,
@@ -168,29 +163,26 @@ export default {
     }
   },
   computed: {
-    tableList: {
-      get () {
-        return this.catalogList
-      },
-      set (val) {
-        // this.catalogList = val
-      }
-    }
   },
   watch: {
+    catalogType () {
+      this.getCatalogList()
+    }
   },
   mounted () {
-    // this.getCatalogList()
+    this.getCatalogList()
   },
   methods: {
     reSearch () {
-
+      const arr = this.dataList
+      this.tableList = arr?.filter((item) => item.name?.indexOf(this.searchKey) !== -1)
     },
     // 获取分组列表
     getCatalogList () {
       get(`/bigScreen/type/list/${this.catalogType}`)
         .then((data) => {
           this.tableList = data
+          this.dataList = data
           this.$emit('updateCatalogList', data)
         })
         .catch(() => {})
