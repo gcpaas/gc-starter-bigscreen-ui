@@ -42,7 +42,9 @@ export default {
   },
   watch: {
   },
-  mounted () {},
+  mounted () {
+    this.chartInit()
+  },
   methods: {
     buildOption (config, data) {
       const dataSourseList = []

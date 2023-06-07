@@ -23,8 +23,11 @@ export default {
       return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
     }
   },
-  mounted () {
-    this.chartInit()
+  mounted() {
+    console.log(this.config)
+    if (!['digitalFlop', 'screenScrollRanking', 'screenScrollBoard'].includes(this.config.type)) {
+      this.chartInit()
+    }
     this.watchCacheData()
   },
   methods: {
