@@ -54,7 +54,7 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '宽度',
+    label: '粗细',
     // 设置组件类型， select / input / colorPicker
     type: 'inputNumber',
     // 字段
