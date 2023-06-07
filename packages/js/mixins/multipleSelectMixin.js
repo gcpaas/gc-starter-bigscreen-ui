@@ -2,7 +2,10 @@
  * 选中多个组件进行组合
  */
 import { mapMutations, mapState } from 'vuex'
-const isMac = /macintosh|mac os x/i.test(navigator.userAgent)
+let isMac = false
+if (window && window.navigator && window.navigator.userAgent) {
+  isMac = window.navigator.userAgent.indexOf('Mac') > -1
+}
 export default {
   computed: {
     ...mapState({
