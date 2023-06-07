@@ -1,5 +1,8 @@
 <template>
-  <div class="map-box">
+  <div
+    class="map-box"
+    :class="{ 'no-pointer': isDesign }"
+  >
     <div
       :id="`map-${config.code}`"
       style="width: 100%; height: 100%;"
@@ -8,6 +11,7 @@
 </template>
 
 <script>
+import AMapLoader from '@amap/amap-jsapi-loader'
 export default {
   name: 'RemoteMap',
   props: {
@@ -30,6 +34,9 @@ export default {
     },
     customize () {
       return this.option.customize
+    },
+    isDesign () {
+      return (window?.BS_CONFIG?.routers?.designUrl || '/big-screen/design') === this.$route.path
     }
   },
 
@@ -38,23 +45,17 @@ export default {
   },
   methods: {
     initMap () {
-      // 找到已经存在高德地图的script标签
-      const existingScripts = Array.from(document.getElementsByTagName('script')).filter(
-        (script) => script.src.includes('https://webapi.amap.com/maps?v=1.4.15')
-      )
-      // 删除已经存在的script标签
-      existingScripts.forEach((script) => {
-        script.parentNode.removeChild(script)
-      })
-      // 销毁已经存在的地图
-      if (this.map) {
-        this.map.destroy()
-      }
-      // 重新创建script标签
-      const script = document.createElement('script')
-      script.src = `https://webapi.amap.com/maps?v=1.4.15&key=${this.customize.mapKey}`
-      script.async = true
-      script.onload = () => {
+      AMapLoader.load({
+        key: this.customize.mapKey || '1b0a1423b70bbcbc20c9c87327e5e94e', // 申请好的Web端开发者Key，首次调用 load 时必填
+        version: '1.4.15', // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+        plugins: [
+          'AMap.ToolBar',
+          'AMap.Scale',
+          'AMap.HawkEye',
+          'AMap.MapType',
+          'AMap.Geolocation'
+        ]
+      }).then(() => {
         // 创建地图
         this.map = new AMap.Map(`map-${this.config.code}`, {
           resizeEnable: true, // 是否监控地图容器尺寸变化
@@ -64,11 +65,15 @@ export default {
           features: this.customize.features,
           zoom: this.customize.zoom,
           viewMode: this.customize.viewMode,
-          // 开启工具条
-          toolBar: true,
-          // 开启比例尺
-          scaleControl: true
+          plugins: ['AMap.ToolBar', 'AMap.Scale', 'AMap.MapType', 'AMap.Geolocation']
         })
+        this.map.addControl(new AMap.ToolBar())
+        // 在图面添加比例尺控件，展示地图在当前层级和纬度下的比例尺
+        this.map.addControl(new AMap.Scale())
+        // 在图面添加类别切换控件，实现默认图层与卫星图、实施交通图层之间切换的控制
+        this.map.addControl(new AMap.MapType())
+        // 在图面添加定位控件，用来获取和展示用户主机所在的经纬度位置
+        this.map.addControl(new AMap.Geolocation())
         let marker = null // 用于存储标记对象的变量
         if (this.customize.markerSpan) {
           // 创建自定义标记内容
@@ -112,8 +117,7 @@ export default {
             }, 100)
           }
         }
-      }
-      document.head.appendChild(script)
+      })
     }
   }
 }
@@ -122,11 +126,14 @@ export default {
 <style scoped></style>
 
 <style lang="scss" scoped>
+.no-pointer {
+  pointer-events: none;
+}
+
 .map-box {
   width: 100%;
   height: 100%;
   z-index: 999;
-  pointer-events: none;
 
   ::v-deep .amap-marker-content img {
     width: 25px;
