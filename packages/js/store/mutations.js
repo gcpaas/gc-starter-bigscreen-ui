@@ -164,7 +164,7 @@ export default {
     state.pageInfo.pageConfig.cacheDataSets[index].data = data || []
   },
   // 改变shift是否被按下
-  changeShiftDown (state, isDown) {
+  changeCtrlOrCommandDown (state, isDown) {
     state.shiftKeyDown = isDown
   },
   // 初始化store中的数据，防止污染
