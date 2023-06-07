@@ -209,76 +209,79 @@ export default {
     }),
     setAlign (command) {
       const pageInfo = _.cloneDeep(this.pageInfo)
-      const activeChartList = pageInfo.chartList.filter((chart) => {
+      // 获取所有选中的组件
+      let activeChartList = pageInfo.chartList.filter((chart) => {
         return this.activeCodes.some(code => (code === chart.code))
       })
-      const w = pageInfo.pageConfig.w
-      const h = pageInfo.pageConfig.h
-      let arr = []
+      // 找到选中组件内的xy最大最小值
+      const maxXW = Math.max.apply(Math, activeChartList.map(item => { return item.x + item.w }))
+      const maxX = Math.max.apply(Math, activeChartList.map(item => { return item.x }))
+      const minX = Math.min.apply(Math, activeChartList.map(item => { return item.x }))
+      const maxYH = Math.max.apply(Math, activeChartList.map(item => { return item.y + item.h }))
+      const maxY = Math.max.apply(Math, activeChartList.map(item => { return item.y }))
+      const minY = Math.min.apply(Math, activeChartList.map(item => { return item.y }))
+      const centerW = maxXW - minX
+      const centerH = maxY - minY
       switch (command) {
         case 'left':
           activeChartList.forEach((chart) => {
-            chart.x = 0
+            chart.x = minX
           })
           break
         case 'center':
+          // eslint-disable-next-line no-case-declarations
           activeChartList.forEach((chart) => {
-            chart.x = (w - chart.w) / 2
+            chart.x = (centerW - chart.w) / 2 + minX
           })
           break
         case 'right':
           activeChartList.forEach((chart) => {
-            chart.x = w - chart.w
+            chart.x = maxXW - chart.w
           })
           break
         case 'top':
           activeChartList.forEach((chart) => {
-            chart.y = 0
+            chart.y = minY
           })
           break
         case 'middle':
           activeChartList.forEach((chart) => {
-            chart.y = (h - chart.h) / 2
+            chart.y = (centerH - chart.h) / 2 + minY
           })
           break
         case 'bottom':
           activeChartList.forEach((chart) => {
-            chart.y = h - chart.h
+            chart.y = maxYH - chart.h
           })
           break
         case 'levelAround':
-          // eslint-disable-next-line no-case-declarations
-          let allW = 0
           // 先让数组根据x的属性进行排序
-          arr = activeChartList.sort(this.compare('x'))
-          arr.forEach((chart) => {
-            allW = allW + chart.w
-          })
+          activeChartList = activeChartList.sort(this.compare('x'))
           // eslint-disable-next-line no-case-declarations
-          const padding = (w - allW) / (activeChartList.length + 1)
+          const minXW = activeChartList[0].x + activeChartList[0].w
           // eslint-disable-next-line no-case-declarations
-          let usedW = 0
-          activeChartList.forEach((chart) => {
-            chart.x = usedW + padding
-            usedW = chart.x + chart.w
-          })
+          const padding = (maxX - minXW) / (activeChartList.length - 1)
+          // eslint-disable-next-line no-case-declarations
+          let useW = 0
+          for (let i = 1; i < activeChartList.length - 1; i++) {
+            activeChartList[i].x = minXW + padding + useW - (activeChartList[i].w / 2)
+            useW = useW + activeChartList[1].w
+          }
           break
         case 'verticalAround':
-          // eslint-disable-next-line no-case-declarations
-          let allH = 0
+          debugger
           // 先让数组根据y的属性进行排序
-          arr = activeChartList.sort(this.compare('y'))
-          arr.forEach((chart) => {
-            allH = allH + chart.h
-          })
+          activeChartList = activeChartList.sort(this.compare('y'))
           // eslint-disable-next-line no-case-declarations
-          const paddingBottom = (h - allH) / (activeChartList.length + 1)
+          const minYH = activeChartList[0].y + activeChartList[0].h
           // eslint-disable-next-line no-case-declarations
-          let usedH = 0
-          activeChartList.forEach((chart) => {
-            chart.y = usedH + paddingBottom
-            usedH = chart.y + chart.h
-          })
+          const paddingBottom = (maxY - minYH) / (activeChartList.length - 1)
+          // eslint-disable-next-line no-case-declarations
+          let useH = 0
+          for (let i = 1; i < activeChartList.length - 1; i++) {
+            activeChartList[i].y = minYH + paddingBottom + useH - (activeChartList[i].h / 2)
+            useH = useH + activeChartList[1].h
+          }
           break
       }
       pageInfo.chartList = [...pageInfo.chartList, ...activeChartList]
