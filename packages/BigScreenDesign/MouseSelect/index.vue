@@ -65,7 +65,8 @@ export default {
         top,
         width,
         height,
-        border: '1px dashed #007aff'
+        border: '1px dashed #007aff',
+        background: '#2a2e3380'
       }
     }
   },
