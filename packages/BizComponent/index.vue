@@ -224,7 +224,6 @@ export default {
 
       reader.onload = (event) => {
         const sileString = event.target.result // 读取文件内容
-        this.$refs[this.currentContentType].editor.setValue(sileString)
         this.form[this.currentContentType] = sileString
         // input通过onchange事件来触发js代码的，由于两次文件是重复的，所以这个时候onchange事件是没有触发到的，所以需要手动清空input的值
         source.target.value = ''
@@ -300,12 +299,14 @@ export default {
   .bs-custom-component-content {
     flex: 1;
     background: var(--bs-background-2);
+    display: flex;
+    flex-direction: column;
 
     .bs-custom-component-content-code {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      height: 50%;
+      height: 400px;
       padding: 16px;
 
       .left-vue-code {
@@ -347,6 +348,7 @@ export default {
     }
 
     .bs-custom-component-content-preview {
+      flex: 1;
       width: 100%;
       height: 50%;
       padding: 0 16px 16px;

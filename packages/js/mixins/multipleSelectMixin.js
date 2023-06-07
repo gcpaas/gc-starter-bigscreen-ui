@@ -2,7 +2,10 @@
  * 选中多个组件进行组合
  */
 import { mapMutations, mapState } from 'vuex'
-
+let isMac = false
+if (window && window.navigator && window.navigator.userAgent) {
+  isMac = window.navigator.userAgent.indexOf('Mac') > -1
+}
 export default {
   computed: {
     ...mapState({
@@ -21,7 +24,7 @@ export default {
   },
   methods: {
     ...mapMutations('bigScreen', {
-      changeShiftDown: 'changeShiftDown',
+      changeCtrlOrCommandDown: 'changeCtrlOrCommandDown',
       changeActivePos: 'changeActivePos',
       deleteItem: 'delItem',
       undoTimeLine: 'undoTimeLine'
@@ -65,16 +68,30 @@ export default {
         event.preventDefault()
         this.undoTimeLine(false)
       }
-
-      if (event.shiftKey) {
-        // 当按下 shift 键时，设置状态，表示 shiftKey 键被按下
-        this.changeShiftDown(true)
+      if (isMac) {
+        // 是否按下了command键
+        if (event.metaKey) {
+          this.changeCtrlOrCommandDown(true)
+        }
+      } else {
+        // 是否按下了ctrl键
+        if (event.ctrlKey) {
+          this.changeCtrlOrCommandDown(true)
+        }
       }
     },
     keyup (event) {
-      if (!event.shiftKey) {
-        // 当释放 shift 键时，重置状态，表示 shift 键没有被按下
-        this.changeShiftDown(false)
+      // 判断mac系统还是windows系统
+      if (isMac) {
+        // 是否按下了command键
+        if (!event.metaKey) {
+          this.changeCtrlOrCommandDown(false)
+        }
+      } else {
+        // 是否按下了ctrl键
+        if (!event.ctrlKey) {
+          this.changeCtrlOrCommandDown(false)
+        }
       }
     },
     designKeydown (event) {

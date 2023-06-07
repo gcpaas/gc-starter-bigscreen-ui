@@ -199,7 +199,7 @@ export default {
   },
   computed: {
     code () {
-      return this.catalogInfo?.page?.id
+      return this.catalogInfo?.page?.code
     },
     gridComputed () {
       return this.list.length > 3
@@ -242,6 +242,8 @@ export default {
     getOptions () {
       get('/bigScreen/file/getAllFileSuffix').then((data) => {
         console.log(data)
+        this.options = []
+        this.options.push({ label: '全部', value: '' })
         data.forEach((item) => this.options.push({ label: item, value: item }))
       })
     },
@@ -249,7 +251,7 @@ export default {
       console.log(this.catalogInfo)
       this.loading = true
       get('/bigScreen/file', {
-        module: this.catalogInfo.page.id,
+        module: this.catalogInfo.page.code,
         current: this.current,
         size: this.size,
         extension: this.extend,
