@@ -46,12 +46,13 @@
                   :placeholder="`请输入${setting.label}`"
                   clearable
                 />
-                <el-select
+                <el-drag-select
                   v-else-if="setting.type === 'select'"
                   v-model="setting.value"
                   popper-class="bs-el-select"
                   class="bs-el-select"
                   :placeholder="`请选择${setting.label}`"
+                  :multiple="setting.multiple"
                   clearable
                 >
                   <el-option
@@ -60,7 +61,7 @@
                     :label="opt.label"
                     :value="opt.value"
                   />
-                </el-select>
+                </el-drag-select>
                 <template v-else-if="setting.type === 'colorSelect'">
                   <color-select
                     v-model="colorScheme"
@@ -111,6 +112,8 @@
                   v-model="setting.value"
                   class="bs-el-input-number"
                   :step="setting.step || 1"
+                  :min="setting.min || 0"
+                  :max="setting.max || 100000"
                 />
                 <el-radio-group
                   v-else-if="setting.type === 'radio'"
@@ -156,6 +159,7 @@
   </div>
 </template>
 <script>
+import ElDragSelect from 'packages/BigScreenDesign/RightSetting/ElDragSelect.vue'
 import SettingTitle from 'packages/SettingTitle/index.vue'
 import { chartSettingMixins } from 'packages/js/mixins/chartSettingMixins'
 import ColorSelect from 'packages/ColorMultipleSelect/index.vue'
@@ -167,6 +171,7 @@ export default {
   name: 'CustomComponentSetting',
   components: {
     ColorSelect,
+    ElDragSelect,
     // ColorPicker,
     PaddingSetting,
     GradualSetting,

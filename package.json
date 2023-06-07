@@ -54,6 +54,7 @@
     ]
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@antv/g2plot": "2.4.0",
     "@jiaminghi/data-view": "2.10.0",
     "axios": "0.18.1",
