@@ -33,7 +33,7 @@
               v-for="item in options"
               :key="item.id"
               :label="item.name"
-              :value="item.id"
+              :value="item.code"
             />
           </el-select>
           <el-button
