@@ -40,7 +40,7 @@ const customConfig = {
   customize: {
     bindComponents: [],
     // 类型
-    type: 'primary',
+    // type: 'primary',
     // 背景颜色
     backgroundColor: '#409EFF',
     // 字体颜色
@@ -62,7 +62,7 @@ const customConfig = {
       // 边框样式
       borderStyle: 'solid',
       // 边框圆角
-      borderRadius: 16
+      borderRadius: 4
     }
   }
 }

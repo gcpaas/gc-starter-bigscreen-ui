@@ -43,21 +43,6 @@
                 :max="100"
               />
             </el-form-item>
-            <el-form-item label="类型">
-              <el-select
-                v-model="config.customize.type"
-                popper-class="bs-el-select"
-                class="bs-el-select"
-                clearable
-              >
-                <el-option
-                  v-for="typeItem in typeOptions"
-                  :key="typeItem.value"
-                  :label="typeItem.label"
-                  :value="typeItem.value"
-                />
-              </el-select>
-            </el-form-item>
             <el-form-item label="背景颜色">
               <div>
                 <ColorPicker
