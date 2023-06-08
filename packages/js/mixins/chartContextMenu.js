@@ -32,7 +32,9 @@ export default {
       'changeLayout',
       'changeZIndex',
       'changeLocked',
-      'saveTimeLine'
+      'saveTimeLine',
+      'copyCharts',
+      'pasteCharts'
     ]),
     // 改变hover的组件
     changeHover (code) {
@@ -151,6 +153,14 @@ export default {
             icon: 'el-icon-copy-document',
             onClick: () => {
               this.copyItem(chart)
+            }
+          },
+          {
+            label: '组合复制',
+            icon: 'el-icon-copy-document',
+            onClick: () => {
+              this.copyCharts()
+              this.pasteCharts()
             }
           },
           {

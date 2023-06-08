@@ -3,13 +3,14 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-05-31 16:27:12
+ * @LastEditTime: 2023-06-08 15:24:01
  */
 
 import Vue from 'vue'
 import _ from 'lodash'
 import { defaultData } from './state'
 import moment from 'moment'
+import { randomString } from 'packages/js/utils'
 export default {
   // 改变页面基本信息，后端请求的页面信息存储到此处
   changePageInfo (state, pageInfo) {
@@ -252,6 +253,29 @@ export default {
   rollbackTimeline (state, index) {
     state.pageInfo.chartList = _.cloneDeep(state.timelineStore[index]?.chartList || [])
     state.currentTimeLine = index + 1
+  },
+  // 复制组件
+  copyCharts (state) {
+    state.copyChartCodes = _.cloneDeep(state.activeCodes)
+  },
+  // 粘贴组件
+  pasteCharts (state) {
+    const copyChartCodes = state.copyChartCodes
+    const chartList = state.pageInfo.chartList
+    // 将选中的组件复制一份， code加上 随机后缀, key 也加上随机后缀， x, y 各增加50
+    const additionCode = randomString(5)
+    const copyCharts = copyChartCodes.map(code => {
+      const chart = chartList.find(item => item.code === code)
+      const copyChart = _.cloneDeep(chart)
+      copyChart.code = `${copyChart.code}_${additionCode}`
+      copyChart.key = `${copyChart.key}_${additionCode}`
+      copyChart.group = (copyChart.group && copyChart.group !== 'tempGroup') ? `${copyChart.group}_${additionCode}` : ''
+      copyChart.x += 50
+      copyChart.y += 50
+      return copyChart
+    })
+    // 将复制的组件添加到chartList中
+    state.pageInfo.chartList = [...copyCharts, ...state.pageInfo.chartList]
   }
 }
 function changeZIndexFuc (state, list) {

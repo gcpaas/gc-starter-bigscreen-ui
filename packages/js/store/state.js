@@ -52,6 +52,8 @@ export const defaultData = {
 
   // 多选的组件code数据
   activeCodes: [],
+  // 复制到粘贴板上的组件编码
+  copyChartCodes: [],
   // false 表示 shift 键没有被按下， true表示 shift 键被按下
   shiftKeyDown: false,
   // 缩放

@@ -28,10 +28,12 @@
       :resizable="!chart.locked"
       :parent="true"
       :debug="false"
+      :active="activeCodes.includes(chart.code)"
       :is-conflict-check="false"
       :snap="true"
       :snap-tolerance="2"
       :style="{ zIndex: chart.z || 0 }"
+      :grid="[1,1]"
       @dragging="onDrag(...arguments, chart)"
       @resizing="onResize(...arguments, chart)"
       @resizestop="resizestop(...arguments, chart)"
@@ -104,6 +106,7 @@ export default {
       pageInfo: (state) => state.bigScreen.pageInfo,
       chartList: (state) => state.bigScreen.pageInfo.chartList,
       activeCode: (state) => state.bigScreen.activeCode,
+      activeCodes: (state) => state.bigScreen.activeCodes,
       hoverCode: (state) => state.bigScreen.hoverCode,
       themeJson: (state) => state.bigScreen.pageInfo.pageConfig.themeJson,
       isInit: (state) => !state.bigScreen.pageLoading,
@@ -283,12 +286,12 @@ export default {
       }
       const config = {
         ..._chart,
-        x: !chart.code
+        x: parseInt(!chart.code
           ? (position.x - left - _chart.offsetX) / this.scale
-          : position.x,
-        y: !chart.code
+          : position.x),
+        y: parseInt(!chart.code
           ? (position.y - top - _chart.offsetX) / this.scale
-          : position.y,
+          : position.y),
         width: 200 * this.scale,
         height: 200 * this.scale,
         code: !chart.code ? randomString(8) : chart.code,
@@ -309,8 +312,8 @@ export default {
       }
       const config = {
         ..._chart,
-        x: (position.x - left) / this.scale,
-        y: (position.y - top) / this.scale,
+        x: parseInt((position.x - left) / this.scale),
+        y: parseInt((position.y - top) / this.scale),
         width: 200 * this.scale,
         height: 200 * this.scale,
         code: randomString(8),
