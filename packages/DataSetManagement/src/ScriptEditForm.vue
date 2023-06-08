@@ -588,7 +588,7 @@
 </template>
 
 <script>
-import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset, datasetExecute } from 'packages/js/utils/datasetConfigService'
+import { nameCheckRepeat, getCategoryTree, datasetAddorUpdate, getDataset, datasetExecute } from 'packages/js/utils/datasetConfigService'
 import { codemirror } from 'vue-codemirror'
 // import 'codemirror/mode/sql/sql.js'
 import 'codemirror/mode/groovy/groovy'
@@ -937,7 +937,7 @@ export default {
       this.$emit('back')
     },
     async init () {
-      this.categoryData = await getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode })
+      this.categoryData = await getCategoryTree({ tableName: 'r_dataset', moduleCode: this.appCode })
       if (this.typeId) {
         this.dataForm.typeId = this.typeId
         this.$nextTick(() => {

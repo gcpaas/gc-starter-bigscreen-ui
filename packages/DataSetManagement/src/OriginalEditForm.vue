@@ -570,8 +570,13 @@
 </template>
 
 <script>
-import { getDatasetTypeList, nameCheckRepeat, getOriginalTableDetail, addOrUpdateOriginal, getOriginalTableFieldInfo, getOriginalTableDetailsById } from 'packages/js/utils/datasetConfigService'
-import { datasourcePage, getSourceTable, getSourceView } from 'packages/js/utils/dataSourceService'
+import {
+  getCategoryTree,
+  nameCheckRepeat,
+  datasetExecute,
+  getDataset, datasetUpdate, datasetAdd
+} from 'packages/js/utils/datasetConfigService'
+import { datasourceList, getSourceTable, getSourceView, getTableFieldList } from 'packages/js/utils/dataSourceService'
 import _ from 'lodash'
 export default {
   props: {
@@ -615,22 +620,21 @@ export default {
         id: '',
         name: '',
         typeId: '',
+        datasetType: 'original',
+        remark: '',
+        // 以下为config信息
         sourceId: '',
         repeatStatus: 1,
         tableName: '',
         fieldInfo: [],
-        remark: '',
-        fieldDesc: '',
-        fieldJson: ''
+        fieldDesc: {},
+        fieldJson: []
       },
       rules: {
         name: [
           { required: true, message: '数据集名称不能为空', trigger: 'blur' },
           { validator: validateName, trigger: 'blur' }
         ],
-        // typeId: [
-        //   {required: true, message: '请选择分组', trigger: 'blur'}
-        // ],
         sourceId: [
           { required: true, message: '请选择数据源', trigger: 'blur' }
         ],
@@ -642,15 +646,23 @@ export default {
         ]
       },
       typeName: '',
+      // 分组分类树
       categoryData: [],
+      // 数据源列表
       sourceList: [],
+      // 表列表
       tableList: [],
+      // 视图列表
       viewList: [],
+      // 字段列表
       fieldList: [],
       isSelectAll: false,
       activeName: 'data',
+      // 预览数据
       dataPreviewList: [],
+      // 字段结构
       structurePreviewList: [],
+      // 字段结构副本
       structurePreviewListCopy: [],
       tableLoading: false,
       fieldDescVisible: false,
@@ -668,7 +680,14 @@ export default {
       handler (value) {
         try {
           this.setCheck()
-          this.getPreViewData()
+          let fieldDescMap = {}
+          this.fieldList.forEach((item) => {
+            if (value.length !== 0 && !value.includes(item.columnName)) {
+              return
+            }
+            fieldDescMap[item.columnName] = item.columnComment
+          })
+          this.getPreViewData(fieldDescMap)
         } catch (error) {
           console.error(error)
         }
@@ -683,25 +702,39 @@ export default {
   methods: {
     // 获取预览数据
     getData () {
-      const params = {
-        id: this.dataForm.id ? this.dataForm.id : '',
-        sourceId: this.dataForm.sourceId,
-        tableName: this.dataForm.tableName,
-        fieldInfo: this.dataForm.fieldInfo.length ? this.dataForm.fieldInfo.join(',') : '',
-        repeatStatus: this.dataForm.repeatStatus,
+      const executeParams = {
+        dataSetId: this.dataForm.id ? this.dataForm.id : '',
+        dataSourceId: this.dataForm.sourceId,
+        script: this.getSql(),
+        // 原始表数据集没有数据集参数
+        params: [],
+        dataSetType: 'original',
         size: this.size,
         current: this.current
       }
       this.tableLoading = true
-      getOriginalTableDetail(params).then((data) => {
-        this.dataPreviewList = data.dataPreview
-        this.totalCount = data.totalCount
+      datasetExecute(executeParams).then((data) => {
+        this.dataPreviewList = data.data.list
+        this.totalCount = data.data.totalCount
         this.tableLoading = false
       }).catch(() => {
         this.dataPreviewList = []
         this.totalCount = 0
         this.tableLoading = false
-      })
+    })
+    },
+    getSql () {
+      let sql = "SELECT "
+      if (this.dataForm.repeatStatus === 0) {
+        sql += ' DISTINCT '
+      }
+      if (this.dataForm.fieldInfo.length > 0) {
+        sql += this.dataForm.fieldInfo.join(',')
+      } else {
+        sql += '*'
+      }
+      sql += ` FROM ${this.dataForm.tableName}`
+      return sql
     },
     // 每页大小改变触发
     sizeChangeHandle (value) {
@@ -765,44 +798,59 @@ export default {
         }
       }
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          const columnMap = {}
-          this.structurePreviewList.forEach(item => {
-            columnMap[item.columnName] = item.fieldDesc
-          })
-          this.dataForm.fieldDesc = JSON.stringify(columnMap)
-          this.dataForm.fieldInfo = this.dataForm.fieldInfo.length ? this.dataForm.fieldInfo.join(',') : ''
-          this.dataForm.fieldJson = this.structurePreviewList.length ? JSON.stringify(this.structurePreviewList) : ''
-          this.saveloading = true
-          this.saveText = '正在保存...'
-          addOrUpdateOriginal({
-            ...this.dataForm,
-            moduleCode: this.appCode,
-            editable: this.appCode ? 1 : 0
-          }).then(res => {
-            this.$message.success('保存成功')
-            this.$parent.init(false)
-            this.$parent.setType = null
-            this.saveloading = false
-            this.saveText = ''
-          }).catch(() => {
-            this.$message.error('保存失败')
-            this.saveloading = false
-            this.saveText = ''
-          })
-        } else {
+        if (!valid) {
           this.saveloading = false
           this.saveText = ''
           return false
         }
+        // 组装字段描述
+        const columnMap = {}
+        this.structurePreviewList.forEach(item => {
+          columnMap[item.columnName] = item.fieldDesc
+        })
+        // 组装保存参数
+        let datasetParams = {
+          id: this.dataForm.id,
+          name: this.dataForm.name,
+          typeId: this.dataForm.typeId,
+          remark: this.dataForm.remark,
+          datasetType: 'original',
+          sourceId: this.dataForm.sourceId,
+          config: {
+            className: 'com.gccloud.dataset.entity.config.OriginalDataSetConfig',
+            sourceId: this.dataForm.sourceId,
+            tableName: this.dataForm.tableName,
+            fieldInfo: this.dataForm.fieldInfo.length ? this.dataForm.fieldInfo.join(',') : '',
+            fieldDesc: columnMap,
+            fieldJson: this.structurePreviewList,
+            repeatStatus: this.dataForm.repeatStatus
+          },
+          moduleCode: this.appCode,
+          editable: this.appCode ? 1 : 0
+        }
+        this.saveloading = true
+        this.saveText = '正在保存...'
+        let saveOriginal = this.dataForm.id ? datasetUpdate : datasetAdd
+        saveOriginal(datasetParams).then(res => {
+          this.$message.success('保存成功')
+          this.$parent.init(false)
+          this.$parent.setType = null
+          this.saveloading = false
+          this.saveText = ''
+        }).catch(() => {
+          this.$message.error('保存失败')
+          this.saveloading = false
+          this.saveText = ''
+        })
       })
     },
     goBack () {
       this.$emit('back')
     },
     async init () {
-      this.categoryData = await getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode })
-      // this.getTreeList()
+      // 获取分类树
+      this.categoryData = await getCategoryTree({ type: 'dataset', moduleCode: this.appCode })
+      // 如果传入了分类id，则设置分类id和分类名称
       if (this.typeId) {
         this.dataForm.typeId = this.typeId
         this.$nextTick(() => {
@@ -814,29 +862,38 @@ export default {
         })
       }
       this.queryAllSource()
-      if (this.datasetId) {
-        // 获取详情
-        getOriginalTableDetailsById(this.datasetId).then(res => {
-          for (const key in res) {
-            if (this.dataForm.hasOwnProperty(key)) {
-              this.dataForm[key] = res[key]
-            }
-          }
-          this.dataForm.fieldInfo = res.fieldInfo ? res.fieldInfo.split(',') : []
-          this.dataForm.name = this.datasetName
-          if (this.dataForm.typeId) {
-            this.$nextTick(() => {
-              try {
-                this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
-              } catch (error) {
-                console.error(error)
-              }
-            })
-          }
-          this.queryAllTable()
-          this.queryAllField()
-        })
+      if (!this.datasetId) {
+        return
       }
+      // 获取详情
+      getDataset(this.datasetId).then(res => {
+        this.dataForm.id = res.id
+        this.dataForm.name = res.name
+        this.dataForm.typeId = res.typeId
+        this.dataForm.remark = res.remark
+        this.dataForm.datasetType = res.datasetType
+        this.dataForm.moduleCode = res.moduleCode
+        this.dataForm.editable = res.editable
+        this.dataForm.sourceId = res.sourceId
+        // config 配置
+        this.dataForm.tableName = res.config.tableName
+        this.dataForm.repeatStatus = res.config.repeatStatus
+        this.dataForm.fieldJson = res.config.fieldJson
+        this.dataForm.fieldDesc = res.config.fieldDesc
+        // 字段信息，转为数组
+        this.dataForm.fieldInfo = res.config.fieldInfo ? res.config.fieldInfo.split(',') : []
+        if (this.dataForm.typeId) {
+          this.$nextTick(() => {
+            try {
+              this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
+            } catch (error) {
+              console.error(error)
+            }
+          })
+        }
+        this.queryAllTable()
+        this.queryAllField()
+      })
     },
     // 清空分类
     clearType () {
@@ -856,23 +913,15 @@ export default {
       this.typeName = value.name
       this.$refs.selectParentName.blur()
     },
-    // 获取树节点
-    // getTreeList() {
-    //   getOriginalTableList().then(res => {
-    //     this.categoryData = res
-    //   })
-    // },
-    // 获取数据集
+    // 获取数据源列表
     queryAllSource () {
       const params = {
-        current: 1,
-        size: 1000,
         sourceName: '',
         sourceType: '',
         moduleCode: this.appCode
       }
-      datasourcePage(params).then(res => {
-        this.sourceList = res.list
+      datasourceList(params).then(res => {
+        this.sourceList = res
       })
     },
     // 设置数据源
@@ -906,18 +955,17 @@ export default {
     },
     // 获取原始表字段
     queryAllField () {
-      getOriginalTableFieldInfo({
-        sourceId: this.dataForm.sourceId,
-        tableName: this.dataForm.tableName
-      }).then((data) => {
+      getTableFieldList(this.dataForm.sourceId, this.dataForm.tableName).then((data) => {
+        let fieldDescMap = {}
         this.fieldList = data.map(field => {
+          fieldDescMap[field.columnName] = field.columnComment
           field.isCheck = false
           if (this.dataForm.fieldInfo.includes(field.columnName)) {
             field.isCheck = true
           }
           return field
         })
-        this.getPreViewData()
+        this.getPreViewData(fieldDescMap)
       }).catch(() => {
         this.fieldList = []
       })
@@ -947,24 +995,25 @@ export default {
         this.isSelectAll = false
       }
     },
-    getPreViewData () {
+    getPreViewData (fieldDescMap) {
       this.dataPreviewList = []
       this.structurePreviewList = []
       this.structurePreviewListCopy = []
       if (!this.dataForm.sourceId || !this.dataForm.tableName) return
-      const params = {
-        id: this.dataForm.id ? this.dataForm.id : '',
-        sourceId: this.dataForm.sourceId,
-        tableName: this.dataForm.tableName,
-        fieldInfo: this.dataForm.fieldInfo.length ? this.dataForm.fieldInfo.join(',') : '',
-        repeatStatus: this.dataForm.repeatStatus,
+      const executeParams = {
+        dataSetId: this.dataForm.id ? this.dataForm.id : '',
+        dataSourceId: this.dataForm.sourceId,
+        script: this.getSql(),
+        // 原始表数据集没有数据集参数
+        params: [],
+        dataSetType: 'original',
         size: this.size,
         current: this.current
       }
       this.tableLoading = true
-      getOriginalTableDetail(params).then((data) => {
-        this.dataPreviewList = data.dataPreview
-        this.structurePreviewList = data.structurePreview
+      datasetExecute(executeParams).then((data) => {
+        this.dataPreviewList = data.data.list
+        this.structurePreviewList = data.structure
         this.structurePreviewList.forEach(item => {
           if (!item.hasOwnProperty('orderNum')) {
             this.$set(item, 'orderNum', 0)
@@ -973,14 +1022,19 @@ export default {
             this.$set(item, 'sourceTable', this.dataForm.tableName)
           }
           if (!item.hasOwnProperty('fieldDesc')) {
-            this.$set(item, 'fieldDesc', '')
+            let fieldDesc = ''
+            if (fieldDescMap && fieldDescMap[item.columnName]) {
+              fieldDesc = fieldDescMap[item.columnName]
+            }
+            this.$set(item, 'fieldDesc', fieldDesc)
           }
         })
         this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
-        this.totalCount = data.totalCount
-        this.currentCount = data.currentCount
+        this.totalCount = data.data.totalCount
+        this.currentCount = data.data.currentCount
         this.tableLoading = false
-      }).catch(() => {
+      }).catch((e) => {
+        console.log(e)
         this.dataPreviewList = []
         this.structurePreviewList = []
         this.structurePreviewListCopy = []

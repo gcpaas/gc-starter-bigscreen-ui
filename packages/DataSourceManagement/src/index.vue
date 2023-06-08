@@ -171,8 +171,8 @@ export default {
         sourceName: '',
         sourceType: ''
       },
-      size: 10, // 初始pagesize
-      current: 1, // 初始currentpage
+      size: 10,
+      current: 1,
       curRow: null
     }
   },

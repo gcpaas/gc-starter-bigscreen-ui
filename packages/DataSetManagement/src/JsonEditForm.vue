@@ -1,6 +1,6 @@
 <template>
   <div
-    v-loading="saveloading"
+    v-loading="saveLoading"
     class="inner-container "
     :element-loading-text="saveText"
   >
@@ -395,7 +395,7 @@
 <script>
 import vueJsonEditor from 'vue-json-editor'
 import vueJsonViewer from 'vue-json-viewer'
-import { getDatasetTypeList, datasetAddorUpdate, getDataset, nameCheckRepeat } from 'packages/js/utils/datasetConfigService'
+import { getCategoryTree, datasetAdd, datasetUpdate, getDataset, nameCheckRepeat } from 'packages/js/utils/datasetConfigService'
 import _ from 'lodash'
 
 export default {
@@ -444,17 +444,17 @@ export default {
         id: '',
         name: '',
         typeId: '',
+        datasetType: 'original',
+        remark: '',
+        // 以下为config配置
         json: '',
-        remark: ''
+        fieldDesc: {}
       },
       rules: {
         name: [
           { required: true, message: '请输入数据集名称', trigger: 'blur' },
           { validator: validateName, trigger: 'blur' }
         ]
-        // typeId: [
-        //   {required: true, message: '请选择分组', trigger: 'blur'}
-        // ]
       },
       typeName: '',
       categoryData: [],
@@ -466,7 +466,7 @@ export default {
       fieldDescVisible: false,
       passTest: false, // 通过测试
       fieldDesc: null, // 字段描述
-      saveloading: false,
+      saveLoading: false,
       saveText: ''
     }
   },
@@ -479,7 +479,7 @@ export default {
       this.passTest = false
     },
     // 保存数据集
-    save (formName, nochecktosave = false) {
+    save (formName, noCheckToSave = false) {
       if (!this.passTest) {
         this.$message.error('请确保JSON不为空且解析通过')
         return
@@ -488,7 +488,7 @@ export default {
         this.$message.warning('该JSON未生成输出字段，请重新检查')
         return
       }
-      if (!nochecktosave) {
+      if (!noCheckToSave) {
         const temp = this.structurePreviewList.some(item => {
           return item.fieldDesc === '' || !item.hasOwnProperty('fieldDesc')
         }) // true-存在为空
@@ -498,36 +498,35 @@ export default {
         }
       }
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          // 通过校验
-          const data = {
-            json: this.dataForm.json,
-            fieldDesc: this.fieldDesc
-          }
-          this.saveloading = true
-          this.saveText = '正在保存...'
-          datasetAddorUpdate({
-            id: this.datasetId,
-            name: this.dataForm.name,
-            typeId: this.dataForm.typeId,
-            remark: this.dataForm.remark,
-            datasetType: 'json',
-            moduleCode: this.appCode,
-            editable: this.appCode ? 1 : 0,
-            data: JSON.stringify(data)
-          }).then(() => {
-            this.$message.success('保存成功')
-            this.$parent.init(false)
-            this.$parent.setType = null
-            this.saveloading = false
-            this.saveText = ''
-          }).catch(() => {
-            this.saveloading = false
-            this.saveText = ''
-          })
-        } else {
-          return false
+        if (!valid) {
+          return
         }
+        let datasetSave = null
+        datasetSave = this.dataForm.id ? datasetUpdate : datasetAdd
+        let datasetParams = {
+          id: this.dataForm.id,
+          name: this.dataForm.name,
+          typeId: this.dataForm.typeId,
+          datasetType: 'json',
+          remark: this.dataForm.remark,
+          moduleCode: this.appCode,
+          editable: this.appCode ? 1 : 0,
+          config: {
+            className: 'com.gccloud.dataset.entity.config.JsonDataSetConfig',
+            json: JSON.stringify(this.dataForm.json),
+            fieldDesc: this.dataForm.fieldDesc
+          }
+        }
+        datasetSave(datasetParams).then(() => {
+          this.$message.success('保存成功')
+          this.$parent.init(false)
+          this.$parent.setType = null
+          this.saveLoading = false
+          this.saveText = ''
+        }).catch(() => {
+          this.saveLoading = false
+          this.saveText = ''
+        })
       })
     },
     // 字段值填充
@@ -686,7 +685,7 @@ export default {
     },
     // 初始化
     async init () {
-      this.categoryData = await getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode })
+      this.categoryData = await getCategoryTree({ tableName: 'dataset', moduleCode: this.appCode })
       if (this.typeId) {
         this.dataForm.typeId = this.typeId
         this.$nextTick(() => {
@@ -697,27 +696,33 @@ export default {
           }
         })
       }
-      if (this.datasetId) {
-        getDataset(this.datasetId).then(res => {
-          this.dataForm.id = res.id
-          const data = JSON.parse(res.data)
-          this.dataForm.name = res.name
-          this.dataForm.typeId = res.typeId
-          this.dataForm.remark = res.remark
-          this.dataForm.json = data.json
-          this.fieldDesc = data.fieldDesc
-          if (this.dataForm.typeId) {
-            this.$nextTick(() => {
-              try {
-                this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
-              } catch (error) {
-                console.error(error)
-              }
-            })
-          }
-          this.analysisJSON(null, true)
-        })
+      if (!this.datasetId) {
+        return
       }
+      getDataset(this.datasetId).then(res => {
+        this.dataForm.id = res.id
+        this.dataForm.name = res.name
+        this.dataForm.typeId = res.typeId
+        this.dataForm.remark = res.remark
+        this.dataForm.datasetType = res.datasetType
+        this.dataForm.moduleCode = res.moduleCode
+        this.dataForm.editable = res.editable
+        this.dataForm.sourceId = res.sourceId
+        // config 配置
+        this.dataForm.fieldDesc = res.config.fieldDesc
+        this.fieldDesc = res.config.fieldDesc
+        this.dataForm.json = JSON.parse(res.config.json)
+        if (this.dataForm.typeId) {
+          this.$nextTick(() => {
+            try {
+              this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
+            } catch (error) {
+              console.error(error)
+            }
+          })
+        }
+        this.analysisJSON(null, true)
+      })
     },
     goBack () {
       this.$emit('back')

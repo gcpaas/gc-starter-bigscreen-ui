@@ -157,7 +157,7 @@ import 'ztree/js/jquery.ztree.exhide'
 import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
-import { getDatasetTypeList, categoryRemove } from 'packages/js/utils/datasetConfigService'
+import { getCategoryTree, categoryRemove } from 'packages/js/utils/datasetConfigService'
 import OrgEditForm from './CategroyEditForm.vue'
 export default {
   name: 'OrgTreeIndex',
@@ -305,7 +305,7 @@ export default {
     // 初始化树节点
     initLazyOrgTree () {
       this.loading = true
-      getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode }).then((res) => {
+      getCategoryTree({ type: 'dataset', moduleCode: this.appCode }).then((res) => {
         this.categoryData = res.map((item) => {
           return { isParent: item.hasChildren, ...item }
         })
@@ -394,7 +394,7 @@ export default {
       this.editFormVisible = true
       if (editType === this.editTypeConstant.editOrg) {
         this.$nextTick(() => {
-          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.type = 'dataset'
           this.$refs.editForm.dialogFormVisible = true
           this.$refs.editForm.init(this.rightClickForm.org, false)
           this.$refs.editForm.title = '节点编辑'
@@ -404,7 +404,7 @@ export default {
       // 新增同级节点
       if (editType === this.editTypeConstant.addSiblingOrg) {
         this.$nextTick(() => {
-          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.type = 'dataset'
           this.$refs.editForm.dialogFormVisible = true
           this.$refs.editForm.init(this.rightClickForm.org, true)
           this.$refs.editForm.radio = 0
@@ -415,7 +415,7 @@ export default {
       // 新增子节点
       if (editType === this.editTypeConstant.addChildOrg) {
         this.$nextTick(() => {
-          this.$refs.editForm.tableName = 'r_dataset'
+          this.$refs.editForm.type = 'dataset'
           this.$refs.editForm.dialogFormVisible = true
           this.$refs.editForm.init(this.rightClickForm.org, true)
           this.$refs.editForm.radio = 1
