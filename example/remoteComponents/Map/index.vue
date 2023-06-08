@@ -1,5 +1,7 @@
 <template>
   <div
+    v-loading="loading"
+    element-loading-text="地图加载中..."
     class="map-box"
     :class="{ 'no-pointer': isDesign }"
   >
@@ -22,7 +24,8 @@ export default {
   },
   data () {
     return {
-      map: null
+      map: null,
+      loading: false
     }
   },
   computed: {
@@ -45,6 +48,7 @@ export default {
   },
   methods: {
     initMap () {
+      this.loading = true
       AMapLoader.load({
         key: this.customize.mapKey || '1b0a1423b70bbcbc20c9c87327e5e94e', // 申请好的Web端开发者Key，首次调用 load 时必填
         version: '1.4.15', // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
@@ -67,6 +71,7 @@ export default {
           viewMode: this.customize.viewMode,
           plugins: ['AMap.ToolBar', 'AMap.Scale', 'AMap.MapType', 'AMap.Geolocation']
         })
+        this.loading = false
         this.map.addControl(new AMap.ToolBar())
         // 在图面添加比例尺控件，展示地图在当前层级和纬度下的比例尺
         this.map.addControl(new AMap.Scale())
