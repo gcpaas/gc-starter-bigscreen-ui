@@ -24,7 +24,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.config)
     if (!['digitalFlop', 'screenScrollRanking', 'screenScrollBoard'].includes(this.config.type)) {
       this.chartInit()
     }

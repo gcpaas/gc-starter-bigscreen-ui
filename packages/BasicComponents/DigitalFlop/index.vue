@@ -99,7 +99,6 @@ export default {
   methods: {
     buildOption (config, data) {
       let dataList = ''
-      console.log(config.dataSource.dimensionField)
       if (data.data instanceof Array) {
         dataList = config.dataSource.dimensionField
           ? data.data[0][config.dataSource.dimensionField]
