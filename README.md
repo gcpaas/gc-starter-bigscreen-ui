@@ -71,6 +71,8 @@ npm install gc-starter-bigscreen-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'mini' })
+// 组件中使用了 codemirror 的编辑器，样式单独引入，比如用了vue语法高亮
+import 'codemirror/mode/vue/vue.js'
 
 // 引入大屏css
 import 'gc-starter-bigscreen-ui/lib/bigScreen.css'

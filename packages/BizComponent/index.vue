@@ -112,19 +112,8 @@ import { defaultSettingContent, defaultVueContent } from './config/defaultBizCon
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material-darker.css'
-
 import 'codemirror/addon/selection/active-line.js'
-import 'codemirror/addon/fold/foldgutter.css' // 代码折叠
-import 'codemirror/addon/lint/lint.css'
 import 'codemirror/mode/vue/vue.js'
-require('codemirror/addon/fold/foldcode.js')
-require('codemirror/addon/fold/foldgutter.js')
-require('codemirror/addon/fold/brace-fold.js')
-require('codemirror/addon/fold/indent-fold.js')
-require('codemirror/addon/fold/comment-fold.js')
-require('codemirror/lib/codemirror.js')
-require('codemirror/mode/javascript/javascript')
-require('codemirror/addon/hint/javascript-hint') // 代码错误提示 // 当前行高亮
 
 export default {
   name: 'BizComponentDesign',
@@ -367,5 +356,12 @@ export default {
   .cm-s-material-darker .CodeMirror-gutters
   {
     background: var(--bs-background-1) !important;
+  }
+  .CodeMirror-scroll {
+    background-color: var(--bs-background-1) !important;
+  }
+  .CodeMirror-gutters {
+    border-right: 1px solid var(--bs-background-1) !important;
+    background-color: var(--bs-background-1) !important;
   }
 </style>
