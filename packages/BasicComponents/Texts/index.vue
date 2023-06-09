@@ -3,12 +3,44 @@
     class="bs-design-wrap"
     :class="`bs-text-${customTheme}`"
   >
-    <div
+    <!-- <div
       class="content-box"
       :style="{'font-size': config.customize.fontSize +'px','font-weight': +config.customize.fontWeight,'background-image': `-webkit-linear-gradient(${config.customize.color})`}"
     >
       {{ config.customize.title }}
-    </div>
+    </div> -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+    >
+      <defs>
+        <linearGradient
+          id="gradient"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop
+            offset="0%"
+            style="stop-color: #ff0000;"
+          />
+          <stop
+            offset="100%"
+            style="stop-color: #00ff00;"
+          />
+        </linearGradient>
+      </defs>
+      <text
+        x="0"
+        :y="config.customize.fontSize"
+        :style="{'font-size': config.customize.fontSize +'px','font-weight': +config.customize.fontWeight,}"
+        fill="url(#gradient)"
+      >
+        {{ config.customize.title }}
+      </text>
+    </svg>
   </div>
 </template>
 <script>

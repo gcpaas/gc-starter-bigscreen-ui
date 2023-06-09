@@ -129,7 +129,7 @@
         <div class="left-tab-box">
           <ul>
             <li
-              v-for="_type in typeData"
+              v-for="_type in datasetTypeList"
               :key="_type.name"
               :class="{ 'tab-style': true, 'tab-active': _type.datasetType == curType }"
               @click="getTypeData(_type.datasetType)"
@@ -139,7 +139,7 @@
           </ul>
         </div>
       </div>
-      <org-edit-form
+      <CategroyEditForm
         v-if="editFormVisible"
         ref="editForm"
         :app-code="appCode"
@@ -157,17 +157,22 @@ import 'ztree/js/jquery.ztree.exhide'
 import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
+<<<<<<< Updated upstream
 import { getCategoryTree, categoryRemove } from 'packages/js/utils/datasetConfigService'
 import OrgEditForm from './CategroyEditForm.vue'
+=======
+import { getDatasetTypeList, categoryRemove } from 'packages/js/utils/datasetConfigService'
+import CategroyEditForm from './CategroyEditForm.vue'
+>>>>>>> Stashed changes
 export default {
   name: 'OrgTreeIndex',
   components: {
-    OrgEditForm
+    CategroyEditForm
   },
   props: {
-    dsType: {
+    datasetTypeList: {
       type: Array,
-      default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
+      default: () => ([])
     },
     appCode: {
       type: String,
@@ -178,14 +183,6 @@ export default {
     return {
       activeName: 'group',
       categoryData: [],
-      typeDataList: [
-        { name: '全部', datasetType: '' },
-        { name: '原始数据集', datasetType: 'original' },
-        { name: '自助数据集', datasetType: 'custom' },
-        { name: '存储过程数据集', datasetType: 'storedProcedure' },
-        { name: 'JSON数据集', datasetType: 'json' },
-        { name: '脚本数据集', datasetType: 'script' }
-      ],
       curType: '-1',
       noData: false,
       loading: false,
@@ -229,16 +226,10 @@ export default {
       isBoth: false // 是否为全部
     }
   },
-  computed: {
-    typeData () {
-      const types = this.typeDataList.filter(type => {
-        return type.datasetType === '' || this.dsType.includes(type.datasetType)
-      })
-      return types
-    }
-  },
+  computed: { },
   mounted () {
     this.initLazyOrgTree()
+    this.initRemoteData()
   },
 
   methods: {
@@ -317,6 +308,16 @@ export default {
       }).catch((e) => {
         this.loading = false
       })
+    },
+    initRemoteData () {
+      // console.dir(remoteComponents)
+      // console.log(remoteComponents)
+      // remoteComponents.forEach((item) => {
+      //   console.log(item.config)
+      //   this.typeDataList.push({ name: item.config.name, datasetType: item.config.datasetType })
+      // })
+      // console.log(this.typeDataList)
+      // this.typeDataList.push(remoteComponents)
     },
     // 节点展开
     expandNode (event, tree, nodeData) {
