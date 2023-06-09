@@ -215,7 +215,7 @@ export default {
       })
       // 找到选中组件内的xy最大最小值
       const maxXW = Math.max.apply(Math, activeChartList.map(item => { return item.x + item.w }))
-      const maxX = Math.max.apply(Math, activeChartList.map(item => { return item.x }))
+      let maxX = Math.max.apply(Math, activeChartList.map(item => { return item.x }))
       const minX = Math.min.apply(Math, activeChartList.map(item => { return item.x }))
       const maxYH = Math.max.apply(Math, activeChartList.map(item => { return item.y + item.h }))
       const maxY = Math.max.apply(Math, activeChartList.map(item => { return item.y }))
@@ -259,28 +259,40 @@ export default {
           activeChartList = activeChartList.sort(this.compare('x'))
           // eslint-disable-next-line no-case-declarations
           const minXW = activeChartList[0].x + activeChartList[0].w
+          maxX = Math.max.apply(Math, activeChartList.map(item => { return item.x }))
+          // 中间总的宽度
           // eslint-disable-next-line no-case-declarations
-          const padding = (maxX - minXW) / (activeChartList.length - 1)
+          let totalW = 0
+          for (let i = 1; i < activeChartList.length - 1; i++) {
+            totalW = totalW + activeChartList[i].w
+          }
+          // 中间剩余的空格
+          // eslint-disable-next-line no-case-declarations
+          const padding = (maxX - minXW - totalW) / (activeChartList.length - 1)
           // eslint-disable-next-line no-case-declarations
           let useW = 0
           for (let i = 1; i < activeChartList.length - 1; i++) {
-            activeChartList[i].x = minXW + padding + useW - (activeChartList[i].w / 2)
-            useW = useW + activeChartList[1].w
+            activeChartList[i].x = minXW + padding * i + useW
+            useW = useW + activeChartList[i].w
           }
           break
         case 'verticalAround':
-          debugger
           // 先让数组根据y的属性进行排序
           activeChartList = activeChartList.sort(this.compare('y'))
           // eslint-disable-next-line no-case-declarations
           const minYH = activeChartList[0].y + activeChartList[0].h
           // eslint-disable-next-line no-case-declarations
-          const paddingBottom = (maxY - minYH) / (activeChartList.length - 1)
+          let totalH = 0
+          for (let i = 1; i < activeChartList.length - 1; i++) {
+            totalH = totalH + activeChartList[i].h
+          }
+          // eslint-disable-next-line no-case-declarations
+          const paddingBottom = (maxY - minYH - totalH) / (activeChartList.length - 1)
           // eslint-disable-next-line no-case-declarations
           let useH = 0
           for (let i = 1; i < activeChartList.length - 1; i++) {
-            activeChartList[i].y = minYH + paddingBottom + useH - (activeChartList[i].h / 2)
-            useH = useH + activeChartList[1].h
+            activeChartList[i].y = minYH + paddingBottom * i + useH
+            useH = useH + activeChartList[i].h
           }
           break
       }
