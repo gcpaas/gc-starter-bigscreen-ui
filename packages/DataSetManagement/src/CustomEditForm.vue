@@ -792,7 +792,7 @@ export default {
         id: '',
         name: '',
         typeId: '',
-        datasetType: 'original',
+        datasetType: 'custom',
         remark: '',
         // 以下为config配置
         sourceId: '',
