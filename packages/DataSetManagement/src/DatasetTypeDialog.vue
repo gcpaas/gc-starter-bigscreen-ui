@@ -24,7 +24,7 @@
           >
             <div
               class="type-item"
-              @click="openAddForm(dataset.datasetType)"
+              @click="openAddForm(dataset.datasetType,dataset.componentName)"
             >
               {{ dataset.name }}
             </div>
@@ -137,9 +137,10 @@ export default {
   },
   methods: {
     // 选择新增类型
-    openAddForm (type) {
+    openAddForm (type, componentName) {
+      console.log()
       this.dialogVisible = false
-      this.$emit('openAddForm', type)
+      this.$emit('openAddForm', type, componentName)
     }
   }
 }

@@ -748,6 +748,7 @@ import 'codemirror/theme/nord.css'
 import 'codemirror/lib/codemirror.css'
 import _ from 'lodash'
 export default {
+  name: 'CustomEditForm',
   components: {
     codemirror
   },
@@ -1105,8 +1106,8 @@ export default {
         this.dataForm.fieldList = this.structurePreviewList
         this.saveLoading = true
         this.saveText = '正在保存...'
-        let datasetSave = this.dataForm.id === '' ? datasetAdd : datasetUpdate
-        let datasetParams = {
+        const datasetSave = this.dataForm.id === '' ? datasetAdd : datasetUpdate
+        const datasetParams = {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,
@@ -1211,7 +1212,7 @@ export default {
         this.structurePreviewList = res.structure
         // 输出字段描述合并
         this.structurePreviewList.forEach(field => {
-          let fieldInfo = this.dataForm.fieldList.find(item => item.fieldName === field.fieldName)
+          const fieldInfo = this.dataForm.fieldList.find(item => item.fieldName === field.fieldName)
           if (fieldInfo) {
             field.fieldDesc = fieldInfo.fieldDesc
             field.orderNum = fieldInfo.orderNum
@@ -1257,7 +1258,7 @@ export default {
         }
         this.saveLoading = false
       }).catch((e) => {
-        console.log('测试失败',e)
+        console.log('测试失败', e)
         this.passTest = false
         this.saveLoading = false
       })

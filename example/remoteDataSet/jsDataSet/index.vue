@@ -406,6 +406,7 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/nord.css'
 export default {
+  name: 'JsDataSet',
   components: {
     codemirror
   },

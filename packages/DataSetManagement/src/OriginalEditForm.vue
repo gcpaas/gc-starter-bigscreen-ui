@@ -476,6 +476,7 @@ import {
 import { datasourceList, getSourceTable, getSourceView, getTableFieldList } from 'packages/js/utils/dataSourceService'
 import _ from 'lodash'
 export default {
+  name: 'OriginalEditForm',
   props: {
     isEdit: {
       type: Boolean,
@@ -577,7 +578,7 @@ export default {
       handler (value) {
         try {
           this.setCheck()
-          let fieldDescMap = {}
+          const fieldDescMap = {}
           this.fieldList.forEach((item) => {
             if (value.length !== 0 && !value.includes(item.columnName)) {
               return
@@ -683,7 +684,7 @@ export default {
      * @returns {string}
      */
     getSql () {
-      let sql = "SELECT "
+      let sql = 'SELECT '
       if (this.dataForm.repeatStatus === 0) {
         sql += ' DISTINCT '
       }
@@ -766,7 +767,7 @@ export default {
           columnMap[item.fieldName] = item.fieldDesc
         })
         // 组装保存参数
-        let datasetParams = {
+        const datasetParams = {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,
@@ -787,7 +788,7 @@ export default {
         }
         this.saveLoading = true
         this.saveText = '正在保存...'
-        let saveOriginal = this.dataForm.id ? datasetUpdate : datasetAdd
+        const saveOriginal = this.dataForm.id ? datasetUpdate : datasetAdd
         saveOriginal(datasetParams).then(res => {
           this.$message.success('保存成功')
           this.$parent.init(false)
@@ -858,7 +859,7 @@ export default {
      */
     queryAllField () {
       getTableFieldList(this.dataForm.sourceId, this.dataForm.tableName).then((data) => {
-        let fieldDescMap = {}
+        const fieldDescMap = {}
         this.fieldList = data.map(field => {
           fieldDescMap[field.columnName] = field.columnComment
           field.isCheck = false

@@ -569,6 +569,7 @@ import 'codemirror/theme/nord.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
 export default {
+  name: 'StoredProcedureEditForm',
   components: {
     codemirror
   },
@@ -623,7 +624,7 @@ export default {
         fieldList: [],
         code: '',
         script: '',
-        cacheCoherence: null,
+        cacheCoherence: null
       },
       rules: {
         name: [
@@ -892,8 +893,8 @@ export default {
         this.dataForm.fieldList = this.structurePreviewList.length ? this.structurePreviewList : []
         this.saveLoading = true
         this.saveText = '正在保存...'
-        let dataSave = this.dataForm.id ? datasetUpdate : datasetAdd
-        let datasetParams = {
+        const dataSave = this.dataForm.id ? datasetUpdate : datasetAdd
+        const datasetParams = {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,
@@ -999,7 +1000,7 @@ export default {
         this.structurePreviewList = res.structure
         // 输出字段描述合并
         this.structurePreviewList.forEach(field => {
-          let fieldInfo = this.dataForm.fieldList.find(item => item.fieldName === field.fieldName)
+          const fieldInfo = this.dataForm.fieldList.find(item => item.fieldName === field.fieldName)
           if (fieldInfo) {
             field.fieldDesc = fieldInfo.fieldDesc
             field.orderNum = fieldInfo.orderNum
@@ -1045,7 +1046,7 @@ export default {
         }
         this.saveLoading = false
       }).catch((e) => {
-        console.log('测试失败',e)
+        console.log('测试失败', e)
         this.passTest = false
         this.saveLoading = false
       })

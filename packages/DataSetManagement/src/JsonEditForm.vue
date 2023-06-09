@@ -328,6 +328,7 @@ import { getCategoryTree, datasetAdd, datasetUpdate, getDataset, nameCheckRepeat
 import _ from 'lodash'
 
 export default {
+  name: 'JsonEditForm',
   components: {
     vueJsonEditor,
     vueJsonViewer
@@ -477,7 +478,7 @@ export default {
         this.dataForm.fieldList = this.structurePreviewList.length ? this.structurePreviewList : []
         let datasetSave = null
         datasetSave = this.dataForm.id ? datasetUpdate : datasetAdd
-        let datasetParams = {
+        const datasetParams = {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,

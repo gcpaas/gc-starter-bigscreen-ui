@@ -530,6 +530,7 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/nord.css'
 import _ from 'lodash'
 export default {
+  name: 'ScriptEditForm',
   components: {
     codemirror
   },
@@ -580,7 +581,7 @@ export default {
         script: '',
         paramsList: [],
         fieldDesc: {},
-        fieldList: [],
+        fieldList: []
       },
       rules: {
         name: [
@@ -715,8 +716,8 @@ export default {
         }
         this.saveLoading = true
         this.saveText = '正在保存...'
-        let datasetSave = this.dataForm.id === '' ? datasetAdd : datasetUpdate
-        let datasetParams = {
+        const datasetSave = this.dataForm.id === '' ? datasetAdd : datasetUpdate
+        const datasetParams = {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,
@@ -748,13 +749,12 @@ export default {
 
     // 脚本执行
     scriptExecute (isInit = false) {
-
       // 组装数据集执行参数
       const executeParams = {
         dataSetId: this.dataForm.id ? this.dataForm.id : '',
         script: this.dataForm.script,
         params: this.dataForm.paramsList,
-        dataSetType: 'script',
+        dataSetType: 'script'
       }
       this.saveLoading = true
       datasetExecute(executeParams).then(res => {

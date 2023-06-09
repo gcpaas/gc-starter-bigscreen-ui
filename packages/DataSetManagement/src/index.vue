@@ -137,7 +137,7 @@
               show-overflow-tooltip
             >
               <template slot-scope="scope">
-                <span>{{ datasetTypeList.find(type=>type.datasetType===scope.row.datasetType).name }}</span>
+                <span>{{ datasetTypeList.find(type=>type.datasetType===scope.row.datasetType).name || '其他' }}</span>
                 <!-- <span v-show="scope.row.datasetType === 'original'">原始数据集</span>
                 <span v-show="scope.row.datasetType === 'custom'">自助数据集</span>
                 <span v-show="scope.row.datasetType === 'storedProcedure'">存储过程数据集</span>
@@ -412,10 +412,9 @@ export default {
       this.isEdit = false
     },
     toEdit (id, type, name, typeId) {
-      console.log(id, type, name, typeId)
       this.datasetId = id
       this.datasetType = type
-      this.componentData = this.getComponents(type)
+      this.componentData = this.getComponents(this.datasetTypeList.find(item => item?.datasetType === type).componentName)
       this.datasetName = name
       this.typeId = typeId
       this.isEdit = true
@@ -426,24 +425,25 @@ export default {
       this.isEdit = false
     },
     // 新增数据集-类型
-    openAddForm (type) {
+    openAddForm (type, componentName) {
       this.datasetType = type
-      this.componentData = this.getComponents(type)
+      this.componentData = this.getComponents(componentName)
       this.typeId = this.queryForm.typeId
       this.isEdit = true
     },
-    getComponents (type) {
+    getComponents (componentName) {
       const components = Object.values(this.$options.components)
-      const componentKeys = Object.keys(this.$options.components)
-      const typeIndex = componentKeys.findIndex(item => item.includes(upperFirst(type)))
+      // const componentKeys = Object.keys(this.$options.components)
+      console.log('remoteComponents', remoteComponents)
+      // const typeIndex = componentKeys.findIndex(item => item.includes(upperFirst(type)))
       let remoteComponentData = null
       if (remoteComponents.length > 0) {
         // 获取远程组件
-        remoteComponentData = remoteComponents.find(item => item.config.datasetType === type)
+        remoteComponentData = remoteComponents.find(item => item.config.componentName === componentName)
       }
       return {
-        component: typeIndex > -1 ? components[typeIndex] : remoteComponentData?.vueFile,
-        config: typeIndex === -1 ? remoteComponentData?.config : null,
+        component: components.find(component => component.name === componentName) || remoteComponentData?.vueFile,
+        config: remoteComponentData?.config || null,
         key: new Date().getTime()
       }
     },
@@ -463,15 +463,15 @@ export default {
       this.getDataList()
       this.datasetTypeList = [
         { name: '全部', datasetType: '' },
-        { name: '原始数据集', datasetType: 'original' },
-        { name: '自助数据集', datasetType: 'custom' },
-        { name: '存储过程数据集', datasetType: 'storedProcedure' },
-        { name: 'JSON数据集', datasetType: 'json' },
-        { name: '脚本数据集', datasetType: 'script' }
+        { name: '原始数据集', datasetType: 'original', componentName: 'OriginalEditForm' },
+        { name: '自助数据集', datasetType: 'custom', componentName: 'CustomEditForm' },
+        { name: '存储过程数据集', datasetType: 'storedProcedure', componentName: 'CustomEditForm' },
+        { name: 'JSON数据集', datasetType: 'json', componentName: 'JsonEditForm' },
+        { name: '脚本数据集', datasetType: 'script', componentName: 'ScriptEditForm' }
       ]
       // 将获得到的远程数据集进行组装
       remoteComponents.forEach((item) => {
-        this.datasetTypeList.push({ name: item.config.name, datasetType: item.config.datasetType })
+        this.datasetTypeList.push({ name: item.config.name, datasetType: item.config.datasetType, componentName: item.config.componentName })
       })
     },
     // 新增数据集
