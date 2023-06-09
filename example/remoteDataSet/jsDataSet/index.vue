@@ -165,12 +165,12 @@
               </div>
               <div class="field-wrap bs-field-wrap bs-scrollbar">
                 <div
-                  v-for="field in structurePreviewList"
-                  :key="field.field"
+                  v-for="(field,key) in structurePreviewList"
+                  :key="key"
                   class="field-item"
                   @click="fieldsetVisible = true"
                 >
-                  <span>{{ field.field }}</span>&nbsp;
+                  <span>{{ field.fieldName }}</span>&nbsp;
                   <span
                     v-show="field.fieldDesc"
                     style="color: #909399;"
@@ -272,7 +272,7 @@
                 <el-table-column
                   align="center"
                   show-overflow-tooltip
-                  prop="field"
+                  prop="fieldName"
                   label="字段值"
                 />
                 <el-table-column
@@ -356,7 +356,7 @@
             <el-table-column
               align="left"
               show-overflow-tooltip
-              prop="field"
+              prop="fieldName"
               label="字段值"
             />
             <el-table-column
@@ -593,7 +593,7 @@ export default {
       if (this.structurePreviewList.length) {
         this.fieldDesc = {}
         this.structurePreviewList.forEach(key => {
-          this.fieldDesc[key.field] = key.fieldDesc
+          this.fieldDesc[key.fieldName] = key.fieldDesc
         })
       } else {
         this.fieldDesc = null
@@ -605,10 +605,10 @@ export default {
       this.fieldDesc = {}
       this.structurePreviewList.forEach(field => {
         if (field.fieldDesc === '' || !field.hasOwnProperty('fieldDesc')) {
-          field.fieldDesc = field.field
-          this.fieldDesc[field.field] = field.field
+          field.fieldDesc = field.fieldName
+          this.fieldDesc[field.fieldName] = field.fieldName
         } else {
-          this.fieldDesc[field.field] = field.fieldDesc
+          this.fieldDesc[field.fieldName] = field.fieldDesc
         }
       })
       this.save('form')
@@ -623,7 +623,7 @@ export default {
     toSave () {
       this.fieldDesc = {}
       this.structurePreviewList.forEach(field => {
-        this.fieldDesc[field.field] = field.fieldDesc
+        this.fieldDesc[field.fieldName] = field.fieldDesc
       })
       this.save('form', true)
       this.fieldDescVisible = false
@@ -632,10 +632,10 @@ export default {
     buildFieldDesc () {
       const fieldDesc = {}
       this.structurePreviewList.forEach(field => {
-        if (this.fieldDesc.hasOwnProperty(field.field)) {
-          field.fieldDesc = this.fieldDesc[field.field]
+        if (this.fieldDesc.hasOwnProperty(field.fieldName)) {
+          field.fieldDesc = this.fieldDesc[field.fieldName]
         }
-        fieldDesc[field.field] = field.fieldDesc
+        fieldDesc[field.fieldName] = field.fieldDesc
       })
       this.fieldDesc = fieldDesc
     },
@@ -663,7 +663,7 @@ export default {
         })
         this.structurePreviewList = keys.map(item => {
           return {
-            field: item,
+            fieldName: item,
             fieldDesc: ''
           }
         })
