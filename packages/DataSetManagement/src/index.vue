@@ -202,8 +202,9 @@
       @openAddForm="openAddForm"
     />
     <component
-      :is="getComponent"
+      :is="componentData.component"
       ref="EditForm"
+      :key="componentData.key"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -356,7 +357,10 @@ export default {
       curRow: null,
       multipleSelection: [],
       // 远程组件
-      getComponent: null
+      componentData: {
+        component: null,
+        key: new Date().getTime()
+      }
     }
   },
   watch: {
@@ -469,7 +473,7 @@ export default {
     toEdit (id, type, name, typeId) {
       this.datasetId = id
       this.datasetType = type
-      this.getComponent = this.getComponents(type)
+      this.componentData = this.getComponents(type)
       this.datasetName = name
       this.typeId = typeId
       this.isEdit = true
@@ -482,7 +486,7 @@ export default {
     // 新增数据集-类型
     openAddForm (type) {
       this.datasetType = type
-      this.getComponent = this.getComponents(type)
+      this.componentData = this.getComponents(type)
       this.typeId = this.queryForm.typeId
       this.isEdit = true
     },
@@ -495,7 +499,10 @@ export default {
         // 获取远程组件
         remoteComponentData = remoteComponents.find(item => item.config.datasetType === type)
       }
-      return typeIndex > -1 ? components[typeIndex] : remoteComponentData?.vueFile
+      return {
+        component: typeIndex > -1 ? components[typeIndex] : remoteComponentData?.vueFile,
+        key: new Date().getTime()
+      }
     },
     // 初始化
     init (temp = true) {
@@ -640,11 +647,6 @@ export default {
         this.rightBox.style.width = '75%'
       }
       this.resize = null
-    },
-    resolveComponentType () {
-      console.log(this.datasetTypeList)
-      console.log(remoteComponents)
-      return this.remoteComponents[0].vueFile
     }
   }
 }
