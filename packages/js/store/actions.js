@@ -28,9 +28,9 @@ export default {
   },
   // 初始化缓存数据集数据
   getCacheDataSetData ({ commit, dispatch }, { dataSetId }) {
-    getDataByDataSetId(dataSetId).then(data => {
+    getDataByDataSetId(dataSetId).then(res => {
+      let data = res.data
       commit('changeCacheDataSetData', { dataSetId, data })
-
       // 推送数据到各个组件
       emitDataToChart(dataSetId, data)
     })
