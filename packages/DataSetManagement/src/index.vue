@@ -137,13 +137,14 @@
               show-overflow-tooltip
             >
               <template slot-scope="scope">
-                <span v-show="scope.row.datasetType === 'original'">原始数据集</span>
+                <span>{{ datasetTypeList.find(type=>type.datasetType===scope.row.datasetType).name }}</span>
+                <!-- <span v-show="scope.row.datasetType === 'original'">原始数据集</span>
                 <span v-show="scope.row.datasetType === 'custom'">自助数据集</span>
                 <span v-show="scope.row.datasetType === 'storedProcedure'">存储过程数据集</span>
                 <span v-show="scope.row.datasetType === 'json'">JSON数据集</span>
                 <span v-show="scope.row.datasetType === 'dataModel'">数据模型数据集</span>
                 <span v-show="scope.row.datasetType === 'script'">脚本数据集</span>
-                <span v-show="scope.row.datasetType === 'api'">API数据集</span>
+                <span v-show="scope.row.datasetType === 'api'">API数据集</span> -->
               </template>
             </el-table-column>
             <el-table-column
@@ -205,6 +206,7 @@
       :is="componentData.component"
       ref="EditForm"
       :key="componentData.key"
+      :config="componentData.config"
       :dataset-id="datasetId"
       :dataset-name="datasetName"
       :type-id="typeId"
@@ -212,61 +214,6 @@
       :app-code="appCode"
       @back="back"
     />
-    <!-- 新增/编辑-原始数据集 -->
-    <!-- <OriginalEditForm
-      v-if="datasetType === 'original'"
-      ref="OriginalEditForm"
-      :dataset-id="datasetId"
-      :dataset-name="datasetName"
-      :type-id="typeId"
-      :is-edit="isEdit"
-      :app-code="appCode"
-      @back="back"
-    /> -->
-    <!-- 新增/编辑-自助数据集 -->
-    <!-- <CustomEditForm
-      v-if="datasetType === 'custom'"
-      ref="CustomEditForm"
-      :dataset-id="datasetId"
-      :dataset-name="datasetName"
-      :type-id="typeId"
-      :is-edit="isEdit"
-      :app-code="appCode"
-      @back="back"
-    /> -->
-    <!-- 新增/编辑-json数据集 -->
-    <!-- <JsonEditForm
-      v-if="datasetType === 'json'"
-      ref="JsonEditForm"
-      :dataset-id="datasetId"
-      :dataset-name="datasetName"
-      :type-id="typeId"
-      :is-edit="isEdit"
-      :app-code="appCode"
-      @back="back"
-    /> -->
-    <!-- 新增/编辑-存储过程数据集 -->
-    <!-- <StoredProcedureEditForm
-      v-if="datasetType === 'storedProcedure'"
-      ref="StoredProcedureEditForm"
-      :dataset-id="datasetId"
-      :dataset-name="datasetName"
-      :type-id="typeId"
-      :is-edit="isEdit"
-      :app-code="appCode"
-      @back="back"
-    /> -->
-    <!-- 新增/编辑-脚本数据集 -->
-    <!-- <ScriptEditForm
-      v-if="datasetType === 'script'"
-      ref="ScriptEditForm"
-      :dataset-id="datasetId"
-      :dataset-name="datasetName"
-      :type-id="typeId"
-      :is-edit="isEdit"
-      :app-code="appCode"
-      @back="back"
-    /> -->
   </div>
 </template>
 
@@ -333,14 +280,7 @@ export default {
         typeId: '' // 分类id
       }, // 查询条件
       // 数据集类型
-      datasetTypeList: [
-        { name: '全部', datasetType: '' },
-        { name: '原始数据集', datasetType: 'original' },
-        { name: '自助数据集', datasetType: 'custom' },
-        { name: '存储过程数据集', datasetType: 'storedProcedure' },
-        { name: 'JSON数据集', datasetType: 'json' },
-        { name: '脚本数据集', datasetType: 'script' }
-      ],
+      datasetTypeList: [],
       isPackUpTree: false,
       transition: 0.1,
       loadingText: '正在加载数据',
@@ -359,6 +299,7 @@ export default {
       // 远程组件
       componentData: {
         component: null,
+        config: null,
         key: new Date().getTime()
       }
     }
@@ -471,6 +412,7 @@ export default {
       this.isEdit = false
     },
     toEdit (id, type, name, typeId) {
+      console.log(id, type, name, typeId)
       this.datasetId = id
       this.datasetType = type
       this.componentData = this.getComponents(type)
@@ -501,6 +443,7 @@ export default {
       }
       return {
         component: typeIndex > -1 ? components[typeIndex] : remoteComponentData?.vueFile,
+        config: typeIndex === -1 ? remoteComponentData?.config : null,
         key: new Date().getTime()
       }
     },
@@ -518,6 +461,14 @@ export default {
       }
       this.current = 1
       this.getDataList()
+      this.datasetTypeList = [
+        { name: '全部', datasetType: '' },
+        { name: '原始数据集', datasetType: 'original' },
+        { name: '自助数据集', datasetType: 'custom' },
+        { name: '存储过程数据集', datasetType: 'storedProcedure' },
+        { name: 'JSON数据集', datasetType: 'json' },
+        { name: '脚本数据集', datasetType: 'script' }
+      ]
       // 将获得到的远程数据集进行组装
       remoteComponents.forEach((item) => {
         this.datasetTypeList.push({ name: item.config.name, datasetType: item.config.datasetType })
