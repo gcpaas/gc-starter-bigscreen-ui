@@ -111,6 +111,7 @@ VUE_APP_BASE_URL=http://127.0.0.1:8081/bigScreenServer
 // file: main.js
 
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+// 注意写在 new Vue() 之前
 registerConfig({
   httpConfigs: {
     baseURL: `这里是后端服务地址的值，如：process.env.VUE_APP_BASE_URL`
