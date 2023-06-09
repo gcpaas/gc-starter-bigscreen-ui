@@ -555,13 +555,13 @@
 </template>
 
 <script>
-import { nameCheckRepeat, getDatasetTypeList, datasetAddorUpdate, getDataset } from 'packages/js/utils/datasetConfigService'
+import { cloneDeep } from 'lodash'
+import { nameCheckRepeat, datasetAddorUpdate, getDataset } from 'packages/js/utils/datasetConfigService'
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/mode/javascript/javascript'
 
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/nord.css'
-import _ from 'lodash'
 export default {
   components: {
     codemirror
@@ -701,7 +701,7 @@ export default {
             fieldDesc: this.fieldDesc,
             paramsList: this.dataForm.paramsList
           }
-          datasetAddorUpdate({
+          console.log({
             id: this.datasetId,
             name: this.dataForm.name,
             typeId: this.dataForm.typeId,
@@ -710,16 +710,26 @@ export default {
             moduleCode: this.appCode,
             editable: this.appCode ? 1 : 0,
             data: JSON.stringify(data)
-          }).then(() => {
-            this.$message.success('保存成功')
-            this.$parent.init(false)
-            this.$parent.setType = null
-            this.saveloading = false
-            this.saveText = ''
-          }).catch(() => {
-            this.saveloading = false
-            this.saveText = ''
           })
+          // datasetAddorUpdate({
+          //   id: this.datasetId,
+          //   name: this.dataForm.name,
+          //   typeId: this.dataForm.typeId,
+          //   remark: this.dataForm.remark,
+          //   datasetType: 'script',
+          //   moduleCode: this.appCode,
+          //   editable: this.appCode ? 1 : 0,
+          //   data: JSON.stringify(data)
+          // }).then(() => {
+          //   this.$message.success('保存成功')
+          //   this.$parent.init(false)
+          //   this.$parent.setType = null
+          //   this.saveloading = false
+          //   this.saveText = ''
+          // }).catch(() => {
+          //   this.saveloading = false
+          //   this.saveText = ''
+          // })
         } else {
           return false
         }
@@ -727,12 +737,12 @@ export default {
     },
     // 取消操作
     cancelField () {
-      this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
+      this.structurePreviewListCopy = cloneDeep(this.structurePreviewList)
       this.fieldsetVisible = false
     },
     // 设置输出字段
     setField () {
-      this.structurePreviewList = _.cloneDeep(this.structurePreviewListCopy)
+      this.structurePreviewList = cloneDeep(this.structurePreviewListCopy)
       if (this.structurePreviewList.length) {
         this.fieldDesc = {}
         this.structurePreviewList.forEach(key => {
@@ -807,6 +817,13 @@ export default {
           fieldDesc: '123'
         }
       })
+      // 如果有数据，就通过测试
+      if (this.structurePreviewList.length > 0) {
+        this.structurePreviewListCopy = cloneDeep(this.structurePreviewList)
+        this.passTest = true
+      } else {
+        this.passTest = false
+      }
     //   const data = {
     //     script: this.dataForm.script,
     //     fieldDesc: this.fieldDesc,
@@ -834,7 +851,7 @@ export default {
     //     if (this.structurePreviewList.length && this.fieldDesc) {
     //       this.buildFieldDesc()
     //     }
-    //     this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
+    //     this.structurePreviewListCopy = cloneDeep(this.structurePreviewList)
     //     this.saveloading = false
     //     this.passTest = true
     //   }).catch(() => {
@@ -859,16 +876,16 @@ export default {
     // },
     // 取消操作
     cancelParam () {
-      this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
+      this.paramsListCopy = cloneDeep(this.dataForm.paramsList)
       this.paramsVisible = false
     },
     // 设置脚本参数
     setParam () {
       if (!this.isSet) {
         this.scriptExecute()
-        this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
+        this.paramsListCopy = cloneDeep(this.dataForm.paramsList)
       } else {
-        this.dataForm.paramsList = _.cloneDeep(this.paramsListCopy)
+        this.dataForm.paramsList = cloneDeep(this.paramsListCopy)
       }
       this.paramsVisible = false
     },
@@ -923,17 +940,17 @@ export default {
       this.$emit('back')
     },
     async init () {
-      this.categoryData = await getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode })
-      if (this.typeId) {
-        this.dataForm.typeId = this.typeId
-        this.$nextTick(() => {
-          try {
-            this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
-          } catch (error) {
-            console.error(error)
-          }
-        })
-      }
+      // this.categoryData = await getDatasetTypeList({ tableName: 'r_dataset', moduleCode: this.appCode })
+      // if (this.typeId) {
+      //   this.dataForm.typeId = this.typeId
+      //   this.$nextTick(() => {
+      //     try {
+      //       this.typeName = this.$refs.categorySelectTree.getNode(this.dataForm.typeId).data.name
+      //     } catch (error) {
+      //       console.error(error)
+      //     }
+      //   })
+      // }
       if (this.datasetId) {
         getDataset(this.datasetId).then(res => {
           this.dataForm.id = res.id
@@ -943,7 +960,7 @@ export default {
           this.dataForm.remark = res.remark
           this.dataForm.script = data.script
           this.dataForm.paramsList = data.paramsList
-          this.paramsListCopy = _.cloneDeep(this.dataForm.paramsList)
+          this.paramsListCopy = cloneDeep(this.dataForm.paramsList)
           this.fieldDesc = data.fieldDesc
           this.scriptExecute(true)
         })
