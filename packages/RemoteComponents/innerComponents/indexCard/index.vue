@@ -5,7 +5,9 @@
   >
     <div
       :style="{
-        'background-color':customize.bgColor
+        'background-color':customize.bgColor,
+        'border-radius':customize.borderRadius + 'px',
+        border:`${customize.borderWidth}px solid ${customize.borderColor}`,
       }"
       class="content"
     >
@@ -34,7 +36,7 @@
             'font-weight':customize.firstWeight,
             'margin-bottom':customize.lineDistance +'px'
           }"
-        >{{customize.firstLine}}</span>
+        >{{tableData?tableData:'' }}</span>
         <span
           :style="{
             'font-size': customize.secondSize + 'px',
@@ -71,18 +73,30 @@ export default {
   },
   watch: {},
   computed: {
-    customize() {
-      return this.config.option.customize
+    option () {
+      return this.config?.option
+    },
+    optionData () {
+      console.log(this.option)
+      return this.option?.data || []
+    },
+    customize () {
+      return this.option?.customize
+    },
+    tableData () {
+      let dataList = ''
+      console.log(this.optionData)
+      if (this.optionData instanceof Array && this.optionData.length > 0) {
+        dataList = this.option?.yField
+          ? this.optionData[0][this.option.yField]
+          : this.optionData[0]?.value
+      } else {
+        dataList = this.optionData ? this.optionData[this.option.yField] : ''
+      }
+      return dataList
     }
   },
   methods: {
-    buildOption(config, data) {
-      // 文本数据配置原则：选择数据集则以后端返回的数据为主，否则以设置面板中标题设置为准
-      if (config.dataSource.businessKey) {
-        config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
-      }
-      return config
-    }
   }
 }
 </script>

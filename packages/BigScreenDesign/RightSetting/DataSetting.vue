@@ -214,7 +214,7 @@
                   clearable
                   :multiple="setting.multiple"
                   :placeholder="`请选择${setting.label}`"
-                  @change="changeCustomProps(...arguments, index)"
+                  @change="changeCustomProps(...arguments, setting.field)"
                 >
                   <el-option
                     v-for="(field, fieldIndex) in dataSourceDataList"
@@ -836,7 +836,8 @@ export default {
       this.config.customize.columnConfig = cloneDeep(this.headerList)
       this.$store.commit('bigScreen/changeActiveItemConfig', this.config)
     },
-    changeCustomProps (value, index) {
+    changeCustomProps (value, field) {
+      const index = this.config.setting.findIndex(param => param.field === field)
       this.$set(this.config.setting[index], 'value', value)
     },
     // 改变缓存数据集key

@@ -16,6 +16,48 @@ const setting = [
     tabName: 'custom'
   },
   {
+    label: '边框颜色',
+    // 设置组件类型， select / input / colorPicker
+    type: 'colorPicker',
+    // 字段
+    field: 'customize_borderColor',
+    optionField: 'customize.borderColor', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    // 绑定的值
+    value: '',
+    // tab页。 data: 数据， custom: 自定义
+    tabName: 'custom'
+  },
+  {
+    label: '边框粗细',
+    // 设置组件类型， select / input / colorPicker
+    type: 'inputNumber',
+    // 字段
+    field: 'customize_borderWidth',
+    optionField: 'customize.borderWidth', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    // 绑定的值
+    value: 0,
+    // tab页。 data: 数据， custom: 自定义
+    tabName: 'custom'
+  },
+  {
+    label: '边框圆角',
+    // 设置组件类型， select / input / colorPicker
+    type: 'inputNumber',
+    // 字段
+    field: 'customize_borderRadius',
+    optionField: 'customize.borderRadius', // 对应options中的字段
+    // 是否多选
+    multiple: false,
+    // 绑定的值
+    value: 0,
+    // tab页。 data: 数据， custom: 自定义
+    tabName: 'custom'
+  },
+  {
     label: '图标链接',
     // 设置组件类型， select / input / colorPicker
     type: 'input',
@@ -72,18 +114,18 @@ const setting = [
     tabName: 'custom'
   },
   {
-    label: '首行文字内容',
+    label: '首行字段',
     // 设置组件类型， select / input / colorPicker
-    type: 'input',
+    type: 'select',
     // 字段
-    field: 'customize_firstLine',
-    optionField: 'customize.firstLine', // 对应options中的字段
+    field: 'yField', // 字段
+    optionField: 'yField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
-    value: '88.85%',
+    value: '',
     // tab页。 data: 数据， custom: 自定义
-    tabName: 'custom'
+    tabName: 'data'
   },
   {
     label: '首行文字大小',
@@ -191,18 +233,20 @@ const option = {
   // 自定义组件其他属性
   customize: {
     src: 'http://60.174.249.206:11080/upload/webDesign/uiSucai/dir/icon/icon_top6.png',
-    lineDistance: 0,
+    borderRadius: 0,
+    borderWidth: 0,
+    lineDistance: 25,
+    borderColor: '',
     bgColor: '',
-    distance: 0,
-    imgSize: 0,
-    firstSize: 40,
+    distance: 30,
+    imgSize: 110,
+    firstSize: 50,
     firstColor: '#ffffff',
     firstWeight: 500,
-    firstLine: '88.85%',
-    secondSize: 40,
+    secondSize: 50,
     secondColor: '#ffffff',
     secondWeight: 500,
-    secondLine: '88.85%'
+    secondLine: '装机处理及时率'
   }
 }
 
