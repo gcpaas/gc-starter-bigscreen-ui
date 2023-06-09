@@ -139,7 +139,7 @@
           </ul>
         </div>
       </div>
-      <CategroyEditForm
+      <org-edit-form
         v-if="editFormVisible"
         ref="editForm"
         :app-code="appCode"
@@ -157,17 +157,17 @@ import 'ztree/js/jquery.ztree.exhide'
 import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
-import { getDatasetTypeList, categoryRemove } from 'packages/js/utils/datasetConfigService'
-import CategroyEditForm from './CategroyEditForm.vue'
+import { getCategoryTree, categoryRemove } from 'packages/js/utils/datasetConfigService'
+import OrgEditForm from './CategroyEditForm.vue'
 export default {
   name: 'OrgTreeIndex',
   components: {
-    CategroyEditForm
+    OrgEditForm
   },
   props: {
     datasetTypeList: {
       type: Array,
-      default: () => ([])
+      default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
     },
     appCode: {
       type: String,
@@ -224,7 +224,6 @@ export default {
   computed: { },
   mounted () {
     this.initLazyOrgTree()
-    this.initRemoteData()
   },
 
   methods: {
@@ -303,16 +302,6 @@ export default {
       }).catch((e) => {
         this.loading = false
       })
-    },
-    initRemoteData () {
-      // console.dir(remoteComponents)
-      // console.log(remoteComponents)
-      // remoteComponents.forEach((item) => {
-      //   console.log(item.config)
-      //   this.typeDataList.push({ name: item.config.name, datasetType: item.config.datasetType })
-      // })
-      // console.log(this.typeDataList)
-      // this.typeDataList.push(remoteComponents)
     },
     // 节点展开
     expandNode (event, tree, nodeData) {
