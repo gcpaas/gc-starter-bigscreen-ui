@@ -157,13 +157,8 @@ import 'ztree/js/jquery.ztree.exhide'
 import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
-<<<<<<< Updated upstream
-import { getCategoryTree, categoryRemove } from 'packages/js/utils/datasetConfigService'
-import OrgEditForm from './CategroyEditForm.vue'
-=======
 import { getDatasetTypeList, categoryRemove } from 'packages/js/utils/datasetConfigService'
 import CategroyEditForm from './CategroyEditForm.vue'
->>>>>>> Stashed changes
 export default {
   name: 'OrgTreeIndex',
   components: {
