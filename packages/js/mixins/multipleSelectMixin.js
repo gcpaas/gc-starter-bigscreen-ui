@@ -27,7 +27,9 @@ export default {
       changeCtrlOrCommandDown: 'changeCtrlOrCommandDown',
       changeActivePos: 'changeActivePos',
       deleteItem: 'delItem',
-      undoTimeLine: 'undoTimeLine'
+      undoTimeLine: 'undoTimeLine',
+      copyCharts: 'copyCharts',
+      pasteCharts: 'pasteCharts'
     }),
     keydown (event) {
       if (event.keyCode === 37) {
@@ -116,6 +118,16 @@ export default {
             this.deleteItem(this.activeChart)
           }
         }).catch(() => {})
+      }
+      // ctrl/command + c复制
+      if ((event.ctrlKey || event.metaKey) && event.keyCode === 67) {
+        this.copyCharts()
+      }
+
+      if ((event.ctrlKey || event.metaKey) && event.keyCode === 86) {
+        console.log('粘贴')
+        // 粘贴
+        this.pasteCharts()
       }
     }
   }

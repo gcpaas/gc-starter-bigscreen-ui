@@ -238,7 +238,6 @@ export default {
       this.activeCatalog = _.cloneDeep(catalog)
       this.isAll = false
       this.$emit('getPageInfo', { isAll: false, page: catalog })
-      console.log(catalog)
     },
     // 编辑目录
     catalogEdit () {

@@ -322,7 +322,6 @@ export default {
         const addOrUpdateHandel = !this.dataForm.code
           ? (form) => post('/bigScreen/bizComponent/add', form)
           : (form) => post('/bigScreen/bizComponent/update', form)
-        console.log(this.dataForm.parentCode)
         const form = {
           className: 'com.gccloud.bigscreen.core.module.manage.dto.BigScreenPageDTO',
           id: this.dataForm.id,

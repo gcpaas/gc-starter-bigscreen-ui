@@ -4,17 +4,19 @@
     class="bs-remote-preview"
     element-loading-text="远程组件加载中..."
   >
-    <component
-      :is="remoteComponent"
-      :config="config"
-    />
+    <div class="remote-preview-inner-wrap">
+      <component
+        :is="remoteComponent"
+        :config="config"
+      />
+    </div>
   </div>
 </template>
 <script>
 import remoteVueLoader from 'remote-vue2-loader'
 import _ from 'lodash'
 import { getBizComponentInfo } from 'packages/js/api/bigScreenApi'
-import { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
+import innerRemoteComponents, { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
 export default {
   name: 'BsComponentPreview',
   props: {
@@ -83,7 +85,7 @@ export default {
       // 如果有组件的dirName，则获取系统组件信息
       if (this.$route.query?.dirName) {
         const dirName = this.$route.query?.dirName
-        const remoteComponentList = getRemoteComponents()
+        const remoteComponentList = [...innerRemoteComponents, ...getRemoteComponents()]
         const config = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === dirName)
         this.config.option = config?.option
         const vueFile = config.customize?.vueFile
@@ -134,9 +136,18 @@ export default {
 
 <style lang="scss" scoped>
 .bs-remote-preview {
-  padding: 16px;
-  position: relative;
-  height: 100%;
-  width: 100%
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .remote-preview-inner-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding: 20px;
+  }
 }
 </style>

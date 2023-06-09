@@ -233,22 +233,14 @@ export default {
         })
       }
     },
-    handleRemove (file, fileList) {
-      console.log(file, fileList)
-    },
-    handlePreview (file) {
-      console.log(file)
-    },
     getOptions () {
       get('/bigScreen/file/getAllFileSuffix').then((data) => {
-        console.log(data)
         this.options = []
         this.options.push({ label: '全部', value: '' })
         data.forEach((item) => this.options.push({ label: item, value: item }))
       })
     },
     getDataList () {
-      console.log(this.catalogInfo)
       this.loading = true
       get('/bigScreen/file', {
         module: this.catalogInfo.page.code,

@@ -71,6 +71,8 @@ npm install gc-starter-bigscreen-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'mini' })
+// 组件中使用了 codemirror 的编辑器，样式单独引入，比如用了vue语法高亮
+import 'codemirror/mode/vue/vue.js'
 
 // 引入大屏css
 import 'gc-starter-bigscreen-ui/lib/bigScreen.css'
@@ -109,6 +111,7 @@ VUE_APP_BASE_URL=http://127.0.0.1:8081/bigScreenServer
 // file: main.js
 
 import { registerConfig } from 'gc-starter-bigscreen-ui'
+// 注意写在 new Vue() 之前
 registerConfig({
   httpConfigs: {
     baseURL: `这里是后端服务地址的值，如：process.env.VUE_APP_BASE_URL`

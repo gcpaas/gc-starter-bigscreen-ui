@@ -197,7 +197,7 @@ import { get, post } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import EditForm from './EditForm.vue'
 import CatalogEditForm from './CatalogEditForm'
-import { getRemoteComponents, getRemoteComponentConfig } from 'packages/RemoteComponents/remoteComponentsList'
+import innerRemoteComponents, { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
 export default {
   name: 'BigScreenList',
   mixins: [pageMixins],
@@ -259,7 +259,7 @@ export default {
         this.getCatalogList()
       } else {
         this.list = []
-        this.list = getRemoteComponents()
+        this.list = [...innerRemoteComponents, ...getRemoteComponents()]
       }
     },
     updateCatalogList (list) {
@@ -270,7 +270,7 @@ export default {
         this.current = 1
         this.getDataList()
       } else {
-        const arr = getRemoteComponents()
+        const arr = [...innerRemoteComponents, ...getRemoteComponents()]
         this.list = arr?.filter((item) => item.title.indexOf(this.name) !== -1)
       }
     },

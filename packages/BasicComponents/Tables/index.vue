@@ -107,69 +107,73 @@ export default {
   },
   created () { },
   mounted () {
-    if (this.customTheme === 'custom') {
-      this.headerCellStyleToObj()
-      this.cellStyleToObj()
-    }
-    if (this.customTheme === 'custom') {
-      this.headerCellStyleToObj()
-      this.cellStyleToObj()
-    }
-    if (this.config.customize.stripe) {
-      const trs = document
-        .getElementById(this.config.code)
-        ?.querySelectorAll('tr.el-table__row--striped')
-      if (trs) {
-        trs.forEach(tr => {
-          tr.style.opacity = '0.9'
+    this.initStyle()
+    this.chartInit()
+  },
+  methods: {
+    initStyle () {
+      if (this.customTheme === 'custom') {
+        this.headerCellStyleToObj()
+        this.cellStyleToObj()
+      }
+      if (this.customTheme === 'custom') {
+        this.headerCellStyleToObj()
+        this.cellStyleToObj()
+      }
+      if (this.config.customize.stripe) {
+        const trs = document
+          .getElementById(this.config.code)
+          ?.querySelectorAll('tr.el-table__row--striped')
+        if (trs) {
+          trs.forEach(tr => {
+            tr.style.opacity = '0.9'
           // 透明度
           // const overlay = document.createElement("div");
           // overlay.classList.add("overlay");
           // // 将蒙版添加到容器中
           // tr.appendChild(overlay);
-        })
-      }
-    } else {
-      const trs = document
-        .getElementById(this.config.code)
-        ?.querySelectorAll('tr.el-table__row--striped')
-      if (trs) {
-        trs.forEach(tr => {
-          tr.style.opacity = '1'
+          })
+        }
+      } else {
+        const trs = document
+          .getElementById(this.config.code)
+          ?.querySelectorAll('tr.el-table__row--striped')
+        if (trs) {
+          trs.forEach(tr => {
+            tr.style.opacity = '1'
           // 透明度
           // const overlay = document.createElement("div");
           // overlay.classList.add("overlay");
           // // 将蒙版添加到容器中
           // tr.appendChild(overlay);
-        })
-      }
+          })
+        }
       // document.querySelectorAll(".overlay").forEach(overlay => {
       //   overlay.remove();
       // });
-    }
-    // this.chartInit();
-    if (this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor) {
+      }
+      // this.chartInit();
+      if (this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor) {
       // console.log(1)
-      this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
-    } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
+        this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
+      } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
       // console.log(2)
-      this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
-    } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
+        this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
+      } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
       // console.log(3)
-      this.config.customize.bodyBackgroundColor = ''
-    }
-    window.requestAnimationFrame(() => {
+        this.config.customize.bodyBackgroundColor = ''
+      }
+      window.requestAnimationFrame(() => {
       // console.log(4, this.config.customize.evenRowBackgroundColor)
-      document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
-        node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
+        document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
+          node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
+        })
+        // console.log(5, this.config.customize.oddRowBackgroundColor)
+        document.querySelectorAll(`.odd-row${this.config.code}`).forEach(node => {
+          node.style.backgroundColor = this.config.customize.oddRowBackgroundColor
+        })
       })
-      // console.log(5, this.config.customize.oddRowBackgroundColor)
-      document.querySelectorAll(`.odd-row${this.config.code}`).forEach(node => {
-        node.style.backgroundColor = this.config.customize.oddRowBackgroundColor
-      })
-    })
-  },
-  methods: {
+    },
     // 表格行样式
     tableRowClassName ({ row, rowIndex }) {
       // console.log(6)

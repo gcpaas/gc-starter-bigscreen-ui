@@ -122,15 +122,21 @@ export default {
       this.throttleScroll()
     },
     pageWidth (pageWidth) {
-      this.initZoom()
+      if (this.fitZoom === this.zoom) {
+        this.initZoom()
+      }
     },
     pageHeight (pageHeight) {
-      this.initZoom()
+      if (this.fitZoom === this.zoom) {
+        this.initZoom()
+      }
     }
   },
   computed: {
     ...mapState('bigScreen', {
-      scale: state => state.zoom / 100
+      scale: state => state.zoom / 100,
+      fitZoom: state => state.fitZoom,
+      zoom: state => state.zoom
     }),
     presetLines () {
       const presetLine = this.$store.state.bigScreen.presetLine
@@ -194,7 +200,9 @@ export default {
           width: this.diffX > 0 ? ((this.width + this.diffX + this.thick + 30) + 'px') : (this.width + 'px'),
           height: this.diffY > 0 ? ((this.height + this.diffY + this.thick + 30) + 'px') : (this.height + 'px')
         }
-        this.initZoom()
+        if (this.fitZoom === this.zoom) {
+          this.initZoom()
+        }
       })
     },
     handleLine (lines) {
