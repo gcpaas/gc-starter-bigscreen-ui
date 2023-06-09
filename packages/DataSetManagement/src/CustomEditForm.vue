@@ -798,9 +798,8 @@ export default {
         sourceId: '',
         sqlProcess: 'select ',
         paramsList: [],
-        paramConfig: [],
         fieldDesc: {},
-        fieldJson: [],
+        fieldList: [],
         script: '',
         cacheCoherence: null
       },
@@ -830,17 +829,13 @@ export default {
       structurePreviewListCopy: [],
       msg: '',
       exception: '',
-      typeSelect: [{
-        value: 'String'
-      }, {
-        value: 'Integer'
-      }, {
-        value: 'Double'
-      }, {
-        value: 'Long'
-      }, {
-        value: 'Date'
-      }],
+      typeSelect: [
+        { value: 'String' },
+        { value: 'Integer' },
+        { value: 'Double' },
+        { value: 'Long' },
+        { value: 'Date' }
+      ],
       typeName: '',
       categoryData: [],
       passTest: false, // 通过测试
@@ -917,10 +912,9 @@ export default {
         this.dataForm.sourceId = res.sourceId
         // config 配置
         this.dataForm.sqlProcess = res.config.sqlProcess
-        this.dataForm.paramConfig = res.config.paramConfig ? res.config.paramConfig : []
-        this.dataForm.paramsList = res.config.paramConfig ? res.config.paramConfig : []
+        this.dataForm.paramsList = res.config.paramsList ? res.config.paramsList : []
         this.dataForm.fieldDesc = res.config.fieldDesc
-        this.dataForm.fieldJson = res.config.fieldJson
+        this.dataForm.fieldList = res.config.fieldList
         this.dataForm.cacheCoherence = res.config.cacheCoherence
         // 使用传入的数据集名称 ？
         this.dataForm.name = this.datasetName
@@ -1100,7 +1094,6 @@ export default {
             return
           }
         }
-        this.dataForm.paramConfig = this.dataForm.paramsList
         // 设置字段描述
         const columnMap = {}
         if (this.structurePreviewList.length > 0) {
@@ -1109,7 +1102,7 @@ export default {
           })
           this.dataForm.fieldDesc = columnMap
         }
-        this.dataForm.fieldJson = this.structurePreviewList
+        this.dataForm.fieldList = this.structurePreviewList
         this.saveLoading = true
         this.saveText = '正在保存...'
         let datasetSave = this.dataForm.id === '' ? datasetAdd : datasetUpdate
@@ -1126,8 +1119,8 @@ export default {
             className: 'com.gccloud.dataset.entity.config.CustomDataSetConfig',
             sourceId: this.dataForm.sourceId,
             sqlProcess: this.dataForm.sqlProcess,
-            paramConfig: this.dataForm.paramsList,
-            fieldJson: this.dataForm.fieldJson,
+            paramsList: this.dataForm.paramsList,
+            fieldList: this.dataForm.fieldList,
             fieldDesc: this.dataForm.fieldDesc
           }
         }
@@ -1218,7 +1211,7 @@ export default {
         this.structurePreviewList = res.structure
         // 输出字段描述合并
         this.structurePreviewList.forEach(field => {
-          let fieldInfo = this.dataForm.fieldJson.find(item => item.fieldName === field.fieldName)
+          let fieldInfo = this.dataForm.fieldList.find(item => item.fieldName === field.fieldName)
           if (fieldInfo) {
             field.fieldDesc = fieldInfo.fieldDesc
             field.orderNum = fieldInfo.orderNum

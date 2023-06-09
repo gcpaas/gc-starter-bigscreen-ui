@@ -525,7 +525,7 @@ export default {
         tableName: '',
         fieldInfo: [],
         fieldDesc: {},
-        fieldJson: []
+        fieldList: []
       },
       rules: {
         name: [
@@ -636,7 +636,7 @@ export default {
         // config 配置
         this.dataForm.tableName = res.config.tableName
         this.dataForm.repeatStatus = res.config.repeatStatus
-        this.dataForm.fieldJson = res.config.fieldJson
+        this.dataForm.fieldList = res.config.fieldList
         this.dataForm.fieldDesc = res.config.fieldDesc
         // 字段信息，转为数组
         this.dataForm.fieldInfo = res.config.fieldInfo ? res.config.fieldInfo.split(',') : []
@@ -779,7 +779,7 @@ export default {
             tableName: this.dataForm.tableName,
             fieldInfo: this.dataForm.fieldInfo.length ? this.dataForm.fieldInfo.join(',') : '',
             fieldDesc: columnMap,
-            fieldJson: this.structurePreviewList,
+            fieldList: this.structurePreviewList,
             repeatStatus: this.dataForm.repeatStatus
           },
           moduleCode: this.appCode,
