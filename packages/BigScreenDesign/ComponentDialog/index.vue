@@ -331,7 +331,7 @@
 import { get } from 'packages/js/utils/http'
 import { pageMixins } from 'packages/js/mixins/page'
 import _ from 'lodash'
-import { getRemoteComponents, getRemoteComponentConfig } from 'packages/RemoteComponents/remoteComponentsList'
+import innerRemoteComponents, { getRemoteComponents, getRemoteComponentConfig } from 'packages/RemoteComponents/remoteComponentsList'
 import { getBizComponentPage } from 'packages/js/api/bigScreenApi'
 export default {
   name: 'ComponentDialog',
@@ -370,7 +370,7 @@ export default {
     }
   },
   mounted () {
-    this.remoteComponentlist = getRemoteComponents()
+    this.remoteComponentlist = [...innerRemoteComponents, ...getRemoteComponents()]
   },
   methods: {
     chooseComponent (component) {

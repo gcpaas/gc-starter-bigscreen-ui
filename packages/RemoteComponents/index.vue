@@ -17,7 +17,7 @@ import commonMixins from 'packages/js/mixins/commonMixins'
 import remoteVueLoader from 'remote-vue2-loader'
 import { mapMutations, mapState } from 'vuex'
 import _ from 'lodash'
-import { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
+import innerRemoteComponents, { getRemoteComponents } from 'packages/RemoteComponents/remoteComponentsList'
 import { getBizComponentInfo } from 'packages/js/api/bigScreenApi'
 export default {
   name: 'LcdpRemoteComponent',
@@ -53,7 +53,7 @@ export default {
       this.loading = true
       // 1. 如果是组件
       if (this.config.customize.vueSysComponentDirName) {
-        const remoteComponentList = getRemoteComponents()
+        const remoteComponentList = [...innerRemoteComponents, ...getRemoteComponents()]
         const vueFile = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === this.config.customize.vueSysComponentDirName)?.customize?.vueFile
         this.remoteComponent = vueFile
         this.loading = false

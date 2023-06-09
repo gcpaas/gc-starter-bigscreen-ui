@@ -1,8 +1,28 @@
 // 得到用户自定义的远程组件列表
 import { dataConfig, settingConfig } from './settingConfig'
 import _ from 'lodash'
-export function getRemoteComponents () {
-  const customList = window.BS_CONFIG?.remoteComponents || []
+
+const files = require.context('./innerComponents/', true, /index.vue$/)
+const innerRemoteComponents = []
+
+files.keys().forEach(key => {
+  const title = key.split('/')[1].replace('.vue', '')
+  const img = require(`./innerComponents/${title}/component.png`)
+  const config = require(`./innerComponents/${title}/config.js`).default
+  innerRemoteComponents.push({
+    title: config.title || title,
+    vueSysComponentDirName: 'inner_' + title,
+    vueFile: files(key).default,
+    ...config,
+    img
+  })
+})
+// 抛出内置系统组件
+export default getRemoteComponents(innerRemoteComponents)
+
+// 抛出外部的用户系统组件
+export function getRemoteComponents (comList) {
+  const customList = comList || window.BS_CONFIG?.remoteComponents
 
   const list = []
   customList.forEach((config) => {
