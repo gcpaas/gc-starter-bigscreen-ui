@@ -373,11 +373,12 @@ export default {
         id: '',
         name: '',
         typeId: '',
-        datasetType: 'original',
+        datasetType: 'json',
         remark: '',
         // 以下为config配置
         json: '',
-        fieldDesc: {}
+        fieldDesc: {},
+        fieldList: []
       },
       rules: {
         name: [
@@ -473,6 +474,7 @@ export default {
         if (!valid) {
           return
         }
+        this.dataForm.fieldList = this.structurePreviewList.length ? this.structurePreviewList : []
         let datasetSave = null
         datasetSave = this.dataForm.id ? datasetUpdate : datasetAdd
         let datasetParams = {
@@ -486,7 +488,8 @@ export default {
           config: {
             className: 'com.gccloud.dataset.entity.config.JsonDataSetConfig',
             json: JSON.stringify(this.dataForm.json),
-            fieldDesc: this.dataForm.fieldDesc
+            fieldDesc: this.dataForm.fieldDesc,
+            fieldList: this.dataForm.fieldList
           }
         }
         datasetSave(datasetParams).then(() => {

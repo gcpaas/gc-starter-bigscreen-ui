@@ -720,7 +720,7 @@ export default {
           id: this.dataForm.id,
           name: this.dataForm.name,
           typeId: this.dataForm.typeId,
-          datasetType: 'custom',
+          datasetType: 'script',
           remark: this.dataForm.remark,
           sourceId: this.dataForm.sourceId,
           moduleCode: this.appCode,
