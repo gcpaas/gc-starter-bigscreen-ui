@@ -149,32 +149,6 @@ export default {
     const config = state.pageInfo.chartList[index]
     Vue.set(config, 'key', config.code + new Date().getTime())
   },
-  // 改变缓存数据集中的字段列表
-  changeCacheDataFields (state, { dataSetId, data }) {
-    // 将 state.pageInfo.pageConfig.cacheDataSets 中的 dataSetId 对应fields字段数据替换为 data
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'fields', data?.fields || [])
-  },
-  // 改变缓存数据集中的数据参数
-  changeCacheDataParams (state, { dataSetId, data }) {
-    // 将 state.pageInfo.pageConfig.cacheDataSets 中的 dataSetId 对应fields字段数据替换为 data
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'params', data?.params || [])
-  },
-  // 改变缓存数据集中的数据
-  changeCacheDataSetData (state, { dataSetId, data }) {
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    state.pageInfo.pageConfig.cacheDataSets[index].data = data || []
-  },
   // 改变shift是否被按下
   changeCtrlOrCommandDown (state, isDown) {
     state.shiftKeyDown = isDown

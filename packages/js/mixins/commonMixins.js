@@ -27,7 +27,6 @@ export default {
     if (!['digitalFlop', 'screenScrollRanking', 'screenScrollBoard', 'tables'].includes(this.config.type)) {
       this.chartInit()
     }
-    this.watchCacheData()
   },
   methods: {
     ...mapMutations({
@@ -120,7 +119,7 @@ export default {
      * @description: 更新chart
      * @param {Object} config
      */
-    updateChartData(config) {
+    updateChartData (config) {
       const filterList = this.filterList
       const params = {
         chart: {
@@ -153,25 +152,9 @@ export default {
     newChart () {
       // 需要在自己的组件中重写此方法，用于构建自己的组件
     },
-    buildOption(config, data) {
+    buildOption (config, data) {
       // 需要在自己的组件中重写此方法:config当前组件的配置，data后端返回的数据
       return config
-    },
-    // 缓存组件数据监听
-    watchCacheData () {
-      EventBus.$on('cacheDataInit', (data, dataSetId) => {
-        // 如果是缓存数据集
-        // 且当前组件的businessKey和缓存的dataSetId相等时，更新组件
-        if (
-          this.config.dataSource.dataSetType === '2' &&
-          this.config.dataSource.businessKey === dataSetId
-        ) {
-          const config = this.buildOption(this.config, data)
-          config.key = new Date().getTime()
-          this.changeChartConfig(config)
-          this.newChart(config.option)
-        }
-      })
     }
   }
 }

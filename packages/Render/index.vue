@@ -245,6 +245,9 @@ export default {
       this.changeGridShow(false)
     },
     dragstop (left, top, chart) {
+      const oldChart = this.chartList?.find(
+        (_chart) => _chart.code === chart.code
+      )
       if (!this.freeze) {
         console.log('dragstop', chart)
         this.changeChartConfig({

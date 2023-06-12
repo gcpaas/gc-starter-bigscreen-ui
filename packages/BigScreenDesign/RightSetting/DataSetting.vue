@@ -23,27 +23,6 @@
           </div>
           <div class="lc-field-body">
             <el-form-item
-              label="数据类型"
-              prop="dataSource.type"
-            >
-              <el-radio-group
-                v-model="config.dataSource.dataSetType"
-                class="bs-radio-wrap"
-              >
-                <el-radio
-                  :label="'1'"
-                >
-                  数据集
-                </el-radio>
-                <el-radio
-                  :label="'2'"
-                >
-                  缓存数据集
-                </el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <el-form-item
-              v-if="config.option.displayOption.dataSourceType.enable && config.dataSource.dataSetType === '1'"
               label="数据集"
             >
               <data-set-select
@@ -55,25 +34,6 @@
                   }
                 "
               />
-            </el-form-item>
-            <el-form-item
-              v-if="config.option.displayOption.dataSourceType.enable && config.dataSource.dataSetType === '2'"
-              label="缓存数据集"
-            >
-              <el-select
-                v-model="config.dataSource.businessKey"
-                popper-class="bs-el-select"
-                class="bs-el-select"
-                clearable
-                @change="changeCacheBusinessKey"
-              >
-                <el-option
-                  v-for="(cacheDataSet, index) in cacheDataSets"
-                  :key="index"
-                  :label="cacheDataSet.name"
-                  :value="cacheDataSet.dataSetId"
-                />
-              </el-select>
             </el-form-item>
           </div>
         </div>
@@ -658,8 +618,6 @@ export default {
     ...mapState({
       pageInfo: state => state.bigScreen.pageInfo,
       config: state => state.bigScreen.activeItemConfig,
-      // 缓存数据集
-      cacheDataSets: state => state.bigScreen.pageInfo.pageConfig.cacheDataSets
     }),
     dataSourceDataList () {
       return this.fieldsList?.map(item => ({
@@ -839,12 +797,6 @@ export default {
     changeCustomProps (value, field) {
       const index = this.config.setting.findIndex(param => param.field === field)
       this.$set(this.config.setting[index], 'value', value)
-    },
-    // 改变缓存数据集key
-    changeCacheBusinessKey (id) {
-      // 根据id在缓存中获取fields
-      this.fieldsList = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.fields
-      this.params = this.cacheDataSets?.find(cache => cache.dataSetId === id)?.params
     }
   }
 }
