@@ -17,6 +17,9 @@
       :id="chart.code"
       :key="chart.updateKey || chart.code"
       class="drag-item"
+      :class="{
+        'multiple-selected': activeCodes.includes(chart.code),
+      }"
       :scale-ratio="scale"
       :x="chart.x"
       :y="chart.y"
@@ -28,7 +31,6 @@
       :resizable="!chart.locked"
       :parent="true"
       :debug="false"
-      :active="activeCodes.includes(chart.code)"
       :is-conflict-check="false"
       :snap="true"
       :snap-tolerance="2"
@@ -146,6 +148,7 @@ export default {
       'changeLayout',
       'changeActiveCode',
       'changeChartConfig',
+      'changeActiveItemWH',
       'addItem',
       'delItem',
       'resetPresetLine',
@@ -183,18 +186,6 @@ export default {
       if (transferData) {
         this.addChart(transferData, { x: e?.x, y: e?.y })
       }
-    },
-    /**
-     * 获取当前鼠标悬浮所得的组件
-     * @returns {{}|*} chat | {}
-     */
-    getChart () {
-      const chartList = this.pageInfo.chartList
-      const index = chartList.findIndex((item) => item.code === this.activeCode)
-      if (index > -1) {
-        return chartList[index]
-      }
-      return {}
     },
     /**
      * 改变组件大小
@@ -243,16 +234,33 @@ export default {
         x: left,
         y: top
       })
+      if (chart.code === this.activeCode) {
+        this.changeActiveItemWH({
+          w: width,
+          h: height
+        })
+      }
+
       this.saveTimeLine(`改变${chart?.title}大小`)
       this.changeGridShow(false)
     },
     dragstop (left, top, chart) {
+      const oldChart = this.chartList?.find(
+        (_chart) => _chart.code === chart.code
+      )
       if (!this.freeze) {
+        console.log('dragstop', chart)
         this.changeChartConfig({
           ...chart,
           x: left,
           y: top
         })
+        if (chart.code === this.activeCode) {
+          this.changeActiveItemWH({
+            x: left,
+            y: top
+          })
+        }
       } else {
         const index = this.chartList.findIndex(
           (_chart) => _chart.code === chart.code
@@ -402,5 +410,8 @@ export default {
 }
 .design-drag-wrap {
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
+}
+.multiple-selected {
+  border: 2px dashed #fff !important;
 }
 </style>

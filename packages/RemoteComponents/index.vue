@@ -51,15 +51,21 @@ export default {
     // 尝试渲染远程文件或远程字符串
     getRemoteComponent () {
       this.loading = true
-      // 1. 如果是组件
+      // 1. 系统组件 通过配置获取
       if (this.config.customize.vueSysComponentDirName) {
         const remoteComponentList = [...innerRemoteComponents, ...getRemoteComponents()]
-        const vueFile = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === this.config.customize.vueSysComponentDirName)?.customize?.vueFile
+        // 获得系统组件最新的配置, 同步
+        const config = remoteComponentList?.find(item => item.customize.vueSysComponentDirName === this.config.customize.vueSysComponentDirName)
+        const vueFile = config?.customize?.vueFile
+        const option = config?.option
+        const setting = config?.setting
+        // 同步配置
+        this.synchConfig(option, setting)
         this.remoteComponent = vueFile
         this.loading = false
         return
       }
-      // 2. 通过请求获取
+      // 2. 业务组件 通过请求获取
       if (this.config.customize.vueBizComponentCode) {
         getBizComponentInfo(this.config.customize.vueBizComponentCode).then(data => {
           const vueContent = data.vueContent
@@ -116,22 +122,16 @@ export default {
      * 更新组件
      */
     updateChart () {
-      // 看是否是缓存数据集，缓存数据集不从list接口获取数据
-      if (this.config.dataSource.dataSetType === '2') {
-        this.config = this.buildOption(this.config, { success: false })
+      if (this.isPreview) {
+        this.getCurrentOption().then(({ data, config }) => {
+          if (data.success) {
+            // 成功后更新数据
+            config = this.buildOption(config, data)
+            this.changeChartConfig(config)
+          }
+        })
       } else {
-        // 非缓存数据集，从list接口初始化的组件
-        if (this.isPreview) {
-          this.getCurrentOption().then(({ data, config }) => {
-            if (data.success) {
-              // 成功后更新数据
-              config = this.buildOption(config, data)
-              this.changeChartConfig(config)
-            }
-          })
-        } else {
-          this.updateChartData(this.config)
-        }
+        this.updateChartData(this.config)
       }
     },
     /**
@@ -168,6 +168,18 @@ export default {
         config.option.data = data
       }
       return config
+    },
+    // 同步配置
+    synchConfig (option, setting) {
+      // 对比this.config.setting 和 setting，进行合并，数据以this.config.option对象的value为准
+      const _setting = _.cloneDeep(setting)
+      this.config.setting.forEach(set => {
+        const newSet = _setting.find(item => item.field === set.field)
+        if (newSet) {
+          newSet.value = set.value
+        }
+      })
+      this.config.setting = _setting
     }
   }
 }

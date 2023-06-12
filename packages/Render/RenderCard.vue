@@ -18,7 +18,6 @@
 <script>
 import commonMixins from 'packages/js/mixins/commonMixins'
 import { mapMutations } from 'vuex'
-import { getUpdateChartInfo } from '../js/api//bigScreenApi'
 import { resolveComponentType } from 'packages/js/utils'
 import pcComponent from 'packages/js/utils/componentImport'
 import { dataInit, destroyedEvent } from 'packages/js/utils/eventBus'

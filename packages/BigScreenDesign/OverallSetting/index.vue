@@ -111,13 +111,6 @@
             :predefine-colors="predefineColors"
           />
         </el-form-item>
-        <el-form-item label="缓存数据集">
-          <data-set-select
-            :ds-value="dsValue"
-            :multiple="true"
-            @getSelectDs="getSelectDs"
-          />
-        </el-form-item>
       </el-form>
     </div>
   </div>
@@ -130,13 +123,11 @@ import { mapState, mapMutations } from 'vuex'
 import { getThemeConfig } from 'packages/js/api/bigScreenApi'
 import _ from 'lodash'
 import { G2 } from '@antv/g2plot'
-import dataSetSelect from 'packages/DataSetSetting/index.vue'
 export default {
   name: 'OverallSetting',
   components: {
     ColorPicker,
-    BgImg,
-    dataSetSelect
+    BgImg
   },
   directives: {
     block: {
@@ -315,12 +306,6 @@ export default {
         this.changePageConfig(this.form)
         this.changeChart(themeName)
       }
-      // 获取缓存数据集数据和配置
-      // eslint-disable-next-line no-unused-expressions
-      this.pageInfo.pageConfig.cacheDataSets?.map((cacheDataSet) => {
-        this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
-        this.$store.dispatch('bigScreen/getCacheDataFields', { dataSetId: cacheDataSet.dataSetId })
-      })
     },
     // 改变
     changeChart (themeName) {
@@ -358,12 +343,6 @@ export default {
         name: ds.name,
         dataSetId: ds.id
       }))
-      // 获取缓存数据集数据和配置
-      // eslint-disable-next-line no-unused-expressions
-      this.form.cacheDataSets?.map((cacheDataSet) => {
-        this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
-        this.$store.dispatch('bigScreen/getCacheDataFields', { dataSetId: cacheDataSet.dataSetId })
-      })
     },
     close () {
       this.drawerVisible = false

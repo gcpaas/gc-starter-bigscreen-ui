@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-06-08 15:24:01
+ * @LastEditTime: 2023-06-12 13:40:38
  */
 
 import Vue from 'vue'
@@ -26,18 +26,22 @@ export default {
   },
   // 改变当前选择组件id
   changeActiveCode (state, code) {
+    if (state.activeCode !== code) {
+      const activeItem = _.cloneDeep(state.pageInfo.chartList?.find(
+        item => item.code === code
+      ))
+      state.activeItemConfig = _.cloneDeep(activeItem)
+    }
     state.activeCode = code
     state.hoverCode = code
-
-    const activeItem = _.cloneDeep(state.pageInfo.chartList?.find(
-      item => item.code === code
-    ))
     changeGroup(code, state)
-    state.activeItemConfig = _.cloneDeep(activeItem)
   },
   changeActiveCodes (state, codes) {
     state.activeCodes = codes
     state.pageInfo.chartList = state.pageInfo.chartList?.map(chart => {
+      if (chart.group === 'tempGroup') {
+        chart.group = ''
+      }
       return {
         ...chart,
         group: (codes.includes(chart.code) && !chart.group) ? 'tempGroup' : chart.group
@@ -80,6 +84,13 @@ export default {
   },
   changeActiveItemConfig (state, config) {
     state.activeItemConfig = _.cloneDeep(config)
+  },
+  // 改变当前组件的xywh
+  changeActiveItemWH (state, pwh) {
+    state.activeItemConfig = {
+      ...state.activeItemConfig,
+      ...pwh
+    }
   },
   // 新增一个组件
   addItem (state, itemConfig) {
@@ -137,32 +148,6 @@ export default {
     }
     const config = state.pageInfo.chartList[index]
     Vue.set(config, 'key', config.code + new Date().getTime())
-  },
-  // 改变缓存数据集中的字段列表
-  changeCacheDataFields (state, { dataSetId, data }) {
-    // 将 state.pageInfo.pageConfig.cacheDataSets 中的 dataSetId 对应fields字段数据替换为 data
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'fields', data?.fields || [])
-  },
-  // 改变缓存数据集中的数据参数
-  changeCacheDataParams (state, { dataSetId, data }) {
-    // 将 state.pageInfo.pageConfig.cacheDataSets 中的 dataSetId 对应fields字段数据替换为 data
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    Vue.set(state.pageInfo.pageConfig.cacheDataSets[index], 'params', data?.params || [])
-  },
-  // 改变缓存数据集中的数据
-  changeCacheDataSetData (state, { dataSetId, data }) {
-    const index = state.pageInfo.pageConfig.cacheDataSets.findIndex(cacheData => cacheData.dataSetId === dataSetId)
-    if (index < 0) {
-      return
-    }
-    state.pageInfo.pageConfig.cacheDataSets[index].data = data || []
   },
   // 改变shift是否被按下
   changeCtrlOrCommandDown (state, isDown) {
@@ -304,7 +289,16 @@ function changeGroup (code, state) {
       state.activeCodes = state.pageInfo.chartList?.filter(chart => chart.group === group && chart.group).map(item => item.code)
     }
     if (state.shiftKeyDown) {
-      state.activeCodes = _.uniq([...state.activeCodes, code])
+      // 如果code 在 activeCodes中，就删除 且 当前code的组件group为''
+      if (state.activeCodes.includes(code)) {
+        state.activeCodes = state.activeCodes.filter(item => item !== code)
+        state.pageInfo.chartList = state.pageInfo.chartList?.map(chart => ({
+          ...chart,
+          group: chart.code === code ? '' : chart.group
+        }))
+      } else {
+        state.activeCodes = _.uniq([...state.activeCodes, code])
+      }
       // eslint-disable-next-line no-unused-expressions
       state.pageInfo.chartList?.forEach(chart => {
         if (state.activeCodes.includes(chart.code)) {
@@ -313,7 +307,19 @@ function changeGroup (code, state) {
       })
     } else {
       if (!group) {
-        state.activeCodes = [code]
+        if (!state.activeCodes?.includes(code)) {
+          state.activeCodes = [code]
+
+          state.pageInfo.chartList = state.pageInfo.chartList?.map(chart => {
+            if (chart.group === 'tempGroup') {
+              chart.group = ''
+            }
+            return {
+              ...chart,
+              group: chart.code === code ? '' : chart.group
+            }
+          })
+        }
       }
     }
   } else {

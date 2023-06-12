@@ -117,8 +117,8 @@ export default {
         event.button !== 2
       ) {
         // 按下鼠标和抬起鼠标时间间隔小表示单击，否则表示框选结束
-        this.changeActiveCodes([])
-        this.changeActiveCode('')
+        // this.changeActiveCodes([])
+        // this.changeActiveCode('')
       }
 
       if (event.button === 0 && this.isSelecting) {

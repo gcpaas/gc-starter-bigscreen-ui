@@ -280,17 +280,6 @@ export default {
           if (chart.linkage && chart.linkage.components && chart.linkage.components.length) {
             chart.linkage.components.forEach((com) => { com.componentKey = randomStr + com.componentKey })
           }
-          // 如果组件是缓存数据集
-          if (chart.dataSource.dataSetType === '2') {
-            const newPageConfig = _.cloneDeep(this.pageConfig)
-            newPageConfig.cacheDataSets.push(pageInfo.pageConfig.cacheDataSets.find((cacheDataSet) => cacheDataSet.dataSetId === chart.dataSource.businessKey))
-            newPageConfig.cacheDataSets = _.uniqBy(newPageConfig.cacheDataSets, 'dataSetId')
-            this.changePageConfig({ ...this.pageConfig, ...newPageConfig })
-            pageInfo.pageConfig.cacheDataSets?.map((cacheDataSet) => {
-              this.$store.dispatch('bigScreen/getCacheDataSetData', { dataSetId: cacheDataSet.dataSetId })
-              this.$store.dispatch('bigScreen/getCacheDataFields', { dataSetId: cacheDataSet.dataSetId })
-            })
-          }
           const newChart = {
             ...chart,
             offsetX: 0,
