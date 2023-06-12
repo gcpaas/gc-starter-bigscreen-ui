@@ -42,15 +42,21 @@ export default {
         // 根据数据集初始化的组件
         if (this.isPreview) {
           this.getCurrentOption().then(({ config, data }) => {
-            config = this?.buildOption(config, data)
+            if (this.buildOption) {
+              config = this?.buildOption(config, data)
+            }
             this.changeChartConfig(config)
-            this?.newChart(config.option)
+            if (this.newChart) {
+              this.newChart(config.option)
+            }
           })
         } else {
           this.updateChartData(this.config)
         }
       } else {
-        this?.newChart(this.config.option)
+        if (this.newChart) {
+          this?.newChart(this.config.option)
+        }
       }
     },
     /**
@@ -133,7 +139,9 @@ export default {
       getUpdateChartInfo(params).then((res) => {
         // 获取数据后更新组件配置
         config.key = new Date().getTime()
-        config = this.buildOption(config, res)
+        if (this.buildOption) {
+          config = this?.buildOption(config, res)
+        }
         this.changeChartConfig(config)
         // this.$message.success('更新成功')
       }).catch((err) => {
