@@ -120,7 +120,7 @@ export default {
      * @description: 更新chart
      * @param {Object} config
      */
-    updateChartData (config) {
+    updateChartData(config) {
       const filterList = this.filterList
       const params = {
         chart: {
@@ -138,10 +138,11 @@ export default {
       //   this.changeChartConfig(config)
       //   return
       // }
+
       getUpdateChartInfo(params).then((res) => {
         // 获取数据后更新组件配置
-        config = this.buildOption(config, res)
         config.key = new Date().getTime()
+        config = this.buildOption(config, res)
         this.changeChartConfig(config)
         // this.$message.success('更新成功')
       }).catch((err) => {
@@ -152,7 +153,7 @@ export default {
     newChart () {
       // 需要在自己的组件中重写此方法，用于构建自己的组件
     },
-    buildOption (config, data) {
+    buildOption(config, data) {
       // 需要在自己的组件中重写此方法:config当前组件的配置，data后端返回的数据
       return config
     },
