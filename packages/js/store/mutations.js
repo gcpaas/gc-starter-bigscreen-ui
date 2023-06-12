@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: xing.heng
- * @LastEditTime: 2023-06-12 11:40:20
+ * @LastEditTime: 2023-06-12 13:40:38
  */
 
 import Vue from 'vue'
@@ -84,6 +84,13 @@ export default {
   },
   changeActiveItemConfig (state, config) {
     state.activeItemConfig = _.cloneDeep(config)
+  },
+  // 改变当前组件的xywh
+  changeActiveItemWH (state, pwh) {
+    state.activeItemConfig = {
+      ...state.activeItemConfig,
+      ...pwh
+    }
   },
   // 新增一个组件
   addItem (state, itemConfig) {

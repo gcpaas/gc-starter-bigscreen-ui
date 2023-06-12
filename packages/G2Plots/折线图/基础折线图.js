@@ -45,6 +45,60 @@ const setting = [
   /** 样式配置 **/
   // 图表 graph
   {
+    label: '数据点形状',
+    type: 'select',
+    field: 'point_shape',
+    optionField: 'point.shape',
+    // 是否多选
+    multiple: false,
+    value: '',
+    tabName: 'custom',
+    options: [
+      { label: '圆形', value: 'circle' },
+      { label: '三角形', value: 'triangle' },
+      { label: '菱形', value: 'diamond' }
+    ],
+    groupName: 'graph'
+  },
+  {
+    label: '数据点大小',
+    type: 'inputNumber',
+    field: 'point_size',
+    optionField: 'point.size',
+    value: 2,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据点颜色',
+    type: 'colorPicker',
+    field: 'point_style_fill',
+    optionField: 'point.style.fill',
+    // 是否多选
+    multiple: false,
+    value: '#ffffff',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签字体大小',
+    type: 'inputNumber',
+    field: 'label_style_fontSize',
+    optionField: 'label.style.fontSize',
+    value: 12,
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
+    label: '数据标签颜色',
+    type: 'colorPicker',
+    field: 'label_style_fill',
+    optionField: 'label.style.fill',
+    value: 'rgba(255,255,255,0)',
+    tabName: 'custom',
+    groupName: 'graph'
+  },
+  {
     label: '线条宽度',
     type: 'inputNumber',
     field: 'lineStyle_lineWidth',
@@ -365,6 +419,31 @@ const option = {
   lineStyle: {
     lineWidth: 2,
     stroke: 'l(0) 0:#5F92F9 1:#62FF00'
+  },
+  label: {
+    style: {
+      fill: '#fff',
+      fontSize: 12
+    }
+  },
+  point: {
+    size: 2,
+    shape: 'diamond',
+    style: {
+      fill: 'red',
+      stroke: '#5B8FF9',
+      lineWidth: 2
+    }
+  },
+  tooltip: { showMarkers: false },
+  state: {
+    active: {
+      style: {
+        shadowBlur: 4,
+        stroke: '#000',
+        fill: 'red'
+      }
+    }
   },
   xAxis: {
     title: {
