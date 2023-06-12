@@ -12,7 +12,10 @@
         label="数据"
         name="data"
       >
-        <DataSetting ref="dataSetting" />
+        <DataSetting
+          ref="dataSetting"
+          :key="config.code"
+        />
       </el-tab-pane>
       <el-tab-pane
         label="样式"

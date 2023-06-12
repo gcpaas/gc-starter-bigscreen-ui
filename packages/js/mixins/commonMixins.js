@@ -43,8 +43,10 @@ export default {
         if (this.isPreview) {
           this.getCurrentOption().then(({ config, data }) => {
             config = this?.buildOption(config, data)
-            this.changeChartConfig(config)
-            this?.newChart(config.option)
+            if (config) {
+              this.changeChartConfig(config)
+              this?.newChart(config.option)
+            }
           })
         } else {
           this.updateChartData(this.config)
@@ -134,12 +136,20 @@ export default {
         // 获取数据后更新组件配置
         config.key = new Date().getTime()
         config = this.buildOption(config, res)
-        this.changeChartConfig(config)
+        if (config) {
+          this.changeChartConfig(config)
+        }
         // this.$message.success('更新成功')
       }).catch((err) => {
         console.error(err)
         // this.$message.error('更新失败')
       })
+    },
+    buildOption (config, data) {
+      // 覆盖
+    },
+    newChart (option) {
+      // 覆盖
     }
   }
 }

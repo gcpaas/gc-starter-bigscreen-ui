@@ -80,10 +80,6 @@ export default {
         this.updateChart()
       } else {
         // 否则说明是更新或者复制
-        // 如果是复制，给默认值
-        if (this.config.isCopy) {
-          this.config.option.data = this.plotList.find(plot => plot.name === this.config.name)?.option?.data
-        }
         this.newChart(this.config.option)
       }
     },

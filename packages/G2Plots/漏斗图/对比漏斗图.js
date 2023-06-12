@@ -200,7 +200,7 @@ const data = [
 ]
 
 // 配置处理脚本
-const optionHandler = `option.legend = option.legendEnable ? option.legendPosition: false;
+const optionHandler = `option.legend = option.legendEnable ? {position: setting.find(settingItem=>settingItem.field === "legendPosition").value} : false;
 window.conversionTagName = option.conversionTagName
 option.conversionTag.formatter = (datum) => {
   return window.conversionTagName + datum.$$percentage$$.toFixed(2) * 100 + '%'
