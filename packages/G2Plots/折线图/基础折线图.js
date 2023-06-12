@@ -10,29 +10,32 @@ const category = 'Line'
 const title = '基础折线图'
 // 类别， new Line()
 const chartType = 'Line'
-// 用于标识，唯一，title的中文转拼音
+// 用于标识，唯一，和文件夹名称一致
 const name = 'JiChuZheXianTu'
 
 // 右侧配置项
 const setting = [
-  /** 数据配置 **/
   {
     label: '维度',
-    // 设置组件 类型， select / input / colorPicker
+    // 设置组件类型， select / input / colorPicker
     type: 'select',
+    // 字段
     field: 'xField',
-    optionField: 'xField',
+    optionField: 'xField', // 对应options中的字段
     // 是否多选
     multiple: false,
     // 绑定的值
     value: '',
-    // tab页 data: 数据， custom: 自定义
+    // tab页。 data: 数据， custom: 自定义
     tabName: 'data'
   },
   {
     label: '指标',
+    // 设置组件类型
     type: 'select',
+    // 字段
     field: 'yField',
+    // 对应options中的字段
     optionField: 'yField',
     // 是否多选
     multiple: false,
@@ -41,60 +44,6 @@ const setting = [
   },
   /** 样式配置 **/
   // 图表 graph
-  {
-    label: '数据点形状',
-    type: 'select',
-    field: 'point_shape',
-    optionField: 'point.shape',
-    // 是否多选
-    multiple: false,
-    value: '',
-    tabName: 'custom',
-    options: [
-      { label: '圆形', value: 'circle' },
-      { label: '三角形', value: 'triangle' },
-      { label: '菱形', value: 'diamond' }
-    ],
-    groupName: 'graph'
-  },
-  {
-    label: '数据点大小',
-    type: 'inputNumber',
-    field: 'point_size',
-    optionField: 'point.size',
-    value: 0,
-    tabName: 'custom',
-    groupName: 'graph'
-  },
-  {
-    label: '数据点颜色',
-    type: 'colorPicker',
-    field: 'point_style_fill',
-    optionField: 'point.style.fill',
-    // 是否多选
-    multiple: false,
-    value: '#ffffff',
-    tabName: 'custom',
-    groupName: 'graph'
-  },
-  {
-    label: '数据标签字体大小',
-    type: 'inputNumber',
-    field: 'label_style_fontSize',
-    optionField: 'label.style.fontSize',
-    value: 12,
-    tabName: 'custom',
-    groupName: 'graph'
-  },
-  {
-    label: '数据标签颜色',
-    type: 'colorPicker',
-    field: 'label_style_fill',
-    optionField: 'label.style.fill',
-    value: 'rgba(255,255,255,0)',
-    tabName: 'custom',
-    groupName: 'graph'
-  },
   {
     label: '线条宽度',
     type: 'inputNumber',
@@ -387,16 +336,20 @@ const setting = [
 
 // 模拟数据
 const data = [
-  { year: '1991', value: 3 },
-  { year: '1992', value: 4 },
-  { year: '1993', value: 3.5 },
-  { year: '1994', value: 5 },
-  { year: '1995', value: 4.9 },
-  { year: '1996', value: 6 },
-  { year: '1997', value: 7 },
-  { year: '1998', value: 9 },
-  { year: '1999', value: 13 }
+  { Date: '2010-01', scales: 1998 },
+  { Date: '2010-02', scales: 1850 },
+  { Date: '2010-03', scales: 1720 },
+  { Date: '2010-04', scales: 1818 },
+  { Date: '2010-05', scales: 1920 },
+  { Date: '2010-06', scales: 1802 },
+  { Date: '2010-07', scales: 1945 },
+  { Date: '2010-08', scales: 1856 },
+  { Date: '2010-09', scales: 2107 },
+  { Date: '2010-10', scales: 2140 }
 ]
+
+// 配置处理脚本
+const optionHandler = ''
 
 // 数据处理脚本
 const dataHandler = ''
@@ -404,35 +357,11 @@ const dataHandler = ''
 // 图表配置 new Line('domName', option)
 const option = {
   data,
-  appendPadding: [20, 20, 20, 20], // 设置图标的边距
-  xField: 'year',
-  yField: 'value',
-  label: {
-    style: {
-      fill: '#fff',
-      fontSize: 12
-    }
-  },
   color: '',
-  point: {
-    size: 2,
-    shape: 'diamond',
-    style: {
-      fill: 'red',
-      stroke: '#5B8FF9',
-      lineWidth: 2
-    }
-  },
-  tooltip: { showMarkers: false },
-  state: {
-    active: {
-      style: {
-        shadowBlur: 4,
-        stroke: '#000',
-        fill: 'red'
-      }
-    }
-  },
+  appendPadding: [20, 20, 20, 20], // 设置图标的边距
+  xField: 'Date',
+  yField: 'scales',
+  smooth: false,
   lineStyle: {
     lineWidth: 2,
     stroke: 'l(0) 0:#5F92F9 1:#62FF00'
@@ -503,10 +432,8 @@ const option = {
       stroke: 'rgba(255,255,255,0)',
       lineWidth: 1
     }
-  },
-  interactions: [{ type: 'marker-active' }]
+  }
 }
-
 export default {
   category,
   title,

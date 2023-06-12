@@ -217,7 +217,6 @@ export default {
   },
   methods: {
     uploadError (err, file, fileList) {
-      console.log(err)
     },
     uploadSuccess (response, file, fileList) {
       if (response.code === 200) {

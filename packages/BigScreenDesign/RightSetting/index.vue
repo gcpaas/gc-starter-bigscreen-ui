@@ -21,6 +21,7 @@
         <component
           :is="resolveComponentType(config.type)"
           ref="customSetting"
+          :key="config.code"
           :config="config"
           @closeRightPanel="close"
         />
@@ -33,6 +34,7 @@
       <component
         :is="resolveComponentType(config.type)"
         ref="customSetting"
+        :key="config.code"
         :config="config"
         @closeRightPanel="close"
       />

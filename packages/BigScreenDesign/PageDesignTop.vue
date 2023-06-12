@@ -269,7 +269,6 @@ export default {
           }
           break
         case 'verticalAround':
-          debugger
           // 先让数组根据y的属性进行排序
           activeChartList = activeChartList.sort(this.compare('y'))
           // eslint-disable-next-line no-case-declarations

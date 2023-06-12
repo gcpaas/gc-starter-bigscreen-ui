@@ -17,6 +17,9 @@
       :id="chart.code"
       :key="chart.updateKey || chart.code"
       class="drag-item"
+      :class="{
+        'multiple-selected': activeCodes.includes(chart.code),
+      }"
       :scale-ratio="scale"
       :x="chart.x"
       :y="chart.y"
@@ -28,7 +31,6 @@
       :resizable="!chart.locked"
       :parent="true"
       :debug="false"
-      :active="activeCodes.includes(chart.code)"
       :is-conflict-check="false"
       :snap="true"
       :snap-tolerance="2"
@@ -402,5 +404,8 @@ export default {
 }
 .design-drag-wrap {
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
+}
+.multiple-selected {
+  border: 2px dashed #fff !important;
 }
 </style>
