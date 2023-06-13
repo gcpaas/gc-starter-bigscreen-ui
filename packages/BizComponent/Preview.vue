@@ -137,7 +137,7 @@ export default {
 <style lang="scss" scoped>
 .bs-remote-preview {
   position: absolute;
-  min-height: 100vh;
+  min-height: 100%;
   min-width: 100%;
   overflow: hidden;
   box-sizing: border-box;
