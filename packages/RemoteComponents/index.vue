@@ -175,14 +175,7 @@ export default {
     // 同步配置
     synchConfig (option, setting) {
       // 对比this.config.setting 和 setting，进行合并，数据以this.config.option对象的value为准
-      const _setting = _.cloneDeep(setting)
-      this.config.setting.forEach(set => {
-        const newSet = _setting.find(item => item.field === set.field)
-        if (newSet) {
-          newSet.value = set.value
-        }
-      })
-      this.config.setting = _setting
+      // TODO
     }
   }
 }

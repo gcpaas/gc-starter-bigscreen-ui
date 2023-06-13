@@ -22,11 +22,7 @@ export default {
       return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
     }
   },
-  mounted () {
-    if (!['digitalFlop', 'screenScrollRanking', 'screenScrollBoard', 'tables'].includes(this.config.type)) {
-      this.chartInit()
-    }
-  },
+  mounted () {},
   methods: {
     ...mapMutations({
       changeChartConfig: 'bigScreen/changeChartConfig'

@@ -246,6 +246,7 @@ export default {
   height: 100vh;
   color: var(--bs-el-text);
   background: var(--bs-background-2);
+  overflow: hidden;
 
   > * {
     box-sizing: border-box;
@@ -346,6 +347,7 @@ export default {
         width: 100%;
         height: 100%;
         background: var(--bs-background-1);
+        position: relative;
       }
     }
   }
