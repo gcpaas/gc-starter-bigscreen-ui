@@ -46,6 +46,9 @@ export default {
   created () {
     this.getRemoteComponent()
   },
+  mounted () {
+    this.chartInit()
+  },
   methods: {
     ...mapMutations('bigScreen', ['changeChartConfig']),
     // 尝试渲染远程文件或远程字符串

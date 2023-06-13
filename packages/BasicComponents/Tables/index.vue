@@ -107,8 +107,8 @@ export default {
   },
   created () { },
   mounted () {
-    this.initStyle()
     this.chartInit()
+    this.initStyle()
   },
   methods: {
     initStyle () {

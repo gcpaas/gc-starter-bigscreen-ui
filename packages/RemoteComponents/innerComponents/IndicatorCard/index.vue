@@ -55,6 +55,9 @@ export default {
     }
   },
   watch: {},
+  mounted () {
+    this.chartInit()
+  },
   computed: {
     option () {
       return this.config?.option

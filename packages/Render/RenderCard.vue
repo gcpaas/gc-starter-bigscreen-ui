@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import commonMixins from 'packages/js/mixins/commonMixins'
+// import commonMixins from 'packages/js/mixins/commonMixins'
 import { mapMutations } from 'vuex'
 import { resolveComponentType } from 'packages/js/utils'
 import pcComponent from 'packages/js/utils/componentImport'
@@ -32,7 +32,7 @@ for (const key in pcComponent) {
 }
 export default {
   name: 'RenderCard',
-  mixins: [commonMixins],
+  // mixins: [commonMixins],
   components: {
     ...components,
     CustomComponent,

@@ -61,6 +61,9 @@ export default {
       }
     }
   },
+  mounted () {
+    this.chartInit()
+  },
   methods: {
     handleClick () {
       const bindComponentData = {}

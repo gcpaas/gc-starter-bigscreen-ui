@@ -41,6 +41,7 @@ export default {
   watch: {
   },
   mounted () {
+    this.chartInit()
   },
   methods: {
     ...mapMutations('bigScreen', ['changeIframeDialog']),
