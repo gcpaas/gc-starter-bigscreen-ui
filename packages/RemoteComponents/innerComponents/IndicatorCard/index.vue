@@ -12,41 +12,24 @@
       class="content"
     >
       <div
+        class="content-right-first"
         :style="{
-          'margin-right':customize.distance + 'px'
+          'font-size': customize.firstSize + 'px',
+          'height':customize.firstSize + 'px',
+          color:customize.firstColor,
+          'font-weight':customize.firstWeight,
+          'margin-bottom':customize.lineDistance +'px'
         }"
-        class="content-left"
-      >
-        <el-image
-          :style="{
-            width: customize.imgSize + 'px',
-            height: customize.imgSize + 'px',
-          }"
-          :src="customize.src"
-          fit="contain"
-        />
-      </div>
-      <div class="content-right">
-        <span
-          class="content-right-first"
-          :style="{
-            'font-size': customize.firstSize + 'px',
-            'height':customize.firstSize + 'px',
-            color:customize.firstColor,
-            'font-weight':customize.firstWeight,
-            'margin-bottom':customize.lineDistance +'px'
-          }"
-        >{{tableData?tableData:'' }}</span>
-        <span
-          :style="{
-            'font-size': customize.secondSize + 'px',
-            'height':customize.secondSize + 'px',
-            color:customize.secondColor,
-            'font-weight':customize.secondWeight,
-          }"
-          class="content-right-second">
-          {{ customize.secondLine }}
-        </span>
+      >{{tableData?tableData:'' }}</div>
+      <div
+        :style="{
+          'font-size': customize.secondSize + 'px',
+          'height':customize.secondSize + 'px',
+          color:customize.secondColor,
+          'font-weight':customize.secondWeight,
+        }"
+        class="content-right-second">
+        {{ customize.secondLine }}
       </div>
     </div>
   </div>
@@ -102,33 +85,19 @@ export default {
 <style lang="scss" scoped>
 .content{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   width: 100%;
-  // background-color: aliceblue;
+  text-align: center;
   justify-content: center;
-  .content-left{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    align-items: center;
-  }
-  .content-right{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-  }
   .content-right-first{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
+    text-align: center;
     padding-bottom: 5px;
   }
   .content-right-second{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
