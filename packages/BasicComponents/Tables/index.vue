@@ -152,32 +152,32 @@ export default {
       //   overlay.remove();
       // });
       }
-      // this.chartInit();
       if (this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor) {
-      // console.log(1)
         this.config.customize.oddRowBackgroundColor = this.config.customize.bodyBackgroundColor
+        this.config.customize.bodyBackgroundColor = ''
       } else if (!this.config.customize.evenRowBackgroundColor && this.config.customize.oddRowBackgroundColor) {
-      // console.log(2)
         this.config.customize.evenRowBackgroundColor = this.config.customize.bodyBackgroundColor
+        this.config.customize.bodyBackgroundColor = ''
       } else if (!(!this.config.customize.evenRowBackgroundColor && !this.config.customize.oddRowBackgroundColor)) {
-      // console.log(3)
         this.config.customize.bodyBackgroundColor = ''
       }
+      this.tableRowStyle()
+    },
+    // 表格行样式
+    tableRowClassName ({ row, rowIndex }) {
+      this.tableRowStyle()
+      return rowIndex % 2 === 0 ? `even-row${this.config.code}` : `odd-row${this.config.code}`
+    },
+    // 表格行样式
+    tableRowStyle () {
       window.requestAnimationFrame(() => {
-      // console.log(4, this.config.customize.evenRowBackgroundColor)
         document.querySelectorAll(`.even-row${this.config.code}`).forEach(node => {
           node.style.backgroundColor = this.config.customize.evenRowBackgroundColor
         })
-        // console.log(5, this.config.customize.oddRowBackgroundColor)
         document.querySelectorAll(`.odd-row${this.config.code}`).forEach(node => {
           node.style.backgroundColor = this.config.customize.oddRowBackgroundColor
         })
       })
-    },
-    // 表格行样式
-    tableRowClassName ({ row, rowIndex }) {
-      // console.log(6)
-      return rowIndex % 2 === 0 ? `even-row${this.config.code}` : `odd-row${this.config.code}`
     },
     buildOption (config, data) {
       config.option.tableData = data?.data
@@ -195,7 +195,6 @@ export default {
       } else {
         config.option.columnData = columnData
       }
-      // this.$set(this.headerCellStyleObj, "backgroundColor", config.customize.headerBackgroundColor)
       return config
     },
 
