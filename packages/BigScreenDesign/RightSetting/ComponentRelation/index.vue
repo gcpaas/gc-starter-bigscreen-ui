@@ -137,7 +137,6 @@ export default {
     }
   },
   mounted () {
-    // console.log(this.config)
   },
   beforeDestroy () {
   },

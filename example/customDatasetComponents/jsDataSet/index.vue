@@ -649,7 +649,6 @@ export default {
         this.passTest = false
         this.$message.error('请填写脚本')
       }
-      console.log(this.passTest)
     },
     // 执行事件
     toExecute () {

@@ -253,7 +253,6 @@ export default {
     dragstop (left, top, chart) {
       if (!this.freeze) {
         if (this.rawChart.x !== left || this.rawChart.y !== top) {
-          console.log('dragstop', left, top)
           this.changeChartConfig({
             ...chart,
             x: left,

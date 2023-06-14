@@ -1,5 +1,6 @@
 <template>
   <div class="bs-overall-wrap">
+    <SettingTitle>整体布局</SettingTitle>
     <div class="bs-overall-setting-wrap">
       <el-form
         ref="form"
@@ -113,10 +114,48 @@
         </el-form-item>
       </el-form>
     </div>
+    <div>
+      <SettingTitle>定时器</SettingTitle>
+      <div
+        v-for="(timer,key) in pageInfo.pageConfig.refreshConfig"
+        :key="key"
+      >
+        <el-input-number
+          v-model="timer.time"
+          class="bs-el-input-number"
+          :min="0"
+          :max="999999"
+          :step="1"
+          placeholder="请输入定时器时间"
+        />
+        <el-select
+          v-model="timer.code"
+          class="bs-el-select"
+          popper-class="bs-el-select"
+          placeholder="请选择需要刷新的图表"
+        >
+          <el-option
+            v-for="chart in chartOptions"
+            :key="chart.code"
+            :label="chart.title"
+            :value="chart.code"
+          />
+        </el-select>
+      </div>
+      <div>
+        <el-button
+          type="primary"
+          @click="createTimer"
+        >
+          新建
+        </el-button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import ColorPicker from 'packages/ColorPicker/index.vue'
 import BgImg from './BgImgDialog.vue'
 import { mapState, mapMutations } from 'vuex'
@@ -127,6 +166,7 @@ export default {
   name: 'OverallSetting',
   components: {
     ColorPicker,
+    SettingTitle,
     BgImg
   },
   directives: {
@@ -220,6 +260,7 @@ export default {
         customTheme: 'auto',
         themeJson: {},
         cacheDataSets: [],
+        refreshConfig: [],
         fitMode: 'none'
       },
       // 预设主题色
@@ -233,7 +274,9 @@ export default {
         '#2B74CF',
         '#00BC9D',
         '#ED7D32'
-      ]
+      ],
+      // 图表列表
+      chartOptions: []
     }
   },
   computed: {
@@ -278,6 +321,29 @@ export default {
       'changeLayout',
       'changeChartKey'
     ]),
+    init () {
+      this.form = { ...this.pageInfo.pageConfig }
+      this.drawerVisible = true
+      this.pageInfo.chartList.forEach(chart => {
+        if (chart.dataSource.businessKey) {
+          this.chartOptions.push({
+            code: chart.code,
+            title: chart.title
+          })
+        }
+      })
+    },
+    // 添加定时器
+    createTimer () {
+      const timer = {
+        code: '',
+        time: 0
+      }
+      if (!this.pageInfo.pageConfig.refreshConfig) {
+        this.pageInfo.pageConfig.refreshConfig = []
+      }
+      this.pageInfo.pageConfig.refreshConfig.push(timer)
+    },
     resolutionRatioValueHandel (val) {
       if (val) {
         this.form.w = Number(val.split('*')[0])
@@ -320,10 +386,7 @@ export default {
       // 可能需要强制性更新chartList
       this.changeLayout(chartList)
     },
-    init () {
-      this.form = { ...this.pageInfo.pageConfig }
-      this.drawerVisible = true
-    },
+
     // 新增数据集
     addCacheDataSet () {
       this.form.cacheDataSets.push({

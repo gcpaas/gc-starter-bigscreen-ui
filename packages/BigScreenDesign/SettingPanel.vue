@@ -5,7 +5,7 @@
     class="bs-right-panel-wrap"
   >
     <div class="bs-set-title">
-      <span class="bs-set-title-text">{{ chartSettingShow ? `${title}设置` : '大屏设置' }}</span>
+      <SettingTitle>{{ chartSettingShow ? `${title}设置` : '大屏设置' }}</SettingTitle>
     </div>
     <div :class="!rightVisiable ? 'bs-page-right bs-page-right-fold' : 'bs-page-right'">
       <RightSetting
@@ -24,12 +24,14 @@
   <!-- </transition> -->
 </template>
 <script>
+import SettingTitle from 'packages/SettingTitle/index.vue'
 import RightSetting from 'packages/BigScreenDesign/RightSetting/index.vue'
 import OverallSetting from 'packages/BigScreenDesign/OverallSetting/index.vue'
 import { mapState } from 'vuex'
 export default {
   name: '',
   components: {
+    SettingTitle,
     RightSetting,
     OverallSetting
   },
