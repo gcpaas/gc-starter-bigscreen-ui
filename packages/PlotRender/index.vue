@@ -53,9 +53,6 @@ export default {
         prefix = 'management_chart_'
       }
       return prefix + this.config.code
-    },
-    isPreview () {
-      return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
     }
   },
   created () {
@@ -73,7 +70,7 @@ export default {
     ...mapMutations('bigScreen', ['changeChartConfig']),
     chartInit () {
       // key和code相等，说明是一进来刷新，调用/chart/data/list
-      if (this.config.code === this.config.key) {
+      if (this.config.code === this.config.key || this.isPreview) {
         // 先给默认数据, 渲染出图表
         const config = _.cloneDeep(this.config)
         // config.option = plotList.find(plot => plot.name === config.name)?.option
@@ -84,7 +81,6 @@ export default {
       } else {
         // 否则说明是更新或者复制
         this.newChart(this.config.option)
-        // this.updateChart()
       }
     },
     /**
