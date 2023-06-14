@@ -84,7 +84,7 @@ export default {
       } else {
         // 否则说明是更新或者复制
         this.newChart(this.config.option)
-        this.updateChart()
+        // this.updateChart()
       }
     },
     /**
