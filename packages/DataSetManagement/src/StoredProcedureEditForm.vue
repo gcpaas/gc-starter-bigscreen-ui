@@ -667,6 +667,7 @@ import 'codemirror/theme/nord.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
 export default {
+  name: 'StoredProcedureEditForm',
   components: {
     codemirror
   },

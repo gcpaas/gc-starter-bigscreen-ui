@@ -742,6 +742,7 @@ import 'codemirror/theme/nord.css'
 import 'codemirror/lib/codemirror.css'
 import _ from 'lodash'
 export default {
+  name: 'CustomEditForm',
   components: {
     codemirror
   },

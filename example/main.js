@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/styles/index.scss'
 import { registerConfig } from 'gc-starter-bigscreen-ui'
 import remoteComponents from '@/remoteComponents/exports.js'
+import customDatasetComponents from '@/customDatasetComponents/exports.js'
 Vue.use(ElementUI, { size: 'mini' })
 
 registerConfig(
@@ -51,7 +52,8 @@ registerConfig(
     },
     customPlots: [],
     // 远程组件列表
-    remoteComponents
+    remoteComponents,
+    customDatasetComponents
   },
   router
 )

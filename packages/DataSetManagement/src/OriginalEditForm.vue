@@ -574,6 +574,7 @@ import { getDatasetTypeList, nameCheckRepeat, getOriginalTableDetail, addOrUpdat
 import { datasourcePage, getSourceTable, getSourceView } from 'packages/js/utils/dataSourceService'
 import _ from 'lodash'
 export default {
+  name: 'OriginalEditForm',
   props: {
     isEdit: {
       type: Boolean,
