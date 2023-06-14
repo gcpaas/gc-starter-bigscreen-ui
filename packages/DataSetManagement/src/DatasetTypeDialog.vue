@@ -1,9 +1,8 @@
 <template>
   <el-dialog
     title="新增"
-    :visible.sync="setTypeVisible"
+    :visible.sync="dialogVisible"
     width="800px"
-    :before-close="handleClose"
     :append-to-body="true"
     :close-on-click-modal="false"
     class="bs-dialog-wrap bs-el-dialog"
@@ -11,8 +10,13 @@
     <div class="type-wrap">
       <el-row :gutter="20">
         <el-col
-          v-if="dsType.includes('original')"
-          :span="spanNum"
+          v-for="dataset in datasetTypeList.filter(item =>item.datasetType !=='')"
+          :key="dataset.datasetType"
+          :span="8"
+          :xs="24"
+          :sm="12"
+          :md="8"
+          style="minWidth: 200px;"
         >
           <el-card
             class="bs-el-card"
@@ -20,73 +24,9 @@
           >
             <div
               class="type-item"
-              @click="typeChose('original')"
+              @click="openAddForm(dataset.datasetType,dataset.componentName)"
             >
-              原始数据集
-            </div>
-          </el-card>
-        </el-col>
-        <el-col
-          v-if="dsType.includes('custom')"
-          :span="spanNum"
-        >
-          <el-card
-            class="bs-el-card"
-            shadow="hover"
-          >
-            <div
-              class="type-item"
-              @click="typeChose('custom')"
-            >
-              自助数据集
-            </div>
-          </el-card>
-        </el-col>
-        <el-col
-          v-if="dsType.includes('storedProcedure')"
-          :span="spanNum"
-        >
-          <el-card
-            class="bs-el-card"
-            shadow="hover"
-          >
-            <div
-              class="type-item"
-              @click="typeChose('storedProcedure')"
-            >
-              存储过程数据集
-            </div>
-          </el-card>
-        </el-col>
-        <el-col
-          v-if="dsType.includes('json')"
-          :span="spanNum"
-        >
-          <el-card
-            class="bs-el-card"
-            shadow="hover"
-          >
-            <div
-              class="type-item"
-              @click="typeChose('json')"
-            >
-              JSON数据集
-            </div>
-          </el-card>
-        </el-col>
-        <el-col
-          v-if="dsType.includes('script')"
-          :span="spanNum"
-        >
-          <el-card
-            class="bs-el-card"
-            shadow="hover"
-          >
-            <div
-              class="type-item"
-              @click="typeChose('script')"
-            >
-              脚本数据集
+              {{ dataset.name }}
             </div>
           </el-card>
         </el-col>
@@ -97,32 +37,24 @@
 
 <script>
 export default {
+  name: 'DatasetTypeDialog',
   props: {
-    dsType: {
+    datasetTypeList: {
       type: Array,
-      default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
+      default: () => ([])
     }
   },
   data () {
     return {
-      spanNum: 8,
-      setTypeVisible: false
+      dialogVisible: false
     }
   },
-  created () {
-    // eslint-disable-next-line eqeqeq
-    if (this.dsType.length == 1) this.spanNum = 24
-    if ([2, 4].includes(this.dsType.length)) this.spanNum = 12
-    if ([3, 5, 6].includes(this.dsType.length)) this.spanNum = 8
-  },
+  created () { },
   methods: {
-    handleClose () {
-      this.setTypeVisible = false
-    },
     // 选择新增类型
-    typeChose (type) {
-      this.setTypeVisible = false
-      this.$emit('setDatasetOfType', type)
+    openAddForm (type, componentName) {
+      this.dialogVisible = false
+      this.$emit('openAddForm', type, componentName)
     }
   }
 }
