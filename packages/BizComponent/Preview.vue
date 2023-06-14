@@ -30,31 +30,46 @@ export default {
     }
   },
   computed: {
-    config () {
-      // eslint-disable-next-line prefer-const
-      let option = {}
-      // eslint-disable-next-line prefer-const
-      let setting = []
-      // eslint-disable-next-line prefer-const, no-unused-vars
-      let title = []
-      // eslint-disable-next-line prefer-const, no-unused-vars
-      let data = []
-      // eslint-disable-next-line prefer-const
-      let settingContent = this.settingContent.replaceAll('const ', '')
-      // 去掉 export default及后面代码
-      settingContent = settingContent.replace(/export default[\s\S]*/, '')
-      eval(settingContent)
-      return {
-        option,
-        setting
-      }
+    config: {
+      get () {
+        // eslint-disable-next-line prefer-const
+        let option = {}
+        // eslint-disable-next-line prefer-const
+        let setting = []
+        // eslint-disable-next-line prefer-const, no-unused-vars
+        let title = []
+        // eslint-disable-next-line prefer-const, no-unused-vars
+        let data = []
+        // eslint-disable-next-line prefer-const
+        let settingContent = this.settingContent?.replaceAll('const ', '')
+        // 去掉 export default及后面代码
+        settingContent = settingContent?.replace(/export default[\s\S]*/, '')
+        eval(settingContent)
+        return {
+          option,
+          setting
+        }
+      },
+      set (val) {}
+    },
+    settingContentInner: {
+      get () {
+        return this.settingContent?.replaceAll('const ', '')
+      },
+      set (val) {}
+    },
+    vueContentInner: {
+      get () {
+        return this.vueContent
+      },
+      set (val) {}
     }
   },
   watch: {
-    vueContent () {
+    settingContentInner () {
       this.getRemoteComponent()
     },
-    settingContent () {
+    vueContentInner () {
       this.getRemoteComponent()
     }
   },
@@ -73,10 +88,10 @@ export default {
       // 如果有编码，则获取组件信息
       if (this.$route.query?.code) {
         getBizComponentInfo(this.$route.query?.code).then(data => {
-          this.vueContent = data.vueContent
-          this.settingContent = data.settingContent
+          this.vueContentInner = data.vueContent
+          this.settingContentInner = data.settingContent
           this.buildOption(this.config)
-          this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(this.vueContent))
+          this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(this.vueContentInner))
         }).finally(() => {
           this.loading = false
         })
@@ -97,7 +112,7 @@ export default {
     getRemoteComponent () {
       this.loading = true
       this.buildOption(this.config)
-      this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(this.vueContent))
+      this.remoteComponent = remoteVueLoader('data:text/plain,' + encodeURIComponent(this.vueContentInner))
       this.loading = false
     },
     /**
