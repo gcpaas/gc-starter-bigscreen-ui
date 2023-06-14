@@ -127,6 +127,7 @@ import { get } from 'packages/js/utils/http'
 import { randomString } from '../js/utils'
 import { isFirefox } from 'packages/js/utils/userAgent'
 import { handleResData } from 'packages/js/store/actions.js'
+import { EventBus } from 'packages/js/utils/eventBus'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -241,8 +242,12 @@ export default {
       }
     }
   },
+  mounted () {
+    EventBus.$on('closeRightPanel', () => { this.rightVisiable = false })
+  },
   beforeDestroy () {
     this.clearTimeline()
+    EventBus.$off('closeRightPanel')
   },
   methods: {
     ...mapActions('bigScreen', ['initLayout']),
