@@ -12,10 +12,6 @@ export const settingConfig = {
     position: 'top', // 'top', 'bottom', 'middle',
     // 配置样式
     content: ''
-    // style: {
-    //   fill: '#CACACA',
-    //   opacity: 0.6
-    // },
   },
   seriesField: '', // 分组
   displayOption: {
