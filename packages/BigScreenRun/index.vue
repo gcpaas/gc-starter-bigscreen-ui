@@ -21,6 +21,7 @@
         }"
       >
         <RenderCard
+          ref="RenderCardRef"
           :key="chart.key"
           :config="chart"
         />
@@ -204,9 +205,10 @@ export default {
             }
             that.chartList.forEach(chart => {
               if (item.code === chart.code && item.time === time) {
-                chart.key = new Date().getTime()
                 item.time = item.time + item.originTime
                 console.log('刷新' + chart.code, time, chart.title)
+                that.$refs.RenderCardRef[0].$refs[chart.code].updateData()
+                // console.log(that.$refs.RenderCardRef[0].$refs[chart.code])
               }
             })
           }

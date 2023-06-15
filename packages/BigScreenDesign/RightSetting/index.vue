@@ -87,7 +87,9 @@ export default {
     configDataSource () {
       return {
         dataSource: this.config.dataSource,
-        linkage: this.config?.linkage
+        linkage: this.config?.linkage,
+        dataHandler: this.config?.dataHandler,
+        dataSourceSetting: this.config?.setting?.filter(item => item.tabName === 'data') || []
       }
     },
     configStyle () {

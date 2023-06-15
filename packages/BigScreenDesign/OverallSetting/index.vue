@@ -326,9 +326,11 @@ export default {
     },
     'pageInfo.pageConfig.refreshConfig': {
       handler (val) {
-        this.chartOptions.forEach(chart => {
-          chart.disabled = val.findIndex(item => item.code === chart.code) !== -1
-        })
+        if (Array.isArray(val) && val.length) {
+          this.chartOptions.forEach(chart => {
+            chart.disabled = val?.findIndex(item => item.code === chart.code) !== -1
+          })
+        }
       },
       deep: true
     }

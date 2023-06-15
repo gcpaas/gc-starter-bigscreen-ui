@@ -12,7 +12,7 @@ const title = '堆叠柱状图'
 const chartType = 'Column'
 // 用于标识，唯一，和文件夹名称一致
 const name = 'DuiDieZhuZhuangTu'
-
+const dataKey = 'precent'
 // 右侧配置项
 const setting = [
   {
@@ -450,6 +450,8 @@ const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
+  // 数据将要放入到哪个字段中
+  dataKey: 'data',
   data,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   isStack: true,

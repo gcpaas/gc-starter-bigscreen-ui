@@ -97,6 +97,21 @@ export default {
       this.registerEvent()
     },
     /**
+     * @description: 只更新数据
+     */
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        if (data.success) {
+          // 成功后更新数据
+          config = this.buildOption(config, data)
+          const dataKey = config.option.dataKey
+          if (this.chart) {
+            this.chart.changeData(config.option[dataKey])
+          }
+        }
+      })
+    },
+    /**
      * 更新组件
      */
     updateChart () {

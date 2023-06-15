@@ -144,6 +144,8 @@ const setting = [
   }
 ]
 
+const data = []
+
 // 配置处理脚本
 const optionHandler = 'option.color = [option.color1, option.color2]'
 
@@ -153,6 +155,8 @@ const dataHandler =
 
 // 图表配置 new Gauge('domName', option)
 const option = {
+  dataKey: 'percent',
+  data,
   appendPadding: [0, 0, 0, 0], // 设置图标的边距
   color1: '#F4664A',
   color2: '#d0d0d0',
