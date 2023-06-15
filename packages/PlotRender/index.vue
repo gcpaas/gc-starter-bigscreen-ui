@@ -105,8 +105,17 @@ export default {
           // 成功后更新数据
           config = this.buildOption(config, data)
           const dataKey = config.option.dataKey
+          // eslint-disable-next-line no-inner-declarations
+          function getValueFromOption (option, dataKey) {
+            try {
+              return eval('option.' + dataKey)
+            } catch (error) {
+              return undefined
+            }
+          }
+          const newData = getValueFromOption(config.option, dataKey)
           if (this.chart) {
-            this.chart.changeData(config.option[dataKey])
+            this.chart.changeData(newData)
           }
         }
       })
