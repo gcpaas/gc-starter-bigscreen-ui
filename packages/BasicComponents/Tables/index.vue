@@ -6,6 +6,7 @@
     <!-- :border="this.config.customize.border" -->
     <el-table
       :id="config.code"
+      ref="table"
       class="custom-table"
       height="100%"
       :stripe="config.customize.stripe"
@@ -109,6 +110,7 @@ export default {
   mounted () {
     this.chartInit()
     this.initStyle()
+    console.log(this.$refs.table)
   },
   methods: {
     initStyle () {
@@ -189,10 +191,16 @@ export default {
       } else {
         config.option.columnData = columnData
       }
-      // this.$set(this.headerCellStyleObj, "backgroundColor", config.customize.headerBackgroundColor)
       return config
     },
-
+    // 更新数据
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        this.config.option.tableData = data?.data
+        this.config.option.columnData = data?.columnData || {}
+        this.$refs.table.doLayout()
+      })
+    },
     // 将样式字符串转成对象, 用于自定义主题，表格头部样式
     headerCellStyleToObj () {
       const str = this.themeJson.themeCss

@@ -114,15 +114,22 @@
         </el-form-item>
       </el-form>
     </div>
-    <div v-if="pageInfo.chartList.length > 0 && pageInfo.chartList.every(item=>item.dataSource.businessKey)">
+    <div>
       <SettingTitle>定时器</SettingTitle>
-      <div class="bs-overall-setting-wrap">
+      <el-empty
+        v-if="pageInfo.chartList.length === 0"
+        description="请添加图表，并绑定数据集"
+      />
+      <div
+        v-else
+        class="bs-overall-setting-wrap"
+      >
         <div class="title">
           <span>时间（秒）</span>
           <span>图表</span>
         </div>
         <div
-          v-for="(timer,key) in pageInfo.pageConfig.refreshConfig"
+          v-for="(timer, key) in pageInfo.pageConfig.refreshConfig"
           :key="key"
           class="bs-timer-item"
         >
@@ -159,7 +166,7 @@
           </el-button>
         </div>
         <el-button
-          v-if="pageInfo.chartList.length !== pageInfo.pageConfig.refreshConfig.length "
+          v-if="pageInfo.chartList.length !== pageInfo.pageConfig.refreshConfig.length"
           type="primary"
           style="width: 100%;"
           @click="createTimer"
