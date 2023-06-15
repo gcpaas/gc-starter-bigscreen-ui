@@ -3,7 +3,7 @@
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
  * @LastEditors: wujian
- * @LastEditTime: 2023-06-14 16:43:28
+ * @LastEditTime: 2023-06-15 10:52:06
  */
 
 import Vue from 'vue'
@@ -104,7 +104,9 @@ export default {
   delItem (state, codes) {
     if (Array.isArray(codes)) {
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => !codes.includes(chart.code))
+      state.pageInfo.pageConfig.refreshConfig = state.pageInfo.pageConfig.refreshConfig.filter(timer => !codes.includes(timer.code))
     } else {
+      state.pageInfo.pageConfig.refreshConfig = state.pageInfo.pageConfig.refreshConfig.filter(item => item.code !== codes)
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => codes !== chart.code)
     }
     // 存储删除后的状态
@@ -166,6 +168,9 @@ export default {
   },
   changeFitZoom (state, zoom) {
     state.fitZoom = zoom
+  },
+  changeRefreshConfig (state, refreshConfig) {
+    state.pageInfo.pageConfig.refreshConfig = refreshConfig
   },
   changeActivePos (state, { diffX, diffY }) {
     const activeCodes = state.activeCodes

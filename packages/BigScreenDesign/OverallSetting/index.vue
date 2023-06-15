@@ -114,37 +114,54 @@
         </el-form-item>
       </el-form>
     </div>
-    <div>
+    <div v-if="pageInfo.chartList.length > 0 && pageInfo.chartList.every(item=>item.dataSource.businessKey)">
       <SettingTitle>定时器</SettingTitle>
-      <div
-        v-for="(timer,key) in pageInfo.pageConfig.refreshConfig"
-        :key="key"
-      >
-        <el-input-number
-          v-model="timer.time"
-          class="bs-el-input-number"
-          :min="0"
-          :max="999999"
-          :step="1"
-          placeholder="请输入定时器时间"
-        />
-        <el-select
-          v-model="timer.code"
-          class="bs-el-select"
-          popper-class="bs-el-select"
-          placeholder="请选择需要刷新的图表"
+      <div class="bs-overall-setting-wrap">
+        <div class="title">
+          <span>时间（秒）</span>
+          <span>图表</span>
+        </div>
+        <div
+          v-for="(timer,key) in pageInfo.pageConfig.refreshConfig"
+          :key="key"
+          class="bs-timer-item"
         >
-          <el-option
-            v-for="chart in chartOptions"
-            :key="chart.code"
-            :label="chart.title"
-            :value="chart.code"
+          <el-input-number
+            v-model="timer.time"
+            class="bs-el-input-number"
+            :min="0"
+            :max="999999"
+            :step="1"
+            placeholder="请输入定时器时间"
+            style="margin-right: 8px;"
           />
-        </el-select>
-      </div>
-      <div>
+          <el-select
+            v-model="timer.code"
+            class="bs-el-select"
+            popper-class="bs-el-select"
+            placeholder="请选择需要刷新的图表"
+            @change="chartChange"
+          >
+            <el-option
+              v-for="chart in chartOptions"
+              :key="chart.code"
+              :label="chart.title"
+              :value="chart.code"
+              :disabled="chart.disabled"
+            />
+          </el-select>
+          <el-button
+            style="margin-left: 8px;"
+            class="bs-el-button-default"
+            @click="deleteTimer(timer.code)"
+          >
+            删除
+          </el-button>
+        </div>
         <el-button
+          v-if="pageInfo.chartList.length !== pageInfo.pageConfig.refreshConfig.length "
           type="primary"
+          style="width: 100%;"
           @click="createTimer"
         >
           新建
@@ -306,6 +323,14 @@ export default {
         })
       },
       deep: true
+    },
+    'pageInfo.pageConfig.refreshConfig': {
+      handler (val) {
+        this.chartOptions.forEach(chart => {
+          chart.disabled = val.findIndex(item => item.code === chart.code) !== -1
+        })
+      },
+      deep: true
     }
   },
 
@@ -319,19 +344,29 @@ export default {
       'changePageLoading',
       'changePageConfig',
       'changeLayout',
-      'changeChartKey'
+      'changeChartKey',
+      'changeRefreshConfig'
     ]),
     init () {
       this.form = { ...this.pageInfo.pageConfig }
       this.drawerVisible = true
-      this.pageInfo.chartList.forEach(chart => {
-        if (chart.dataSource.businessKey) {
-          this.chartOptions.push({
-            code: chart.code,
-            title: chart.title
-          })
-        }
-      })
+      if (this.pageInfo.chartList.length === 0) {
+        this.pageInfo.pageConfig.refreshConfig = []
+        this.changeRefreshConfig([])
+        this.form.refreshConfig = []
+      } else {
+        this.pageInfo.chartList.forEach(chart => {
+          if (chart.dataSource.businessKey) {
+            this.chartOptions.push({
+              code: chart.code,
+              title: chart.title,
+              disabled: false
+            })
+          } else {
+            this.pageInfo.pageConfig.refreshConfig = this.pageInfo.pageConfig.refreshConfig.filter(item => item.code !== chart.code)
+          }
+        })
+      }
     },
     // 添加定时器
     createTimer () {
@@ -343,6 +378,12 @@ export default {
         this.pageInfo.pageConfig.refreshConfig = []
       }
       this.pageInfo.pageConfig.refreshConfig.push(timer)
+    },
+    chartChange (val) {
+      this.chartOptions.find(item => item.code === val).disabled = true
+    },
+    deleteTimer (timerCode) {
+      this.pageInfo.pageConfig.refreshConfig = this.pageInfo.pageConfig.refreshConfig.filter(item => item.code !== timerCode)
     },
     resolutionRatioValueHandel (val) {
       if (val) {
@@ -424,6 +465,15 @@ export default {
 
   .bs-overall-setting-wrap {
     padding: 16px;
+    .title{
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 18px;
+    }
+    .bs-timer-item{
+      display: flex;
+      margin-bottom: 18px;
+    }
   }
 
   /deep/ .el-input__inner,

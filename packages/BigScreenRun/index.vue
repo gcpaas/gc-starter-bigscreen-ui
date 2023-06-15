@@ -206,6 +206,7 @@ export default {
               if (item.code === chart.code && item.time === time) {
                 chart.key = new Date().getTime()
                 item.time = item.time + item.originTime
+                console.log('刷新' + chart.code, time, chart.title)
               }
             })
           }
