@@ -422,6 +422,7 @@ export default {
         })
       }
       if (!this.datasetId) {
+        this.dataForm.json = []
         return
       }
       getDataset(this.datasetId).then(res => {

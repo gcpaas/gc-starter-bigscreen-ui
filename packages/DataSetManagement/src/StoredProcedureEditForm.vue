@@ -559,7 +559,7 @@ import {
   datasetAdd,
   datasetUpdate,
   getCategoryTree,
-  datasetExecute,
+  datasetExecuteTest,
   getDataset
 } from 'packages/js/utils/datasetConfigService'
 import { datasourceList } from 'packages/js/utils/dataSourceService'
@@ -568,33 +568,14 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/nord.css'
 import 'codemirror/mode/sql/sql.js'
 import _ from 'lodash'
+import { datasetMixins} from 'packages/js/mixins/datasetMixin'
+
 export default {
   name: 'StoredProcedureEditForm',
   components: {
     codemirror
   },
-  props: {
-    isEdit: {
-      type: Boolean,
-      default: false
-    },
-    datasetId: {
-      type: String,
-      default: null
-    },
-    datasetName: {
-      type: String,
-      default: ''
-    },
-    typeId: {
-      type: String,
-      default: ''
-    },
-    appCode: {
-      type: String,
-      default: ''
-    }
-  },
+  mixins: [datasetMixins],
   data () {
     const validateName = (rule, value, callback) => {
       nameCheckRepeat({
@@ -646,30 +627,10 @@ export default {
         }
       },
       sourceList: [],
-      dataPreviewList: [],
-      structurePreviewList: [],
-      structurePreviewListCopy: [],
       msg: '',
       exception: '',
-      typeSelect: [
-        { value: 'String' },
-        { value: 'Integer' },
-        { value: 'Double' },
-        { value: 'Long' },
-        { value: 'Date' }
-      ],
-      typeName: '',
-      categoryData: [],
       passTest: false, // 通过测试
-      current: 1,
-      size: 10,
-      totalCount: 0,
-      fieldDescVisible: false,
-      fieldsetVisible: false,
       paramsVisible: false,
-      tableLoading: false,
-      saveLoading: false,
-      saveText: '',
       tableNameList: [],
       paramsListCopy: [],
       isTest: false // 是否执行测试
@@ -805,46 +766,6 @@ export default {
         this.datasetTest()
       }
       this.paramsVisible = false
-    },
-    /**
-     * 使用字段名填充字段描述
-     */
-    fieldDescFill () {
-      this.structurePreviewList.forEach(field => {
-        if (field.fieldDesc === '' || !field.hasOwnProperty('fieldDesc')) {
-          field.fieldDesc = field.fieldName
-        }
-      })
-      this.save('form')
-      this.fieldDescVisible = false
-    },
-    /**
-     * 打开字段描述编辑弹窗
-     */
-    fieldDescEdit () {
-      this.fieldDescVisible = false
-      this.fieldsetVisible = true
-    },
-    /**
-     * 跳过字段描述编辑直接保存
-     */
-    toSave () {
-      this.save('form', true)
-      this.fieldDescVisible = false
-    },
-    /**
-     * 取消编辑字段
-     */
-    cancelField () {
-      this.structurePreviewListCopy = _.cloneDeep(this.structurePreviewList)
-      this.fieldsetVisible = false
-    },
-    /**
-     * 保存字段设置
-     */
-    setField () {
-      this.structurePreviewList = _.cloneDeep(this.structurePreviewListCopy)
-      this.fieldsetVisible = false
     },
     /**
      * 保存
@@ -986,7 +907,6 @@ export default {
       this.saveLoading = true
       // 组装数据集执行参数
       const executeParams = {
-        dataSetId: this.dataForm.id ? this.dataForm.id : '',
         dataSourceId: this.dataForm.sourceId,
         script: this.dataForm.sqlProcess,
         params: this.dataForm.paramsList,
@@ -995,7 +915,7 @@ export default {
         size: 20,
         current: 1
       }
-      datasetExecute(executeParams).then(res => {
+      datasetExecuteTest(executeParams).then(res => {
         this.dataPreviewList = res.data.list
         this.structurePreviewList = res.structure
         // 输出字段描述合并
@@ -1050,56 +970,6 @@ export default {
         this.passTest = false
         this.saveLoading = false
       })
-    },
-    /**
-     * 清空分类选择
-     */
-    clearType () {
-      this.typeName = ''
-      this.dataForm.typeId = ''
-    },
-    /**
-     * 分类展开高亮
-     * @param $event
-     */
-    setCurrentNode ($event) {
-      if ($event) {
-        const key = this.dataForm.typeId || null
-        this.$refs.categorySelectTree.setCurrentKey(key)
-      }
-    },
-    /**
-     * 分类选择
-     * @param value
-     */
-    selectParentCategory (value) {
-      this.dataForm.typeId = value.id
-      this.typeName = value.name
-      this.$refs.selectParentName.blur()
-    },
-    goBack () {
-      this.$emit('back')
-    },
-    // 每页大小改变触发
-    sizeChangeHandle (value) {
-      this.size = value
-      this.current = 1
-      this.datasetTest(false)
-    },
-    // 当前页数改变
-    currentChangeHandle (value) {
-      this.current = value
-      this.datasetTest(false)
-    },
-    // 表头添加提示
-    renderHeader (h, { column, index }) {
-      const labelLong = column.label.length // 表头label长度
-      const size = 14 // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
-      column.minWidth = labelLong * size < 120 ? 120 : labelLong * size // 根据label长度计算该表头最终宽度
-      return h('span', { class: 'cell-content', style: { width: '100%' } }, [column.label])
-    },
-    openNewWindow (url) {
-      window.open(url, '_blank')
     }
   }
 }

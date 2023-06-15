@@ -470,7 +470,7 @@
 import {
   getCategoryTree,
   nameCheckRepeat,
-  datasetExecute,
+  datasetExecuteTest,
   getDataset, datasetUpdate, datasetAdd
 } from 'packages/js/utils/datasetConfigService'
 import { datasourceList, getSourceTable, getSourceView, getTableFieldList } from 'packages/js/utils/dataSourceService'
@@ -659,7 +659,6 @@ export default {
      */
     getData () {
       const executeParams = {
-        dataSetId: this.dataForm.id ? this.dataForm.id : '',
         dataSourceId: this.dataForm.sourceId,
         script: this.getSql(),
         // 原始表数据集没有数据集参数
@@ -669,7 +668,7 @@ export default {
         current: this.current
       }
       this.tableLoading = true
-      datasetExecute(executeParams).then((data) => {
+      datasetExecuteTest(executeParams).then((data) => {
         this.dataPreviewList = data.data.list
         this.totalCount = data.data.totalCount
         this.tableLoading = false
@@ -914,7 +913,6 @@ export default {
       this.structurePreviewListCopy = []
       if (!this.dataForm.sourceId || !this.dataForm.tableName) return
       const executeParams = {
-        dataSetId: this.dataForm.id ? this.dataForm.id : '',
         dataSourceId: this.dataForm.sourceId,
         script: this.getSql(),
         // 原始表数据集没有数据集参数
@@ -924,7 +922,7 @@ export default {
         current: this.current
       }
       this.tableLoading = true
-      datasetExecute(executeParams).then((data) => {
+      datasetExecuteTest(executeParams).then((data) => {
         this.dataPreviewList = data.data.list
         this.structurePreviewList = data.structure
         this.structurePreviewList.forEach(item => {

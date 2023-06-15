@@ -520,7 +520,7 @@ import {
   nameCheckRepeat,
   getCategoryTree,
   getDataset,
-  datasetExecute,
+  datasetExecuteTest,
   datasetAdd, datasetUpdate
 } from 'packages/js/utils/datasetConfigService'
 import { codemirror } from 'vue-codemirror'
@@ -751,13 +751,12 @@ export default {
     scriptExecute (isInit = false) {
       // 组装数据集执行参数
       const executeParams = {
-        dataSetId: this.dataForm.id ? this.dataForm.id : '',
         script: this.dataForm.script,
         params: this.dataForm.paramsList,
         dataSetType: 'script'
       }
       this.saveLoading = true
-      datasetExecute(executeParams).then(res => {
+      datasetExecuteTest(executeParams).then(res => {
         if (!isInit) {
           this.$message.success('脚本执行通过')
         }

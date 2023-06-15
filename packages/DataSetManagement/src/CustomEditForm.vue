@@ -737,7 +737,7 @@ import {
   nameCheckRepeat,
   datasetAdd,
   datasetUpdate,
-  datasetExecute,
+  datasetExecuteTest,
   getCategoryTree,
   getDataset
 } from 'packages/js/utils/datasetConfigService'
@@ -1199,7 +1199,6 @@ export default {
       this.saveLoading = true
 
       const executeParams = {
-        dataSetId: this.dataForm.id ? this.dataForm.id : '',
         dataSourceId: this.dataForm.sourceId,
         script: this.dataForm.sqlProcess,
         params: this.dataForm.paramsList,
@@ -1207,7 +1206,7 @@ export default {
         size: this.size,
         current: this.current
       }
-      datasetExecute(executeParams).then(res => {
+      datasetExecuteTest(executeParams).then(res => {
         this.dataPreviewList = res.data.list
         this.structurePreviewList = res.structure
         // 输出字段描述合并

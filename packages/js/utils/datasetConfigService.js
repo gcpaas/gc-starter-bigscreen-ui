@@ -50,7 +50,7 @@ const datasetRemove = (id = '-1', flag = false) => post(`/dataset/delete/${id}`,
  * @param flag
  * @returns {*}
  */
-const datasetExecute = (params = {}, flag = false) => post('/dataset/execute', params, flag)
+const datasetExecuteTest = (params = {}, flag = false) => post('/dataset/execute/test', params, flag)
 
 /**
  * 获取数据集详情
@@ -102,7 +102,7 @@ export {
   datasetUpdate,
   datasetRemove,
   nameCheckRepeat,
-  datasetExecute,
+  datasetExecuteTest,
   getDataset,
 
   getCategoryTree,
