@@ -110,7 +110,6 @@ export default {
   mounted () {
     this.chartInit()
     this.initStyle()
-    console.log(this.$refs.table)
   },
   methods: {
     initStyle () {

@@ -206,7 +206,6 @@ export default {
             that.chartList.forEach((chart, index) => {
               if (item.code === chart.code && item.time === time) {
                 item.time = item.time + item.originTime
-                console.log('刷新' + chart.code, time, chart.title)
                 that.$refs.RenderCardRef[index].$refs[chart.code].updateData()
               }
             })
