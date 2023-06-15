@@ -203,12 +203,11 @@ export default {
             if (time === 1) {
               item.originTime = item.time
             }
-            that.chartList.forEach(chart => {
+            that.chartList.forEach((chart, index) => {
               if (item.code === chart.code && item.time === time) {
                 item.time = item.time + item.originTime
                 console.log('刷新' + chart.code, time, chart.title)
-                that.$refs.RenderCardRef[0].$refs[chart.code].updateData()
-                // console.log(that.$refs.RenderCardRef[0].$refs[chart.code])
+                that.$refs.RenderCardRef[index].$refs[chart.code].updateData()
               }
             })
           }
