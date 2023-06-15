@@ -101,8 +101,12 @@ export default {
         columnWidth: [...widthList],
         align: [...alignList]
       }
-
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+
+      })
     }
 
   }

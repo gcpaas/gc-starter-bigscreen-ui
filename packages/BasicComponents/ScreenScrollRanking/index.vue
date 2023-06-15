@@ -33,11 +33,15 @@ export default {
   },
   data () {
     return {
+      updateKey: 0
     }
   },
   computed: {
-    option () {
-      return { ...this.config.customize, data: this.config.option.data }
+    option: {
+      get () {
+        return { ...this.config.customize, data: this.config.option.data }
+      },
+      set (value) {}
     }
   },
   watch: {
@@ -56,6 +60,24 @@ export default {
         data: dataSourseList
       }
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        const dataSourseList = []
+        console.log('data', data)
+        console.log('c2onfig', config)
+        data.data.forEach(item => {
+          console.log(config.dataSource.dimensionField)
+          dataSourseList.push({ name: item[config.dataSource.dimensionField || 'name'], value: item[config.dataSource.metricField || 'sum(num)'] })
+        })
+        config.option = {
+          ...config.option,
+          data: dataSourseList
+        }
+        console.log('dataSourseList', dataSourseList)
+        this.option = { ...config.customize, data: config.option.data }
+        this.updateKey++
+      })
     }
 
   }

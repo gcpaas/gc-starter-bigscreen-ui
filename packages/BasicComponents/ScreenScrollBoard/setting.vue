@@ -8,19 +8,22 @@
       label-width="90px"
     >
       <el-form
-          :model="config.customize"
-          class="setting-body"
-          label-position="left"
-          label-width="90px"
-        >
+        :model="config.customize"
+        class="setting-body"
+        label-position="left"
+        label-width="90px"
+      >
         <SettingTitle>标题</SettingTitle>
-          <el-form-item class="lc-field-body" label="轮播表名称">
-            <el-input
-              v-model="config.title"
-              clearable
-            />
-          </el-form-item>
-          <SettingTitle>位置</SettingTitle>
+        <el-form-item
+          class="lc-field-body"
+          label="轮播表名称"
+        >
+          <el-input
+            v-model="config.title"
+            clearable
+          />
+        </el-form-item>
+        <SettingTitle>位置</SettingTitle>
         <div class="lc-field-body">
           <PosWhSetting :config="config" />
         </div>
@@ -101,8 +104,7 @@
             />
           </el-form-item>
         </div>
-
-        </el-form>
+      </el-form>
     </el-form>
   </div>
 </template>
