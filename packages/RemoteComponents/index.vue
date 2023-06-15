@@ -86,7 +86,7 @@ export default {
     },
     chartInit () {
       // key和code相等，说明是一进来刷新，调用/chart/data/list
-      if (this.config.code === this.config.key) {
+      if (this.config.code === this.config.key || this.isPreview) {
         // 再根据数据更新组件
         this.updateChart()
       }
