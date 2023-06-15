@@ -149,26 +149,27 @@
             />
             <!--操作栏-->
             <el-table-column
-              v-if="!isDialog"
               label="操作"
               width="200"
               align="center"
             >
               <template slot-scope="scope">
-                <el-button
-                  class="bs-el-button-default"
-                  :disabled="scope.row.editable === 1 && !appCode"
-                  @click="toEdit(scope.row.id, scope.row.datasetType, scope.row.name, scope.row.typeId)"
-                >
-                  编辑
-                </el-button>
-                <el-button
-                  class="bs-el-button-default"
-                  :disabled="scope.row.editable === 1 && !appCode"
-                  @click="delDataset(scope.row.id)"
-                >
-                  删除
-                </el-button>
+                <div v-if="showOperate(scope.row.datasetType)">
+                  <el-button
+                    class="bs-el-button-default"
+                    :disabled="scope.row.editable === 1 && !appCode"
+                    @click="toEdit(scope.row.id, scope.row.datasetType, scope.row.name, scope.row.typeId)"
+                  >
+                    编辑
+                  </el-button>
+                  <el-button
+                    class="bs-el-button-default"
+                    :disabled="scope.row.editable === 1 && !appCode"
+                    @click="delDataset(scope.row.id)"
+                  >
+                    删除
+                  </el-button>
+                </div>
               </template>
             </el-table-column>
           </el-table>
@@ -345,6 +346,9 @@ export default {
           })
         }
       }
+    },
+    showOperate (datasetType) {
+      return this.getComponents(this.datasetTypeList.find(type => type.datasetType === datasetType).componentName)?.config?.showOperate ?? true
     },
     // 手动勾选
     selectDs (selection, row) {
@@ -526,7 +530,6 @@ export default {
     handleSearch () {
       this.current = 1
       this.queryForm.typeId = ''
-      console.log(1)
       // 清除左侧机构树的选中状态
       this.$refs.datasetsTypeTree.ztreeObj.cancelSelectedNode()
       this.getDataList()

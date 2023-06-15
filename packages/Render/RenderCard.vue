@@ -57,12 +57,6 @@ export default {
   mounted () {
     // 调用初始化方法
     dataInit(this)
-    // if (this.config.dataSource.businessKey) {
-    //   setInterval(() => {
-    //     console.log('刷新', this.config.key)
-    //     this.refresh(this.config)
-    //   }, 5000)
-    // }
   },
   beforeDestroy () {
     destroyedEvent()
@@ -71,31 +65,7 @@ export default {
     ...mapMutations('bigScreen', [
       'changeChartConfig'
     ]),
-    resolveComponentType,
-    // 刷新
-    refresh (config) {
-      // const filterList = []
-      // const params = {
-      //   chart: {
-      //     ...config,
-      //     option: undefined
-      //   },
-      //   current: 1,
-      //   pageCode: this.pageCode,
-      //   type: config.type,
-      //   filterList
-      // }
-      // getUpdateChartInfo(params).then((res) => {
-      //   console.log(res)
-      //   // 获取数据后更新组件配置
-      //   config.key = new Date().getTime()
-      //   this.changeChartConfig(config)
-      //   // this.$message.success('更新成功')
-      // }).catch((err) => {
-      //   console.error(err)
-      //   // this.$message.error('更新失败')
-      // })
-    }
+    resolveComponentType
   }
 }
 </script>
