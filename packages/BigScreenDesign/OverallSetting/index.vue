@@ -127,6 +127,7 @@
         <div class="title">
           <span>时间（秒）</span>
           <span>图表</span>
+          <span />
         </div>
         <div
           v-for="(timer, key) in pageInfo.pageConfig.refreshConfig"
