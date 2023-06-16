@@ -10,29 +10,16 @@
       <span class="logo-text name-span">{{ pageInfo.name }}</span>
     </div>
     <div class="head-btn-group">
-      <el-dropdown
-        node-key="value"
-        @command="setAlign"
+      <CusBtn
+        v-for="(mode,index) in alignList"
+        :key="mode.value"
+        class="align-btn"
+        @click="setAlign(mode.value)"
       >
-        <CusBtn
-          style="color: #ffffff"
-          :loading="saveAndPreviewLoading"
-        >
-          对齐
-        </CusBtn>
-        <el-dropdown-menu
-          slot="dropdown"
-          class="bs-el-dropdown-menu"
-        >
-          <el-dropdown-item
-            v-for="mode in alignList"
-            :key="mode.value"
-            :command="mode.value"
-          >
-            {{ mode.label }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+        <icon-svg
+          :name="iconList[index]"
+        />
+      </CusBtn>
       <CusBtn
         :loading="saveAndPreviewLoading"
         @click.native="designAssign()"
@@ -107,6 +94,8 @@ import { stringifyObjectFunctions } from 'packages/js/utils/evalFunctions'
 import AssignDialog from 'packages/BigScreenDesign/AssignDialog/index.vue'
 import HistoryList from 'packages/BigScreenDesign/HistoryList/index.vue'
 import CusBtn from './BtnLoading'
+import icons from 'packages/assets/images/alignIcon/export'
+import IconSvg from 'packages/SvgIcon'
 import {
   showSize,
   dataURLtoBlob,
@@ -116,6 +105,7 @@ import * as imageConversion from 'image-conversion'
 export default {
   name: 'PageTopSetting',
   components: {
+    IconSvg,
     ChooseTemplateDialog,
     AssignDialog,
     CusBtn,
@@ -133,6 +123,7 @@ export default {
   },
   data () {
     return {
+      iconList: icons.getNameList(),
       alignList: [
         {
           label: '左侧对齐',
@@ -208,6 +199,7 @@ export default {
       saveTimeLine: 'bigScreen/saveTimeLine'
     }),
     setAlign (command) {
+      debugger
       const pageInfo = _.cloneDeep(this.pageInfo)
       // 获取所有选中的组件
       let activeChartList = pageInfo.chartList.filter((chart) => {

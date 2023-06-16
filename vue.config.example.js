@@ -122,6 +122,7 @@ module.exports = {
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
+      .add(resolve('packages/assets/images/alignIcon/svg'))
       .end()
 
     config.module
@@ -131,6 +132,7 @@ module.exports = {
       .add(resolve('packages/assets/images/pageIcon/svg'))
       .add(resolve('packages/assets/images/bigScreenIcon/svg'))
       .add(resolve('packages/Svgs/svg'))
+      .add(resolve('packages/assets/images/alignIcon/svg'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
