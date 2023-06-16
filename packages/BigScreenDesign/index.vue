@@ -127,6 +127,7 @@ import { get } from 'packages/js/utils/http'
 import { randomString } from '../js/utils'
 import { isFirefox } from 'packages/js/utils/userAgent'
 import { handleResData } from 'packages/js/store/actions.js'
+import { EventBus } from 'packages/js/utils/eventBus'
 export default {
   name: 'BigScreenDesign',
   components: {
@@ -241,8 +242,12 @@ export default {
       }
     }
   },
+  mounted () {
+    EventBus.$on('closeRightPanel', () => { this.rightVisiable = false })
+  },
   beforeDestroy () {
     this.clearTimeline()
+    EventBus.$off('closeRightPanel')
   },
   methods: {
     ...mapActions('bigScreen', ['initLayout']),
@@ -383,9 +388,15 @@ export default {
     },
     // 动态属性更新
     updateDataSetting (config) {
-      this.$refs.Render.$refs['RenderCard' + config.code][0].$refs[
-        config.code
-      ].updateChartData(_.cloneDeep(config))
+      if (
+        this.$refs.Render?.$refs['RenderCard' + config.code][0] &&
+        this.$refs.Render?.$refs['RenderCard' + config.code][0]?.$refs[config.code] &&
+        this.$refs.Render?.$refs['RenderCard' + config.code][0]?.$refs[config.code]?.updateChartData
+      ) {
+        this.$refs.Render?.$refs['RenderCard' + config.code][0]?.$refs[
+          config.code
+        ]?.updateChartData(_.cloneDeep(config))
+      }
     },
     onSelectArea (area) {
       const { startX, startY, endX, endY } = area

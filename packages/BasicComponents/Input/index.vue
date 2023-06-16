@@ -49,12 +49,11 @@ export default {
     return { }
   },
   mounted () {
+    this.chartInit()
     this.updateComponent()
   },
   methods: {
     updateComponent () {
-      // console.log(document.querySelector(`#el-input-${this.config.code}`))
-      // console.log(this.config.customize)
       const input = document.querySelector(`#el-input-${this.config.code}`)
 
       // const inputIcon = input.querySelector(`.${this.config.customize.icon.name}`)

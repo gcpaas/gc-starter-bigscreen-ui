@@ -111,6 +111,22 @@ export default {
         data: dataList
       }
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        let dataList = ''
+        if (data.data instanceof Array) {
+          dataList = this.config.dataSource.dimensionField
+            ? data.data[0][config.dataSource.dimensionField]
+            : data.data[0].value
+        } else {
+          dataList = data.data[config.dataSource.dimensionField]
+        }
+        this.config.option = {
+          ...config.option,
+          data: dataList
+        }
+      })
     }
   }
 }

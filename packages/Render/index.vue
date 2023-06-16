@@ -36,6 +36,7 @@
       :snap-tolerance="2"
       :style="{ zIndex: chart.z || 0 }"
       :grid="[1,1]"
+      @activated="activated(...arguments, chart)"
       @dragging="onDrag(...arguments, chart)"
       @resizing="onResize(...arguments, chart)"
       @resizestop="resizestop(...arguments, chart)"
@@ -74,6 +75,7 @@
 import { mapState, mapMutations } from 'vuex'
 import RenderCard from './RenderCard.vue'
 import Configuration from './Configuration.vue'
+import _ from 'lodash'
 import vdr from 'vue-draggable-resizable-gorkys'
 import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
 import { randomString } from '../js/utils'
@@ -99,7 +101,8 @@ export default {
       themeCss: '',
       // 临时冻结拖拽
       freeze: false,
-      plotList
+      plotList,
+      rawChart: []
     }
   },
   computed: {
@@ -244,22 +247,24 @@ export default {
       this.saveTimeLine(`改变${chart?.title}大小`)
       this.changeGridShow(false)
     },
+    activated (chart) {
+      this.rawChart = _.cloneDeep(chart)
+    },
     dragstop (left, top, chart) {
-      const oldChart = this.chartList?.find(
-        (_chart) => _chart.code === chart.code
-      )
       if (!this.freeze) {
-        console.log('dragstop', chart)
-        this.changeChartConfig({
-          ...chart,
-          x: left,
-          y: top
-        })
-        if (chart.code === this.activeCode) {
-          this.changeActiveItemWH({
+        if (this.rawChart.x !== left || this.rawChart.y !== top) {
+          this.changeChartConfig({
+            ...chart,
             x: left,
             y: top
           })
+          if (chart.code === this.activeCode) {
+            this.changeActiveItemWH({
+              x: left,
+              y: top
+            })
+          }
+          this.rawChart = _.cloneDeep(chart)
         }
       } else {
         const index = this.chartList.findIndex(
@@ -412,6 +417,6 @@ export default {
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
 }
 .multiple-selected {
-  border: 2px dashed #fff !important;
+  border: 1px dashed #fff !important;
 }
 </style>

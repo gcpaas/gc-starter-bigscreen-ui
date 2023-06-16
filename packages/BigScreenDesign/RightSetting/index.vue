@@ -12,7 +12,10 @@
         label="数据"
         name="data"
       >
-        <DataSetting ref="dataSetting" />
+        <DataSetting
+          ref="dataSetting"
+          :key="config.code"
+        />
       </el-tab-pane>
       <el-tab-pane
         label="样式"
@@ -81,9 +84,16 @@ export default {
     pageCode () {
       return this.$route.query.code
     },
-    configStyle () {
+    configDataSource () {
       return {
         dataSource: this.config.dataSource,
+        linkage: this.config?.linkage,
+        dataHandler: this.config?.dataHandler,
+        dataSourceSetting: this.config?.setting?.filter(item => item.tabName === 'data') || []
+      }
+    },
+    configStyle () {
+      return {
         showTitle: this.config.showTitle,
         title: this.config?.title,
         w: this.config?.w,
@@ -91,7 +101,6 @@ export default {
         x: this.config?.x,
         y: this.config?.y,
         z: this.config?.z,
-        linkage: this.config?.linkage,
         setting: this.config?.setting,
         customize: this.config?.customize,
         url: this.config?.url,
@@ -101,14 +110,21 @@ export default {
     }
   },
   watch: {
+    // 只更新样式部分，不调用接口
     configStyle: {
       handler (val) {
         if (val) {
-          if (this.config.option.displayOption.dataAllocation.enable) {
-            this.$emit('updateDataSetting', this.config)
-          } else {
-            this.$emit('updateSetting', this.config)
-          }
+          this.$emit('updateSetting', this.config)
+          this.saveTimeLine(`更新${val?.title}组件属性`)
+        }
+      },
+      deep: true
+    },
+    // 更新数据源部分，需要调用接口
+    configDataSource: {
+      handler (val) {
+        if (val) {
+          this.$emit('updateDataSetting', this.config)
           this.saveTimeLine(`更新${val?.title}组件属性`)
         }
       },

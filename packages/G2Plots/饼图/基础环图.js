@@ -278,6 +278,8 @@ const dataHandler = ''
 // 图表配置 new Pie('domName', option)
 const option = {
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
+  // 数据将要放入到哪个字段中
+  dataKey: 'data',
   data,
   angleField: 'value',
   colorField: 'type',

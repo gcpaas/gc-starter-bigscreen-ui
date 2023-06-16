@@ -597,6 +597,7 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/nord.css'
 import _ from 'lodash'
 export default {
+  name: 'ScriptEditForm',
   components: {
     codemirror
   },

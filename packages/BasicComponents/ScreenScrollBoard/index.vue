@@ -35,8 +35,11 @@ export default {
     }
   },
   computed: {
-    option () {
-      return { ...this.config.customize, data: this.config.option?.data, header: this.config.option?.header, columnWidth: this.config.option?.columnWidth, align: this.config.option?.align }
+    option: {
+      get () {
+        return { ...this.config.customize, data: this.config.option?.data, header: this.config.option?.header, columnWidth: this.config.option?.columnWidth, align: this.config.option?.align }
+      },
+      set () {}
     }
   },
   watch: {
@@ -101,8 +104,14 @@ export default {
         columnWidth: [...widthList],
         align: [...alignList]
       }
-
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        const _config = this.buildOption(config, data)
+        this.option.data = _config.option.data
+        this.updateKey++
+      })
     }
 
   }

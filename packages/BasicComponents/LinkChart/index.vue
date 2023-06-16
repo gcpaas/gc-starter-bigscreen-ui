@@ -41,6 +41,7 @@ export default {
   watch: {
   },
   mounted () {
+    this.chartInit()
   },
   methods: {
     ...mapMutations('bigScreen', ['changeIframeDialog']),
@@ -63,6 +64,11 @@ export default {
         config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
       }
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        this.config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
+      })
     }
   }
 }

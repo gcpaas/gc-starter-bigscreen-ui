@@ -8,11 +8,11 @@
       class="setting-body"
     >
       <el-form
-          :model="config.customize"
-          label-position="left"
-          class="setting-body"
-          label-width="100px"
-        >
+        :model="config.customize"
+        label-position="left"
+        class="setting-body"
+        label-width="100px"
+      >
         <SettingTitle>标题</SettingTitle>
         <div class="lc-field-body">
           <el-form-item label="排名轮播表名称">
@@ -64,8 +64,7 @@
             />
           </el-form-item>
         </div>
-
-        </el-form>
+      </el-form>
     </el-form>
   </div>
 </template>

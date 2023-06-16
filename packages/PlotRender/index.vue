@@ -53,13 +53,13 @@ export default {
         prefix = 'management_chart_'
       }
       return prefix + this.config.code
-    },
-    isPreview () {
-      return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
     }
   },
   created () {
     this.plotList = [...this.plotList, ...getCustomPlots()]
+  },
+  mounted () {
+    this.chartInit()
   },
   beforeDestroy () {
     if (this.chart) {
@@ -70,7 +70,7 @@ export default {
     ...mapMutations('bigScreen', ['changeChartConfig']),
     chartInit () {
       // key和code相等，说明是一进来刷新，调用/chart/data/list
-      if (this.config.code === this.config.key) {
+      if (this.config.code === this.config.key || this.isPreview) {
         // 先给默认数据, 渲染出图表
         const config = _.cloneDeep(this.config)
         // config.option = plotList.find(plot => plot.name === config.name)?.option
@@ -80,10 +80,6 @@ export default {
         this.updateChart()
       } else {
         // 否则说明是更新或者复制
-        // 如果是复制，给默认值
-        if (this.config.isCopy) {
-          this.config.option.data = this.plotList.find(plot => plot.name === this.config.name)?.option?.data
-        }
         this.newChart(this.config.option)
       }
     },
@@ -99,6 +95,30 @@ export default {
       })
       this.chart.render()
       this.registerEvent()
+    },
+    /**
+     * @description: 只更新数据
+     */
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        if (data.success) {
+          // 成功后更新数据
+          config = this.buildOption(config, data)
+          const dataKey = config.option.dataKey
+          // eslint-disable-next-line no-inner-declarations
+          function getValueFromOption (option, dataKey) {
+            try {
+              return eval('option.' + dataKey)
+            } catch (error) {
+              return undefined
+            }
+          }
+          const newData = getValueFromOption(config.option, dataKey)
+          if (this.chart) {
+            this.chart.changeData(newData)
+          }
+        }
+      })
     },
     /**
      * 更新组件

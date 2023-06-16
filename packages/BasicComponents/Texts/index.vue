@@ -33,6 +33,7 @@ export default {
   watch: {
   },
   mounted () {
+    this.chartInit()
   },
   methods: {
     buildOption (config, data) {
@@ -41,6 +42,12 @@ export default {
         config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
       }
       return config
+    },
+    // 仅更新数据
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        this.config.customize.title = data && data.data && data.data.length ? data.data[0][config.dataSource.metricField] : '暂无数据'
+      })
     }
   }
 }

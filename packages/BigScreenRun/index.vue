@@ -20,7 +20,11 @@
           zIndex: chart.z || 0
         }"
       >
-        <RenderCard :config="chart" />
+        <RenderCard
+          ref="RenderCardRef"
+          :key="chart.key"
+          :config="chart"
+        />
       </div>
     </div>
   </div>
@@ -50,7 +54,8 @@ export default {
   data () {
     return {
       innerHeight: window.innerHeight,
-      innerWidth: window.innerWidth
+      innerWidth: window.innerWidth,
+      timer: null
     }
   },
   computed: {
@@ -148,6 +153,12 @@ export default {
     this.getParentWH()
     this.windowSize()
   },
+  mounted () {
+    this.startTimer()
+  },
+  beforeDestroy () {
+    this.stopTimer()
+  },
   methods: {
     ...mapActions('bigScreen', [
       'initLayout' // -> this.initLayout()
@@ -155,7 +166,8 @@ export default {
     ...mapMutations('bigScreen', [
       'changeLayout',
       'changePageLoading',
-      'changePageConfig'
+      'changePageConfig',
+      'changeChartConfig'
     ]),
     init () {
       if (!this.pageCode) { return }
@@ -178,6 +190,34 @@ export default {
         }
         this.getParentWH()
       })
+    },
+    // 设置定时器
+    startTimer () {
+      let time = 1
+      const that = this
+      // 使用setTimeout代替setInterval，并在每次循环结束后重新设置定时器。这样可以避免定时器的堆积和性能问题
+      // 同时，为了方便清除定时器，可以将定时器的引用保存在变量中，以便后续清除
+      this.timer = setTimeout(function refresh () {
+        that.pageInfo.pageConfig.refreshConfig.forEach(item => {
+          if (item.code) {
+            if (time === 1) {
+              item.originTime = item.time
+            }
+            that.chartList.forEach((chart, index) => {
+              if (item.code === chart.code && item.time === time) {
+                item.time = item.time + item.originTime
+                that.$refs.RenderCardRef[index].$refs[chart.code].updateData()
+              }
+            })
+          }
+        })
+        time += 1
+        that.timer = setTimeout(refresh, 1000)
+      }, 1000)
+    },
+    // 清除定时器
+    stopTimer () {
+      clearTimeout(this.timer)
     },
     getIframeCode () {
       // 获取当前页面的URL

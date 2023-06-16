@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted () {
-    // this.chartInit()
+    this.chartInit()
   },
   beforeDestroy () {
     this.charts?.clear()

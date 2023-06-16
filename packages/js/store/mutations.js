@@ -2,8 +2,8 @@
  * @description: vuex mutations 事件
  * @Date: 2023-03-13 10:04:59
  * @Author: xing.heng
- * @LastEditors: xing.heng
- * @LastEditTime: 2023-06-12 13:40:38
+ * @LastEditors: wujian
+ * @LastEditTime: 2023-06-15 10:52:06
  */
 
 import Vue from 'vue'
@@ -11,6 +11,7 @@ import _ from 'lodash'
 import { defaultData } from './state'
 import moment from 'moment'
 import { randomString } from 'packages/js/utils'
+import { EventBus } from 'packages/js/utils/eventBus'
 export default {
   // 改变页面基本信息，后端请求的页面信息存储到此处
   changePageInfo (state, pageInfo) {
@@ -103,11 +104,14 @@ export default {
   delItem (state, codes) {
     if (Array.isArray(codes)) {
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => !codes.includes(chart.code))
+      state.pageInfo.pageConfig.refreshConfig = state.pageInfo.pageConfig.refreshConfig.filter(timer => !codes.includes(timer.code))
     } else {
+      state.pageInfo.pageConfig.refreshConfig = state.pageInfo.pageConfig.refreshConfig.filter(item => item.code !== codes)
       state.pageInfo.chartList = state.pageInfo.chartList.filter(chart => codes !== chart.code)
     }
     // 存储删除后的状态
     saveTimeLineFunc(state, '删除组件')
+    EventBus.$emit('closeRightPanel')
   },
   changePageConfig (state, pageConfig) {
     Vue.set(state.pageInfo, 'pageConfig', _.cloneDeep(pageConfig))
@@ -164,6 +168,9 @@ export default {
   },
   changeFitZoom (state, zoom) {
     state.fitZoom = zoom
+  },
+  changeRefreshConfig (state, refreshConfig) {
+    state.pageInfo.pageConfig.refreshConfig = refreshConfig
   },
   changeActivePos (state, { diffX, diffY }) {
     const activeCodes = state.activeCodes

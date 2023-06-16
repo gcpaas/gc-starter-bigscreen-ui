@@ -46,6 +46,9 @@ export default {
   created () {
     this.getRemoteComponent()
   },
+  mounted () {
+    this.chartInit()
+  },
   methods: {
     ...mapMutations('bigScreen', ['changeChartConfig']),
     // 尝试渲染远程文件或远程字符串
@@ -83,7 +86,7 @@ export default {
     },
     chartInit () {
       // key和code相等，说明是一进来刷新，调用/chart/data/list
-      if (this.config.code === this.config.key) {
+      if (this.config.code === this.config.key || this.isPreview) {
         // 再根据数据更新组件
         this.updateChart()
       }
@@ -117,6 +120,12 @@ export default {
         option,
         setting
       }
+    },
+    /**
+     * @description: 只更新数据
+     */
+    updateData () {
+      this.updateChart()
     },
     /**
      * 更新组件
@@ -172,14 +181,7 @@ export default {
     // 同步配置
     synchConfig (option, setting) {
       // 对比this.config.setting 和 setting，进行合并，数据以this.config.option对象的value为准
-      const _setting = _.cloneDeep(setting)
-      this.config.setting.forEach(set => {
-        const newSet = _setting.find(item => item.field === set.field)
-        if (newSet) {
-          newSet.value = set.value
-        }
-      })
-      this.config.setting = _setting
+      // TODO
     }
   }
 }

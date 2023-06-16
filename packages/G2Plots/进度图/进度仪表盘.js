@@ -120,12 +120,14 @@ const setting = [
     groupName: 'padding'
   }
 ]
-
+const data = []
 // 数据处理脚本
 const dataHandler = '// 取返回数据列表的第一项指标值\noption.percent = data[0][setting.filter(settingItem=>settingItem.field === \'percent\')[0].value]'
 
 // 图表配置 new Gauge('domName', option)
 const option = {
+  dataKey: 'percent',
+  data,
   percent: 0.75,
   appendPadding: [20, 20, 20, 20], // 设置图标的边距
   range: {

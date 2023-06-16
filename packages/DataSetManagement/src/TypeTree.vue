@@ -129,7 +129,7 @@
         <div class="left-tab-box">
           <ul>
             <li
-              v-for="_type in typeData"
+              v-for="_type in datasetTypeList"
               :key="_type.name"
               :class="{ 'tab-style': true, 'tab-active': _type.datasetType == curType }"
               @click="getTypeData(_type.datasetType)"
@@ -139,7 +139,7 @@
           </ul>
         </div>
       </div>
-      <org-edit-form
+      <CategroyEditForm
         v-if="editFormVisible"
         ref="editForm"
         :app-code="appCode"
@@ -158,14 +158,14 @@ import 'packages/assets/style/zTree/metroStyle.css'
 import 'packages/assets/style/zTree/zTree.scss'
 import 'packages/assets/style/zTree/zTreeSelect.scss'
 import { getDatasetTypeList, categoryRemove } from 'packages/js/utils/datasetConfigService'
-import OrgEditForm from './CategroyEditForm.vue'
+import CategroyEditForm from './CategroyEditForm.vue'
 export default {
-  name: 'OrgTreeIndex',
+  name: 'TypeTree',
   components: {
-    OrgEditForm
+    CategroyEditForm
   },
   props: {
-    dsType: {
+    datasetTypeList: {
       type: Array,
       default: () => (['original', 'custom', 'storedProcedure', 'json', 'script'])
     },
@@ -178,14 +178,14 @@ export default {
     return {
       activeName: 'group',
       categoryData: [],
-      typeDataList: [
-        { name: '全部', datasetType: '' },
-        { name: '原始数据集', datasetType: 'original' },
-        { name: '自助数据集', datasetType: 'custom' },
-        { name: '存储过程数据集', datasetType: 'storedProcedure' },
-        { name: 'JSON数据集', datasetType: 'json' },
-        { name: '脚本数据集', datasetType: 'script' }
-      ],
+      // typeDataList: [
+      //   { name: '全部', datasetType: '' },
+      //   { name: '原始数据集', datasetType: 'original' },
+      //   { name: '自助数据集', datasetType: 'custom' },
+      //   { name: '存储过程数据集', datasetType: 'storedProcedure' },
+      //   { name: 'JSON数据集', datasetType: 'json' },
+      //   { name: '脚本数据集', datasetType: 'script' }
+      // ],
       curType: '-1',
       noData: false,
       loading: false,
@@ -230,12 +230,12 @@ export default {
     }
   },
   computed: {
-    typeData () {
-      const types = this.typeDataList.filter(type => {
-        return type.datasetType === '' || this.dsType.includes(type.datasetType)
-      })
-      return types
-    }
+    // typeData () {
+    //   const types = this.typeDataList.filter(type => {
+    //     return type.datasetType === '' || this.dsType.includes(type.datasetType)
+    //   })
+    //   return types
+    // }
   },
   mounted () {
     this.initLazyOrgTree()

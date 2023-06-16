@@ -399,6 +399,7 @@ import { getDatasetTypeList, datasetAddorUpdate, getDataset, nameCheckRepeat } f
 import _ from 'lodash'
 
 export default {
+  name: 'JsonEditForm',
   components: {
     vueJsonEditor,
     vueJsonViewer

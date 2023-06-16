@@ -141,6 +141,8 @@ const dataHandler = '// 转换数据格式\n' +
 
 // 图表配置 new Line('domName', option)
 const option = {
+  // 数据将要放入到哪个字段中
+  dataKey: 'data',
   data,
   color: ['#5B8FF9', '#61DDAA', '#5D7092', '#F6BD16', '#6F5EF9', '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3'],
   appendPadding: [20, 20, 20, 20], // 设置图标的边距

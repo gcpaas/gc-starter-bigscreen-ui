@@ -33,11 +33,15 @@ export default {
   },
   data () {
     return {
+      updateKey: 0
     }
   },
   computed: {
-    option () {
-      return { ...this.config.customize, data: this.config.option.data }
+    option: {
+      get () {
+        return { ...this.config.customize, data: this.config.option.data }
+      },
+      set (value) {}
     }
   },
   watch: {
@@ -56,6 +60,13 @@ export default {
         data: dataSourseList
       }
       return config
+    },
+    updateData () {
+      this.getCurrentOption().then(({ data, config }) => {
+        const _config = this.buildOption(config, data)
+        this.option.data = _config.option.data
+        this.updateKey++
+      })
     }
 
   }

@@ -47,7 +47,7 @@
 <script>
 import { addOrUpdateTree } from 'packages/js/utils/datasetConfigService'
 export default {
-  name: 'OriginalTableCategory',
+  name: 'CategroyEditForm',
   props: {
     appCode: {
       type: String,

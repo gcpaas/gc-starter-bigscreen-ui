@@ -617,7 +617,7 @@ export default {
   computed: {
     ...mapState({
       pageInfo: state => state.bigScreen.pageInfo,
-      config: state => state.bigScreen.activeItemConfig,
+      config: state => state.bigScreen.activeItemConfig
     }),
     dataSourceDataList () {
       return this.fieldsList?.map(item => ({
@@ -685,6 +685,7 @@ export default {
     if (this.config.dataSource && this.config.dataSource.businessKey) {
       this.getDataSetDetailsById(this.config.dataSource.businessKey, 'initial')
     }
+    console.log(this.config)
   },
   methods: {
     // 切换前后端分页

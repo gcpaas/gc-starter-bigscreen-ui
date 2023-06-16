@@ -19,14 +19,10 @@ export default {
       pageCode: state => state.bigScreen.pageInfo.code
     }),
     isPreview () {
-      return (this.$route.path === window?.BS_CONFIG?.routers?.previewUrl) || (this.$route.path === '/big-screen/preview')
+      return this.$route.path !== window?.BS_CONFIG?.routers?.designUrl
     }
   },
-  mounted () {
-    if (!['digitalFlop', 'screenScrollRanking', 'screenScrollBoard', 'tables'].includes(this.config.type)) {
-      this.chartInit()
-    }
-  },
+  mounted () {},
   methods: {
     ...mapMutations({
       changeChartConfig: 'bigScreen/changeChartConfig'
@@ -38,7 +34,7 @@ export default {
       // 初始化组件和数据，若自己的组件的初始化和数据处理不一样，可重写该方法
       // 如果key和code相等，说明是一进来刷新，调用/chart/data/list，否则是更新，调用 chart/data/chart
       // 或者是组件联动isLink,也需要调用/chart/data/list更新
-      if (this.config.code === this.config.key) {
+      if (this.config.code === this.config.key || this.isPreview) {
         // 根据数据集初始化的组件
         if (this.isPreview) {
           this.getCurrentOption().then(({ config, data }) => {
@@ -125,13 +121,6 @@ export default {
         type: config.type,
         filterList
       }
-      // if (config.type === 'remoteComponent') {
-      //   config = this.buildOption(config, { success: false })
-      //   config.key = new Date().getTime()
-      //   this.changeChartConfig(config)
-      //   return
-      // }
-
       getUpdateChartInfo(params).then((res) => {
         // 获取数据后更新组件配置
         config.key = new Date().getTime()

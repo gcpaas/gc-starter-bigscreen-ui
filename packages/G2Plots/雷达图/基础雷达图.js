@@ -128,6 +128,8 @@ const dataHandler = ''
 
 // 图表配置 new Line('domName', option)
 const option = {
+  // 数据将要放入到哪个字段中
+  dataKey: 'data',
   data,
   xField: 'name',
   yField: 'star',
